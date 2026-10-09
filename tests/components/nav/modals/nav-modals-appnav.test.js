@@ -111,12 +111,12 @@ describe('AppNav', () => {
     expect(langBtn).not.toBeNull()
   })
 
-  test('action item reflects scroll-up state when onBottom is true', () => {
-    navEl.translations = { scrollup: NAV_TEXT.SCROLL_UP }
+  test('action item reflects selected work state when onBottom is true', () => {
+    navEl.translations = { featured: NAV_TEXT.SELECTED_WORK }
     navEl._openMenu()
     navEl.updateScrollState(SECTION_IDS.CONTACT, true)
     const actionBtn = navEl.shadowRoot.querySelector(S.NAV_ACTION_BTN)
-    expect(actionBtn.textContent).toContain(NAV_TEXT.SCROLL_UP)
+    expect(actionBtn.textContent).toContain(NAV_TEXT.SELECTED_WORK)
     expect(actionBtn.classList.contains(NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM_ACTIVE)).toBe(true)
   })
 

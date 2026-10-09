@@ -21,6 +21,7 @@ import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
 import { appText, componentText } from '@core/locale/ui-text.js'
 import { h, Fragment } from '@core/jsx.js'
+import '@website/components/media/DrawText.js'
 import contactStyles from '@core/sass/components/home/contact.scss?inline'
 
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
@@ -104,7 +105,14 @@ export class ContactSection extends BaseComponent {
     return (
       <footer className={CONTACT_CLASSES.CONTACT}>
         <h2 className={CONTACT_CLASSES.CONTACT_TITLE}>
-          <span>{translations.title || componentText(SECTION_COMPONENT_KEYS.CONTACT_TITLE)}</span>
+          {/* Light-DOM text mirrors `text` — tests/no-upgrade paths read it;
+              unslotted children never paint. */}
+          <draw-text
+            text={String(translations.title || componentText(SECTION_COMPONENT_KEYS.CONTACT_TITLE))}
+            warp={ATTR_VALUES.EMPTY}
+          >
+            {String(translations.title || componentText(SECTION_COMPONENT_KEYS.CONTACT_TITLE))}
+          </draw-text>
         </h2>
         <div className={CONTACT_CLASSES.CONTACT_SOCIAL}>
           {line1.map((item, n) => (

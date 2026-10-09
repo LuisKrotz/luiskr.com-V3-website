@@ -79,12 +79,20 @@ export function handleAbout(host: AppNav, e?: Event): void {
   }
 }
 
-/** Contact/CTA click: routes to the localized contact slug. */
+/**
+ * Contact/CTA click: near the document bottom the entry becomes "selected
+ * work" — home scrolls back to the mosaic (top), internals navigate to the
+ * localized home route; otherwise it scrolls to the contact slug/footer.
+ */
 export function handleAction(host: AppNav, e?: Event): void {
   swallow(e)
 
   if (host.onBottom) {
-    host.scrollToTop()
+    if (host.isHomePage) {
+      host.scrollToTop()
+    } else {
+      router.push(localePath('', host.locale))
+    }
   } else {
     host.scrollToContact()
   }

@@ -71,7 +71,7 @@ export const renderNavLocaleFlag = (host: NavFlagHost) => {
             alt={lang.label}
             height={FLAG_DIMENSIONS.FLAG_NAV_HEIGHT}
             decoding={MEDIA_ATTRS.DECODING_ASYNC}
-            loading={MEDIA_ATTRS.LOADING_LAZY}
+            loading={MEDIA_ATTRS.LOADING_EAGER}
           />
           <img
             className={FLAG_CLASSES.FLAG_IMG}
@@ -79,7 +79,7 @@ export const renderNavLocaleFlag = (host: NavFlagHost) => {
             alt={ATTR_VALUES.EMPTY}
             height={FLAG_DIMENSIONS.FLAG_NAV_HEIGHT}
             decoding={MEDIA_ATTRS.DECODING_ASYNC}
-            loading={MEDIA_ATTRS.LOADING_LAZY}
+            loading={MEDIA_ATTRS.LOADING_EAGER}
           />
         </span>
       ) : (
@@ -89,7 +89,7 @@ export const renderNavLocaleFlag = (host: NavFlagHost) => {
           alt={lang.label}
           height={FLAG_DIMENSIONS.FLAG_NAV_HEIGHT}
           decoding={MEDIA_ATTRS.DECODING_ASYNC}
-          loading={MEDIA_ATTRS.LOADING_LAZY}
+          loading={MEDIA_ATTRS.LOADING_EAGER}
         />
       )}
     </span>

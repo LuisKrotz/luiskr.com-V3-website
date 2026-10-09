@@ -99,6 +99,8 @@ const renderSocials = (host: PortfolioRelated, socials: RelatedSocial[]) => (
         )}
       </Fragment>
     ))}
+    {/* Animated hairline separating the socials row from the note below. */}
+    <hr className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER} aria-hidden={ATTR_VALUES.TRUE} />
     {/*
       Disclaimer: justified text clamped to its first line (CSS ellipsis)
       inside -note-text; the trailing -note-more dots pulse while the note
@@ -142,6 +144,7 @@ const renderSkeletonSocials = () => (
         )}
       </Fragment>
     ))}
+    <hr className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER} aria-hidden={ATTR_VALUES.TRUE} />
     {[SKELETON_CLASSES.SKELETON_FOOTER_NOTE_1, SKELETON_CLASSES.SKELETON_FOOTER_NOTE_2].map(
       (cls) => (
         <p key={cls} className={`${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE} ${cls}`} />
@@ -179,7 +182,11 @@ export function renderRelated(host: PortfolioRelated) {
     <footer className={INTERNAL_CLASSES.INTERNAL_FOOTER}>
       <h2 className={INTERNAL_CLASSES.INTERNAL_FOOTER_TITLE}>
         {host.translations?.title ? (
-          <span dangerouslySetInnerHTML={{ __html: host.translations.title }} />
+          <draw-text
+            text={host.translations.title}
+            warp={ATTR_VALUES.EMPTY}
+            dangerouslySetInnerHTML={{ __html: host.translations.title }}
+          />
         ) : (
           <span className={SKELETON_CLASSES.SKELETON_TITLE_SM} />
         )}

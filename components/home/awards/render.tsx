@@ -6,6 +6,7 @@
  * the SPA router, and the source credit line.
  */
 
+import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
 import { AWC_CLASSES } from '@core/tokens/classes/awards-carousel.js'
 import { FOOTER_CLASSES } from '@core/tokens/classes/footer.js'
@@ -14,6 +15,7 @@ import { AWARDS_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { h, Fragment } from '@core/jsx.js'
+import '@website/components/media/DrawText.js'
 import router from '@core/router/router.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { DOCS_STRINGS } from '@core/tokens/strings/docs.js'
@@ -32,7 +34,11 @@ export function renderAwards(el: AwardsMentions) {
   return (
     <footer className={AWARDS_CLASSES.AWARDS_FOOTER}>
       <div className={AWARDS_CLASSES.AWARDS_FOOTER_HEADER}>
-        <h2 className={AWARDS_CLASSES.AWARDS_FOOTER_TITLE}>{el.title}</h2>
+        <h2 className={AWARDS_CLASSES.AWARDS_FOOTER_TITLE}>
+          <draw-text text={el.title} warp={ATTR_VALUES.EMPTY}>
+            {el.title}
+          </draw-text>
+        </h2>
 
         <div
           className={AWARDS_CLASSES.AWARDS_FOOTER_PROGRESS}

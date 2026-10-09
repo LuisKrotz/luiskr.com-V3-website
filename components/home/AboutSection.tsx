@@ -135,7 +135,11 @@ export class AboutSection extends BaseComponent {
           }
         >
           {this.aboutTranslations ? (
-            <DrawText text={title} trigger={COMMON_ATTRS.TRIGGER_VIEWPORT} />
+            <DrawText
+              text={title}
+              trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
+              warp={ATTR_VALUES.EMPTY}
+            />
           ) : (
             <span
               aria-hidden={ATTR_VALUES.TRUE}

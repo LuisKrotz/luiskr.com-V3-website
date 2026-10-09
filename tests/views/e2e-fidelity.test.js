@@ -187,7 +187,7 @@ describe('Automated End-to-End Feature & Fidelity Test Suite (50+ Tests)', () =>
         about: { description: NAV_TEXT.ABOUT },
         contact: NAV_TEXT.CONTACT,
         preferences: 'Preferences',
-        scrollup: NAV_TEXT.SCROLL_UP_ALT,
+        featured: NAV_TEXT.SELECTED_WORK,
       }
       document.body.appendChild(nav)
       nav._openMenu()
@@ -205,12 +205,12 @@ describe('Automated End-to-End Feature & Fidelity Test Suite (50+ Tests)', () =>
 
       nav.updateScrollState(SECTION_IDS.CONTACT, true)
       expect(shadow.querySelector(NAV_SELECTORS.NAV_ACTION_BTN).textContent.trim()).toBe(
-        NAV_TEXT.SCROLL_UP_ALT
+        NAV_TEXT.SELECTED_WORK
       )
       expect(
         shadow
           .querySelector(NAV_SELECTORS.NAV_ACTION_BTN)
-          .classList.contains(NAV_CLASSES.NAV_SCROLL_UP)
+          .classList.contains(NAV_CLASSES.NAV_SELECTED_WORK)
       ).toBe(true)
     })
 

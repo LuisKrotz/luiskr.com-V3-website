@@ -5,7 +5,7 @@
  * menu for every breakpoint). Pure render: reads host getters/state and
  * calls the host's delegate methods; returns an empty string while the
  * media-expand modal is open so the nav can't compete with its chrome.
- * The CTA label flips Contact → Scroll-up → Related by scroll state and
+ * The CTA label flips Contact → Selected work → Related by scroll state and
  * route; the menu items mirror the same conditional logic.
  */
 
@@ -35,7 +35,7 @@ import { DRAW_TIMINGS } from '@core/tokens/media/dimensions.js'
  * Renders the <app-nav> template: logo, burger strip, and the fullscreen
  * menu overlay. Returns '' while the media-expand modal is open — an empty
  * render wipes the nav DOM so its z-index/focus can never compete with the
- * modal chrome. The CTA label chain (contact → scroll-up at page bottom →
+ * modal chrome. The CTA label chain (contact → selected work at page bottom →
  * related on project routes) mirrors the menu item order.
  * @param nav AppNav instance — reads its getters/state, calls delegates.
  * @returns JSX tree, or '' while a modal owns the screen.
@@ -57,11 +57,11 @@ export const renderAppNav = (nav: AppNav) => {
 
   let actionLabel = t?.contact || appText(CMS_KEYS.CONTACT)
 
-  // CTA label precedence: near document bottom → "scroll up" (returning
-  // beats dead-ends); on a project page → "related" (jumps to related
-  // projects); otherwise plain "contact".
+  // CTA label precedence: near document bottom → "selected work" (home
+  // scrolls to the mosaic, internals navigate home); on a project page →
+  // "related" (jumps to related projects); otherwise plain "contact".
   if (nav.onBottom) {
-    actionLabel = t?.scrollup || appText(NAV_UI_KEYS.SCROLL_UP)
+    actionLabel = t?.featured || appText(NAV_UI_KEYS.SELECTED_WORK)
   } else if (isProjectRoute) {
     actionLabel = t?.related || appText(CMS_KEYS.RELATED)
   }
@@ -197,7 +197,7 @@ export const renderAppNav = (nav: AppNav) => {
             if (!isNotFound) {
               items.push({
                 label: actionText,
-                cls: `${NAV_CLASSES.NAV_ACTION_BTN}${nav.onBottom ? ` ${NAV_CLASSES.NAV_SCROLL_UP}` : CHAR_STRINGS.EMPTY}`,
+                cls: `${NAV_CLASSES.NAV_ACTION_BTN}${nav.onBottom ? ` ${NAV_CLASSES.NAV_SELECTED_WORK}` : CHAR_STRINGS.EMPTY}`,
                 onClick: (e: Event) => {
                   nav._closeMenu()
 

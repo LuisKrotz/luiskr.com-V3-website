@@ -72,7 +72,7 @@ interface AppNavTranslations {
   title?: string
   about?: { description?: string }
   contact?: string
-  scrollup?: string
+  featured?: string
   related?: string
   menu?: string
   close?: string
@@ -94,7 +94,7 @@ export class AppNav extends BaseComponent {
   _translationsLocale: string | null = null
   /** Home anchor the scroll position sits in — drives nav-active styles. */
   activeSection: string = SECTIONS.HOME
-  /** Within 200px of document bottom — flips CTA to "scroll up". */
+  /** Within 200px of document bottom — flips CTA to "selected work". */
   onBottom = false
   /** Live FlagWebGL widgets (currently max one — the menu flag). */
   _navFlags: FlagWebGL[] = []

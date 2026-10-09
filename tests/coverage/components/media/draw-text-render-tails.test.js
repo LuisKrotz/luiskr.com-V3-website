@@ -13,7 +13,12 @@ import '@cms/playground-editor/CmsPlaygroundEditor.js'
 import '@cms/footer/CmsFooterEditor.js'
 import '@cms/deploy-info/CmsDeployInfo.js'
 
-import { parseTokens, renderContent } from '@website/components/media/draw-text/render.js'
+import {
+  parseTokens,
+  renderContent,
+  renderWordHtml,
+  tokenToHtml,
+} from '@website/components/media/draw-text/render.js'
 
 globalThis.alert = jest.fn()
 
@@ -30,5 +35,32 @@ describe('draw-text render tails', () => {
     const toks = parseTokens('<i></i> a <br> b')
 
     expect(toks.length).toBeGreaterThan(1)
+  })
+
+  test('tokenToHtml unknown-token + malformed-tag arms', () => {
+    const renderWord = () => ''
+
+    expect(tokenToHtml({ type: 'unknown' }, renderWord)).toBe('')
+
+    // Tag token with no tag name/chunks/attrStr — emits children unwrapped.
+    expect(tokenToHtml({ type: 'tag', inner: 'x' }, renderWord)).toBe('')
+
+    // Tag token whose inner chunk is itself an unknown type.
+    expect(
+      tokenToHtml({ type: 'tag', tag: 'b', chunks: [{ type: 'unknown' }] }, renderWord)
+    ).toBe('<b ></b>')
+
+    // Anchor without attrs/inner → auto aria-label from empty inner text.
+    expect(tokenToHtml({ type: 'tag', tag: 'a', chunks: [] }, renderWord)).toContain('aria-label')
+
+    // Anchor with an author-provided aria-label → no second auto-label added.
+    expect(
+      tokenToHtml({ type: 'tag', tag: 'a', attrStr: 'aria-label="x"', inner: 'x', chunks: [] }, renderWord)
+        .match(/aria-label/g).length
+    ).toBe(1)
+  })
+
+  test('renderWordHtml default-chars arm', () => {
+    expect(renderWordHtml(undefined, 0, 0, 0, true)).toBeTruthy()
   })
 })

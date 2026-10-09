@@ -114,7 +114,7 @@ describe('Web Components Suite - Structure, Events & Reactive Fidelity (50+ Test
         about: { description: NAV_TEXT.ABOUT_ME },
         contact: 'Contact Me',
         preferences: 'Preferences',
-        scrollup: NAV_TEXT.SCROLL_UP_ALT,
+        featured: NAV_TEXT.SELECTED_WORK,
         related: 'Related Projects',
       }
 
@@ -125,20 +125,20 @@ describe('Web Components Suite - Structure, Events & Reactive Fidelity (50+ Test
       expect(shadow.querySelector(S.NAV_ACTION_BTN).textContent.trim()).toBe('Contact Me')
     })
 
-    test('updateScrollState transitions contact action button to scroll-up text', () => {
+    test('updateScrollState transitions contact action button to selected work text', () => {
       const nav = document.createElement(COMPONENT_TAGS.APP_NAV)
       document.body.appendChild(nav)
       nav.translations = {
         title: 'Luis',
         contact: NAV_TEXT.CONTACT,
-        scrollup: NAV_TEXT.SCROLL_UP_ALT,
+        featured: NAV_TEXT.SELECTED_WORK,
       }
 
       nav._openMenu()
       nav.updateScrollState(SECTION_IDS.CONTACT, true)
       const updatedBtn = nav.shadowRoot.querySelector(S.NAV_ACTION_BTN)
-      expect(updatedBtn.textContent.trim()).toBe(NAV_TEXT.SCROLL_UP_ALT)
-      expect(updatedBtn.classList.contains(NAV_CLASSES.NAV_SCROLL_UP)).toBe(true)
+      expect(updatedBtn.textContent.trim()).toBe(NAV_TEXT.SELECTED_WORK)
+      expect(updatedBtn.classList.contains(NAV_CLASSES.NAV_SELECTED_WORK)).toBe(true)
 
       nav.updateScrollState(SECTION_IDS.CONTACT, false)
       expect(nav.shadowRoot.querySelector(S.NAV_ACTION_BTN).textContent.trim()).toBe(

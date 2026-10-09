@@ -169,6 +169,16 @@ describe('AppNav interactions', () => {
     expect(contactSpy).toHaveBeenCalled()
     expect(topSpy).toHaveBeenCalled()
 
+    // "Selected work" on an internals footer navigates home instead of scrolling.
+    pushes.length = 0
+
+    withRoute(ROUTE_NAMES.PROJECT, () => {
+      el.onBottom = true
+      el.handleAction()
+    })
+
+    expect(pushes.length).toBe(1)
+
     router.push = prevPush
     el.remove()
   })
