@@ -12,6 +12,7 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { NOTIFY_UI_KEYS, SECTION_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
+import { LOG_LEVELS } from '@core/tokens/data/log.js'
 
 const flush = () => new Promise((resolve) => setTimeout(resolve, 0))
 
@@ -328,6 +329,28 @@ describe('notify service', () => {
       .shadowRoot.querySelector(`.${TOAST_CLASSES.SITE_TOAST_TEXT}`)
 
     expect(text.textContent).toContain(appText(NOTIFY_UI_KEYS.NOTIFY_ERROR))
+  })
+
+  test('initGlobalErrorHandlers logs the real failure to devlog', async () => {
+    const { initGlobalErrorHandlers } = await loadNotify()
+
+    // loadNotify resets the module registry — bind the fresh devlog instance
+    // so the assertion reads the buffer the fresh notify module writes to.
+    const { getDevLog } = await import('@core/devlog.js')
+
+    initGlobalErrorHandlers()
+
+    const rejection = new Event(WINDOW_EVENTS.UNHANDLED_REJECTION)
+
+    rejection.reason = new Error(TEST_TEXT.BODY)
+    window.dispatchEvent(rejection)
+    await flush()
+
+    const entry = getDevLog().at(-1)
+
+    expect(entry.level).toBe(LOG_LEVELS.ERROR)
+    expect(entry.parts).toHaveLength(2)
+    expect(String(entry.parts[1])).toContain(TEST_TEXT.BODY)
   })
 
   test('initGlobalErrorHandlers is a no-op without a window', async () => {
