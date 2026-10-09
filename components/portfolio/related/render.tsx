@@ -154,7 +154,16 @@ const renderSkeletonSocials = () => (
 export function renderRelated(host: PortfolioRelated) {
   const projects = host.projectsList
 
-  const socials = host.translations?.socials || []
+  // Firebase may deliver list nodes as keyed objects (CMS writes) — the same
+  // normalization related/match.ts applies to `projects`; a raw object would
+  // throw on .map inside renderSocials and take the whole footer down.
+  const rawSocials = host.translations?.socials
+
+  const socials: RelatedSocial[] = Array.isArray(rawSocials)
+    ? rawSocials
+    : rawSocials
+      ? Object.values(rawSocials)
+      : []
 
   const currentPath =
     typeof window !== TYPE_STRINGS.UNDEFINED
@@ -188,7 +197,7 @@ export function renderRelated(host: PortfolioRelated) {
         )}
       </div>
 
-      {host.translations?.socials ? renderSocials(host, socials) : renderSkeletonSocials()}
+      {rawSocials ? renderSocials(host, socials) : renderSkeletonSocials()}
     </footer>
   )
 }

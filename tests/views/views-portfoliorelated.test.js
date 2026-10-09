@@ -207,6 +207,26 @@ describe('PortfolioRelated', () => {
     store.state.portfoliolist = prevList
   })
 
+  test('keyed-object socials from Firebase normalize instead of crashing render', () => {
+    relatedEl.translations = {
+      title: 'More',
+      note: 'note-html',
+      socials: {
+        first: { network: 'gh', link: 'https://x.example' },
+        second: { network: 'mail', link: 'mailto:x@example.com' },
+      },
+      projects: [{ link: '/portfolio/p1', page: 'p1' }],
+    }
+
+    expect(() => relatedEl._updateDom()).not.toThrow()
+
+    const links = relatedEl.shadowRoot.querySelectorAll(
+      `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`
+    )
+
+    expect(links.length).toBe(2)
+  })
+
   test('disclaimer note renders as a clamped toggle button and expands on click', () => {
     relatedEl.translations = {
       title: 'More',
