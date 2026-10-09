@@ -390,6 +390,46 @@ describe('AppNav', () => {
     }
   })
 
+  test('star-field route omits the star-field menu item', () => {
+    const prevRoute = router.currentRoute
+
+    router.currentRoute = { name: ROUTE_NAMES.STAR_FIELD }
+    navEl._openMenu()
+
+    const labels = [...navEl.shadowRoot.querySelectorAll(COMPONENT_TAGS.DRAW_TEXT)].map((el) =>
+      el.getAttribute(FORM_ATTRS.TEXT)
+    )
+
+    expect(labels).not.toContain(appText(CMS_KEYS.STAR_FIELD))
+    expect(labels).toContain(appText(CMS_KEYS.EARTH_PLAYGROUND))
+
+    router.currentRoute = prevRoute
+    navEl._closeMenu()
+    navEl._updateDom()
+  })
+
+  test('star-field item closes the menu and pushes the experiment route', () => {
+    const pushes = []
+    const prevPush = router.push
+
+    router.push = (p) => pushes.push(p)
+
+    navEl._openMenu()
+
+    const starItem = [...navEl.shadowRoot.querySelectorAll(`[${ARIA_ATTRS.ARIA_LABEL}]`)].find(
+      (b) => b.getAttribute(ARIA_ATTRS.ARIA_LABEL) === appText(CMS_KEYS.STAR_FIELD)
+    )
+
+    starItem.click()
+
+    expect(pushes.length).toBe(1)
+    expect(navEl._menuClosing).toBe(true)
+
+    router.push = prevPush
+    navEl._menuClosing = false
+    navEl._menuOpen = false
+  })
+
   test('modal gains the settled class after MENU_SETTLE_DURATION and a re-render keeps it', () => {
     jest.useFakeTimers()
     navEl._openMenu()

@@ -64,6 +64,16 @@ const _PLAYGROUND_SLUGS = new Set(
 )
 
 /**
+ * Same slug set for the star-field experiment — separate `starField` key so
+ * each playground page suppresses only its own menu item.
+ */
+const _STAR_FIELD_SLUGS = new Set(
+  Object.values(LANG_SLUGS)
+    .map((s) => s.starField)
+    .filter(Boolean)
+)
+
+/**
  * The slice of the APP translation dictionary the nav template reads —
  * all fields optional since the dictionary arrives incrementally and the
  * template falls back to English snapshot copy per key.
@@ -77,6 +87,7 @@ interface AppNavTranslations {
   menu?: string
   close?: string
   earthPlayground?: string
+  starField?: string
   preferences?: string
 }
 
@@ -196,16 +207,19 @@ export class AppNav extends BaseComponent {
    * 16 locales' localized playground slugs.
    */
   get isPlaygroundPage() {
-    const name = this.currentRoute?.name
+    return this.isEarthPlaygroundPage || this.isStarFieldPage
+  }
 
-    if (name === ROUTE_NAMES.EARTH_PLAYGROUND) return true
+  /**
+   * True on the earth-playground route — checks the resolved route name
+   * first (the URL may not have resolved when the getter first fires),
+   * then falls back to a last-segment scan against canonical and localized
+   * slugs.
+   */
+  get isEarthPlaygroundPage() {
+    if (this.currentRoute?.name === ROUTE_NAMES.EARTH_PLAYGROUND) return true
 
-    const path =
-      typeof window !== TYPE_STRINGS.UNDEFINED ? window.location.pathname : ATTR_VALUES.EMPTY
-
-    const segments = path.split(CHAR_STRINGS.SLASH).filter(Boolean)
-
-    const last = segments[segments.length - 1]
+    const last = this._lastPathSegment
 
     if (
       last === ROUTE_PATHS.EARTH_PLAYGROUND_SEGMENT ||
@@ -214,6 +228,27 @@ export class AppNav extends BaseComponent {
       return true
 
     return _PLAYGROUND_SLUGS.has(last)
+  }
+
+  /** True on the star-field experiment route — same resolution order. */
+  get isStarFieldPage() {
+    if (this.currentRoute?.name === ROUTE_NAMES.STAR_FIELD) return true
+
+    const last = this._lastPathSegment
+
+    if (last === ROUTE_PATHS.STAR_FIELD_SEGMENT) return true
+
+    return _STAR_FIELD_SLUGS.has(last)
+  }
+
+  /** Last non-empty URL path segment — shared by the playground checks. */
+  get _lastPathSegment() {
+    const path =
+      typeof window !== TYPE_STRINGS.UNDEFINED ? window.location.pathname : ATTR_VALUES.EMPTY
+
+    const segments = path.split(CHAR_STRINGS.SLASH).filter(Boolean)
+
+    return segments[segments.length - 1]
   }
 
   /** Active locale code. */

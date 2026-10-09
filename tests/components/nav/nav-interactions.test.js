@@ -20,6 +20,7 @@ import { APP_EVENTS } from '@core/tokens/events/app.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
+import { LANG_SLUGS } from '@core/locale/lang-slugs.js'
 
 const flush = (ms = 60) => new Promise((r) => setTimeout(r, ms))
 
@@ -293,6 +294,39 @@ describe('AppNav interactions', () => {
     withRoute(ROUTE_NAMES.HOME, () => {
       window.history.replaceState({}, '', ROUTE_PATHS.ABOUT)
       expect(el.isPlaygroundPage).toBe(false)
+    })
+
+    el.remove()
+  })
+
+  test('isStarFieldPage detects the star-field route three ways', async () => {
+    const el = mount()
+
+    await flush()
+
+    withRoute(ROUTE_NAMES.STAR_FIELD, () => {
+      expect(el.isStarFieldPage).toBe(true)
+      expect(el.isPlaygroundPage).toBe(true)
+    })
+
+    withRoute(ROUTE_NAMES.HOME, () => {
+      const prev = window.location.pathname
+
+      window.history.replaceState({}, '', `/${ROUTE_PATHS.STAR_FIELD_SEGMENT}`)
+
+      expect(el.isStarFieldPage).toBe(true)
+
+      window.history.replaceState({}, '', `/${LANG_SLUGS.de.starField}`)
+
+      expect(el.isStarFieldPage).toBe(true)
+      expect(el.isEarthPlaygroundPage).toBe(false)
+
+      window.history.replaceState({}, '', prev)
+    })
+
+    withRoute(ROUTE_NAMES.HOME, () => {
+      window.history.replaceState({}, '', ROUTE_PATHS.ABOUT)
+      expect(el.isStarFieldPage).toBe(false)
     })
 
     el.remove()

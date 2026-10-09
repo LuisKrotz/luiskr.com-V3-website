@@ -171,6 +171,7 @@ export const renderAppNav = (nav: AppNav) => {
             const aboutLabel = String(aboutDesc)
             const actionText = String(actionLabel)
             const playgroundLabel = String(t?.earthPlayground || appText(CMS_KEYS.EARTH_PLAYGROUND))
+            const starFieldLabel = String(t?.starField || appText(CMS_KEYS.STAR_FIELD))
             const prefLabel = String(t?.preferences || appText(NAV_UI_KEYS.PREFERENCES))
             const langLabel = String(nav.currentLangLabel)
 
@@ -206,7 +207,7 @@ export const renderAppNav = (nav: AppNav) => {
               })
             }
 
-            if (!nav.isPlaygroundPage) {
+            if (!nav.isEarthPlaygroundPage) {
               items.push({
                 label: playgroundLabel,
                 cls: CHAR_STRINGS.EMPTY,
@@ -214,6 +215,18 @@ export const renderAppNav = (nav: AppNav) => {
                   nav._closeMenu()
 
                   router.push(localePath(CMS_KEYS.EARTH_PLAYGROUND, nav.locale))
+                },
+              })
+            }
+
+            if (!nav.isStarFieldPage) {
+              items.push({
+                label: starFieldLabel,
+                cls: CHAR_STRINGS.EMPTY,
+                onClick: () => {
+                  nav._closeMenu()
+
+                  router.push(localePath(CMS_KEYS.STAR_FIELD, nav.locale))
                 },
               })
             }
