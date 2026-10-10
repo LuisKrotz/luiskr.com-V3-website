@@ -152,9 +152,10 @@ export interface GlitchSession {
  * Computes the cover-fit crop rect for the source image at the given
  * output size — mirrors `object-fit: cover` AND the element's
  * `object-position`, read live from computed style so the canvas copy
- * always frames the portrait exactly the way the DOM <img> does
- * (e.g. a photo whose face sits right-of-center would otherwise crop
- * the middle of the source and render the face shifted).
+ * always frames the portrait exactly the way the DOM <img> does.
+ *
+ * NOTE: w and h MUST be the CSS bounding box dimensions, not device-pixel
+ * canvas dimensions, to accurately map to the browser's native scaling.
  */
 function coverCrop(
   img: HTMLImageElement,
@@ -255,9 +256,8 @@ function drawBase(s: GlitchSession): void {
   const ox = (w - size) / 2
   const oy = (h - size) / 2
 
-  const crop = coverCrop(s.img, size, size)
-
-  ctx.drawImage(s.img, crop.sx, crop.sy, crop.sw, crop.sh, ox, oy, size, size)
+  // Utilize the pre-calculated CSS-logical crop bounds
+  ctx.drawImage(s.img, s.sx, s.sy, s.sw, s.sh, ox, oy, size, size)
   ctx.restore()
 }
 
@@ -482,14 +482,17 @@ function sizeSession(s: GlitchSession, box: DOMRect): void {
   s.srcW = s.img.naturalWidth
   s.srcH = s.img.naturalHeight
 
-  const size = Math.min(s.w, s.h)
+  // 1. Calculate CSS size bounds for the crop to match the DOM's object-fit
+  const cssSize = Math.min(box.width, box.height)
 
-  const crop = coverCrop(s.img, size, size)
+  // 2. Crop using CSS logical pixels
+  const crop = coverCrop(s.img, cssSize, cssSize)
 
   s.sx = crop.sx
   s.sy = crop.sy
   s.sw = crop.sw
   s.sh = crop.sh
+
   s.red = buildChannel(s, CANVAS_STRINGS.CHANNEL_RED)
   s.cyan = buildChannel(s, CANVAS_STRINGS.CHANNEL_CYAN)
   s.scan = buildScanlines()
