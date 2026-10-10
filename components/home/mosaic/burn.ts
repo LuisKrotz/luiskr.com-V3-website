@@ -186,8 +186,10 @@ export interface BurnSession {
    * vanishes" bug).
    */
   inkColor: string
-  /** Last measured title box in canvas-space device px — change detector. */
+  /** Arm-time title-box signature — set once; a truthy value freezes the raster. */
   lastBox: string
+  /** Last tracked canvas-space position — position-only drift detector. */
+  lastPos: string
 }
 
 /**
@@ -431,11 +433,14 @@ function readBurnInk(): BurnInk {
 }
 
 /**
- * Re-anchors the canvas + re-rasterizes the paper whenever the title's
- * DOM box moves — the card's expand ease animates `cqw` font-size and
- * the flex-end pin for ~0.42s after hover, so a static snapshot burns a
- * stale ghost beside glyphs that already moved. Runs every frame; the
- * `lastBox` signature skips all work when nothing moved.
+ * Anchors the canvas once at arm size, then tracks POSITION only. The
+ * card's expand ease animates the h2's `cqw` font-size for ~0.42s after
+ * hover; re-measuring the box every step baked that shrink into the
+ * raster, so the burning glyphs visibly collapsed with the DOM font (the
+ * reported font-reduction bug). Freezing the raster keeps the title the
+ * size it was when it caught fire — only the canvas slides along the
+ * moving box. `lastBox`/`lastPos` signatures skip all work when nothing
+ * moved.
  */
 function syncPaper(s: BurnSession): void {
   const box = s.titleEl.getBoundingClientRect()
@@ -443,12 +448,24 @@ function syncPaper(s: BurnSession): void {
 
   if (box.width < 4 || box.height < 4 || oBox.width < 1) return
 
+  const posSig = `${box.left - oBox.left},${box.top - oBox.top}`
+
+  // Paper already rasterized — position-only re-anchor, never re-measure.
+  if (s.lastBox) {
+    if (posSig === s.lastPos) return
+
+    s.lastPos = posSig
+
+    s.canvas.style.left = `${box.left - oBox.left - _PAD_X}px`
+    s.canvas.style.top = `${box.top - oBox.top - _PAD_TOP}px`
+
+    return
+  }
+
   const dpr = Math.min(_DPR_CAP, globalThis.devicePixelRatio || 1)
-  const sig = `${box.left - oBox.left},${box.top - oBox.top},${box.width},${box.height},${dpr}`
 
-  if (sig === s.lastBox) return
-
-  s.lastBox = sig
+  s.lastBox = `${box.width},${box.height},${dpr}`
+  s.lastPos = posSig
 
   const cssW = box.width + _PAD_X * 2
   const cssH = box.height + _PAD_TOP + _PAD_BOTTOM
@@ -915,11 +932,11 @@ function mountBurn(
     overlayEl: overlay,
     ink: readBurnInk(),
     lastBox: ATTR_VALUES.EMPTY,
+    lastPos: ATTR_VALUES.EMPTY,
   }
 
-  // First layout + raster — every later frame re-syncs through syncPaper
-  // so the cqw font-size / flex-end drift during expand never freezes a
-  // stale ghost into the burn.
+  // First layout + raster — later frames re-anchor POSITION only, so the
+  // cqw font-size drift during expand never shrinks the burning glyphs.
   syncPaper(s)
 
   overlay.appendChild(canvas)

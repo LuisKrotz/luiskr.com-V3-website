@@ -84,7 +84,10 @@ export function onHover(host: HomeMosaic, i: number): void {
 
       const drawTextEl = document.createElement(COMPONENT_TAGS.DRAW_TEXT)
       drawTextEl.setAttribute(FORM_ATTRS.TEXT, item.description)
-      drawTextEl.setAttribute(COMMON_ATTRS.DELAY, CHAR_STRINGS.DELAY_8)
+      // 30ms/char — same pace the pre-rendered expanded desc uses; the
+      // burn's own pacing (_DESC_CHAR_MS + the rewrite's DELAY_8) is
+      // unchanged, so combustion still resolves at the old clip.
+      drawTextEl.setAttribute(COMMON_ATTRS.DELAY, CHAR_STRINGS.DELAY_30)
       descEl.appendChild(drawTextEl)
 
       const btn = detail.querySelector(`.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_BTN}`)

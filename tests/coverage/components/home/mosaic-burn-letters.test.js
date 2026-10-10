@@ -193,7 +193,7 @@ describe('mosaic burn letters', () => {
     expect(s.colInk[10]).toBe(0)
   })
 
-  test('the raster keeps the PRE-HIDE ink color — never the transparent live color', async () => {
+  test('the raster keeps the PRE-HIDE ink color and the paper never re-rasterizes mid-burn', async () => {
     mountMosaic()
     armCardBurn(el, 0, ITEMS[0])
 
@@ -217,26 +217,27 @@ describe('mosaic burn letters', () => {
       })
     }
 
-    // Move the title box so the next frame re-rasterizes — the sig tracks
-    // paper width, so only a width change forces a re-raster.
+    // Move the title box (position AND size, like the expand ease does) —
+    // the frozen raster keeps the burn at arm size: only the canvas
+    // re-anchors. No re-raster means the live transparent color can never
+    // be captured AND the cqw font-size drift can't shrink the glyphs.
     ctxState.fillStyles.length = 0
     Element.prototype.getBoundingClientRect = () => ({
-      left: 10,
-      top: 10,
-      right: 190,
-      bottom: 50,
+      left: 24,
+      top: 30,
+      right: 204,
+      bottom: 70,
       width: 180,
       height: 40,
-      x: 10,
-      y: 10,
+      x: 24,
+      y: 30,
       toJSON: () => ({}),
     })
 
     await flush(40)
 
-    // Re-raster still paints with the captured ink — not transparent.
-    expect(ctxState.fillStyles.length).toBeGreaterThan(0)
-    expect(ctxState.fillStyles[ctxState.fillStyles.length - 1]).toBe(TITLE_COLOR)
+    expect(ctxState.fillStyles.length).toBe(0)
+    expect(s.canvas.style.left).toBeTruthy()
     expect(s.inkColor).toBe(TITLE_COLOR)
   })
 
