@@ -175,7 +175,7 @@ describe('HomeMosaic (view integration)', () => {
 
   test('home-mosaic.scss defines hover elevation and scale', () => {
     expect(SCSS.homeMosaic).toMatch(
-      /transform:\s*translateY\(-#\{to-rem\(\$space-sm\)\}\)\s*scale\(1\.015\)/
+      /transform:\s*translateY\(calc\(-1 \* var\(--space-sm\)\)\)\s*scale\(1\.015\)/
     )
   })
 

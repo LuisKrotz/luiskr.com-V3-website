@@ -184,7 +184,6 @@ export function renderRelated(host: PortfolioRelated) {
         {host.translations?.title ? (
           <draw-text
             text={host.translations.title}
-            warp={ATTR_VALUES.EMPTY}
             dangerouslySetInnerHTML={{ __html: host.translations.title }}
           />
         ) : (

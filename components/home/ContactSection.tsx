@@ -109,7 +109,6 @@ export class ContactSection extends BaseComponent {
               unslotted children never paint. */}
           <draw-text
             text={String(translations.title || componentText(SECTION_COMPONENT_KEYS.CONTACT_TITLE))}
-            warp={ATTR_VALUES.EMPTY}
           >
             {String(translations.title || componentText(SECTION_COMPONENT_KEYS.CONTACT_TITLE))}
           </draw-text>

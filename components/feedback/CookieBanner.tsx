@@ -17,7 +17,7 @@ import { COOKIE_SELECTORS } from '@core/tokens/selectors/cookies.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
 import { appText } from '@core/locale/ui-text.js'
-import appStyles from '@core/sass/components/shell/app.scss?inline'
+import appStyles from '@core/sass/components/shell/app/cookies-banner.scss?inline'
 import { PREF_STORAGE_KEYS } from '@core/tokens/data/storage.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 

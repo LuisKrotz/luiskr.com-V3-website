@@ -40,7 +40,6 @@ export function renderProject(c: ViewProject) {
               text={t.title}
               trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
               fit={ATTR_VALUES.EMPTY}
-              warp={ATTR_VALUES.EMPTY}
             />
           ) : (
             <span className={SKELETON_CLASSES.SKELETON_TITLE_MD} />

@@ -35,9 +35,7 @@ export function renderAwards(el: AwardsMentions) {
     <footer className={AWARDS_CLASSES.AWARDS_FOOTER}>
       <div className={AWARDS_CLASSES.AWARDS_FOOTER_HEADER}>
         <h2 className={AWARDS_CLASSES.AWARDS_FOOTER_TITLE}>
-          <draw-text text={el.title} warp={ATTR_VALUES.EMPTY}>
-            {el.title}
-          </draw-text>
+          <draw-text text={el.title}>{el.title}</draw-text>
         </h2>
 
         <div

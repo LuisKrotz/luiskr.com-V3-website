@@ -128,7 +128,7 @@ export function renderMosaic(host: HomeMosaic) {
         aria-label={featuredText || homeFallback?.featured}
       >
         {host.translations ? (
-          <draw-text text={featuredText} fit={ATTR_VALUES.EMPTY} warp={ATTR_VALUES.EMPTY} />
+          <draw-text text={featuredText} fit={ATTR_VALUES.EMPTY} />
         ) : (
           <span
             aria-hidden={ATTR_VALUES.TRUE}

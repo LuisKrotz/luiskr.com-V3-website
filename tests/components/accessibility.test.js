@@ -12,7 +12,7 @@ import '@website/components/media/MediaFigure.js'
 import '@website/components/nav/AppNav.js'
 import '@website/components/home/HomeMosaic.js'
 import store from '@core/store.js'
-import { readFileSync } from 'fs'
+import { readSassDeep } from '@tests/fixtures/sass-resolve.js'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 import { LOCALES } from '@core/constants.js'
@@ -458,29 +458,31 @@ describe('Accessibility — WCAG 2.1 AA Compliance', () => {
   // ── Color and Contrast (SCSS validation) ─────────────────────────────────────
   describe('7. Color & CSS Custom Properties for Theming', () => {
     test('--bg-primary is defined in _structure.scss', () => {
-      const css = readFileSync(join(__dirname, '../../../core/sass/base/_structure.scss'), 'utf-8')
+      const css = readSassDeep(join(__dirname, '../../../core/sass/base/_structure.scss'))
       expect(css).toContain('--bg-primary')
     })
 
     test('--text-primary is defined in _structure.scss', () => {
-      const css = readFileSync(join(__dirname, '../../../core/sass/base/_structure.scss'), 'utf-8')
+      const css = readSassDeep(join(__dirname, '../../../core/sass/base/_structure.scss'))
       expect(css).toContain(THEME_CSS_PROPS.TEXT_PRIMARY)
     })
 
     test('dark mode defines --bg-primary in html.dark-mode', () => {
-      const css = readFileSync(join(__dirname, '../../../core/sass/base/_structure.scss'), 'utf-8')
+      const css = readSassDeep(join(__dirname, '../../../core/sass/base/_structure.scss'))
       expect(css).toContain('html.dark-mode')
-      const darkSection = css.split('html.dark-mode')[1]
+      // Split on the RULE (with brace) — the manifest comment mentions
+      // `html.dark-mode` in prose before the selector itself appears.
+      const darkSection = css.split('html.dark-mode {')[1]
       expect(darkSection).toContain('--bg-primary')
     })
 
     test('--grey custom property is defined for text on dark backgrounds', () => {
-      const css = readFileSync(join(__dirname, '../../../core/sass/base/_structure.scss'), 'utf-8')
+      const css = readSassDeep(join(__dirname, '../../../core/sass/base/_structure.scss'))
       expect(css).toContain('--grey')
     })
 
     test('--grey-3 is defined (used for carousel dots)', () => {
-      const css = readFileSync(join(__dirname, '../../../core/sass/base/_structure.scss'), 'utf-8')
+      const css = readSassDeep(join(__dirname, '../../../core/sass/base/_structure.scss'))
       expect(css).toContain('--grey-3')
     })
   })

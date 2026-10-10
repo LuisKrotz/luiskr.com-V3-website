@@ -5,7 +5,6 @@
 
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
-import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { DRAW_TEXT_CLASSES } from '@core/tokens/classes/draw-text.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import drawTextStyles from '@core/sass/components/media/draw-text.scss?inline'
@@ -49,12 +48,8 @@ export function updateDom(host: DrawText): void {
     host.shadowRoot!.appendChild(host._contentEl)
   }
 
-  const warpClass = host.hasAttribute(COMMON_ATTRS.WARP)
-    ? DRAW_TEXT_CLASSES.DRAW_TEXT_WARP
-    : ATTR_VALUES.EMPTY
-
   host._contentEl.className =
-    `${DRAW_TEXT_CLASSES.DRAW_TEXT} ${visibleClass} ${doneClass} ${pendingClass} ${warpClass}`.trim()
+    `${DRAW_TEXT_CLASSES.DRAW_TEXT} ${visibleClass} ${doneClass} ${pendingClass}`.trim()
 
   host._contentEl.innerHTML = renderContent(
     host.text,

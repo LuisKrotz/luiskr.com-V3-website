@@ -20,7 +20,6 @@ import { DRAW_TEXT_SELECTORS } from '@core/tokens/selectors/draw-text.js'
 import { updateDom } from './draw-text/dom.js'
 import { fitText, setupFit, teardownFit } from './draw-text/fit.js'
 import { parseTokens, renderContent } from './draw-text/render.js'
-import { detachWarp, setupWarp } from './draw-text/warp.js'
 import {
   registerOrdered,
   setupTrigger,
@@ -43,12 +42,6 @@ export class DrawText extends HTMLElement {
   _contentEl: HTMLSpanElement | null = null // cached content wrapper (skips re-query)
   _fitObserver: ResizeObserver | null = null // parent-size watcher for the `fit` scale-down
   _effectiveOffset: number | null = null // resolved start offset — set at trigger time (ordered elements subtract elapsed session time)
-  /** Active liquid-warp session (pointer inside the element); see draw-text/warp.ts. */
-  _warpSession: import('./draw-text/warp.js').WarpSession | null = null
-  /** Pointer listeners installed by setupWarp — stored for detachWarp. */
-  _warpListeners: { enter: EventListener; move: EventListener; leave: EventListener } | null = null
-  /** True between pointerenter and pointerleave while warp is armed. */
-  _warpActive = false
 
   static get observedAttributes() {
     return [
@@ -59,7 +52,6 @@ export class DrawText extends HTMLElement {
       COMMON_ATTRS.VISIBLE,
       COMMON_ATTRS.FIT,
       COMMON_ATTRS.ORDERED,
-      COMMON_ATTRS.WARP,
     ]
   }
 
@@ -144,14 +136,10 @@ export class DrawText extends HTMLElement {
     this._setupTrigger()
 
     this._setupFit()
-
-    setupWarp(this)
   }
 
   disconnectedCallback() {
     this._isMounted = false
-
-    detachWarp(this)
 
     teardownFit(this)
 
@@ -199,11 +187,6 @@ export class DrawText extends HTMLElement {
       } else {
         teardownTrigger(this)
       }
-    } else if (name === COMMON_ATTRS.WARP && this._isMounted) {
-      // Char-span set depends on the flag — re-render before rewiring.
-      this._updateDom()
-
-      setupWarp(this)
     }
   }
 
@@ -215,9 +198,7 @@ export class DrawText extends HTMLElement {
    * spans permanently.
    */
   get _needsCharSpans() {
-    // Warp mode keeps char spans permanently — the pointer needs per-char
-    // targets after the reveal has finished too.
-    return (this._isVisible && !this._hasAnimated) || this.hasAttribute(COMMON_ATTRS.WARP)
+    return this._isVisible && !this._hasAnimated
   }
 
   /** Re-renders the shadow DOM for current props. */

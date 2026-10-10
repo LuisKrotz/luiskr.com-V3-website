@@ -20,6 +20,7 @@ import { WASM_STRINGS } from '@core/tokens/strings/wasm.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { npuPredict } from '@core/utils/gpu/npu-predict.js'
+import { armCardBurn, disarmCardBurn } from './burn.js'
 import type { MosaicItem } from './pack.js'
 import type { HomeMosaic } from '../HomeMosaic.js'
 
@@ -91,6 +92,9 @@ export function onHover(host: HomeMosaic, i: number): void {
       if (btn) detail.insertBefore(descEl, btn)
       else detail.appendChild(descEl)
     }
+
+    // Combust the overlay title top→bottom + rewrite it above the desc.
+    armCardBurn(host, i, item)
   }
 
   requestAnimationFrame(() => {
@@ -113,6 +117,7 @@ export function onLeave(host: HomeMosaic): void {
 
   if (prevIdx !== null) {
     removeDesc(host, prevIdx)
+    disarmCardBurn(host, prevIdx)
   }
 
   host.layout()
@@ -154,6 +159,7 @@ export function onClick(host: HomeMosaic, item: MosaicItem, i: number): void {
 
     if (prevIdx !== null && prevIdx !== i) {
       removeDesc(host, prevIdx)
+      disarmCardBurn(host, prevIdx)
 
       delete host.bottomHMap[prevIdx]
     }
@@ -167,6 +173,10 @@ export function onClick(host: HomeMosaic, item: MosaicItem, i: number): void {
         const detailH = d.scrollHeight
 
         if (detailH > 0) host.bottomHMap[i] = detailH + DETAIL_H_PAD
+
+        // Post-render arm — _updateDom wipes per-card overlays, so the
+        // burn must mount against the fresh nodes.
+        armCardBurn(host, i, item)
       }
 
       host.layout()

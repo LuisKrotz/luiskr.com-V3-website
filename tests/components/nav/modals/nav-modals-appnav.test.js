@@ -452,13 +452,13 @@ describe('AppNav', () => {
   })
 
   // ─── SCSS structural assertions ───────────────────────────────────────────
-  test('app.scss defines .nav with fixed positioning and z-index', () => {
-    expect(SCSS.app).toMatch(/\.nav\s*\{[\s\S]*?position:\s*fixed/)
-    expect(SCSS.app).toMatch(/\.nav\s*\{[\s\S]*?z-index:\s*100/)
+  test('nav-shell.scss defines .nav with fixed positioning and z-index', () => {
+    expect(SCSS.navShell).toMatch(/\.nav\s*\{[\s\S]*?position:\s*fixed/)
+    expect(SCSS.navShell).toMatch(/\.nav\s*\{[\s\S]*?z-index:\s*100/)
   })
 
-  test('app.scss defines .nav as a flex container', () => {
-    expect(SCSS.app).toMatch(/\.nav\s*\{[\s\S]*?display:\s*flex/)
+  test('nav-shell.scss defines .nav as a flex container', () => {
+    expect(SCSS.navShell).toMatch(/\.nav\s*\{[\s\S]*?display:\s*flex/)
   })
 
   test('app.scss defines app-nav host element as position: fixed', () => {
@@ -467,7 +467,7 @@ describe('AppNav', () => {
     expect(SCSS.app).toMatch(/app-nav\s*\{[\s\S]*?pointer-events:\s*none/)
   })
 
-  test('app.scss defines .nav with pointer-events: auto', () => {
-    expect(SCSS.app).toMatch(/\.nav\s*\{[\s\S]*?pointer-events:\s*auto/)
+  test('nav-shell.scss defines .nav with pointer-events: auto', () => {
+    expect(SCSS.navShell).toMatch(/\.nav\s*\{[\s\S]*?pointer-events:\s*auto/)
   })
 })

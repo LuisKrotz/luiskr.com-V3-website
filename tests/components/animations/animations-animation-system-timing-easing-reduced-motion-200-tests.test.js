@@ -8,9 +8,9 @@ import {
   calcDrawTextOffset,
   calcCarouselRingOffset,
 } from '@core/utils/wasm/wasm-layout.js'
-import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { readSassDeep } from '@tests/fixtures/sass-resolve.js'
 import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
 import { CAROUSEL_TIMING } from '@core/tokens/motion/carousel.js'
@@ -30,7 +30,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const sassDir = path.join(__dirname, '..', '..', '..', '..', 'core', 'sass', 'components')
 
 function readSass(filename) {
-  return fs.readFileSync(path.join(sassDir, filename), 'utf-8')
+  return readSassDeep(path.join(sassDir, filename))
 }
 
 describe('Animation System — Timing, Easing & Reduced Motion (200+ tests)', () => {
@@ -588,24 +588,28 @@ describe('Animation System — Timing, Easing & Reduced Motion (200+ tests)', ()
   // ── Navigation Animation CSS ───────────────────────────────────────────────
   describe('10. Navigation Animation CSS (App.scss)', () => {
     let css
+    let navCss
 
     beforeAll(() => {
       css = readSass('shell/app.scss')
+      // Nav styles moved to the AppNav shadow sheet (app/nav-shell.scss),
+      // which the document manifest intentionally does not import.
+      navCss = readSass('shell/app/nav-shell.scss')
     })
 
     test('.nav-link has transition', () => {
       // SCSS uses SASS nesting: &-link { transition: ... } inside .nav { ... }
-      expect(css).toContain('&-link')
-      expect(css).toContain('transition')
+      expect(navCss).toContain('&-link')
+      expect(navCss).toContain('transition')
     })
 
     test('.nav-link transition duration is 0.3s', () => {
-      expect(css).toContain('0.3s')
+      expect(navCss).toContain('0.3s')
     })
 
     test('.nav-link:hover has opacity change', () => {
       // SCSS uses SASS nesting: &-link { &:hover { opacity: ... } }
-      expect(css).toContain('opacity')
+      expect(navCss).toContain('opacity')
     })
 
     test('.progress-bar transition exists', () => {

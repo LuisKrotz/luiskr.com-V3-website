@@ -21,6 +21,7 @@ import { h } from '@core/jsx.js'
 import { calcDrawTextDelay, calcDrawTextOffset } from '@core/utils/wasm/wasm-layout.js'
 import { stripHtml } from '@core/utils/string.js'
 import { getGravatarSrcset, getOptimizedGravatar } from '@core/utils/media.js'
+import { attachGlitch, disarmGlitch } from './about/glitch.js'
 import '@website/components/media/DrawText.js'
 import aboutStyles from '@core/sass/components/home/about.scss?inline'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
@@ -49,9 +50,23 @@ interface DrawData {
 export class AboutSection extends BaseComponent {
   private _aboutTranslations: AboutTranslations | null = null // pages/about node — title + col1/col2 paragraphs
   private _profilePicture: string | null = null // raw Gravatar URL from the CMS
+  /** Active TV-glitch session on the portrait — see about/glitch.ts. */
+  _glitch: import('./about/glitch.js').GlitchSession | null = null
 
   constructor() {
     super(aboutStyles)
+  }
+
+  /** Binds the portrait glitch handlers once the shadow root exists. */
+
+  override onMounted() {
+    attachGlitch(this)
+  }
+
+  /** Stops any running glitch loop when the element leaves the DOM. */
+
+  override onDestroy() {
+    disarmGlitch(this)
   }
 
   /** Setter/getter — the about-page translation node pushed by the parent view. */
@@ -135,11 +150,7 @@ export class AboutSection extends BaseComponent {
           }
         >
           {this.aboutTranslations ? (
-            <DrawText
-              text={title}
-              trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
-              warp={ATTR_VALUES.EMPTY}
-            />
+            <DrawText text={title} trigger={COMMON_ATTRS.TRIGGER_VIEWPORT} />
           ) : (
             <span
               aria-hidden={ATTR_VALUES.TRUE}
