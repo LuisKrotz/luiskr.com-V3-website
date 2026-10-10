@@ -562,12 +562,15 @@ function analyzePaper(s: BurnSession): void {
   }
 
   // Normalize: the last letter to finish lands at ~_BURN_END progress so
-  // the combustion completes with the description typing.
+  // the combustion completes with the description typing. A letter's
+  // finish progress is (1+delay)/v — scaling v by worst/_BURN_END pulls
+  // the slowest finisher exactly onto _BURN_END (the reciprocal would
+  // stretch it past progress 1 and freeze the burn mid-letter).
   let worst = 0
 
   for (const L of letters) worst = Math.max(worst, (1 + L.delay) / L.v)
 
-  const norm = worst > 0 ? _BURN_END / worst : 1
+  const norm = worst > 0 ? worst / _BURN_END : 1
 
   for (const L of letters) L.v *= norm
 

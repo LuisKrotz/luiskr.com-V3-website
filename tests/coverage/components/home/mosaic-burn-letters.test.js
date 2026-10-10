@@ -355,6 +355,25 @@ describe('mosaic burn letters', () => {
     expect(s.particles.length).toBe(0)
   })
 
+  test('speed normalization lands the slowest letter at ~0.92 progress — the burn completes', () => {
+    // Regression: the norm factor used to be _BURN_END/worst (the
+    // reciprocal), which stretched the slowest finisher past progress 1
+    // and froze the burn mid-letter — the "effect never finishes" bug.
+    // A letter finishes at progress (1+delay)/v, so after normalization
+    // the worst finisher must land ON 0.92, not 0.92²/worst.
+    useInk((x) => (x >= 2 && x < 8) || (x >= 14 && x < 20) || (x >= 26 && x < 32))
+    mountMosaic()
+    armCardBurn(el, 0, ITEMS[0])
+
+    const s = cardEl()._burn
+    const finishes = s.letters.map((L) => (1 + L.delay) / L.v)
+    const last = Math.max(...finishes)
+
+    expect(last).toBeGreaterThan(0.9)
+    expect(last).toBeLessThanOrEqual(0.93)
+    expect(finishes.every((f) => f <= 0.93)).toBe(true)
+  })
+
   test('a missing work-canvas context aborts the arm and removes the overlay', () => {
     const rec = createRecording2D()
     let calls = 0
