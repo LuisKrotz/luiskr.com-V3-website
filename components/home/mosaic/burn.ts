@@ -668,70 +668,90 @@ function burnPaper(s: BurnSession, progress: number, jagAmp: number): void {
 
   if (progress <= 0) return
 
+  if (progress >= _BURN_END) {
+    wc.clearRect(0, 0, pw, ph)
+    return
+  }
+
   for (const L of s.letters) {
     const lp = letterProgress(L, progress)
 
     if (lp <= 0) continue
 
+    const x0 = Math.max(0, L.x0 - 1)
+    const x1 = Math.min(pw, L.x1 + 1)
+
+    if (lp >= 1) {
+      wc.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_DESTINATION_OUT
+      wc.globalAlpha = 1
+      wc.fillRect(x0, 0, x1 - x0, ph + 1)
+      continue
+    }
+
     const fy = (x: number): number => letterFrontY(s, L, x, progress, jagAmp)
     const span = L.x1 - L.x0
 
-    if (lp < 1) {
-      // 1) Scorch band — chars the ink just above the live front.
-      const band = Math.max(_BAND_MIN, (L.y1 - L.y0) * _SCORCH_RATIO)
-      const frontTop = fy(L.x0)
+    // 1) Scorch band — chars the ink just above the live front.
+    const band = Math.max(_BAND_MIN, (L.y1 - L.y0) * _SCORCH_RATIO)
+    const frontTop = fy(L.x0)
 
-      wc.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_SOURCE_ATOP
-      wc.globalAlpha = _BAND_ALPHA
-      wc.beginPath()
-      wc.moveTo(L.x0, frontTop)
+    wc.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_SOURCE_ATOP
+    wc.globalAlpha = _BAND_ALPHA
+    wc.beginPath()
+    wc.moveTo(L.x0, frontTop)
 
-      for (let x = L.x0; x <= L.x1; x += _FRONT_STEP) wc.lineTo(x, fy(x))
+    for (let x = L.x0; x <= L.x1; x += _FRONT_STEP) wc.lineTo(x, fy(x))
 
-      for (let x = L.x1; x >= L.x0; x -= _FRONT_STEP) {
-        wc.lineTo(x, fy(x) - band * (1 + edgeNoise(x, s.t * 2.3) * 0.4))
-      }
+    wc.lineTo(L.x1, fy(L.x1))
 
-      wc.closePath()
-
-      const sg = wc.createLinearGradient(0, frontTop - band, 0, frontTop)
-
-      sg.addColorStop(0, CANVAS_STRINGS.INK_CLEAR)
-      sg.addColorStop(1, s.ink.scorch)
-      wc.fillStyle = sg
-      wc.fill()
-
-      // 2) Ember glow — soft additive wash where the ink is alight.
-      wc.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_SOURCE_ATOP
-      wc.globalAlpha = _GLOW_ALPHA
-      wc.beginPath()
-      wc.moveTo(L.x0, frontTop)
-
-      for (let x = L.x0; x <= L.x1; x += _FRONT_STEP) wc.lineTo(x, fy(x))
-
-      for (let x = L.x1; x >= L.x0; x -= _FRONT_STEP) {
-        wc.lineTo(x, fy(x) - span * _GLOW_RATIO * 0.4)
-      }
-
-      wc.closePath()
-
-      const eg = wc.createLinearGradient(0, frontTop - band, 0, frontTop)
-
-      eg.addColorStop(0, CANVAS_STRINGS.INK_CLEAR)
-      eg.addColorStop(1, s.ink.mid)
-      wc.fillStyle = eg
-      wc.fill()
+    for (let x = L.x1; x >= L.x0; x -= _FRONT_STEP) {
+      wc.lineTo(x, fy(x) - band * (1 + edgeNoise(x, s.t * 2.3) * 0.4))
     }
+
+    wc.lineTo(L.x0, fy(L.x0) - band * (1 + edgeNoise(L.x0, s.t * 2.3) * 0.4))
+    wc.closePath()
+
+    const sg = wc.createLinearGradient(0, frontTop - band, 0, frontTop)
+
+    sg.addColorStop(0, CANVAS_STRINGS.INK_CLEAR)
+    sg.addColorStop(1, s.ink.scorch)
+    wc.fillStyle = sg
+    wc.fill()
+
+    // 2) Ember glow — soft additive wash where the ink is alight.
+    wc.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_SOURCE_ATOP
+    wc.globalAlpha = _GLOW_ALPHA
+    wc.beginPath()
+    wc.moveTo(L.x0, frontTop)
+
+    for (let x = L.x0; x <= L.x1; x += _FRONT_STEP) wc.lineTo(x, fy(x))
+
+    wc.lineTo(L.x1, fy(L.x1))
+
+    for (let x = L.x1; x >= L.x0; x -= _FRONT_STEP) {
+      wc.lineTo(x, fy(x) - span * _GLOW_RATIO * 0.4)
+    }
+
+    wc.lineTo(L.x0, fy(L.x0) - span * _GLOW_RATIO * 0.4)
+    wc.closePath()
+
+    const eg = wc.createLinearGradient(0, frontTop - band, 0, frontTop)
+
+    eg.addColorStop(0, CANVAS_STRINGS.INK_CLEAR)
+    eg.addColorStop(1, s.ink.mid)
+    wc.fillStyle = eg
+    wc.fill()
 
     // 3) Consume — erase the burned-away region below the ragged front.
     wc.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_DESTINATION_OUT
     wc.globalAlpha = 1
     wc.beginPath()
-    wc.moveTo(L.x0, ph + 1)
+    wc.moveTo(x0, ph + 1)
 
-    for (let x = L.x0; x <= L.x1; x += _FRONT_STEP) wc.lineTo(x, fy(x))
+    for (let x = x0; x <= x1; x += _FRONT_STEP) wc.lineTo(x, fy(x))
 
-    wc.lineTo(L.x1, ph + 1)
+    wc.lineTo(x1, fy(x1))
+    wc.lineTo(x1, ph + 1)
     wc.closePath()
     wc.fill()
   }
@@ -775,6 +795,10 @@ function frame(s: BurnSession): void {
   drawParticles(s, dt)
 
   const settling = progress >= _BURN_END && s.particles.length === 0
+
+  if (settling) {
+    ctx.clearRect(0, 0, w, h)
+  }
 
   if (s.active && !settling) s.raf = requestAnimationFrame(() => frame(s))
 }
