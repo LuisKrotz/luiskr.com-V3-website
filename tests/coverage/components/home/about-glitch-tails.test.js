@@ -314,7 +314,7 @@ describe('about glitch tails', () => {
     expect(el._glitch).toBe(s)
   })
 
-  test('coverCrop falls back to unit height when naturalHeight is zero', async () => {
+  test('coverRect falls back to unit height when naturalHeight is zero', async () => {
     mountSection()
     decodeImg()
     armGlitch(el, wrap())
@@ -324,13 +324,13 @@ describe('about glitch tails', () => {
 
     Object.defineProperty(img, 'naturalHeight', { configurable: true, value: 0 })
 
-    // healSession re-runs sizeSession → coverCrop against the heightless img.
+    // healSession re-runs sizeSession → coverRect against the heightless img.
     s.canvas.remove()
 
     await new Promise((r) => setTimeout(r, 40))
 
     expect(s.canvas.isConnected).toBe(true)
-    expect(s.sh).toBeGreaterThan(0)
+    expect(s.dh).toBeGreaterThan(0)
   })
 
   test('tile builders degrade gracefully when their 2d ctx is unavailable', async () => {

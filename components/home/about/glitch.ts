@@ -113,17 +113,17 @@ export interface GlitchSession {
   /** Canvas size in device px. */
   w: number
   h: number
-  /** Cover-fit source crop of the portrait. */
-  sx: number
-  sy: number
-  sw: number
-  sh: number
+  /** Cover-fit destination rect of the portrait (device px). */
+  dx: number
+  dy: number
+  dw: number
+  dh: number
   /** Live image element — re-resolved after shadow re-renders. */
   img: HTMLImageElement
-  /** Natural size the cover crop was computed against — a srcset
+  /** Natural size the cover rect was computed against — a srcset
    *  candidate swap changes naturalWidth while `complete` stays true,
-   *  silently invalidating sx/sy/sw/sh (the stale crop then slices a
-   *  corner of the larger bitmap = the "zoomed portrait" bug). */
+   *  silently invalidating dx/dy/dw/dh (the stale rect then scales a
+   *  wrong-aspect portrait = the "zoomed portrait" bug). */
   srcW: number
   srcH: number
   /** Precomputed red / cyan channel canvases for the RGB split. */
@@ -149,26 +149,38 @@ export interface GlitchSession {
 }
 
 /**
- * Computes the cover-fit crop rect for the source image at the given
- * output size — mirrors `object-fit: cover` AND the element's
+ * Computes the cover-fit DESTINATION rect for the portrait at the given
+ * canvas size — mirrors `object-fit: cover` AND the element's
  * `object-position`, read live from computed style so the canvas copy
  * always frames the portrait exactly the way the DOM <img> does.
  *
- * NOTE: w and h MUST be the CSS bounding box dimensions, not device-pixel
- * canvas dimensions, to accurately map to the browser's native scaling.
+ * The draw uses the whole-image form `drawImage(img, dx, dy, dw, dh)`
+ * rather than a source crop on purpose: for srcset images selected via
+ * `x` density descriptors, `naturalWidth`/`naturalHeight` report
+ * DENSITY-CORRECTED units (intrinsic pixels ÷ descriptor) while
+ * drawImage's source rect expects intrinsic pixels — a crop computed
+ * from `naturalWidth` reads a fraction of the bitmap = the "zoomed
+ * corner" bug at DPR ≠ 1. Destination-rect cover sidesteps the two
+ * unit systems entirely: the browser maps the full image (any intrinsic
+ * size) into the rect.
+ * @param img Decoded portrait element.
+ * @param size Output square edge in canvas (device) px.
+ * @param ox Canvas-space X origin of the square viewport.
+ * @param oy Canvas-space Y origin of the square viewport.
  */
-function coverCrop(
+function coverRect(
   img: HTMLImageElement,
-  w: number,
-  h: number
-): { sx: number; sy: number; sw: number; sh: number } {
+  size: number,
+  ox: number,
+  oy: number
+): { dx: number; dy: number; dw: number; dh: number } {
   // liveImg() gates on `naturalWidth` before any call reaches here, but
   // some sources report width before height — the height guard stays.
   const iw = img.naturalWidth
   const ih = img.naturalHeight || 1
-  const scale = Math.max(w / iw, h / ih)
-  const sw = w / scale
-  const sh = h / scale
+  const scale = Math.max(size / iw, size / ih)
+  const dw = iw * scale
+  const dh = ih * scale
 
   // object-position percentages — e.g. "50% 50%" keeps the 0.5 default;
   // keywords like `right`/`top` parse to NaN and fall back to center.
@@ -183,7 +195,7 @@ function coverCrop(
   const px = axis(parts[0])
   const py = axis(parts[1])
 
-  return { sx: (iw - sw) * px, sy: (ih - sh) * py, sw, sh }
+  return { dx: ox + (size - dw) * px, dy: oy + (size - dh) * py, dw, dh }
 }
 
 /**
@@ -202,11 +214,7 @@ function buildChannel(s: GlitchSession, mask: string): HTMLCanvasElement {
 
   if (!cc) return c
 
-  const size = Math.min(s.w, s.h)
-  const ox = (s.w - size) / 2
-  const oy = (s.h - size) / 2
-
-  cc.drawImage(s.img, s.sx, s.sy, s.sw, s.sh, ox, oy, size, size)
+  cc.drawImage(s.img, s.dx, s.dy, s.dw, s.dh)
   cc.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_MULTIPLY
   cc.fillStyle = mask
   cc.fillRect(0, 0, s.w, s.h)
@@ -252,12 +260,9 @@ function drawBase(s: GlitchSession): void {
   ctx.save()
   clipCircle(ctx, w, h)
 
-  const size = Math.min(w, h)
-  const ox = (w - size) / 2
-  const oy = (h - size) / 2
-
-  // Utilize the pre-calculated CSS-logical crop bounds
-  ctx.drawImage(s.img, s.sx, s.sy, s.sw, s.sh, ox, oy, size, size)
+  // Utilize the pre-calculated cover-fit destination rect — whole-image
+  // draw, immune to the density-corrected naturalWidth unit mismatch.
+  ctx.drawImage(s.img, s.dx, s.dy, s.dw, s.dh)
   ctx.restore()
 }
 
@@ -482,16 +487,15 @@ function sizeSession(s: GlitchSession, box: DOMRect): void {
   s.srcW = s.img.naturalWidth
   s.srcH = s.img.naturalHeight
 
-  // 1. Calculate CSS size bounds for the crop to match the DOM's object-fit
-  const cssSize = Math.min(box.width, box.height)
+  // Destination cover rect in device px — the square viewport sits
+  // centered in the canvas exactly like the DOM img's cover box.
+  const size = Math.min(s.w, s.h)
+  const rect = coverRect(s.img, size, (s.w - size) / 2, (s.h - size) / 2)
 
-  // 2. Crop using CSS logical pixels
-  const crop = coverCrop(s.img, cssSize, cssSize)
-
-  s.sx = crop.sx
-  s.sy = crop.sy
-  s.sw = crop.sw
-  s.sh = crop.sh
+  s.dx = rect.dx
+  s.dy = rect.dy
+  s.dw = rect.dw
+  s.dh = rect.dh
 
   s.red = buildChannel(s, CANVAS_STRINGS.CHANNEL_RED)
   s.cyan = buildChannel(s, CANVAS_STRINGS.CHANNEL_CYAN)
@@ -578,10 +582,10 @@ export function armGlitch(host: AboutSection, wrap: HTMLElement): boolean {
     ctx,
     w: 0,
     h: 0,
-    sx: 0,
-    sy: 0,
-    sw: 0,
-    sh: 0,
+    dx: 0,
+    dy: 0,
+    dw: 0,
+    dh: 0,
     img,
     srcW: 0,
     srcH: 0,
