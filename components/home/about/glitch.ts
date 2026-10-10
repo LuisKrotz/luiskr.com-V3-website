@@ -323,6 +323,16 @@ function drawSplitBase(s: GlitchSession): void {
     ? _HOVER_RGB_MIN + Math.random() * (_HOVER_RGB_MAX - _HOVER_RGB_MIN)
     : Math.random() * _IDLE_RGB
 
+  // Same state reset + full clear as drawBase — 'lighter' is additive, so
+  // without the clear each split frame stacks another full-brightness copy
+  // on the previous frame and the circle saturates to white within a few
+  // consecutive hits (the "ghost fragments on white" bug).
+  ctx.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_SOURCE_OVER
+  ctx.globalAlpha = 1
+  ctx.filter = CANVAS_STRINGS.FILTER_NONE
+  ctx.setTransform(1, 0, 0, 1, 0, 0)
+  ctx.clearRect(0, 0, w, h)
+
   ctx.save()
   clipCircle(ctx, w, h)
   ctx.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_LIGHTER

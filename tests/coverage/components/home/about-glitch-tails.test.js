@@ -559,6 +559,52 @@ describe('about glitch tails', () => {
     }
   })
 
+  test('split frames clear the canvas before compositing channels (no additive blowout)', async () => {
+    mountSection()
+    decodeImg()
+    armGlitch(el, wrap())
+
+    const s = el._glitch
+    const base = s.ctx
+    const events = []
+    let op = 'source-over'
+
+    // Record clearRect/drawImage calls tagged with the composite op at
+    // call time — the mock's set-trap swallows writes, so track the op here.
+    s.ctx = new Proxy(
+      {},
+      {
+        get: (_t, prop) => (...a) => {
+          if (prop === 'clearRect' || prop === 'drawImage') events.push(`${prop}:${op}`)
+
+          return base[prop](...a)
+        },
+        set: (_t, prop, v) => {
+          if (prop === 'globalCompositeOperation') op = v
+
+          base[prop] = v
+
+          return true
+        },
+      }
+    )
+
+    // Every frame is a split-hit frame — without the per-frame clear the
+    // 'lighter' channel pair accumulates on stale pixels (white blowout).
+    const rand = jest.spyOn(Math, 'random').mockReturnValue(0.01)
+
+    await new Promise((r) => setTimeout(r, 60))
+
+    rand.mockRestore()
+
+    const clears = events.filter((e) => e.startsWith('clearRect'))
+    const lighters = events.filter((e) => e === 'drawImage:lighter')
+
+    expect(clears.length).toBeGreaterThan(0)
+    // Each split frame composites exactly the red + cyan pair.
+    expect(lighters.length).toBe(clears.length * 2)
+  })
+
   test('a natural-size drift without a live wrapper skips the re-size', async () => {
     mountSection()
     decodeImg()
