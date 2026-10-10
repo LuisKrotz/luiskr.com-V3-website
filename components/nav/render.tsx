@@ -269,7 +269,10 @@ export const renderAppNav = (nav: AppNav) => {
                       type={FORM_ATTRS.TYPE_BUTTON}
                       aria-label={item.label}
                       title={item.title || undefined}
-                      style={{ [MENU_CSS_PROPS.DRAW_MS]: `${timing.underline}ms` }}
+                      style={{
+                        [MENU_CSS_PROPS.DRAW_MS]: `${timing.underline}ms`,
+                        [MENU_CSS_PROPS.OFFSET_MS]: `${timing.offset}ms`,
+                      }}
                       onClick={item.onClick}
                     >
                       {item.prefix}

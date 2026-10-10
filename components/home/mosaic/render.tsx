@@ -83,7 +83,7 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
         <div className={HOME_MOSAIC_CLASSES.HOME_MOSAIC_DETAILS} data-index={i}>
           {item.description && expanded && (
             <p className={HOME_MOSAIC_CLASSES.HOME_MOSAIC_DESC}>
-              <draw-text text={item.description} delay={CHAR_STRINGS.DELAY_8} />
+              <draw-text text={item.description} delay={CHAR_STRINGS.DELAY_30} />
             </p>
           )}
           <span className={HOME_MOSAIC_CLASSES.HOME_MOSAIC_BTN}>{exploreText}</span>

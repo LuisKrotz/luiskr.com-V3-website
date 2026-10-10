@@ -201,7 +201,11 @@ function buildChannel(s: GlitchSession, mask: string): HTMLCanvasElement {
 
   if (!cc) return c
 
-  cc.drawImage(s.img, s.sx, s.sy, s.sw, s.sh, 0, 0, s.w, s.h)
+  const size = Math.min(s.w, s.h)
+  const ox = (s.w - size) / 2
+  const oy = (s.h - size) / 2
+
+  cc.drawImage(s.img, s.sx, s.sy, s.sw, s.sh, ox, oy, size, size)
   cc.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_MULTIPLY
   cc.fillStyle = mask
   cc.fillRect(0, 0, s.w, s.h)
@@ -247,13 +251,13 @@ function drawBase(s: GlitchSession): void {
   ctx.save()
   clipCircle(ctx, w, h)
 
-  // Crop is resolved against the image's LIVE natural size — never a
-  // cached rect: a srcset candidate swap or a re-rendered img can change
-  // naturalWidth mid-session, and a stale rect is exactly what cropped
-  // the portrait into a zoomed fragment.
-  const crop = coverCrop(s.img, w, h)
+  const size = Math.min(w, h)
+  const ox = (w - size) / 2
+  const oy = (h - size) / 2
 
-  ctx.drawImage(s.img, crop.sx, crop.sy, crop.sw, crop.sh, 0, 0, w, h)
+  const crop = coverCrop(s.img, size, size)
+
+  ctx.drawImage(s.img, crop.sx, crop.sy, crop.sw, crop.sh, ox, oy, size, size)
   ctx.restore()
 }
 
@@ -478,7 +482,9 @@ function sizeSession(s: GlitchSession, box: DOMRect): void {
   s.srcW = s.img.naturalWidth
   s.srcH = s.img.naturalHeight
 
-  const crop = coverCrop(s.img, s.w, s.h)
+  const size = Math.min(s.w, s.h)
+
+  const crop = coverCrop(s.img, size, size)
 
   s.sx = crop.sx
   s.sy = crop.sy

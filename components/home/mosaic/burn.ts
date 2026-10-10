@@ -344,6 +344,12 @@ function letterFrontY(
   jagAmp: number
 ): number {
   const p = letterProgress(L, progress)
+
+  // Once a letter has fully burned, push the front above the paper so the
+  // destination-out consume polygon erases every last pixel — otherwise
+  // anti-aliased tops or noise can leave faint residual lines.
+  if (p >= 1) return -1
+
   const travel = L.y1 - L.y0 + jagAmp * 2
 
   return L.y1 + jagAmp - p * travel + edgeNoise(x, s.t * 3) * jagAmp
