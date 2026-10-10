@@ -389,4 +389,38 @@ describe('mosaic burn letters', () => {
       cardEl().querySelector(`.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURN}`)
     ).toBeNull()
   })
+
+  test('a finished letter column-clears while the burn still runs, then the canvas wipes at settle', async () => {
+    // Two letters — letter 0 is forced far past its finish so the next
+    // frame takes the `lp >= 1` destination-out column clear (the
+    // residual-lines fix) while letter 1 still burns the normal path.
+    useInk((x) => (x >= 2 && x < 8) || (x >= 14 && x < 20))
+    mountMosaic()
+    armCardBurn(el, 0, ITEMS[0])
+
+    const s = cardEl()._burn
+
+    s.letters[0].v = 1e6
+    s.letters[0].delay = 0
+
+    // Mid-burn progress (< _BURN_END): random→0 makes spawn pick letter 0,
+    // whose letterFrontY returns -1 (the `p >= 1` arm) → ink-extent gate
+    // rejects the emission.
+    s.t = s.dur / 1000 / 2
+
+    const rand = jest.spyOn(Math, 'random').mockReturnValue(0)
+
+    await flush(60)
+    rand.mockRestore()
+
+    // Drive the session past _BURN_END with an empty particle list —
+    // burnPaper's terminal clearRect + frame's settling wipe both run.
+    s.t = s.dur
+    s.particles.length = 0
+
+    await flush(60)
+
+    expect(s.active).toBe(true)
+    expect(s.particles.length).toBe(0)
+  })
 })
