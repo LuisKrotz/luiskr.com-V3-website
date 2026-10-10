@@ -46,6 +46,7 @@ import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { THEME_CSS_PROPS } from '@core/tokens/css/theme.js'
+import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { syncCanvasFont, canvasTransformText } from '@core/utils/canvas/dom-font.js'
 import store from '@core/store.js'
 import type { MosaicItem } from './pack.js'
@@ -410,7 +411,7 @@ function spawn(s: BurnSession, progress: number, jagAmp: number, dt: number): vo
  * properties are absent (older stylesheet, non-themed host).
  */
 function readBurnInk(): BurnInk {
-  const root = typeof document !== 'undefined' ? document.documentElement : null
+  const root = typeof document !== TYPE_STRINGS.UNDEFINED ? document.documentElement : null
   const cs = root ? getComputedStyle(root) : null
   const pick = (prop: string, fallback: string): string =>
     (cs?.getPropertyValue(prop) || ATTR_VALUES.EMPTY).trim() || fallback

@@ -6,7 +6,6 @@
  * the SPA router, and the source credit line.
  */
 
-import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
 import { AWC_CLASSES } from '@core/tokens/classes/awards-carousel.js'
 import { FOOTER_CLASSES } from '@core/tokens/classes/footer.js'
