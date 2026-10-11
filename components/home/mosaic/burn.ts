@@ -277,7 +277,7 @@ interface BurnParticle {
    * Rebuild deposits only — the letter whose front this particle rains
    * onto. Undefined for burn particles, which simply rise and die.
    */
-  L?: BurnLetter
+  L?: LetterBurn
 }
 
 /** Card element carrying a parked burn session. */
