@@ -168,10 +168,11 @@ export function startAnimation(host: DrawText): void {
 
   const lastCharDelay = effectiveOffset + Math.max(0, chars - 1) * host.delay
 
-  const totalMs = Math.min(
-    lastCharDelay + DRAW_TIMINGS.DRAW_ANIM_EXTRA_MS,
-    DRAW_TIMINGS.DRAW_ANIM_MAX_MS
-  )
+  // The collapse must outlast the LAST scheduled char — clamping to a
+  // fixed ceiling fired the timer mid-schedule on ordered pages (legal
+  // docs schedule items seconds out), snapping every unanimated char
+  // visible at once as a solid block of text.
+  const totalMs = lastCharDelay + DRAW_TIMINGS.DRAW_ANIM_EXTRA_MS
 
   if (host._animTimer) clearTimeout(host._animTimer)
 
