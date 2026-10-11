@@ -1,6 +1,7 @@
 node_modules/
 dist/
 reports/
-coverage/
+# Anchored — only the jest report dir; tests/coverage/ tail tests must be tracked.
+/coverage/
 *.log
 .DS_Store

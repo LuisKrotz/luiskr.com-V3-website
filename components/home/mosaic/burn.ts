@@ -715,8 +715,9 @@ function drawParticles(s: BurnSession, dt: number): void {
  * The composite then blits to the display canvas — the DOM ink is long
  * hidden, so what the user reads IS this raster burning through itself.
  */
-function burnPaper(s: BurnSession, progress: number, jagAmp: number): void {
+function burnPaper(s: BurnSession, stage: number, jagAmp: number): void {
   const { workCtx: wc, paperW: pw, paperH: ph } = s
+  const rebuild = s.dir < 0
 
   wc.setTransform(1, 0, 0, 1, 0, 0)
   wc.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_SOURCE_OVER
@@ -724,32 +725,46 @@ function burnPaper(s: BurnSession, progress: number, jagAmp: number): void {
   wc.clearRect(0, 0, pw, ph)
   wc.drawImage(s.paper, 0, 0)
 
-  if (progress <= 0) return
+  // stage 0 only exists on the forward path — a rebuild's first frame has
+  // already decremented prog below 1, so the fully-missing state paints
+  // through the lp <= 0 column-clear instead.
+  if (stage <= 0) return
 
-  if (progress >= _BURN_END) {
+  if (stage >= _BURN_END && !rebuild) {
     wc.clearRect(0, 0, pw, ph)
     return
   }
 
-  for (const L of s.letters) {
-    const lp = letterProgress(L, progress)
+  // Band direction: burn chars the ink ABOVE the live front; rebuild
+  // smolders BELOW it — the edge that just re-materialized.
+  const bs = rebuild ? 1 : -1
+  // Consume edge: burn erases below the front (ph + 1 anchor), rebuild
+  // erases the still-missing top (-1 anchor).
+  const edge = rebuild ? -1 : ph + 1
 
-    if (lp <= 0) continue
+  for (const L of s.letters) {
+    const lp = letterProgress(L, stage)
+
+    // Skip letters with no live front: burn skips the un-ignited, rebuild
+    // skips the fully restored.
+    if (rebuild ? lp >= 1 : lp <= 0) continue
 
     const x0 = Math.max(0, L.x0 - 1)
     const x1 = Math.min(pw, L.x1 + 1)
 
-    if (lp >= 1) {
+    // Column-clear: burn's fully-consumed letter and rebuild's
+    // still-missing letter both wipe the whole column.
+    if (rebuild ? lp <= 0 : lp >= 1) {
       wc.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_DESTINATION_OUT
       wc.globalAlpha = 1
       wc.fillRect(x0, 0, x1 - x0, ph + 1)
       continue
     }
 
-    const fy = (x: number): number => letterFrontY(s, L, x, progress, jagAmp)
+    const fy = (x: number): number => letterFrontY(s, L, x, stage, jagAmp)
     const span = L.x1 - L.x0
 
-    // 1) Scorch band — chars the ink just above the live front.
+    // 1) Scorch band — chars the ink on the live side of the front.
     const band = Math.max(_BAND_MIN, (L.y1 - L.y0) * _SCORCH_RATIO)
     const frontTop = fy(L.x0)
 
@@ -763,16 +778,16 @@ function burnPaper(s: BurnSession, progress: number, jagAmp: number): void {
     wc.lineTo(L.x1, fy(L.x1))
 
     for (let x = L.x1; x >= L.x0; x -= _FRONT_STEP) {
-      wc.lineTo(x, fy(x) - band * (1 + edgeNoise(x, s.t * 2.3) * 0.4))
+      wc.lineTo(x, fy(x) + bs * band * (1 + edgeNoise(x, s.t * 2.3) * 0.4))
     }
 
-    wc.lineTo(L.x0, fy(L.x0) - band * (1 + edgeNoise(L.x0, s.t * 2.3) * 0.4))
+    wc.lineTo(L.x0, fy(L.x0) + bs * band * (1 + edgeNoise(L.x0, s.t * 2.3) * 0.4))
     wc.closePath()
 
-    const sg = wc.createLinearGradient(0, frontTop - band, 0, frontTop)
+    const sg = wc.createLinearGradient(0, frontTop, 0, frontTop + bs * band)
 
-    sg.addColorStop(0, CANVAS_STRINGS.INK_CLEAR)
-    sg.addColorStop(1, s.ink.scorch)
+    sg.addColorStop(0, s.ink.scorch)
+    sg.addColorStop(1, CANVAS_STRINGS.INK_CLEAR)
     wc.fillStyle = sg
     wc.fill()
 
@@ -787,29 +802,30 @@ function burnPaper(s: BurnSession, progress: number, jagAmp: number): void {
     wc.lineTo(L.x1, fy(L.x1))
 
     for (let x = L.x1; x >= L.x0; x -= _FRONT_STEP) {
-      wc.lineTo(x, fy(x) - span * _GLOW_RATIO * 0.4)
+      wc.lineTo(x, fy(x) + bs * span * _GLOW_RATIO * 0.4)
     }
 
-    wc.lineTo(L.x0, fy(L.x0) - span * _GLOW_RATIO * 0.4)
+    wc.lineTo(L.x0, fy(L.x0) + bs * span * _GLOW_RATIO * 0.4)
     wc.closePath()
 
-    const eg = wc.createLinearGradient(0, frontTop - band, 0, frontTop)
+    const eg = wc.createLinearGradient(0, frontTop, 0, frontTop + bs * band)
 
-    eg.addColorStop(0, CANVAS_STRINGS.INK_CLEAR)
-    eg.addColorStop(1, s.ink.mid)
+    eg.addColorStop(0, s.ink.mid)
+    eg.addColorStop(1, CANVAS_STRINGS.INK_CLEAR)
     wc.fillStyle = eg
     wc.fill()
 
-    // 3) Consume — erase the burned-away region below the ragged front.
+    // 3) Consume — burn erases below the ragged front, rebuild erases the
+    // still-missing region above it so glyphs re-materialize bottom→top.
     wc.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_DESTINATION_OUT
     wc.globalAlpha = 1
     wc.beginPath()
-    wc.moveTo(x0, ph + 1)
+    wc.moveTo(x0, edge)
 
     for (let x = x0; x <= x1; x += _FRONT_STEP) wc.lineTo(x, fy(x))
 
     wc.lineTo(x1, fy(x1))
-    wc.lineTo(x1, ph + 1)
+    wc.lineTo(x1, edge)
     wc.closePath()
     wc.fill()
   }
@@ -871,17 +887,22 @@ function frame(s: BurnSession): void {
     progress = Math.min(1, s.t / (s.dur / 1000))
   }
 
-  const burning = s.dir > 0 && progress < _BURN_END
+  // Stage maps both directions onto a 0→1 climb: burn consumes bottom→top
+  // as stage rises; rebuild (dir −1) re-materializes bottom→top as stage
+  // rises too — prog counts down, so stage = 1 − prog.
+  const stage = s.dir < 0 ? 1 - progress : progress
 
   ctx.setTransform(1, 0, 0, 1, 0, 0)
   ctx.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_SOURCE_OVER
   ctx.globalAlpha = 1
   ctx.clearRect(0, 0, w, h)
 
-  burnPaper(s, progress, jagAmp)
+  burnPaper(s, stage, jagAmp)
   ctx.drawImage(s.work, s.paperX, s.paperY)
 
-  if (burning) spawn(s, progress, jagAmp, dt)
+  // Embers pour off the live edge in both directions — the rebuild front
+  // is a live edge too.
+  if (stage > 0 && stage < _BURN_END) spawn(s, stage, jagAmp, dt)
 
   drawParticles(s, dt)
 
