@@ -21,14 +21,18 @@
  *              soft ink-clipped ember wash where the edge smoulders
  *   particles— embers (bright, rise + flicker + wobble) and char flecks
  *              (dark, curl up then tumble) spawn only where a live front
- *              meets actual glyph ink, and dissolve mid-air
+ *              meets actual glyph ink, and dissolve mid-air; on rebuild
+ *              they invert into deposits — motes seeded in the still
+ *              empty zone above each letter fall top→bottom and land on
+ *              the climbing front, knitting the glyph back into place
  *   rewrite  — a slot is inserted above the description containing an
  *              aria-hidden spacer (holds layout so nothing reflows) and a
  *              <draw-text> clone replaying the title, char by char
- *   rebuild  — on un-hover the same pipeline runs in reverse: progress
- *              counts down, the consume front descends, and the eroded
- *              region un-chars letter by letter until the title raster
- *              is whole again — then the DOM ink takes the pixels back
+ *   rebuild  — on un-hover the raster stitches back bottom→top: the
+ *              erase mask sits ABOVE a still-climbing front (stage =
+ *              1 − prog), so letters re-ink base-to-cap while deposit
+ *              particles rain down onto the moving edge — then the DOM
+ *              ink takes the pixels back
  *              with a zero-seam handoff
  *
  * Burn duration is capped to the description's draw time so the last
@@ -111,6 +115,11 @@ const _EMBER_VX = 18
 const _FLECK_VY = 46
 const _FLECK_VX = 22
 const _FLECK_G = 60
+/**
+ * Rebuild deposit launch speed (canvas px/s) — motes leave the empty
+ * zone drifting down gently, then _FLECK_G accelerates the fall.
+ */
+const _DEPOSIT_VY = 18
 /** Particle size bounds in device px. */
 const _EMBER_SIZE = 2.2
 const _FLECK_SIZE = 3.4
@@ -264,6 +273,11 @@ interface BurnParticle {
   spin: number
   /** Per-particle noise phase — keeps flicker/wobble desynced. */
   phase: number
+  /**
+   * Rebuild deposits only — the letter whose front this particle rains
+   * onto. Undefined for burn particles, which simply rise and die.
+   */
+  L?: BurnLetter
 }
 
 /** Card element carrying a parked burn session. */
@@ -405,9 +419,15 @@ function letterFrontY(
  * without a second counter. Emissions come only from columns that
  * carry glyph ink and whose letter front is mid-flight, so embers pour
  * off burning edges — never out of the spaces between letters.
+ *
+ * Burn sessions (dir +1) emit AT the front with upward velocity — the
+ * classic rising-ember look. Rebuild sessions (dir −1) instead seed the
+ * still-empty zone ABOVE the front and launch downward: deposits rain
+ * top→bottom and land on the climbing edge, knitting the glyphs back.
  */
 function spawn(s: BurnSession, progress: number, jagAmp: number, dt: number): void {
   const want = _SPAWN_PER_S * dt
+  const rebuild = s.dir < 0
 
   for (let i = 0; i < want; i++) {
     if (Math.random() > want - i) continue
@@ -427,8 +447,14 @@ function spawn(s: BurnSession, progress: number, jagAmp: number, dt: number): vo
     // pre-ignition and fully-consumed letters spawn nothing.
     if (fy < L.y0 - jagAmp || fy > L.y1 + jagAmp) continue
 
+    // Rebuild seeds anywhere in the empty zone above the front — as the
+    // edge nears the ink top the zone shrinks to nothing and deposits
+    // land the same frame they spawn.
+    const zoneTop = L.y0 - jagAmp
     const x = s.paperX + xp
-    const y = s.paperY + fy
+    const y = rebuild
+      ? s.paperY + zoneTop + Math.random() * Math.max(0, fy - zoneTop)
+      : s.paperY + fy
 
     const fleck = Math.random() < _CHAR_FRACTION
     const maxLife = fleck
@@ -439,9 +465,11 @@ function spawn(s: BurnSession, progress: number, jagAmp: number, dt: number): vo
       x,
       y,
       vx: (Math.random() * 2 - 1) * (fleck ? _FLECK_VX : _EMBER_VX),
-      vy: fleck
-        ? -(Math.random() * _FLECK_VY)
-        : -(_EMBER_VY_MIN + Math.random() * (_EMBER_VY_MAX - _EMBER_VY_MIN)),
+      vy: rebuild
+        ? Math.random() * _DEPOSIT_VY
+        : fleck
+          ? -(Math.random() * _FLECK_VY)
+          : -(_EMBER_VY_MIN + Math.random() * (_EMBER_VY_MAX - _EMBER_VY_MIN)),
       life: 0,
       maxLife,
       size: fleck ? 1 + Math.random() * _FLECK_SIZE : 0.8 + Math.random() * _EMBER_SIZE,
@@ -449,6 +477,7 @@ function spawn(s: BurnSession, progress: number, jagAmp: number, dt: number): vo
       rot: Math.random() * Math.PI * 2,
       spin: (Math.random() * 2 - 1) * 6,
       phase: Math.random() * Math.PI * 2,
+      L: rebuild ? L : undefined,
     })
   }
 }
@@ -644,9 +673,15 @@ function analyzePaper(s: BurnSession): void {
   s.work.height = ph
 }
 
-/** Advances + draws particles: embers flicker upward, flecks tumble down. */
-function drawParticles(s: BurnSession, dt: number): void {
+/**
+ * Advances + draws particles. Burn embers flicker upward on buoyancy and
+ * flecks tumble down; rebuild deposits (dir −1) fall under gravity from
+ * the empty zone above each letter and die the moment they reach the
+ * climbing front — the landing reads as the glyph re-inking itself.
+ */
+function drawParticles(s: BurnSession, dt: number, stage: number, jagAmp: number): void {
   const { ctx } = s
+  const rebuild = s.dir < 0
 
   ctx.save()
 
@@ -663,13 +698,21 @@ function drawParticles(s: BurnSession, dt: number): void {
     const k = p.life / p.maxLife
 
     if (p.kind === 0) {
-      // Ember — rises with sideways wobble, hot core fades to ember tip.
-      p.vy -= 8 * dt
+      // Ember — burn: buoyancy lifts it; rebuild: gravity pulls the
+      // deposit down toward the front it landed from.
+      p.vy += (rebuild ? _FLECK_G : -8) * dt
       p.x += p.vx * dt + Math.sin(p.phase + s.t * 9) * 14 * dt
       p.y += p.vy * dt
 
       const flick = 0.55 + 0.45 * Math.sin(p.phase + s.t * 31)
       const alpha = (1 - k) * flick
+
+      // Rebuild: a deposit that reaches its letter's front has landed —
+      // remove it so the glyph edge appears to swallow the mote.
+      if (rebuild && p.L && p.y >= s.paperY + letterFrontY(s, p.L, p.x - s.paperX, stage, jagAmp)) {
+        s.particles.splice(i, 1)
+        continue
+      }
 
       ctx.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_LIGHTER
       ctx.globalAlpha = alpha
@@ -677,10 +720,16 @@ function drawParticles(s: BurnSession, dt: number): void {
       ctx.fillRect(p.x, p.y, p.size, p.size)
     } else {
       // Char fleck — heat lifts it, then gravity wins; it tumbles dark.
+      // Rebuild flecks already fall — same gravity keeps them sinking.
       p.vy += _FLECK_G * dt
       p.x += p.vx * dt + Math.sin(p.phase + s.t * 4) * 10 * dt
       p.y += p.vy * dt
       p.rot += p.spin * dt
+
+      if (rebuild && p.L && p.y >= s.paperY + letterFrontY(s, p.L, p.x - s.paperX, stage, jagAmp)) {
+        s.particles.splice(i, 1)
+        continue
+      }
 
       ctx.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_SOURCE_OVER
       ctx.globalAlpha = 1 - k
@@ -857,8 +906,9 @@ function teardownBurn(s: BurnSession): void {
  * per letter), blit it, spawn + draw particles. When every letter's front
  * has passed its ink top the title is ash; the loop idles until the last
  * particle dies. Reversed sessions (dir −1) count progress down — the
- * consume front descends, un-charring and re-inking the glyphs until the
- * raster is whole again and the DOM takes the pixels back.
+ * stage climbs bottom→top again, re-inking each letter base-to-cap
+ * while deposit particles rain onto the moving edge until the raster
+ * is whole again and the DOM takes the pixels back.
  */
 function frame(s: BurnSession): void {
   const now = performance.now()
@@ -900,11 +950,11 @@ function frame(s: BurnSession): void {
   burnPaper(s, stage, jagAmp)
   ctx.drawImage(s.work, s.paperX, s.paperY)
 
-  // Embers pour off the live edge in both directions — the rebuild front
-  // is a live edge too.
+  // Embers pour off the live burn edge; on rebuild the same live edge
+  // instead receives deposits raining down through the empty zone.
   if (stage > 0 && stage < _BURN_END) spawn(s, stage, jagAmp, dt)
 
-  drawParticles(s, dt)
+  drawParticles(s, dt, stage, jagAmp)
 
   // Rebuild complete — hand the (pristine) pixels back to the DOM ink.
   if (s.dir < 0 && s.prog <= 0) {
