@@ -424,4 +424,73 @@ describe('mosaic burn letters', () => {
     expect(s.active).toBe(true)
     expect(s.particles.length).toBe(0)
   })
+
+  test('a moving title re-anchors the canvas in place — no re-raster, just left/top', async () => {
+    // The expand ease slides the h2 inside its overlay: posSig (box minus
+    // overlay origin) changes while lastBox stays frozen, so syncPaper
+    // takes the position-only re-anchor arm instead of re-measuring.
+    mountMosaic()
+    armCardBurn(el, 0, ITEMS[0])
+
+    const s = cardEl()._burn
+    const moved = {
+      left: 26,
+      top: 34,
+      right: 206,
+      bottom: 74,
+      width: 180,
+      height: 40,
+      x: 26,
+      y: 34,
+      toJSON: () => ({}),
+    }
+    const base = {
+      left: 10,
+      top: 10,
+      right: 210,
+      bottom: 50,
+      width: 200,
+      height: 40,
+      x: 10,
+      y: 10,
+      toJSON: () => ({}),
+    }
+
+    // Only the TITLE moves — the overlay stays put, so the delta changes.
+    Element.prototype.getBoundingClientRect = function () {
+      return this === s.titleEl ? moved : base
+    }
+
+    const beforeLeft = s.canvas.style.left
+
+    ctxState.fillStyles.length = 0
+
+    await flush(60)
+
+    expect(s.lastPos).toBe('16,24')
+    expect(s.canvas.style.left).not.toBe(beforeLeft)
+    expect(ctxState.fillStyles.length).toBe(0)
+  })
+
+  test('re-arming a session whose loop already stopped reschedules the frame', async () => {
+    // A settled rebuild loop leaves s.raf = 0 with the session alive —
+    // re-entering must restart scheduling instead of leaving a dead card.
+    mountMosaic()
+    armCardBurn(el, 0, ITEMS[0])
+
+    const s = cardEl()._burn
+
+    cancelAnimationFrame(s.raf)
+    s.raf = 0
+    s.dir = -1
+    s.prog = 0.5
+
+    armCardBurn(el, 0, ITEMS[0])
+
+    expect(s.dir).toBe(1)
+    expect(s.raf).toBeTruthy()
+    expect(s.t).toBeCloseTo(0.5 * (s.dur / 1000), 5)
+
+    await flush(40)
+  })
 })

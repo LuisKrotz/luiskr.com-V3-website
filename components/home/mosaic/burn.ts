@@ -25,12 +25,18 @@
  *   rewrite  — a slot is inserted above the description containing an
  *              aria-hidden spacer (holds layout so nothing reflows) and a
  *              <draw-text> clone replaying the title, char by char
+ *   rebuild  — on un-hover the same pipeline runs in reverse: progress
+ *              counts down, the consume front descends, and the eroded
+ *              region un-chars letter by letter until the title raster
+ *              is whole again — then the DOM ink takes the pixels back
+ *              with a zero-seam handoff
  *
  * Burn duration is capped to the description's draw time so the last
- * ember dies as the description finishes writing. Reduced motion skips
- * the canvas entirely: the h2 hides instantly and the slot shows static
- * text. The h2 DOM node stays mounted throughout (a11y + fallback); only
- * its ink is hidden while the canvas owns the pixels.
+ * ember dies as the description finishes writing; the rebuild replays
+ * at ~55% of that length. Reduced motion skips the canvas entirely:
+ * the h2 hides instantly and the slot shows static text. The h2 DOM
+ * node stays mounted throughout (a11y + fallback); only its ink is
+ * hidden while the canvas owns the pixels.
  */
 
 import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
@@ -124,6 +130,12 @@ const _IGNITE_DELAY = 0.15
 const _BURN_END = 0.92
 /** Ember glow band height, as a share of letter height. */
 const _GLOW_RATIO = 0.55
+/**
+ * Rebuild speed on un-hover — the un-burn replays the consume front
+ * downward at this fraction of the burn duration, so rebuilding the
+ * title reads quicker than burning it away while staying visible.
+ */
+const _REBUILD_RATIO = 0.55
 
 /** A live combustion session, keyed by card element in `_sessions`. */
 export interface BurnSession {
@@ -140,12 +152,23 @@ export interface BurnSession {
   paperY: number
   paperW: number
   paperH: number
-  /** Seconds elapsed / total burn duration. */
+  /** Seconds elapsed — noise/particle clock (forward progress derives from it). */
   t: number
   dur: number
+  /**
+   * Burn progress 0..1 while rebuilding — captured from the forward clock
+   * at disarm, then counted down; burnPaper re-derives the raster from
+   * the pristine paper every frame, so shrinking progress un-erases the
+   * glyphs (a true time-reverse of the consume front).
+   */
+  prog: number
+  /** Direction: 1 combusts forward, −1 un-burns back to whole text. */
+  dir: number
   lastT: number
   raf: number
   active: boolean
+  /** Owning card — teardown restores its classes and removes the slot. */
+  cardEl: Element
   /** Live particles (embers + char flecks). */
   particles: BurnParticle[]
   /**
@@ -265,17 +288,35 @@ function edgeNoise(x: number, ph: number): number {
  * Rasterizes the h2 text into the paper canvas. Canvas can't line-wrap,
  * so words are measured and packed into lines matching the DOM box, then
  * drawn bottom-anchored like the overlay's `align-items: flex-end`.
+ *
+ * `cssW`/`cssH` are the title box in CSS px while the paper's backing
+ * store is device px (cssW × dpr): canvas font and measureText units are
+ * CSS px, so the context is scaled cssW→paper.width first — without the
+ * transform the glyphs land at 1/dpr size on hidpi/fractional displays
+ * (the "burn text renders smaller than the title" bug).
+ * @param title The h2 element whose glyphs are re-rendered.
+ * @param paper Offscreen canvas sized in device px.
+ * @param cssW Title box width in CSS px.
+ * @param cssH Title box height in CSS px.
+ * @param ink Pre-capture resolved ink color.
  */
 function rasterizeTitle(
   title: HTMLElement,
   paper: HTMLCanvasElement,
-  w: number,
-  h: number,
+  cssW: number,
+  cssH: number,
   ink: string
 ): void {
   const ctx = paper.getContext(WEBGL_STRINGS.CONTEXT_2D)
 
   if (!ctx) return
+
+  // Map CSS-px drawing onto the device-px backing store (≈dpr, exact
+  // through the rounded canvas width). One uniform scale — splitting
+  // x/y over independently-rounded edges would distort the glyphs.
+  const scale = paper.width / cssW
+
+  ctx.setTransform(scale, 0, 0, scale, 0, 0)
 
   const st = getComputedStyle(title)
 
@@ -299,7 +340,7 @@ function rasterizeTitle(
   for (const word of words) {
     const trial = line ? `${line} ${word}` : word
 
-    if (line && ctx.measureText(trial).width > w) {
+    if (line && ctx.measureText(trial).width > cssW) {
       lines.push(line)
       line = word
     } else {
@@ -315,7 +356,7 @@ function rasterizeTitle(
   const descent = fontPx * 0.22
 
   // Anchor the block to the paper's bottom like flex-end does in the DOM.
-  const firstBase = h - (lines.length - 1) * lineH - descent
+  const firstBase = cssH - (lines.length - 1) * lineH - descent
 
   for (let i = 0; i < lines.length; i++) {
     ctx.fillText(lines[i], 0, firstBase + i * lineH)
@@ -488,7 +529,7 @@ function syncPaper(s: BurnSession): void {
 
   s.paper.width = s.paperW
   s.paper.height = s.paperH
-  rasterizeTitle(s.titleEl, s.paper, s.paperW, s.paperH, s.inkColor)
+  rasterizeTitle(s.titleEl, s.paper, box.width, box.height, s.inkColor)
   analyzePaper(s)
 }
 
@@ -777,10 +818,31 @@ function burnPaper(s: BurnSession, progress: number, jagAmp: number): void {
 }
 
 /**
+ * Final session teardown — restores the DOM title's ink, drops the burn
+ * canvas + rewrite slot, and detaches the session from its card. Runs
+ * when a reversed (rebuild) pass reaches progress 0; the pristine raster
+ * painted that frame is pixel-identical to the restored DOM text, so the
+ * handoff is seamless.
+ */
+function teardownBurn(s: BurnSession): void {
+  s.active = false
+  s.raf = 0
+
+  s.canvas.remove()
+  ;(s.cardEl as BurnCard)._burn = null
+
+  s.titleEl.classList.remove(HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING)
+  s.cardEl.classList.remove(HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING)
+  s.cardEl.querySelector(`.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_SLOT}`)?.remove()
+}
+
+/**
  * One combustion frame: rebuild the burned paper (char → glow → consume,
  * per letter), blit it, spawn + draw particles. When every letter's front
  * has passed its ink top the title is ash; the loop idles until the last
- * particle dies.
+ * particle dies. Reversed sessions (dir −1) count progress down — the
+ * consume front descends, un-charring and re-inking the glyphs until the
+ * raster is whole again and the DOM takes the pixels back.
  */
 function frame(s: BurnSession): void {
   const now = performance.now()
@@ -796,8 +858,20 @@ function frame(s: BurnSession): void {
 
   const { ctx, w, h } = s
   const jagAmp = Math.max(2, s.paperH * _JAG_RATIO)
-  const progress = Math.min(1, s.t / (s.dur / 1000))
-  const burning = progress < _BURN_END
+
+  // Forward progress rides the elapsed clock (tests rebase it through
+  // s.t); reverse progress counts down its own state at _REBUILD_RATIO
+  // of the burn duration — the same raster pipeline, played backwards.
+  let progress: number
+
+  if (s.dir < 0) {
+    s.prog = Math.max(0, s.prog - dt / ((s.dur / 1000) * _REBUILD_RATIO))
+    progress = s.prog
+  } else {
+    progress = Math.min(1, s.t / (s.dur / 1000))
+  }
+
+  const burning = s.dir > 0 && progress < _BURN_END
 
   ctx.setTransform(1, 0, 0, 1, 0, 0)
   ctx.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_SOURCE_OVER
@@ -811,13 +885,19 @@ function frame(s: BurnSession): void {
 
   drawParticles(s, dt)
 
-  const settling = progress >= _BURN_END && s.particles.length === 0
+  // Rebuild complete — hand the (pristine) pixels back to the DOM ink.
+  if (s.dir < 0 && s.prog <= 0) {
+    teardownBurn(s)
+    return
+  }
+
+  const settling = s.dir > 0 && progress >= _BURN_END && s.particles.length === 0
 
   if (settling) {
     ctx.clearRect(0, 0, w, h)
   }
 
-  if (s.active && !settling) s.raf = requestAnimationFrame(() => frame(s))
+  s.raf = s.active && !settling ? requestAnimationFrame(() => frame(s)) : 0
 }
 
 /**
@@ -914,6 +994,9 @@ function mountBurn(
     paperW: 2,
     paperH: 2,
     t: 0,
+    prog: 0,
+    dir: 1,
+    cardEl,
     dur: Math.min(
       _BURN_MS_MAX,
       Math.max(_BURN_MS_MIN, (item.description?.length || 0) * _DESC_CHAR_MS + _DESC_TAIL_MS)
@@ -987,14 +1070,31 @@ export function armCardBurn(host: HomeMosaic, i: number, item: MosaicItem): void
     return
   }
 
-  if (card._burn) return
+  if (card._burn) {
+    // Re-hover mid-rebuild — rebase the forward clock onto the rebuild
+    // progress and combust again; the front turns around mid-glyph
+    // instead of restarting the burn from scratch.
+    const s = card._burn
+
+    s.dir = 1
+    s.t = s.prog * (s.dur / 1000)
+
+    if (!s.raf) s.raf = requestAnimationFrame(() => frame(s))
+
+    return
+  }
 
   mountBurn(cardEl, overlay, titleEl, item)
 }
 
 /**
- * Tears the burn down: kills the raf, removes the canvas + rewrite slot,
- * and restores the h2's ink. Safe to call on a card that never burned.
+ * Un-arms the burn by reversing it: the consume front descends and
+ * un-chars the glyphs until the title raster is whole again — the same
+ * effect played backwards, not an instant DOM-ink pop. `prog` captures
+ * where the burn stopped so the front returns from exactly the consumed
+ * edge; frame() runs the teardown once the text is rebuilt. A card with
+ * no session (reduced motion, never armed) restores instantly — safe to
+ * call unconditionally.
  */
 export function disarmCardBurn(host: HomeMosaic, i: number): void {
   const cardEl = host.$(`${MOSAIC_SELECTORS.HOME_MOSAIC_ITEM}[${DATA_ATTRS.DATA_INDEX}="${i}"]`)
@@ -1004,12 +1104,14 @@ export function disarmCardBurn(host: HomeMosaic, i: number): void {
   const s = (cardEl as BurnCard)._burn
 
   if (s) {
-    s.active = false
+    s.dir = -1
+    s.prog = Math.min(1, s.t / (s.dur / 1000))
 
-    if (s.raf) cancelAnimationFrame(s.raf)
+    // A settled loop already stopped scheduling — restart it so the
+    // rebuild actually plays.
+    if (!s.raf) s.raf = requestAnimationFrame(() => frame(s))
 
-    s.canvas.remove()
-    ;(cardEl as BurnCard)._burn = null
+    return
   }
 
   cardEl
