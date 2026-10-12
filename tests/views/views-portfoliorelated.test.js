@@ -252,7 +252,9 @@ describe('PortfolioRelated', () => {
       `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`
     )
 
-    expect(links.length).toBe(2)
+    // home link + the two keyed socials
+    expect(links.length).toBe(3)
+    expect(links[0].classList.contains(INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME)).toBe(true)
   })
 
   test('disclaimer note renders as a clamped toggle button and expands on click', () => {
