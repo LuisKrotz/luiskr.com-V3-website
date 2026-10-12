@@ -92,9 +92,11 @@ describe('mosaic burn tails', () => {
     const card = cardEl()
 
     expect(card.querySelector(BURN_SEL)).not.toBeNull()
-    expect(card.querySelector(TITLE_SEL).classList.contains(
-      HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING
-    )).toBe(true)
+    expect(
+      card
+        .querySelector(TITLE_SEL)
+        .classList.contains(HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING)
+    ).toBe(true)
     expect(card._burn).not.toBeNull()
 
     const slot = card.querySelector(SLOT_SEL)
@@ -138,9 +140,11 @@ describe('mosaic burn tails', () => {
     const card = cardEl()
 
     expect(card.querySelector(BURN_SEL)).toBeNull()
-    expect(card.querySelector(TITLE_SEL).classList.contains(
-      HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING
-    )).toBe(true)
+    expect(
+      card
+        .querySelector(TITLE_SEL)
+        .classList.contains(HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING)
+    ).toBe(true)
     expect(card.querySelector(SLOT_SEL)).not.toBeNull()
   })
 
@@ -248,6 +252,44 @@ describe('mosaic burn tails', () => {
     expect(s.particles.length).toBeLessThanOrEqual(110)
   })
 
+  test('a rebuild fleck dies the frame it lands on the climbing front', async () => {
+    mountMosaic()
+    armCardBurn(el, 0, ITEMS[0])
+    disarmCardBurn(el, 0)
+
+    const s = cardEl()._burn
+
+    // Keep the rebuild mid-flight so the loop keeps stepping particles.
+    s.prog = 0.5
+
+    const L = s.letters[0]
+    const planted = {
+      x: s.paperX + (L.x0 + L.x1) / 2,
+      y: s.paperY + 1e9, // below every possible front — the landing check fires
+      vx: 0,
+      vy: 0,
+      life: 0,
+      maxLife: 1e9, // outlives the age check so the landing check runs
+      size: 1,
+      kind: 1, // fleck — the dark char branch
+      rot: 0,
+      spin: 0,
+      phase: 0,
+      L,
+    }
+
+    s.particles.push(planted)
+
+    await flush(40)
+
+    expect(s.particles.includes(planted)).toBe(false)
+
+    s.prog = 0.01
+    await flush(60)
+
+    expect(cardEl()._burn).toBeNull()
+  })
+
   test('mixed random spawns cover both ember and fleck branches', async () => {
     mountMosaic()
 
@@ -285,9 +327,11 @@ describe('mosaic burn tails', () => {
     expect(card._burn).toBeNull()
     expect(card.querySelector(BURN_SEL)).toBeNull()
     expect(card.querySelector(SLOT_SEL)).toBeNull()
-    expect(card.querySelector(TITLE_SEL).classList.contains(
-      HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING
-    )).toBe(false)
+    expect(
+      card
+        .querySelector(TITLE_SEL)
+        .classList.contains(HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING)
+    ).toBe(false)
   })
 
   test('a settled session restarts its raf on disarm and rebuilds', async () => {
