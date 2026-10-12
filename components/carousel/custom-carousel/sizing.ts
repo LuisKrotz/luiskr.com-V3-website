@@ -14,6 +14,7 @@ import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import type { CustomCarousel } from '../CustomCarousel.js'
+import type { CarouselItem } from './render.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
 
 /**
@@ -175,9 +176,8 @@ export function measureFit(c: CustomCarousel, observedWidth?: number) {
 }
 
 /**
- * Window-resize handler — refreshes the mobile flag against the
- * side-by-side breakpoint (mobile is defined by "can't pair items", not
- * by the generic 768 media breakpoint) and re-publishes the slide height.
+ * Window-resize handler — `isMobile` is a live getter so the resize path
+ * only re-publishes the slide height.
  * @param c The CustomCarousel element.
  */
 export function onCarouselResize(c: CustomCarousel) {
@@ -190,13 +190,162 @@ export function onCarouselResize(c: CustomCarousel) {
 }
 
 /**
- * Publishes --carousel-item-height on the enclosing <section>: the first
- * item's intrinsic ratio applied to the host width ((h/w)·hostW), capped
- * at MAX_HEIGHT_VH — aspect-correct heights before image decode so slides
- * never pop. When the item lacks a size the measured slide height is the
- * fallback; a ≤0 result bails rather than writing a 0px var. The
- * getPropertyValue read guards the setProperty — same-value writes would
- * still dirty the style recalc.
+ * Detects whether a slide item is landscape (by class or aspect ratio).
+ * @param item Slide descriptor.
+ * @returns true if the item represents landscape orientation.
+ */
+export function isLandscapeItem(item: CarouselItem | null | undefined): boolean {
+  if (!item) return false
+
+  if (item.size && item.size[0] > 0 && item.size[1] > 0) {
+    return item.size[0] > item.size[1]
+  }
+
+  if (typeof item.src === TYPE_STRINGS.STRING && item.src.includes(STATE_STRINGS.MOBILE)) {
+    return false
+  }
+
+  return item.class === STATE_STRINGS.LANDSCAPE
+}
+
+/**
+ * Detects whether a slide item is portrait.
+ * @param item Slide descriptor.
+ * @returns true if the item represents portrait orientation.
+ */
+export function isPortraitItem(item: CarouselItem | null | undefined): boolean {
+  if (!item) return false
+
+  return !isLandscapeItem(item)
+}
+
+/**
+ * Evaluates whether the carousel contains a mix of both landscape and portrait items.
+ * @param items List of slide descriptors.
+ * @returns true if both landscape and portrait items are present.
+ */
+export function isMixedCarousel(items: CarouselItem[]): boolean {
+  if (!Array.isArray(items) || items.length < 2) return false
+
+  const hasLandscape = items.some((it) => isLandscapeItem(it))
+
+  const hasPortrait = items.some((it) => isPortraitItem(it))
+
+  return hasLandscape && hasPortrait
+}
+
+/**
+ * Calculates the majority landscape aspect ratio key ('16:9' | '21:9' | '32:9') among the
+ * landscape items in the list. Compares each item's width/height ratio against the 16:9,
+ * 21:9, and 32:9 target ratios and selects the mode (majority proportion).
+ * @param items List of slide descriptors.
+ * @returns The majority aspect ratio key ('16:9', '21:9', '32:9'), or null if no landscape items.
+ */
+export function determineLandscapeRatio(items: CarouselItem[]): string | null {
+  if (!Array.isArray(items) || items.length === 0) return null
+
+  const landscapeItems = items.filter((it) => isLandscapeItem(it))
+
+  if (landscapeItems.length === 0) return null
+
+  let count16 = 0
+
+  let count21 = 0
+
+  let count32 = 0
+
+  for (const item of landscapeItems) {
+    if (item.size && item.size[0] > 0 && item.size[1] > 0) {
+      const r = item.size[0] / item.size[1]
+
+      const diff16 = Math.abs(r - CAROUSEL_LAYOUT.RATIO_16_9)
+
+      const diff21 = Math.abs(r - CAROUSEL_LAYOUT.RATIO_21_9)
+
+      const diff32 = Math.abs(r - CAROUSEL_LAYOUT.RATIO_32_9)
+
+      if (diff32 < diff21 && diff32 < diff16) {
+        count32++
+      } else if (diff21 < diff16) {
+        count21++
+      } else {
+        count16++
+      }
+    } else {
+      count16++
+    }
+  }
+
+  if (count32 > count21 && count32 > count16) {
+    return CAROUSEL_LAYOUT.ASPECT_RATIO_32_9
+  }
+
+  if (count21 > count16 && count21 >= count32) {
+    return CAROUSEL_LAYOUT.ASPECT_RATIO_21_9
+  }
+
+  return CAROUSEL_LAYOUT.ASPECT_RATIO_16_9
+}
+
+/**
+ * Returns the numeric multiplier (w/h) for a given aspect ratio key.
+ * @param ratio Aspect ratio key ('16:9' | '21:9' | '32:9').
+ * @returns Numeric ratio (e.g. 16/9, 21/9, 32/9).
+ */
+export function getRatioMultiplier(ratio: string | null): number {
+  if (ratio === CAROUSEL_LAYOUT.ASPECT_RATIO_32_9) return CAROUSEL_LAYOUT.RATIO_32_9
+
+  if (ratio === CAROUSEL_LAYOUT.ASPECT_RATIO_21_9) return CAROUSEL_LAYOUT.RATIO_21_9
+
+  return CAROUSEL_LAYOUT.RATIO_16_9
+}
+
+/**
+ * Calculates the smallest portrait aspect ratio (height / width) among portrait items.
+ * Used in mixed carousels to anchor the uniform carousel height on mobile to the
+ * shortest portrait item.
+ * @param items List of slide descriptors.
+ * @returns Smallest portrait height-to-width ratio, or null if no portrait items with sizes.
+ */
+export function getSmallestPortraitRatio(items: CarouselItem[]): number | null {
+  if (!Array.isArray(items) || items.length === 0) return null
+
+  const portraitItems = items.filter((it) => isPortraitItem(it))
+
+  if (portraitItems.length === 0) return null
+
+  let minRatio: number | null = null
+
+  for (const item of portraitItems) {
+    if (item.size && item.size[0] > 0 && item.size[1] > 0) {
+      const ratio = item.size[1] / item.size[0]
+
+      if (ratio <= 3 && (minRatio === null || ratio < minRatio)) {
+        minRatio = ratio
+      }
+    }
+  }
+
+  if (minRatio === null) {
+    for (const item of portraitItems) {
+      if (item.size && item.size[0] > 0 && item.size[1] > 0) {
+        const ratio = item.size[1] / item.size[0]
+
+        if (minRatio === null || ratio < minRatio) {
+          minRatio = ratio
+        }
+      }
+    }
+  }
+
+  return minRatio
+}
+
+/**
+ * Publishes --carousel-item-height on the enclosing <section> and
+ * --carousel-media-height on the host: the aspect-corrected height
+ * ensuring all slides share one uniform height. In mixed carousels on
+ * mobile, the uniform height anchors to the shortest portrait item.
  * @param c The CustomCarousel element.
  */
 export function setHeightVar(c: CustomCarousel) {
@@ -208,13 +357,33 @@ export function setHeightVar(c: CustomCarousel) {
 
   let slideH
 
-  if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
-    const hostW =
-      c.clientWidth ||
-      (typeof window !== TYPE_STRINGS.UNDEFINED
-        ? window.innerWidth
-        : GENERIC_DIMENSIONS.DEFAULT_WIDTH)
+  const hostW =
+    c.clientWidth ||
+    (typeof window !== TYPE_STRINGS.UNDEFINED
+      ? window.innerWidth
+      : GENERIC_DIMENSIONS.DEFAULT_WIDTH)
 
+  if (c.isMobile) {
+    if (c.isMixed) {
+      const minPortraitRatio = getSmallestPortraitRatio(c.items)
+
+      if (minPortraitRatio !== null) {
+        slideH = Math.round(hostW * minPortraitRatio)
+      } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
+        slideH = Math.round((firstItem.size[1] / firstItem.size[0]) * hostW)
+      } else {
+        slideH = firstSlide.clientHeight || 0
+      }
+    } else if (c.landscapeRatio) {
+      const ratioMultiplier = getRatioMultiplier(c.landscapeRatio)
+
+      slideH = Math.round(hostW / ratioMultiplier)
+    } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
+      slideH = Math.round((firstItem.size[1] / firstItem.size[0]) * hostW)
+    } else {
+      slideH = firstSlide.clientHeight || 0
+    }
+  } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
     slideH = Math.round((firstItem.size[1] / firstItem.size[0]) * hostW)
   } else {
     slideH = firstSlide.clientHeight || 0
@@ -227,15 +396,23 @@ export function setHeightVar(c: CustomCarousel) {
       ? Math.round((window.innerHeight * CAROUSEL_LAYOUT.MAX_HEIGHT_VH) / 100)
       : slideH
 
+  const finalH = Math.min(slideH, maxH)
+
+  const finalHPx = `${finalH}${COMMON_ATTRS.PX}`
+
+  const currentMediaH = c.style.getPropertyValue(CAROUSEL_CSS_PROPS.CAROUSEL_MEDIA_HEIGHT)
+
+  if (currentMediaH !== finalHPx) {
+    c.style.setProperty(CAROUSEL_CSS_PROPS.CAROUSEL_MEDIA_HEIGHT, finalHPx)
+  }
+
   const section = c.closest(COMMON_ATTRS.SECTION)
 
   if (section) {
     const currentH = section.style.getPropertyValue(CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT)
 
-    const nextH = `${Math.min(slideH, maxH)}${COMMON_ATTRS.PX}`
-
-    if (currentH !== nextH) {
-      section.style.setProperty(CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT, nextH)
+    if (currentH !== finalHPx) {
+      section.style.setProperty(CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT, finalHPx)
     }
   }
 }

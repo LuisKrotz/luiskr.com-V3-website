@@ -5,10 +5,8 @@
  * gating), and widget/observer teardown.
  */
 
-import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import store from '@core/store.js'
 import type { CustomCarousel } from '../CustomCarousel.js'
-import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
 
 /**
  * Mount: first render pass, resize binding, fit observer, store sub.
@@ -23,10 +21,6 @@ export function onMounted(host: CustomCarousel): void {
   host._markAdjacentLoaded(0)
 
   host._setupAfterRender()
-
-  host.addScopedListener(window, WINDOW_EVENTS.RESIZE, () => {
-    host.isMobile = window.innerWidth < CAROUSEL_LAYOUT.MOBILE_BREAKPOINT
-  })
 
   host._startFitObserver()
 

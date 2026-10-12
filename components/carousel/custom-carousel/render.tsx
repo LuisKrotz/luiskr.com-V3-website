@@ -10,14 +10,20 @@ import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { SVG_ATTRS } from '@core/tokens/attrs/svg.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
+import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { CAROUSEL_CLASSES } from '@core/tokens/classes/carousel.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
+import { MEDIA } from '@core/tokens/media/suffixes.js'
+import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
+import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
+import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { ARROW_GLYPHS, ARROW_TYPES } from '@core/tokens/theme/arrows.js'
 import { h } from '@core/jsx.js'
 import store from '@core/store.js'
 import type { CustomCarousel } from '../CustomCarousel.js'
+import { isLandscapeItem } from './sizing.js'
 
 /** Slide descriptor consumed by the carousel. */
 export interface CarouselItem {
@@ -46,15 +52,36 @@ export interface CarouselLang {
 }
 
 /**
+ * Resolves the preview/poster image URL for the repetition pattern.
+ * @param item Slide descriptor.
+ * @param folder CDN folder prefix.
+ * @returns Fully-qualified thumbnail or poster URL.
+ */
+export function resolveThumbUrl(item: CarouselItem | null, folder: string): string {
+  if (!item) return ATTR_VALUES.EMPTY
+
+  const storage = store.getters.getStorage()
+
+  const mediaSrc = folder + item.src
+
+  if (item.isVideo) {
+    return `${storage}${mediaSrc}${MEDIA.VIDEO_THUMB_EXT}`
+  }
+
+  return `${storage}${mediaSrc}${MEDIA.MOZ}${MEDIA.THUMB_SUFFIX}${MEDIA.EXT}`
+}
+
+/**
  * One slide's inner content — a <media-figure> with the item's CDN src
  * (folder + src), intrinsic size for aspect-ratio layout, and the
- * expand/video/label flags. Returns null for placeholder entries.
- * `classes`/`class` are both set — the custom-element attribute and the
- * rendered class list must match for the Safari CSS path.
+ * expand/video/label flags. For mixed carousels on mobile, landscape slides
+ * include a mirrored repetition pattern backdrop to compensate for height.
+ * Returns null for placeholder entries.
  * @param item Slide descriptor, or null for empty slots.
  * @param folder CDN folder prefix (e.g. 'projectslug/').
+ * @param isMixed Whether the carousel contains both landscape and portrait items.
  */
-export const renderCarouselSlide = (item: CarouselItem | null, folder: string) => {
+export const renderCarouselSlide = (item: CarouselItem | null, folder: string, isMixed = false) => {
   if (!item) return null
 
   const src = folder + item.src
@@ -73,8 +100,50 @@ export const renderCarouselSlide = (item: CarouselItem | null, folder: string) =
 
   const MediaFigure = COMPONENT_TAGS.MEDIA_FIGURE
 
+  const isMixedLandscape = isMixed && isLandscapeItem(item)
+
+  const thumbUrl = isMixedLandscape ? resolveThumbUrl(item, folder) : ATTR_VALUES.EMPTY
+
+  const mediaStyle =
+    isMixedLandscape && item.size?.[0] && item.size?.[1]
+      ? {
+          [CAROUSEL_CSS_PROPS.CAROUSEL_LANDSCAPE_MEDIA_HEIGHT]: `calc((90vw - calc(var(--space-xl) * 2)) * ${item.size[1]} / ${item.size[0]})`,
+          [CAROUSEL_CSS_PROPS.CAROUSEL_LANDSCAPE_MEDIA_WIDTH]: `calc(90vw - calc(var(--space-xl) * 2))`,
+        }
+      : undefined
+
+  const slideItemClasses = [
+    INTERNAL_CLASSES.INTERNAL_EXTRA_ITEM,
+    itemClass,
+    isMixedLandscape ? CAROUSEL_CLASSES.CAROUSEL_SLIDE_MIXED_LANDSCAPE : ATTR_VALUES.EMPTY,
+  ]
+    .filter(Boolean)
+    .join(CHAR_STRINGS.SPACE_CHAR)
+
   return (
-    <div className={`${INTERNAL_CLASSES.INTERNAL_EXTRA_ITEM} ${itemClass}`}>
+    <div className={slideItemClasses} style={mediaStyle}>
+      {isMixedLandscape ? (
+        <div className={CAROUSEL_CLASSES.CAROUSEL_SLIDE_PATTERN} aria-hidden={ATTR_VALUES.TRUE}>
+          <img
+            className={CAROUSEL_CLASSES.CAROUSEL_PATTERN_TOP}
+            src={thumbUrl}
+            alt={ATTR_VALUES.EMPTY}
+            aria-hidden={ATTR_VALUES.TRUE}
+            loading={MEDIA_ATTRS.LOADING_LAZY}
+            decoding={MEDIA_ATTRS.DECODING_ASYNC}
+          />
+
+          <img
+            className={CAROUSEL_CLASSES.CAROUSEL_PATTERN_BOTTOM}
+            src={thumbUrl}
+            alt={ATTR_VALUES.EMPTY}
+            aria-hidden={ATTR_VALUES.TRUE}
+            loading={MEDIA_ATTRS.LOADING_LAZY}
+            decoding={MEDIA_ATTRS.DECODING_ASYNC}
+          />
+        </div>
+      ) : null}
+
       <MediaFigure
         src={src}
         width={itemW}
@@ -84,6 +153,7 @@ export const renderCarouselSlide = (item: CarouselItem | null, folder: string) =
         label={label}
         classes={itemClass}
         class={itemClass}
+        style={mediaStyle}
       />
     </div>
   )
@@ -192,10 +262,25 @@ export const renderCarousel = (host: CustomCarousel) => {
 
   const lang = store.getters.getCarouselLang() as unknown as CarouselLang
 
+  const ratioClass =
+    !host.isMixed && host.landscapeRatio
+      ? host.landscapeRatio === CAROUSEL_LAYOUT.ASPECT_RATIO_32_9
+        ? CAROUSEL_CLASSES.CAROUSEL_RATIO_32_9
+        : host.landscapeRatio === CAROUSEL_LAYOUT.ASPECT_RATIO_21_9
+          ? CAROUSEL_CLASSES.CAROUSEL_RATIO_21_9
+          : CAROUSEL_CLASSES.CAROUSEL_RATIO_16_9
+      : ATTR_VALUES.EMPTY
+
+  const mixedClass = host.isMixed ? CAROUSEL_CLASSES.CAROUSEL_MIXED : ATTR_VALUES.EMPTY
+
+  const inViewClass = host.isEnteredViewport ? CAROUSEL_CLASSES.CAROUSEL_IN_VIEW : ATTR_VALUES.EMPTY
+
+  const carouselClasses = [CAROUSEL_CLASSES.CAROUSEL, inViewClass, ratioClass, mixedClass]
+    .filter(Boolean)
+    .join(CHAR_STRINGS.SPACE_CHAR)
+
   return (
-    <div
-      className={`${CAROUSEL_CLASSES.CAROUSEL} ${host.isEnteredViewport ? CAROUSEL_CLASSES.CAROUSEL_IN_VIEW : ATTR_VALUES.EMPTY}`}
-    >
+    <div className={carouselClasses}>
       <div className={CAROUSEL_CLASSES.CAROUSEL_TRACK}>
         <div
           className={`${CAROUSEL_CLASSES.CAROUSEL_SLIDE} ${CAROUSEL_CLASSES.CAROUSEL_SLIDE_CLONE_LAST}`}

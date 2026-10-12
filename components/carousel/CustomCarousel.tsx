@@ -41,11 +41,14 @@ import {
   updateActiveClasses,
 } from './custom-carousel/nav.js'
 import {
+  determineLandscapeRatio,
+  isMixedCarousel,
   measureFit,
   onCarouselResize,
   setHeightVar,
   startFitObserver,
 } from './custom-carousel/sizing.js'
+
 import carouselStyles from '@core/sass/components/carousel/carousel.scss?inline'
 import carouselHostStyles from '@core/sass/components/carousel/carousel-host.scss?inline'
 import internalStyles from '@core/sass/components/internals/internals.scss?inline'
@@ -121,6 +124,10 @@ export class CustomCarousel extends BaseComponent {
     typeof window !== TYPE_STRINGS.UNDEFINED
       ? window.innerWidth < CAROUSEL_LAYOUT.MOBILE_BREAKPOINT
       : false
+  /** Majority landscape aspect ratio key ('16:9' | '21:9' | '32:9') or null. */
+  _landscapeRatio: string | null = null
+  /** Whether the carousel mixes both landscape and portrait media. */
+  _isMixed = false
 
   constructor() {
     super(`${carouselStyles}\n${internalStyles}\n${carouselHostStyles}`)
@@ -128,10 +135,24 @@ export class CustomCarousel extends BaseComponent {
     this.forceActive = false
   }
 
+  /** Majority landscape aspect ratio key ('16:9' | '21:9' | '32:9') or null. */
+  get landscapeRatio(): string | null {
+    return this._landscapeRatio
+  }
+
+  /** Whether the carousel mixes both landscape and portrait media. */
+  get isMixed(): boolean {
+    return this._isMixed
+  }
+
   /** Setter/getter — slide data (media + labels). */
 
   set items(val: unknown) {
     this._items = Array.isArray(val) ? val : []
+
+    this._landscapeRatio = determineLandscapeRatio(this._items)
+
+    this._isMixed = isMixedCarousel(this._items)
 
     this._markAdjacentLoaded(0)
 
@@ -426,7 +447,7 @@ export class CustomCarousel extends BaseComponent {
    * expand/video/label flags. Returns null for placeholder entries.
    */
   renderSlide(item: CarouselItem | null) {
-    return renderCarouselSlide(item, this.folder || ATTR_VALUES.EMPTY)
+    return renderCarouselSlide(item, this.folder || ATTR_VALUES.EMPTY, this._isMixed)
   }
 
   /**
