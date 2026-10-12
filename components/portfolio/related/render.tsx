@@ -85,19 +85,16 @@ const renderSkeletonMosaic = () => (
   </div>
 )
 
-/** Authorship block — back-home link + animated hairline + self-made
-    credit + copyright with ©/year set in bold. The home entry is the
-    first legal link (localized route + label), resolved through the same
-    live-then-fallback path <legal-footer> uses. */
-const renderCreditBlock = () => {
+/** Back-home link — first item of the footer's link row (localized route +
+    label), resolved through the same live-then-fallback path <legal-footer>
+    uses. The -home modifier sets the label in lowercase. */
+const renderHomeLink = () => {
   const home = getFallbackLegalLinks(store.getters.getLang())[0]
-
-  const r = rightsParts()
 
   return (
     <Fragment>
       <a
-        className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME}
+        className={`${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK} ${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME}`}
         href={home.link}
         onClick={(e: Event) => {
           e.preventDefault()
@@ -107,6 +104,18 @@ const renderCreditBlock = () => {
       >
         {home.page}
       </a>
+      <span className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_SEP}>{CHAR_STRINGS.DOT_SEP}</span>
+    </Fragment>
+  )
+}
+
+/** Authorship block — animated hairline + self-made credit + copyright
+    with ©/year set in bold. */
+const renderCreditBlock = () => {
+  const r = rightsParts()
+
+  return (
+    <Fragment>
       <hr
         className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER}
         aria-hidden={ATTR_VALUES.TRUE}
@@ -128,6 +137,7 @@ const renderCreditBlock = () => {
 /** Social links + separator dots + the HTML disclaimer note. */
 const renderSocials = (host: PortfolioRelated, socials: RelatedSocial[]) => (
   <div className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS}>
+    {renderHomeLink()}
     {socials.map((social, socialkey) => (
       <Fragment key={socialkey}>
         <a
@@ -179,6 +189,7 @@ const renderSocials = (host: PortfolioRelated, socials: RelatedSocial[]) => (
 /** Skeleton socials row — placeholder link pills + note bars. */
 const renderSkeletonSocials = () => (
   <div className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS} data-nosnippet>
+    {renderHomeLink()}
     {Array.from({ length: SKELETON_SOCIALS }, (_, i) => (
       <Fragment key={i}>
         <span
