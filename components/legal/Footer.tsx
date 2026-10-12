@@ -153,14 +153,6 @@ export class LegalFooter extends BaseComponent {
               </Fragment>
             )
           })}
-          {/* Back-home affordance — the first legal link is always the
-              localized home route; delegated shadowRoot click routing
-              (onMounted) turns the plain <a> into an SPA navigation. */}
-          {links[0] ? (
-            <a className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME} href={links[0].link}>
-              {links[0].page}
-            </a>
-          ) : null}
           {/* Animated hairline above the authorship block — same sheen
               pattern as the related footer's divider. */}
           <hr

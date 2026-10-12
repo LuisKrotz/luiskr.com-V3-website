@@ -12,6 +12,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
+import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
@@ -76,7 +77,8 @@ describe('PortfolioRelated', () => {
     }
     relatedEl._updateDom()
     expect(relatedEl.shadowRoot.textContent).toContain('More Projects')
-    const links = relatedEl.shadowRoot.querySelectorAll('a')
+    const mosaic = relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_MOSAIC}`)
+    const links = mosaic.querySelectorAll(HTML_TAGS.A)
     expect(links.length).toBe(2)
   })
 
