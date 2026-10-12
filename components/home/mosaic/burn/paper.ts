@@ -47,9 +47,74 @@ export function readBurnInk(): BurnInk {
 }
 
 /**
- * Rasterizes the h2 text into the paper canvas. Canvas can't line-wrap,
- * so words are measured and packed into lines matching the DOM box, then
- * drawn bottom-anchored like the overlay's `align-items: flex-end`.
+ * Word box for DOM-faithful rasterization — the word's position inside the
+ * title element in CSS px (`y` is the word fragment's bottom edge; the
+ * caller subtracts the descent to land on the baseline).
+ */
+interface TitleWordBox {
+  /** The raw (pre-transform) word as it appears in the text node. */
+  text: string
+  /** Left edge of the word fragment relative to the title box. */
+  x: number
+  /** Bottom edge of the word fragment relative to the title box. */
+  y: number
+}
+
+/**
+ * Reads each word's rendered box straight from the DOM via Range rects —
+ * the browser's own line-breaking is the wrap authority. Canvas
+ * `measureText` metrics drift sub-pixel from the layout engine
+ * (letter-spacing accumulation, shaping/hinting differences): the drift
+ * used to push the wrap loop a word early, the extra line drew ABOVE the
+ * bottom-anchored paper's top edge, and the visible title collapsed to
+ * its last word — burning only that fragment (the "title cut to its last
+ * word" bug). Positioning each word at its DOM fragment makes phantom
+ * wraps impossible and also reproduces justified/aligned spacing for
+ * free. Returns null when the API or a usable text node is absent.
+ * @param title The h2 element holding the title text.
+ * @returns Per-word boxes in title-relative CSS px, or null to fall back.
+ */
+function titleWordBoxes(title: HTMLElement): TitleWordBox[] | null {
+  if (
+    typeof document === TYPE_STRINGS.UNDEFINED ||
+    typeof document.createRange !== TYPE_STRINGS.FUNCTION
+  ) {
+    return null
+  }
+
+  const box = title.getBoundingClientRect()
+  const out: TitleWordBox[] = []
+
+  for (const node of title.childNodes) {
+    if (node.nodeType !== Node.TEXT_NODE || !node.textContent?.trim()) continue
+
+    const re = /\S+/g
+    let m: RegExpExecArray | null
+
+    while ((m = re.exec(node.textContent))) {
+      const range = document.createRange()
+
+      range.setStart(node, m.index)
+      range.setEnd(node, m.index + m[0].length)
+
+      const rect = range.getClientRects()[0]
+
+      if (rect) {
+        out.push({ text: m[0], x: rect.left - box.left, y: rect.bottom - box.top })
+      }
+    }
+  }
+
+  return out.length ? out : null
+}
+
+/**
+ * Rasterizes the h2 text into the paper canvas. Words are drawn at their
+ * DOM Range fragment positions (see {@link titleWordBoxes}), so the raster
+ * is pixel-faithful to the rendered title — same wraps, same spacing.
+ * Engines without Range fall back to a measured word-pack matching the
+ * DOM box, drawn bottom-anchored like the overlay's `align-items:
+ * flex-end`.
  *
  * `cssW`/`cssH` are the title box in CSS px while the paper's backing
  * store is device px (cssW × dpr): canvas font and measureText units are
@@ -91,6 +156,23 @@ export function rasterizeTitle(
   ctx.fillStyle = ink
   ctx.textBaseline = 'alphabetic'
 
+  const fontPx = parseFloat(st.fontSize) || 12
+  const descent = fontPx * 0.22
+
+  const wordBoxes = titleWordBoxes(title)
+
+  if (wordBoxes) {
+    // Each word lands exactly where the DOM rendered it — baseline from
+    // the fragment's bottom edge minus the font descent.
+    for (const w of wordBoxes) {
+      ctx.fillText(canvasTransformText(w.text, st.textTransform), w.x, w.y - descent)
+    }
+
+    return
+  }
+
+  // Fallback for engines without Range#getClientRects: measure and pack
+  // words into lines matching the DOM box.
   const text = canvasTransformText(
     (title.textContent || ATTR_VALUES.EMPTY).trim(),
     st.textTransform
@@ -113,9 +195,7 @@ export function rasterizeTitle(
   if (line) lines.push(line)
   if (!lines.length) return
 
-  const fontPx = parseFloat(st.fontSize) || 12
   const lineH = parseFloat(st.lineHeight) || fontPx * 1.2
-  const descent = fontPx * 0.22
 
   // Anchor the block to the paper's bottom like flex-end does in the DOM.
   const firstBase = cssH - (lines.length - 1) * lineH - descent
