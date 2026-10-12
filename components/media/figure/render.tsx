@@ -9,6 +9,7 @@ import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
+import { LOCALES } from '@core/tokens/locales.js'
 import { h, Fragment } from '@core/jsx.js'
 import { componentText } from '@core/locale/ui-text.js'
 import store from '@core/store.js'
@@ -31,6 +32,13 @@ export function renderMediaFigure(c: MediaFigure) {
       ?.media || {}
 
   const toOpen = compLang.toOpen || (componentText(MEDIA_COMPONENT_KEYS.MEDIA_TO_OPEN) as string)
+
+  const audioNote =
+    compLang.audioNote || (componentText(MEDIA_COMPONENT_KEYS.MEDIA_AUDIO_NOTE) as string)
+
+  // The audio disclaimer only matters off the English locale — on `en`
+  // the soundtrack is already in the visitor's language.
+  const showAudioNote = store.getters.getLang() !== LOCALES.EN
 
   const isHeroItem = c.classes.includes(INTERNAL_CLASSES.INTERNAL_MAIN_ITEM)
 
@@ -76,29 +84,35 @@ export function renderMediaFigure(c: MediaFigure) {
           />
         </Fragment>
       ) : (
-        <video
-          className={`${MEDIA_CLASSES.RENDER_MEDIA} ${c.classes}`}
-          poster={c.poster[0] || ATTR_VALUES.EMPTY}
-          width={mediaW}
-          height={mediaH}
-          preload={shouldPreloadVideo ? MEDIA_ATTRS.METADATA : ATTR_VALUES.NONE}
-          fetchpriority={isHeroItem ? MEDIA_ATTRS.FETCH_PRIORITY_HIGH : undefined}
-          playsInline
-          loop
-          muted
-          controlsList={MEDIA_ATTRS.NO_DOWNLOAD}
-          disablePictureInPicture
-          autoPlay={c.autoPlay}
-          controls={store.getters.getReducedMotion()}
-        >
-          <track kind={MEDIA_ATTRS.CAPTIONS} />
+        <Fragment>
+          <video
+            className={`${MEDIA_CLASSES.RENDER_MEDIA} ${c.classes}`}
+            poster={c.poster[0] || ATTR_VALUES.EMPTY}
+            width={mediaW}
+            height={mediaH}
+            preload={shouldPreloadVideo ? MEDIA_ATTRS.METADATA : ATTR_VALUES.NONE}
+            fetchpriority={isHeroItem ? MEDIA_ATTRS.FETCH_PRIORITY_HIGH : undefined}
+            playsInline
+            loop
+            muted
+            controlsList={MEDIA_ATTRS.NO_DOWNLOAD}
+            disablePictureInPicture
+            autoPlay={c.autoPlay}
+            controls={store.getters.getReducedMotion()}
+          >
+            <track kind={MEDIA_ATTRS.CAPTIONS} />
 
-          <source src={c.videoSrcMain} type={MEDIA_ATTRS.VIDEO_MP4} />
+            <source src={c.videoSrcMain} type={MEDIA_ATTRS.VIDEO_MP4} />
 
-          {c.videoSrcFallback ? (
-            <source src={c.videoSrcFallback} type={MEDIA_ATTRS.VIDEO_MP4} />
-          ) : null}
-        </video>
+            {c.videoSrcFallback ? (
+              <source src={c.videoSrcFallback} type={MEDIA_ATTRS.VIDEO_MP4} />
+            ) : null}
+          </video>
+
+          {showAudioNote && (
+            <figcaption className={MEDIA_CLASSES.MEDIA_AUDIO_NOTE}>{audioNote}</figcaption>
+          )}
+        </Fragment>
       )}
 
       {c.canExpand && (
