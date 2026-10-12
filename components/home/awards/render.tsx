@@ -19,10 +19,25 @@ import '@website/components/media/DrawText.js'
 import router from '@core/router/router.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { DOCS_STRINGS } from '@core/tokens/strings/docs.js'
-import { appText, componentText, rightsText } from '@core/locale/ui-text.js'
+import { appText, componentText, rightsParts } from '@core/locale/ui-text.js'
 import type { AwardsMentions } from '../AwardsMentions.js'
 import { SOURCE_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
 import { SOCIAL_URLS } from '@core/tokens/media/urls.js'
+
+/** Copyright line with the © glyph and the year set in bold. */
+const renderRights = () => {
+  const r = rightsParts()
+
+  return (
+    <Fragment>
+      {r.pre}
+      <b>{r.copy}</b>
+      {r.mid}
+      <b>{r.year}</b>
+      {r.post}
+    </Fragment>
+  )
+}
 
 /**
  * Renders awards.
@@ -126,7 +141,7 @@ export function renderAwards(el: AwardsMentions) {
         {componentText(SOURCE_COMPONENT_KEYS.SOURCE_CREDIT)}
       </p>
 
-      <p className={FOOTER_CLASSES.FOOTER_RIGHTS}>{rightsText()}</p>
+      <p className={FOOTER_CLASSES.FOOTER_RIGHTS}>{renderRights()}</p>
     </footer>
   )
 }

@@ -30,7 +30,7 @@ import internalStyles from '@core/sass/components/internals/internals.scss?inlin
 
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import { getFallbackLegalLinks, type LegalLink } from '@core/utils/data/legal-links.js'
-import { componentText, rightsText } from '@core/locale/ui-text.js'
+import { componentText, rightsParts } from '@core/locale/ui-text.js'
 import { devError } from '@core/devlog.js'
 
 export { getFallbackLegalLinks }
@@ -153,6 +153,14 @@ export class LegalFooter extends BaseComponent {
               </Fragment>
             )
           })}
+          {/* Back-home affordance — the first legal link is always the
+              localized home route; delegated shadowRoot click routing
+              (onMounted) turns the plain <a> into an SPA navigation. */}
+          {links[0] ? (
+            <a className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME} href={links[0].link}>
+              {links[0].page}
+            </a>
+          ) : null}
           {/* Animated hairline above the authorship block — same sheen
               pattern as the related footer's divider. */}
           <hr
@@ -162,7 +170,21 @@ export class LegalFooter extends BaseComponent {
           <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_CREDIT}>
             {componentText(SOURCE_COMPONENT_KEYS.SOURCE_CREDIT)}
           </p>
-          <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_RIGHTS}>{rightsText()}</p>
+          <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_RIGHTS}>
+            {(() => {
+              const r = rightsParts()
+
+              return (
+                <Fragment>
+                  {r.pre}
+                  <b>{r.copy}</b>
+                  {r.mid}
+                  <b>{r.year}</b>
+                  {r.post}
+                </Fragment>
+              )
+            })()}
+          </p>
         </div>
       </footer>
     )

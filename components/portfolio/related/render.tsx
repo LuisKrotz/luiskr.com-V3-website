@@ -19,7 +19,9 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h, Fragment } from '@core/jsx.js'
-import { componentText, rightsText } from '@core/locale/ui-text.js'
+import { componentText, rightsParts } from '@core/locale/ui-text.js'
+import { getFallbackLegalLinks } from '@core/utils/data/legal-links.js'
+import store from '@core/store.js'
 import router from '@core/router/router.js'
 import type { RelatedCard, RelatedSocial } from './types.js'
 import type { PortfolioRelated } from '../Related.js'
@@ -83,16 +85,47 @@ const renderSkeletonMosaic = () => (
   </div>
 )
 
-/** Authorship block — animated hairline + self-made credit + copyright. */
-const renderCreditBlock = () => (
-  <Fragment>
-    <hr className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER} aria-hidden={ATTR_VALUES.TRUE} />
-    <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_CREDIT}>
-      {componentText(SOURCE_COMPONENT_KEYS.SOURCE_CREDIT)}
-    </p>
-    <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_RIGHTS}>{rightsText()}</p>
-  </Fragment>
-)
+/** Authorship block — back-home link + animated hairline + self-made
+    credit + copyright with ©/year set in bold. The home entry is the
+    first legal link (localized route + label), resolved through the same
+    live-then-fallback path <legal-footer> uses. */
+const renderCreditBlock = () => {
+  const home = getFallbackLegalLinks(store.getters.getLang())[0]
+
+  const r = rightsParts()
+
+  return (
+    <Fragment>
+      {home ? (
+        <a
+          className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME}
+          href={home.link}
+          onClick={(e: Event) => {
+            e.preventDefault()
+
+            if (home.link) router.push(home.link)
+          }}
+        >
+          {home.page}
+        </a>
+      ) : null}
+      <hr
+        className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER}
+        aria-hidden={ATTR_VALUES.TRUE}
+      />
+      <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_CREDIT}>
+        {componentText(SOURCE_COMPONENT_KEYS.SOURCE_CREDIT)}
+      </p>
+      <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_RIGHTS}>
+        {r.pre}
+        <b>{r.copy}</b>
+        {r.mid}
+        <b>{r.year}</b>
+        {r.post}
+      </p>
+    </Fragment>
+  )
+}
 
 /** Social links + separator dots + the HTML disclaimer note. */
 const renderSocials = (host: PortfolioRelated, socials: RelatedSocial[]) => (
