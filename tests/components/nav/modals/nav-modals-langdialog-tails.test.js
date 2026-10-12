@@ -245,6 +245,30 @@ describe('LangDialog tails', () => {
     langEl._flags = {}
   })
 
+  test('the residual-input guard runs its open/armed accessors on host clicks', () => {
+    langEl.open = true
+
+    // A pointer-origin click reaching the host inside the arm window is
+    // residual gesture noise — the capture guard reads isOpen/_openedAt.
+    langEl.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, detail: 1 }))
+
+    expect(langEl.isOpen).toBe(true)
+  })
+
+  test('selectLang ignores stale invocations while the leave animation runs', () => {
+    langEl.open = true
+    langEl._closing = true
+
+    const close = jest.spyOn(langEl, 'close')
+
+    langEl.selectLang(LOCALES.PT)
+
+    expect(close).not.toHaveBeenCalled()
+
+    langEl._closing = false
+    close.mockRestore()
+  })
+
   test('customElements re-evaluation skips re-registration', async () => {
     expect(customElements.get(COMPONENT_TAGS.LANG_DIALOG)).toBeTruthy()
     jest.resetModules()

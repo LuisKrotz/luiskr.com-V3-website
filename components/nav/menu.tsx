@@ -25,6 +25,8 @@ import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 export interface NavMenuHost extends NavFlagHost {
   /** Menu overlay open flag. */
   _menuOpen: boolean
+  /** performance.now() of the open transition — feeds the residual-input guard. */
+  _menuOpenedAt: number
   /** Close animation in flight — guards double-close. */
   _menuClosing: boolean
   /** Open animation completed — close X may snap to drawn state. */
@@ -130,6 +132,11 @@ export const openNavMenu = (host: NavMenuHost): void => {
   host._menuSettled = false
 
   host._menuOpen = true
+
+  // Arms the residual-input guard — the menu mounts synchronously inside
+  // the burger click's dispatch, so a second press of an in-place
+  // double-click would otherwise land on a freshly mounted menu item.
+  host._menuOpenedAt = performance.now()
 
   host._updateDom()
 }

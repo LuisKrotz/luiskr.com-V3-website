@@ -226,6 +226,16 @@ describe('PreferencesModal tails', () => {
     modalEl._destroyWebGLControls()
   })
 
+  test('the residual-input guard runs its open/armed accessors on host clicks', () => {
+    modalEl.open = true
+
+    // A pointer-origin click reaching the host inside the arm window is
+    // residual gesture noise — the capture guard reads isOpen/_openedAt.
+    modalEl.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, detail: 1 }))
+
+    expect(modalEl.isOpen).toBe(true)
+  })
+
   test('customElements re-evaluation skips re-registration', async () => {
     expect(customElements.get(COMPONENT_TAGS.PREFERENCES_MODAL)).toBeTruthy()
     jest.resetModules()

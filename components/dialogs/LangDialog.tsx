@@ -16,6 +16,7 @@ import { APP_EVENTS } from '@core/tokens/events/app.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { BaseComponent } from '@core/Component.js'
+import { armResidualInputGuard } from '@core/utils/dom.js'
 import store from '@core/store.js'
 import type { CloseButtonWebGL } from '@core/utils/canvas/widgets/close-button.js'
 import type { FlagWebGL } from '@core/utils/canvas/widgets/flag-webgl.js'
@@ -37,6 +38,7 @@ export class LangDialog extends BaseComponent {
   _closing = false // genie-leave in flight — blocks re-entry/re-render
   _wasOpen = false // previous isOpen — detects the open transition for genie-enter
   _subscribedToStore = false // store subscription landed — setter skips manual sync
+  _openedAt = 0 // performance.now() of the open transition — feeds the residual-input guard
 
   constructor() {
     super(preferencesStyles)
@@ -79,6 +81,12 @@ export class LangDialog extends BaseComponent {
     this.addScopedListener(window, APP_EVENTS.OPEN_LANG_DIALOG, () => {
       this.open = true
     })
+
+    armResidualInputGuard(
+      this,
+      () => this.isOpen,
+      () => this._openedAt
+    )
   }
 
   /** Reflects the open flag into DOM state (classes, genie enter/leave). */
@@ -123,7 +131,11 @@ export class LangDialog extends BaseComponent {
     if (this.isOpen) {
       this._mountWebGLControls()
 
-      if (justOpened) genieEnter(this)
+      if (justOpened) {
+        this._openedAt = performance.now()
+
+        genieEnter(this)
+      }
 
       const isReduced = store.getters.getReducedMotion()
 
@@ -189,7 +201,7 @@ export class LangDialog extends BaseComponent {
    * dialog closes INTO the flag trigger before the locale swap re-renders.
    */
   selectLang(newLang: string | null): void {
-    if (!newLang) return
+    if (!newLang || this._closing || !this.isOpen) return
 
     const currentLang = store.getters.getLang()
 

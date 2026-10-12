@@ -18,6 +18,7 @@ import { APP_EVENTS } from '@core/tokens/events/app.js'
 import { KEYBOARD_EVENTS } from '@core/tokens/events/dom.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { BaseComponent } from '@core/Component.js'
+import { armResidualInputGuard } from '@core/utils/dom.js'
 import store from '@core/store.js'
 import { appText } from '@core/locale/ui-text.js'
 import { npuPredict } from '@core/utils/gpu/npu-predict.js'
@@ -40,6 +41,7 @@ export class PreferencesModal extends BaseComponent {
   _switches: Record<string, SwitchWebGL> | null = null // SWITCH_TYPES → SwitchWebGL widget map
   _closeBtn: CloseButtonWebGL | null = null // CloseButtonWebGL on the header ✕ canvas
   _closing = false // genie-leave in flight — blocks re-entry
+  _openedAt = 0 // performance.now() of the open transition — feeds the residual-input guard
 
   constructor() {
     super(preferencesStyles)
@@ -168,6 +170,8 @@ export class PreferencesModal extends BaseComponent {
       if (isNowOpen) {
         this._closing = false
 
+        this._openedAt = performance.now()
+
         this._mountWebGLControls()
 
         genieEnter(this)
@@ -219,12 +223,21 @@ export class PreferencesModal extends BaseComponent {
     }
   }
 
-  /** Wires backdrop-dismiss: Escape only — everything else is JSX onClick. */
-
+  /**
+   * Wires Escape dismissal + the residual-input guard — both bound once on
+   * the persistent element; everything else is JSX onClick on rendered
+   * controls.
+   */
   _bindBackdropEvents(): void {
     this.addScopedListener(window, KEYBOARD_EVENTS.KEYDOWN, (e) => {
       if ((e as KeyboardEvent).key === KEYS.ESCAPE && this.isOpen) this.close()
     })
+
+    armResidualInputGuard(
+      this,
+      () => this.isOpen,
+      () => this._openedAt
+    )
   }
 
   /**

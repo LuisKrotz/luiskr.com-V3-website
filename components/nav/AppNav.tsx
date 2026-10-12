@@ -19,6 +19,7 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
+import { armResidualInputGuard } from '@core/utils/dom.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { LANG_OPTIONS, LANG_SLUGS } from '@core/i18n.js'
@@ -118,6 +119,8 @@ export class AppNav extends BaseComponent {
   // already completed.
   /** Menu overlay is open. */
   _menuOpen = false
+  /** performance.now() of the open transition — feeds the residual-input guard. */
+  _menuOpenedAt = 0
   /** Close animation in flight — blocks re-entry/double-close. */
   _menuClosing = false
   /** Open animation completed — close X can snap to drawn state on reopen. */
@@ -443,6 +446,12 @@ export class AppNav extends BaseComponent {
         this._closeMenu()
       }
     })
+
+    armResidualInputGuard(
+      this,
+      () => this._menuOpen,
+      () => this._menuOpenedAt
+    )
   }
 
   /** Smooth-scrolls the window back to the top. */

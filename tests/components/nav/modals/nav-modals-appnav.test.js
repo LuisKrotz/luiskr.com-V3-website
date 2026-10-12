@@ -430,6 +430,18 @@ describe('AppNav', () => {
     navEl._menuOpen = false
   })
 
+  test('the residual-input guard runs its open/armed accessors on host clicks', () => {
+    navEl._openMenu()
+
+    // A pointer-origin click reaching the host inside the arm window is
+    // residual gesture noise — the capture guard reads _menuOpen/_menuOpenedAt.
+    navEl.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, detail: 1 }))
+
+    expect(navEl._menuOpen).toBe(true)
+
+    navEl._menuOpen = false
+  })
+
   test('modal gains the settled class after MENU_SETTLE_DURATION and a re-render keeps it', () => {
     jest.useFakeTimers()
     navEl._openMenu()

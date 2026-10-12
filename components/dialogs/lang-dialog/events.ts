@@ -48,7 +48,67 @@ function updateToActive(host: LangDialog, follower: Element): void {
   }
 }
 
-/** Wires the glass-follower tracking (hover/focus/leave/resize). */
+/** Hosts whose window-level bindings exist — Escape/resize bind once per element. */
+const BOUND_HOSTS = new WeakSet<LangDialog>()
+
+/**
+ * Nodes already wired per event type — bindEvents runs after every render
+ * while open and duplicate listeners on the same node would double-fire.
+ * Weak keys let detached re-render casualties GC instead of being retained.
+ */
+const BOUND_NODES = new WeakMap<EventTarget, Set<string>>()
+
+/** Wires `handler` onto `node` only when this node hasn't been wired for `event` yet. */
+function bindNodeOnce(
+  host: LangDialog,
+  node: EventTarget,
+  event: string,
+  handler: EventListener
+): void {
+  let boundEvents = BOUND_NODES.get(node)
+
+  if (!boundEvents) {
+    boundEvents = new Set()
+
+    BOUND_NODES.set(node, boundEvents)
+  }
+
+  if (boundEvents.has(event)) return
+
+  boundEvents.add(event)
+
+  host.addScopedListener(node, event, handler)
+}
+
+/**
+ * Window-level dismissal + follower-reposition bindings. Bound once per
+ * element — re-running bindEvents after each store update would otherwise
+ * pile duplicate window listeners onto the persistent element (its
+ * disposers only drain on disconnect, which never happens for a shell
+ * child). Handlers query the live shadow tree so stale-node captures are
+ * impossible.
+ */
+function bindWindowDismissal(host: LangDialog): void {
+  if (BOUND_HOSTS.has(host)) return
+
+  BOUND_HOSTS.add(host)
+
+  host.addScopedListener(window, KEYBOARD_EVENTS.KEYDOWN, (e) => {
+    if ((e as KeyboardEvent).key === KEYS.ESCAPE) host.close()
+  })
+
+  host.addScopedListener(window, WINDOW_EVENTS.RESIZE, () => {
+    const follower = host.$(`.${LANG_CLASSES.LANG_GLASS_FOLLOWER}`)
+
+    const hovered =
+      host.$(`.${PREF_CLASSES.PREF_OPTION_BTN}:hover`) ||
+      host.$(`.${PREF_CLASSES.PREF_OPTION_BTN}.${STATE_CLASSES.ACTIVE}`)
+
+    if (follower && hovered) moveFollower(follower, hovered as HTMLElement)
+  })
+}
+
+/** Wires the glass-follower tracking (hover/focus/leave). */
 function bindGlassFollower(host: LangDialog, langBtns: Element[]): void {
   const grid = host.$(`.${PREF_CLASSES.PREF_OPTIONS}`)
 
@@ -65,20 +125,18 @@ function bindGlassFollower(host: LangDialog, langBtns: Element[]): void {
   })
 
   langBtns.forEach((btn) => {
-    host.addScopedListener(btn, POINTER_EVENTS.POINTERENTER, () =>
+    bindNodeOnce(host, btn, POINTER_EVENTS.POINTERENTER, () =>
       moveFollower(follower, btn as HTMLElement)
     )
 
-    host.addScopedListener(btn, MOUSE_EVENTS.MOUSEENTER, () =>
+    bindNodeOnce(host, btn, MOUSE_EVENTS.MOUSEENTER, () =>
       moveFollower(follower, btn as HTMLElement)
     )
 
-    host.addScopedListener(btn, FOCUS_EVENTS.FOCUS, () =>
-      moveFollower(follower, btn as HTMLElement)
-    )
+    bindNodeOnce(host, btn, FOCUS_EVENTS.FOCUS, () => moveFollower(follower, btn as HTMLElement))
   })
 
-  host.addScopedListener(grid, POINTER_EVENTS.POINTERLEAVE, () => {
+  bindNodeOnce(host, grid, POINTER_EVENTS.POINTERLEAVE, () => {
     const activeBtn = host.$(`.${PREF_CLASSES.PREF_OPTION_BTN}.${STATE_CLASSES.ACTIVE}`)
 
     if (activeBtn) {
@@ -87,45 +145,17 @@ function bindGlassFollower(host: LangDialog, langBtns: Element[]): void {
       ;(follower as HTMLElement).style.opacity = '0'
     }
   })
-
-  host.addScopedListener(window, WINDOW_EVENTS.RESIZE, () => {
-    const hovered =
-      host.$(`.${PREF_CLASSES.PREF_OPTION_BTN}:hover`) ||
-      host.$(`.${PREF_CLASSES.PREF_OPTION_BTN}.${STATE_CLASSES.ACTIVE}`)
-
-    if (hovered) moveFollower(follower, hovered as HTMLElement)
-  })
 }
 
-/** Binds option clicks, backdrop click and keyboard dismissal. */
+/**
+ * Binds glass-follower tracking + window dismissal. Option/backdrop/close
+ * clicks are JSX `onClick` props on the rendered buttons — duplicating
+ * them here would fire selectLang/close twice per click.
+ */
 export function bindEvents(host: LangDialog): void {
   if (!host.isOpen) return
 
-  const backdrop = host.$(`.${PREF_CLASSES.PREF_BACKDROP}`)
+  bindWindowDismissal(host)
 
-  if (backdrop) {
-    host.addScopedListener(backdrop, MOUSE_EVENTS.CLICK, (e) => {
-      if (e.target === backdrop) host.close()
-    })
-  }
-
-  host.addScopedListener(window, KEYBOARD_EVENTS.KEYDOWN, (e) => {
-    if ((e as KeyboardEvent).key === KEYS.ESCAPE) host.close()
-  })
-
-  const closeBtn = host.$(`.${PREF_CLASSES.PREF_CLOSE_BTN}`)
-
-  if (closeBtn) host.addScopedListener(closeBtn, MOUSE_EVENTS.CLICK, () => host.close())
-
-  const langBtns = host.$$(`[${DATA_ATTRS.DATA_LANG}]`)
-
-  langBtns.forEach((btn) => {
-    host.addScopedListener(btn, MOUSE_EVENTS.CLICK, () => {
-      const langCode = btn.getAttribute(DATA_ATTRS.DATA_LANG)
-
-      host.selectLang(langCode)
-    })
-  })
-
-  bindGlassFollower(host, langBtns)
+  bindGlassFollower(host, host.$$(`[${DATA_ATTRS.DATA_LANG}]`))
 }
