@@ -12,11 +12,16 @@ import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import {
   FOCUS_EVENTS,
   KEYBOARD_EVENTS,
-  MOUSE_EVENTS,
   POINTER_EVENTS,
   WINDOW_EVENTS,
 } from '@core/tokens/events/dom.js'
 import type { LangDialog } from '../LangDialog.js'
+
+/** Selector matching any rendered option button (locale or theme row). */
+const OPTION_SEL = `[${DATA_ATTRS.DATA_LANG}]`
+
+/** Selector matching the options grid that wraps the buttons. */
+const GRID_SEL = `.${PREF_CLASSES.PREF_OPTIONS}`
 
 /** Positions the glass follower over `btn` (transform only — no layout). */
 function moveFollower(follower: Element, btn: HTMLElement): void {
@@ -48,45 +53,57 @@ function updateToActive(host: LangDialog, follower: Element): void {
   }
 }
 
-/** Hosts whose window-level bindings exist — Escape/resize bind once per element. */
+/** Hosts whose once-only bindings exist — Escape/resize + delegated follower. */
 const BOUND_HOSTS = new WeakSet<LangDialog>()
 
 /**
- * Nodes already wired per event type — bindEvents runs after every render
- * while open and duplicate listeners on the same node would double-fire.
- * Weak keys let detached re-render casualties GC instead of being retained.
+ * Tracks pointer/focus movement across the option grid through a single
+ * delegated listener set on the persistent shadow root. Re-rendering swaps
+ * the option nodes wholesale every store update, so per-node listeners
+ * would both re-bind and strand dead disposers on the host until
+ * disconnect; delegation resolves the live target at event time instead.
  */
-const BOUND_NODES = new WeakMap<EventTarget, Set<string>>()
+function bindDelegatedFollower(host: LangDialog): void {
+  const glide = (e: Event) => {
+    const btn = (e.target as Element | null)?.closest?.(OPTION_SEL)
 
-/** Wires `handler` onto `node` only when this node hasn't been wired for `event` yet. */
-function bindNodeOnce(
-  host: LangDialog,
-  node: EventTarget,
-  event: string,
-  handler: EventListener
-): void {
-  let boundEvents = BOUND_NODES.get(node)
+    const follower = host.$(`.${LANG_CLASSES.LANG_GLASS_FOLLOWER}`)
 
-  if (!boundEvents) {
-    boundEvents = new Set()
-
-    BOUND_NODES.set(node, boundEvents)
+    if (btn && follower) moveFollower(follower, btn as HTMLElement)
   }
 
-  if (boundEvents.has(event)) return
+  host.addScopedListener(host.shadowRoot, POINTER_EVENTS.POINTEROVER, glide)
 
-  boundEvents.add(event)
+  host.addScopedListener(host.shadowRoot, FOCUS_EVENTS.FOCUSIN, glide)
 
-  host.addScopedListener(node, event, handler)
+  host.addScopedListener(host.shadowRoot, POINTER_EVENTS.POINTEROUT, (e) => {
+    const leaving =
+      (e.target as Element | null)?.closest?.(GRID_SEL) &&
+      !((e as MouseEvent).relatedTarget as Element | null)?.closest?.(GRID_SEL)
+
+    if (!leaving) return
+
+    const follower = host.$(`.${LANG_CLASSES.LANG_GLASS_FOLLOWER}`)
+
+    if (!follower) return
+
+    const activeBtn = host.$(`.${PREF_CLASSES.PREF_OPTION_BTN}.${STATE_CLASSES.ACTIVE}`)
+
+    if (activeBtn) {
+      moveFollower(follower, activeBtn as HTMLElement)
+    } else {
+      ;(follower as HTMLElement).style.opacity = '0'
+    }
+  })
 }
 
 /**
- * Window-level dismissal + follower-reposition bindings. Bound once per
- * element — re-running bindEvents after each store update would otherwise
- * pile duplicate window listeners onto the persistent element (its
- * disposers only drain on disconnect, which never happens for a shell
- * child). Handlers query the live shadow tree so stale-node captures are
- * impossible.
+ * Window-level dismissal + follower-reposition bindings plus the delegated
+ * follower tracking. Bound once per element — re-running bindEvents after
+ * each store update would otherwise pile duplicate window listeners onto
+ * the persistent element (its disposers only drain on disconnect, which
+ * never happens for a shell child). Handlers query the live shadow tree
+ * so stale-node captures are impossible.
  */
 function bindWindowDismissal(host: LangDialog): void {
   if (BOUND_HOSTS.has(host)) return
@@ -106,15 +123,24 @@ function bindWindowDismissal(host: LangDialog): void {
 
     if (follower && hovered) moveFollower(follower, hovered as HTMLElement)
   })
+
+  bindDelegatedFollower(host)
 }
 
-/** Wires the glass-follower tracking (hover/focus/leave). */
-function bindGlassFollower(host: LangDialog, langBtns: Element[]): void {
-  const grid = host.$(`.${PREF_CLASSES.PREF_OPTIONS}`)
+/**
+ * Repositions the follower after each open/re-render and binds the
+ * once-only window + delegated listeners. Option/backdrop/close clicks
+ * are JSX `onClick` props on the rendered buttons — duplicating them
+ * here would fire selectLang/close twice per click.
+ */
+export function bindEvents(host: LangDialog): void {
+  if (!host.isOpen) return
+
+  bindWindowDismissal(host)
 
   const follower = host.$(`.${LANG_CLASSES.LANG_GLASS_FOLLOWER}`)
 
-  if (!grid || !follower) return
+  if (!follower) return
 
   // Two RAFs: offset* reads are 0 until the grid has been laid out;
   // the second frame catches post-font-load metric changes.
@@ -123,39 +149,4 @@ function bindGlassFollower(host: LangDialog, langBtns: Element[]): void {
 
     requestAnimationFrame(() => updateToActive(host, follower))
   })
-
-  langBtns.forEach((btn) => {
-    bindNodeOnce(host, btn, POINTER_EVENTS.POINTERENTER, () =>
-      moveFollower(follower, btn as HTMLElement)
-    )
-
-    bindNodeOnce(host, btn, MOUSE_EVENTS.MOUSEENTER, () =>
-      moveFollower(follower, btn as HTMLElement)
-    )
-
-    bindNodeOnce(host, btn, FOCUS_EVENTS.FOCUS, () => moveFollower(follower, btn as HTMLElement))
-  })
-
-  bindNodeOnce(host, grid, POINTER_EVENTS.POINTERLEAVE, () => {
-    const activeBtn = host.$(`.${PREF_CLASSES.PREF_OPTION_BTN}.${STATE_CLASSES.ACTIVE}`)
-
-    if (activeBtn) {
-      moveFollower(follower, activeBtn as HTMLElement)
-    } else {
-      ;(follower as HTMLElement).style.opacity = '0'
-    }
-  })
-}
-
-/**
- * Binds glass-follower tracking + window dismissal. Option/backdrop/close
- * clicks are JSX `onClick` props on the rendered buttons — duplicating
- * them here would fire selectLang/close twice per click.
- */
-export function bindEvents(host: LangDialog): void {
-  if (!host.isOpen) return
-
-  bindWindowDismissal(host)
-
-  bindGlassFollower(host, host.$$(`[${DATA_ATTRS.DATA_LANG}]`))
 }

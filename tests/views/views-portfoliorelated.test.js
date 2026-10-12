@@ -14,6 +14,7 @@ import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
+import { LINK_ATTRS } from '@core/tokens/attrs/link.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
@@ -134,6 +135,31 @@ describe('PortfolioRelated', () => {
     expect(routed).toBeNull()
 
     delete relatedEl.projectsList
+    router.push = origPush
+  })
+
+  test('footer home link routes back to the localized home path', () => {
+    let routed = null
+    const origPush = router.push
+    router.push = (path) => {
+      routed = path
+    }
+
+    relatedEl.translations = {
+      title: 'More Projects',
+      socials: [{ network: 'gh', link: 'https://x.example' }],
+    }
+    relatedEl._updateDom()
+
+    const home = relatedEl.shadowRoot.querySelector(
+      `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME}`
+    )
+
+    expect(home).not.toBeNull()
+
+    home.click()
+    expect(routed).toBe(home.getAttribute(LINK_ATTRS.HREF))
+
     router.push = origPush
   })
 

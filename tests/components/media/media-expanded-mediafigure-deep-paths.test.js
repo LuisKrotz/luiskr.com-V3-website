@@ -3,6 +3,8 @@
  * @description Split from media-expanded.test.js — covers the "MediaFigure deep paths" describe.
  */
 import { jest } from '@jest/globals'
+import { LOCALES } from '@core/constants.js'
+import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import store from '@core/store.js'
 import '@website/components/media/MediaExpanded.js'
 import '@website/components/media/MediaFigure.js'
@@ -224,6 +226,22 @@ describe('MediaFigure deep paths', () => {
 
     globalThis.Image = RealImage
 
+    el.remove()
+  })
+
+  test('non-English locale renders the audio-language figcaption on videos', async () => {
+    const langSpy = jest.spyOn(store.getters, 'getLang').mockReturnValue(LOCALES.DE)
+
+    const el = mountFigure({ [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE })
+
+    await flush()
+
+    const note = el.shadowRoot?.querySelector(`.${MEDIA_CLASSES.MEDIA_AUDIO_NOTE}`)
+
+    expect(note).toBeTruthy()
+    expect(note.textContent.length).toBeGreaterThan(0)
+
+    langSpy.mockRestore()
     el.remove()
   })
 

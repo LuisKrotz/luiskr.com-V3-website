@@ -139,7 +139,6 @@ describe('LangDialog tails', () => {
 
   test('bound interactions: backdrop clicks, keys, follower glide, resize, leave', async () => {
     langEl.open = true
-    const grid = langEl.shadowRoot.querySelector(`.${PREF_CLASSES.PREF_OPTIONS}`)
     const follower = langEl.shadowRoot.querySelector(`.${LANG_CLASSES.LANG_GLASS_FOLLOWER}`)
     const btn = langEl.shadowRoot.querySelector(`[${DATA_ATTRS.DATA_LANG}]`)
     for (const [k, v] of [
@@ -149,9 +148,8 @@ describe('LangDialog tails', () => {
       ['offsetHeight', 40],
     ])
       Object.defineProperty(btn, k, { value: v, configurable: true })
-    btn.dispatchEvent(new Event(POINTER_EVENTS.POINTERENTER))
-    btn.dispatchEvent(new Event(MOUSE_EVENTS.MOUSEENTER))
-    btn.dispatchEvent(new Event(FOCUS_EVENTS.FOCUS))
+    btn.dispatchEvent(new Event(POINTER_EVENTS.POINTEROVER, { bubbles: true }))
+    btn.dispatchEvent(new Event(FOCUS_EVENTS.FOCUSIN, { bubbles: true }))
     expect(follower.style.transform).toContain('translate3d')
     const activeBtn = langEl.shadowRoot.querySelector(
       `.${PREF_CLASSES.PREF_OPTION_BTN}.${STATE_CLASSES.ACTIVE}`
@@ -166,10 +164,28 @@ describe('LangDialog tails', () => {
         Object.defineProperty(activeBtn, k, { value: v, configurable: true })
     }
     await new Promise((r) => setTimeout(r, 60))
-    grid.dispatchEvent(new Event(POINTER_EVENTS.POINTERLEAVE))
+    btn.dispatchEvent(new Event(POINTER_EVENTS.POINTEROUT, { bubbles: true }))
     activeBtn?.classList.remove(STATE_CLASSES.ACTIVE)
-    grid.dispatchEvent(new Event(POINTER_EVENTS.POINTERLEAVE))
+    btn.dispatchEvent(new Event(POINTER_EVENTS.POINTEROUT, { bubbles: true }))
     expect(follower.style.opacity).toBe('0')
+    // Pointer travelling between grid children is not a leave — the
+    // relatedTarget stays inside the grid so the handler returns early.
+    const grid = btn.closest(`.${PREF_CLASSES.PREF_OPTIONS}`)
+
+    btn.dispatchEvent(
+      new MouseEvent(POINTER_EVENTS.POINTEROUT, { bubbles: true, relatedTarget: grid })
+    )
+    // A pointerout whose target sits outside the grid never counts as a
+    // leave either — same early return, different arm of the check.
+    const outside = langEl.shadowRoot.querySelector(`.${LANG_CLASSES.LANG_DIALOG}`)
+
+    outside?.dispatchEvent(new Event(POINTER_EVENTS.POINTEROUT, { bubbles: true }))
+    // Pointer leaving while the follower node is absent hits the
+    // !follower guard — removing the node forces the miss.
+    const gone = follower
+
+    gone.remove()
+    btn.dispatchEvent(new Event(POINTER_EVENTS.POINTEROUT, { bubbles: true }))
     window.dispatchEvent(new Event(WINDOW_EVENTS.RESIZE))
     activeBtn?.classList.add(STATE_CLASSES.ACTIVE)
     window.dispatchEvent(new Event(WINDOW_EVENTS.RESIZE))

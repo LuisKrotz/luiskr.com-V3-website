@@ -96,19 +96,17 @@ const renderCreditBlock = () => {
 
   return (
     <Fragment>
-      {home ? (
-        <a
-          className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME}
-          href={home.link}
-          onClick={(e: Event) => {
-            e.preventDefault()
+      <a
+        className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME}
+        href={home.link}
+        onClick={(e: Event) => {
+          e.preventDefault()
 
-            if (home.link) router.push(home.link)
-          }}
-        >
-          {home.page}
-        </a>
-      ) : null}
+          router.push(home.link)
+        }}
+      >
+        {home.page}
+      </a>
       <hr
         className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER}
         aria-hidden={ATTR_VALUES.TRUE}
