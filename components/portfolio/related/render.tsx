@@ -14,10 +14,12 @@ import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
 import { ROUTER_CLASSES } from '@core/tokens/classes/router.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
+import { SOURCE_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h, Fragment } from '@core/jsx.js'
+import { componentText, rightsText } from '@core/locale/ui-text.js'
 import router from '@core/router/router.js'
 import type { RelatedCard, RelatedSocial } from './types.js'
 import type { PortfolioRelated } from '../Related.js'
@@ -81,6 +83,17 @@ const renderSkeletonMosaic = () => (
   </div>
 )
 
+/** Authorship block — animated hairline + self-made credit + copyright. */
+const renderCreditBlock = () => (
+  <Fragment>
+    <hr className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER} aria-hidden={ATTR_VALUES.TRUE} />
+    <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_CREDIT}>
+      {componentText(SOURCE_COMPONENT_KEYS.SOURCE_CREDIT)}
+    </p>
+    <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_RIGHTS}>{rightsText()}</p>
+  </Fragment>
+)
+
 /** Social links + separator dots + the HTML disclaimer note. */
 const renderSocials = (host: PortfolioRelated, socials: RelatedSocial[]) => (
   <div className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS}>
@@ -128,6 +141,7 @@ const renderSocials = (host: PortfolioRelated, socials: RelatedSocial[]) => (
         ))}
       </span>
     </button>
+    {renderCreditBlock()}
   </div>
 )
 
@@ -150,6 +164,7 @@ const renderSkeletonSocials = () => (
         <p key={cls} className={`${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE} ${cls}`} />
       )
     )}
+    {renderCreditBlock()}
   </div>
 )
 

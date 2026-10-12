@@ -11,6 +11,7 @@ import { AWC_CLASSES } from '@core/tokens/classes/awards-carousel.js'
 import { FOOTER_CLASSES } from '@core/tokens/classes/footer.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { AWARDS_UI_KEYS } from '@core/tokens/data/ui-keys.js'
+import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { h, Fragment } from '@core/jsx.js'
@@ -18,7 +19,7 @@ import '@website/components/media/DrawText.js'
 import router from '@core/router/router.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { DOCS_STRINGS } from '@core/tokens/strings/docs.js'
-import { appText, componentText } from '@core/locale/ui-text.js'
+import { appText, componentText, rightsText } from '@core/locale/ui-text.js'
 import type { AwardsMentions } from '../AwardsMentions.js'
 import { SOURCE_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
 import { SOCIAL_URLS } from '@core/tokens/media/urls.js'
@@ -116,6 +117,16 @@ export function renderAwards(el: AwardsMentions) {
           {componentText(SOURCE_COMPONENT_KEYS.SOURCE_LINK)}
         </a>
       </p>
+
+      {/* Animated hairline above the authorship block — same sheen
+          pattern as the internals footer divider. */}
+      <hr className={FOOTER_CLASSES.FOOTER_DIVIDER} aria-hidden={ATTR_VALUES.TRUE} />
+
+      <p className={FOOTER_CLASSES.FOOTER_CREDIT}>
+        {componentText(SOURCE_COMPONENT_KEYS.SOURCE_CREDIT)}
+      </p>
+
+      <p className={FOOTER_CLASSES.FOOTER_RIGHTS}>{rightsText()}</p>
     </footer>
   )
 }

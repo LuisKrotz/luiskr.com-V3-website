@@ -7,11 +7,13 @@
  */
 
 import { LINK_ATTRS } from '@core/tokens/attrs/link.js'
+import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { CONTACT_CLASSES } from '@core/tokens/classes/contact.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { ROUTER_CLASSES } from '@core/tokens/classes/router.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
+import { SOURCE_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
@@ -28,6 +30,7 @@ import internalStyles from '@core/sass/components/internals/internals.scss?inlin
 
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import { getFallbackLegalLinks, type LegalLink } from '@core/utils/data/legal-links.js'
+import { componentText, rightsText } from '@core/locale/ui-text.js'
 import { devError } from '@core/devlog.js'
 
 export { getFallbackLegalLinks }
@@ -150,6 +153,16 @@ export class LegalFooter extends BaseComponent {
               </Fragment>
             )
           })}
+          {/* Animated hairline above the authorship block — same sheen
+              pattern as the related footer's divider. */}
+          <hr
+            className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER}
+            aria-hidden={ATTR_VALUES.TRUE}
+          />
+          <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_CREDIT}>
+            {componentText(SOURCE_COMPONENT_KEYS.SOURCE_CREDIT)}
+          </p>
+          <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_RIGHTS}>{rightsText()}</p>
         </div>
       </footer>
     )
