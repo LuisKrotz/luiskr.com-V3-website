@@ -263,7 +263,7 @@ describe('mosaic burn tails', () => {
     s.prog = 0.5
 
     const L = s.letters[0]
-    const planted = {
+    const base = {
       x: s.paperX + (L.x0 + L.x1) / 2,
       y: s.paperY + 1e9, // below every possible front — the landing check fires
       vx: 0,
@@ -271,18 +271,20 @@ describe('mosaic burn tails', () => {
       life: 0,
       maxLife: 1e9, // outlives the age check so the landing check runs
       size: 1,
-      kind: 1, // fleck — the dark char branch
       rot: 0,
       spin: 0,
       phase: 0,
       L,
     }
+    const plantedFleck = { ...base, kind: 1 } // fleck — the dark char branch
+    const plantedDeposit = { ...base, kind: 0 } // rebuild ember — the lighter deposit branch
 
-    s.particles.push(planted)
+    s.particles.push(plantedFleck, plantedDeposit)
 
     await flush(40)
 
-    expect(s.particles.includes(planted)).toBe(false)
+    expect(s.particles.includes(plantedFleck)).toBe(false)
+    expect(s.particles.includes(plantedDeposit)).toBe(false)
 
     s.prog = 0.01
     await flush(60)
