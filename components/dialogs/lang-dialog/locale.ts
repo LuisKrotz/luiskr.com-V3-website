@@ -41,6 +41,8 @@ export function applyLang(newLang: string): void {
     newPath = `${base}${ROUTE_PATHS.ROOT}${s.gdpr}`
   else if (routeName.startsWith(ROUTE_PREFIXES.TERMS))
     newPath = `${base}${ROUTE_PATHS.ROOT}${s.terms}`
+  else if (routeName.startsWith(ROUTE_PREFIXES.LICENSE))
+    newPath = `${base}${ROUTE_PATHS.ROOT}${s.license}`
   else if (routeName === ROUTE_NAMES.EARTH_PLAYGROUND) {
     newPath = `${base}${ROUTE_PATHS.ROOT}${s.earthPlayground || ROUTE_PATHS.EARTH_PLAYGROUND_SEGMENT}`
   } else {

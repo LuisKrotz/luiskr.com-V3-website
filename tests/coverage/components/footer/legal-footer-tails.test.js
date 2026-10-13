@@ -50,10 +50,11 @@ describe('legal Footer tails', () => {
 
     const links = getFallbackLegalLinks('zz')
 
-    expect(links).toHaveLength(4)
+    expect(links).toHaveLength(5)
     expect(links[1].link).toContain(ROUTE_STRINGS.PRIVACY_POLICY)
     expect(links[2].link).toContain(ROUTE_STRINGS.GDPR)
     expect(links[3].link).toContain(ROUTE_STRINGS.TERMS_OF_USE)
+    expect(links[4].link).toContain(ROUTE_STRINGS.LICENSE)
 
     delete LANG_SLUGS.zz
   })
@@ -70,7 +71,7 @@ describe('legal Footer tails', () => {
     // unknown-locale arm: falls back to the EN slug map, empty page labels
     const links = getFallbackLegalLinks('qq')
 
-    expect(links).toHaveLength(4)
+    expect(links).toHaveLength(5)
     expect(links[0].page).toBe(CHAR_STRINGS.EMPTY)
 
     FALLBACK_COMPONENTS[CMS_KEYS.LEGAL_FOOTER] = prevNode

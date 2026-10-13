@@ -48,10 +48,10 @@ Everything here builds on `core/` primitives and renders through `shared/src`
 
 ### `views/legal/` + `views/not-found/`
 
-| File           | What it does                                                                                           |
-| -------------- | ------------------------------------------------------------------------------------------------------ |
-| `Legal.tsx`    | `<view-legal>` — privacy/GDPR/terms: the requested document's translated body in the internals chrome. |
-| `NotFound.tsx` | `<view-not-found>` — the 404 "signal lost" page.                                                       |
+| File           | What it does                                                                                                   |
+| -------------- | -------------------------------------------------------------------------------------------------------------- |
+| `Legal.tsx`    | `<view-legal>` — privacy/GDPR/terms/license: the requested document's translated body in the internals chrome. |
+| `NotFound.tsx` | `<view-not-found>` — the 404 "signal lost" page.                                                               |
 
 ## Components — the presentational layer
 

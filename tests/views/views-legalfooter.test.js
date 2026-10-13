@@ -41,32 +41,36 @@ describe('LegalFooter', () => {
     expect(footerEl.shadowRoot).not.toBeNull()
   })
 
-  test('getFallbackLegalLinks returns 4 valid links for English locale', () => {
+  test('getFallbackLegalLinks returns 5 valid links for English locale', () => {
     const links = getFallbackLegalLinks(LOCALES.EN)
-    expect(links.length).toBe(4)
+    expect(links.length).toBe(5)
     expect(links[0].page).toBe(ROUTE_NAMES.HOME)
     expect(links[0].link).toBe('/')
     expect(links[1].page).toBe(ROUTE_NAMES.PRIVACY)
     expect(links[2].page).toBe(ROUTE_NAMES.GDPR)
     expect(links[3].page).toBe(ROUTE_NAMES.TERMS)
+    expect(links[4].page).toBe(ROUTE_NAMES.LICENSE)
+    expect(links[4].link).toBe('/license')
   })
 
   test('getFallbackLegalLinks localizes paths for Portuguese (br) and labels come from the live components dictionary', () => {
     const links = getFallbackLegalLinks(LOCALES.BR)
-    expect(links.length).toBe(4)
+    expect(links.length).toBe(5)
     expect(links[0].link).toBe('/br/')
     expect(links[1].link).toBe('/br/politica-de-privacidade')
     expect(links[3].link).toBe('/br/termos-de-uso')
+    expect(links[4].link).toBe('/br/licenca')
     // No locale-specific copy lives in JS: without the live dictionary the EN snapshot labels are used
     expect(links[1].page).toBe(ROUTE_NAMES.PRIVACY)
   })
 
   test('getFallbackLegalLinks localizes paths for German (de)', () => {
     const links = getFallbackLegalLinks(LOCALES.DE)
-    expect(links.length).toBe(4)
+    expect(links.length).toBe(5)
     expect(links[0].link).toBe('/de/')
     expect(links[1].link).toBe('/de/datenschutzrichtlinie')
     expect(links[3].link).toBe('/de/nutzungsbedingungen')
+    expect(links[4].link).toBe('/de/lizenz')
   })
 
   test('renders fallback links when store has no legal links', () => {
@@ -75,7 +79,7 @@ describe('LegalFooter', () => {
     const links = footerEl.shadowRoot.querySelectorAll(
       `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`
     )
-    expect(links.length).toBe(4)
+    expect(links.length).toBe(5)
     // The docs-portal entry lives on the home footer — legal pages have
     // no docs row anymore.
     expect(

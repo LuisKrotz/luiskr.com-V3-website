@@ -108,7 +108,7 @@ export class ViewLegal extends BaseComponent {
   }
 
   /**
-   * Fetches the legal document node (privacy-policy | gdpr | terms-of-use)
+   * Fetches the legal document node (privacy-policy | gdpr | terms-of-use | license)
    * for the current locale. `wait` defers the DOM write — used after a
    * route swap so the old document's fade-out finishes before the new
    * skeleton→content swap (prevents a flash of loading state). SWR: the
