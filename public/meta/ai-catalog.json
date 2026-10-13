@@ -18,6 +18,30 @@
       ]
     },
     {
+      "identifier": "urn:air:luiskr.com:experiences:earth-playground",
+      "displayName": "Earth Playground",
+      "type": "text/html",
+      "url": "https://luiskr.com/earth-playground",
+      "description": "3D photorealistic Earth WebGPU simulation — atmospheric scattering, dynamic lighting, real-time post-processing and interactive controls. Localized in all 16 site languages.",
+      "representativeQueries": [
+        "luiskr.com earth playground",
+        "WebGPU earth simulation demo",
+        "interactive 3D planet earth"
+      ]
+    },
+    {
+      "identifier": "urn:air:luiskr.com:experiences:star-field",
+      "displayName": "Star Field",
+      "type": "text/html",
+      "url": "https://luiskr.com/star-field-experiment",
+      "description": "three.js cosmic-navigation experiment — simulated galaxy of catalogued stars plus authored bodies (solar system, exoplanets, deep-sky objects) with localized dossiers. Bodies deep-link via /star-field-experiment/<body-id>.",
+      "representativeQueries": [
+        "luiskr.com star field experiment",
+        "interactive galaxy simulation",
+        "exoplanet systems 3D browser demo"
+      ]
+    },
+    {
       "identifier": "urn:air:luiskr.com:docs:portal",
       "displayName": "In-depth project docs",
       "type": "text/html",
