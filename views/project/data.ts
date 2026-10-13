@@ -15,7 +15,7 @@ import { LOCALES } from '@core/tokens/locales.js'
 import { PROJECT_ALIASES } from '@core/tokens/routes/aliases.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
 import { SCHEMA_STRINGS } from '@core/tokens/strings/schema.js'
-import { generateProjectArticleSchema, updateJsonLd } from '@core/utils/index.js'
+import { generateProjectSchema, updateJsonLd } from '@core/utils/index.js'
 import { toMetaDescription } from '@core/utils/string.js'
 import { setMetaContent, setMetaDescription } from '@core/router/navigate.js'
 import store from '@core/store.js'
@@ -131,7 +131,15 @@ export function loadData(view: ViewProject, wait: number | false = false): void 
 
       view.updateRobotsMeta(data.noindex === true)
 
-      const schemaGraph = generateProjectArticleSchema(data, projectKey, currentLocale)
+      // params.slug is the media deep-link segment — when present the
+      // graph recenters on that asset (WebPage + media entity + crumb),
+      // matching the static page emitted for the same URL.
+      const schemaGraph = generateProjectSchema(
+        data,
+        projectKey,
+        currentLocale,
+        router.currentRoute?.params?.slug
+      )
 
       updateJsonLd(schemaGraph)
 

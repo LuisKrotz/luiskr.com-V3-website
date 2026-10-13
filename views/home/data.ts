@@ -15,14 +15,10 @@ import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
-import { setMetaDescription } from '@core/router/navigate.js'
+import { buildRouteJsonLd, setMetaDescription } from '@core/router/navigate.js'
 import { toMetaDescription } from '@core/utils/string.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
-import {
-  generateWebsiteSchema,
-  generateCarouselItemListSchema,
-  updateJsonLd,
-} from '@core/utils/index.js'
+import { generateCarouselItemListSchema, updateJsonLd } from '@core/utils/index.js'
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import type { DbSnapshot } from '@core/utils/data/db.js'
 import type { ViewHome } from './Home.js'
@@ -59,6 +55,27 @@ export function processedItems(view: ViewHome): PortfolioItem[] {
   return raw.map((item) => ({ ...item, featured: view.isFeatured(item) }))
 }
 
+/**
+ * Base route graph (Org + WebSite + WebPage) composed with the
+ * portfolio ItemList — replaces the graph syncDocumentHead emitted so
+ * the WebPage entity survives alongside the carousel data. Called again
+ * when the localized bio lands so WebPage.description carries the real
+ * text instead of the parse-time site fallback.
+ */
+function emitHomeJsonLd(view: ViewHome, description?: string): void {
+  const route = router.currentRoute
+
+  if (!route) return
+
+  const graph = buildRouteJsonLd(route, undefined, description)
+
+  const carouselSchema = generateCarouselItemListSchema(view.processedItems)
+
+  if (carouselSchema) graph.push(carouselSchema)
+
+  updateJsonLd(graph)
+}
+
 /** Applies the pages/home snapshot: store commit, JSON-LD, re-render. */
 function applyHomeSnapshot(view: ViewHome, homeSnap: DbSnapshot): void {
   if (!homeSnap?.exists()) return
@@ -69,13 +86,7 @@ function applyHomeSnapshot(view: ViewHome, homeSnap: DbSnapshot): void {
     store.commit(DATA_MUTATIONS.SET_PORTFOLIO_LIST, view.translations.portfoliolist)
   }
 
-  const carouselSchema = generateCarouselItemListSchema(view.processedItems)
-
-  const homeGraph = [...generateWebsiteSchema()]
-
-  if (carouselSchema) homeGraph.push(carouselSchema)
-
-  updateJsonLd(homeGraph)
+  emitHomeJsonLd(view)
 
   view._updateDom()
 
@@ -133,7 +144,11 @@ export function loadHomeData(view: ViewHome): void {
         const routeName = router.currentRoute?.name
 
         if (routeName === ROUTE_NAMES.HOME || routeName === ROUTE_NAMES.ABOUT) {
-          setMetaDescription(toMetaDescription((about.col1 as string[] | undefined)?.[0] || ''))
+          const bioDesc = toMetaDescription((about.col1 as string[] | undefined)?.[0] || '')
+
+          setMetaDescription(bioDesc)
+
+          emitHomeJsonLd(view, bioDesc)
         }
 
         view.aboutTranslations = about
