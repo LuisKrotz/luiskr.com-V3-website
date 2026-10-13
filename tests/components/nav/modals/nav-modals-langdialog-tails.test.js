@@ -213,6 +213,7 @@ describe('LangDialog tails', () => {
       ROUTE_NAMES.PRIVACY,
       ROUTE_NAMES.GDPR,
       ROUTE_NAMES.TERMS,
+      ROUTE_NAMES.LICENSE,
       ROUTE_NAMES.EARTH_PLAYGROUND,
     ]) {
       router.currentRoute = { name }

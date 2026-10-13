@@ -11,8 +11,12 @@ import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
 import { DATA_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { LOCALES } from '@core/tokens/locales.js'
 import { DB_PATHS } from '@core/tokens/routes/paths.js'
+import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
 import store from '@core/store.js'
+import router from '@core/router/router.js'
+import { setMetaDescription } from '@core/router/navigate.js'
+import { toMetaDescription } from '@core/utils/string.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import {
   generateWebsiteSchema,
@@ -122,6 +126,15 @@ export function loadHomeData(view: ViewHome): void {
     .then(([aboutSnap, picSnap]) => {
       if (aboutSnap?.exists()) {
         const about = aboutSnap.val() as AboutNode
+
+        // The home/about routes share this bio blurb as their SERP
+        // description — push the localized text once the node resolves
+        // (the contact route keeps its own parse-time description).
+        const routeName = router.currentRoute?.name
+
+        if (routeName === ROUTE_NAMES.HOME || routeName === ROUTE_NAMES.ABOUT) {
+          setMetaDescription(toMetaDescription((about.col1 as string[] | undefined)?.[0] || ''))
+        }
 
         view.aboutTranslations = about
 

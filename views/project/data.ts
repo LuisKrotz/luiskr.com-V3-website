@@ -16,6 +16,8 @@ import { PROJECT_ALIASES } from '@core/tokens/routes/aliases.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
 import { SCHEMA_STRINGS } from '@core/tokens/strings/schema.js'
 import { generateProjectArticleSchema, updateJsonLd } from '@core/utils/index.js'
+import { toMetaDescription } from '@core/utils/string.js'
+import { setMetaContent, setMetaDescription } from '@core/router/navigate.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
@@ -48,6 +50,25 @@ export function updateRobotsMeta(noindex: boolean): void {
       meta.remove()
     }
   }
+}
+
+/**
+ * Recursively finds the first paragraph string inside a project's nested
+ * `sections` payload (paragraphs and expandable media items are interleaved
+ * two levels deep — media objects are skipped, only text qualifies).
+ */
+const firstParagraph = (node: unknown): string => {
+  if (typeof node === TYPE_STRINGS.STRING) return node as string
+
+  if (Array.isArray(node)) {
+    for (const item of node) {
+      const found = firstParagraph(item)
+
+      if (found) return found
+    }
+  }
+
+  return ATTR_VALUES.EMPTY
 }
 
 /** Derives the project key from the route params, falling back to the URL. */
@@ -95,7 +116,18 @@ export function loadData(view: ViewProject, wait: number | false = false): void 
 
       if (data.title) {
         document.title = `${BASE_TITLE} ${CHAR_STRINGS.PIPE_SEP} ${data.title}`
+
+        setMetaContent(QUERY_STRINGS.META_OG_TITLE, document.title)
+
+        setMetaContent(QUERY_STRINGS.META_TW_TITLE, document.title)
+
+        setMetaContent(QUERY_STRINGS.META_DC_TITLE, document.title)
       }
+
+      // First body paragraph becomes the SERP snippet, resolved from the
+      // fetched (localized) project node — same source the static
+      // generator compacts for the emitted /<loc>/portfolio/<slug> page.
+      setMetaDescription(toMetaDescription(firstParagraph(data.sections)))
 
       view.updateRobotsMeta(data.noindex === true)
 

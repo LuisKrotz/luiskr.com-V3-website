@@ -109,6 +109,42 @@ describe('Legal tails 2', () => {
     el.remove()
   })
 
+  test('loadData pushes the meta description from the fetched document', async () => {
+    const prevFetch = globalThis.fetch
+    const prevDb = store.getters.getlang().database
+    const prevLocale = store.getters.getlang().locale
+
+    // Unique database prefix -> uncached dbpath -> stubbed network payload.
+    // Fixture 1 has no sections at all (sections?.[0] miss -> ''), fixture 2
+    // a section without content (content?.[0] miss -> '') — both exercise
+    // setMetaDescription's empty-text early-return alongside the push.
+    let payload = { title: TEST_TEXT.HEADING }
+
+    globalThis.fetch = async () => ({ ok: true, status: 200, json: async () => payload })
+
+    const el = document.createElement(VIEW_TAGS.VIEW_LEGAL)
+
+    try {
+      store.state.lang.database = 'zz-legal-desc/'
+
+      document.body.appendChild(el)
+      await flush(80)
+
+      el.loadData()
+      await flush(40)
+
+      payload = { title: TEST_TEXT.HEADING, sections: [{ title: 's' }] }
+      store.state.lang.database = 'zz-legal-desc-2/'
+      el.loadData()
+      await flush(40)
+    } finally {
+      globalThis.fetch = prevFetch
+      store.state.lang.database = prevDb
+      store.state.lang.locale = prevLocale
+      el.remove()
+    }
+  })
+
   test('loadData early-returns on a nonexistent snapshot and empty lang locale', async () => {
     const prevFetch = globalThis.fetch
     const prevRoute = router.currentRoute

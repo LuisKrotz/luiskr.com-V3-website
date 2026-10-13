@@ -12,11 +12,13 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { VIEW_TAGS } from '@core/tokens/elements/views.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
+import { BASE_TITLE } from '@core/tokens/routes.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
+import { loadData } from '@website/views/project/data.js'
 
 // ─── ViewProject tails ───────────────────────────────────────────────────────
 describe('ViewProject tails', () => {
@@ -188,6 +190,62 @@ describe('ViewProject tails', () => {
       lang.database = prevDb
       lang.locale = prevLocale
     }
+
+    el.remove()
+  })
+
+  test('loadData pushes the meta description from the first paragraph', async () => {
+    document.head.insertAdjacentHTML(
+      'beforeend',
+      '<meta name="description" content="old"><meta property="og:title" content="old">'
+    )
+
+    const el = makeView()
+
+    const origFetch = globalThis.fetch
+
+    globalThis.fetch = async () => ({
+      ok: true,
+      status: 200,
+      headers: { get: () => null },
+      json: async () => ({
+        title: TEST_TEXT.HEADING,
+        sections: [[[{ label: 'm', canExpand: true }], ['First body paragraph']]],
+      }),
+      text: async () => CHAR_STRINGS.EMPTY,
+      blob: async () => new Blob([]),
+      arrayBuffer: async () => new ArrayBuffer(0),
+      clone() {
+        return { ...this }
+      },
+    })
+
+    const lang = store.state.lang
+    const prevDb = lang.database
+
+    lang.database = 'zzcov2/'
+
+    try {
+      el.projectSlug = TEST_PROJECTS.SAGE
+      // Direct call (no wait arg) — exercises loadData's `wait = false`
+      // default, which the element wrapper always overrides explicitly.
+      loadData(el)
+
+      await waitFor(() => el.translations?.title === TEST_TEXT.HEADING)
+
+      expect(document.head.querySelector(QUERY_STRINGS.META_DESCRIPTION).content).toBe(
+        'First body paragraph'
+      )
+      expect(document.head.querySelector(QUERY_STRINGS.META_OG_TITLE).content).toBe(
+        `${BASE_TITLE} | ${TEST_TEXT.HEADING}`
+      )
+    } finally {
+      globalThis.fetch = origFetch
+      lang.database = prevDb
+    }
+
+    document.head.querySelector(QUERY_STRINGS.META_DESCRIPTION)?.remove()
+    document.head.querySelector(QUERY_STRINGS.META_OG_TITLE)?.remove()
 
     el.remove()
   })

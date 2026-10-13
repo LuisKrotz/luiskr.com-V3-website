@@ -25,7 +25,8 @@ import { appText } from '@core/locale/ui-text.js'
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import type { DbSnapshot } from '@core/utils/data/db.js'
 import type { RouteDescriptor } from '@core/router/router.js'
-import { stripHtml } from '@core/utils/index.js'
+import { stripHtml, toMetaDescription } from '@core/utils/index.js'
+import { setMetaDescription } from '@core/router/navigate.js'
 import { calcDrawTextDelay, calcDrawTextOrderedOffset } from '@core/utils/wasm/wasm-layout.js'
 import { DRAW_TIMINGS } from '@core/tokens/media/dimensions.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
@@ -132,6 +133,13 @@ export class ViewLegal extends BaseComponent {
       if (!snapshot?.exists()) return
 
       const val = snapshot.val() as LegalDoc
+
+      // The route's meta description rides the fetched document — its
+      // first paragraph is the SERP snippet; resolve at data-land so the
+      // tag carries the localized text, not the booted shell's.
+      // setMetaDescription no-ops on empty input.
+      setMetaDescription(toMetaDescription(val.sections?.[0]?.content?.[0] || ''))
+
       if (!wait) {
         this.translations = val
         this._updateDom()
