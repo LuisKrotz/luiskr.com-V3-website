@@ -10,7 +10,12 @@
  */
 
 import '@website/components/media/DrawText.js'
-import { fitText, setupFit, teardownFit } from '@website/components/media/draw-text/fit.js'
+import {
+  fitText,
+  scheduleFit,
+  setupFit,
+  teardownFit,
+} from '@website/components/media/draw-text/fit.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
@@ -74,6 +79,13 @@ const stubComputed = (styles) => {
     ...styles,
   })
 }
+
+/**
+ * Awaits one animation frame — enough for the queued `flushFits` rAF
+ * (scheduled before this helper's own callback) to have run.
+ * @returns {Promise<void>}
+ */
+const flushRaf = () => new Promise((resolve) => requestAnimationFrame(() => resolve()))
 
 afterEach(() => {
   document.body.innerHTML = ''
@@ -170,7 +182,7 @@ describe('draw-text fit tails', () => {
     expect(el.style.letterSpacing).toBe(ATTR_VALUES.EMPTY)
   })
 
-  test('setupFit installs a ResizeObserver on the parent and refits on its callback', () => {
+  test('setupFit installs a ResizeObserver on the parent and refits on its callback', async () => {
     let roCb = null
 
     globalThis.ResizeObserver = class {
@@ -190,6 +202,8 @@ describe('draw-text fit tails', () => {
     stubComputed({})
 
     roCb()
+
+    await flushRaf()
 
     expect(el.style.fontSize).toBe('17px')
   })
@@ -257,6 +271,7 @@ describe('draw-text fit tails', () => {
 
     await readyPromise
     await Promise.resolve()
+    await flushRaf()
 
     expect(el.style.fontSize).toBe('17px')
   })
@@ -310,5 +325,102 @@ describe('draw-text fit tails', () => {
     el.setAttribute(COMMON_ATTRS.FIT, ATTR_VALUES.EMPTY) // _isMounted=false → skip
 
     expect(el._fitObserver).toBeNull()
+  })
+})
+
+describe('draw-text fit batching', () => {
+  test('scheduleFit early-returns without the fit attribute', async () => {
+    const { el } = mount()
+
+    scheduleFit(el)
+
+    await flushRaf()
+
+    expect(el.style.fontSize).toBe(ATTR_VALUES.EMPTY)
+  })
+
+  test('batches multiple hosts into one flush and applies their scales', async () => {
+    const first = mount({ [COMMON_ATTRS.FIT]: ATTR_VALUES.EMPTY })
+    const second = mount({ [COMMON_ATTRS.FIT]: ATTR_VALUES.EMPTY })
+
+    stubRects(first.wrap, first.el, 100, 200)
+    stubRects(second.wrap, second.el, 100, 400)
+    stubComputed({})
+
+    scheduleFit(first.el)
+    scheduleFit(second.el)
+    scheduleFit(second.el) // dedupe — a second queueing is a no-op
+
+    await flushRaf()
+
+    expect(first.el.style.fontSize).toBe('17px')
+    expect(second.el.style.fontSize).toBe('8.5px')
+    expect(second.el.style.letterSpacing).toBe('1.25px')
+  })
+
+  test('flush skips unmounted and already-fitting hosts', async () => {
+    const { el, wrap } = mount({ [COMMON_ATTRS.FIT]: ATTR_VALUES.EMPTY })
+    const detached = mount({ [COMMON_ATTRS.FIT]: ATTR_VALUES.EMPTY })
+
+    stubRects(wrap, el, 400, 50) // fits → no write arm in applyFit
+    stubComputed({})
+
+    scheduleFit(el)
+    scheduleFit(detached.el)
+
+    detached.el._isMounted = false // simulates disconnect before the flush
+
+    await flushRaf()
+
+    expect(el.style.fontSize).toBe(ATTR_VALUES.EMPTY)
+  })
+
+  test('teardownFit drops a queued host before the flush runs', async () => {
+    const { el, wrap } = mount({ [COMMON_ATTRS.FIT]: ATTR_VALUES.EMPTY })
+
+    stubRects(wrap, el, 100, 200)
+    stubComputed({})
+
+    scheduleFit(el)
+    teardownFit(el)
+
+    await flushRaf()
+
+    expect(el.style.fontSize).toBe(ATTR_VALUES.EMPTY)
+  })
+
+  test('batched applyFit skips empty boxes, zero words and missing font metrics', async () => {
+    const noBox = mount({ [COMMON_ATTRS.FIT]: ATTR_VALUES.EMPTY })
+    const noWords = mount({ [COMMON_ATTRS.FIT]: ATTR_VALUES.EMPTY })
+    const noFont = mount({ [COMMON_ATTRS.FIT]: ATTR_VALUES.EMPTY })
+
+    stubRects(noWords.wrap, noWords.el, 100, 0)
+    stubRects(noFont.wrap, noFont.el, 100, 200)
+
+    scheduleFit(noBox.el)
+    scheduleFit(noWords.el)
+
+    stubComputed({ fontSize: ATTR_VALUES.EMPTY })
+    scheduleFit(noFont.el)
+
+    await flushRaf()
+
+    expect(noBox.el.style.fontSize).toBe(ATTR_VALUES.EMPTY)
+    expect(noWords.el.style.fontSize).toBe(ATTR_VALUES.EMPTY)
+    expect(noFont.el.style.fontSize).toBe(ATTR_VALUES.EMPTY)
+  })
+
+  test('batched applyFit leaves letter-spacing alone when tracking is zero', async () => {
+    const { el, wrap } = mount({ [COMMON_ATTRS.FIT]: ATTR_VALUES.EMPTY })
+
+    stubRects(wrap, el, 100, 200)
+    stubComputed({ letterSpacing: ATTR_VALUES.EMPTY })
+
+    scheduleFit(el)
+
+    await flushRaf()
+
+    expect(el.style.fontSize).toBe('17px')
+    expect(el.style.letterSpacing).toBe(ATTR_VALUES.EMPTY)
   })
 })

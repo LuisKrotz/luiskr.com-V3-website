@@ -18,7 +18,7 @@ import { DRAW_TEXT_CLASSES } from '@core/tokens/classes/draw-text.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { DRAW_TEXT_SELECTORS } from '@core/tokens/selectors/draw-text.js'
 import { updateDom } from './draw-text/dom.js'
-import { fitText, setupFit, teardownFit } from './draw-text/fit.js'
+import { scheduleFit, setupFit, teardownFit } from './draw-text/fit.js'
 import { parseTokens, renderContent } from './draw-text/render.js'
 import {
   registerOrdered,
@@ -206,7 +206,7 @@ export class DrawText extends HTMLElement {
   _updateDom() {
     updateDom(this)
 
-    fitText(this)
+    scheduleFit(this)
   }
 
   /** The animated content element inside the shadow root — cached by _applyContent so repeated queries are free. */

@@ -18,6 +18,7 @@ import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { stripHtml } from '@core/utils/string.js'
+import { onScrollStop } from '@core/utils/motion/scroll-state.js'
 import type { DrawText } from '../DrawText.js'
 import { DRAW_TIMINGS } from '@core/tokens/media/dimensions.js'
 
@@ -119,8 +120,15 @@ export function setupTrigger(host: DrawText): void {
           host._observer = null
         }
 
-        requestAnimationFrame(() => {
-          host._startAnimation()
+        // Mounting hundreds of char spans mid-scroll is the scroll-jank
+        // source mobile benchmarks flag — the word-level render is already
+        // on screen, so hold the reveal until the gesture settles. When the
+        // window isn't scrolling, onScrollStop fires immediately (same
+        // behavior as the old direct rAF).
+        onScrollStop(() => {
+          requestAnimationFrame(() => {
+            host._startAnimation()
+          })
         })
       },
       {

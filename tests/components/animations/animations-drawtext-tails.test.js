@@ -81,8 +81,15 @@ describe('DrawText tails', () => {
     el.remove()
   })
 
-  test('aria-label is stripped during render', () => {
+  test('aria-label is synced to the rendered text', () => {
     const el = mount({ [ARIA_ATTRS.ARIA_LABEL]: TEST_TEXT.HEADING })
+
+    // The host keeps an accessible name for the aria-hidden shadow text —
+    // headings wrapping <draw-text> must not announce empty.
+    expect(el.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toBe(TEST_TEXT.HELLO)
+
+    // Empty text drops the host label entirely (else-if removal arm).
+    el.text = CHAR_STRINGS.EMPTY
 
     expect(el.hasAttribute(ARIA_ATTRS.ARIA_LABEL)).toBe(false)
 

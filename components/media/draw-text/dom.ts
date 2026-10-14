@@ -8,6 +8,7 @@ import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { DRAW_TEXT_CLASSES } from '@core/tokens/classes/draw-text.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import drawTextStyles from '@core/sass/components/media/draw-text.scss?inline'
+import { stripHtml } from '@core/utils/string.js'
 import type { DrawText } from '../DrawText.js'
 import { renderContent } from './render.js'
 import { getSharedSheet } from './sheet.js'
@@ -22,7 +23,16 @@ export function updateDom(host: DrawText): void {
   const pendingClass =
     !host._isVisible && !host._hasAnimated ? DRAW_TEXT_CLASSES.DRAW_TEXT_PENDING : ATTR_VALUES.EMPTY
 
-  if (host.hasAttribute(ARIA_ATTRS.ARIA_LABEL)) {
+  // Every rendered word/char span is aria-hidden, so the host must carry
+  // the accessible name itself — without this a wrapping <h2>/<a> reads as
+  // an empty heading/link (axe "empty heading"). Syncing to the live text
+  // also satisfies label-content-name-mismatch: the label IS the visible
+  // string. `aria-label` is not an observed attribute, so no loop.
+  const label = stripHtml(host.text).trim()
+
+  if (label) {
+    host.setAttribute(ARIA_ATTRS.ARIA_LABEL, label)
+  } else if (host.hasAttribute(ARIA_ATTRS.ARIA_LABEL)) {
     host.removeAttribute(ARIA_ATTRS.ARIA_LABEL)
   }
 

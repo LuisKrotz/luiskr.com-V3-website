@@ -11,6 +11,9 @@ import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { mount, TEST_TEXT } from '@tests/fixtures/test-constants.js'
 
+/** Drains one animation frame so the debounced note measure runs. */
+const flushRaf = () => new Promise((resolve) => requestAnimationFrame(() => resolve()))
+
 const NOTE_SEL = `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE}`
 const NOTE_TEXT_SEL = `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE_TEXT}`
 
@@ -44,7 +47,7 @@ describe('PortfolioRelated note truncation tails', () => {
     expect(el._noteTruncated).toBe(false)
     el._noteOpen = false
 
-    // No-change arm: happy-dom reports 0/0 → not truncated, flag stays.
+    // No-change arm: happy-dom reports 0/0 → zero-height guard returns.
     el._measureNote()
     expect(el._noteTruncated).toBe(false)
 
@@ -63,11 +66,34 @@ describe('PortfolioRelated note truncation tails', () => {
       el.shadowRoot.querySelector(NOTE_SEL).classList.contains(STATE_CLASSES.IS_TRUNCATED)
     ).toBe(true)
 
+    // Same-flag arm: a laid-out, non-overflowing stub measures false and
+    // matches the flipped flag path on a fresh instance.
+    const bare = new PortfolioRelated()
+
+    bare._noteTruncated = true
+
+    const bareSpy = jest
+      .spyOn(bare, '$')
+      .mockImplementation((sel) =>
+        sel === NOTE_TEXT_SEL ? { scrollHeight: 20, clientHeight: 20 } : null
+      )
+
+    bare._measureNote()
+
+    expect(bare._noteTruncated).toBe(false)
+
+    // Same-flag arm: a second non-overflowing measure finds no flag
+    // change and skips the re-render entirely.
+    bare._measureNote()
+
+    expect(bare._noteTruncated).toBe(false)
+
+    bareSpy.mockRestore()
     $spy.mockRestore()
     cleanup()
   })
 
-  test('watch arms: same-element skip, rebind on re-render, missing note', () => {
+  test('watch arms: same-element skip, rebind on re-render, missing note', async () => {
     const savedRO = globalThis.ResizeObserver
     const observed = []
     let roCb = null
@@ -112,10 +138,15 @@ describe('PortfolioRelated note truncation tails', () => {
       expect(observed[observed.length - 1]).toBe(el.shadowRoot.querySelector(NOTE_SEL))
       expect(el._noteEl).toBe(el.shadowRoot.querySelector(NOTE_SEL))
 
-      // Firing the observer callback re-runs the truncation measure.
+      // Firing the observer callback queues the measure — the rAF
+      // debounce collapses repeated ticks into a single read.
+      roCb()
       roCb()
 
+      await flushRaf()
+
       expect(el._noteTruncated).toBe(false)
+      expect(el._measureRaf).toBe(0)
     } finally {
       if (savedRO === undefined) delete globalThis.ResizeObserver
       else globalThis.ResizeObserver = savedRO
@@ -151,12 +182,15 @@ describe('PortfolioRelated note truncation tails', () => {
     bare._watchNoteTruncation()
     expect(bare._noteEl).toBeNull()
 
-    // onDestroy disconnects a live observer and clears the refs.
+    // onDestroy disconnects a live observer, cancels a queued measure
+    // and clears the refs.
     el._noteRO = { disconnect() {} }
     el._noteEl = el
+    el._measureRaf = requestAnimationFrame(() => {})
     el.onDestroy()
     expect(el._noteRO).toBeNull()
     expect(el._noteEl).toBeNull()
+    expect(el._measureRaf).toBe(0)
 
     cleanup()
   })

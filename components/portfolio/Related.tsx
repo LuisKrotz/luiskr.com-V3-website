@@ -40,6 +40,8 @@ export class PortfolioRelated extends BaseComponent {
 
   _noteRO: ResizeObserver | null = null
 
+  _measureRaf = 0 // pending rAF handle — debounces note truncation measures
+
   constructor() {
     super(internalStyles)
   }
@@ -63,12 +65,32 @@ export class PortfolioRelated extends BaseComponent {
 
     if (!textEl || this._noteOpen) return
 
+    // Skip transient zero-height reads (element hidden/not yet laid out)
+    // — they report as truncated and ping-pong the flag on the next render.
+    if (textEl.clientHeight === 0) return
+
     const truncated = textEl.scrollHeight > textEl.clientHeight + 1
 
     if (truncated !== this._noteTruncated) {
       this._noteTruncated = truncated
       this._updateDom()
     }
+  }
+
+  /**
+   * Schedules a single truncation measure on the next animation frame.
+   * Reads inside rAF hit clean layout, so the scrollHeight query costs
+   * ~0; running it synchronously on every onUpdated/RO tick forced a
+   * whole-document layout per call (the scroll-jank source profiles
+   * flagged). Bursts (render → RO fire → render) collapse into one read.
+   */
+  _queueNoteMeasure(): void {
+    if (this._measureRaf) return
+
+    this._measureRaf = requestAnimationFrame(() => {
+      this._measureRaf = 0
+      this._measureNote()
+    })
   }
 
   /**
@@ -85,7 +107,7 @@ export class PortfolioRelated extends BaseComponent {
       return
     }
 
-    this._measureNote()
+    this._queueNoteMeasure()
 
     if (typeof ResizeObserver === TYPE_STRINGS.UNDEFINED || this._noteEl === noteEl) return
 
@@ -93,7 +115,7 @@ export class PortfolioRelated extends BaseComponent {
 
     this._noteEl = noteEl
 
-    this._noteRO = new ResizeObserver(() => this._measureNote())
+    this._noteRO = new ResizeObserver(() => this._queueNoteMeasure())
 
     this._noteRO.observe(noteEl)
   }
@@ -146,6 +168,12 @@ export class PortfolioRelated extends BaseComponent {
     this._noteRO = null
 
     this._noteEl = null
+
+    if (this._measureRaf) {
+      cancelAnimationFrame(this._measureRaf)
+
+      this._measureRaf = 0
+    }
   }
 
   override onStoreUpdate() {

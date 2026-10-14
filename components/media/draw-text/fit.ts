@@ -107,6 +107,89 @@ export function fitText(host: DrawText): void {
 }
 
 /**
+ * Pending batch of hosts whose fit pass was deferred to the next frame.
+ * A `Set` dedupes repeated triggers (attribute change + observer in the
+ * same task) so each host measures once per flush.
+ */
+const fitQueue = new Set<DrawText>()
+
+/** rAF handle for the queued batch — `0` means no flush is scheduled. */
+let fitRafId = 0
+
+/**
+ * Applies the computed scale for one host after its measurement phase —
+ * the write half of the batched flush, kept separate so the loop never
+ * interleaves reads with writes.
+ * @param host — the draw-text element
+ * @param avail — parent content-box width measured in the read phase
+ * @param widest — widest word width measured in the read phase
+ */
+function applyFit(host: DrawText, avail: number, widest: number): void {
+  if (!avail || !widest || widest <= avail) return
+
+  const scale = avail / widest
+
+  const computed = getComputedStyle(host)
+
+  const baseFont = parseFloat(computed.fontSize || CHAR_STRINGS.ZERO)
+
+  // `letter-spacing: normal` parses as NaN — treat it as zero tracking.
+  const baseSpacing = parseFloat(computed.letterSpacing || CHAR_STRINGS.ZERO) || 0
+
+  if (!baseFont) return
+
+  host.style.fontSize = `${baseFont * scale}${CHAR_STRINGS.PX}`
+
+  if (baseSpacing) host.style.letterSpacing = `${baseSpacing * scale}${CHAR_STRINGS.PX}`
+}
+
+/**
+ * Flushes every queued host in three strict phases — clear all inline
+ * overrides, read all measurements, then write all scales. Running the
+ * passes back-to-back inside one rAF turns the mount-time N × (write →
+ * read → write) layout thrash into a single style/layout/paint cycle.
+ * Hosts disconnected before the flush are skipped via the mounted flag.
+ */
+function flushFits(): void {
+  fitRafId = 0
+
+  const hosts = [...fitQueue].filter((h) => h._isMounted)
+
+  fitQueue.clear()
+
+  if (!hosts.length) return
+
+  for (const host of hosts) {
+    host.style.fontSize = ATTR_VALUES.EMPTY
+    host.style.letterSpacing = ATTR_VALUES.EMPTY
+  }
+
+  const measured = hosts.map((host) => ({
+    host,
+    avail: availableWidth(host),
+    widest: widestWord(host),
+  }))
+
+  for (const { host, avail, widest } of measured) applyFit(host, avail, widest)
+}
+
+/**
+ * Queues a fit pass for the host on the next animation frame instead of
+ * measuring synchronously. All draw-text siblings mount in the same task
+ * batch; coalescing their fits prevents sequential forced reflows — the
+ * synchronous `fitText` remains available for callers that already hold
+ * a stable layout (and for the test suite's deterministic asserts).
+ * @param host — the draw-text element
+ */
+export function scheduleFit(host: DrawText): void {
+  if (!host.hasAttribute(COMMON_ATTRS.FIT)) return
+
+  fitQueue.add(host)
+
+  if (!fitRafId) fitRafId = requestAnimationFrame(flushFits)
+}
+
+/**
  * Installs the fit pipeline for a fitted host: immediate measure, a
  * ResizeObserver on the parent (the sizing constraint) for breakpoint /
  * orientation changes, and a one-shot refit once webfonts finish loading
@@ -116,20 +199,21 @@ export function fitText(host: DrawText): void {
 export function setupFit(host: DrawText): void {
   if (!host.hasAttribute(COMMON_ATTRS.FIT)) return
 
-  fitText(host)
+  scheduleFit(host)
 
   if (typeof ResizeObserver !== TYPE_STRINGS.UNDEFINED && !host._fitObserver) {
-    host._fitObserver = new ResizeObserver(() => fitText(host))
+    host._fitObserver = new ResizeObserver(() => scheduleFit(host))
 
     host._fitObserver.observe(host.parentElement || host)
   }
 
-  document.fonts?.ready.then(() => fitText(host)).catch((): void => undefined)
+  document.fonts?.ready.then(() => scheduleFit(host)).catch((): void => undefined)
 }
 
 /**
- * Disconnects the fit observer and restores the stylesheet font sizing —
- * called on disconnect and when the `fit` attribute is removed.
+ * Disconnects the fit observer, drops any queued batch entry, and
+ * restores the stylesheet font sizing — called on disconnect and when
+ * the `fit` attribute is removed.
  * @param host — the draw-text element
  */
 export function teardownFit(host: DrawText): void {
@@ -138,6 +222,8 @@ export function teardownFit(host: DrawText): void {
 
     host._fitObserver = null
   }
+
+  fitQueue.delete(host)
 
   host.style.fontSize = ATTR_VALUES.EMPTY
   host.style.letterSpacing = ATTR_VALUES.EMPTY
