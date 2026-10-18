@@ -11126,7 +11126,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/core/utils/gpu/orbit-controller.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/core/utils/gpu/ring-sheen.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/core/utils/gpu/scene3d.ts</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -16007,6 +16017,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs-exp/README.md</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs-exp/arch-scene-3d.ts</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>

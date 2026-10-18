@@ -3257,7 +3257,9 @@ https://luiskr.com/docs/core/utils/gpu/gpu-accel-shaders.ts
 https://luiskr.com/docs/core/utils/gpu/gpu-accel.ts
 https://luiskr.com/docs/core/utils/gpu/gpu-info.ts
 https://luiskr.com/docs/core/utils/gpu/npu-predict.ts
+https://luiskr.com/docs/core/utils/gpu/orbit-controller.ts
 https://luiskr.com/docs/core/utils/gpu/ring-sheen.ts
+https://luiskr.com/docs/core/utils/gpu/scene3d.ts
 https://luiskr.com/docs/core/utils/gpu/webgpu-widget.ts
 https://luiskr.com/docs/core/utils/index.ts
 https://luiskr.com/docs/core/utils/media
@@ -4234,6 +4236,7 @@ https://luiskr.com/docs/desktop/package.json
 https://luiskr.com/docs/desktop/preload.mjs
 https://luiskr.com/docs/docs-exp/Docs.tsx
 https://luiskr.com/docs/docs-exp/README.md
+https://luiskr.com/docs/docs-exp/arch-scene-3d.ts
 https://luiskr.com/docs/docs-exp/arch-scene.ts
 https://luiskr.com/docs/docs-exp/copy-guard.ts
 https://luiskr.com/docs/docs-exp/coverage-nav.ts
