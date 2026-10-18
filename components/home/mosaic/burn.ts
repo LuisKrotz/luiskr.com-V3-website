@@ -55,6 +55,7 @@ import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import store from '@core/store.js'
 import { frame } from './burn/loop.js'
 import { insertTitleSlot, mountBurn } from './burn/mount.js'
+import { setBurnDirWasm } from './burn/wasm.js'
 import type { BurnCard } from './burn/types.js'
 import type { MosaicItem } from './pack.js'
 import type { HomeMosaic } from '../HomeMosaic.js'
@@ -105,6 +106,9 @@ export function armCardBurn(host: HomeMosaic, i: number, item: MosaicItem): void
     s.dir = 1
     s.t = s.prog * (s.dur / 1000)
 
+    // The crate's set_dir restarts the particle stream on a flip.
+    setBurnDirWasm(s)
+
     if (!s.raf) s.raf = requestAnimationFrame(() => frame(s))
 
     return
@@ -134,6 +138,9 @@ export function disarmCardBurn(host: HomeMosaic, i: number): void {
   if (s) {
     s.dir = -1
     s.prog = Math.min(1, s.t / (s.dur / 1000))
+
+    // The crate's set_dir restarts the particle stream on a flip.
+    setBurnDirWasm(s)
 
     // A settled loop already stopped scheduling — restart it so the
     // rebuild actually plays.

@@ -24,6 +24,7 @@ import {
   _PAD_X,
 } from './tuning.js'
 import type { BurnInk, BurnSession, LetterBurn } from './types.js'
+import { mirrorBurnGpuCanvas } from './wasm.js'
 
 /**
  * Resolves the burn palette from the root CSS custom properties — dark
@@ -344,6 +345,9 @@ export function syncPaper(s: BurnSession): void {
 
     s.canvas.style.left = `${box.left - oBox.left - _PAD_X}px`
     s.canvas.style.top = `${box.top - oBox.top - _PAD_TOP}px`
+
+    // The GPU particle canvas rides the same re-anchor.
+    mirrorBurnGpuCanvas(s)
 
     return
   }

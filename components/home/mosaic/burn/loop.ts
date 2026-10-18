@@ -9,6 +9,7 @@ import { CANVAS_STRINGS } from '@core/tokens/strings/canvas.js'
 import { syncPaper } from './paper.js'
 import { burnPaper } from './paper-fx.js'
 import { drawParticles, spawn } from './particles.js'
+import { destroyBurnWasm, frameBurnWasm, liveBurnParticles } from './wasm.js'
 import { _BURN_END, _JAG_RATIO, _REBUILD_RATIO } from './tuning.js'
 import type { BurnCard, BurnSession } from './types.js'
 
@@ -23,6 +24,8 @@ import type { BurnCard, BurnSession } from './types.js'
 export function teardownBurn(s: BurnSession): void {
   s.active = false
   s.raf = 0
+
+  destroyBurnWasm(s)
 
   s.canvas.remove()
   ;(s.cardEl as BurnCard)._burn = null
@@ -84,9 +87,15 @@ export function frame(s: BurnSession): void {
 
   // Embers pour off the live burn edge; on rebuild the same live edge
   // instead receives deposits raining down through the empty zone.
-  if (stage > 0 && stage < _BURN_END) spawn(s, stage, jagAmp, dt)
+  // The wasm artifact owns the whole particle layer when mounted —
+  // one instanced-quad draw for the whole mote field.
+  if (s.wasm) {
+    frameBurnWasm(s, stage, jagAmp, dt)
+  } else {
+    if (stage > 0 && stage < _BURN_END) spawn(s, stage, jagAmp, dt)
 
-  drawParticles(s, dt, stage, jagAmp)
+    drawParticles(s, dt, stage, jagAmp)
+  }
 
   // Rebuild complete — hand the (pristine) pixels back to the DOM ink.
   if (s.dir < 0 && s.prog <= 0) {
@@ -94,7 +103,9 @@ export function frame(s: BurnSession): void {
     return
   }
 
-  const settling = s.dir > 0 && progress >= _BURN_END && s.particles.length === 0
+  const liveParticles = s.wasm ? liveBurnParticles(s) : s.particles.length
+
+  const settling = s.dir > 0 && progress >= _BURN_END && liveParticles === 0
 
   if (settling) {
     ctx.clearRect(0, 0, w, h)

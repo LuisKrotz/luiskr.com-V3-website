@@ -15,6 +15,7 @@ import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { frame } from './loop.js'
 import { readBurnInk, syncPaper } from './paper.js'
+import { tryWasmBurn } from './wasm.js'
 import { _BURN_MS_MAX, _BURN_MS_MIN, _DESC_CHAR_MS, _DESC_TAIL_MS } from './tuning.js'
 import type { BurnCard, BurnSession } from './types.js'
 import type { MosaicItem } from '../pack.js'
@@ -141,6 +142,10 @@ export function mountBurn(
   // themselves combusting.
   ctx.drawImage(s.paper, s.paperX, s.paperY)
   titleEl.classList.add(HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING)
+
+  // The paper canvas is laid out now — the wasm particle layer can
+  // mount its stacked canvas over it (2D particles run until it lands).
+  tryWasmBurn(s)
 
   // Silence the card's border sheen while the burn owns the hover effect.
   cardEl.classList.add(HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING)

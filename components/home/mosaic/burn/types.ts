@@ -10,6 +10,23 @@ export interface BurnSession {
   /** Overlay canvas absolutely positioned over the title box. */
   canvas: HTMLCanvasElement
   ctx: CanvasRenderingContext2D
+  /**
+   * Optional WebGPU particle canvas — mounted over `canvas` when the
+   * per-widget wasm burn artifact loads; the paper raster stays 2D
+   * (canvas contexts are mutually exclusive per element), particles
+   * move to the GPU canvas.
+   */
+  gpuCanvas?: HTMLCanvasElement
+  /**
+   * Live WebGPU wasm handle — the particle sim+renderer runs in the
+   * artifact (begin/set_letters/set_ink/set_colors/set_dir/set_stage/
+   * frame); unset on failure or before the mount resolves.
+   */
+  wasm?: import('@core/utils/gpu/webgpu-widget.js').WidgetHandle | null
+  /** In-flight mount — teardown must not double-resolve. */
+  wasmPending?: boolean
+  /** Latch — a failed wasm mount never retries this session. */
+  wasmFailed?: boolean
   /** Pre-rasterized "paper" — the title text as a drawable image. */
   paper: HTMLCanvasElement
   /** Canvas box in device px. */
