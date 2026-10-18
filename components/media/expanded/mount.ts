@@ -32,41 +32,57 @@ import { VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
  * the browser shows the broken-image state rather than pinning the thumb.
  */
 function loadFullRes(el: MediaExpanded): void {
-  localMediaCache.fetchOrGetLocalMedia(el.source).then(async (localUrl) => {
-    if (!localUrl) return
+  // The modal is the full-fidelity surface: always fetch the original
+  // asset, never the webp sibling — compression artifacts have no place
+  // in a deliberately perf-isolated view.
+  const candidates = [el.source].filter((u) => u && u.length > 0)
 
-    const bitmap = await wasmMediaThreads.decodeMediaInSeparateThread(
-      localUrl,
-      el.mediaWidth || VIDEO_DIMENSIONS.VIDEO_DEFAULT_WIDTH,
-      el.mediaHeight || VIDEO_DIMENSIONS.VIDEO_DEFAULT_HEIGHT
-    )
+  const attempt = (index: number): void => {
+    if (index >= candidates.length) return
 
-    const img = new Image()
+    localMediaCache.fetchOrGetLocalMedia(candidates[index]).then(async (localUrl) => {
+      if (!localUrl) {
+        // webp sibling missing/not-cached — fall through to the original.
+        attempt(index + 1)
 
-    const swap = () => {
-      el.currentSrc = localUrl
-
-      const imgEl = el.$<HTMLImageElement>(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`)
-
-      if (imgEl) imgEl.src = localUrl
-    }
-
-    img.src = localUrl
-
-    img.onload = () => {
-      if (!bitmap) {
-        gpuAccel.processImageGPU(
-          img,
-          el.mediaWidth || VIDEO_DIMENSIONS.VIDEO_DEFAULT_WIDTH,
-          el.mediaHeight || VIDEO_DIMENSIONS.VIDEO_DEFAULT_HEIGHT
-        )
+        return
       }
 
-      swap()
-    }
+      const bitmap = await wasmMediaThreads.decodeMediaInSeparateThread(
+        localUrl,
+        el.mediaWidth || VIDEO_DIMENSIONS.VIDEO_DEFAULT_WIDTH,
+        el.mediaHeight || VIDEO_DIMENSIONS.VIDEO_DEFAULT_HEIGHT
+      )
 
-    img.onerror = swap
-  })
+      const img = new Image()
+
+      const swap = () => {
+        el.currentSrc = localUrl
+
+        const imgEl = el.$<HTMLImageElement>(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`)
+
+        if (imgEl) imgEl.src = localUrl
+      }
+
+      img.src = localUrl
+
+      img.onload = () => {
+        if (!bitmap) {
+          gpuAccel.processImageGPU(
+            img,
+            el.mediaWidth || VIDEO_DIMENSIONS.VIDEO_DEFAULT_WIDTH,
+            el.mediaHeight || VIDEO_DIMENSIONS.VIDEO_DEFAULT_HEIGHT
+          )
+        }
+
+        swap()
+      }
+
+      img.onerror = swap
+    })
+  }
+
+  attempt(0)
 }
 
 /** Mount lifecycle: listeners, close button, telemetry, media pipeline. */

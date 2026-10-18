@@ -8,6 +8,7 @@
  */
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
+import { webmSibling } from '@core/utils/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { BaseComponent } from '@core/Component.js'
@@ -45,6 +46,12 @@ export class MediaExpanded extends BaseComponent {
 
   get source() {
     return this.getAttribute(MEDIA_ATTRS.SOURCE) || ATTR_VALUES.EMPTY
+  }
+
+  /** Webm sibling of an .mp4 source — first <source> when it exists. */
+
+  get sourceWebm() {
+    return webmSibling(this.source)
   }
 
   /** Low-res thumbnail URL shown while the full asset loads. */

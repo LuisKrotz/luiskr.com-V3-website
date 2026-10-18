@@ -12,8 +12,6 @@ import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
-import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
-import { LOCALES } from '@core/tokens/locales.js'
 import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
@@ -29,18 +27,9 @@ import { MEDIA_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
  */
 export function renderMediaExpanded(el: MediaExpanded) {
   const compMedia =
-    (
-      store.getters.getlang().components as
-        { media?: { close?: string; audioNote?: string } } | undefined
-    )?.media || {}
+    (store.getters.getlang().components as { media?: { close?: string } } | undefined)?.media || {}
 
   const closeText = compMedia.close || componentText(MEDIA_COMPONENT_KEYS.MEDIA_CLOSE)
-
-  const audioNote = compMedia.audioNote || componentText(MEDIA_COMPONENT_KEYS.MEDIA_AUDIO_NOTE)
-
-  // Audio disclaimer only renders off the English locale — on `en` the
-  // soundtrack already matches the visitor's language.
-  const showAudioNote = store.getters.getLang() !== LOCALES.EN
 
   const isReduced = store.getters.getReducedMotion()
 
@@ -111,12 +100,10 @@ export function renderMediaExpanded(el: MediaExpanded) {
               controlsList={MEDIA_ATTRS.NO_DOWNLOAD}
               disablePictureInPicture
             >
+              {el.sourceWebm ? <source src={el.sourceWebm} type={MEDIA_ATTRS.VIDEO_WEBM} /> : null}
+
               <source src={el.source} type={MEDIA_ATTRS.VIDEO_MP4} />
             </video>
-
-            {showAudioNote && (
-              <figcaption className={MEDIA_CLASSES.MEDIA_AUDIO_NOTE}>{audioNote}</figcaption>
-            )}
           </Fragment>
         )}
       </figure>

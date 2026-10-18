@@ -47,7 +47,8 @@ export class MediaFigure extends BaseComponent {
   highResSrc: string = ATTR_VALUES.EMPTY // deferred quality image URL
   isLoaded = false // high-res decoded — thumb can retire
   poster: string[] = [] // [main, scaled] video poster URLs
-  video: string[] = [] // [main, scaled] video source URLs
+  video: string[] = [] // [main, scaled] mp4 video source URLs
+  videoWebm: string[] = [] // [main, scaled] webm video source URLs
   observer: IntersectionObserver | null = null // video viewport IntersectionObserver
   imgObserver: IntersectionObserver | null = null // image lazy-load IntersectionObserver
   isIntersecting = false // last observed viewport state
@@ -156,6 +157,18 @@ export class MediaFigure extends BaseComponent {
 
   get videoSrcFallback(): string {
     return this.video.length >= 2 ? this.video[1] : ATTR_VALUES.EMPTY
+  }
+
+  /** Primary webm video source — emitted first in the <source> list. */
+
+  get videoSrcWebmMain(): string {
+    return this.videoWebm[0] || ATTR_VALUES.EMPTY
+  }
+
+  /** Scaled webm fallback for constrained devices. */
+
+  get videoSrcWebmFallback(): string {
+    return this.videoWebm.length >= 2 ? this.videoWebm[1] : ATTR_VALUES.EMPTY
   }
 
   override onInit() {

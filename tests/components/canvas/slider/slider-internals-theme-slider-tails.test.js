@@ -161,6 +161,16 @@ describe('theme-slider tails', () => {
     slider.onPointerDown({ pointerId: 2 })
     slider.onPointerUp({ pointerId: 2 })
 
+    // Coalesced-input arms — a live drag samples the freshest event in
+    // the packet; an empty packet falls back to the event itself.
+    slider.onPointerDown({ pointerId: 3, clientX: 10 })
+    slider.onPointerMove({
+      clientX: 1,
+      getCoalescedEvents: () => [{ clientX: 30 }, { clientX: 20 }],
+    })
+    slider.onPointerMove({ clientX: 7, getCoalescedEvents: () => [] })
+    slider.onPointerUp({ pointerId: 3 })
+
     slider.onPointerMove({ clientX: 40 })
 
     slider.currentTheme = THEME.SYSTEM

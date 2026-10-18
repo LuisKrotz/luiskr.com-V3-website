@@ -17,23 +17,24 @@ import { VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 export function ensureVideoSource(fig: MediaFigure, vid: HTMLVideoElement | null): void {
   if (!vid || vid.querySelector(MEDIA_ATTRS.SOURCE)) return
 
-  const src1 = document.createElement(MEDIA_ATTRS.SOURCE) as HTMLSourceElement
+  const append = (src: string, type: string) => {
+    if (!src) return
 
-  src1.src = fig.videoSrcMain
+    const el = document.createElement(MEDIA_ATTRS.SOURCE) as HTMLSourceElement
 
-  src1.type = MEDIA_ATTRS.VIDEO_MP4
+    el.src = src
 
-  vid.appendChild(src1)
+    el.type = type
 
-  if (fig.videoSrcFallback) {
-    const src2 = document.createElement(MEDIA_ATTRS.SOURCE) as HTMLSourceElement
-
-    src2.src = fig.videoSrcFallback
-
-    src2.type = MEDIA_ATTRS.VIDEO_MP4
-
-    vid.appendChild(src2)
+    vid.appendChild(el)
   }
+
+  // webm first — the browser walks the list until a source resolves, so
+  // a missing webm simply falls through to the mp4 originals.
+  append(fig.videoSrcWebmMain, MEDIA_ATTRS.VIDEO_WEBM)
+  append(fig.videoSrcWebmFallback, MEDIA_ATTRS.VIDEO_WEBM)
+  append(fig.videoSrcMain, MEDIA_ATTRS.VIDEO_MP4)
+  append(fig.videoSrcFallback, MEDIA_ATTRS.VIDEO_MP4)
 
   vid.load()
 }

@@ -229,7 +229,9 @@ describe('MediaFigure deep paths', () => {
     el.remove()
   })
 
-  test('non-English locale renders the audio-language figcaption on videos', async () => {
+  test('non-English locale renders no audio-language note on muted videos', async () => {
+    // Videos render muted — an English-audio disclaimer is misleading on a
+    // track that plays no sound, so no locale may emit the caption strip.
     const langSpy = jest.spyOn(store.getters, 'getLang').mockReturnValue(LOCALES.DE)
 
     const el = mountFigure({ [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE })
@@ -238,8 +240,7 @@ describe('MediaFigure deep paths', () => {
 
     const note = el.shadowRoot?.querySelector(`.${MEDIA_CLASSES.MEDIA_AUDIO_NOTE}`)
 
-    expect(note).toBeTruthy()
-    expect(note.textContent.length).toBeGreaterThan(0)
+    expect(note).toBeNull()
 
     langSpy.mockRestore()
     el.remove()

@@ -17,7 +17,6 @@ import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
-import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
 import { predictiveLoader } from '@core/predictive-loader.js'
@@ -32,6 +31,8 @@ import { applyCardStyles, layout, quickLayout, scheduleLayout } from './mosaic/l
 import { onClick, onHover, onLeave } from './mosaic/interactions.js'
 import { bindEvents } from './mosaic/events.js'
 import { renderMosaic, skeletonStyle } from './mosaic/render.js'
+import { viewportWidth } from '@core/utils/dom.js'
+import { MOSAIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import homeMosaicStyles from '@core/sass/components/home/home-mosaic.scss?inline'
 
 interface MosaicTranslations {
@@ -106,7 +107,7 @@ export class HomeMosaic extends BaseComponent {
    * jarring layout shift when real data lands. Returns {boxes, height}.
    */
   _packSkeleton(): { boxes: SkeletonBox[]; height: number } {
-    const vw = typeof window !== TYPE_STRINGS.UNDEFINED ? window.innerWidth : 375
+    const vw = viewportWidth() || MOSAIC_DIMENSIONS.MOSAIC_MOBILE_WIDTH
 
     return packMosaicSkeleton(vw)
   }

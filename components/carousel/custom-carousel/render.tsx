@@ -16,6 +16,7 @@ import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
+import { webpIfExists } from '@core/utils/media/manifest.js'
 import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
@@ -104,6 +105,10 @@ export const renderCarouselSlide = (item: CarouselItem | null, folder: string, i
 
   const thumbUrl = isMixedLandscape ? resolveThumbUrl(item, folder) : ATTR_VALUES.EMPTY
 
+  // Manifest-gated: a <source> 404 never falls back to <img>, so webp is
+  // only offered for thumbs confirmed converted by the bucket manifest.
+  const thumbWebpUrl = webpIfExists(thumbUrl)
+
   const mediaStyle =
     isMixedLandscape && item.size?.[0] && item.size?.[1]
       ? {
@@ -124,23 +129,22 @@ export const renderCarouselSlide = (item: CarouselItem | null, folder: string, i
     <div className={slideItemClasses} style={mediaStyle}>
       {isMixedLandscape ? (
         <div className={CAROUSEL_CLASSES.CAROUSEL_SLIDE_PATTERN} aria-hidden={ATTR_VALUES.TRUE}>
-          <img
-            className={CAROUSEL_CLASSES.CAROUSEL_PATTERN_TOP}
-            src={thumbUrl}
-            alt={ATTR_VALUES.EMPTY}
-            aria-hidden={ATTR_VALUES.TRUE}
-            loading={MEDIA_ATTRS.LOADING_LAZY}
-            decoding={MEDIA_ATTRS.DECODING_ASYNC}
-          />
+          {[CAROUSEL_CLASSES.CAROUSEL_PATTERN_TOP, CAROUSEL_CLASSES.CAROUSEL_PATTERN_BOTTOM].map(
+            (cls) => (
+              <picture>
+                {thumbWebpUrl && <source srcset={thumbWebpUrl} type={MEDIA_ATTRS.IMAGE_WEBP} />}
 
-          <img
-            className={CAROUSEL_CLASSES.CAROUSEL_PATTERN_BOTTOM}
-            src={thumbUrl}
-            alt={ATTR_VALUES.EMPTY}
-            aria-hidden={ATTR_VALUES.TRUE}
-            loading={MEDIA_ATTRS.LOADING_LAZY}
-            decoding={MEDIA_ATTRS.DECODING_ASYNC}
-          />
+                <img
+                  className={cls}
+                  src={thumbUrl}
+                  alt={ATTR_VALUES.EMPTY}
+                  aria-hidden={ATTR_VALUES.TRUE}
+                  loading={MEDIA_ATTRS.LOADING_LAZY}
+                  decoding={MEDIA_ATTRS.DECODING_ASYNC}
+                />
+              </picture>
+            )
+          )}
         </div>
       ) : null}
 

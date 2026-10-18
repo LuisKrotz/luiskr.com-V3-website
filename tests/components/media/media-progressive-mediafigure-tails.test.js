@@ -9,6 +9,7 @@ import { TEST_PROJECTS, TEST_TEXT, TEST_URLS } from '@tests/fixtures/test-consta
 import { CDN_URLS } from '@core/tokens/media/urls.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
+import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { IMAGE_DIMENSIONS } from '@core/tokens/media/dimensions.js'
@@ -96,14 +97,17 @@ describe('MediaFigure tails', () => {
     vid.querySelectorAll(MEDIA_ATTRS.SOURCE).forEach((s) => s.remove())
     el._ensureVideoSource(vid)
 
-    expect(vid.querySelectorAll(MEDIA_ATTRS.SOURCE).length).toBe(2)
+    // Two tiers → webm main, webm fallback, mp4 main, mp4 fallback.
+    expect(vid.querySelectorAll(MEDIA_ATTRS.SOURCE).length).toBe(4)
 
     el.video = [TEST_URLS.A]
+    el.videoWebm = [TEST_URLS.B]
 
     vid.querySelectorAll(MEDIA_ATTRS.SOURCE).forEach((s) => s.remove())
     el._ensureVideoSource(vid)
 
-    expect(vid.querySelectorAll(MEDIA_ATTRS.SOURCE).length).toBe(1)
+    // No-fallback arm — one webm + one mp4 source.
+    expect(vid.querySelectorAll(MEDIA_ATTRS.SOURCE).length).toBe(2)
 
     el.remove()
   })
@@ -271,6 +275,14 @@ describe('MediaFigure tails', () => {
 
       nan.isLoaded = false
       await nan.loadHighRes()
+
+      // webp 404 → jpg retry arm: first error swaps the probed src.
+      inst.onerror()
+
+      expect(nan.isLoaded).toBe(false)
+      expect(inst.src.endsWith(MEDIA.EXT)).toBe(true)
+
+      // jpg failure is terminal — the shimmer releases regardless.
       inst.onerror()
 
       expect(nan.isLoaded).toBe(true)
@@ -298,13 +310,27 @@ describe('MediaFigure tails', () => {
       [MEDIA_ATTRS.WIDTH]: String(width),
       [MEDIA_ATTRS.HEIGHT]: String(height),
     })
+    const origImage = window.Image
+    let inst = null
 
-    el.isLoaded = false
-    await el.loadHighRes()
+    window.Image = class {
+      constructor() {
+        inst = this
+      }
+    }
 
-    expect(el.highResSrc).toContain(TEST_PROJECTS.NATHALIA_BOND)
+    try {
+      el.isLoaded = false
+      await el.loadHighRes()
 
-    el.remove()
+      // The probe confirmed — highResSrc publishes the confirmed URL.
+      inst.onload()
+
+      expect(el.highResSrc).toContain(TEST_PROJECTS.NATHALIA_BOND)
+    } finally {
+      window.Image = origImage
+      el.remove()
+    }
   })
 
   test('loadHighRes finish() takes the updateDom arms without a high element', async () => {

@@ -6,6 +6,7 @@
  */
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
+import { webpIfExists } from '@core/utils/media/manifest.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
@@ -36,6 +37,10 @@ const SKELETON_SOCIALS = 4
 const renderCard = (project: RelatedCard, isCurrent: boolean) => {
   const activeClass = isCurrent ? ROUTER_CLASSES.ROUTER_LINK_ACTIVE : ATTR_VALUES.EMPTY
 
+  // <source> selection is type-based — a 404 webp never falls back to the
+  // <img>, so the variant is offered only when the bucket manifest lists it.
+  const coverWebp = webpIfExists(project.imageSrc)
+
   return (
     <a
       href={project.fullPath}
@@ -48,14 +53,17 @@ const renderCard = (project: RelatedCard, isCurrent: boolean) => {
     >
       <div className={RELATED_CLASSES.RELATED_MOSAIC_MEDIA}>
         {project.imageSrc ? (
-          <img
-            src={project.imageSrc}
-            alt={ATTR_VALUES.EMPTY}
-            aria-hidden={ATTR_VALUES.TRUE}
-            className={RELATED_CLASSES.RELATED_MOSAIC_IMG}
-            loading={MEDIA_ATTRS.LOADING_LAZY}
-            decoding={MEDIA_ATTRS.DECODING_ASYNC}
-          />
+          <picture>
+            {coverWebp && <source srcset={coverWebp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
+
+            <img
+              src={project.imageSrc}
+              alt={project.description || ATTR_VALUES.EMPTY}
+              className={RELATED_CLASSES.RELATED_MOSAIC_IMG}
+              loading={MEDIA_ATTRS.LOADING_LAZY}
+              decoding={MEDIA_ATTRS.DECODING_ASYNC}
+            />
+          </picture>
         ) : (
           <div className={SKELETON_CLASSES.SKELETON_MEDIA} />
         )}

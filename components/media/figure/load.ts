@@ -12,14 +12,16 @@ import { IMAGE_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
+import { mediaKeyExists, mediaManifestReady } from '@core/utils/media/manifest.js'
 import { svgPlaceholder } from '@core/utils/dom.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 import type { MediaFigure } from '../MediaFigure.js'
 
 /**
- * Builds the media's CDN URL matrix on init: [poster, mp4] per tier for
- * videos (full size + VIDEO_SCALE'd fallback — the browser picks the
- * first playable <source>), or the thumb URL for images.
+ * Builds the media's CDN URL matrix on init: [poster, webm, mp4] per tier
+ * for videos (full size + VIDEO_SCALE'd fallback — the browser walks the
+ * <source> list until one resolves, so webm-first means "use webm when it
+ * exists, mp4 otherwise"), or the thumb URL for images.
  */
 export function resolveMediaSources(fig: MediaFigure): void {
   if (fig.classes) {
@@ -34,16 +36,19 @@ export function resolveMediaSources(fig: MediaFigure): void {
     const base = storage + fig.mediaSrc
 
     const urls = [
-      [base + MEDIA.VIDEO_THUMB_EXT, base + MEDIA.VIDEO_EXT],
+      [base + MEDIA.VIDEO_THUMB_EXT, base + MEDIA.WEBM_EXT, base + MEDIA.VIDEO_EXT],
       [
         base + MEDIA.VIDEO_SCALE + MEDIA.VIDEO_THUMB_EXT,
+        base + MEDIA.VIDEO_SCALE + MEDIA.WEBM_EXT,
         base + MEDIA.VIDEO_SCALE + MEDIA.VIDEO_EXT,
       ],
     ]
 
     fig.poster = urls.map((a) => a[0])
 
-    fig.video = urls.map((a) => a[1])
+    fig.videoWebm = urls.map((a) => a[1])
+
+    fig.video = urls.map((a) => a[2])
   } else {
     fig.thumbSrc = storage + fig.mediaSrc + MEDIA.MOZ + MEDIA.THUMB_SUFFIX + MEDIA.EXT
   }
@@ -62,12 +67,14 @@ export function mediaPlaceholder(w: number, h: number): string {
 }
 
 /**
- * Thumb → high-res swap. A detached Image preloads the Q50 variant;
- * on load the visible element swaps src + gets the loaded class (the
- * CSS crossfade) and the thumb hides. The 4096²-pixel budget caps decode
- * memory without rejecting tall, narrow full-page screenshots solely because
- * one dimension exceeds 4096px. Errors mark loaded anyway — a broken image
- * must not pin the skeleton shimmer forever.
+ * Thumb → high-res swap. A detached Image preloads the Q50 variant —
+ * webp first, jpg on 404 (the "if webp exists" check is the request
+ * itself, no manifest round-trip); on load the visible element swaps src
+ * + gets the loaded class (the CSS crossfade) and the thumb hides. The
+ * 4096²-pixel budget caps decode memory without rejecting tall, narrow
+ * full-page screenshots solely because one dimension exceeds 4096px.
+ * Errors mark loaded anyway — a broken image must not pin the skeleton
+ * shimmer forever.
  */
 export async function loadHighRes(fig: MediaFigure): Promise<void> {
   if (fig.isVideo || fig.isLoaded) return
@@ -85,15 +92,21 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
   }
 
   const storage = store.getters.getStorage()
+  const base = storage + fig.mediaSrc + MEDIA.MOZ + MEDIA.Q50
+  const jpgUrl = base + MEDIA.EXT
+  const webpUrl = base + MEDIA.WEBP_EXT
 
-  const targetUrl = storage + fig.mediaSrc + MEDIA.MOZ + MEDIA.Q50 + MEDIA.EXT
-
-  fig.highResSrc = targetUrl
+  // Manifest says "no webp" ⇒ skip the doomed probe and start on the
+  // original; unknown ⇒ probe webp first (the request IS the check).
+  let targetUrl = mediaManifestReady() && !mediaKeyExists(webpUrl) ? jpgUrl : webpUrl
 
   const highEl = fig.$<HTMLImageElement>(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
 
   const finish = () => {
     fig.isLoaded = true
+    // Publish only the confirmed URL — assigning highResSrc earlier would
+    // let a mid-flight _updateDom bind a 404 webp into the visible img.
+    fig.highResSrc = targetUrl
     fig.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
 
     if (highEl) {
@@ -119,6 +132,7 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
         : null
 
   if (!ImageClass) {
+    targetUrl = jpgUrl
     finish()
 
     return
@@ -135,6 +149,14 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
   }
 
   img.onerror = () => {
+    if (img.src !== jpgUrl) {
+      // No webp sibling on the bucket — fall back to the jpg original.
+      targetUrl = jpgUrl
+      img.src = jpgUrl
+
+      return
+    }
+
     fig.isLoaded = true
     fig.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
   }

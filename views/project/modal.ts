@@ -9,7 +9,7 @@ import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
-import { slugify } from '@core/utils/index.js'
+import { mediaSlugSeq } from '@core/utils/index.js'
 import router from '@core/router/router.js'
 import type { ViewProject } from './Project.js'
 import type { ProjectMediaItem } from './types.js'
@@ -29,12 +29,21 @@ export function checkAutoOpenModal(c: ViewProject): void {
 
   const folder = c.translations.folder || ATTR_VALUES.EMPTY
 
+  // Per-project slug assignment — document-order numbering resolves
+  // label collisions the same way the build emit + sitemap do, so a
+  // `<label>-2` deep link opens the second same-slug item, not the first.
+  const seen = new Map<string, number>()
+
   for (const section of c.translations.sections || []) {
     for (const group of section) {
       if (!Array.isArray(group) || typeof group[0] === TYPE_STRINGS.STRING) continue
 
       for (const item of group as ProjectMediaItem[]) {
-        if (slugify(item.label || ATTR_VALUES.EMPTY) === slug) {
+        // Only labelled src'd items consume a sequence slot — the same
+        // gate the emit's mediaRowsOf applies, keeping ordinals aligned.
+        const itemSlug = item.label && item.src ? mediaSlugSeq(seen, item.label) : ATTR_VALUES.EMPTY
+
+        if (itemSlug && itemSlug === slug) {
           const isVideo = item.isVideo ?? false
           const source = isVideo
             ? `${storage}${folder}${item.src}${MEDIA.VIDEO_EXT}`

@@ -117,30 +117,50 @@ const fitQueue = new Set<DrawText>()
 let fitRafId = 0
 
 /**
- * Applies the computed scale for one host after its measurement phase —
- * the write half of the batched flush, kept separate so the loop never
- * interleaves reads with writes.
+ * Applies the computed scale for one host — the write half of the batched
+ * flush, fed by values captured in the read phase so the loop is pure
+ * writes (a getComputedStyle here would re-interleave read → write).
  * @param host — the draw-text element
- * @param avail — parent content-box width measured in the read phase
- * @param widest — widest word width measured in the read phase
+ * @param m — measurements captured in the read phase
  */
-function applyFit(host: DrawText, avail: number, widest: number): void {
-  if (!avail || !widest || widest <= avail) return
+function applyFit(host: DrawText, m: MeasuredFit): void {
+  if (!m.avail || !m.widest || m.widest <= m.avail || !m.baseFont) return
 
-  const scale = avail / widest
+  const scale = m.avail / m.widest
 
+  host.style.fontSize = `${m.baseFont * scale}${CHAR_STRINGS.PX}`
+
+  if (m.baseSpacing) host.style.letterSpacing = `${m.baseSpacing * scale}${CHAR_STRINGS.PX}`
+}
+
+/** Measurements captured in the flush's read phase for one host. */
+interface MeasuredFit {
+  /** Parent content-box width in px. */
+  avail: number
+  /** Widest `.draw-text__word` width in px. */
+  widest: number
+  /** Host font size at the stylesheet ramp, px. */
+  baseFont: number
+  /** Host letter-spacing at the stylesheet ramp, px (normal → 0). */
+  baseSpacing: number
+}
+
+/**
+ * Reads every layout/style value applyFit needs for one host — kept in a
+ * single place so the flush's middle phase is pure reads.
+ * @param host — the draw-text element
+ * @returns the host's measurements for the write phase
+ */
+function measureFit(host: DrawText): MeasuredFit {
   const computed = getComputedStyle(host)
 
-  const baseFont = parseFloat(computed.fontSize || CHAR_STRINGS.ZERO)
-
-  // `letter-spacing: normal` parses as NaN — treat it as zero tracking.
-  const baseSpacing = parseFloat(computed.letterSpacing || CHAR_STRINGS.ZERO) || 0
-
-  if (!baseFont) return
-
-  host.style.fontSize = `${baseFont * scale}${CHAR_STRINGS.PX}`
-
-  if (baseSpacing) host.style.letterSpacing = `${baseSpacing * scale}${CHAR_STRINGS.PX}`
+  return {
+    avail: availableWidth(host),
+    widest: widestWord(host),
+    baseFont: parseFloat(computed.fontSize || CHAR_STRINGS.ZERO),
+    // `letter-spacing: normal` parses as NaN — treat it as zero tracking.
+    baseSpacing: parseFloat(computed.letterSpacing || CHAR_STRINGS.ZERO) || 0,
+  }
 }
 
 /**
@@ -164,13 +184,9 @@ function flushFits(): void {
     host.style.letterSpacing = ATTR_VALUES.EMPTY
   }
 
-  const measured = hosts.map((host) => ({
-    host,
-    avail: availableWidth(host),
-    widest: widestWord(host),
-  }))
+  const measured = hosts.map((host) => ({ host, m: measureFit(host) }))
 
-  for (const { host, avail, widest } of measured) applyFit(host, avail, widest)
+  for (const { host, m } of measured) applyFit(host, m)
 }
 
 /**

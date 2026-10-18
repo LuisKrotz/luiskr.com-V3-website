@@ -6,6 +6,7 @@ import { jest } from '@jest/globals'
 
 import store from '@core/store.js'
 import '@website/components/carousel/CustomCarousel.js'
+import { stopCarouselAutoplay } from '@website/components/carousel/custom-carousel/autoplay.js'
 import { TEST_URLS, waitFor } from '@tests/fixtures/test-constants.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { CAROUSEL_SELECTORS } from '@core/tokens/selectors/carousel.js'
@@ -65,6 +66,15 @@ describe('CustomCarousel tails', () => {
 
     el._stopAutoplay()
     cleanup(el)
+  })
+
+  test('stopCarouselAutoplay defaults to a non-permanent stop', () => {
+    // Direct call without the flag — the exported default param arm.
+    const host = { autoplayRunning: false, _isRegressing: false }
+
+    stopCarouselAutoplay(host)
+
+    expect(host._autoplayPermanentlyStopped).toBeUndefined()
   })
 
   test('_measureFit collapses side-by-side below the mobile breakpoint', () => {
@@ -229,6 +239,36 @@ describe('CustomCarousel tails', () => {
     await waitFor(() => el.ringProgress === 0)
 
     expect(el.ringProgress).toBe(0)
+
+    cleanup(el)
+  })
+
+  test('ring-fill cache refreshes when a re-render detaches the nodes', () => {
+    const el = makeCarousel()
+
+    // First write populates the cache from a live query.
+    el.autoplayElapsed = 1
+    el._updateRingDom()
+
+    const live = el._ringFills
+
+    expect(Array.isArray(live)).toBe(true)
+
+    // Second write hits the cached array (fills[0].isConnected → skip query).
+    el._updateRingDom()
+
+    expect(el._ringFills).toBe(live)
+
+    // A stale (detached) cache triggers the refresh arm — the re-render
+    // case where the shadow DOM discarded the old fill nodes.
+    const stale = document.createElement('div')
+
+    el._ringFills = [stale]
+    el._updateRingDom()
+
+    expect(el._ringFills[0]).not.toBe(stale)
+
+    if (live.length) expect(el._ringFills[0]).toBe(live[0])
 
     cleanup(el)
   })

@@ -405,7 +405,9 @@ describe('MediaExpanded', () => {
     el.remove()
   })
 
-  test('non-English locale renders the audio-language figcaption on videos', async () => {
+  test('non-English locale renders no audio-language note on muted videos', async () => {
+    // The expanded player is muted — an English-audio disclaimer is
+    // misleading on a track that plays no sound, so it is never emitted.
     const langSpy = jest.spyOn(store.getters, 'getLang').mockReturnValue(LOCALES.DE)
 
     const el = mountExpanded({ [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE })
@@ -414,8 +416,7 @@ describe('MediaExpanded', () => {
 
     const note = el.shadowRoot?.querySelector(`.${MEDIA_CLASSES.MEDIA_AUDIO_NOTE}`)
 
-    expect(note).toBeTruthy()
-    expect(note.textContent.length).toBeGreaterThan(0)
+    expect(note).toBeNull()
 
     langSpy.mockRestore()
     el.remove()

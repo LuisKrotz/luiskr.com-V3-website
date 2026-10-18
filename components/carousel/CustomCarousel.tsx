@@ -73,6 +73,8 @@ export class CustomCarousel extends BaseComponent {
   /** Live CarouselArrowWebGL widgets (null until viewport entry). */
   _prevArrow: CarouselArrowWebGL | null = null
   _nextArrow: CarouselArrowWebGL | null = null
+  /** Cached ring-fill nodes — autoplay refreshes when a re-render detaches them. */
+  _ringFills: Element[] | null = null
   /** Logical index into items (0..len-1; clone positions never stored). */
   currentIndex = 0
   // Autoplay clock: autoplayStart is the performance.now() the current

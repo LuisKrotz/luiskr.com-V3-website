@@ -42,6 +42,13 @@ export interface CarouselAutoplayHost {
   /** Prev/next arrow widgets (null until viewport entry mounts them). */
   _prevArrow: CarouselArrowLike | null
   _nextArrow: CarouselArrowLike | null
+  /**
+   * Cached ring-fill elements — `updateCarouselRingDom` queries the
+   * shadow DOM every frame otherwise; the array is refreshed lazily
+   * whenever the first cached node reports detached (shadow re-render
+   * discards the old fills).
+   */
+  _ringFills: Element[] | null
   /** Navigate to slide idx (clone-wrap aware). */
   goTo(idx: number): void
   /** Shadow-scoped querySelectorAll. */
@@ -195,7 +202,14 @@ export const tickCarouselAutoplay = (c: CarouselAutoplayHost, timestamp: number)
  * @param c The carousel host.
  */
 export const updateCarouselRingDom = (c: CarouselAutoplayHost): void => {
-  const fills = c.$$(CAROUSEL_SELECTORS.CAROUSEL_BTN_RING_FILL)
+  // Cached fill list — a per-frame querySelectorAll walks the shadow
+  // tree every tick; the lazily-refreshed cache skips it until a
+  // re-render detaches the cached nodes.
+  let fills = c._ringFills
+
+  if (!fills || !fills[0]?.isConnected) {
+    fills = c._ringFills = c.$$(CAROUSEL_SELECTORS.CAROUSEL_BTN_RING_FILL)
+  }
 
   const offset = calcCarouselRingOffset(
     c.autoplayElapsed,
@@ -203,9 +217,13 @@ export const updateCarouselRingDom = (c: CarouselAutoplayHost): void => {
     c.circumference
   )
 
-  fills.forEach((fill) => {
-    ;(fill as SVGElement).style.strokeDashoffset = `${offset}`
-  })
+  // One string, one loop — forEach allocates its predicate per call and
+  // an interpolated offset per fill would churn a string per node.
+  const dash = `${offset}`
+
+  for (const fill of fills) {
+    ;(fill as SVGElement).style.strokeDashoffset = dash
+  }
 
   c._prevArrow?.setProgress(c.ringProgress, c.autoplayRunning)
 

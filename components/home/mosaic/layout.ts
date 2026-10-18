@@ -12,8 +12,8 @@ import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
 import { LAYOUT } from '@core/tokens/layout/masonry.js'
 import { MOSAIC_SELECTORS } from '@core/tokens/selectors/mosaic.js'
 import { WASM_STRINGS } from '@core/tokens/strings/wasm.js'
-import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { calcColsForWidth, calcResponsivePadding } from '@core/utils/wasm/wasm-layout.js'
+import { viewportWidth } from '@core/utils/dom.js'
 import { wasmPool } from '@core/utils/wasm/wasm-pool.js'
 import { computeMosaicLayout } from './pack.js'
 import type { HomeMosaic } from '../HomeMosaic.js'
@@ -40,7 +40,7 @@ export function scheduleLayout(host: HomeMosaic): void {
  * worker. See layout() for the packing geometry notes.
  */
 export function quickLayout(host: HomeMosaic): void {
-  const vw = typeof window !== TYPE_STRINGS.UNDEFINED ? window.innerWidth : 0
+  const vw = viewportWidth()
 
   if (!vw || !host.processedItems.length) return
 
@@ -67,7 +67,7 @@ export function layout(host: HomeMosaic): void {
 
   if (!el || !host.processedItems.length) return
 
-  const vw = typeof window !== TYPE_STRINGS.UNDEFINED ? window.innerWidth : 0
+  const vw = viewportWidth()
 
   if (!vw) return
 
