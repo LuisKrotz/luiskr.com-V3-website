@@ -90,6 +90,14 @@ export const surface3d_set_camera: (a: number, b: number, c: number, d: number) 
 export const surface3d_set_camera_layers: (a: number, b: number) => void
 export const surface3d_set_clear: (a: number, b: number, c: number, d: number, e: number) => void
 export const surface3d_set_clip: (a: number, b: number, c: number) => void
+export const surface3d_set_color: (
+  a: number,
+  b: number,
+  c: number,
+  d: number,
+  e: number,
+  f: number
+) => void
 export const surface3d_set_emissive: (
   a: number,
   b: number,
@@ -152,10 +160,10 @@ export const surface3d_upload_geometry: (
 export const surface3d_upload_texture: (a: number, b: number, c: number, d: number) => number
 export const surface3d_user_data: (a: number, b: number) => number
 export const surface3d_world_position: (a: number, b: number, c: number) => void
-export const __wasm_bindgen_func_elem_324: (a: number, b: number, c: number, d: number) => void
-export const __wasm_bindgen_func_elem_324_53: (a: number, b: number, c: number, d: number) => void
-export const __wasm_bindgen_func_elem_941: (a: number, b: number, c: number, d: number) => void
-export const __wasm_bindgen_func_elem_955: (a: number, b: number, c: number, d: number) => void
+export const __wasm_bindgen_func_elem_325: (a: number, b: number, c: number, d: number) => void
+export const __wasm_bindgen_func_elem_325_54: (a: number, b: number, c: number, d: number) => void
+export const __wasm_bindgen_func_elem_942: (a: number, b: number, c: number, d: number) => void
+export const __wasm_bindgen_func_elem_956: (a: number, b: number, c: number, d: number) => void
 export const __wbindgen_export: (a: number, b: number) => number
 export const __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
 export const __wbindgen_export3: (a: number) => void

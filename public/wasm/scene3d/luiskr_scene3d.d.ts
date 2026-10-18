@@ -266,6 +266,16 @@ export class Surface3d {
    */
   set_clip(near: number, far: number): void
   /**
+   * `set_color` — the base rgba on a registered material. Alpha is
+   * the opacity slot — the per-frame label-fade/highlight arms
+   * write this once per visible material (one uniform-pack row —
+   * cheaper than rebuilding the record).
+   *
+   * @param mat Material id.
+   * @param r @param g @param b @param a rgba 0-1.
+   */
+  set_color(mat: number, r: number, g: number, b: number, a: number): void
+  /**
    * `set_emissive` — the additive self-lit tint on a material.
    *
    * @param mat Material id.
@@ -563,6 +573,14 @@ export interface InitOutput {
   readonly surface3d_set_camera_layers: (a: number, b: number) => void
   readonly surface3d_set_clear: (a: number, b: number, c: number, d: number, e: number) => void
   readonly surface3d_set_clip: (a: number, b: number, c: number) => void
+  readonly surface3d_set_color: (
+    a: number,
+    b: number,
+    c: number,
+    d: number,
+    e: number,
+    f: number
+  ) => void
   readonly surface3d_set_emissive: (
     a: number,
     b: number,
@@ -625,10 +643,10 @@ export interface InitOutput {
   readonly surface3d_upload_texture: (a: number, b: number, c: number, d: number) => number
   readonly surface3d_user_data: (a: number, b: number) => number
   readonly surface3d_world_position: (a: number, b: number, c: number) => void
-  readonly __wasm_bindgen_func_elem_324: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_324_53: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_941: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_955: (a: number, b: number, c: number, d: number) => void
+  readonly __wasm_bindgen_func_elem_325: (a: number, b: number, c: number, d: number) => void
+  readonly __wasm_bindgen_func_elem_325_54: (a: number, b: number, c: number, d: number) => void
+  readonly __wasm_bindgen_func_elem_942: (a: number, b: number, c: number, d: number) => void
+  readonly __wasm_bindgen_func_elem_956: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
