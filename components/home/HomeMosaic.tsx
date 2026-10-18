@@ -32,6 +32,11 @@ import { onClick, onHover, onLeave } from './mosaic/interactions.js'
 import { bindEvents } from './mosaic/events.js'
 import { renderMosaic, skeletonStyle } from './mosaic/render.js'
 import { viewportWidth } from '@core/utils/dom.js'
+import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
+import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
+import { mountCornerBracketsAll } from '@core/utils/gpu/corner-brackets.js'
+import { mountRingSheen } from '@core/utils/gpu/ring-sheen.js'
+import type { RingSheenSession } from '@core/utils/gpu/ring-sheen.js'
 import { MOSAIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import homeMosaicStyles from '@core/sass/components/home/home-mosaic.scss?inline'
 
@@ -53,6 +58,9 @@ export class HomeMosaic extends BaseComponent {
   bottomHMap: Record<number, number> = {} // idx → measured details-panel height for expansion
   ext: string = MEDIA.EXT // CDN image extension
   _rafId: number | null = null // pending layout RAF for debounced re-packs
+  _bracketTeardown: (() => void) | null = null // corner-brackets WebGPU widgets on card CTAs
+  _ringSession: RingSheenSession | null = null // instanced border-sheen overlay on the card wall
+  _ringEl: Element | null = null // the .home-mosaic node the ring session mounted on
 
   constructor() {
     super(homeMosaicStyles)
@@ -124,6 +132,13 @@ export class HomeMosaic extends BaseComponent {
 
   override onDestroy() {
     if (this._rafId) cancelAnimationFrame(this._rafId)
+
+    this._bracketTeardown?.()
+    this._bracketTeardown = null
+
+    this._ringSession?.destroy()
+    this._ringSession = null
+    this._ringEl = null
   }
 
   /** Debounced re-layout (resize/data changes). */
@@ -151,6 +166,9 @@ export class HomeMosaic extends BaseComponent {
 
   _applyCardStyles(): void {
     applyCardStyles(this)
+
+    // Tile rects may have moved — flag the sheet for the next frame.
+    this._ringSession?.refresh()
   }
 
   /**
@@ -191,6 +209,64 @@ export class HomeMosaic extends BaseComponent {
     this._applyCardStyles()
 
     predictiveLoader.scanAndObserve(this.shadowRoot)
+
+    this._syncBrackets()
+
+    this._syncRingSheen()
+  }
+
+  /**
+   * Keeps the instanced ring-sheen overlay bound to the live
+   * `.home-mosaic` wall — renders recreate the container, so a session
+   * on a detached node is torn down and remounted; a live one just
+   * gets a dirty-mark (the layout pass may have moved tiles).
+   */
+  _syncRingSheen(): void {
+    const el = this.$(`.${HOME_MOSAIC_CLASSES.HOME_MOSAIC}`)
+
+    if (el === this._ringEl) {
+      this._ringSession?.refresh()
+
+      return
+    }
+
+    this._ringSession?.destroy()
+
+    this._ringSession = null
+    this._ringEl = el
+
+    if (el instanceof HTMLElement) {
+      this._ringSession =
+        mountRingSheen(
+          el,
+          `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM}`,
+          HOME_MOSAIC_CLASSES.HOME_MOSAIC_RING_CANVAS
+        ) || null
+    }
+  }
+
+  /**
+   * Mounts the corner-brackets WebGPU widget on each card CTA —
+   * re-queries every update so a repacked/re-rendered card wall drops
+   * stale mounts. The CTA is a span inside the card link; its own
+   * :hover drives the ramp (matching _cta.scss).
+   */
+  _syncBrackets(): void {
+    this._bracketTeardown?.()
+    this._bracketTeardown = null
+
+    if (!this.shadowRoot) return
+
+    this._bracketTeardown = mountCornerBracketsAll(
+      this.shadowRoot,
+      `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_BTN}`,
+      {
+        canvasClass: HOME_MOSAIC_CLASSES.HOME_MOSAIC_BTN_CANVAS,
+        insetVar: '--space-2xs',
+        ease: EASING.CSS_EASE_POINTS,
+        ms: ANIMATION_DURATIONS.BRACKET_MS,
+      }
+    )
   }
 }
 

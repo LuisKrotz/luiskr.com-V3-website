@@ -5,6 +5,7 @@
  * stay small; constants keep the module-private `_` convention.
  */
 import { ABOUT_CLASSES } from '@core/tokens/classes/about.js'
+import type { WidgetHandle } from '@core/utils/gpu/webgpu-widget.js'
 
 /** Device-pixel cap — corruption resolution beyond 2× is invisible. */
 export const _DPR_CAP = 2
@@ -84,7 +85,9 @@ export const _POS_CENTER = 50
 export interface GlitchSession {
   /** Overlay canvas inside the picture wrapper. */
   canvas: HTMLCanvasElement
-  ctx: CanvasRenderingContext2D
+  /** 2D backend context — null while the WebGPU arm mounts and forever
+   *  after it succeeds; the rust/glitch shader replaces every painter. */
+  ctx: CanvasRenderingContext2D | null
   /** Canvas size in device px. */
   w: number
   h: number
@@ -121,4 +124,15 @@ export interface GlitchSession {
    *  layout change (resize, grid reflow, mosaic expand above) would stretch
    *  the stale device-px raster into a zoomed/cropped portrait without it. */
   ro: ResizeObserver | null
+  /** Live rust/glitch widget — the WebGPU render backend. Null while the
+   *  mount is in flight or after it fails (the 2D painters run instead). */
+  wasm: WidgetHandle | null
 }
+
+/**
+ * Narrowed view of the session for the 2D painters — `frame()` guards on
+ * `s.ctx` once and passes this type down, so every painter keeps a
+ * non-nullable context without per-call checks (the wasm arm never
+ * reaches them).
+ */
+export type Glitch2dSession = GlitchSession & { ctx: CanvasRenderingContext2D }

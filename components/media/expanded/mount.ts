@@ -20,6 +20,8 @@ import { wasmPool } from '@core/utils/wasm/wasm-pool.js'
 import { localMediaCache } from '@core/utils/media/local-media-cache.js'
 import { wasmMediaThreads } from '@core/utils/wasm/wasm-media-threads.js'
 import { CloseButtonWebGL } from '@core/utils/canvas/widgets/close-button.js'
+import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
+import { mountCornerBracketsAll } from '@core/utils/gpu/corner-brackets.js'
 import type { MediaExpanded } from '../MediaExpanded.js'
 import { VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
@@ -126,6 +128,21 @@ export function mountMediaExpanded(el: MediaExpanded): void {
 
   if (closeCanvas) {
     el._closeBtn = new CloseButtonWebGL(closeCanvas, () => el.startClose())
+  }
+
+  // Corner-bracket widgets on the close-bar + bottom close buttons
+  // (0.2s ease, --space-xs inset — matching _expand-modal.scss).
+  if (el.shadowRoot) {
+    el._brackets = mountCornerBracketsAll(
+      el.shadowRoot,
+      `.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_CLOSE_BAR_BUTTON}, .${EXPAND_MODAL_CLASSES.EXPAND_MODAL_CLOSE_BOTTOM}`,
+      {
+        canvasClass: EXPAND_MODAL_CLASSES.EXPAND_MODAL_BRACKET_CANVAS,
+        insetVar: '--space-xs',
+        ease: EASING.CSS_EASE_POINTS,
+        ms: ANIMATION_DURATIONS.BRACKET_FAST_MS,
+      }
+    )
   }
 
   // Telemetry: record the displayed media shape for the perf worker.

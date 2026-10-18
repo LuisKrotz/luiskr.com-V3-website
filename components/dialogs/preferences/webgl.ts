@@ -16,6 +16,8 @@ import store from '@core/store.js'
 import { ThemeSliderWebGL } from '@core/utils/canvas/widgets/theme-slider.js'
 import { SwitchWebGL } from '@core/utils/canvas/widgets/switch-slider.js'
 import { CloseButtonWebGL } from '@core/utils/canvas/widgets/close-button.js'
+import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
+import { mountCornerBrackets } from '@core/utils/gpu/corner-brackets.js'
 import type { PreferencesModal } from '../PreferencesModal.js'
 
 /** Commits the pref mutation matching a switch type. */
@@ -101,6 +103,35 @@ function mountCloseButton(host: PreferencesModal): void {
   }
 }
 
+/**
+ * Mounts the corner-brackets WebGPU widget on the done button. The
+ * overlay canvas is a button child — re-renders remove it with the
+ * button, so a stored teardown whose button left the DOM is dropped and
+ * a fresh mount attempted (mountCornerBrackets no-ops without WebGPU).
+ */
+function mountDoneBrackets(host: PreferencesModal): void {
+  const btn = host.$<HTMLElement>(`.${PREF_CLASSES.PREF_DONE_BTN}`)
+
+  if (!btn) return
+
+  if (host._doneBrackets && host._doneBracketsBtn !== btn) {
+    host._doneBrackets()
+
+    host._doneBrackets = null
+  }
+
+  if (!host._doneBrackets) {
+    host._doneBrackets = mountCornerBrackets(btn, {
+      canvasClass: PREF_CLASSES.PREF_DONE_BTN_CANVAS,
+      insetVar: '--space-2xs',
+      ease: EASING.EASING_POINTS,
+      ms: ANIMATION_DURATIONS.BRACKET_MS,
+    })
+
+    host._doneBracketsBtn = btn
+  }
+}
+
 /** Mounts all WebGL widgets onto the freshly rendered canvases. */
 export function mountWebGLControls(host: PreferencesModal): void {
   if (!host.isOpen) return
@@ -112,6 +143,8 @@ export function mountWebGLControls(host: PreferencesModal): void {
   mountSwitches(host)
 
   mountCloseButton(host)
+
+  mountDoneBrackets(host)
 }
 
 /** Tears down the mounted GL widgets. */
@@ -132,5 +165,12 @@ export function destroyWebGLControls(host: PreferencesModal): void {
     host._closeBtn.destroy()
 
     host._closeBtn = null
+  }
+
+  if (host._doneBrackets) {
+    host._doneBrackets()
+
+    host._doneBrackets = null
+    host._doneBracketsBtn = null
   }
 }

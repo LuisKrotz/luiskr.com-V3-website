@@ -18,6 +18,7 @@ import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { UI_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { INPUT_STRINGS } from '@core/tokens/strings/input.js'
+import { GPU_WIDGET_KINDS } from '@core/tokens/motion/gpu-widgets.js'
 import { createMock2D } from '@tests/fixtures/mock-webgl.js'
 
 /** Mutable mount result the mock returns — tests swap per case. */
@@ -34,7 +35,9 @@ let liveCount = 0
 
 jest.unstable_mockModule('@core/utils/gpu/webgpu-widget.js', () => ({
   hasWebGpu: () => mockGpu,
-  mountWebGpuWidget: async () => mountResult,
+  // Kind-aware: the mosaic also mounts the ring-sheen + corner-bracket
+  // widgets — those resolve null so only the burn arm goes live.
+  mountWebGpuWidget: async (kind) => (kind === GPU_WIDGET_KINDS.BURN ? mountResult : null),
   warmWidgetArtifacts: () => undefined,
 }))
 

@@ -1293,11 +1293,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://luiskr.com/docs/core/sass/components/shell/app/_gpu-overlay.scss</loc>
-    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://luiskr.com/docs/core/sass/components/shell/app/_keyframes.scss</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -1549,11 +1544,6 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/core/tokens/classes/footer.ts</loc>
-    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://luiskr.com/docs/core/tokens/classes/gpu.ts</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -2648,6 +2638,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/core/utils/gpu/corner-brackets.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/core/utils/gpu/divider-sheen.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/core/utils/gpu/gpu-accel-shaders.ts</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -2668,7 +2668,12 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://luiskr.com/docs/core/utils/gpu/webgpu-overlay.ts</loc>
+    <loc>https://luiskr.com/docs/core/utils/gpu/ring-sheen.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/core/utils/gpu/webgpu-widget.ts</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -4258,6 +4263,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/tokens/motion/gpu-widgets.ts.html</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/coverage-core/core/tokens/motion/gpu.ts.html</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -5204,6 +5214,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/coverage-core/core/utils/wasm/wasm-css.ts.html</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/utils/wasm/wasm-diagram.ts.html</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -34033,6 +34048,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/website/components/home/about/glitch/wasm.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/website/components/home/awards</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -34108,6 +34128,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/website/components/home/mosaic/burn/wasm.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/website/components/home/mosaic/events.ts</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -34174,6 +34199,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/website/components/media/draw-text/fit.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/components/media/draw-text/gpu.ts</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -35103,6 +35133,106 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/burger</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/burger/luiskr_burger.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/burger/luiskr_burger.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/burger/luiskr_burger_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/burger/luiskr_burger_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/burn</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/burn/luiskr_burn.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/burn/luiskr_burn.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/burn/luiskr_burn_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/burn/luiskr_burn_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/close-button</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/close-button/luiskr_close_button.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/close-button/luiskr_close_button.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/close-button/luiskr_close_button_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/close-button/luiskr_close_button_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/corner-brackets</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/corner-brackets/luiskr_corner_brackets.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/corner-brackets/luiskr_corner_brackets.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/corner-brackets/luiskr_corner_brackets_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/corner-brackets/luiskr_corner_brackets_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/website/public/wasm/diagram</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -35128,27 +35258,307 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://luiskr.com/docs/website/public/wasm/overlay</loc>
+    <loc>https://luiskr.com/docs/website/public/wasm/divider-sheen</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://luiskr.com/docs/website/public/wasm/overlay/luiskr_overlay.d.ts</loc>
+    <loc>https://luiskr.com/docs/website/public/wasm/divider-sheen/luiskr_divider_sheen.d.ts</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://luiskr.com/docs/website/public/wasm/overlay/luiskr_overlay.js</loc>
+    <loc>https://luiskr.com/docs/website/public/wasm/divider-sheen/luiskr_divider_sheen.js</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://luiskr.com/docs/website/public/wasm/overlay/luiskr_overlay_bg.wasm</loc>
+    <loc>https://luiskr.com/docs/website/public/wasm/divider-sheen/luiskr_divider_sheen_bg.wasm</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://luiskr.com/docs/website/public/wasm/overlay/luiskr_overlay_bg.wasm.d.ts</loc>
+    <loc>https://luiskr.com/docs/website/public/wasm/divider-sheen/luiskr_divider_sheen_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/flag</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/flag/luiskr_flag.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/flag/luiskr_flag.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/flag/luiskr_flag_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/flag/luiskr_flag_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/glitch</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/glitch/luiskr_glitch.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/glitch/luiskr_glitch.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/glitch/luiskr_glitch_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/glitch/luiskr_glitch_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/markdown</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/markdown/luiskr_markdown.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/markdown/luiskr_markdown.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/markdown/luiskr_markdown_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/markdown/luiskr_markdown_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/markdown/package.json</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/media</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/media/luiskr_media.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/media/luiskr_media.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/media/luiskr_media_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/media/luiskr_media_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/menu-background</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/menu-background/luiskr_menu_background.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/menu-background/luiskr_menu_background.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/menu-background/luiskr_menu_background_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/menu-background/luiskr_menu_background_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/ring-sheen</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/ring-sheen/luiskr_ring_sheen.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/ring-sheen/luiskr_ring_sheen.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/ring-sheen/luiskr_ring_sheen_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/ring-sheen/luiskr_ring_sheen_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/scene3d</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/scene3d/luiskr_scene3d.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/scene3d/luiskr_scene3d.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/scene3d/luiskr_scene3d_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/scene3d/luiskr_scene3d_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/skeleton</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/skeleton/luiskr_skeleton.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/skeleton/luiskr_skeleton.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/skeleton/luiskr_skeleton_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/skeleton/luiskr_skeleton_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/switch-slider</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/switch-slider/luiskr_switch_slider.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/switch-slider/luiskr_switch_slider.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/switch-slider/luiskr_switch_slider_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/switch-slider/luiskr_switch_slider_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/text-draw</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/text-draw/luiskr_text_draw.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/text-draw/luiskr_text_draw.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/text-draw/luiskr_text_draw_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/text-draw/luiskr_text_draw_bg.wasm.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/theme-slider</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/theme-slider/luiskr_theme_slider.d.ts</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/theme-slider/luiskr_theme_slider.js</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/theme-slider/luiskr_theme_slider_bg.wasm</loc>
+    <lastmod>2026-10-18T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/wasm/theme-slider/luiskr_theme_slider_bg.wasm.d.ts</loc>
     <lastmod>2026-10-18T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>

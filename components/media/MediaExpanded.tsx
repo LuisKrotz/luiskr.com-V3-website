@@ -26,6 +26,7 @@ export class MediaExpanded extends BaseComponent {
   isClosing = false // zoom-out in flight — one-shot guard
   currentSrc: string = ATTR_VALUES.EMPTY // active img src: thumb → full-res swap
   _closeBtn: { destroy(): void } | null = null // CloseButtonWebGL on the header ✕
+  _brackets: (() => void) | null = null // teardown for the close-button corner-brackets WebGPU widgets
 
   static get observedAttributes(): string[] {
     return [
@@ -118,6 +119,12 @@ export class MediaExpanded extends BaseComponent {
       this._closeBtn.destroy()
 
       this._closeBtn = null
+    }
+
+    if (this._brackets) {
+      this._brackets()
+
+      this._brackets = null
     }
   }
 

@@ -51,6 +51,7 @@ export class MediaFigure extends BaseComponent {
   videoWebm: string[] = [] // [main, scaled] webm video source URLs
   observer: IntersectionObserver | null = null // video viewport IntersectionObserver
   imgObserver: IntersectionObserver | null = null // image lazy-load IntersectionObserver
+  _expandBrackets: (() => void) | null = null // teardown for the open-1 corner-brackets WebGPU widget
   isIntersecting = false // last observed viewport state
 
   constructor() {
@@ -196,6 +197,12 @@ export class MediaFigure extends BaseComponent {
       this.imgObserver.disconnect()
 
       this.imgObserver = null
+    }
+
+    if (this._expandBrackets) {
+      this._expandBrackets()
+
+      this._expandBrackets = null
     }
   }
 

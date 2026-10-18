@@ -9,8 +9,10 @@
  * events, render); this class is the element facade + state holder.
  */
 
-import { AWC_VARIANTS } from '@core/tokens/classes/awards-carousel.js'
+import { AWC_CLASSES, AWC_VARIANTS } from '@core/tokens/classes/awards-carousel.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
+import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
+import { mountCornerBracketsAll } from '@core/utils/gpu/corner-brackets.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
 import awardsCarouselStyles from '@core/sass/components/carousel/awards-carousel.scss?inline'
@@ -69,6 +71,8 @@ export class AwardsCarousel extends BaseComponent {
   observer: IntersectionObserver | null = null
   /** Pending one-shot init frame (setup runs after first paint so layout exists). */
   setupRafId: ReturnType<typeof requestAnimationFrame> | null = null
+  /** Teardown for the corner-brackets WebGPU widgets on CMS action buttons. */
+  _bracketTeardown: (() => void) | null = null
 
   constructor() {
     super(awardsCarouselStyles)
@@ -112,6 +116,31 @@ export class AwardsCarousel extends BaseComponent {
   /** Re-render: re-strip clone focusability (clones get re-created). */
   override onUpdated() {
     this._disableClonesFocus()
+    this._syncBrackets()
+  }
+
+  /**
+   * Mounts the corner-brackets WebGPU widget on any action buttons inside
+   * CMS slide content (`aw-c-card-action`/`aw-c-label-action`) — the
+   * buttons are part of the injected card markup, so they are queried
+   * after each render rather than JSX-wired.
+   */
+  _syncBrackets() {
+    this._bracketTeardown?.()
+    this._bracketTeardown = null
+
+    if (!this.shadowRoot) return
+
+    this._bracketTeardown = mountCornerBracketsAll(
+      this.shadowRoot,
+      `.${AWC_CLASSES.AWC_CARD_ACTION}, .${AWC_CLASSES.AWC_LABEL_ACTION}`,
+      {
+        canvasClass: AWC_CLASSES.AWC_ACTION_CANVAS,
+        insetVar: '--space-xs',
+        ease: EASING.CSS_EASE_POINTS,
+        ms: ANIMATION_DURATIONS.BRACKET_MS,
+      }
+    )
   }
 
   /** Reduced-motion commit → kill autoplay immediately (no residual RAF). */
@@ -146,6 +175,8 @@ export class AwardsCarousel extends BaseComponent {
       cancelAnimationFrame(this.setupRafId)
       this.setupRafId = null
     }
+    this._bracketTeardown?.()
+    this._bracketTeardown = null
   }
 
   // ─── Delegates — ./awards-carousel/* ─────────────────────────────────────────

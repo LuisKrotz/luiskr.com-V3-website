@@ -41,7 +41,7 @@ import {
   _SCAN_PERIOD,
   _TRACK_H,
 } from './types.js'
-import type { GlitchSession } from './types.js'
+import type { GlitchSession, Glitch2dSession } from './types.js'
 
 /**
  * Computes the cover-fit DESTINATION rect for the portrait at the given
@@ -146,7 +146,7 @@ export function clipCircle(ctx: CanvasRenderingContext2D, w: number, h: number):
 }
 
 /** Clears the frame and draws the undistorted portrait (circle-clipped). */
-export function drawBase(s: GlitchSession): void {
+export function drawBase(s: Glitch2dSession): void {
   const { ctx, w, h } = s
 
   ctx.globalCompositeOperation = CANVAS_STRINGS.COMPOSITE_SOURCE_OVER
@@ -169,7 +169,7 @@ export function drawBase(s: GlitchSession): void {
  * dislocates as a whole. Idle tears are hair-thin; hover tears reach VHS
  * scale.
  */
-export function sliceShift(s: GlitchSession): void {
+export function sliceShift(s: Glitch2dSession): void {
   const { ctx, canvas, w, h } = s
   const heavy = s.hover
   const bands = heavy ? _HOVER_BANDS : _IDLE_BANDS
@@ -196,7 +196,7 @@ export function sliceShift(s: GlitchSession): void {
  * offset — pixels appear twice rather than sliding, like dropped
  * macroblocks in a damaged MPEG stream.
  */
-export function blockTear(s: GlitchSession): void {
+export function blockTear(s: Glitch2dSession): void {
   const { ctx, canvas, w, h } = s
 
   ctx.save()
@@ -223,7 +223,7 @@ export function blockTear(s: GlitchSession): void {
  * an already-composited base would double the exposure (2×R,2×G,2×B →
  * white blowout) — so this is the frame's base, never an overlay.
  */
-export function drawSplitBase(s: GlitchSession): void {
+export function drawSplitBase(s: Glitch2dSession): void {
   const { ctx, w, h } = s
   const dx = s.hover
     ? _HOVER_RGB_MIN + Math.random() * (_HOVER_RGB_MAX - _HOVER_RGB_MIN)
@@ -252,7 +252,7 @@ export function drawSplitBase(s: GlitchSession): void {
  * VHS rolling band (hover only): a tall strip re-blitted slightly torn and
  * brightened, sweeping slowly down the frame like bad vertical hold.
  */
-export function rollBar(s: GlitchSession): void {
+export function rollBar(s: Glitch2dSession): void {
   const { ctx, canvas, w, h } = s
   const bh = h * _ROLL_H
   const y = ((s.t * _ROLL_SPEED) % 1.3) * (h + bh) - bh
@@ -270,7 +270,7 @@ export function rollBar(s: GlitchSession): void {
  * VHS tracking bar (hover only): a thin bright strip at a fixed-ish
  * jittered height — the white tracking line at the tape head switch.
  */
-export function trackBar(s: GlitchSession): void {
+export function trackBar(s: Glitch2dSession): void {
   const { ctx, w, h } = s
 
   ctx.save()
@@ -283,7 +283,7 @@ export function trackBar(s: GlitchSession): void {
 }
 
 /** One-frame near-total inversion — the classic bad-signal flash. */
-export function invertFlash(s: GlitchSession): void {
+export function invertFlash(s: Glitch2dSession): void {
   const { ctx, w, h } = s
 
   ctx.save()
@@ -296,7 +296,7 @@ export function invertFlash(s: GlitchSession): void {
 }
 
 /** CRT raster lines via a repeated tile, jittered vertically each frame. */
-export function scanlines(s: GlitchSession): void {
+export function scanlines(s: Glitch2dSession): void {
   const { ctx, w, h } = s
   const jit = Math.floor(Math.random() * _SCAN_PERIOD)
   const pattern = ctx.createPattern(s.scan, 'repeat')
@@ -316,7 +316,7 @@ export function scanlines(s: GlitchSession): void {
  * black/white dust; hover frames get dense grain plus chroma noise
  * (red/cyan speckle like color noise on aged tape).
  */
-export function grain(s: GlitchSession): void {
+export function grain(s: Glitch2dSession): void {
   const { ctx, w, h } = s
   const count = s.hover ? _HOVER_GRAIN : _IDLE_GRAIN
   const alpha = s.hover ? _GRAIN_ALPHA : _SCAN_ALPHA * 1.6
@@ -343,31 +343,36 @@ export function grain(s: GlitchSession): void {
 
 /** One frame: base redraw → gated corruption pass → raster artifacts. */
 export function frame(s: GlitchSession): void {
+  // The WebGPU arm never reaches the painters — its shader runs the
+  // whole pipeline. A null ctx means the 2D backend was never claimed.
+  if (!s.ctx) return
+
+  const d = s as Glitch2dSession
   const now = performance.now()
 
-  s.t += Math.min(0.05, (now - s.lastT) / 1000 || 0.016)
-  s.lastT = now
+  d.t += Math.min(0.05, (now - d.lastT) / 1000 || 0.016)
+  d.lastT = now
 
-  const hit = Math.random() < (s.hover ? _HOVER_HIT : _IDLE_HIT)
+  const hit = Math.random() < (d.hover ? _HOVER_HIT : _IDLE_HIT)
 
   if (hit) {
     // Split frames composite the channel pair INSTEAD of the base —
     // drawSplitBase reproduces the portrait with the fringe, then tears
     // shift slices of the already-split frame.
-    drawSplitBase(s)
-    sliceShift(s)
+    drawSplitBase(d)
+    sliceShift(d)
 
-    if (s.hover) {
-      if (Math.random() < 0.5) blockTear(s)
-      if (Math.random() < 0.5) trackBar(s)
-      if (Math.random() < _INVERT_CHANCE) invertFlash(s)
+    if (d.hover) {
+      if (Math.random() < 0.5) blockTear(d)
+      if (Math.random() < 0.5) trackBar(d)
+      if (Math.random() < _INVERT_CHANCE) invertFlash(d)
     }
   } else {
-    drawBase(s)
+    drawBase(d)
   }
 
-  if (s.hover) rollBar(s)
+  if (d.hover) rollBar(d)
 
-  scanlines(s)
-  grain(s)
+  scanlines(d)
+  grain(d)
 }

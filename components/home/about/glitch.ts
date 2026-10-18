@@ -35,7 +35,7 @@
 
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { _PIC_SEL } from './glitch/types.js'
-import { armGlitch, poll } from './glitch/session.js'
+import { armGlitch, dropSession, poll } from './glitch/session.js'
 import type { AboutSection } from '../AboutSection.js'
 
 export { armGlitch } from './glitch/session.js'
@@ -47,14 +47,7 @@ export function disarmGlitch(host: AboutSection): void {
 
   if (!s) return
 
-  s.active = false
-
-  if (s.raf) cancelAnimationFrame(s.raf)
-
-  s.ro?.disconnect()
-
-  s.canvas.remove()
-  host._glitch = null
+  dropSession(host, s)
 }
 
 /**

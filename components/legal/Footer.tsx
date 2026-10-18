@@ -29,6 +29,7 @@ import router from '@core/router/router.js'
 import internalStyles from '@core/sass/components/internals/internals.scss?inline'
 
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
+import { mountDividerSheen } from '@core/utils/gpu/divider-sheen.js'
 import { getFallbackLegalLinks, type LegalLink } from '@core/utils/data/legal-links.js'
 import { componentText, rightsParts } from '@core/locale/ui-text.js'
 import { devError } from '@core/devlog.js'
@@ -40,6 +41,8 @@ export { getFallbackLegalLinks }
  */
 export class LegalFooter extends BaseComponent {
   private _unsubRouter: (() => void) | null = null
+
+  private _dividerTeardowns: (() => void)[] = [] // live divider-sheen mounts (re-bound per render)
 
   constructor() {
     super(internalStyles)
@@ -88,7 +91,27 @@ export class LegalFooter extends BaseComponent {
       .catch(devError)
   }
 
+  override onUpdated() {
+    // The divider <hr> is recreated on every render — dispose the
+    // stale mounts (canvas + IO + rAF + widget), then re-mount on the
+    // fresh nodes. Without navigator.gpu or under reduced-motion the
+    // helper is a no-op and the CSS ::after sweep stays the path.
+    this._dividerTeardowns.forEach((teardown) => teardown())
+
+    this._dividerTeardowns = []
+
+    for (const hr of this.$$(`hr.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER}`)) {
+      this._dividerTeardowns.push(
+        mountDividerSheen(hr as HTMLElement, INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER_CANVAS)
+      )
+    }
+  }
+
   override onDestroy() {
+    this._dividerTeardowns.forEach((teardown) => teardown())
+
+    this._dividerTeardowns = []
+
     if (typeof this._unsubRouter === TYPE_STRINGS.FUNCTION) {
       this._unsubRouter?.()
 

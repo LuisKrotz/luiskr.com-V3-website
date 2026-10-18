@@ -9,6 +9,7 @@
 
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
+import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
@@ -17,6 +18,9 @@ import router from '@core/router/router.js'
 import { buildProjectsList } from './related/match.js'
 import { fetchData, storedTranslations } from './related/data.js'
 import { renderRelated } from './related/render.js'
+import { mountDividerSheen } from '@core/utils/gpu/divider-sheen.js'
+import { mountRingSheen } from '@core/utils/gpu/ring-sheen.js'
+import type { RingSheenSession } from '@core/utils/gpu/ring-sheen.js'
 import type { HomeItem, RelatedCard, RelatedTranslations } from './related/types.js'
 import internalStyles from '@core/sass/components/internals/internals.scss?inline'
 import '@website/components/media/DrawText.js'
@@ -41,6 +45,12 @@ export class PortfolioRelated extends BaseComponent {
   _noteRO: ResizeObserver | null = null
 
   _measureRaf = 0 // pending rAF handle — debounces note truncation measures
+
+  _dividerTeardowns: (() => void)[] = [] // live divider-sheen mounts (re-bound per render)
+
+  _ringSession: RingSheenSession | null = null // live ring-sheen overlay on the card strip
+
+  _ringEl: Element | null = null // the .related-mosaic node the ring session mounted on
 
   constructor() {
     super(internalStyles)
@@ -157,6 +167,15 @@ export class PortfolioRelated extends BaseComponent {
 
   /** Lifecycle: removes the router subscription + the note observer. */
   override onDestroy() {
+    this._dividerTeardowns.forEach((teardown) => teardown())
+
+    this._dividerTeardowns = []
+
+    this._ringSession?.destroy()
+
+    this._ringSession = null
+    this._ringEl = null
+
     if (typeof this._unsubRouter === TYPE_STRINGS.FUNCTION) {
       this._unsubRouter?.()
 
@@ -186,6 +205,59 @@ export class PortfolioRelated extends BaseComponent {
 
   override onUpdated() {
     this._watchNoteTruncation()
+
+    this._mountDividerSheen()
+
+    this._syncRingSheen()
+  }
+
+  /**
+   * Keeps the instanced ring-sheen overlay bound to the live
+   * `.related-mosaic` node — renders recreate the strip, so a session
+   * mounted on a detached node is torn down and remounted. Without
+   * WebGPU the mount is a no-op and the CSS pseudo rings stay.
+   */
+  _syncRingSheen(): void {
+    const el = this.$(`.${RELATED_CLASSES.RELATED_MOSAIC}`)
+
+    if (el === this._ringEl) {
+      this._ringSession?.refresh()
+
+      return
+    }
+
+    this._ringSession?.destroy()
+
+    this._ringSession = null
+    this._ringEl = el
+
+    if (el instanceof HTMLElement) {
+      this._ringSession =
+        mountRingSheen(
+          el,
+          `.${RELATED_CLASSES.RELATED_MOSAIC_ITEM}`,
+          RELATED_CLASSES.RELATED_MOSAIC_RING_CANVAS
+        ) || null
+    }
+  }
+
+  /**
+   * Re-mounts the divider-sheen WebGPU widgets on the footer's `<hr>`
+   * dividers — the nodes are recreated on every render, so each update
+   * disposes the stale mounts first (canvas + IO + rAF + widget).
+   * Without `navigator.gpu` or under reduced-motion the mount helper
+   * is a no-op and the CSS `::after` sweep stays the render path.
+   */
+  _mountDividerSheen(): void {
+    this._dividerTeardowns.forEach((teardown) => teardown())
+
+    this._dividerTeardowns = []
+
+    for (const hr of this.$$(`hr.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER}`)) {
+      this._dividerTeardowns.push(
+        mountDividerSheen(hr as HTMLElement, INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER_CANVAS)
+      )
+    }
   }
 
   /**

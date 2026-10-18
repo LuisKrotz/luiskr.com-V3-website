@@ -4,12 +4,16 @@
  */
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
+import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
+import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { MEDIA_EVENTS, MOUSE_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
+import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
 import store from '@core/store.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
+import { mountCornerBrackets } from '@core/utils/gpu/corner-brackets.js'
 import type { MediaFigure } from '../MediaFigure.js'
 import { VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
@@ -32,6 +36,20 @@ export function mountMediaFigure(c: MediaFigure): void {
 
   if (fig && c.canExpand) {
     c.addScopedListener(fig, MOUSE_EVENTS.CLICK, () => c.openModal())
+
+    const openBtn = c.$<HTMLElement>(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_OPEN_1}`)
+
+    if (openBtn) {
+      // The CSS brackets animate on .internal-expand:hover (the figure
+      // ancestor), not the button itself — hoverParentSelector mirrors that.
+      c._expandBrackets = mountCornerBrackets(openBtn, {
+        canvasClass: EXPAND_MODAL_CLASSES.EXPAND_MODAL_BRACKET_CANVAS,
+        insetVar: '--space-xs',
+        ease: EASING.CSS_EASE_POINTS,
+        ms: ANIMATION_DURATIONS.BRACKET_MS,
+        hoverParentSelector: `.${INTERNAL_CLASSES.INTERNAL_EXPAND}`,
+      })
+    }
   }
 
   if (c.isVideo) {

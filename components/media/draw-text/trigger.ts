@@ -19,6 +19,7 @@ import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { stripHtml } from '@core/utils/string.js'
 import { onScrollStop } from '@core/utils/motion/scroll-state.js'
+import { tryGpuDraw } from './gpu.js'
 import type { DrawText } from '../DrawText.js'
 import { DRAW_TIMINGS } from '@core/tokens/media/dimensions.js'
 
@@ -198,4 +199,9 @@ export function startAnimation(host: DrawText): void {
   }, totalMs)
 
   host._animTimer?.unref?.()
+
+  // WebGPU reveal — when the artifact mounts, the instanced-draw canvas
+  // takes over the stagger (the CSS spans keep animating invisibly so
+  // done-time lands on the same state). No-ops without navigator.gpu.
+  tryGpuDraw(host, totalMs)
 }

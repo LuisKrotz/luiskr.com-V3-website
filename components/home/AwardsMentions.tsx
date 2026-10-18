@@ -12,6 +12,7 @@ import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
+import { FOOTER_CLASSES } from '@core/tokens/classes/footer.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
@@ -25,6 +26,7 @@ import {
   showAwardsProgress,
 } from './awards/carousel.js'
 import { renderAwards } from './awards/render.js'
+import { mountDividerSheen } from '@core/utils/gpu/divider-sheen.js'
 import type { LegalLink } from './awards/data.js'
 import awardsFooterStyles from '@core/sass/components/home/awards-footer.scss?inline'
 import '@website/components/carousel/AwardsCarousel.js'
@@ -44,6 +46,7 @@ export class AwardsMentions extends BaseComponent {
   _lastLocale: string | null = null // locale the entries were loaded for
   _duration = 10000 // autoplay dwell per slide — also drives the progress arc's CSS duration
   _autoplayEverStarted = false
+  _dividerTeardowns: (() => void)[] = [] // live divider-sheen mounts (re-bound per render)
 
   constructor() {
     super(awardsFooterStyles)
@@ -130,6 +133,34 @@ export class AwardsMentions extends BaseComponent {
 
   override onUpdated() {
     this._setupCarousel()
+
+    this._mountDividerSheen()
+  }
+
+  /**
+   * Re-mounts the divider-sheen WebGPU widgets on the footer's `<hr>`
+   * divider — the node is recreated on every render, so each update
+   * disposes the stale mounts first (canvas + IO + rAF + widget).
+   * Without `navigator.gpu` or under reduced-motion the mount helper
+   * is a no-op and the CSS `::after` sweep stays the render path.
+   */
+  _mountDividerSheen(): void {
+    this._dividerTeardowns.forEach((teardown) => teardown())
+
+    this._dividerTeardowns = []
+
+    for (const hr of this.$$(`hr.${FOOTER_CLASSES.FOOTER_DIVIDER}`)) {
+      this._dividerTeardowns.push(
+        mountDividerSheen(hr as HTMLElement, FOOTER_CLASSES.FOOTER_DIVIDER_CANVAS)
+      )
+    }
+  }
+
+  /** Lifecycle: releases the divider mounts before the shadow root goes. */
+  override onDestroy() {
+    this._dividerTeardowns.forEach((teardown) => teardown())
+
+    this._dividerTeardowns = []
   }
 
   /** Builds the auto-advance loop (see awards/carousel.ts). */

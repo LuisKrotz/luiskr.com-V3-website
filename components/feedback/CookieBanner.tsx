@@ -14,6 +14,8 @@ import { APP_EVENTS } from '@core/tokens/events/app.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { COOKIE_CSS_PROPS } from '@core/tokens/css/cookies.js'
 import { COOKIE_SELECTORS } from '@core/tokens/selectors/cookies.js'
+import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
+import { mountCornerBracketsAll } from '@core/utils/gpu/corner-brackets.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
 import { appText } from '@core/locale/ui-text.js'
@@ -37,6 +39,7 @@ interface CookieTranslations {
 export class CookieBanner extends BaseComponent {
   private _translations: CookieTranslations | null = null
   private _resizeObserver: ResizeObserver | null = null // watches banner reflow so --cookie-banner-h stays accurate
+  private _bracketTeardown: (() => void) | null = null // corner-brackets WebGPU widgets on accept/refuse
 
   constructor() {
     super(appStyles)
@@ -81,6 +84,7 @@ export class CookieBanner extends BaseComponent {
   /** Lifecycle: re-measures after any render flips banner visibility. */
   override onUpdated() {
     this._syncBannerSpace()
+    this._syncBrackets()
   }
 
   /** Lifecycle: releases the height observer when the element detaches. */
@@ -88,6 +92,32 @@ export class CookieBanner extends BaseComponent {
     this._resizeObserver?.disconnect()
 
     this._resizeObserver = null
+
+    this._bracketTeardown?.()
+    this._bracketTeardown = null
+  }
+
+  /**
+   * Mounts the corner-brackets WebGPU widget on the accept/refuse
+   * buttons — re-queries every update so the hidden-banner teardown and
+   * post-translation re-render both drop stale mounts.
+   */
+  private _syncBrackets(): void {
+    this._bracketTeardown?.()
+    this._bracketTeardown = null
+
+    if (this.hidden || !this.shadowRoot) return
+
+    this._bracketTeardown = mountCornerBracketsAll(
+      this.shadowRoot,
+      `.${COOKIE_CLASSES.COOKIES_BUTTONS_ACCEPT}, .${COOKIE_CLASSES.COOKIES_BUTTONS_REFUSE}`,
+      {
+        canvasClass: COOKIE_CLASSES.COOKIES_BUTTONS_CANVAS,
+        insetVar: '--space-2xs',
+        ease: EASING.CSS_EASE_POINTS,
+        ms: ANIMATION_DURATIONS.BRACKET_FAST_MS,
+      }
+    )
   }
 
   /**

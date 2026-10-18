@@ -40,6 +40,8 @@ export class PreferencesModal extends BaseComponent {
   _themeSlider: ThemeSliderWebGL | null = null // ThemeSliderWebGL widget on the appearance canvas
   _switches: Record<string, SwitchWebGL> | null = null // SWITCH_TYPES → SwitchWebGL widget map
   _closeBtn: CloseButtonWebGL | null = null // CloseButtonWebGL on the header ✕ canvas
+  _doneBrackets: (() => void) | null = null // teardown for the corner-brackets WebGPU widget on the done button
+  _doneBracketsBtn: HTMLElement | null = null // the button _doneBrackets was mounted on (re-render detection)
   _closing = false // genie-leave in flight — blocks re-entry
   _openedAt = 0 // performance.now() of the open transition — feeds the residual-input guard
 

@@ -19,6 +19,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { DRAW_TEXT_SELECTORS } from '@core/tokens/selectors/draw-text.js'
 import { updateDom } from './draw-text/dom.js'
 import { scheduleFit, setupFit, teardownFit } from './draw-text/fit.js'
+import { teardownGpuDraw } from './draw-text/gpu.js'
 import { parseTokens, renderContent } from './draw-text/render.js'
 import {
   registerOrdered,
@@ -42,6 +43,10 @@ export class DrawText extends HTMLElement {
   _contentEl: HTMLSpanElement | null = null // cached content wrapper (skips re-query)
   _fitObserver: ResizeObserver | null = null // parent-size watcher for the `fit` scale-down
   _effectiveOffset: number | null = null // resolved start offset — set at trigger time (ordered elements subtract elapsed session time)
+  _gpuHandle: { destroy(): void } | null = null // live rust/text-draw widget during the reveal
+  _gpuPending = false // artifact fetch in flight — blocks re-entrant mounts
+  _gpuRaf = 0 // MANUAL rAF id driving the widget while the reveal runs
+  _gpuCanvas: HTMLCanvasElement | null = null // the overlay canvas (removes with teardown)
 
   static get observedAttributes() {
     return [
@@ -156,6 +161,8 @@ export class DrawText extends HTMLElement {
 
       this._animTimer = null
     }
+
+    teardownGpuDraw(this)
   }
 
   attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null) {
@@ -223,6 +230,8 @@ export class DrawText extends HTMLElement {
   /** Returns characters to the hidden start state so the animation can replay. */
 
   reset() {
+    teardownGpuDraw(this)
+
     this._isVisible = false
 
     this._hasAnimated = false
@@ -238,7 +247,11 @@ export class DrawText extends HTMLElement {
     const rootEl = this._rootEl
 
     if (rootEl) {
-      rootEl.classList.remove(DRAW_TEXT_CLASSES.DRAW_TEXT_VISIBLE, DRAW_TEXT_CLASSES.DRAW_TEXT_DONE)
+      rootEl.classList.remove(
+        DRAW_TEXT_CLASSES.DRAW_TEXT_VISIBLE,
+        DRAW_TEXT_CLASSES.DRAW_TEXT_DONE,
+        DRAW_TEXT_CLASSES.DRAW_TEXT_GPU
+      )
     }
   }
 
