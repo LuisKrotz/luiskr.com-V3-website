@@ -5,7 +5,7 @@
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals'
 import { PortfolioRelated } from '@website/components/portfolio/Related.js'
 import { LOCALES } from '@core/constants.js'
-import { mount, TEST_TEXT } from '@tests/fixtures/test-constants.js'
+import { mount, TEST_PROJECTS, TEST_TEXT } from '@tests/fixtures/test-constants.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
@@ -188,6 +188,41 @@ describe('PortfolioRelated', () => {
     expect(list).toHaveLength(4)
     expect(list[0].featured).toBe(true)
     expect(list[2].link).toBe('gamma')
+
+    store.state.portfoliolist = prevList
+  })
+
+  test('projectsList binds prefix-collision slugs to their own home card', () => {
+    const prevList = store.state.portfoliolist
+
+    // minimelissa is a superstring of melissa — the loose substring rules
+    // must not let it inherit the earlier melissa row's cover.
+    store.state.portfoliolist = [
+      {
+        link: TEST_PROJECTS.MELISSA,
+        image: `${TEST_PROJECTS.MELISSA}-cover`,
+        width: ['1230'],
+        height: ['769'],
+      },
+      { link: TEST_PROJECTS.MINI_MELISSA, image: `${TEST_PROJECTS.SLUG_MINIMELISSA}-cropped` },
+    ]
+    relatedEl.translations = {
+      path: ROUTE_PATHS.PORTFOLIO,
+      projects: [
+        {
+          link: `${ROUTE_PATHS.PORTFOLIO_SLASH}${TEST_PROJECTS.SLUG_MINIMELISSA}`,
+          page: TEST_TEXT.HELLO,
+        },
+        { link: `${ROUTE_PATHS.PORTFOLIO_SLASH}${TEST_PROJECTS.MELISSA}`, page: TEST_TEXT.SECOND },
+      ],
+    }
+
+    const list = relatedEl.projectsList
+
+    expect(list[0].imageSrc).toContain(`${TEST_PROJECTS.SLUG_MINIMELISSA}-cropped`)
+    expect(list[1].imageSrc).toContain(`${TEST_PROJECTS.MELISSA}-cover`)
+    expect(list[1].imageW).toBe(1230)
+    expect(list[1].imageH).toBe(769)
 
     store.state.portfoliolist = prevList
   })

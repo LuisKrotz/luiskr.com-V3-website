@@ -51,6 +51,10 @@ export interface HomeItem {
   label?: string
   title?: string
   description?: string
+  /** [main, scaled] cover pixel widths as stored in the DB row. */
+  width?: Array<string | number>
+  /** [main, scaled] cover pixel heights — same pairing as `width`. */
+  height?: Array<string | number>
 }
 
 /**
@@ -64,5 +68,9 @@ export interface RelatedCard {
   fullPath: string
   featured: boolean
   imageSrc: string
+  /** Cover's intrinsic width — 0 when the home row carries no dims. */
+  imageW: number
+  /** Cover's intrinsic height — pairs with `imageW`. */
+  imageH: number
   description: string
 }

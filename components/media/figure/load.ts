@@ -47,9 +47,17 @@ export function resolveMediaSources(fig: MediaFigure): void {
       ],
     ]
 
-    fig.poster = urls.map((a) => a[0])
+    // Derived variants (poster frame, webm transcodes) are offered only
+    // when the bucket manifest can't prove them missing — a known-absent
+    // key is a doomed request whose XML 404 trips CORB and a <source> that
+    // can never resolve. Unknown ⇒ emit; the <video> source walk degrades
+    // gracefully, the poster just no-paints.
+    const keepUrl = (url: string): string =>
+      mediaManifestReady() && !mediaKeyExists(url) ? ATTR_VALUES.EMPTY : url
 
-    fig.videoWebm = urls.map((a) => a[1])
+    fig.poster = urls.map((a) => keepUrl(a[0]))
+
+    fig.videoWebm = urls.map((a) => keepUrl(a[1]))
 
     fig.video = urls.map((a) => a[2])
   } else {

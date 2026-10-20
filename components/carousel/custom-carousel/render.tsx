@@ -144,6 +144,8 @@ export const renderCarouselSlide = (item: CarouselItem | null, folder: string, i
                   aria-hidden={ATTR_VALUES.TRUE}
                   loading={MEDIA_ATTRS.LOADING_LAZY}
                   decoding={MEDIA_ATTRS.DECODING_ASYNC}
+                  width={itemW}
+                  height={itemH}
                 />
               </picture>
             )

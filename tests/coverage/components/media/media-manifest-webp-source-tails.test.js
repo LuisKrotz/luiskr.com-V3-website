@@ -12,6 +12,7 @@ import { HomeMosaic } from '@website/components/home/HomeMosaic.js'
 import { PortfolioRelated } from '@website/components/portfolio/Related.js'
 import { renderCarouselSlide } from '@website/components/carousel/custom-carousel/render.js'
 import { initMediaManifest } from '@core/utils/media/manifest.js'
+import { MediaExpanded } from '@website/components/media/MediaExpanded.js'
 import { CDN_URLS } from '@core/tokens/media/urls.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
@@ -19,6 +20,7 @@ import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { mount } from '@tests/fixtures/test-constants.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
+import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import store from '@core/store.js'
 
 describe('media-manifest webp sources', () => {
@@ -128,5 +130,29 @@ describe('media-manifest webp sources', () => {
       window.Image = origImage
       fig.remove()
     }
+  })
+
+  test('manifest-known-absent webm/poster tiers are omitted from the video matrix', () => {
+    // Manifest is loaded (first test) and lists none of this video's
+    // derived variants — the emit gate must blank them instead of
+    // offering doomed <source>/<poster> URLs that 404 into CORB.
+    const fig = document.createElement(COMPONENT_TAGS.MEDIA_FIGURE)
+
+    fig.setAttribute(MEDIA_ATTRS.SRC, 'folder/vid')
+    fig.setAttribute(MEDIA_ATTRS.IS_VIDEO, ATTR_VALUES.TRUE)
+    fig.onInit()
+
+    expect(fig.poster).toEqual([ATTR_VALUES.EMPTY, ATTR_VALUES.EMPTY])
+    expect(fig.videoWebm).toEqual([ATTR_VALUES.EMPTY, ATTR_VALUES.EMPTY])
+    expect(fig.video[0].endsWith(MEDIA.VIDEO_EXT)).toBe(true)
+    expect(fig.video[1].endsWith(`${MEDIA.VIDEO_SCALE}${MEDIA.VIDEO_EXT}`)).toBe(true)
+
+    // Same gate on the expanded modal's webm sibling getter.
+    const expanded = new MediaExpanded()
+
+    expanded.setAttribute(MEDIA_ATTRS.SOURCE, `${CDN_URLS.CDN_BASE}folder/vid${MEDIA.VIDEO_EXT}`)
+    expect(expanded.sourceWebm).toBe(ATTR_VALUES.EMPTY)
+
+    fig.remove()
   })
 })

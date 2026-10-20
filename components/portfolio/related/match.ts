@@ -32,6 +32,18 @@ const cleanLink = (link: string | undefined): string =>
         .replace(/\/$/, CHAR_STRINGS.EMPTY)
     : CHAR_STRINGS.EMPTY
 
+/** One related row vs one home item — strict link/image equality, checked before the loose rules so
+    prefix-collision slugs (minimelissa vs melissa) bind their own card instead of the earliest row. */
+function matchesExact(h: HomeItem | undefined, cLink: string): boolean {
+  if (!h) return false
+
+  const hLink = normalize(h.link || CHAR_STRINGS.EMPTY)
+
+  const hImg = normalize(h.image || CHAR_STRINGS.EMPTY)
+
+  return Boolean((hLink && cLink && hLink === cLink) || (hImg && hImg === cLink))
+}
+
 /** One related row vs one home item — the three acceptance rules. */
 function matches(h: HomeItem | undefined, cLink: string, pPage: string): boolean {
   if (!h) return false
@@ -90,7 +102,8 @@ export function buildProjectsList(
 
     const pPage = normalize(p.page || p.title || CHAR_STRINGS.EMPTY)
 
-    const homeMatch = homeList.find((h) => matches(h, cLink, pPage))
+    const homeMatch =
+      homeList.find((h) => matchesExact(h, cLink)) ?? homeList.find((h) => matches(h, cLink, pPage))
 
     // Cover image basename: prefer the home card's image, then the
     // related row's own field, then the slug as a last resort.
@@ -111,6 +124,11 @@ export function buildProjectsList(
       // Emission-encoded — a spaced cover basename feeds both <img src>
       // and the webpIfExists srcset probe downstream.
       imageSrc: encodeMediaUrl(`${storage}${DB_PATHS.COVERS}${image}${MEDIA.EXT}`),
+      // Intrinsic cover dims from the joined home row — the <img>'s
+      // width/height attrs (lazy-media CLS budget) come from the main
+      // slot ([0]); unknown rows fall through to 0 ⇒ attr omitted.
+      imageW: Number(homeMatch?.width?.[0]) || 0,
+      imageH: Number(homeMatch?.height?.[0]) || 0,
       description: homeMatch?.description || p.description || ATTR_VALUES.EMPTY,
     }
   })

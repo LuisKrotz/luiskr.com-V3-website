@@ -66,6 +66,8 @@ const renderCard = (project: RelatedCard, isCurrent: boolean) => {
               className={RELATED_CLASSES.RELATED_MOSAIC_IMG}
               loading={MEDIA_ATTRS.LOADING_LAZY}
               decoding={MEDIA_ATTRS.DECODING_ASYNC}
+              width={project.imageW || undefined}
+              height={project.imageH || undefined}
             />
           </picture>
         ) : (
@@ -99,7 +101,7 @@ const renderSkeletonMosaic = () => (
 
 /** Back-home link — first item of the footer's link row (localized route +
     label), resolved through the same live-then-fallback path <legal-footer>
-    uses. The -home modifier sets the label in lowercase. */
+    uses. The -home modifier marks the link so tests can locate it. */
 const renderHomeLink = () => {
   const home = getFallbackLegalLinks(store.getters.getLang())[0]
 
