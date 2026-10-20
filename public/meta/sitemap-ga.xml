@@ -15088,6 +15088,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/verify/chunk-budget.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/verify/console-scan.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -33323,6 +33328,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/reports/chunk-budget.json</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/reports/console-scan.json</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -33654,6 +33664,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/shared/scripts/verify</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/shared/scripts/verify/chunk-budget.mjs</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>

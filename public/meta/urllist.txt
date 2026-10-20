@@ -5745,6 +5745,7 @@ https://luiskr.com/docs/docs/jsdocs/shared/scripts/test
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/test/merge-coverage.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/test/run-modules.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/verify
+https://luiskr.com/docs/docs/jsdocs/shared/scripts/verify/chunk-budget.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/verify/console-scan.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/verify/coverage-gaps.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/verify/coverage-gate.md
@@ -9392,6 +9393,7 @@ https://luiskr.com/docs/local-modules/sprintf-js/package.json
 https://luiskr.com/docs/local-modules/sprintf-js/test
 https://luiskr.com/docs/local-modules/sprintf-js/test/sprintf.test.js
 https://luiskr.com/docs/reports/axe-report.json
+https://luiskr.com/docs/reports/chunk-budget.json
 https://luiskr.com/docs/reports/console-scan.json
 https://luiskr.com/docs/reports/coverage-run
 https://luiskr.com/docs/reports/coverage-run/coverage-final.json
@@ -9459,6 +9461,7 @@ https://luiskr.com/docs/shared/scripts/test
 https://luiskr.com/docs/shared/scripts/test/merge-coverage.mjs
 https://luiskr.com/docs/shared/scripts/test/run-modules.mjs
 https://luiskr.com/docs/shared/scripts/verify
+https://luiskr.com/docs/shared/scripts/verify/chunk-budget.mjs
 https://luiskr.com/docs/shared/scripts/verify/console-scan.mjs
 https://luiskr.com/docs/shared/scripts/verify/coverage-gaps.mjs
 https://luiskr.com/docs/shared/scripts/verify/coverage-gate.mjs
