@@ -8,6 +8,10 @@
  */
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals'
 import { createMock2D } from '@tests/fixtures/mock-webgl.js'
+import store from '@core/store.js'
+import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
+import { ABOUT_CLASSES } from '@core/tokens/classes/about.js'
+import { TEST_URLS } from '@tests/fixtures/test-constants.js'
 
 let mockGpu = false
 let mountResult = null
@@ -271,5 +275,165 @@ describe('about glitch wasm arm', () => {
     const { s } = makeSession()
 
     expect(() => frameGlitchWasm(s)).not.toThrow()
+  })
+
+  test('uploadGlitchBitmap falls back to img.src when currentSrc is empty', async () => {
+    const { s } = makeSession()
+    const w = makeWidget()
+
+    s.wasm = { widget: w, destroy: jest.fn() }
+    s.img = { currentSrc: '', src: TEST_URLS.IMG }
+    decodeResult = { width: 64 }
+
+    uploadGlitchBitmap(s)
+
+    await flush()
+
+    expect(w.uploads.length).toBe(1)
+  })
+
+  test('frameGlitchWasm treats a falsy elapsed clock as .016', async () => {
+    const { s } = makeSession()
+    const w = makeWidget()
+
+    s.wasm = { widget: w, destroy: jest.fn() }
+    s.lastT = NaN // (now - NaN) is NaN → the dt guard substitutes .016
+
+    frameGlitchWasm(s)
+
+    expect(w.frames[0]).toBeCloseTo(0.016)
+    expect(s.t).toBeCloseTo(0.016)
+  })
+})
+
+describe('about glitch session wasm arms', () => {
+  let armGlitch
+  let tick
+  let sizeSession
+  let dropSession
+  let frame
+
+  beforeEach(async () => {
+    mockGpu = true
+    mountResult = null
+    mountDelay = 0
+    decodeResult = null
+
+    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
+
+    const origGetContext = document.createElement('canvas').constructor.prototype.getContext
+
+    document.createElement('canvas').constructor.prototype.getContext = (type) =>
+      String(type) === '2d'
+        ? createMock2D()
+        : origGetContext.call(document.createElement('canvas'), type)
+
+    const mod = await import('@website/components/home/about/glitch/session.js')
+    const fx = await import('@website/components/home/about/glitch/fx.js')
+
+    armGlitch = mod.armGlitch
+    tick = mod.tick
+    sizeSession = mod.sizeSession
+    dropSession = mod.dropSession
+    frame = fx.frame
+  })
+
+  afterEach(() => {
+    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
+  })
+
+  test('sizeSession takes the wasm arm — widget resize + rect push, no 2D repaint', () => {
+    const { s } = makeSession()
+    const w = makeWidget()
+
+    s.wasm = { widget: w, destroy: jest.fn() }
+    s.ctx = createMock2D() // present — must NOT be repainted on the wasm arm
+
+    sizeSession(s, { width: 32, height: 32 })
+
+    expect(w.resizes.length).toBe(1) // widget.resize ran
+    expect(w.covers.length).toBe(1) // pushGlitchRect followed
+  })
+
+  test('armGlitch takes the WebGPU arm — mounts the wasm widget instead of 2D', async () => {
+    const wrap = document.createElement('div')
+    const img = document.createElement('img')
+
+    img.className = ABOUT_CLASSES.ABOUT_PROFILE_PICTURE_IMG
+    Object.defineProperty(img, 'complete', { value: true, configurable: true })
+    Object.defineProperty(img, 'naturalWidth', { value: 64, configurable: true })
+    wrap.appendChild(img)
+    wrap.getBoundingClientRect = () => ({ width: 64, height: 64, top: 0, left: 0 })
+    document.body.appendChild(wrap)
+
+    const host = { _glitch: null, _isMounted: true }
+    const w = makeWidget()
+
+    mountResult = { canvas: document.createElement('canvas'), widget: w, destroy: jest.fn() }
+
+    const ok = armGlitch(host, wrap)
+
+    expect(ok).toBe(true)
+    expect(host._glitch).not.toBeNull()
+
+    await flush()
+
+    expect(host._glitch.wasm).toBe(mountResult)
+
+    host._glitch.active = false
+    cancelAnimationFrame(host._glitch.raf)
+    host._glitch.ro?.disconnect()
+    wrap.remove()
+  })
+
+  test('tick re-measures on srcset drift and frames through the wasm arm', async () => {
+    const { s, host } = makeSession()
+    const w = makeWidget()
+
+    s.wasm = { widget: w, destroy: jest.fn() }
+    document.body.appendChild(s.canvas)
+
+    const img = document.createElement('img')
+
+    img.className = ABOUT_CLASSES.ABOUT_PROFILE_PICTURE_IMG
+    Object.defineProperty(img, 'naturalWidth', { value: 999, configurable: true })
+    Object.defineProperty(img, 'naturalHeight', { value: 999, configurable: true })
+    Object.defineProperty(img, 'currentSrc', { value: TEST_URLS.IMG, configurable: true })
+    s.img = img
+
+    const wrap = document.createElement('div')
+
+    wrap.getBoundingClientRect = () => ({ width: 64, height: 64, top: 0, left: 0 })
+    host.shadowRoot = { querySelector: () => wrap }
+    decodeResult = { width: 999 }
+
+    tick(host)
+    s.active = false // stop the re-armed rAF before flushing microtasks
+    cancelAnimationFrame(s.raf)
+
+    await flush()
+
+    expect(w.uploads.length).toBe(1) // uploadGlitchBitmap on drift
+    expect(w.frames.length).toBe(1) // frameGlitchWasm + early return
+    s.canvas.remove()
+  })
+
+  test('dropSession leaves a foreign session owner untouched', () => {
+    const { s, host } = makeSession()
+    const owner = { canvas: document.createElement('canvas') }
+    const handle = { widget: makeWidget(), destroy: jest.fn() }
+
+    s.wasm = handle
+    host._glitch = owner // not `s`
+
+    dropSession(host, s)
+
+    expect(host._glitch).toBe(owner) // foreign owner preserved
+    expect(handle.destroy).toHaveBeenCalled()
+    expect(s.wasm).toBeNull()
+  })
+
+  test('frame early-returns when the 2D backend was never claimed', () => {
+    expect(() => frame({ ctx: null })).not.toThrow()
   })
 })

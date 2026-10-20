@@ -49,4 +49,42 @@ describe('legal Footer tails 2', () => {
 
     el.remove()
   })
+
+  test('modified clicks keep native anchor semantics on the footers', async () => {
+    const el = document.createElement(COMPONENT_TAGS.LEGAL_FOOTER)
+
+    document.body.appendChild(el)
+    await flush(150)
+
+    const ev = new MouseEvent(MOUSE_EVENTS.CLICK, {
+      bubbles: true,
+      cancelable: true,
+      ctrlKey: true,
+    })
+
+    // The delegated shadowRoot handler must bail before preventDefault so
+    // the browser opens the href natively.
+    const a = el.shadowRoot.querySelector(HTML_TAGS.A)
+
+    a?.dispatchEvent(ev)
+
+    expect(ev.defaultPrevented).toBe(false)
+
+    // The inline items-link handler has the same guard — find one that
+    // carries the OTHER_LINK class pair.
+    const items = el.shadowRoot.querySelectorAll(HTML_TAGS.A)
+
+    for (const link of items) {
+      const ev2 = new MouseEvent(MOUSE_EVENTS.CLICK, {
+        bubbles: true,
+        cancelable: true,
+        ctrlKey: true,
+      })
+
+      link.dispatchEvent(ev2)
+      expect(ev2.defaultPrevented).toBe(false)
+    }
+
+    el.remove()
+  })
 })

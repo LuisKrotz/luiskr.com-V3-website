@@ -6,10 +6,9 @@
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
-import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
-import { mediaSlugSeq } from '@core/utils/index.js'
+import { mediaSlugSeq, buildMediaUrls } from '@core/utils/index.js'
 import router from '@core/router/router.js'
 import type { ViewProject } from './Project.js'
 import type { ProjectMediaItem } from './types.js'
@@ -44,13 +43,7 @@ export function checkAutoOpenModal(c: ViewProject): void {
         const itemSlug = item.label && item.src ? mediaSlugSeq(seen, item.label) : ATTR_VALUES.EMPTY
 
         if (itemSlug && itemSlug === slug) {
-          const isVideo = item.isVideo ?? false
-          const source = isVideo
-            ? `${storage}${folder}${item.src}${MEDIA.VIDEO_EXT}`
-            : `${storage}${folder}${item.src}${MEDIA.MOZ}${MEDIA.Q100}${MEDIA.EXT}`
-          const thumb = isVideo
-            ? `${storage}${folder}${item.src}${MEDIA.VIDEO_THUMB_EXT}`
-            : `${storage}${folder}${item.src}${MEDIA.MOZ}${MEDIA.THUMB_SUFFIX}${MEDIA.EXT}`
+          const { source, thumb, isVideo } = buildMediaUrls(storage, folder, item)
 
           store.commit(MODAL_MUTATIONS.SET_MODAL, {
             transform: window.scrollY,

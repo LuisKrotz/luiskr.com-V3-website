@@ -42,4 +42,14 @@ describe('AboutSection side-info tails', () => {
 
     el.remove()
   })
+
+  test('onUpdated skips applyAnimationDesc when the profile text node is absent', () => {
+    // An unconnected element still owns an (empty) shadow root — `this.$`
+    // resolves null, exercising the `if (text)` else arm.
+    const el = document.createElement(COMPONENT_TAGS.ABOUT_SECTION)
+
+    el.onUpdated()
+
+    el.remove()
+  })
 })

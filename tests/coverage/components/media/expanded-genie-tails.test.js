@@ -23,6 +23,7 @@ import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.j
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { WEBGL_STRINGS } from '@core/tokens/strings/webgl.js'
+import { GENIE_TIMING } from '@core/tokens/motion/genie.js'
 import { VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { TEST_URLS } from '@tests/fixtures/test-constants.js'
 
@@ -34,6 +35,9 @@ let bridgeResult = null
 
 /** Mutable flag — mountWebGpuWidget rejects instead of resolving. */
 let bridgeRejects = false
+
+/** Deferred bridge gate — when set, mountWebGpuWidget awaits it first. */
+let bridgeHold = null
 
 /** The last widget the bridge handed out — setter calls recorded. */
 let lastWidget = null
@@ -53,6 +57,8 @@ jest.unstable_mockModule('@core/utils/gpu/webgpu-widget.js', () => ({
   warmWidgetArtifacts: () => undefined,
   getSharedGpuDevice: async () => null,
   mountWebGpuWidget: async () => {
+    if (bridgeHold) await bridgeHold
+
     if (bridgeRejects) throw new Error('mount failed')
 
     if (!bridgeResult) return null
@@ -234,6 +240,7 @@ describe('expanded genie tails', () => {
     gpuEnabled = false
     bridgeResult = null
     bridgeRejects = false
+    bridgeHold = null
     lastWidget = null
     fetchNull = false
     decodeCalls = []
@@ -545,6 +552,83 @@ describe('expanded genie tails', () => {
     await flushAsync()
 
     expect(el._genie).toBeNull()
+  })
+
+  test('slow gpu mount loses the race — the MOUNT_MS timer attaches 2D first', async () => {
+    gpuEnabled = true
+    bridgeResult = { ok: true }
+
+    let release
+    bridgeHold = new Promise((r) => (release = r))
+
+    const el = fakeEl()
+
+    startGenieOpen(el, () => {})
+
+    pump(1)
+
+    // The bridge is still pending past MOUNT_MS — the watchdog timer must
+    // attach the universal 2D backend so the warp never stalls on wasm.
+    await new Promise((r) => setTimeout(r, GENIE_TIMING.MOUNT_MS + 30))
+
+    expect(el._genie.renderer).toBeTruthy()
+
+    // Now the GPU mount resolves — session.renderer is already owned by
+    // 2D, so the late renderer is disposed rather than swapped mid-warp.
+    release()
+
+    await flushAsync()
+
+    expect(el._genie.renderer).toBeTruthy()
+  })
+
+  test('gpu reject after the 2D takeover keeps the 2D session (catch else arm)', async () => {
+    gpuEnabled = true
+    bridgeRejects = true
+
+    let release
+    bridgeHold = new Promise((r) => (release = r))
+
+    const el = fakeEl()
+
+    startGenieOpen(el, () => {})
+
+    pump(1)
+
+    // 2D attaches via the MOUNT_MS watchdog while the bridge is pending.
+    await new Promise((r) => setTimeout(r, GENIE_TIMING.MOUNT_MS + 30))
+
+    const owned = el._genie.renderer
+
+    expect(owned).toBeTruthy()
+
+    // The rejection lands after 2D owns the session — `!session.renderer`
+    // is false so the catch must not re-attach.
+    release()
+
+    await flushAsync()
+
+    expect(el._genie.renderer).toBe(owned)
+  })
+
+  test('fast gpu settle makes the MOUNT_MS timer a no-op (both guards false)', async () => {
+    gpuEnabled = true
+    bridgeResult = { ok: true }
+
+    const el = fakeEl()
+
+    startGenieOpen(el, () => {})
+
+    pump(1)
+    await flushAsync()
+
+    const owned = el._genie.renderer
+
+    // Past the mount window: the timer fires but `!gpuSettled` is false —
+    // nothing re-attaches over the GPU renderer.
+    await new Promise((r) => setTimeout(r, GENIE_TIMING.MOUNT_MS + 30))
+
+    expect(el._genie.renderer).toBe(owned)
   })
 
   // ── origin/dest rect resolution ───────────────────────────────────────

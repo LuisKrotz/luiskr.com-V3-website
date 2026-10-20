@@ -14,6 +14,7 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { IMAGE_SIZES } from '@core/tokens/media/sizes.js'
 import { webpIfExists } from '@core/utils/media/manifest.js'
+import { encodeMediaUrl } from '@core/utils/media.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import { h } from '@core/jsx.js'
 import type { MosaicItem } from './pack.js'
@@ -36,7 +37,9 @@ export function skeletonStyle(box: { top: number; left: number; w: number; h: nu
 function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?: string) {
   const expanded = host.hoveredIdx === i || host.touchIdx === i
 
-  const coverSrc = `${host.storage}${DB_PATHS.COVERS}${item.image}${host.ext}`
+  // Emission-encoded — cover basenames can resolve to bucket keys with
+  // literal spaces ('brazilian leather/…') which break srcset parsing.
+  const coverSrc = encodeMediaUrl(`${host.storage}${DB_PATHS.COVERS}${item.image}${host.ext}`)
 
   // <source> selection is type-based — a 404 webp never falls back to the
   // <img>, so the webp is offered only when the bucket manifest confirms it.

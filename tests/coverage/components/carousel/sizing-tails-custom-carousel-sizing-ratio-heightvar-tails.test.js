@@ -116,6 +116,15 @@ describe('custom-carousel sizing ratio + setHeightVar tails', () => {
     expect(el.style.setProperty).toHaveBeenCalled()
   })
 
+  test('setHeightVar without items falls back to [] in the natural-height cap', () => {
+    const el = stubEl({ items: undefined, slideH: 350 })
+
+    setHeightVar(el)
+
+    // naturalCapH = reduce over [] → Infinity → finalH = min(350, maxH).
+    expect(el.style.setProperty).toHaveBeenCalled()
+  })
+
   test('setHeightVar mobile non-mixed with clientHeight 0 hits the ||0 arm and returns early', () => {
     const el = stubEl({
       isMobile: true,

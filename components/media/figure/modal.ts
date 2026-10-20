@@ -11,6 +11,7 @@ import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { ROUTE_PATHS } from '@core/tokens/routes.js'
 import { ROUTE_STRINGS } from '@core/tokens/strings/routes.js'
 import store from '@core/store.js'
+import { encodeMediaUrl } from '@core/utils/media.js'
 import type { MediaFigure } from '../MediaFigure.js'
 
 /**
@@ -39,10 +40,12 @@ export function openMediaModal(c: MediaFigure): void {
     open: true,
     origin,
     media: {
-      source: c.isVideo ? c.video[0] : storage + c.mediaSrc + MEDIA.MOZ + MEDIA.Q100 + MEDIA.EXT,
+      source: c.isVideo
+        ? c.video[0]
+        : encodeMediaUrl(storage + c.mediaSrc + MEDIA.MOZ + MEDIA.Q100 + MEDIA.EXT),
       thumb: c.isVideo
         ? c.poster[0]
-        : storage + c.mediaSrc + MEDIA.MOZ + MEDIA.THUMB_SUFFIX + MEDIA.EXT,
+        : encodeMediaUrl(storage + c.mediaSrc + MEDIA.MOZ + MEDIA.THUMB_SUFFIX + MEDIA.EXT),
       alt: c.label,
       width: c.mediaWidth,
       height: c.mediaHeight,

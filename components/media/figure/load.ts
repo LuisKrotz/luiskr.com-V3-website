@@ -13,6 +13,7 @@ import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
 import { mediaKeyExists, mediaManifestReady } from '@core/utils/media/manifest.js'
+import { encodeMediaUrl } from '@core/utils/media.js'
 import { svgPlaceholder } from '@core/utils/dom.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 import type { MediaFigure } from '../MediaFigure.js'
@@ -33,7 +34,9 @@ export function resolveMediaSources(fig: MediaFigure): void {
   const storage = store.getters.getStorage()
 
   if (fig.isVideo) {
-    const base = storage + fig.mediaSrc
+    // Encoded at the base so every derived poster/webm/mp4 URL lands in
+    // attributes already emission-safe (bucket keys may carry spaces).
+    const base = encodeMediaUrl(storage + fig.mediaSrc)
 
     const urls = [
       [base + MEDIA.VIDEO_THUMB_EXT, base + MEDIA.WEBM_EXT, base + MEDIA.VIDEO_EXT],
@@ -50,7 +53,9 @@ export function resolveMediaSources(fig: MediaFigure): void {
 
     fig.video = urls.map((a) => a[2])
   } else {
-    fig.thumbSrc = storage + fig.mediaSrc + MEDIA.MOZ + MEDIA.THUMB_SUFFIX + MEDIA.EXT
+    fig.thumbSrc = encodeMediaUrl(
+      storage + fig.mediaSrc + MEDIA.MOZ + MEDIA.THUMB_SUFFIX + MEDIA.EXT
+    )
   }
 }
 
@@ -92,7 +97,7 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
   const overBudget = height * width > IMAGE_DIMENSIONS.MAX_DECODE_PIXELS
 
   const storage = store.getters.getStorage()
-  const base = storage + fig.mediaSrc + MEDIA.MOZ + MEDIA.Q50
+  const base = encodeMediaUrl(storage + fig.mediaSrc + MEDIA.MOZ + MEDIA.Q50)
   const jpgUrl = base + MEDIA.EXT
   const webpUrl = base + MEDIA.WEBP_EXT
 

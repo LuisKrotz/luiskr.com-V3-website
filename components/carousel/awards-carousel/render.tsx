@@ -12,6 +12,7 @@ import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { h } from '@core/jsx.js'
 import store from '@core/store.js'
+import { encodeMediaUrl } from '@core/utils/media.js'
 import { appText } from '@core/locale/ui-text.js'
 import type { AwardsCarousel } from '../AwardsCarousel.js'
 import type { CarouselSlide } from './types.js'
@@ -45,7 +46,7 @@ export function renderItem(host: AwardsCarousel, item: CarouselSlide | undefined
             loading={MEDIA_ATTRS.LOADING_LAZY}
             decoding={MEDIA_ATTRS.DECODING_ASYNC}
             className={AWC_CLASSES.AWC_AWARD_IMG}
-            src={storage + item.media.path}
+            src={encodeMediaUrl(storage + item.media.path)}
             alt={item.description || ATTR_VALUES.EMPTY}
             width={item.media.width || GENERIC_DIMENSIONS.AWARD_ICON_SIZE}
             height={item.media.height || GENERIC_DIMENSIONS.AWARD_ICON_SIZE}

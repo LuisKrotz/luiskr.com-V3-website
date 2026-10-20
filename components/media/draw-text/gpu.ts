@@ -463,6 +463,9 @@ async function verifyOverlay(
 function totalMsForProbe(host: DrawText, chars: NodeListOf<HTMLElement>): number {
   const last = chars[chars.length - 1]
 
+  // chars is a static querySelectorAll NodeList already gated non-empty
+  // upstream — the guard only documents the contract.
+  /* istanbul ignore next -- unreachable: callers pass a non-empty static NodeList. */
   if (!last) return DRAW_TIMINGS.DRAW_ANIM_EXTRA_MS
 
   const style = last.style

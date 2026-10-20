@@ -17,6 +17,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { webpIfExists } from '@core/utils/media/manifest.js'
+import { encodeMediaUrl } from '@core/utils/media.js'
 import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
@@ -63,7 +64,9 @@ export function resolveThumbUrl(item: CarouselItem | null, folder: string): stri
 
   const storage = store.getters.getStorage()
 
-  const mediaSrc = folder + item.src
+  // Encoded before suffixes attach — bucket keys may carry literal spaces
+  // that would break the srcset candidate grammar downstream.
+  const mediaSrc = encodeMediaUrl(folder + item.src)
 
   if (item.isVideo) {
     return `${storage}${mediaSrc}${MEDIA.VIDEO_THUMB_EXT}`

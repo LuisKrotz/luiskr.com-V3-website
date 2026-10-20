@@ -16,25 +16,34 @@ let bitmapThrows = false
 let mountDelay = 0
 let verifyPixels = null
 let deviceFails = false
+let deviceThrow = false
+let ctx2dNull = false
+let ctxExtras = false
+let noFontSize = false
+let probeResult = 0.5
 
 /** A fake shared GPUDevice serving the verifyOverlay readback. */
 const makeDevice = () => ({
-  createBuffer: () => ({
-    mapAsync: async () => undefined,
-    getMappedRange: () => {
-      // The readback scans tex.height rows at pitch-256 stride — the
-      // mock buffer must cover 256×4 bytes for the 4×4 texture.
-      if (verifyPixels) return verifyPixels
+  createBuffer: () => {
+    if (deviceThrow) throw new Error('alloc denied')
 
-      const px = new Uint8Array(256 * 4)
+    return {
+      mapAsync: async () => undefined,
+      getMappedRange: () => {
+        // The readback scans tex.height rows at pitch-256 stride — the
+        // mock buffer must cover 256×4 bytes for the 4×4 texture.
+        if (verifyPixels) return verifyPixels
 
-      for (let row = 0; row < 4; row++) px[row * 256 + 3] = 255
+        const px = new Uint8Array(256 * 4)
 
-      return px
-    },
-    unmap: () => undefined,
-    destroy: () => undefined,
-  }),
+        for (let row = 0; row < 4; row++) px[row * 256 + 3] = 255
+
+        return px
+      },
+      unmap: () => undefined,
+      destroy: () => undefined,
+    }
+  },
   createCommandEncoder: () => ({
     copyTextureToBuffer: () => undefined,
     finish: () => ({}),
@@ -62,7 +71,9 @@ let imgDataThrows = false
 /** A measuring 2D ctx — glyphs report a real ascent so fillText lands. */
 const measuringCtx = () =>
   new Proxy(
-    {},
+    // `in`-check extras: fontKerning/letterSpacing must be own props for
+    // the capability arms to take their true branch.
+    ctxExtras ? { fontKerning: '', letterSpacing: '' } : {},
     {
       get(_t, prop) {
         if (prop === 'measureText') return () => ({ actualBoundingBoxAscent: 10, width: 8 })
@@ -155,6 +166,7 @@ describe('draw-text gpu reveal', () => {
   let teardownGpuDraw
   let origGetContext
   let origBitmap
+  let origGcs
   let cleanups
 
   beforeEach(async () => {
@@ -164,17 +176,33 @@ describe('draw-text gpu reveal', () => {
     bitmapThrows = false
     mountDelay = 0
     imgDataThrows = false
+    ctx2dNull = false
+    ctxExtras = false
+    noFontSize = false
+    deviceThrow = false
+    probeResult = 0.5
     cleanups = []
 
     origGetContext = document.createElement('canvas').constructor.prototype.getContext
     document.createElement('canvas').constructor.prototype.getContext = (type) => {
-      if (String(type) === '2d') return measuringCtx()
+      if (String(type) === '2d') return ctx2dNull ? null : measuringCtx()
 
       if (String(type) === 'webgpu') {
         return { getCurrentTexture: () => ({ width: 4, height: 4 }) }
       }
 
       return null
+    }
+
+    origGcs = globalThis.getComputedStyle
+    globalThis.getComputedStyle = (el) => {
+      const cs = origGcs(el)
+
+      if (!noFontSize) return cs
+
+      return new Proxy(cs, {
+        get: (t, p) => (p === 'fontSize' ? '' : Reflect.get(t, p)),
+      })
     }
 
     verifyPixels = null
@@ -200,6 +228,7 @@ describe('draw-text gpu reveal', () => {
   afterEach(() => {
     document.createElement('canvas').constructor.prototype.getContext = origGetContext
     globalThis.createImageBitmap = origBitmap
+    globalThis.getComputedStyle = origGcs
     cleanups.forEach((n) => n.remove?.())
   })
 
@@ -438,6 +467,216 @@ describe('draw-text gpu reveal', () => {
     expect(w.chars[0][8 + 12]).toBe(225)
     expect(w.chars[0][9]).toBeGreaterThan(0)
     expect(w.chars[0][9 + 12]).toBeGreaterThan(0)
+  })
+
+  test('a falsy devicePixelRatio falls back to 1 and still goes live', async () => {
+    const dprDesc = Object.getOwnPropertyDescriptor(window, 'devicePixelRatio')
+
+    Object.defineProperty(window, 'devicePixelRatio', { value: 0, configurable: true })
+
+    const { host, contentEl } = makeHost()
+    const w = makeWidget()
+
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: w, destroy: jest.fn() }
+    tryGpuDraw(host, 40)
+
+    await flush()
+
+    expect(host._gpuHandle).toBe(mountResult)
+
+    if (dprDesc) Object.defineProperty(window, 'devicePixelRatio', dprDesc)
+  })
+
+  test('a NaN char rect collapses atlasW — prepare bails to the CSS path', async () => {
+    const { host, contentEl, char } = makeHost()
+    const w = makeWidget()
+
+    char.getBoundingClientRect = () => ({ ...RECT, width: NaN, height: 20 })
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: w, destroy: jest.fn() }
+    tryGpuDraw(host, 100)
+
+    await flush()
+
+    expect(mountResult.destroy).toHaveBeenCalled()
+    expect(host._gpuHandle).toBeNull()
+  })
+
+  test('a dead 2d atlas context fails prepare', async () => {
+    ctx2dNull = true
+
+    const { host, contentEl } = makeHost()
+
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: makeWidget(), destroy: jest.fn() }
+    tryGpuDraw(host, 100)
+
+    await flush()
+
+    expect(mountResult.destroy).toHaveBeenCalled()
+  })
+
+  test('kerning/spacing-aware ctx takes the capability arms', async () => {
+    ctxExtras = true
+
+    const { host, contentEl } = makeHost()
+    const w = makeWidget()
+
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: w, destroy: jest.fn() }
+    tryGpuDraw(host, 40)
+
+    await flush()
+
+    expect(host._gpuHandle).toBe(mountResult)
+    expect(w.atlases.length).toBe(1)
+  })
+
+  test('empty computed fontSize falls back to the em defaults', async () => {
+    noFontSize = true
+
+    const { host, contentEl } = makeHost()
+    const w = makeWidget()
+
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: w, destroy: jest.fn() }
+    tryGpuDraw(host, 40)
+
+    await flush()
+
+    expect(host._gpuHandle).toBe(mountResult)
+    expect(w.chars.length).toBe(1)
+  })
+
+  test('an empty-text char takes the EMPTY fallbacks in measure+fill', async () => {
+    const { host, contentEl, char } = makeHost()
+    const w = makeWidget()
+
+    char.textContent = ''
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: w, destroy: jest.fn() }
+    tryGpuDraw(host, 40)
+
+    await flush()
+
+    expect(host._gpuHandle).toBe(mountResult)
+    expect(w.atlases.length).toBe(1)
+  })
+
+  test('worker-backed handles probe the render worker — all verdict arms', async () => {
+    // probe → null: verdict short-circuits on `coverage !== null`.
+    const a = makeHost()
+
+    cleanups.push(a.contentEl)
+    mountResult = {
+      canvas: null,
+      widget: makeWidget(),
+      probe: async () => null,
+      destroy: jest.fn(),
+    }
+    tryGpuDraw(a.host, 100)
+
+    await flush()
+
+    expect(mountResult.destroy).toHaveBeenCalled()
+
+    // probe → 0: `coverage > 0` fails — nothing painted.
+    const b = makeHost()
+
+    cleanups.push(b.contentEl)
+    mountResult = { canvas: null, widget: makeWidget(), probe: async () => 0, destroy: jest.fn() }
+    tryGpuDraw(b.host, 100)
+
+    await flush()
+
+    expect(mountResult.destroy).toHaveBeenCalled()
+
+    // probe → 1: `coverage < VERIFY_MAX_COVERAGE` fails — the slab.
+    const c = makeHost()
+
+    cleanups.push(c.contentEl)
+    mountResult = { canvas: null, widget: makeWidget(), probe: async () => 1, destroy: jest.fn() }
+    tryGpuDraw(c.host, 100)
+
+    await flush()
+
+    expect(mountResult.destroy).toHaveBeenCalled()
+
+    // probe → 0.5: all three checks pass — the overlay goes live.
+    const d = makeHost()
+    const w = makeWidget()
+
+    cleanups.push(d.contentEl)
+    mountResult = { canvas: null, widget: w, probe: async () => probeResult, destroy: jest.fn() }
+    tryGpuDraw(d.host, 100)
+
+    await flush()
+
+    expect(d.host._gpuHandle).toBe(mountResult)
+  })
+
+  test('a throwing device buffer drops into the verify catch arm', async () => {
+    deviceThrow = true
+
+    const { host, contentEl } = makeHost()
+
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: makeWidget(), destroy: jest.fn() }
+    tryGpuDraw(host, 100)
+
+    await flush()
+
+    expect(mountResult.destroy).toHaveBeenCalled()
+  })
+
+  test('a tick landing after teardown exits through the null-handle guard', async () => {
+    const origCancel = globalThis.cancelAnimationFrame
+
+    globalThis.cancelAnimationFrame = () => undefined
+
+    const { host, contentEl } = makeHost()
+    const w = makeWidget()
+
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: w, destroy: jest.fn() }
+    tryGpuDraw(host, 40000) // long — the loop must still be armed at teardown
+
+    await flush()
+
+    expect(host._gpuHandle).toBe(mountResult)
+    expect(host._gpuRaf).not.toBe(0)
+
+    teardownGpuDraw(host) // armed-raf arm: cancel + zero the field
+
+    expect(host._gpuRaf).toBe(0)
+    expect(host._gpuHandle).toBeNull()
+
+    await flush(60)
+
+    // The orphaned tick ran with a null handle — early return, no re-arm.
+    expect(host._gpuRaf).toBe(0)
+    globalThis.cancelAnimationFrame = origCancel
+  })
+
+  test('finish without a content root skips the class drop', async () => {
+    const { host, contentEl } = makeHost()
+    const w = makeWidget()
+
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: w, destroy: jest.fn() }
+    tryGpuDraw(host, 40)
+
+    await flush()
+
+    expect(host._gpuHandle).toBe(mountResult)
+
+    host._rootEl = null // DOM root dropped between mount and finish
+
+    await flush(100)
+
+    expect(mountResult.destroy).toHaveBeenCalled()
+    expect(host._gpuHandle).toBeNull()
   })
 
   test('teardownGpuDraw is a safe no-op on an unmounted host', () => {

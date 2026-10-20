@@ -17,6 +17,7 @@ import { LOCALES } from '@core/tokens/locales.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { DB_PATHS, ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
+import { encodeMediaUrl } from '@core/utils/media.js'
 import store from '@core/store.js'
 import type { HomeItem, RelatedCard, RelatedProject, RelatedTranslations } from './types.js'
 
@@ -107,7 +108,9 @@ export function buildProjectsList(
       link,
       fullPath,
       featured: p.featured === true,
-      imageSrc: `${storage}${DB_PATHS.COVERS}${image}${MEDIA.EXT}`,
+      // Emission-encoded — a spaced cover basename feeds both <img src>
+      // and the webpIfExists srcset probe downstream.
+      imageSrc: encodeMediaUrl(`${storage}${DB_PATHS.COVERS}${image}${MEDIA.EXT}`),
       description: homeMatch?.description || p.description || ATTR_VALUES.EMPTY,
     }
   })

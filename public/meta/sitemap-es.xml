@@ -4378,6 +4378,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/tokens/motion/slider.ts.html</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/coverage-core/core/tokens/playground</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -5243,6 +5248,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/utils/motion/bezier.ts.html</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/coverage-core/core/utils/motion/genie.ts.html</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -5258,7 +5268,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/utils/motion/scroll-spring.ts.html</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/coverage-core/core/utils/motion/scroll-state.ts.html</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/utils/motion/spring.ts.html</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -12438,6 +12458,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/public/scripts/workers/gpu-render-worker.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/public/scripts/workers/wasm-worker.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -12683,6 +12708,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/classes/animations.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/classes/app.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -12739,11 +12769,6 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/classes/footer.md</loc>
-    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/classes/gpu.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -12889,6 +12914,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/data.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/data/animation-ids.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -13143,6 +13173,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/genie.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/gpu-widgets.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/gpu.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -13159,6 +13199,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/skeleton.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/slider.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -13503,6 +13548,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/a11y</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/a11y/animation-desc.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/aspect.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -13828,6 +13883,16 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/gpu/corner-brackets.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/gpu/divider-sheen.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/gpu/gpu-accel-shaders.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -13848,7 +13913,22 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/gpu/webgpu-overlay.md</loc>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/gpu/orbit-controller.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/gpu/ring-sheen.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/gpu/scene3d.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/gpu/webgpu-widget.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -13883,6 +13963,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/motion/bezier.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/motion/genie.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -13893,7 +13978,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/motion/scroll-spring.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/motion/scroll-state.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/motion/spring.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -13954,6 +14049,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/wasm/wasm-css.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/wasm/wasm-diagram.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -14019,6 +14119,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/experiments/docs/Docs.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/experiments/docs/arch-scene-3d.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -14868,6 +14973,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/patch-animation-descriptions.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/patch-earth-playground-translations.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -14919,6 +15029,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/media-convert/zip.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/media/validate-media-sizes.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -15318,6 +15433,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/components/home/about/glitch/wasm.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/website/components/home/awards</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -15393,6 +15513,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/components/home/mosaic/burn/wasm.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/website/components/home/mosaic/events.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -15463,12 +15588,22 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/draw-text/gpu.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/draw-text/render.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/draw-text/sheet.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/draw-text/traversal.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -15489,6 +15624,26 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/expanded/close.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/expanded/genie-canvas.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/expanded/genie-gpu.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/expanded/genie-texture.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/expanded/genie.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -15618,7 +15773,207 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/burger</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/burger/luiskr_burger.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/burn</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/burn/luiskr_burn.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/close-button</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/close-button/luiskr_close_button.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/corner-brackets</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/corner-brackets/luiskr_corner_brackets.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/diagram</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/diagram/luiskr_diagram.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/divider-sheen</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/divider-sheen/luiskr_divider_sheen.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/flag</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/flag/luiskr_flag.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/genie</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/genie/luiskr_genie.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/glitch</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/glitch/luiskr_glitch.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/markdown</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/markdown/luiskr_markdown.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/media</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/media/luiskr_media.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/menu-background</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/menu-background/luiskr_menu_background.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/ring-sheen</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/ring-sheen/luiskr_ring_sheen.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/scene3d</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/scene3d/luiskr_scene3d.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/skeleton</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/skeleton/luiskr_skeleton.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/switch-slider</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/switch-slider/luiskr_switch_slider.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/text-draw</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/text-draw/luiskr_text_draw.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/theme-slider</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/public/wasm/theme-slider/luiskr_theme_slider.md</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/website/views</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/views/animations</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/views/animations/Animations.md</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -37251,145 +37606,145 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Brazilian leather, página principal full recorrido</video:title>
       <video:description>Brazilian Leather — Brazilian leather, página principal full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/cicb.org.br-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/cicb.org.br-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Brazilian leather, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Brazilian leather, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/cicb.org.br-31-03-19-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/cicb.org.br-31-03-19-1-mobile.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-en-2020-12-15-23_21_33-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-en-2020-12-15-23_21_33-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian leather, home</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian leather, about</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-brazilian-leather-mandarin-chinese-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-brazilian-leather-mandarin-chinese-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian leather, in mandarin chinese</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-cicb-website-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-cicb-website-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Cscb, home página</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2016, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2016, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2016, página completa</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/forum-2016-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/forum-2016-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2016, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2016, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/forum-2016-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/forum-2016-1-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2017, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2017, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2017, página completa</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/forum-2017-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/forum-2017-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2017, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2017, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/forum-2017-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/forum-2017-1-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2018, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2018, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2018, página completa</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/forum-2018-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/forum-2018-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2018, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2018, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/forum-2018-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/forum-2018-1-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2019, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2019, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2019, página completa</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/forumcicb2019-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/forumcicb2019-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2019, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2019, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/forumcicb2019-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/forumcicb2019-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/cicb.org.br-forum2020.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/cicb.org.br-forum2020.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2020, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/cicb.org.br-forum2020.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/cicb.org.br-forum2020.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/fórum-cscb-fórum-2020-a-sociedade-somos-todos-nós-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/fo%CC%81rum-cscb-fo%CC%81rum-2020-a-sociedade-somos-todos-no%CC%81s-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, página completa</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2020, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Webinar 2020, full recorrido</video:title>
       <video:description>Brazilian Leather — Webinar 2020, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, página completa</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2020, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2021, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2021, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-desk-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-desk-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, escritorio página</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tablet-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tablet-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, tablet página</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-mobile-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-mobile-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2021, móvil página</image:title>
     </image:image>
   </url>
@@ -37398,7 +37753,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian leather, about</image:title>
     </image:image>
   </url>
@@ -37407,7 +37762,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-en-2020-12-15-23_21_33-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-en-2020-12-15-23_21_33-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian leather, home</image:title>
     </image:image>
   </url>
@@ -37416,7 +37771,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-brazilian-leather-mandarin-chinese-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-brazilian-leather-mandarin-chinese-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian leather, in mandarin chinese</image:title>
     </image:image>
   </url>
@@ -37425,10 +37780,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/cicb.org.br-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/cicb.org.br-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Brazilian leather, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Brazilian leather, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/cicb.org.br-31-03-19-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/cicb.org.br-31-03-19-1-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37436,7 +37791,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-cicb-website-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-cicb-website-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Cscb, home página</image:title>
     </image:image>
   </url>
@@ -37445,10 +37800,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2016, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2016, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37456,7 +37811,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2016, página completa</image:title>
     </image:image>
   </url>
@@ -37465,10 +37820,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/forum-2016-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/forum-2016-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2016, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2016, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/forum-2016-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/forum-2016-1-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37476,10 +37831,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2017, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2017, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37487,7 +37842,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2017, página completa</image:title>
     </image:image>
   </url>
@@ -37496,10 +37851,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/forum-2017-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/forum-2017-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2017, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2017, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/forum-2017-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/forum-2017-1-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37507,10 +37862,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2018, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2018, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37518,7 +37873,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2018, página completa</image:title>
     </image:image>
   </url>
@@ -37527,10 +37882,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/forum-2018-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/forum-2018-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2018, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2018, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/forum-2018-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/forum-2018-1-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37538,10 +37893,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2019, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2019, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37549,7 +37904,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2019, página completa</image:title>
     </image:image>
   </url>
@@ -37558,10 +37913,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/forumcicb2019-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/forumcicb2019-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2019, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2019, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/forumcicb2019-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/forumcicb2019-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37569,7 +37924,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-desk-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-desk-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, escritorio página</image:title>
     </image:image>
   </url>
@@ -37578,10 +37933,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/cicb.org.br-forum2020.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/cicb.org.br-forum2020.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2020, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/cicb.org.br-forum2020.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/cicb.org.br-forum2020.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37589,7 +37944,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/fórum-cscb-fórum-2020-a-sociedade-somos-todos-nós-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/fo%CC%81rum-cscb-fo%CC%81rum-2020-a-sociedade-somos-todos-no%CC%81s-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, página completa</image:title>
     </image:image>
   </url>
@@ -37598,7 +37953,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, página completa</image:title>
     </image:image>
   </url>
@@ -37607,10 +37962,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2020, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37618,10 +37973,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, recorrido móvil</video:title>
       <video:description>Brazilian Leather — Fórum 2020, recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37629,7 +37984,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tablet-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tablet-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, tablet página</image:title>
     </image:image>
   </url>
@@ -37638,10 +37993,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2021, full recorrido</video:title>
       <video:description>Brazilian Leather — Fórum 2021, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37649,7 +38004,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-mobile-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-mobile-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2021, móvil página</image:title>
     </image:image>
   </url>
@@ -37658,10 +38013,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Webinar 2020, full recorrido</video:title>
       <video:description>Brazilian Leather — Webinar 2020, full recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -37689,7 +38044,7 @@
       <image:title>Coza: english página principal</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/coza/articles+galleries+photo/coza-article--organização-coza-com-as-dicas-da-maysa-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/coza/articles+galleries+photo/coza-article--organizac%CC%A7a%CC%83o-coza-com-as-dicas-da-maysa-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Coza: artículo, organização com as dicas da maysa.</image:title>
     </image:image>
     <image:image>
@@ -37718,7 +38073,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/coza/articles+galleries+photo/coza-article--organização-coza-com-as-dicas-da-maysa-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/coza/articles+galleries+photo/coza-article--organizac%CC%A7a%CC%83o-coza-com-as-dicas-da-maysa-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Coza: artículo, organização com as dicas da maysa.</image:title>
     </image:image>
   </url>
@@ -39362,16 +39717,16 @@
       <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collections/development/open-vibes/melissa.com.br-colecoes-open-vibes-31-03-19-1-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa-collab-a-la-garçonne-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa-collab-a-la-garc%CC%A7onne-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Melissa, collab: a la garçonne recorrido móvil</video:title>
       <video:description>Melissa — Melissa, collab: a la garçonne recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa-collab-a-la-garçonne-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa-collab-a-la-garc%CC%A7onne-tour.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Melissa, collab: a la garçonne recorrido móvil</video:title>
       <video:description>Melissa — Melissa, collab: a la garçonne recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/awaytomars/melissa.com.br-collabs-awaytomars-31-03-19.mp4.jpg-thumb.jpg</video:thumbnail_loc>
@@ -40002,10 +40357,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa-collab-a-la-garçonne-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa-collab-a-la-garc%CC%A7onne-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Melissa, collab: a la garçonne recorrido móvil</video:title>
       <video:description>Melissa — Melissa, collab: a la garçonne recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa-collab-a-la-garçonne-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa-collab-a-la-garc%CC%A7onne-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -40013,10 +40368,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Melissa, collab: a la garçonne recorrido móvil</video:title>
       <video:description>Melissa — Melissa, collab: a la garçonne recorrido móvil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -42873,7 +43228,7 @@
       <image:title>Mor artículo: mor explica como cuidar da sua piscina</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor-article--cada-doçura-da-linha-baby-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor-article--cada-doc%CC%A7ura-da-linha-baby-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Mor artículo: cada doçura da linha baby</image:title>
     </image:image>
     <video:video>
@@ -42914,7 +43269,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor-article--cada-doçura-da-linha-baby-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor-article--cada-doc%CC%A7ura-da-linha-baby-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Mor artículo: cada doçura da linha baby</image:title>
     </image:image>
   </url>
@@ -43623,11 +43978,11 @@
       <image:title>Sageweb: personalization captura</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relatórios-gerenciais-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relato%CC%81rios-gerenciais-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Sageweb: 'relatórios gerenciais' captura</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relatórios-gerenciais-por-mes-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relato%CC%81rios-gerenciais-por-mes-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Sageweb: 'relatórios gerenciais por mês' captura</image:title>
     </image:image>
     <image:image>
@@ -43716,7 +44071,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relatórios-gerenciais-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relato%CC%81rios-gerenciais-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Sageweb: 'relatórios gerenciais' captura</image:title>
     </image:image>
   </url>
@@ -43725,7 +44080,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relatórios-gerenciais-por-mes-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relato%CC%81rios-gerenciais-por-mes-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Sageweb: 'relatórios gerenciais por mês' captura</image:title>
     </image:image>
   </url>
@@ -43854,10 +44209,10 @@
       <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-bem-vindos-a-venus-brasileira-short-tour.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS FASHION-WEEK-short-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS%20FASHION-WEEK-short-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Transa: artículo, direct-from-paris fashion-week, short recorrido</video:title>
       <video:description>Transa — Transa: artículo, direct-from-paris fashion-week, short recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS FASHION-WEEK-short-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS%20FASHION-WEEK-short-tour.mp4</video:content_loc>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-parceria-arquitetura-naciona-painel-centro-sao-paulo-short-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
@@ -44077,10 +44432,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS FASHION-WEEK-short-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS%20FASHION-WEEK-short-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Transa: artículo, direct-from-paris fashion-week, short recorrido</video:title>
       <video:description>Transa — Transa: artículo, direct-from-paris fashion-week, short recorrido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS FASHION-WEEK-short-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS%20FASHION-WEEK-short-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -44912,145 +45267,145 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.8</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Brazilian Leather, homepage full tour</video:title>
       <video:description>Brazilian Leather — Brazilian Leather, homepage full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/cicb.org.br-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/cicb.org.br-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Brazilian Leather, mobile tour</video:title>
       <video:description>Brazilian Leather — Brazilian Leather, mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/cicb.org.br-31-03-19-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/cicb.org.br-31-03-19-1-mobile.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-en-2020-12-15-23_21_33-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-en-2020-12-15-23_21_33-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian Leather, home</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian Leather, about</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-brazilian-leather-mandarin-chinese-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-brazilian-leather-mandarin-chinese-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian Leather, in Mandarin Chinese</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-cicb-website-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-cicb-website-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>CSCB, Home page</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2016, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2016, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2016, Full page</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/forum-2016-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/forum-2016-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2016, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2016, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/forum-2016-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/forum-2016-1-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2017, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2017, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2017, Full page</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/forum-2017-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/forum-2017-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2017, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2017, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/forum-2017-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/forum-2017-1-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2018, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2018, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2018, Full page</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/forum-2018-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/forum-2018-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2018, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2018, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/forum-2018-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/forum-2018-1-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2019, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2019, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2019, Full page</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/forumcicb2019-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/forumcicb2019-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2019, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2019, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/forumcicb2019-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/forumcicb2019-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/cicb.org.br-forum2020.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/cicb.org.br-forum2020.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2020, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/cicb.org.br-forum2020.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/cicb.org.br-forum2020.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/fórum-cscb-fórum-2020-a-sociedade-somos-todos-nós-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/fo%CC%81rum-cscb-fo%CC%81rum-2020-a-sociedade-somos-todos-no%CC%81s-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, Full page</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2020, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Webinar 2020, Full tour</video:title>
       <video:description>Brazilian Leather — Webinar 2020, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, Full page</image:title>
     </image:image>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2020, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2021, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2021, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tour.mp4</video:content_loc>
     </video:video>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-desk-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-desk-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, Desktop page</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tablet-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tablet-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, Tablet page</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-mobile-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-mobile-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2021, Mobile page</image:title>
     </image:image>
   </url>
@@ -45059,7 +45414,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian Leather, about</image:title>
     </image:image>
   </url>
@@ -45068,7 +45423,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-en-2020-12-15-23_21_33-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-about-full-page-en-2020-12-15-23_21_33-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian Leather, home</image:title>
     </image:image>
   </url>
@@ -45077,7 +45432,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-brazilian-leather-mandarin-chinese-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-brazilian-leather-mandarin-chinese-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Brazilian Leather, in Mandarin Chinese</image:title>
     </image:image>
   </url>
@@ -45086,10 +45441,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/cicb.org.br-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/cicb.org.br-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Brazilian Leather, mobile tour</video:title>
       <video:description>Brazilian Leather — Brazilian Leather, mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/cicb.org.br-31-03-19-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/cicb.org.br-31-03-19-1-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45097,7 +45452,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-cicb-website-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-cicb-website-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>CSCB, Home page</image:title>
     </image:image>
   </url>
@@ -45106,7 +45461,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2016, Full page</image:title>
     </image:image>
   </url>
@@ -45115,10 +45470,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2016, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2016, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/fórum-cscb-fórum-2016-economia-circular-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/fo%CC%81rum-cscb-fo%CC%81rum-2016-economia-circular-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45126,10 +45481,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/forum-2016-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/forum-2016-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2016, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2016, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2016/forum-2016-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2016/forum-2016-1-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45137,7 +45492,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2017, Full page</image:title>
     </image:image>
   </url>
@@ -45146,10 +45501,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2017, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2017, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/fórum-cscb-fórum-2017-negócios-disruptivos-para-um-mundo-disruptivo-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/fo%CC%81rum-cscb-fo%CC%81rum-2017-nego%CC%81cios-disruptivos-para-um-mundo-disruptivo-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45157,10 +45512,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/forum-2017-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/forum-2017-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2017, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2017, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2017/forum-2017-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2017/forum-2017-1-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45168,7 +45523,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2018, Full page</image:title>
     </image:image>
   </url>
@@ -45177,10 +45532,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2018, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2018, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/fórum-cscb-fórum-2018-qual-o-retorno-do-investimento-sustentável-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/fo%CC%81rum-cscb-fo%CC%81rum-2018-qual-o-retorno-do-investimento-sustenta%CC%81vel-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45188,10 +45543,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/forum-2018-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/forum-2018-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2018, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2018, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2018/forum-2018-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2018/forum-2018-1-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45199,7 +45554,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2019, Full page</image:title>
     </image:image>
   </url>
@@ -45208,10 +45563,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2019, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2019, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/fórum-cscb-fórum-2019-o-couro-no-mundo-hiperconectado-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/fo%CC%81rum-cscb-fo%CC%81rum-2019-o-couro-no-mundo-hiperconectado-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45219,10 +45574,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/forumcicb2019-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/forumcicb2019-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2019, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2019, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2019/forumcicb2019-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2019/forumcicb2019-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45230,7 +45585,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-desk-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-desk-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, Desktop page</image:title>
     </image:image>
   </url>
@@ -45239,7 +45594,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/fórum-cscb-fórum-2020-a-sociedade-somos-todos-nós-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/fo%CC%81rum-cscb-fo%CC%81rum-2020-a-sociedade-somos-todos-no%CC%81s-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, Full page</image:title>
     </image:image>
   </url>
@@ -45248,7 +45603,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-full-page-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, Full page</image:title>
     </image:image>
   </url>
@@ -45257,10 +45612,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/cicb.org.br-forum2020.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/cicb.org.br-forum2020.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2020, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/cicb.org.br-forum2020.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/cicb.org.br-forum2020.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45268,10 +45623,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2020, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2020/forum-cscb-2020-mobile-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45279,10 +45634,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2020, Mobile tour</video:title>
       <video:description>Brazilian Leather — Fórum 2020, Mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-mobile-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45290,7 +45645,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tablet-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tablet-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2020, Tablet page</image:title>
     </image:image>
   </url>
@@ -45299,10 +45654,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Fórum 2021, Full tour</video:title>
       <video:description>Brazilian Leather — Fórum 2021, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45310,7 +45665,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/forum-cicb/2021/forum-cicb-2021-mobile-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/forum-cicb/2021/forum-cicb-2021-mobile-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Fórum 2021, Mobile page</image:title>
     </image:image>
   </url>
@@ -45319,10 +45674,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Webinar 2020, Full tour</video:title>
       <video:description>Brazilian Leather — Webinar 2020, Full tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/webinar-series/2020/brazilian-leather-webinar-series-2020-leather-business-and-future-consumer-the-world-is-changing-we-are-changing-join-us-in-shaping-the-future-to-come-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -45350,7 +45705,7 @@
       <image:title>Coza: english homepage</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/coza/articles+galleries+photo/coza-article--organização-coza-com-as-dicas-da-maysa-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/coza/articles+galleries+photo/coza-article--organizac%CC%A7a%CC%83o-coza-com-as-dicas-da-maysa-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Coza: article, Organização com as dicas da maysa.</image:title>
     </image:image>
     <image:image>
@@ -45379,7 +45734,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/coza/articles+galleries+photo/coza-article--organização-coza-com-as-dicas-da-maysa-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/coza/articles+galleries+photo/coza-article--organizac%CC%A7a%CC%83o-coza-com-as-dicas-da-maysa-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Coza: article, Organização com as dicas da maysa.</image:title>
     </image:image>
   </url>
@@ -47023,16 +47378,16 @@
       <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collections/development/open-vibes/melissa.com.br-colecoes-open-vibes-31-03-19-1-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa-collab-a-la-garçonne-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa-collab-a-la-garc%CC%A7onne-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Melissa, Collab: A La Garçonne mobile tour</video:title>
       <video:description>Melissa — Melissa, Collab: A La Garçonne mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa-collab-a-la-garçonne-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa-collab-a-la-garc%CC%A7onne-tour.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Melissa, Collab: A La Garçonne mobile tour</video:title>
       <video:description>Melissa — Melissa, Collab: A La Garçonne mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4</video:content_loc>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/awaytomars/melissa.com.br-collabs-awaytomars-31-03-19.mp4.jpg-thumb.jpg</video:thumbnail_loc>
@@ -47487,10 +47842,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa-collab-a-la-garçonne-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa-collab-a-la-garc%CC%A7onne-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Melissa, Collab: A La Garçonne mobile tour</video:title>
       <video:description>Melissa — Melissa, Collab: A La Garçonne mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa-collab-a-la-garçonne-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa-collab-a-la-garc%CC%A7onne-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -47498,10 +47853,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Melissa, Collab: A La Garçonne mobile tour</video:title>
       <video:description>Melissa — Melissa, Collab: A La Garçonne mobile tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garçonne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/melissa/collabs/development/a-la-garc%CC%A7onne/melissa.com.br-collabs-a-la-garconne-31-03-19-1-mobile.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
@@ -50534,7 +50889,7 @@
       <image:title>MOR ARTICLE: MOR explica como cuidar da sua piscina</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor-article--cada-doçura-da-linha-baby-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor-article--cada-doc%CC%A7ura-da-linha-baby-mozjpg-uncompressed.jpg</image:loc>
       <image:title>MOR ARTICLE: Cada doçura da linha baby</image:title>
     </image:image>
     <video:video>
@@ -50575,7 +50930,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor-article--cada-doçura-da-linha-baby-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor-article--cada-doc%CC%A7ura-da-linha-baby-mozjpg-uncompressed.jpg</image:loc>
       <image:title>MOR ARTICLE: Cada doçura da linha baby</image:title>
     </image:image>
   </url>
@@ -51284,11 +51639,11 @@
       <image:title>Sageweb: personalization screenshot</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relatórios-gerenciais-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relato%CC%81rios-gerenciais-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Sageweb: 'Relatórios Gerenciais' screenshot</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relatórios-gerenciais-por-mes-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relato%CC%81rios-gerenciais-por-mes-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Sageweb: 'Relatórios Gerenciais por mês' screenshot</image:title>
     </image:image>
     <image:image>
@@ -51368,7 +51723,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relatórios-gerenciais-por-mes-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relato%CC%81rios-gerenciais-por-mes-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Sageweb: 'Relatórios Gerenciais por mês' screenshot</image:title>
     </image:image>
   </url>
@@ -51377,7 +51732,7 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relatórios-gerenciais-mozjpg-uncompressed.jpg</image:loc>
+      <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-relato%CC%81rios-gerenciais-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Sageweb: 'Relatórios Gerenciais' screenshot</image:title>
     </image:image>
   </url>
@@ -51515,10 +51870,10 @@
       <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-bem-vindos-a-venus-brasileira-short-tour.mp4</video:content_loc>
     </video:video>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS FASHION-WEEK-short-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS%20FASHION-WEEK-short-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Transa: Article, DIRECT-FROM-PARIS FASHION-WEEK, short tour</video:title>
       <video:description>Transa — Transa: Article, DIRECT-FROM-PARIS FASHION-WEEK, short tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS FASHION-WEEK-short-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS%20FASHION-WEEK-short-tour.mp4</video:content_loc>
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-parceria-arquitetura-naciona-painel-centro-sao-paulo-short-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
@@ -51747,10 +52102,10 @@
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS FASHION-WEEK-short-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS%20FASHION-WEEK-short-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
       <video:title>Transa: Article, DIRECT-FROM-PARIS FASHION-WEEK, short tour</video:title>
       <video:description>Transa — Transa: Article, DIRECT-FROM-PARIS FASHION-WEEK, short tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS FASHION-WEEK-short-tour.mp4</video:content_loc>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-articles-DIRECT-FROM-PARIS%20FASHION-WEEK-short-tour.mp4</video:content_loc>
     </video:video>
   </url>
   <url>
