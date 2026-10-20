@@ -41711,6 +41711,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/shared/scripts/media/validate-media-sizes.mjs</loc>
+    <lastmod>2026-10-20T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/shared/scripts/media/webp-webm-convert.mjs</loc>
     <lastmod>2026-10-20T00:00:00+00:00</lastmod>
     <priority>0.7</priority>

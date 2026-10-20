@@ -9377,6 +9377,7 @@ https://luiskr.com/docs/shared/scripts/media-convert/index.js
 https://luiskr.com/docs/shared/scripts/media-convert/install.js
 https://luiskr.com/docs/shared/scripts/media-convert/pipeline.js
 https://luiskr.com/docs/shared/scripts/media-convert/zip.js
+https://luiskr.com/docs/shared/scripts/media/validate-media-sizes.mjs
 https://luiskr.com/docs/shared/scripts/media/webp-webm-convert.mjs
 https://luiskr.com/docs/shared/scripts/module.mjs
 https://luiskr.com/docs/shared/scripts/modules.mjs
