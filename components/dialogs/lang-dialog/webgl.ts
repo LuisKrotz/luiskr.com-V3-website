@@ -8,8 +8,10 @@ import { FLAG_CLASSES } from '@core/tokens/classes/flags.js'
 import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { LANG_OPTIONS } from '@core/i18n.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { CloseButtonWebGL } from '@core/utils/canvas/widgets/close-button.js'
 import { FlagWebGL } from '@core/utils/canvas/widgets/flag-webgl.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import type { LangDialog } from '../LangDialog.js'
 
 /** Mounts the header close button on its live canvas (rebuilds on swap). */
@@ -25,6 +27,8 @@ function mountCloseButton(host: LangDialog): void {
   }
 
   if (!host._closeBtn) {
+    applyAnimationDesc(closeCanvas, ANIMATION_IDS.CLOSE_BUTTON)
+
     host._closeBtn = new CloseButtonWebGL(closeCanvas, () => host.close())
   }
 }
@@ -55,6 +59,8 @@ function mountFlags(host: LangDialog): void {
     }
 
     if (!host._flags[code]) {
+      applyAnimationDesc(canvas, ANIMATION_IDS.NAV_FLAG)
+
       host._flags[code] = new FlagWebGL(canvas, langOpt)
     }
   })

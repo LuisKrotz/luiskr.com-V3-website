@@ -13,12 +13,15 @@ import { AWC_CLASSES, AWC_VARIANTS } from '@core/tokens/classes/awards-carousel.
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
 import { mountCornerBracketsAll } from '@core/utils/gpu/corner-brackets.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
 import awardsCarouselStyles from '@core/sass/components/carousel/awards-carousel.scss?inline'
 import { startAutoplay, stopAutoplay, tickAutoplay } from './awards-carousel/autoplay.js'
 import { bindEvents } from './awards-carousel/events.js'
 import {
+  cancelNavSpring,
   goTo,
   jumpToSlide,
   onDotClick,
@@ -57,8 +60,11 @@ export class AwardsCarousel extends BaseComponent {
   autoplayElapsed = 0
   /** Autoplay RAF handle. */
   rafId: number | null = null
-  /** Pending clone→real jump timer (teleport after wrap settles). */
+  /** Pending clone→real jump watchdog timer (rAF-starvation fallback). */
   teleportTimer: ReturnType<typeof setTimeout> | null = null
+  /** Clone→real teleport armed by _scheduleTeleport — the scroll spring's
+   *  settle fires it; the timer is only the rAF-starvation watchdog. */
+  pendingTeleport: number | null = null
   /** Swipe origin X for the 40px threshold check. */
   touchStartX = 0
   /** Programmatic scroll in flight — scroll events during it are ignored. */
@@ -111,6 +117,10 @@ export class AwardsCarousel extends BaseComponent {
     this._setupCarousel()
     this._disableClonesFocus()
     this.subscribe(store)
+
+    // Host-level bind — the momentum/autoplay animation belongs to the
+    // whole carousel; the desc node lands in the parent (light) tree.
+    applyAnimationDesc(this, ANIMATION_IDS.CAROUSEL)
   }
 
   /** Re-render: re-strip clone focusability (clones get re-created). */
@@ -170,7 +180,7 @@ export class AwardsCarousel extends BaseComponent {
       this.observer.disconnect()
       this.observer = null
     }
-    if (this.teleportTimer) clearTimeout(this.teleportTimer)
+    this._cancelNavSpring()
     if (this.setupRafId != null) {
       cancelAnimationFrame(this.setupRafId)
       this.setupRafId = null
@@ -203,6 +213,10 @@ export class AwardsCarousel extends BaseComponent {
   /** Schedules the post-wrap teleport from a clone position back to the real slide. */
   _scheduleTeleport(targetIdx: number) {
     scheduleTeleport(this, targetIdx)
+  }
+  /** User-gesture takeover — kills the scroll spring + pending teleport. */
+  _cancelNavSpring() {
+    cancelNavSpring(this)
   }
   /** Positions the track on slide `idx` (smooth=false for instant jumps). */
   _jumpToSlide(idx: number, smooth = false) {

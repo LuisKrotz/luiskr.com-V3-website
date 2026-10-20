@@ -20,8 +20,10 @@ import { DIALOG_IDS } from '@core/tokens/ids/dialogs.js'
 import { ASSET_PATHS } from '@core/tokens/routes/paths.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { h } from '@core/jsx.js'
+import { isPlainClick } from '@core/utils/dom.js'
 import store from '@core/store.js'
 import { LANG_OPTIONS } from '@core/i18n.js'
+import { localeUrl } from './locale.js'
 import { componentText } from '@core/locale/ui-text.js'
 import type { LangDialog } from '../LangDialog.js'
 import { FLAG_DIMENSIONS } from '@core/tokens/media/dimensions.js'
@@ -44,15 +46,21 @@ function flagImg(l: LangOption, cc: string | undefined, alt: string, width: numb
   )
 }
 
-/** One locale option button (flag layers + short/native labels). */
+/** One locale option — a real anchor to the translated route (crawlable,
+ *  right-click/new-tab); plain clicks switch in-place through the SPA. */
 function renderLangOption(host: LangDialog, l: LangOption, currentLocale: string) {
   return (
-    <button
+    <a
       key={l.code}
       className={`${PREF_CLASSES.PREF_OPTION_BTN} ${currentLocale === l.code ? STATE_CLASSES.ACTIVE : ATTR_VALUES.EMPTY}`}
       data-lang={l.code}
-      type={FORM_ATTRS.BUTTON}
-      onClick={() => host.selectLang(l.code)}
+      href={localeUrl(l.code)}
+      onClick={(e: MouseEvent) => {
+        if (!isPlainClick(e)) return
+
+        e.preventDefault()
+        host.selectLang(l.code)
+      }}
     >
       <span className={PREF_CLASSES.PREF_OPTION_ICON} aria-hidden={ATTR_VALUES.TRUE}>
         <canvas className={FLAG_CLASSES.FLAG_CANVAS} data-flag={l.code} />
@@ -67,7 +75,7 @@ function renderLangOption(host: LangDialog, l: LangOption, currentLocale: string
       </span>
       <span className={PREF_CLASSES.PREF_OPTION_LABEL}>{l.short}</span>
       <span className={PREF_CLASSES.PREF_OPTION_SUB}>{l.label}</span>
-    </button>
+    </a>
   )
 }
 

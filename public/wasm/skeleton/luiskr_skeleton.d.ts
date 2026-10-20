@@ -22,9 +22,10 @@ export class Skeleton {
    * propagates to JS, which falls back to the WebGL/CSS skeleton.
    *
    * @param canvas The dedicated canvas this surface paints.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a configured surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `Skeleton::new` — un-initialized surface; `init` must follow.
    * Split because the device request is an async browser promise.
@@ -74,20 +75,15 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_skeleton_free: (a: number, b: number) => void
   readonly skeleton_frame: (a: number, b: number) => void
-  readonly skeleton_init: (a: number, b: number) => number
+  readonly skeleton_init: (a: number, b: number, c: number, d: number) => void
   readonly skeleton_new: () => number
   readonly skeleton_resize: (a: number, b: number, c: number) => void
   readonly skeleton_set_size: (a: number, b: number, c: number) => void
   readonly skeleton_set_state: (a: number, b: number, c: number, d: number) => void
   readonly skeleton_write_sheet: (a: number, b: number, c: number) => void
-  readonly __wasm_bindgen_func_elem_139: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_139_10: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_679: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_692: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

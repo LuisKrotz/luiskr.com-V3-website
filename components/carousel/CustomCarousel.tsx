@@ -17,6 +17,8 @@ import { BaseComponent } from '@core/Component.js'
 import { CarouselArrowWebGL } from '@core/utils/canvas/widgets/carousel-controls.js'
 import { type CarouselItem, renderCarousel, renderCarouselSlide } from './custom-carousel/render.js'
 import { onDestroy, onMounted, onStoreUpdate, onUnmounted } from './custom-carousel/lifecycle.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import {
   regressRingToZero,
   startCarouselAutoplay,
@@ -26,6 +28,7 @@ import {
 } from './custom-carousel/autoplay.js'
 import { bindControls, destroyWebGLArrows, mountWebGLArrows } from './custom-carousel/arrows.js'
 import {
+  cancelNavSpring,
   carouselGoTo,
   carouselOnDotClick,
   carouselOnNextClick,
@@ -93,8 +96,11 @@ export class CustomCarousel extends BaseComponent {
   rafId: number | null = null
   /** Scroll debounce — _checkInfiniteLoop runs 150ms after the last event. */
   scrollTimeout: ReturnType<typeof setTimeout> | null = null
-  /** Pending clone→real instant jump (CAROUSEL_TIMING.TELEPORT_DELAY). */
+  /** Pending clone→real instant jump watchdog (CAROUSEL_TIMING.TELEPORT_DELAY). */
   teleportTimer: ReturnType<typeof setTimeout> | null = null
+  /** Clone→real teleport armed by _scheduleTeleport — the scroll spring's
+   *  settle fires it; the timer is only the rAF-starvation watchdog. */
+  pendingTeleport: number | null = null
   /** True while a programmatic scroll is animating — suppresses the
    *  scroll-handler teleport so the goTo-driven clone jump isn't undone. */
   isNavigating = false
@@ -239,6 +245,10 @@ export class CustomCarousel extends BaseComponent {
 
   override onMounted() {
     onMounted(this)
+
+    // Host-level bind — clone-loop momentum + autoplay ring are the
+    // carousel's animation; desc lands in the parent (light) tree.
+    applyAnimationDesc(this, ANIMATION_IDS.CAROUSEL)
   }
 
   /** Extra unmount hook the Safari patch calls — releases the fit observer early. */
@@ -382,6 +392,12 @@ export class CustomCarousel extends BaseComponent {
 
   onScroll() {
     carouselOnScroll(this)
+  }
+
+  /** User-gesture takeover — kills the scroll spring + pending teleport. */
+
+  _cancelNavSpring() {
+    cancelNavSpring(this)
   }
 
   /** Teleports between clone and real slides at track edges — the infinite-loop trick. */

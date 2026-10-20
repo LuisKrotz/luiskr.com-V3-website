@@ -29,6 +29,8 @@ import {
 } from './draw-text/trigger.js'
 import type { DrawTimer, DrawToken } from './draw-text/types.js'
 import { DRAW_TIMINGS } from '@core/tokens/media/dimensions.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 
 /**
  * Draws text.
@@ -141,6 +143,10 @@ export class DrawText extends HTMLElement {
     this._setupTrigger()
 
     this._setupFit()
+
+    // Bound on the host so the desc node lands in the PARENT tree —
+    // light-DOM readable for crawlers/AI; idempotent on reconnect.
+    applyAnimationDesc(this, ANIMATION_IDS.TEXT_DRAW)
   }
 
   disconnectedCallback() {

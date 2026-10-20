@@ -13,6 +13,7 @@ import { CAROUSEL_SELECTORS } from '@core/tokens/selectors/carousel.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
+import { calcMediaBox } from '@core/utils/wasm/wasm-layout.js'
 import type { CustomCarousel } from '../CustomCarousel.js'
 import type { CarouselItem } from './render.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
@@ -50,12 +51,14 @@ export function startFitObserver(c: CustomCarousel) {
  * ≥ SIDE_BY_SIDE_BREAKPOINT, and projected total width ≤ host width.
  * The projection mirrors the shadow-DOM contract in media-figure.scss +
  * carousel-host.scss exactly: strip height is --mf-h (70dvh minus a pad
- * under 1024, fixed $space-* steps above), media width is
- * ratio·stripH floored at MEDIA_MIN_WIDTH on ≥375px viewports and capped
- * by the regular gutter cap or the landscape --mf-max-w ladder, and each
- * item adds its breakpoint padding + desktop side margin. Items missing
- * intrinsic sizes use GENERIC_DIMENSIONS defaults (conservative portrait)
- * so a partial CMS row can't silently flip to scroll mode.
+ * under 1024, fixed $space-* steps above) clamped to the file's natural
+ * height, media width is aspect-driven and capped by the regular gutter
+ * cap, the landscape --mf-max-w ladder, AND the natural pixel width
+ * (calcMediaBox — WASM-backed, never upscales), floored at
+ * min(MEDIA_MIN_WIDTH, naturalW) on ≥375px viewports; each item adds its
+ * breakpoint padding + desktop side margin. Items missing intrinsic
+ * sizes use GENERIC_DIMENSIONS defaults (conservative portrait) so a
+ * partial CMS row can't silently flip to scroll mode.
  * @param c The CustomCarousel element.
  * @param observedWidth Fresh RO width when known — avoids a layout read.
  */
@@ -149,13 +152,18 @@ export function measureFit(c: CustomCarousel, observedWidth?: number) {
 
     const h = item.size?.[1] || GENERIC_DIMENSIONS.ITEM_FALLBACK_HEIGHT
 
-    const natural = (w / h) * stripH
-
     const cap = item?.class === STATE_STRINGS.LANDSCAPE ? landscapeCap : regularCap
 
-    // CSS order: max-width clamps first, then min-width can override it —
-    // a floored media keeps 320px even when the cap is smaller.
-    const mediaW = Math.max(mediaMinW, Math.min(natural, cap))
+    // CSS contract: height is min(stripH, naturalH) with aspect-driven
+    // width capped by the breakpoint cap AND by natural width — a box can
+    // never exceed the source file's pixels. calcMediaBox yields
+    // w·min(cap/w, stripH/h, 1), which is exactly that rendered width.
+    const boxW = calcMediaBox(w, h, cap, stripH).width
+
+    // CSS order: max-width clamps first, then min-width can override it.
+    // The floor itself is min-width: min(320px, --mf-natural-w) — a file
+    // narrower than 320px keeps its own natural width, never upscaled.
+    const mediaW = Math.max(boxW, Math.min(mediaMinW, w))
 
     totalW += mediaW + itemPad + itemMargin + CAROUSEL_LAYOUT.ITEM_GAP_PX
   }
@@ -346,6 +354,9 @@ export function getSmallestPortraitRatio(items: CarouselItem[]): number | null {
  * --carousel-media-height on the host: the aspect-corrected height
  * ensuring all slides share one uniform height. In mixed carousels on
  * mobile, the uniform height anchors to the shortest portrait item.
+ * The published height is also capped at the smallest natural item
+ * height — the strip may be *less* tall than the projection, but no
+ * slide may ever render taller than its source file's real pixels.
  * @param c The CustomCarousel element.
  */
 export function setHeightVar(c: CustomCarousel) {
@@ -363,6 +374,11 @@ export function setHeightVar(c: CustomCarousel) {
       ? window.innerWidth
       : GENERIC_DIMENSIONS.DEFAULT_WIDTH)
 
+  const maxH =
+    typeof window !== TYPE_STRINGS.UNDEFINED
+      ? Math.round((window.innerHeight * CAROUSEL_LAYOUT.MAX_HEIGHT_VH) / 100)
+      : GENERIC_DIMENSIONS.ITEM_FALLBACK_HEIGHT
+
   if (c.isMobile) {
     if (c.isMixed) {
       const minPortraitRatio = getSmallestPortraitRatio(c.items)
@@ -370,7 +386,7 @@ export function setHeightVar(c: CustomCarousel) {
       if (minPortraitRatio !== null) {
         slideH = Math.round(hostW * minPortraitRatio)
       } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
-        slideH = Math.round((firstItem.size[1] / firstItem.size[0]) * hostW)
+        slideH = Math.round(calcMediaBox(firstItem.size[0], firstItem.size[1], hostW, maxH).height)
       } else {
         slideH = firstSlide.clientHeight || 0
       }
@@ -379,24 +395,27 @@ export function setHeightVar(c: CustomCarousel) {
 
       slideH = Math.round(hostW / ratioMultiplier)
     } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
-      slideH = Math.round((firstItem.size[1] / firstItem.size[0]) * hostW)
+      slideH = Math.round(calcMediaBox(firstItem.size[0], firstItem.size[1], hostW, maxH).height)
     } else {
       slideH = firstSlide.clientHeight || 0
     }
   } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
-    slideH = Math.round((firstItem.size[1] / firstItem.size[0]) * hostW)
+    slideH = Math.round(calcMediaBox(firstItem.size[0], firstItem.size[1], hostW, maxH).height)
   } else {
     slideH = firstSlide.clientHeight || 0
   }
 
   if (slideH <= 0) return
 
-  const maxH =
-    typeof window !== TYPE_STRINGS.UNDEFINED
-      ? Math.round((window.innerHeight * CAROUSEL_LAYOUT.MAX_HEIGHT_VH) / 100)
-      : slideH
+  // The strip may be less tall than the projection to honor the smallest
+  // file: min natural height across items caps the uniform slide height,
+  // so no rendered slide can exceed its source file's real pixels.
+  const naturalCapH = (c.items || []).reduce(
+    (minH, item) => (item.size?.[1] ? Math.min(minH, item.size[1]) : minH),
+    Infinity
+  )
 
-  const finalH = Math.min(slideH, maxH)
+  const finalH = Math.min(slideH, maxH, naturalCapH)
 
   const finalHPx = `${finalH}${COMMON_ATTRS.PX}`
 

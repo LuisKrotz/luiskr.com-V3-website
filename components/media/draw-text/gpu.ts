@@ -30,8 +30,10 @@ import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { DRAW_TIMINGS } from '@core/tokens/media/dimensions.js'
 import { GPU_WIDGET_DRIVE, GPU_WIDGET_KINDS } from '@core/tokens/motion/gpu-widgets.js'
 import { parseCssColor } from '@core/utils/canvas/css-color.js'
-import { hasWebGpu, mountWebGpuWidget } from '@core/utils/gpu/webgpu-widget.js'
+import { getSharedGpuDevice, hasWebGpu, mountWebGpuWidget } from '@core/utils/gpu/webgpu-widget.js'
 import type { WidgetHandle } from '@core/utils/gpu/webgpu-widget.js'
+import { bakeTraversalField } from './traversal.js'
+import type { TraversalCell } from './traversal.js'
 import type { DrawText } from '../DrawText.js'
 
 /** Char-sheet stride — mirrors rust/text-draw's `CHAR_F32S`. */
@@ -111,10 +113,12 @@ export function tryGpuDraw(host: DrawText, totalMs: number): void {
     host._gpuHandle = mounted
     host._gpuCanvas = canvas
 
-    contentEl.classList.add(DRAW_TEXT_CLASSES.DRAW_TEXT_GPU)
+    // Canvas first, suppression class only after the first frame lands
+    // (see drive) — hiding the DOM chars before the overlay has painted
+    // leaves a one-frame gap where neither paints (the text blink).
     host.shadowRoot!.appendChild(canvas)
 
-    drive(host, mounted, totalMs)
+    drive(host, mounted, totalMs, contentEl)
   })
 }
 
@@ -167,6 +171,13 @@ async function prepare(
   const em = parseFloat(firstCs.fontSize) || 16
   const pad = Math.ceil(em * ATLAS_PAD_EM * dpr)
 
+  // Rasterization happens in DEVICE px (atlas dims are dpr-scaled), so
+  // the font size given to the 2d context is cssSize·dpr — feeding it
+  // the shorthand `cs.font` draws a css-px glyph into a device-px cell,
+  // which then stretches ×dpr across the quad: exactly the blurry /
+  // wrong-size / wrong-weight regression. Kerning + ligatures are off
+  // in the DOM (.draw-text sets both so per-char spans match plain
+  // text) — mirrored on the context below once it exists.
   const cells: {
     dest: [number, number, number, number]
     delay: number
@@ -223,25 +234,49 @@ async function prepare(
   ctx.fillStyle = CANVAS_STRINGS.INK_WHITE
   ctx.textBaseline = 'alphabetic'
 
+  // DOM text shaping parity — .draw-text disables kerning/ligatures so
+  // per-char spans match plain text; the raster must match it exactly.
+  if ('fontKerning' in ctx)
+    (ctx as CanvasRenderingContext2D).fontKerning = CANVAS_STRINGS.FONT_KERNING_NONE
+
+  if ('letterSpacing' in ctx) {
+    try {
+      ;(ctx as CanvasRenderingContext2D).letterSpacing = firstCs.letterSpacing
+    } catch {
+      // Engines that reject the computed spacing string keep default
+      // tracking — cosmetic drift, never a prepare failure.
+    }
+  }
+
   let x = 0
   const sheet = new Float32Array(cells.length * CHAR_F32S)
+  const cellSpans: TraversalCell[] = []
 
   chars.forEach((span, idx) => {
     const cs = getComputedStyle(span)
+    const fontPx = (parseFloat(cs.fontSize) || em) * dpr
 
-    ctx.font = cs.font || `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`
+    ctx.font = `${cs.fontStyle} ${cs.fontVariant} ${cs.fontWeight} ${fontPx}${CHAR_STRINGS.PX} ${cs.fontFamily}`
 
     const m = ctx.measureText(span.textContent || ATTR_VALUES.EMPTY)
     const cell = cells[idx]
     const cellW = cell.dest[2]
+    const cellH = cell.dest[3]
 
-    // Baseline = ascent below the pad top — mirrors the span's own
-    // text layout (inline-block glyph box starts at the span's top).
-    ctx.fillText(span.textContent || ATTR_VALUES.EMPTY, x + pad, pad + m.actualBoundingBoxAscent)
+    // Baseline placement mirrors the DOM line box: the span's box is
+    // line-height tall, and half-leading centers the em box inside it —
+    // baseline sits (boxH − (ascent+descent))/2 + ascent below the cell's
+    // pad top. fontBoundingBox{Ascent,Descent} are the whole-em metrics
+    // (the DOM strut uses them); actualBoundingBox* is the fallback.
+    const ascent = m.fontBoundingBoxAscent || m.actualBoundingBoxAscent
+    const descent = m.fontBoundingBoxDescent || m.actualBoundingBoxDescent
+    const boxH = cellH - pad * 2
+    const baseline = pad + (boxH - (ascent + descent)) / 2 + ascent
+
+    ctx.fillText(span.textContent || ATTR_VALUES.EMPTY, x + pad, baseline)
 
     const uv0 = x / atlasW
     const uv1 = (x + cellW) / atlasW
-    const cellH = cell.dest[3]
 
     const rec = idx * CHAR_F32S
 
@@ -258,8 +293,26 @@ async function prepare(
     sheet[rec + 10] = cell.em
     sheet[rec + 11] = 0
 
+    cellSpans.push({ x0: x, x1: x + cellW })
+
     x += cellW
   })
+
+  // Bake the pen-traversal field into the atlas' free R channel — the
+  // reveal edge then follows the glyph's strokes, not a straight wipe.
+  // getImageData is once per element at trigger time, not per frame.
+  // A failed bake must abort the GPU overlay entirely: R stays 255
+  // (T=1) which would hold every glyph invisible until p≈1 — the CSS
+  // reveal stays the render path instead.
+  try {
+    const imgData = ctx.getImageData(0, 0, atlasW, atlasH)
+
+    bakeTraversalField(imgData.data, atlasW, atlasH, cellSpans)
+
+    ctx.putImageData(imgData, 0, 0)
+  } catch {
+    return false
+  }
 
   const wasm = mounted.widget as unknown as TextDrawWasm
 
@@ -271,30 +324,179 @@ async function prepare(
     // Rasterization failure — the CSS reveal stays the render path.
   }
 
-  if (!bitmap || !wasm.upload_atlas(bitmap)) return false
+  // Worker-routed widgets turn method results into promises — the
+  // awaits below are no-ops on in-page mounts (plain bools wrap).
+  if (!bitmap || !(await wasm.upload_atlas(bitmap))) return false
 
-  if (!wasm.set_chars(sheet)) return false
+  if (!(await wasm.set_chars(sheet))) return false
 
   const ink = parseCssColor(firstCs.color) || [1, 1, 1]
 
   wasm.set_ink(ink[0], ink[1], ink[2], 1)
 
+  // End-state probe: render one frame with every char revealed and
+  // read the canvas back — a pipeline that draws nothing or fills the
+  // whole quad ("slab" regression: broken atlas/bind/sheet on this
+  // driver) is rejected here, BEFORE the DOM chars are suppressed, so
+  // the CSS reveal stays the render path. Only once per trigger, never
+  // per frame. Worker-backed handles run the readback in the render
+  // worker (the canvas's texture lives there post-transfer).
+  if (!(await verifyOverlay(mounted, canvas, totalMsForProbe(host, chars)))) {
+    return false
+  }
+
+  // The probe advanced the stagger clock — re-anchor t0 so the reveal
+  // starts from zero; the probe frame never presented (the canvas is
+  // not yet in the shadow root).
   wasm.trigger()
 
   return true
+}
+
+/** bytesPerRow alignment required by `copyTextureToBuffer`. */
+const COPY_PITCH = 256
+
+/**
+ * WebGPU usage/map-mode flag values — the DOM lib types these as plain
+ * numbers (`GPUBufferUsageFlags`/`GPUMapModeFlags`); the global
+ * `GPUBufferUsage`/`GPUMapMode` constant objects only exist on WebGPU
+ * runtimes, so the spec values are declared here instead of touching
+ * `globalThis` (which also keeps the happy-dom tests free of globals).
+ */
+const BUFFER_COPY_DST = 8
+const BUFFER_MAP_READ = 1
+const MAP_MODE_READ = 1
+
+/**
+ * Coverage ceiling for `verifyOverlay` — a glyph block's ink fills a
+ * small fraction of its box; a painted-coverage ratio at/above this
+ * means the draw degenerated into a full-bleed fill (the slab), and
+ * zero means it produced nothing (missing text).
+ */
+const VERIFY_MAX_COVERAGE = 0.85
+
+/**
+ * `verifyOverlay` — arms-check for the GPU path: submits one frame at
+ * the reveal's end state (every char drawn) against the detached
+ * canvas, reads the painted texture back through the shared device,
+ * and accepts the overlay only when the coverage sits inside the
+ * glyph-block envelope (nonzero, non-full-bleed). Runs once per
+ * trigger — the readback is a single mapAsync, never on the frame
+ * path. Returns false on any readback/validation failure so the DOM
+ * reveal remains the render path.
+ * @param mounted Live widget handle.
+ * @param canvas The (not-yet-attached) overlay canvas.
+ * @param probeMs ms past the last char's end — forces full reveal.
+ * @returns True when the probe painted a plausible glyph block.
+ */
+async function verifyOverlay(
+  mounted: WidgetHandle,
+  canvas: HTMLCanvasElement,
+  probeMs: number
+): Promise<boolean> {
+  try {
+    // Worker-backed handles own the readback — a transferred canvas's
+    // texture is only reachable in the render worker.
+    if (mounted.probe) {
+      const coverage = await mounted.probe(probeMs)
+
+      return coverage !== null && coverage > 0 && coverage < VERIFY_MAX_COVERAGE
+    }
+
+    if (mounted.widget.frame(probeMs / 1000) === false) return false
+
+    const device = await getSharedGpuDevice()
+    const context = canvas.getContext(CANVAS_STRINGS.CONTEXT_WEBGPU) as GPUCanvasContext | null
+
+    if (!device || !context) return false
+
+    const tex = context.getCurrentTexture()
+    const pitch = Math.ceil((tex.width * 4) / COPY_PITCH) * COPY_PITCH
+
+    const buf = device.createBuffer({
+      size: pitch * tex.height,
+      usage: BUFFER_COPY_DST | BUFFER_MAP_READ,
+    })
+
+    const enc = device.createCommandEncoder()
+
+    enc.copyTextureToBuffer(
+      { texture: tex },
+      { buffer: buf, bytesPerRow: pitch, rowsPerImage: tex.height },
+      [tex.width, tex.height]
+    )
+
+    device.queue.submit([enc.finish()])
+    await buf.mapAsync(MAP_MODE_READ)
+
+    const px = new Uint8Array(buf.getMappedRange())
+
+    let painted = 0
+
+    for (let row = 0; row < tex.height; row++) {
+      const base = row * pitch
+
+      for (let col = 0; col < tex.width; col++) {
+        if (px[base + col * 4 + 3] > 0) painted++
+      }
+    }
+
+    buf.unmap()
+    buf.destroy()
+
+    return painted > 0 && painted / (tex.width * tex.height) < VERIFY_MAX_COVERAGE
+  } catch {
+    return false
+  }
+}
+
+/**
+ * `totalMsForProbe` — the probe's end-state timestamp: the last
+ * scheduled char's delay + its own duration, the point where every
+ * glyph is fully drawn. Kept separate from the wall-clock `totalMs`
+ * (which adds presentation slack) so the probe measures the real
+ * "all revealed" moment.
+ * @param host The draw-text element.
+ * @param chars The per-char spans.
+ * @returns ms after the reveal's start where all chars are drawn.
+ */
+function totalMsForProbe(host: DrawText, chars: NodeListOf<HTMLElement>): number {
+  const last = chars[chars.length - 1]
+
+  if (!last) return DRAW_TIMINGS.DRAW_ANIM_EXTRA_MS
+
+  const style = last.style
+  const i = parseFloat(style.getPropertyValue('--i')) || 0
+  const charDelay = parseFloat(style.getPropertyValue('--char-delay')) || host.delay
+  const offset = parseFloat(style.getPropertyValue('--offset')) || host.offset
+  const dur =
+    parseFloat(getComputedStyle(last).animationDuration) * 1000 || DRAW_TIMINGS.DRAW_ANIM_EXTRA_MS
+
+  return offset + i * charDelay + dur + 1
 }
 
 /**
  * `drive` — the MANUAL rAF clock: advances the widget until the last
  * char lands (or the element tears down), then drops the overlay. The
  * DOM spans animate in parallel, so finish() is a same-state swap.
+ * The DOM-suppression class lands on the first submitted frame — the
+ * class flip and the canvas's first present composite together, so no
+ * frame ever shows neither paint source (the mount blink).
  * @param host The draw-text element.
  * @param mounted Live widget handle.
  * @param totalMs Reveal span — the overlay disarms after it.
+ * @param contentEl The `.draw-text` content span — receives the
+ *   suppression class once the overlay has painted.
  */
-function drive(host: DrawText, mounted: WidgetHandle, totalMs: number): void {
+function drive(
+  host: DrawText,
+  mounted: WidgetHandle,
+  totalMs: number,
+  contentEl: HTMLElement
+): void {
   let last = performance.now()
   let elapsed = 0
+  let painted = false
 
   // performance.now() — not the rAF arg: same clock, but robust where a
   // scheduler invokes the callback timestamp-less.
@@ -315,6 +517,11 @@ function drive(host: DrawText, mounted: WidgetHandle, totalMs: number): void {
       finish(host)
 
       return
+    }
+
+    if (!painted) {
+      painted = true
+      contentEl.classList.add(DRAW_TEXT_CLASSES.DRAW_TEXT_GPU)
     }
 
     host._gpuRaf = requestAnimationFrame(tick)

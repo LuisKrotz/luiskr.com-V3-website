@@ -20,9 +20,10 @@ export class Flag {
    * once textures land (`upload_textures` → `rebind`).
    *
    * @param canvas The widget's dedicated canvas.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `Flag::new` — un-initialized widget; `init` must follow.
    */
@@ -58,21 +59,16 @@ export class Flag {
    * cheapest no-op). Rebuilds the bind group so the new textures go
    * live next frame.
    *
-   * @param rgba_a Packed RGBA8 pixels of the primary flag.
-   * @param w_a Primary texture width px.
-   * @param h_a Primary texture height px.
-   * @param rgba_b Packed RGBA8 pixels of the secondary flag.
-   * @param w_b Secondary texture width px.
-   * @param h_b Secondary texture height px.
+   * `ImageBitmap` inputs — the browser decodes the SVG off-main-
+   * thread and `copyExternalImageToTexture` moves pixels GPU→GPU,
+   * so no CPU pixel round-trip ever touches the flag path.
+   *
+   * @param a The primary flag's decoded bitmap.
+   * @param b The secondary flag's decoded bitmap (same as `a` for
+   *          unsplit locales — a duplicate binding is the cheapest
+   *          no-op).
    */
-  upload_textures(
-    rgba_a: Uint8Array,
-    w_a: number,
-    h_a: number,
-    rgba_b: Uint8Array,
-    w_b: number,
-    h_b: number
-  ): void
+  upload_textures(a: ImageBitmap, b: ImageBitmap): void
 }
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module
@@ -81,30 +77,15 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_flag_free: (a: number, b: number) => void
   readonly flag_frame: (a: number, b: number) => void
-  readonly flag_init: (a: number, b: number) => number
+  readonly flag_init: (a: number, b: number, c: number, d: number) => void
   readonly flag_new: () => number
   readonly flag_resize: (a: number, b: number, c: number) => void
   readonly flag_set_size: (a: number, b: number, c: number) => void
   readonly flag_set_state: (a: number, b: number, c: number, d: number, e: number) => void
-  readonly flag_upload_textures: (
-    a: number,
-    b: number,
-    c: number,
-    d: number,
-    e: number,
-    f: number,
-    g: number,
-    h: number,
-    i: number
-  ) => void
-  readonly __wasm_bindgen_func_elem_160: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_160_10: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_725: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_739: (a: number, b: number, c: number, d: number) => void
+  readonly flag_upload_textures: (a: number, b: number, c: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

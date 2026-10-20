@@ -16,6 +16,8 @@ import { SVG_STRINGS } from '@core/tokens/strings/svg.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h } from '@core/jsx.js'
 import { FlagWebGL } from '@core/utils/canvas/widgets/flag-webgl.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import type { LangOption } from '@core/i18n.js'
 import { FLAG_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
@@ -111,6 +113,8 @@ export const mountNavFlag = (host: NavFlagHost): void => {
   // a live widget on the same canvas must never be re-created (it would
   // leak a second GL context onto the same element).
   if (currentLang && !host._navFlags.some((f) => f.canvas === canvas)) {
+    applyAnimationDesc(canvas, ANIMATION_IDS.NAV_FLAG)
+
     host._navFlags.push(new FlagWebGL(canvas, currentLang))
   }
 }

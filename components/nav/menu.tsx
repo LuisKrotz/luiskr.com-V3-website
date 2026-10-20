@@ -17,6 +17,8 @@ import { h } from '@core/jsx.js'
 import { MenuBackgroundWebGL } from '@core/utils/canvas/loaders/menu-background-webgl.js'
 import { CloseButtonWebGL } from '@core/utils/canvas/widgets/close-button.js'
 import { BurgerButtonWebGL } from '@core/utils/canvas/widgets/burger-button-webgl.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { destroyNavFlag, type NavFlagHost } from './flag.js'
 import { NAV_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
@@ -149,9 +151,17 @@ export const openNavMenu = (host: NavMenuHost): void => {
 export const mountNavMenuWebGL = (host: NavMenuHost): void => {
   if (typeof window === TYPE_STRINGS.UNDEFINED || !host._menuOpen) return
 
+  // The overlay itself carries the staggered-entrance description —
+  // the canvas widgets get their own ids below.
+  const modal = host.$(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL}`)
+
+  if (modal) applyAnimationDesc(modal, ANIMATION_IDS.NAV_MENU)
+
   const canvas = host._menuCanvasEl
 
   if (canvas && canvas.isConnected && !host._menuBg) {
+    applyAnimationDesc(canvas, ANIMATION_IDS.NAV_MENU_BACKGROUND)
+
     host._menuBg = new MenuBackgroundWebGL(canvas)
 
     host._menuBg.start()
@@ -160,6 +170,8 @@ export const mountNavMenuWebGL = (host: NavMenuHost): void => {
   const closeCanvas = host._menuCloseCanvasEl
 
   if (closeCanvas && closeCanvas.isConnected && !host._menuCloseBtn) {
+    applyAnimationDesc(closeCanvas, ANIMATION_IDS.CLOSE_BUTTON)
+
     host._menuCloseBtn = new CloseButtonWebGL(closeCanvas, () => closeNavMenu(host))
 
     if (host._menuSettled) {
@@ -199,6 +211,8 @@ export const mountNavBurgerWebGL = (host: NavMenuHost): void => {
   }
 
   if (!host._burgerBtn) {
+    applyAnimationDesc(burgerCanvas, ANIMATION_IDS.BURGER_BUTTON)
+
     host._burgerBtn = new BurgerButtonWebGL(burgerCanvas, () => toggleNavMenu(host))
   }
 }

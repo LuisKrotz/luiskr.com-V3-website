@@ -15,6 +15,7 @@ import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
 import { FOOTER_CLASSES } from '@core/tokens/classes/footer.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { BaseComponent } from '@core/Component.js'
+import { isPlainClick } from '@core/utils/dom.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
@@ -204,6 +205,9 @@ export class AwardsMentions extends BaseComponent {
         )
 
       if (a) {
+        // Modified/middle clicks keep native anchor semantics (new tab).
+        if (!isPlainClick(e)) return
+
         e.preventDefault()
 
         router.push((a as Element).getAttribute('href') || CHAR_STRINGS.EMPTY)

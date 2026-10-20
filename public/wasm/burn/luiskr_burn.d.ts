@@ -32,9 +32,10 @@ export class Burn {
    * 2D-canvas burn; mounting can never regress the page.
    *
    * @param canvas The widget's dedicated canvas.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `live_particles` — the sim's live-particle count. The JS loop
    * polls this for its settle check: the burn canvas can idle once
@@ -113,7 +114,7 @@ export interface InitOutput {
   readonly __wbg_burn_free: (a: number, b: number) => void
   readonly burn_begin: (a: number, b: number, c: number, d: number, e: number) => void
   readonly burn_frame: (a: number, b: number) => void
-  readonly burn_init: (a: number, b: number) => number
+  readonly burn_init: (a: number, b: number, c: number, d: number) => void
   readonly burn_live_particles: (a: number) => number
   readonly burn_new: () => number
   readonly burn_resize: (a: number, b: number, c: number) => void
@@ -124,14 +125,9 @@ export interface InitOutput {
   readonly burn_set_origin: (a: number, b: number, c: number) => void
   readonly burn_set_size: (a: number, b: number, c: number) => void
   readonly burn_set_stage: (a: number, b: number, c: number) => void
-  readonly __wasm_bindgen_func_elem_151: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_151_16: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_689: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_702: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

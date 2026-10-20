@@ -22,7 +22,8 @@ import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MENU_CSS_PROPS } from '@core/tokens/css/menu.js'
-import { h } from '@core/jsx.js'
+import { h, Fragment } from '@core/jsx.js'
+import { isPlainClick } from '@core/utils/dom.js'
 import '@website/components/media/DrawText.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
@@ -121,15 +122,17 @@ export const renderAppNav = (nav: AppNav) => {
       className={`${NAV_CLASSES.NAV}${onDark ? ` ${NAV_CLASSES.NAV_ON_DARK}` : CHAR_STRINGS.EMPTY}${nav.isPlaygroundPage ? ` ${NAV_CLASSES.NAV_PLAYGROUND}` : CHAR_STRINGS.EMPTY}`}
       role={ARIA_ATTRS.ROLE_NAVIGATION}
     >
-      <button
+      {/* Real anchor — right-click / open-in-new-tab reach the localized
+          home route; the click handler only intercepts plain clicks. */}
+      <a
         className={logoClasses}
-        type={FORM_ATTRS.TYPE_BUTTON}
+        href={localePath('', nav.locale)}
         onClick={(e: Event) => nav.handleLogo(e)}
       >
         <DrawText text={title} delay={DRAW_TIMINGS.MENU_LABEL_CHAR_DELAY} offset={0} visible>
           {title}
         </DrawText>
-      </button>
+      </a>
 
       {!isNotFound && (
         <div className={`${NAV_CLASSES.NAV_MOBILE_STRIP} ${NAV_BURGER_CLASSES.NAV_BURGER_WRAP}`}>
@@ -180,12 +183,17 @@ export const renderAppNav = (nav: AppNav) => {
               onClick: (e: Event) => void
               prefix?: unknown
               title?: string
+              /** Route items render as real anchors — right-click and
+               *  open-in-new-tab reach the href; plain clicks go through
+               *  the SPA handler. Dialog triggers stay buttons. */
+              href?: string
             }> = []
 
             if (!isNotFound) {
               items.push({
                 label: aboutLabel,
                 cls: NAV_CLASSES.NAV_ABOUT_BTN,
+                href: localePath(CMS_KEYS.ABOUT, nav.locale),
                 onClick: (e: Event) => {
                   nav._closeMenu()
 
@@ -198,6 +206,9 @@ export const renderAppNav = (nav: AppNav) => {
               items.push({
                 label: actionText,
                 cls: `${NAV_CLASSES.NAV_ACTION_BTN}${nav.onBottom ? ` ${NAV_CLASSES.NAV_SELECTED_WORK}` : CHAR_STRINGS.EMPTY}`,
+                href: nav.onBottom
+                  ? localePath('', nav.locale)
+                  : localePath(CMS_KEYS.CONTACT, nav.locale),
                 onClick: (e: Event) => {
                   nav._closeMenu()
 
@@ -210,7 +221,11 @@ export const renderAppNav = (nav: AppNav) => {
               items.push({
                 label: playgroundLabel,
                 cls: CHAR_STRINGS.EMPTY,
-                onClick: () => {
+                href: localePath(CMS_KEYS.EARTH_PLAYGROUND, nav.locale),
+                onClick: (e: Event) => {
+                  if (!isPlainClick(e)) return
+
+                  e.preventDefault()
                   nav._closeMenu()
 
                   router.push(localePath(CMS_KEYS.EARTH_PLAYGROUND, nav.locale))
@@ -222,7 +237,11 @@ export const renderAppNav = (nav: AppNav) => {
               items.push({
                 label: starFieldLabel,
                 cls: CHAR_STRINGS.EMPTY,
-                onClick: () => {
+                href: localePath(CMS_KEYS.STAR_FIELD, nav.locale),
+                onClick: (e: Event) => {
+                  if (!isPlainClick(e)) return
+
+                  e.preventDefault()
                   nav._closeMenu()
 
                   router.push(localePath(CMS_KEYS.STAR_FIELD, nav.locale))
@@ -262,20 +281,41 @@ export const renderAppNav = (nav: AppNav) => {
                         ? actionActive
                         : false
 
-                  return (
+                  const itemCls = `${itemClass(active)} ${item.cls}`.trim()
+                  const itemStyle = {
+                    [MENU_CSS_PROPS.DRAW_MS]: `${timing.underline}ms`,
+                    [MENU_CSS_PROPS.OFFSET_MS]: `${timing.offset}ms`,
+                  }
+                  const itemBody = (
+                    <Fragment>
+                      {item.prefix}
+                      {itemLabel(item.label, timing.offset)}
+                    </Fragment>
+                  )
+
+                  // Route items are real anchors (right-click/new-tab/crawl);
+                  // dialog triggers stay buttons.
+                  return item.href ? (
+                    <a
+                      className={itemCls}
+                      href={item.href}
+                      aria-label={item.label}
+                      title={item.title || undefined}
+                      style={itemStyle}
+                      onClick={item.onClick}
+                    >
+                      {itemBody}
+                    </a>
+                  ) : (
                     <button
-                      className={`${itemClass(active)} ${item.cls}`.trim()}
+                      className={itemCls}
                       type={FORM_ATTRS.TYPE_BUTTON}
                       aria-label={item.label}
                       title={item.title || undefined}
-                      style={{
-                        [MENU_CSS_PROPS.DRAW_MS]: `${timing.underline}ms`,
-                        [MENU_CSS_PROPS.OFFSET_MS]: `${timing.offset}ms`,
-                      }}
+                      style={itemStyle}
                       onClick={item.onClick}
                     >
-                      {item.prefix}
-                      {itemLabel(item.label, timing.offset)}
+                      {itemBody}
                     </button>
                   )
                 })}

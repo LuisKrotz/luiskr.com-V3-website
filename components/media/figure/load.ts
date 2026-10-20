@@ -71,8 +71,9 @@ export function mediaPlaceholder(w: number, h: number): string {
  * webp first, jpg on 404 (the "if webp exists" check is the request
  * itself, no manifest round-trip); on load the visible element swaps src
  * + gets the loaded class (the CSS crossfade) and the thumb hides. The
- * 4096²-pixel budget caps decode memory without rejecting tall, narrow
- * full-page screenshots solely because one dimension exceeds 4096px.
+ * 4096²-pixel budget gates the GPU texture upload only — oversized
+ * sources still fetch and decode (the browser owns that memory), so a
+ * big file can never pin its card on the blurred thumb.
  * Errors mark loaded anyway — a broken image must not pin the skeleton
  * shimmer forever.
  */
@@ -83,13 +84,12 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
 
   const width = fig.mediaWidth || 0
 
-  if (height * width > IMAGE_DIMENSIONS.MAX_DECODE_PIXELS) {
-    // Decode budget exceeded — terminal state, the loading shimmer releases.
-    fig.isLoaded = true
-    fig.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
-
-    return
-  }
+  // The 4096² budget guards the GPU texture upload, not the fetch —
+  // refusing to load above it used to leave oversized sources pinned on
+  // the blurred thumb forever ("low-res never loads"). The browser
+  // decodes the image regardless; only the GPU bitmap upload would still
+  // be unbounded, so the upload alone stays gated.
+  const overBudget = height * width > IMAGE_DIMENSIONS.MAX_DECODE_PIXELS
 
   const storage = store.getters.getStorage()
   const base = storage + fig.mediaSrc + MEDIA.MOZ + MEDIA.Q50
@@ -143,7 +143,9 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
   img.src = targetUrl
 
   img.onload = () => {
-    gpuAccel.processTextureGPU(img, fig.displayWidth, fig.displayHeight)
+    if (!overBudget) {
+      gpuAccel.processTextureGPU(img, fig.displayWidth, fig.displayHeight)
+    }
 
     finish()
   }

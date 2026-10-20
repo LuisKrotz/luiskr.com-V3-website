@@ -28,6 +28,8 @@ import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
 import { appText } from '@core/locale/ui-text.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import toastStyles from '@core/sass/components/feedback/site-toast.scss?inline'
 
 interface ToastItem {
@@ -126,6 +128,17 @@ export class SiteToast extends BaseComponent {
     })
 
     this._items = []
+  }
+
+  /**
+   * Re-binds the toast slide-in description on the live items — the
+   * slide/fade entry is the animated surface. Runs post-render so the
+   * shared desc node resolves inside this shadow root.
+   */
+  override onUpdated() {
+    for (const item of this.$$(`.${TOAST_CLASSES.SITE_TOAST_ITEM}`)) {
+      applyAnimationDesc(item as Element, ANIMATION_IDS.SITE_TOAST)
+    }
   }
 
   /** JSX template for the component's shadow DOM. */

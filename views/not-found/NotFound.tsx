@@ -16,6 +16,7 @@ import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { h } from '@core/jsx.js'
+import { isPlainClick } from '@core/utils/dom.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
@@ -90,6 +91,9 @@ export class ViewNotFound extends BaseComponent {
     const link = this.$(`.${NOT_FOUND_CLASSES.NOT_FOUND_LINK}`)
     if (link) {
       this.addScopedListener(link, MOUSE_EVENTS.CLICK, (e) => {
+        // Modified/middle clicks keep native anchor semantics (new tab).
+        if (!isPlainClick(e)) return
+
         e.preventDefault()
         router.push(this.homePath)
       })

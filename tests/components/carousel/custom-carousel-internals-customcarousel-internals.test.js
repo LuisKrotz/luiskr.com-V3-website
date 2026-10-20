@@ -6,7 +6,7 @@ import { jest } from '@jest/globals'
 
 import store from '@core/store.js'
 import '@website/components/carousel/CustomCarousel.js'
-import { TEST_URLS } from '@tests/fixtures/test-constants.js'
+import { TEST_URLS, waitFor } from '@tests/fixtures/test-constants.js'
 import { attachHybridGL } from '@tests/fixtures/mock-webgl.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { CAROUSEL_SELECTORS } from '@core/tokens/selectors/carousel.js'
@@ -435,19 +435,31 @@ describe('CustomCarousel internals', () => {
       const cloneFirst = el.shadowRoot.querySelector(CAROUSEL_SELECTORS.CAROUSEL_SLIDE_CLONE_FIRST)
       const cloneLast = el.shadowRoot.querySelector(CAROUSEL_SELECTORS.CAROUSEL_SLIDE_CLONE_LAST)
 
+      const scrollSpy = jest.spyOn(el, '_scrollToElement')
+
       if (cloneLast) {
         el.goTo(-1)
 
-        expect(el.isNavigating).toBe(true)
+        expect(scrollSpy).toHaveBeenCalledWith(cloneLast)
 
-        await new Promise((r) => setTimeout(r, CAROUSEL_TIMING.TELEPORT_DELAY + 60))
+        // The scroll spring settles asynchronously — poll for the
+        // teleport to land (watchdog covers rAF starvation).
+        await waitFor(
+          () => !el.isNavigating && el.pendingTeleport === null && el.teleportTimer === null
+        )
       }
 
       if (cloneFirst) {
         el.goTo(el.items.length)
 
-        await new Promise((r) => setTimeout(r, CAROUSEL_TIMING.TELEPORT_DELAY + 60))
+        expect(scrollSpy).toHaveBeenCalledWith(cloneFirst)
+
+        await waitFor(
+          () => !el.isNavigating && el.pendingTeleport === null && el.teleportTimer === null
+        )
       }
+
+      scrollSpy.mockRestore()
 
       expect(el.isNavigating).toBe(false)
 

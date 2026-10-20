@@ -20,9 +20,10 @@ export class TextDraw {
    * → `rebind`).
    *
    * @param canvas The overlay canvas.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `TextDraw::new` — un-initialized widget; `init` must follow.
    */
@@ -76,7 +77,7 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_textdraw_free: (a: number, b: number) => void
   readonly textdraw_frame: (a: number, b: number) => number
-  readonly textdraw_init: (a: number, b: number) => number
+  readonly textdraw_init: (a: number, b: number, c: number, d: number) => void
   readonly textdraw_new: () => number
   readonly textdraw_resize: (a: number, b: number, c: number) => void
   readonly textdraw_set_chars: (a: number, b: number, c: number) => number
@@ -84,14 +85,9 @@ export interface InitOutput {
   readonly textdraw_set_size: (a: number, b: number, c: number) => void
   readonly textdraw_trigger: (a: number) => void
   readonly textdraw_upload_atlas: (a: number, b: number) => number
-  readonly __wasm_bindgen_func_elem_166: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_166_12: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_731: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_745: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

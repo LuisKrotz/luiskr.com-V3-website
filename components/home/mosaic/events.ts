@@ -7,6 +7,7 @@
 import { FOCUS_EVENTS, MOUSE_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { MOSAIC_SELECTORS } from '@core/tokens/selectors/mosaic.js'
 import { predictiveLoader } from '@core/predictive-loader.js'
+import { isPlainClick } from '@core/utils/dom.js'
 import { cardIdxFromEvent } from './interactions.js'
 import type { HomeMosaic } from '../HomeMosaic.js'
 
@@ -21,12 +22,9 @@ export function bindEvents(host: HomeMosaic): void {
 
     if (!item) return
 
-    const mouse = e as MouseEvent
-    const modified = mouse.metaKey || mouse.ctrlKey || mouse.shiftKey || mouse.altKey
-
     // Preserve native anchor behavior for new-tab/window gestures. Plain
     // activation stays in the SPA/two-tap flow.
-    if (modified) return
+    if (!isPlainClick(e)) return
 
     e.preventDefault()
     host.onClick(item, card.idx)

@@ -14,6 +14,33 @@ let mountResult = null
 let bitmapResult = { width: 8 }
 let bitmapThrows = false
 let mountDelay = 0
+let verifyPixels = null
+let deviceFails = false
+
+/** A fake shared GPUDevice serving the verifyOverlay readback. */
+const makeDevice = () => ({
+  createBuffer: () => ({
+    mapAsync: async () => undefined,
+    getMappedRange: () => {
+      // The readback scans tex.height rows at pitch-256 stride — the
+      // mock buffer must cover 256×4 bytes for the 4×4 texture.
+      if (verifyPixels) return verifyPixels
+
+      const px = new Uint8Array(256 * 4)
+
+      for (let row = 0; row < 4; row++) px[row * 256 + 3] = 255
+
+      return px
+    },
+    unmap: () => undefined,
+    destroy: () => undefined,
+  }),
+  createCommandEncoder: () => ({
+    copyTextureToBuffer: () => undefined,
+    finish: () => ({}),
+  }),
+  queue: { submit: () => undefined },
+})
 
 jest.unstable_mockModule('@core/utils/gpu/webgpu-widget.js', () => ({
   hasWebGpu: () => mockGpu,
@@ -22,12 +49,15 @@ jest.unstable_mockModule('@core/utils/gpu/webgpu-widget.js', () => ({
 
     return mountResult
   },
+  getSharedGpuDevice: async () => (deviceFails ? null : makeDevice()),
   warmWidgetArtifacts: () => undefined,
 }))
 
 const flush = (ms = 40) => new Promise((r) => setTimeout(r, ms))
 
 const RECT = { left: 10, top: 20, right: 110, bottom: 44, width: 100, height: 24 }
+
+let imgDataThrows = false
 
 /** A measuring 2D ctx — glyphs report a real ascent so fillText lands. */
 const measuringCtx = () =>
@@ -36,6 +66,13 @@ const measuringCtx = () =>
     {
       get(_t, prop) {
         if (prop === 'measureText') return () => ({ actualBoundingBoxAscent: 10, width: 8 })
+
+        if (prop === 'getImageData')
+          return (x, y, w, h) => {
+            if (imgDataThrows) throw new Error('no pixels')
+
+            return { data: new Uint8ClampedArray(w * h * 4), width: w, height: h }
+          }
 
         return () => undefined
       },
@@ -126,11 +163,26 @@ describe('draw-text gpu reveal', () => {
     bitmapResult = { width: 8 }
     bitmapThrows = false
     mountDelay = 0
+    imgDataThrows = false
     cleanups = []
 
     origGetContext = document.createElement('canvas').constructor.prototype.getContext
-    document.createElement('canvas').constructor.prototype.getContext = (type) =>
-      String(type) === '2d' ? measuringCtx() : null
+    document.createElement('canvas').constructor.prototype.getContext = (type) => {
+      if (String(type) === '2d') return measuringCtx()
+
+      if (String(type) === 'webgpu') {
+        return { getCurrentTexture: () => ({ width: 4, height: 4 }) }
+      }
+
+      return null
+    }
+
+    verifyPixels = null
+    deviceFails = false
+
+    // WebGPU globals for the verifyOverlay readback arm.
+    globalThis.GPUBufferUsage = { COPY_DST: 8, MAP_READ: 1 }
+    globalThis.GPUMapMode = { READ: 1 }
 
     origBitmap = globalThis.createImageBitmap
     globalThis.createImageBitmap = async () => {
@@ -258,6 +310,70 @@ describe('draw-text gpu reveal', () => {
     await flush()
 
     expect(mountResult.destroy).toHaveBeenCalled()
+
+    // Traversal-bake failure (getImageData threw) — the CSS path stays
+    // authoritative; a partial field would hold glyphs invisible.
+    w.charsOk = 1
+    imgDataThrows = true
+    mountResult = { canvas: null, widget: w, destroy: jest.fn() }
+    tryGpuDraw(host, 100)
+
+    await flush()
+
+    expect(mountResult.destroy).toHaveBeenCalled()
+  })
+
+  /** Runs one verify arm and asserts the mount was disarmed. */
+  const expectDisarmed = async () => {
+    const { host, contentEl } = makeHost()
+    const w = makeWidget()
+
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: w, destroy: jest.fn() }
+    tryGpuDraw(host, 100)
+
+    await flush()
+
+    expect(mountResult.destroy).toHaveBeenCalled()
+    expect(host._gpuHandle).toBeNull()
+
+    return w
+  }
+
+  test('verifyOverlay disarms on an empty readback — nothing painted', async () => {
+    // Broken atlas/bind on this driver — the CSS reveal stays
+    // authoritative instead of suppressing the DOM chars.
+    verifyPixels = new Uint8Array(256 * 4)
+
+    await expectDisarmed()
+  })
+
+  test('verifyOverlay disarms on a full-bleed paint — the slab', async () => {
+    verifyPixels = new Uint8Array(256 * 4).fill(255)
+
+    await expectDisarmed()
+  })
+
+  test('verifyOverlay disarms when the shared device is gone', async () => {
+    deviceFails = true
+
+    await expectDisarmed()
+  })
+
+  test('verifyOverlay disarms when the probe frame reports stale', async () => {
+    const w = await Promise.resolve(makeWidget())
+
+    w.frame = () => false
+
+    const { host, contentEl } = makeHost()
+
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: w, destroy: jest.fn() }
+    tryGpuDraw(host, 100)
+
+    await flush()
+
+    expect(mountResult.destroy).toHaveBeenCalled()
   })
 
   test('live path: sheet + atlas + ink push, gpu class, frames, finish', async () => {
@@ -287,6 +403,41 @@ describe('draw-text gpu reveal', () => {
     expect(contentEl.classList.contains(DRAW_TEXT_CLASSES.DRAW_TEXT_GPU)).toBe(false)
     expect(mountResult.destroy).toHaveBeenCalled()
     expect(host._gpuHandle).toBeNull()
+  })
+
+  test('sheet packs the CSS delay contract — offset + i·char-delay per char', async () => {
+    const { host, contentEl } = makeHost()
+    const w = makeWidget()
+    const second = document.createElement('span')
+
+    // A second char + explicit timing vars on BOTH — the sheet's
+    // delay field must equal the CSS calc(var(--offset) + var(--i) *
+    // var(--char-delay)) or GPU/CSS reveal orders diverge (the
+    // "delays totally wrong" report).
+    second.className = DRAW_TEXT_CLASSES.DRAW_TEXT_CHAR
+    second.textContent = 'B'
+    second.style.setProperty('--i', '1')
+    second.style.setProperty('--char-delay', '25')
+    second.style.setProperty('--offset', '200')
+    contentEl.firstChild.style.setProperty('--char-delay', '25')
+    contentEl.firstChild.style.setProperty('--offset', '200')
+    contentEl.appendChild(second)
+    second.getBoundingClientRect = () => ({ ...RECT, width: 8, height: 20 })
+
+    cleanups.push(contentEl)
+    mountResult = { canvas: null, widget: w, destroy: jest.fn() }
+
+    tryGpuDraw(host, 40)
+
+    await flush()
+
+    expect(w.chars[0].length).toBe(24)
+    // Record stride 12 — [8] delay, [9] dur: char0 → 200+0·25, char1
+    // → 200+1·25; durations positive (computed or fallback).
+    expect(w.chars[0][8]).toBe(200)
+    expect(w.chars[0][8 + 12]).toBe(225)
+    expect(w.chars[0][9]).toBeGreaterThan(0)
+    expect(w.chars[0][9 + 12]).toBeGreaterThan(0)
   })
 
   test('teardownGpuDraw is a safe no-op on an unmounted host', () => {

@@ -64,7 +64,14 @@ export function pauseVideo(fig: MediaFigure, target: HTMLVideoElement | null): v
   }
 }
 
-/** Store change → start/stop playback to match autoplay + visibility. */
+/**
+ * Store change → start/stop playback to match autoplay + visibility.
+ * An open expand modal puts the page behind the top layer — background
+ * videos must pause (decoding + compositing them under the dialog is
+ * pure waste and their frames shimmer through the glass). The modal's
+ * own <video> is not a media-figure, so only page figures gate here;
+ * on close this sync re-runs and autoplay+visible videos resume.
+ */
 export function syncVideoPlayback(fig: MediaFigure): void {
   if (!fig.isVideo) return
 
@@ -72,7 +79,7 @@ export function syncVideoPlayback(fig: MediaFigure): void {
 
   if (!vid) return
 
-  if (!store.getters.getVideoAutoplay()) {
+  if (!store.getters.getVideoAutoplay() || store.getters.getModal()?.open) {
     if (!vid.paused) {
       vid.pause()
     }

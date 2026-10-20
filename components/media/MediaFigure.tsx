@@ -25,6 +25,9 @@ import mediaFigureStyles from '@core/sass/components/media/media-figure.scss?inl
 import internalStyles from '@core/sass/components/internals/internals.scss?inline'
 import modalStyles from '@core/sass/components/internals/modal.scss?inline'
 import { COVER_DIMENSIONS, GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
+import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 
 /**
  * The MediaFigure — figure class.
@@ -208,6 +211,18 @@ export class MediaFigure extends BaseComponent {
 
   override onStoreUpdate() {
     syncVideoPlayback(this)
+  }
+
+  /**
+   * Re-binds the progressive-crossfade description after each render —
+   * the layered img stack is recreated per update, so the fresh nodes
+   * re-attach to the root's shared desc node. The img keeps its media
+   * alt; `longdesc` + `aria-describedby` carry the animation story.
+   */
+  override onUpdated() {
+    for (const img of this.$$(`img.${MEDIA_CLASSES.RENDER_MEDIA}`)) {
+      applyAnimationDesc(img as Element, ANIMATION_IDS.MEDIA_PROGRESSIVE)
+    }
   }
 
   /** Starts muted playback honoring reduced-motion/autoplay prefs. */

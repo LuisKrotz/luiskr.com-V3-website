@@ -20,6 +20,8 @@ import { fetchData, storedTranslations } from './related/data.js'
 import { renderRelated } from './related/render.js'
 import { mountDividerSheen } from '@core/utils/gpu/divider-sheen.js'
 import { mountRingSheen } from '@core/utils/gpu/ring-sheen.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import type { RingSheenSession } from '@core/utils/gpu/ring-sheen.js'
 import type { HomeItem, RelatedCard, RelatedTranslations } from './related/types.js'
 import internalStyles from '@core/sass/components/internals/internals.scss?inline'
@@ -209,6 +211,26 @@ export class PortfolioRelated extends BaseComponent {
     this._mountDividerSheen()
 
     this._syncRingSheen()
+
+    this._syncAnimDescs()
+  }
+
+  /**
+   * Binds animation descriptions to the animated nodes the render just
+   * produced — every related tile's hover lift, and the disclaimer's
+   * pulsing note-dots. Must run post-render (never in the JSX): the
+   * desc node is injected per root, so applying on detached nodes
+   * would spawn duplicate `lk-anim-desc-*` ids — a WCAG failure.
+   * Re-rendered nodes are re-bound; idempotent on repeats.
+   */
+  _syncAnimDescs(): void {
+    for (const tile of this.$$(`.${RELATED_CLASSES.RELATED_MOSAIC_ITEM}`)) {
+      applyAnimationDesc(tile as Element, ANIMATION_IDS.RELATED_TILE)
+    }
+
+    for (const dots of this.$$(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE_MORE}`)) {
+      applyAnimationDesc(dots as Element, ANIMATION_IDS.NOTE_DOT)
+    }
   }
 
   /**

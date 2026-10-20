@@ -7,7 +7,70 @@ import { AWC_CLASSES } from '@core/tokens/classes/awards-carousel.js'
 import { APP_EVENTS } from '@core/tokens/events/app.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { CAROUSEL_TIMING } from '@core/tokens/motion/carousel.js'
+import { cancelSpringScroll, springScrollTo } from '@core/utils/motion/scroll-spring.js'
+import store from '@core/store.js'
 import type { AwardsCarousel } from '../AwardsCarousel.js'
+
+/**
+ * Drives the track to `left` through the shared scroll spring — the
+ * elastic slide travel (reduced-motion → the driver's instant arm).
+ * The settle callback is the nav completion path: it fires the armed
+ * clone→real teleport then releases `isNavigating`.
+ * @param host The AwardsCarousel element.
+ * @param track The scrollable track element.
+ * @param left Target scrollLeft (px).
+ */
+const driveSpring = (host: AwardsCarousel, track: Element, left: number): void => {
+  springScrollTo(
+    track,
+    left,
+    AWC_CLASSES.AWC_TRACK_ANIMATING,
+    () => settleNav(host),
+    store.getters.getReducedMotion()
+  )
+}
+
+/**
+ * Spring-settle completion — fires the armed clone teleport (invisible:
+ * clone and twin are pixel-identical), clears its watchdog, releases
+ * the scroll-handler suppression.
+ * @param host The AwardsCarousel element.
+ */
+const settleNav = (host: AwardsCarousel): void => {
+  if (host.pendingTeleport != null) {
+    const idx = host.pendingTeleport
+
+    host.pendingTeleport = null
+
+    if (host.teleportTimer) clearTimeout(host.teleportTimer)
+
+    host.teleportTimer = null
+
+    host._jumpToSlide(idx, false)
+  }
+
+  host.isNavigating = false
+}
+
+/**
+ * Gesture takeover — cancels a live scroll spring, drops the pending
+ * teleport, releases isNavigating. Mandatory snap re-engages from the
+ * lifted animating class so the user's own scroll owns the track.
+ * @param host The AwardsCarousel element.
+ */
+export function cancelNavSpring(host: AwardsCarousel): void {
+  const track = host.$(`.${AWC_CLASSES.AWC_TRACK}`)
+
+  if (track) cancelSpringScroll(track, AWC_CLASSES.AWC_TRACK_ANIMATING)
+
+  host.pendingTeleport = null
+
+  if (host.teleportTimer) clearTimeout(host.teleportTimer)
+
+  host.teleportTimer = null
+
+  host.isNavigating = false
+}
 
 /**
  * Smooth-centers an element in the track. Formula (same geometry as
@@ -24,7 +87,7 @@ export function scrollToElement(host: AwardsCarousel, el: Element): void {
   const elRect = el.getBoundingClientRect()
   const left =
     track.scrollLeft + elRect.left - trackRect.left - (trackRect.width - elRect.width) / 2
-  track.scrollTo({ left, behavior: 'smooth' })
+  driveSpring(host, track, left)
 }
 
 /**
@@ -51,7 +114,16 @@ export function jumpToSlide(host: AwardsCarousel, idx: number, smooth = false): 
   }
 
   const scrollLeft = slide.offsetLeft - (trackWidth - slideWidth) / 2
-  track.scrollTo({ left: scrollLeft, behavior: smooth ? ATTR_VALUES.SMOOTH : ATTR_VALUES.INSTANT })
+
+  if (smooth) {
+    driveSpring(host, track, scrollLeft)
+
+    return
+  }
+
+  cancelSpringScroll(track, AWC_CLASSES.AWC_TRACK_ANIMATING)
+
+  track.scrollTo({ left: scrollLeft, behavior: ATTR_VALUES.INSTANT })
 }
 
 /**
@@ -65,7 +137,13 @@ export function jumpToSlide(host: AwardsCarousel, idx: number, smooth = false): 
  */
 export function scheduleTeleport(host: AwardsCarousel, targetIdx: number): void {
   if (host.teleportTimer) clearTimeout(host.teleportTimer)
+
+  host.pendingTeleport = targetIdx
+
+  // Watchdog only — the spring's settle callback normally fires the
+  // teleport first; this covers rAF starvation (hidden tab).
   host.teleportTimer = setTimeout(() => {
+    host.pendingTeleport = null
     jumpToSlide(host, targetIdx, false)
     host.isNavigating = false
     host.teleportTimer = null
@@ -89,7 +167,7 @@ export function scrollToSlide(host: AwardsCarousel, idx: number): void {
   if (!trackRect.width || !slideRect.width) return
   const scrollLeft =
     track.scrollLeft + slideRect.left - trackRect.left - (trackRect.width - slideRect.width) / 2
-  track.scrollTo({ left: scrollLeft, behavior: ATTR_VALUES.SMOOTH })
+  driveSpring(host, track, scrollLeft)
 }
 
 /**
@@ -133,16 +211,17 @@ export function goTo(host: AwardsCarousel, idx: number): void {
   const cloneLast = host.$(`.${AWC_CLASSES.AWC_SLIDE_CLONE_LAST}`)
 
   if (idx >= len && cloneFirst) {
-    scrollToElement(host, cloneFirst)
     scheduleTeleport(host, 0)
+    scrollToElement(host, cloneFirst)
   } else if (idx < 0 && cloneLast) {
-    scrollToElement(host, cloneLast)
     scheduleTeleport(host, len - 1)
+    scrollToElement(host, cloneLast)
   } else {
     scrollToSlide(host, newIndex)
     if (host.teleportTimer) clearTimeout(host.teleportTimer)
     host.teleportTimer = setTimeout(() => {
       host.isNavigating = false
+      host.teleportTimer = null
     }, CAROUSEL_TIMING.NAVIGATION_SETTLE_DELAY)
   }
 }

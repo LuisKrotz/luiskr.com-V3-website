@@ -3,7 +3,12 @@
  */
 
 import { AWC_CLASSES } from '@core/tokens/classes/awards-carousel.js'
-import { MOUSE_EVENTS, TOUCH_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
+import {
+  MOUSE_EVENTS,
+  POINTER_EVENTS,
+  TOUCH_EVENTS,
+  WINDOW_EVENTS,
+} from '@core/tokens/events/dom.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
 import type { AwardsCarousel } from '../AwardsCarousel.js'
 
@@ -21,10 +26,20 @@ export function bindEvents(host: AwardsCarousel): void {
       track,
       TOUCH_EVENTS.TOUCHSTART,
       (e) => {
+        host._cancelNavSpring()
+
         host.touchStartX = (e as TouchEvent).touches[0].clientX
       },
       { passive: true }
     )
+
+    // Direct input over the track takes the wheel from the spring — the
+    // user owns the scroll from here (mandatory snap re-engages).
+    const takeover = () => host._cancelNavSpring()
+
+    host.addScopedListener(track, MOUSE_EVENTS.WHEEL, takeover, { passive: true })
+
+    host.addScopedListener(track, POINTER_EVENTS.POINTERDOWN, takeover, { passive: true })
     // Swipe: the px threshold separates intentional swipes from scroll
     // jitter; sign picks direction (negative = dragged left → next).
     host.addScopedListener(

@@ -18,9 +18,10 @@ export class RingSheen {
    * `init` — device + pipeline + the initial bind group.
    *
    * @param canvas The overlay canvas (positioned over the grid).
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `RingSheen::new` — un-initialized widget; `init` must follow.
    */
@@ -72,7 +73,7 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_ringsheen_free: (a: number, b: number) => void
   readonly ringsheen_frame: (a: number, b: number) => number
-  readonly ringsheen_init: (a: number, b: number) => number
+  readonly ringsheen_init: (a: number, b: number, c: number, d: number) => void
   readonly ringsheen_new: () => number
   readonly ringsheen_resize: (a: number, b: number, c: number) => void
   readonly ringsheen_set_colors: (
@@ -89,14 +90,9 @@ export interface InitOutput {
   ) => void
   readonly ringsheen_set_size: (a: number, b: number, c: number) => void
   readonly ringsheen_set_tiles: (a: number, b: number, c: number) => number
-  readonly __wasm_bindgen_func_elem_139: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_139_10: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_677: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_690: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

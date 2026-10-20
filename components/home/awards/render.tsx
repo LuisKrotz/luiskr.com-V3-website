@@ -15,6 +15,7 @@ import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { h, Fragment } from '@core/jsx.js'
+import { isPlainClick } from '@core/utils/dom.js'
 import '@website/components/media/DrawText.js'
 import router from '@core/router/router.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
@@ -85,6 +86,8 @@ export function renderAwards(el: AwardsMentions) {
               className={AWARDS_CLASSES.AWARDS_FOOTER_ITEM}
               href={link.link}
               onClick={(e: Event) => {
+                if (!isPlainClick(e)) return
+
                 e.preventDefault()
 
                 router.push(link.link)
@@ -105,6 +108,8 @@ export function renderAwards(el: AwardsMentions) {
           className={FOOTER_CLASSES.FOOTER_DOCS_LINK}
           href={ROUTE_PATHS.DOCS}
           onClick={(e: Event) => {
+            if (!isPlainClick(e)) return
+
             e.preventDefault()
 
             router.push(ROUTE_PATHS.DOCS)

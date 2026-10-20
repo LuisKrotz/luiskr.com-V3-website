@@ -19,7 +19,7 @@ import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { MEDIA_EVENTS, MOUSE_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
-import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
+import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 
@@ -183,6 +183,24 @@ describe('MediaFigure tails', () => {
     el.isIntersecting = false
     el.onStoreUpdate()
 
+    // An open expand modal pauses background playback even with
+    // autoplay on — the page is inert under the dialog's top layer.
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: true })
+
+    let pauses = 0
+
+    vid.pause = () => {
+      pauses++
+    }
+
+    stubPaused(vid, false)
+    el.isIntersecting = true
+    el.onStoreUpdate()
+
+    expect(pauses).toBe(1)
+
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
+
     const origQ = el.$
 
     el.$ = () => null
@@ -236,13 +254,7 @@ describe('MediaFigure tails', () => {
       [MEDIA_ATTRS.HEIGHT]: overBudgetEdge,
     })
 
-    el.isLoaded = false
-    await el.loadHighRes()
-
     const vid = mount(videoAttrs())
-
-    vid.isLoaded = false
-    await vid.loadHighRes()
 
     const loaded = mount({ [MEDIA_ATTRS.SRC]: TEST_TEXT.SECOND })
 
@@ -265,6 +277,18 @@ describe('MediaFigure tails', () => {
     }
 
     try {
+      // Over-budget source: the fetch still runs (big files must not pin
+      // on the blurred thumb) — only the GPU texture upload is skipped.
+      el.isLoaded = false
+      await el.loadHighRes()
+      inst.onload()
+
+      expect(el.isLoaded).toBe(true)
+      expect(el.highResSrc).toContain(TEST_TEXT.SECOND)
+
+      vid.isLoaded = false
+      await vid.loadHighRes()
+
       nan.isLoaded = false
       await nan.loadHighRes()
 

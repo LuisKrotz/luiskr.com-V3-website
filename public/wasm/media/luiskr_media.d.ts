@@ -21,9 +21,10 @@ export class Media {
    * the first upload.
    *
    * @param canvas The widget's dedicated canvas.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `Media::new` — un-initialized widget; `init` must follow.
    */
@@ -83,21 +84,16 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_media_free: (a: number, b: number) => void
   readonly media_frame: (a: number, b: number) => void
-  readonly media_init: (a: number, b: number) => number
+  readonly media_init: (a: number, b: number, c: number, d: number) => void
   readonly media_new: () => number
   readonly media_push_frame: (a: number, b: number, c: number, d: number) => void
   readonly media_resize: (a: number, b: number, c: number) => void
   readonly media_set_size: (a: number, b: number, c: number) => void
   readonly media_set_uv_rect: (a: number, b: number, c: number, d: number, e: number) => void
   readonly media_upload_bitmap: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_163: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_163_11: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_738: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_752: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

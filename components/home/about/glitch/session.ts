@@ -14,6 +14,8 @@ import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
 import { hasWebGpu } from '@core/utils/gpu/webgpu-widget.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { buildChannel, buildScanlines, coverRect, frame } from './fx.js'
 import { frameGlitchWasm, pushGlitchRect, tryGlitchWasm, uploadGlitchBitmap } from './wasm.js'
 import { _DPR_CAP, _IMG_SEL, _PIC_SEL, _POLL_HZ } from './types.js'
@@ -160,6 +162,9 @@ export function armGlitch(host: AboutSection, wrap: HTMLElement): boolean {
   host._glitch = s
 
   wrap.appendChild(canvas)
+
+  // Described post-append — the overlay canvas is the animated surface.
+  applyAnimationDesc(canvas, ANIMATION_IDS.GLITCH_PORTRAIT)
 
   s.ro = observeResize(s, wrap)
 

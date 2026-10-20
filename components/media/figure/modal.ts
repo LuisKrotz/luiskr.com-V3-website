@@ -6,6 +6,7 @@
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
+import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { ROUTE_PATHS } from '@core/tokens/routes.js'
 import { ROUTE_STRINGS } from '@core/tokens/strings/routes.js'
@@ -23,10 +24,20 @@ export function openMediaModal(c: MediaFigure): void {
 
   const storage = store.getters.getStorage()
 
+  // The genie warp needs the figure's viewport rect — captured before
+  // the page pin (translateY(−scrollY) preserves viewport coords, so
+  // the snapshot stays valid for the whole modal lifetime).
+  const fig = c.$(HTML_TAGS.FIGURE)
+
+  const r = fig?.getBoundingClientRect()
+
+  const origin = r && r.width > 0 ? { x: r.x, y: r.y, w: r.width, h: r.height } : null
+
   store.commit(MODAL_MUTATIONS.SET_MODAL, {
     transform: scrollY,
     class: MODAL_CLASSES.MODAL_OPEN,
     open: true,
+    origin,
     media: {
       source: c.isVideo ? c.video[0] : storage + c.mediaSrc + MEDIA.MOZ + MEDIA.Q100 + MEDIA.EXT,
       thumb: c.isVideo

@@ -458,7 +458,7 @@ describe('Web Components Suite - Structure, Events & Reactive Fidelity (50+ Test
       expect(shadow.querySelector(S.EXPAND_MODAL_CONTENT)).not.toBeNull()
     })
 
-    test('startClose triggers modal exit and store reset', () => {
+    test('startClose triggers modal exit and store reset', async () => {
       const modal = document.createElement(COMPONENT_TAGS.MEDIA_EXPANDED)
       modal.setAttribute(MEDIA_ATTRS.SOURCE, 'test.jpg')
       document.body.appendChild(modal)
@@ -470,11 +470,25 @@ describe('Web Components Suite - Structure, Events & Reactive Fidelity (50+ Test
       })
 
       modal.startClose()
+
+      const content = modal.shadowRoot.querySelector(S.EXPAND_MODAL_CONTENT)
+
       expect(modal.isClosing).toBe(true)
+
+      // The close-direction veil defers to the backend attach — it lands
+      // inside the first rAF so the modal keeps painting until the warp
+      // can replace it in the same task. In an environment without a 2D
+      // canvas the dead backend resolves the session straight to the
+      // teardown — the modal closes without animating.
+      await new Promise((r) => requestAnimationFrame(r))
+
+      // Valid exits: the genie veil armed (canvas-capable envs), the
+      // legacy closing class, or the teardown already settled (the
+      // dead-backend path resolves to `done` without animating).
       expect(
-        modal.shadowRoot
-          .querySelector(S.EXPAND_MODAL_CONTENT)
-          .classList.contains(S.EXPAND_MODAL_CLOSING)
+        content.classList.contains(EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_VEIL) ||
+          content.classList.contains(S.EXPAND_MODAL_CLOSING) ||
+          !store.getters.getModal().open
       ).toBe(true)
     })
   })

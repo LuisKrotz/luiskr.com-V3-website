@@ -1,0 +1,141 @@
+// ════════════════════════════════════════════════════════════════════════════
+//  animations.scss — view-animations scoped styles: the animations-reference
+//  listing (alt/longdesc records per animated element) inside the internals
+//  chrome + legal footer (adopted into the shadow root).
+// ════════════════════════════════════════════════════════════════════════════
+
+@import '../../../core/sass/base/variables';
+@import '../../../core/sass/base/mixins';
+@import '../../../core/sass/base/fonts';
+@import '../../../core/sass/base/placeholders';
+@import '../../../core/sass/base/structure';
+@import '../../../core/sass/components/home/awards-footer';
+
+// ── Animations Reference Isolated Styles ─────────────────────────────────────
+$_B_ANIM: 'animations';
+$_B_INTERNAL: 'internal';
+
+// Internals chrome — same title/description treatment as view-legal.
+.#{$_B_INTERNAL}-title {
+  @extend %MAXAREA;
+  @extend .ttl-lg;
+  @extend .ttl-special;
+
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+  padding: to-rem($space-4xl) to-rem($space-xl) to-rem($space-2xl);
+  color: var(--text-primary);
+
+  @include layout-768() {
+    padding: to-rem($space-4xl) to-rem($space-2xl) to-rem($space-3xl);
+  }
+
+  @include layout-1024() {
+    padding: to-rem($space-4xl) to-rem($space-3xl) to-rem($space-3xl);
+  }
+
+  @include layout-1920() {
+    padding: to-rem($space-5xl) to-rem($space-4xl);
+  }
+
+  span {
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+.#{$_B_INTERNAL}-description {
+  @extend %MAXAREA;
+
+  margin: 0 auto;
+  padding-top: to-rem($space-2xl);
+  padding-bottom: to-rem($space-xl);
+}
+
+.#{$_B_INTERNAL}-description-text {
+  @extend %MAXAREA;
+  @extend .txt-md;
+
+  display: block;
+  font-family: var(--font-primary);
+  font-weight: 100;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
+  margin: 0 auto;
+  padding-bottom: to-rem($space-lg);
+  color: var(--text-secondary);
+
+  @include layout-1024() {
+    padding-left: 25%;
+    padding-right: 25%;
+    padding-bottom: to-rem($space-xl);
+  }
+}
+
+:host {
+  display: block;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+article {
+  display: block;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.#{$_B_ANIM} {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+// The record list column — same readable-measure rhythm as the legal
+// document: full gutter on phone, 25% side insets on desktop.
+.#{$_B_ANIM}-list {
+  @extend %MAXAREA;
+
+  margin: 0 auto;
+  padding-top: to-rem($space-2xl);
+  padding-bottom: to-rem($space-xl);
+
+  @include layout-1024() {
+    padding-left: 25%;
+    padding-right: 25%;
+  }
+}
+
+.#{$_B_ANIM}-record {
+  padding-bottom: to-rem($space-2xl);
+}
+
+.#{$_B_ANIM}-term {
+  @extend .txt-md;
+
+  font-family: var(--font-primary);
+  font-weight: 300;
+  color: var(--text-primary);
+  padding-bottom: to-rem($space-sm);
+}
+
+.#{$_B_ANIM}-desc {
+  @extend .txt-md;
+
+  font-family: var(--font-primary);
+  font-weight: 100;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
+  margin: 0;
+  color: var(--text-secondary);
+}

@@ -18,9 +18,10 @@ export class DividerSheen {
    * `init` — device + pipeline + the single bind group.
    *
    * @param canvas The divider's overlay canvas.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `DividerSheen::new` — un-initialized widget; `init` must follow.
    */
@@ -63,7 +64,7 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_dividersheen_free: (a: number, b: number) => void
   readonly dividersheen_frame: (a: number, b: number) => number
-  readonly dividersheen_init: (a: number, b: number) => number
+  readonly dividersheen_init: (a: number, b: number, c: number, d: number) => void
   readonly dividersheen_new: () => number
   readonly dividersheen_resize: (a: number, b: number, c: number) => void
   readonly dividersheen_set_colors: (
@@ -78,14 +79,9 @@ export interface InitOutput {
     i: number
   ) => void
   readonly dividersheen_set_size: (a: number, b: number, c: number) => void
-  readonly __wasm_bindgen_func_elem_136: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_136_9: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_674: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_687: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

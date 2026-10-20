@@ -26,9 +26,10 @@ export class Glitch {
    * once the portrait lands (`upload` → `rebind`).
    *
    * @param canvas The overlay canvas (positioned over the <img>).
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `Glitch::new` — un-initialized widget; `init` must follow.
    *
@@ -90,21 +91,16 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_glitch_free: (a: number, b: number) => void
   readonly glitch_frame: (a: number, b: number) => number
-  readonly glitch_init: (a: number, b: number) => number
+  readonly glitch_init: (a: number, b: number, c: number, d: number) => void
   readonly glitch_new: () => number
   readonly glitch_resize: (a: number, b: number, c: number) => void
   readonly glitch_set_cover: (a: number, b: number, c: number, d: number, e: number) => void
   readonly glitch_set_hover: (a: number, b: number) => void
   readonly glitch_set_size: (a: number, b: number, c: number) => void
   readonly glitch_upload: (a: number, b: number) => number
-  readonly __wasm_bindgen_func_elem_162: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_162_11: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_727: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_741: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

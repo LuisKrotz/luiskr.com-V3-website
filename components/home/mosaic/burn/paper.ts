@@ -31,7 +31,7 @@ import { mirrorBurnGpuCanvas } from './wasm.js'
  * theme publishes a cyan-blue plasma ramp, light theme an airy
  * paper-fire ramp. Falls back to the fixed canvas inks when the
  * properties are absent (older stylesheet, non-themed host).
- * @returns The four-stop combustion ink ramp.
+ * @returns The combustion ink ramp (embers ×3, scorch, smoke).
  */
 export function readBurnInk(): BurnInk {
   const root = typeof document !== TYPE_STRINGS.UNDEFINED ? document.documentElement : null
@@ -44,6 +44,7 @@ export function readBurnInk(): BurnInk {
     mid: pick(THEME_CSS_PROPS.BURN_MID, CANVAS_STRINGS.EMBER_MID),
     edge: pick(THEME_CSS_PROPS.BURN_EDGE, CANVAS_STRINGS.EMBER_MID),
     scorch: pick(THEME_CSS_PROPS.BURN_SCORCH, CANVAS_STRINGS.BURN_SCORCH),
+    smoke: pick(THEME_CSS_PROPS.BURN_SMOKE, CANVAS_STRINGS.BURN_SMOKE),
   }
 }
 

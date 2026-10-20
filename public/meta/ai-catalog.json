@@ -52,6 +52,18 @@
         "luiskr.com test coverage reports",
         "luiskr.com source code browser"
       ]
+    },
+    {
+      "identifier": "urn:air:luiskr.com:reference:animations",
+      "displayName": "Animations Reference",
+      "type": "text/html",
+      "url": "https://luiskr.com/animations",
+      "description": "Every animation on luiskr.com, described — element, motion, trigger, technology and purpose. Static readable markup in all 16 site languages; the same records drive the runtime aria-label/longdesc accessibility surface.",
+      "representativeQueries": [
+        "luiskr.com animations list",
+        "site animation accessibility descriptions",
+        "what animations does luiskr.com use"
+      ]
     }
   ]
 }

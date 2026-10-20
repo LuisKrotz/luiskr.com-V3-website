@@ -18,9 +18,10 @@ export class Burger {
    * keeps the DOM/CSS burger; mounting can never regress the page.
    *
    * @param canvas The widget's dedicated canvas.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `Burger::new` — un-initialized widget; `init` must follow.
    */
@@ -58,19 +59,14 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_burger_free: (a: number, b: number) => void
   readonly burger_frame: (a: number, b: number) => void
-  readonly burger_init: (a: number, b: number) => number
+  readonly burger_init: (a: number, b: number, c: number, d: number) => void
   readonly burger_new: () => number
   readonly burger_resize: (a: number, b: number, c: number) => void
   readonly burger_set_dark: (a: number, b: number) => void
   readonly burger_set_size: (a: number, b: number, c: number) => void
-  readonly __wasm_bindgen_func_elem_136: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_136_9: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_675: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_688: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

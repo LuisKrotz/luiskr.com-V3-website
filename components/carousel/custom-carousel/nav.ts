@@ -15,6 +15,72 @@ import store from '@core/store.js'
 import type { CarouselLang } from './render.js'
 import type { CustomCarousel } from '../CustomCarousel.js'
 import { CAROUSEL_LAYOUT, CAROUSEL_TIMING } from '@core/tokens/motion/carousel.js'
+import { cancelSpringScroll, springScrollTo } from '@core/utils/motion/scroll-spring.js'
+
+/**
+ * Drives the track to `left` through the shared scroll spring — the
+ * elastic slide travel. Reduced-motion users get the instant write
+ * (the driver's `instant` arm). The settle callback is the nav
+ * completion path: it fires the pending clone→real teleport if one is
+ * armed, then releases `isNavigating` so user scrolls can teleport
+ * again. Reduced-motion/instant still lands on the same settle call,
+ * so every path funnels through `settleNav`.
+ * @param c The CustomCarousel element.
+ * @param track The scrollable track element.
+ * @param left Target scrollLeft (px).
+ */
+const driveSpring = (c: CustomCarousel, track: Element, left: number): void => {
+  springScrollTo(
+    track,
+    left,
+    CAROUSEL_CLASSES.CAROUSEL_TRACK_ANIMATING,
+    () => settleNav(c),
+    store.getters.getReducedMotion()
+  )
+}
+
+/**
+ * Spring-settle completion for a nav — fires the armed clone teleport
+ * (invisible: clone and twin are pixel-identical), clears its watchdog,
+ * then releases the scroll-handler suppression.
+ * @param c The CustomCarousel element.
+ */
+const settleNav = (c: CustomCarousel): void => {
+  if (c.pendingTeleport != null) {
+    const idx = c.pendingTeleport
+
+    c.pendingTeleport = null
+
+    if (c.teleportTimer) clearTimeout(c.teleportTimer)
+
+    c.teleportTimer = null
+
+    c._jumpToSlide(idx, false)
+  }
+
+  c.isNavigating = false
+}
+
+/**
+ * Gesture takeover — cancels a live scroll spring (track keeps its
+ * position and mandatory snap re-engages for the user's own scroll),
+ * drops the pending teleport, and releases isNavigating so the
+ * scroll-handler clone check re-arms immediately.
+ * @param c The CustomCarousel element.
+ */
+export function cancelNavSpring(c: CustomCarousel) {
+  const track = c.$(CAROUSEL_SELECTORS.CAROUSEL_TRACK)
+
+  if (track) cancelSpringScroll(track, CAROUSEL_CLASSES.CAROUSEL_TRACK_ANIMATING)
+
+  c.pendingTeleport = null
+
+  if (c.teleportTimer) clearTimeout(c.teleportTimer)
+
+  c.teleportTimer = null
+
+  c.isNavigating = false
+}
 
 /**
  * Computes the scrollLeft that centers `slide` inside `track` —
@@ -112,13 +178,13 @@ export function carouselGoTo(c: CustomCarousel, idx: number) {
   const cloneLast = c.$(CAROUSEL_SELECTORS.CAROUSEL_SLIDE_CLONE_LAST)
 
   if (idx >= len && cloneFirst) {
-    c._scrollToElement(cloneFirst)
-
     c._scheduleTeleport(0)
-  } else if (idx < 0 && cloneLast) {
-    c._scrollToElement(cloneLast)
 
+    c._scrollToElement(cloneFirst)
+  } else if (idx < 0 && cloneLast) {
     c._scheduleTeleport(len - 1)
+
+    c._scrollToElement(cloneLast)
   } else {
     c._scrollToSlide(newIndex)
 
@@ -126,6 +192,8 @@ export function carouselGoTo(c: CustomCarousel, idx: number) {
 
     c.teleportTimer = setTimeout(() => {
       c.isNavigating = false
+
+      c.teleportTimer = null
     }, CAROUSEL_TIMING.NAVIGATION_SETTLE_DELAY)
   }
 }
@@ -172,22 +240,29 @@ export function scrollToElement(c: CustomCarousel, el: Element | null) {
   const scrollLeft = calcSlideCenterOffset(track, el)
 
   if (scrollLeft !== null) {
-    track.scrollTo({ left: scrollLeft, behavior: ATTR_VALUES.SMOOTH as ScrollBehavior })
+    driveSpring(c, track, scrollLeft)
   }
 }
 
 /**
- * Schedules the clone→real teleport: after TELEPORT_DELAY (just past the
- * smooth-scroll duration so the clone finishes animating in), instant-jump
- * to the identical real slide — invisible. Any pending teleport is
- * cancelled first so rapid nav can't queue competing jumps.
+ * Arms the clone→real teleport: `pendingTeleport` is the normal path —
+ * the scroll spring's settle fires it through `settleNav` the frame the
+ * clone parks. The TELEPORT_DELAY timer is only the rAF-starvation
+ * watchdog (hidden tab): if the spring can't run, the instant jump
+ * still lands — invisible either way since clone and twin are
+ * pixel-identical. A pending teleport is cancelled first so rapid nav
+ * can't queue competing jumps.
  * @param c The CustomCarousel element.
  * @param targetIdx Real-slide index to land on.
  */
 export function scheduleTeleport(c: CustomCarousel, targetIdx: number) {
   if (c.teleportTimer) clearTimeout(c.teleportTimer)
 
+  c.pendingTeleport = targetIdx
+
   c.teleportTimer = setTimeout(() => {
+    c.pendingTeleport = null
+
     c._jumpToSlide(targetIdx, false)
 
     c.isNavigating = false
@@ -212,7 +287,7 @@ export function scrollToSlide(c: CustomCarousel, idx: number) {
   const scrollLeft = calcSlideCenterOffset(track, slide)
 
   if (scrollLeft !== null) {
-    track.scrollTo({ left: scrollLeft, behavior: ATTR_VALUES.SMOOTH as ScrollBehavior })
+    driveSpring(c, track, scrollLeft)
   }
 }
 
@@ -240,9 +315,17 @@ export function jumpToSlide(c: CustomCarousel, idx: number, smooth = false) {
     return
   }
 
+  if (smooth) {
+    driveSpring(c, track, scrollLeft)
+
+    return
+  }
+
+  cancelSpringScroll(track, CAROUSEL_CLASSES.CAROUSEL_TRACK_ANIMATING)
+
   track.scrollTo({
     left: scrollLeft,
-    behavior: (smooth ? ATTR_VALUES.SMOOTH : ATTR_VALUES.INSTANT) as ScrollBehavior,
+    behavior: ATTR_VALUES.INSTANT as ScrollBehavior,
   })
 }
 

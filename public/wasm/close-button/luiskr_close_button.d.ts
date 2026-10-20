@@ -26,9 +26,10 @@ export class CloseButton {
    * button; mounting can never regress the page.
    *
    * @param canvas The widget's dedicated canvas.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `CloseButton::new` — un-initialized widget; `init` must follow.
    */
@@ -65,19 +66,14 @@ export interface InitOutput {
   readonly __wbg_closebutton_free: (a: number, b: number) => void
   readonly closebutton_click: (a: number, b: number) => void
   readonly closebutton_frame: (a: number, b: number) => void
-  readonly closebutton_init: (a: number, b: number) => number
+  readonly closebutton_init: (a: number, b: number, c: number, d: number) => void
   readonly closebutton_new: () => number
   readonly closebutton_resize: (a: number, b: number, c: number) => void
   readonly closebutton_set_size: (a: number, b: number, c: number) => void
   readonly closebutton_set_state: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_138: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_138_10: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_677: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_690: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

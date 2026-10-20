@@ -23,6 +23,7 @@ import { DB_PATHS, ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h, Fragment } from '@core/jsx.js'
+import { isPlainClick } from '@core/utils/dom.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
@@ -57,11 +58,15 @@ export class LegalFooter extends BaseComponent {
       this._updateDom()
     })
 
-    // Delegated click handler on shadowRoot
+    // Delegated click handler on shadowRoot — plain clicks route through
+    // the SPA; modified/middle clicks fall through to the anchor's href
+    // so open-in-new-tab works natively.
     this.addScopedListener(this.shadowRoot, MOUSE_EVENTS.CLICK, (e) => {
       const a = (e.target as Element | null)?.closest(HTML_TAGS.A)
 
       if (a) {
+        if (!isPlainClick(e)) return
+
         e.preventDefault()
 
         const href = a.getAttribute(LINK_ATTRS.HREF)
@@ -159,6 +164,8 @@ export class LegalFooter extends BaseComponent {
                   className={`${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK} ${CONTACT_CLASSES.CONTACT_OTHER_LINK} ${activeClass}`}
                   href={item.link}
                   onClick={(e: Event) => {
+                    if (!isPlainClick(e)) return
+
                     e.preventDefault()
 
                     if (item.link) router.push(item.link)

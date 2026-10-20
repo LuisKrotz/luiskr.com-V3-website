@@ -14,6 +14,8 @@ import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { frame } from './loop.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { readBurnInk, syncPaper } from './paper.js'
 import { tryWasmBurn } from './wasm.js'
 import { _BURN_MS_MAX, _BURN_MS_MIN, _DESC_CHAR_MS, _DESC_TAIL_MS } from './tuning.js'
@@ -135,6 +137,10 @@ export function mountBurn(
   syncPaper(s)
 
   overlay.appendChild(canvas)
+
+  // Described post-append so the injected node lands in the card's
+  // shadow root, not inside the transient canvas element.
+  applyAnimationDesc(canvas, ANIMATION_IDS.MOSAIC_BURN)
 
   // Paint the paper BEFORE hiding the DOM ink — the canvas must already
   // hold the pixel-identical title when the swap happens, or the text

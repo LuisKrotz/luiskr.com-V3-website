@@ -65,16 +65,16 @@ function packLetters(s: BurnSession): Float32Array | null {
 }
 
 /**
- * Packs the four burn inks into the crate's [core, mid, edge, scorch]
- * × rgba table. parseCssColor yields 0..1 rgb triples; alpha is 1 —
- * the JS sim paints particles fully opaque and fades via globalAlpha,
- * which the crate folds into the emitted tint instead.
+ * Packs the burn inks into the crate's [core, mid, edge, scorch,
+ * smoke] × rgba table. parseCssColor yields 0..1 rgb triples; alpha
+ * is 1 — the JS sim paints particles fully opaque and fades via
+ * globalAlpha, which the crate folds into the emitted tint instead.
  * @param s The live session — ink was resolved by readBurnInk.
- * @returns 16 f32s for `set_colors`.
+ * @returns 20 f32s for `set_colors`.
  */
 function packColors(s: BurnSession): Float32Array {
-  const flat = new Float32Array(16)
-  const inks = [s.ink.core, s.ink.mid, s.ink.edge, s.ink.scorch]
+  const flat = new Float32Array(20)
+  const inks = [s.ink.core, s.ink.mid, s.ink.edge, s.ink.scorch, s.ink.smoke]
 
   inks.forEach((str, i) => {
     const rgb = parseCssColor(str) || [1, 1, 1]

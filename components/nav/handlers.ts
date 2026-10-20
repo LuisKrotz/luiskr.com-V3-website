@@ -11,6 +11,7 @@ import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { localePath } from '@core/i18n.js'
+import { isPlainClick } from '@core/utils/dom.js'
 import type { AppNav } from './AppNav.js'
 
 /**
@@ -59,6 +60,10 @@ export function captureOrigin(e?: Event): void {
 
 /** Logo click: navigates home, or scrolls top when already on home. */
 export function handleLogo(host: AppNav, e?: Event): void {
+  // The logo is an <a href> — modified/middle clicks must reach the
+  // default action so the browser opens the home route natively.
+  if (e && !isPlainClick(e)) return
+
   swallow(e)
 
   if (!host.isHomePage) {
@@ -70,6 +75,8 @@ export function handleLogo(host: AppNav, e?: Event): void {
 
 /** About link click: routes to the localized about slug. */
 export function handleAbout(host: AppNav, e?: Event): void {
+  if (e && !isPlainClick(e)) return
+
   swallow(e)
 
   if (!host.isHomePage) {
@@ -85,6 +92,8 @@ export function handleAbout(host: AppNav, e?: Event): void {
  * localized home route; otherwise it scrolls to the contact slug/footer.
  */
 export function handleAction(host: AppNav, e?: Event): void {
+  if (e && !isPlainClick(e)) return
+
   swallow(e)
 
   if (host.onBottom) {

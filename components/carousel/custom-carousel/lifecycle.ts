@@ -80,5 +80,5 @@ export function onDestroy(host: CustomCarousel): void {
     host.observer = null
   }
 
-  if (host.teleportTimer) clearTimeout(host.teleportTimer)
+  host._cancelNavSpring()
 }

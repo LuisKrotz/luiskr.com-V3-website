@@ -20,6 +20,7 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h, Fragment } from '@core/jsx.js'
+import { isPlainClick } from '@core/utils/dom.js'
 import { componentText, rightsParts } from '@core/locale/ui-text.js'
 import { getFallbackLegalLinks } from '@core/utils/data/legal-links.js'
 import store from '@core/store.js'
@@ -46,6 +47,9 @@ const renderCard = (project: RelatedCard, isCurrent: boolean) => {
       href={project.fullPath}
       className={`${RELATED_CLASSES.RELATED_MOSAIC_ITEM} ${project.featured ? RELATED_CLASSES.RELATED_MOSAIC_ITEM_FEATURED : CHAR_STRINGS.EMPTY} ${activeClass}`}
       onClick={(e: Event) => {
+        // Modified/middle clicks keep native anchor semantics (new tab).
+        if (!isPlainClick(e)) return
+
         e.preventDefault()
 
         if (project.fullPath) router.push(project.fullPath)
@@ -105,6 +109,8 @@ const renderHomeLink = () => {
         className={`${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK} ${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME}`}
         href={home.link}
         onClick={(e: Event) => {
+          if (!isPlainClick(e)) return
+
           e.preventDefault()
 
           router.push(home.link)

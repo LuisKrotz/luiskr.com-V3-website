@@ -60,8 +60,8 @@ describe('Animation System — Timing, Easing & Reduced Motion (200+ tests)', ()
       expect(CAROUSEL_TIMING.AUTOPLAY_DURATION).toBe(5000)
     })
 
-    test('CAROUSEL_TIMING.TELEPORT_DELAY is 420ms (matches carousel smooth scroll)', () => {
-      expect(CAROUSEL_TIMING.TELEPORT_DELAY).toBe(420)
+    test('CAROUSEL_TIMING.TELEPORT_DELAY is 1100ms (watchdog sized past the spring settle)', () => {
+      expect(CAROUSEL_TIMING.TELEPORT_DELAY).toBe(1100)
     })
   })
 
@@ -541,14 +541,15 @@ describe('Animation System — Timing, Easing & Reduced Motion (200+ tests)', ()
       expect(css).toContain('transform')
     })
 
-    test('carousel-dot transition is 0.25s', () => {
-      // SCSS uses SASS nesting: &-dot { transition: min-width 0.25s }
-      expect(css).toContain('transition: min-width 0.25s')
+    test('carousel-dot transition is the 0.5s damped-spring morph', () => {
+      // SCSS uses SASS nesting: &-dot { transition: min-width 0.5s $ease-spring }
+      expect(css).toContain('transition: min-width 0.5s')
     })
 
     test('carousel-dot::after transition includes width and background', () => {
-      // SCSS uses SASS nesting with &::after
-      expect(css).toContain('width 0.25s')
+      // SCSS uses SASS nesting with &::after — the width morph rides the
+      // same 0.5s spring; the color swap stays a quick 0.25s ease.
+      expect(css).toContain('width 0.5s')
       expect(css).toContain('background 0.25s')
     })
   })

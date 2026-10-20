@@ -18,9 +18,10 @@ export class SwitchSlider {
    * toggle; mounting can never regress the page.
    *
    * @param canvas The widget's dedicated canvas.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `SwitchSlider::new` — un-initialized widget; `init` must follow.
    */
@@ -61,19 +62,14 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_switchslider_free: (a: number, b: number) => void
   readonly switchslider_frame: (a: number, b: number) => void
-  readonly switchslider_init: (a: number, b: number) => number
+  readonly switchslider_init: (a: number, b: number, c: number, d: number) => void
   readonly switchslider_new: () => number
   readonly switchslider_resize: (a: number, b: number, c: number) => void
   readonly switchslider_set_size: (a: number, b: number, c: number) => void
   readonly switchslider_set_state: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_137: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_137_9: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_676: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_689: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

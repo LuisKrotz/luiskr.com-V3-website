@@ -5,7 +5,12 @@
  * and the CarouselArrowWebGL widget mount/teardown (pooled, viewport-gated).
  */
 
-import { MOUSE_EVENTS, TOUCH_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
+import {
+  MOUSE_EVENTS,
+  POINTER_EVENTS,
+  TOUCH_EVENTS,
+  WINDOW_EVENTS,
+} from '@core/tokens/events/dom.js'
 import { CAROUSEL_SELECTORS } from '@core/tokens/selectors/carousel.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { ARROW_TYPES } from '@core/tokens/theme/arrows.js'
@@ -69,10 +74,20 @@ export function bindControls(c: CustomCarousel) {
       (e) => {
         c._stopAutoplay(true)
 
+        c._cancelNavSpring()
+
         c.touchStartX = (e as TouchEvent).touches[0].clientX
       },
       { passive: true }
     )
+
+    // Any direct input over the track takes the wheel from the spring —
+    // the user owns the scroll from here (mandatory snap re-engages).
+    const takeover = () => c._cancelNavSpring()
+
+    c.addScopedListener(track, MOUSE_EVENTS.WHEEL, takeover, { passive: true })
+
+    c.addScopedListener(track, POINTER_EVENTS.POINTERDOWN, takeover, { passive: true })
 
     c.addScopedListener(
       track,

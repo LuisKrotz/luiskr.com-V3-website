@@ -39,13 +39,23 @@ export class CloseButton {
    * button; mounting can never regress the page.
    *
    * @param canvas The widget's dedicated canvas.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    * @param {HTMLCanvasElement} canvas
-   * @returns {Promise<void>}
+   * @param {GPUDevice} device
    */
-  init(canvas) {
-    const ret = wasm.closebutton_init(this.__wbg_ptr, addHeapObject(canvas))
-    return takeObject(ret)
+  init(canvas, device) {
+    try {
+      const retptr = wasm.__wbindgen_add_to_stack_pointer(-16)
+      wasm.closebutton_init(retptr, this.__wbg_ptr, addHeapObject(canvas), addHeapObject(device))
+      var r0 = getDataViewMemory0().getInt32(retptr + 4 * 0, true)
+      var r1 = getDataViewMemory0().getInt32(retptr + 4 * 1, true)
+      if (r1) {
+        throw takeObject(r0)
+      }
+    } finally {
+      wasm.__wbindgen_add_to_stack_pointer(16)
+    }
   }
   /**
    * `CloseButton::new` — un-initialized widget; `init` must follow.
@@ -104,8 +114,8 @@ function __wbg_get_imports() {
       getDataViewMemory0().setInt32(arg0 + 4 * 1, len1, true)
       getDataViewMemory0().setInt32(arg0 + 4 * 0, ptr1, true)
     },
-    __wbg___wbindgen_is_function_1f9d30630b8b1d3d: function (arg0) {
-      const ret = typeof getObject(arg0) === 'function'
+    __wbg___wbindgen_is_null_e343b7d08827ba72: function (arg0) {
+      const ret = getObject(arg0) === null
       return ret
     },
     __wbg___wbindgen_is_undefined_8865fb403f8fe9d8: function (arg0) {
@@ -115,18 +125,9 @@ function __wbg_get_imports() {
     __wbg___wbindgen_throw_41e9ee4f547fc59a: function (arg0, arg1) {
       throw new Error(getStringFromWasm0(arg0, arg1))
     },
-    __wbg__wbg_cb_unref_dcc1a90847f04c41: function (arg0) {
-      getObject(arg0)._wbg_cb_unref()
-    },
     __wbg_beginRenderPass_46bc75d13eaf7381: function () {
       return handleError(function (arg0, arg1) {
         const ret = getObject(arg0).beginRenderPass(getObject(arg1))
-        return addHeapObject(ret)
-      }, arguments)
-    },
-    __wbg_call_187d372bd5fdd4aa: function () {
-      return handleError(function (arg0, arg1, arg2) {
-        const ret = getObject(arg0).call(getObject(arg1), getObject(arg2))
         return addHeapObject(ret)
       }, arguments)
     },
@@ -201,77 +202,18 @@ function __wbg_get_imports() {
       const ret = getObject(arg0).getPreferredCanvasFormat()
       return (__wbindgen_enum_GpuTextureFormat.indexOf(ret) + 1 || 102) - 1
     },
-    __wbg_gpu_d217bb3813d12cf1: function (arg0) {
-      const ret = getObject(arg0).gpu
-      return addHeapObject(ret)
-    },
-    __wbg_instanceof_GpuAdapter_dbd098644266b228: function (arg0) {
-      let result
-      try {
-        result = getObject(arg0) instanceof GPUAdapter
-      } catch (_) {
-        result = false
-      }
-      const ret = result
-      return ret
-    },
-    __wbg_instanceof_Window_82d71df4eddf88bc: function (arg0) {
-      let result
-      try {
-        result = getObject(arg0) instanceof Window
-      } catch (_) {
-        result = false
-      }
-      const ret = result
-      return ret
-    },
-    __wbg_navigator_2156486643462a87: function (arg0) {
-      const ret = getObject(arg0).navigator
-      return addHeapObject(ret)
+    __wbg_get_31af05bd4842a84f: function () {
+      return handleError(function (arg0, arg1) {
+        const ret = Reflect.get(getObject(arg0), getObject(arg1))
+        return addHeapObject(ret)
+      }, arguments)
     },
     __wbg_new_617a8cdb8bb1130e: function () {
       const ret = new Object()
       return addHeapObject(ret)
     },
-    __wbg_new_typed_b01cb72a8af741a3: function (arg0, arg1) {
-      try {
-        var state0 = { a: arg0, b: arg1 }
-        var cb0 = (arg0, arg1) => {
-          const a = state0.a
-          state0.a = 0
-          try {
-            return __wasm_bindgen_func_elem_690(a, state0.b, arg0, arg1)
-          } finally {
-            state0.a = a
-          }
-        }
-        const ret = new Promise(cb0)
-        return addHeapObject(ret)
-      } finally {
-        state0.a = 0
-      }
-    },
-    __wbg_queueMicrotask_9833f9a49df95a49: function (arg0) {
-      const ret = getObject(arg0).queueMicrotask
-      return addHeapObject(ret)
-    },
-    __wbg_queueMicrotask_a72f977e97f23c5f: function (arg0) {
-      queueMicrotask(getObject(arg0))
-    },
     __wbg_queue_17ba8833afbd540b: function (arg0) {
       const ret = getObject(arg0).queue
-      return addHeapObject(ret)
-    },
-    __wbg_requestAdapter_ed5bc205588abf80: function (arg0) {
-      const ret = getObject(arg0).requestAdapter()
-      return addHeapObject(ret)
-    },
-    __wbg_requestDevice_a6f2e5cbbbf80722: function (arg0) {
-      const ret = getObject(arg0).requestDevice()
-      return addHeapObject(ret)
-    },
-    __wbg_resolve_0076e10020304ede: function (arg0) {
-      const ret = Promise.resolve(getObject(arg0))
       return addHeapObject(ret)
     },
     __wbg_setBindGroup_4af09961dd6fd6d4: function (arg0, arg1, arg2) {
@@ -400,6 +342,9 @@ function __wbg_get_imports() {
     __wbg_set_usage_7177d2b5a0cb7ed1: function (arg0, arg1) {
       getObject(arg0).usage = arg1 >>> 0
     },
+    __wbg_set_usage_e842e619c53799e7: function (arg0, arg1) {
+      getObject(arg0).usage = arg1 >>> 0
+    },
     __wbg_set_vertex_5b13839ffaff5f37: function (arg0, arg1) {
       getObject(arg0).vertex = getObject(arg1)
     },
@@ -428,35 +373,12 @@ function __wbg_get_imports() {
     __wbg_submit_46ecaa46ea244579: function (arg0, arg1, arg2) {
       getObject(arg0).submit(getArrayJsValueViewFromWasm0(arg1, arg2))
     },
-    __wbg_then_c949d5a25a4e78f8: function (arg0, arg1, arg2) {
-      const ret = getObject(arg0).then(getObject(arg1), getObject(arg2))
-      return addHeapObject(ret)
-    },
-    __wbg_then_e71170d78fcf8954: function (arg0, arg1) {
-      const ret = getObject(arg0).then(getObject(arg1))
-      return addHeapObject(ret)
-    },
     __wbg_writeBuffer_2c02702ce0fa25c3: function () {
       return handleError(function (arg0, arg1, arg2, arg3, arg4) {
         getObject(arg0).writeBuffer(getObject(arg1), arg2 >>> 0, getArrayU8FromWasm0(arg3, arg4))
       }, arguments)
     },
     __wbindgen_generic_0000000000000001: function (arg0, arg1) {
-      // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [Externref], shim_idx: 21, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
-      const ret = makeMutClosure(arg0, arg1, __wasm_bindgen_func_elem_677)
-      return addHeapObject(ret)
-    },
-    __wbindgen_generic_0000000000000002: function (arg0, arg1) {
-      // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("GPUDevice")], shim_idx: 17, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
-      const ret = makeMutClosure(arg0, arg1, __wasm_bindgen_func_elem_138)
-      return addHeapObject(ret)
-    },
-    __wbindgen_generic_0000000000000003: function (arg0, arg1) {
-      // Cast intrinsic for `Closure(Closure { owned: true, function: Function { arguments: [NamedExternref("any")], shim_idx: 17, ret: Result(Unit), inner_ret: Some(Result(Unit)) }, mutable: true }) -> Externref`.
-      const ret = makeMutClosure(arg0, arg1, __wasm_bindgen_func_elem_138_10)
-      return addHeapObject(ret)
-    },
-    __wbindgen_generic_0000000000000004: function (arg0, arg1) {
       // Cast intrinsic for `Ref(String) -> Externref`.
       const ret = getStringFromWasm0(arg0, arg1)
       return addHeapObject(ret)
@@ -472,52 +394,6 @@ function __wbg_get_imports() {
   return {
     __proto__: null,
     './luiskr_close_button_bg.js': import0,
-  }
-}
-
-function __wasm_bindgen_func_elem_690(arg0, arg1, arg2, arg3) {
-  wasm.__wasm_bindgen_func_elem_690(arg0, arg1, addHeapObject(arg2), addHeapObject(arg3))
-}
-
-function __wasm_bindgen_func_elem_677(arg0, arg1, arg2) {
-  try {
-    const retptr = wasm.__wbindgen_add_to_stack_pointer(-16)
-    wasm.__wasm_bindgen_func_elem_677(retptr, arg0, arg1, addHeapObject(arg2))
-    var r0 = getDataViewMemory0().getInt32(retptr + 4 * 0, true)
-    var r1 = getDataViewMemory0().getInt32(retptr + 4 * 1, true)
-    if (r1) {
-      throw takeObject(r0)
-    }
-  } finally {
-    wasm.__wbindgen_add_to_stack_pointer(16)
-  }
-}
-
-function __wasm_bindgen_func_elem_138(arg0, arg1, arg2) {
-  try {
-    const retptr = wasm.__wbindgen_add_to_stack_pointer(-16)
-    wasm.__wasm_bindgen_func_elem_138(retptr, arg0, arg1, addHeapObject(arg2))
-    var r0 = getDataViewMemory0().getInt32(retptr + 4 * 0, true)
-    var r1 = getDataViewMemory0().getInt32(retptr + 4 * 1, true)
-    if (r1) {
-      throw takeObject(r0)
-    }
-  } finally {
-    wasm.__wbindgen_add_to_stack_pointer(16)
-  }
-}
-
-function __wasm_bindgen_func_elem_138_10(arg0, arg1, arg2) {
-  try {
-    const retptr = wasm.__wbindgen_add_to_stack_pointer(-16)
-    wasm.__wasm_bindgen_func_elem_138_10(retptr, arg0, arg1, addHeapObject(arg2))
-    var r0 = getDataViewMemory0().getInt32(retptr + 4 * 0, true)
-    var r1 = getDataViewMemory0().getInt32(retptr + 4 * 1, true)
-    if (r1) {
-      throw takeObject(r0)
-    }
-  } finally {
-    wasm.__wbindgen_add_to_stack_pointer(16)
   }
 }
 
@@ -668,11 +544,6 @@ function addHeapObject(obj) {
   return idx
 }
 
-const CLOSURE_DTORS =
-  typeof FinalizationRegistry === 'undefined'
-    ? { register: () => {}, unregister: () => {} }
-    : new FinalizationRegistry((state) => wasm.__wbindgen_export4(state.a, state.b))
-
 function debugString(val) {
   // primitive types
   const type = typeof val
@@ -803,33 +674,6 @@ let heap_next = heap.length
 
 function isLikeNone(x) {
   return x === undefined || x === null
-}
-
-function makeMutClosure(arg0, arg1, f) {
-  const state = { a: arg0, b: arg1, cnt: 1 }
-  const real = (...args) => {
-    // First up with a closure we increment the internal reference
-    // count. This ensures that the Rust closure environment won't
-    // be deallocated while we're invoking it.
-    state.cnt++
-    const a = state.a
-    state.a = 0
-    try {
-      return f(a, state.b, ...args)
-    } finally {
-      state.a = a
-      real._wbg_cb_unref()
-    }
-  }
-  real._wbg_cb_unref = () => {
-    if (--state.cnt === 0) {
-      wasm.__wbindgen_export4(state.a, state.b)
-      state.a = 0
-      CLOSURE_DTORS.unregister(state)
-    }
-  }
-  CLOSURE_DTORS.register(real, state, state)
-  return real
 }
 
 function passStringToWasm0(arg, malloc, realloc) {

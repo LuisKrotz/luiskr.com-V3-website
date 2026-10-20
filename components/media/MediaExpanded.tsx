@@ -11,11 +11,14 @@ import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { webmSibling } from '@core/utils/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
+import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { BaseComponent } from '@core/Component.js'
 import { svgPlaceholder } from '@core/utils/dom.js'
 import { mountMediaExpanded } from './expanded/mount.js'
 import { startExpandedClose } from './expanded/close.js'
+import { cancelGenie } from './expanded/genie.js'
 import { renderMediaExpanded } from './expanded/render.js'
+import type { GenieSession } from './expanded/genie.js'
 import modalStyles from '@core/sass/components/internals/modal.scss?inline'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
@@ -27,6 +30,7 @@ export class MediaExpanded extends BaseComponent {
   currentSrc: string = ATTR_VALUES.EMPTY // active img src: thumb → full-res swap
   _closeBtn: { destroy(): void } | null = null // CloseButtonWebGL on the header ✕
   _brackets: (() => void) | null = null // teardown for the close-button corner-brackets WebGPU widgets
+  _genie: GenieSession | null = null // live genie-warp session (open/close transition)
 
   static get observedAttributes(): string[] {
     return [
@@ -115,6 +119,13 @@ export class MediaExpanded extends BaseComponent {
   }
 
   override onDestroy() {
+    cancelGenie(this)
+
+    // A detached <video> keeps decoding+playing — the element leaves the
+    // DOM on close but the media pipeline doesn't stop itself. Pause so
+    // the teardown actually frees the decoder.
+    this.$<HTMLVideoElement>(HTML_TAGS.VIDEO)?.pause()
+
     if (this._closeBtn) {
       this._closeBtn.destroy()
 

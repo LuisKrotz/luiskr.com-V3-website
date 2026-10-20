@@ -111,6 +111,8 @@ export interface BurnInk {
   mid: string
   edge: string
   scorch: string
+  /** Smoke-puff tint — the rising ash column behind the embers. */
+  smoke: string
 }
 
 /**

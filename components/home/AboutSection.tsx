@@ -22,6 +22,8 @@ import { calcDrawTextDelay, calcDrawTextOffset } from '@core/utils/wasm/wasm-lay
 import { stripHtml } from '@core/utils/string.js'
 import { getGravatarSrcset, getOptimizedGravatar } from '@core/utils/media.js'
 import { attachGlitch, disarmGlitch } from './about/glitch.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import '@website/components/media/DrawText.js'
 import aboutStyles from '@core/sass/components/home/about.scss?inline'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
@@ -67,6 +69,18 @@ export class AboutSection extends BaseComponent {
 
   override onDestroy() {
     disarmGlitch(this)
+  }
+
+  /**
+   * Re-binds the bio's continuous type-in description — the two-column
+   * paragraph cascade is ONE coordinated animation (col2 starts as col1
+   * ends), so the text container carries the ABOUT_TEXT record on top
+   * of each <draw-text>'s own TEXT_DRAW binding.
+   */
+  override onUpdated() {
+    const text = this.$(`.${ABOUT_CLASSES.ABOUT_PROFILE_TEXT}`)
+
+    if (text) applyAnimationDesc(text as Element, ANIMATION_IDS.ABOUT_TEXT)
   }
 
   /** Setter/getter — the about-page translation node pushed by the parent view. */

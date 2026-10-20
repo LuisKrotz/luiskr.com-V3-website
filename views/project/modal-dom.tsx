@@ -2,9 +2,10 @@
  * @file project/modal-dom.tsx
  * @description Imperative expand-modal sync for <view-project>: mirrors
  * the store's modal descriptor into the shadow DOM without re-rendering
- * (a re-render would destroy every mounted carousel). Open pins the page
- * via translateY(−scrollY) so the tapped media is the genie-zoom origin;
- * close clears the transform, closes the dialog and unmounts the media.
+ * (a re-render would destroy every mounted carousel). Scroll lock is
+ * native — dialog.showModal() puts the page in the inert layer so the
+ * document scroll stays frozen at its real position (no transform pin,
+ * no shift); open mounts the media, close releases and unmounts.
  */
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
@@ -17,7 +18,7 @@ import store from '@core/store.js'
 import type { ViewProject } from './Project.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
-/** Store → DOM modal sync (open: pin page + mount media; close: restore). */
+/** Store → DOM modal sync (open: showModal + mount media; close: release). */
 export function updateModalDOM(view: ViewProject): void {
   const modal = store.getters.getModal()
 
@@ -25,12 +26,7 @@ export function updateModalDOM(view: ViewProject): void {
     view.$<HTMLDialogElement>(`dialog.${MODAL_CLASSES.MODAL_ABOVE}`) ||
     view.$<HTMLDialogElement>(`.${MODAL_CLASSES.MODAL_ABOVE}`)
 
-  const below = view.$(`.${MODAL_CLASSES.MODAL_BELOW}`)
-
   if (modal?.open) {
-    // Apply scroll transform to main content
-    if (below) below.style.transform = `translateY(-${modal.transform || 0}px)`
-
     if (above) {
       if (typeof above.showModal === TYPE_STRINGS.FUNCTION && !above.open) {
         above.showModal()
@@ -55,9 +51,8 @@ export function updateModalDOM(view: ViewProject): void {
       }
     }
   } else {
-    // Restore scroll position and unmount expanded media
-    if (below) below.style.transform = ''
-
+    // Release the top layer and unmount expanded media — the document
+    // scroll never moved (native inert lock), so nothing restores here.
     if (above) {
       if (typeof above.close === TYPE_STRINGS.FUNCTION && above.open) {
         above.close()

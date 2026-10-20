@@ -19,6 +19,8 @@ import {
 import { jumpToSlide as hcJumpToSlide } from '@website/components/carousel/awards-carousel/nav.js'
 import { setupObserver as hcSetupObserver } from '@website/components/carousel/awards-carousel/observer.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
+import { CAROUSEL_CLASSES } from '@core/tokens/classes/carousel.js'
+import { waitFor } from '@tests/fixtures/test-constants.js'
 
 const SLIDES = [
   { src: 'a.webp', size: [800, 450], label: 'One', canExpand: true },
@@ -32,7 +34,7 @@ afterEach(() => {
 })
 
 describe('carousel nav — counter + scroll arms', () => {
-  test('scrollToElement scrolls when offsets are measurable', () => {
+  test('scrollToElement scrolls when offsets are measurable', async () => {
     const track = document.createElement(HTML_TAGS.DIV || 'div')
     const slide = document.createElement('div')
 
@@ -41,11 +43,17 @@ describe('carousel nav — counter + scroll arms', () => {
     track.scrollTo = jest.fn()
     track.scrollLeft = 0
 
-    const c = { $: () => track }
+    const c = { $: () => track, pendingTeleport: null }
 
     scrollToElement(c, slide)
 
-    expect(track.scrollTo).toHaveBeenCalled()
+    // Scroll spring: arms the animating class and settles on the target
+    // (or writes instantly under reduced-motion).
+    await waitFor(
+      () =>
+        track.classList.contains(CAROUSEL_CLASSES.CAROUSEL_TRACK_ANIMATING) ||
+        track.scrollLeft !== 0
+    )
   })
 
   test('updateActiveClasses writes the counter when present', () => {

@@ -18,9 +18,10 @@ export class MenuBackground {
    * backdrop; mounting can never regress the page.
    *
    * @param canvas The widget's dedicated canvas.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `MenuBackground::new` — un-initialized widget; `init` follows.
    */
@@ -70,7 +71,7 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_menubackground_free: (a: number, b: number) => void
   readonly menubackground_frame: (a: number, b: number) => void
-  readonly menubackground_init: (a: number, b: number) => number
+  readonly menubackground_init: (a: number, b: number, c: number, d: number) => void
   readonly menubackground_new: () => number
   readonly menubackground_resize: (a: number, b: number, c: number) => void
   readonly menubackground_set_size: (a: number, b: number, c: number) => void
@@ -85,14 +86,9 @@ export interface InitOutput {
     h: number,
     i: number
   ) => void
-  readonly __wasm_bindgen_func_elem_137: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_137_9: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_676: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_689: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

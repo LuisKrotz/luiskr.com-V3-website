@@ -17,7 +17,9 @@ import { ThemeSliderWebGL } from '@core/utils/canvas/widgets/theme-slider.js'
 import { SwitchWebGL } from '@core/utils/canvas/widgets/switch-slider.js'
 import { CloseButtonWebGL } from '@core/utils/canvas/widgets/close-button.js'
 import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { mountCornerBrackets } from '@core/utils/gpu/corner-brackets.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import type { PreferencesModal } from '../PreferencesModal.js'
 
 /** Commits the pref mutation matching a switch type. */
@@ -49,6 +51,8 @@ function mountThemeSlider(host: PreferencesModal): void {
   }
 
   if (!host._themeSlider) {
+    applyAnimationDesc(themeCanvas, ANIMATION_IDS.THEME_SLIDER)
+
     host._themeSlider = new ThemeSliderWebGL(themeCanvas, host.currentTheme, (newTheme) => {
       store.commit(PREF_MUTATIONS.SET_THEME, newTheme)
     })
@@ -81,6 +85,8 @@ function mountSwitches(host: PreferencesModal): void {
     }
 
     if (!switches[type]) {
+      applyAnimationDesc(canvas, ANIMATION_IDS.SWITCH_SLIDER)
+
       switches[type] = new SwitchWebGL(canvas, type, active, () => commitSwitch(type))
     }
   })
@@ -99,6 +105,8 @@ function mountCloseButton(host: PreferencesModal): void {
   }
 
   if (!host._closeBtn) {
+    applyAnimationDesc(closeCanvas, ANIMATION_IDS.CLOSE_BUTTON)
+
     host._closeBtn = new CloseButtonWebGL(closeCanvas, () => host.close())
   }
 }

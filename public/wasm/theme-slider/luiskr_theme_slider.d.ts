@@ -18,9 +18,10 @@ export class ThemeSlider {
    * slider; mounting can never regress the page.
    *
    * @param canvas The widget's dedicated canvas.
+   * @param device The shared GPUDevice (one per page, from the JS bridge).
    * @returns Ok on a live surface, Err(JsValue) on failure.
    */
-  init(canvas: HTMLCanvasElement): Promise<void>
+  init(canvas: HTMLCanvasElement, device: GPUDevice): void
   /**
    * `ThemeSlider::new` — un-initialized widget; `init` must follow.
    */
@@ -65,20 +66,15 @@ export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_themeslider_free: (a: number, b: number) => void
   readonly themeslider_frame: (a: number, b: number) => void
-  readonly themeslider_init: (a: number, b: number) => number
+  readonly themeslider_init: (a: number, b: number, c: number, d: number) => void
   readonly themeslider_new: () => number
   readonly themeslider_resize: (a: number, b: number, c: number) => void
   readonly themeslider_set_size: (a: number, b: number, c: number) => void
   readonly themeslider_set_state: (a: number, b: number, c: number) => void
   readonly themeslider_tap: (a: number, b: number, c: number) => void
-  readonly __wasm_bindgen_func_elem_137: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_137_10: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_676: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_689: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
 }
 

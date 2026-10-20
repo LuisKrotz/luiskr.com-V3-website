@@ -446,7 +446,8 @@ export class Surface3d {
    *
    * @param bitmap The JS-decoded bitmap.
    * @param w @param h Pixel size.
-   * @returns The texture registry id.
+   * @returns The texture registry id (u32::MAX on a device fault —
+   *   materials bind the white fallback rather than panicking).
    */
   upload_texture(bitmap: ImageBitmap, w: number, h: number): number
   /**
@@ -468,24 +469,30 @@ export class Surface3d {
 }
 
 /**
- * `mount` — the async constructor (WebGPU init is a promise):
- * adapter → device → surface configure → renderer. Mirrors the
- * widget crates' `mount(canvas)` contract so the shared
- * `webgpu-widget.ts` bridge can drive it with the same mount-first,
- * fallback-on-failure flow.
+ * `mount` — bind a canvas to the page's SHARED GPUDevice and build
+ * the renderer around it. The device is acquired once in JS
+ * (`getSharedGpuDevice`) and passed to every artifact — per-widget
+ * devices exhausted the driver's device budget on a widget-heavy
+ * page (Windows/D3D12: `create command queue failed with
+ * E_OUTOFMEMORY` after ~100 devices). Sync: with the device in hand
+ * there is nothing to await, and a synchronous constructor can never
+ * leave a wasm-bindgen closure dangling (the async-future trap was
+ * the "closure invoked recursively" cascade). `await` on the JS side
+ * tolerates the non-promise return unchanged.
  *
  * @param canvas The host canvas element.
+ * @param device The shared GPUDevice (one per page, from the JS bridge).
  * @param w @param h Backing size in DEVICE pixels.
  * @returns The scene handle, or a JS error string on init failure.
  */
-export function mount(canvas: HTMLCanvasElement, w: number, h: number): Promise<Surface3d>
+export function mount(canvas: HTMLCanvasElement, device: GPUDevice, w: number, h: number): Surface3d
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory
   readonly __wbg_surface3d_free: (a: number, b: number) => void
-  readonly mount: (a: number, b: number, c: number) => number
+  readonly mount: (a: number, b: number, c: number, d: number, e: number) => void
   readonly surface3d_add_group: (a: number, b: number) => number
   readonly surface3d_add_instanced: (
     a: number,
@@ -643,16 +650,11 @@ export interface InitOutput {
   readonly surface3d_upload_texture: (a: number, b: number, c: number, d: number) => number
   readonly surface3d_user_data: (a: number, b: number) => number
   readonly surface3d_world_position: (a: number, b: number, c: number) => void
-  readonly __wasm_bindgen_func_elem_325: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_325_54: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_942: (a: number, b: number, c: number, d: number) => void
-  readonly __wasm_bindgen_func_elem_956: (a: number, b: number, c: number, d: number) => void
   readonly __wbindgen_export: (a: number, b: number) => number
   readonly __wbindgen_export2: (a: number, b: number, c: number, d: number) => number
   readonly __wbindgen_export3: (a: number) => void
-  readonly __wbindgen_export4: (a: number, b: number) => void
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number
-  readonly __wbindgen_export5: (a: number, b: number, c: number) => void
+  readonly __wbindgen_export4: (a: number, b: number, c: number) => void
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module

@@ -8,10 +8,15 @@
 
 /** Device-pixel cap on the burn canvas — glow beyond 2× is invisible. */
 export const _DPR_CAP = 2
-/** Side/vertical bleed (css px) around the title box — embers need room. */
-export const _PAD_X = 26
-/** Top bleed (css px) — rising embers need the most headroom. */
-export const _PAD_TOP = 34
+/** Side/vertical bleed (css px) around the title box — embers need room,
+ *  and the smoke wander (~30px lateral drift over a puff's life) must not
+ *  slice at the canvas edge. */
+export const _PAD_X = 60
+/** Top bleed (css px) — the smoke plume climbs at up to ~90px/s with a
+ *  life up to 3.2s (~250px of headroom needed) before it thins out; the
+ *  canvas must hold the whole column so the plume dissipates instead of
+ *  slicing at the canvas edge. */
+export const _PAD_TOP = 260
 /** Bottom bleed (css px) — the front ignites at the baseline edge. */
 export const _PAD_BOTTOM = 8
 /** Jagged-edge amplitude as a fraction of the paper height — a small

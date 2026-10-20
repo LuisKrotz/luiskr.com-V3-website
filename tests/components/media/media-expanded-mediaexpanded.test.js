@@ -18,7 +18,7 @@ import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.j
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { EXPAND_MODAL_CLASSES, MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
-import { KEYBOARD_EVENTS, MOUSE_EVENTS } from '@core/tokens/events/dom.js'
+import { KEYBOARD_EVENTS, MOUSE_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { APP_EVENTS } from '@core/tokens/events/app.js'
 import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
@@ -420,6 +420,186 @@ describe('MediaExpanded', () => {
 
     langSpy.mockRestore()
     el.remove()
+  })
+
+  test('the scroll snapback re-pins document drift while the modal is open', async () => {
+    const scrollSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})
+
+    // Modal closed — the listener no-ops (no snap queued).
+    store.commit(MODAL_MUTATIONS.SET_MODAL, {
+      transform: 0,
+      class: ATTR_VALUES.EMPTY,
+      open: false,
+      media: {
+        source: ATTR_VALUES.EMPTY,
+        thumb: ATTR_VALUES.EMPTY,
+        alt: ATTR_VALUES.EMPTY,
+        width: 0,
+        height: 0,
+        isVideo: false,
+      },
+    })
+
+    const el = mountExpanded()
+
+    await flush()
+
+    window.dispatchEvent(new window.Event('scroll'))
+
+    await flush()
+
+    expect(scrollSpy).not.toHaveBeenCalled()
+
+    // Modal open at a parked offset — a drifting scroll snaps back on
+    // the next frame.
+    store.commit(MODAL_MUTATIONS.SET_MODAL, {
+      transform: 1500,
+      class: MODAL_CLASSES.MODAL_OPEN,
+      open: true,
+      media: {
+        source: TEST_URLS.IMG,
+        thumb: TEST_URLS.IMG,
+        alt: TEST_TEXT.HEADING,
+        width: 1,
+        height: 1,
+        isVideo: false,
+      },
+    })
+
+    // Two events in the same frame — the second hits the snapQueued arm.
+    window.dispatchEvent(new window.Event('scroll'))
+    window.dispatchEvent(new window.Event('scroll'))
+
+    await flush()
+
+    expect(scrollSpy).toHaveBeenCalledWith(0, 1500)
+
+    // scrollY already at the parked offset — the >1 threshold arm
+    // leaves the document alone.
+    Object.defineProperty(window, 'scrollY', { value: 1500, configurable: true })
+
+    window.dispatchEvent(new window.Event('scroll'))
+
+    await flush()
+
+    expect(scrollSpy).toHaveBeenCalledTimes(1)
+
+    Object.defineProperty(window, 'scrollY', { value: 0, configurable: true })
+    scrollSpy.mockRestore()
+    el.remove()
+  })
+
+  test('mount stamps the WASM-fitted px box on the image item and refits on resize', async () => {
+    // happy-dom reports clientWidth 0 — stub a laid-out width so the
+    // boundW > 0 guard passes and the stamp path runs.
+    const cwSpy = jest.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(1200)
+
+    const el = mountExpanded({ [MEDIA_ATTRS.WIDTH]: '4000', [MEDIA_ATTRS.HEIGHT]: '5000' })
+
+    await flush()
+
+    const item = el.shadowRoot?.querySelector(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`)
+
+    // A "huge length" capture keeps its full fitted width; the height
+    // overflows into the dialog scroll rather than being squashed.
+    expect(item.style.width).toBe('1200px')
+    expect(item.style.height).toBe('1500px')
+
+    // Two resize events in one frame — the second hits the fitQueued arm.
+    window.dispatchEvent(new window.Event(WINDOW_EVENTS.RESIZE))
+    window.dispatchEvent(new window.Event(WINDOW_EVENTS.RESIZE))
+
+    await flush()
+
+    expect(item.style.width).toBe('1200px')
+
+    cwSpy.mockRestore()
+    el.remove()
+  })
+
+  test('the media fit skips when a surface is missing and when the item is a video', async () => {
+    // !mediaItem arm — $ returns null for the item selector only.
+    const el = document.createElement(COMPONENT_TAGS.MEDIA_EXPANDED)
+
+    el.setAttribute(MEDIA_ATTRS.SOURCE, TEST_URLS.IMG)
+    el.setAttribute(MEDIA_ATTRS.THUMB, TEST_URLS.IMG)
+    el.setAttribute(MEDIA_ATTRS.ALT, TEST_TEXT.HEADING)
+
+    const origQuery = el.$.bind(el)
+
+    el.$ = (sel) =>
+      String(sel).includes(EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM) ? null : origQuery(sel)
+
+    document.body.appendChild(el)
+
+    await flush()
+
+    el.remove()
+
+    // !content arm — mediaItem resolves, content does not.
+    const el2 = document.createElement(COMPONENT_TAGS.MEDIA_EXPANDED)
+
+    el2.setAttribute(MEDIA_ATTRS.SOURCE, TEST_URLS.IMG)
+    el2.setAttribute(MEDIA_ATTRS.THUMB, TEST_URLS.IMG)
+    el2.setAttribute(MEDIA_ATTRS.ALT, TEST_TEXT.HEADING)
+
+    const origQuery2 = el2.$.bind(el2)
+
+    el2.$ = (sel) =>
+      String(sel).includes(EXPAND_MODAL_CLASSES.EXPAND_MODAL_CONTENT) ? null : origQuery2(sel)
+
+    document.body.appendChild(el2)
+
+    await flush()
+
+    el2.remove()
+
+    // boundW ≤ 0 arm — unlaid-out content leaves the intrinsic box alone.
+    const elUnlaid = mountExpanded()
+
+    await flush()
+
+    const itemUnlaid = elUnlaid.shadowRoot?.querySelector(
+      `.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`
+    )
+
+    expect(itemUnlaid.style.width).toBe('')
+
+    elUnlaid.remove()
+
+    // isVideo arm — the video keeps the flex contract, never px-stamped.
+    const el3 = mountExpanded({ [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE })
+
+    await flush()
+
+    const vid = el3.shadowRoot?.querySelector(HTML_TAGS.VIDEO)
+
+    expect(vid?.style.width || ATTR_VALUES.EMPTY).toBe(ATTR_VALUES.EMPTY)
+
+    el3.remove()
+  })
+
+  test('native dialog cancel is prevented and routes to startClose', async () => {
+    const dialog = document.createElement(HTML_TAGS.DIALOG)
+
+    dialog.classList.add(MODAL_CLASSES.MODAL_ABOVE)
+    document.body.appendChild(dialog)
+
+    const el = mountExpanded()
+
+    await flush()
+
+    const cancelSpy = jest.spyOn(el, 'startClose')
+
+    const cancelEvt = new window.Event(APP_EVENTS.CANCEL, { cancelable: true })
+
+    dialog.dispatchEvent(cancelEvt)
+
+    expect(cancelEvt.defaultPrevented).toBe(true)
+    expect(cancelSpy).toHaveBeenCalled()
+
+    el.remove()
+    dialog.remove()
   })
 
   test('module re-evaluation respects the registered element', async () => {

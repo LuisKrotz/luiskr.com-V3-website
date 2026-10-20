@@ -36,6 +36,8 @@ import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
 import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
 import { mountCornerBracketsAll } from '@core/utils/gpu/corner-brackets.js'
 import { mountRingSheen } from '@core/utils/gpu/ring-sheen.js'
+import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import type { RingSheenSession } from '@core/utils/gpu/ring-sheen.js'
 import { MOSAIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import homeMosaicStyles from '@core/sass/components/home/home-mosaic.scss?inline'
@@ -213,6 +215,20 @@ export class HomeMosaic extends BaseComponent {
     this._syncBrackets()
 
     this._syncRingSheen()
+
+    this._syncAnimDescs()
+  }
+
+  /**
+   * Binds the mosaic-tile description to every card — each tile's
+   * hover/press/displacement spring is the animated surface. Runs
+   * post-render so the shared desc node lands in the shadow root
+   * (detached-node application would mint duplicate ids).
+   */
+  _syncAnimDescs(): void {
+    for (const tile of this.$$(`.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM}`)) {
+      applyAnimationDesc(tile as Element, ANIMATION_IDS.MOSAIC_TILE)
+    }
   }
 
   /**

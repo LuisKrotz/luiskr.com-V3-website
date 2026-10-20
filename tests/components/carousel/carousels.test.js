@@ -490,7 +490,7 @@ describe('Carousel Web Components Suite - Full Interaction, Clones & Responsive 
       carousel.remove()
     })
 
-    test('_jumpToSlide scrolls smooth and instant when widths are measurable', () => {
+    test('_jumpToSlide scrolls smooth and instant when widths are measurable', async () => {
       const carousel = document.createElement(COMPONENT_TAGS.AWARDS_CAROUSEL)
 
       carousel.items = sampleProjects
@@ -501,6 +501,8 @@ describe('Carousel Web Components Suite - Full Interaction, Clones & Responsive 
 
       Object.defineProperty(track, 'clientWidth', { value: 800, configurable: true })
       Object.defineProperty(slide, 'clientWidth', { value: 400, configurable: true })
+      track.getBoundingClientRect = () => ({ left: 0, width: 800 })
+      slide.getBoundingClientRect = () => ({ left: 0, width: 400 })
       track.scrollTo = jest.fn()
 
       carousel._jumpToSlide(0)
@@ -510,15 +512,17 @@ describe('Carousel Web Components Suite - Full Interaction, Clones & Responsive 
         left: expect.any(Number),
         behavior: ATTR_VALUES.INSTANT,
       })
-      expect(track.scrollTo).toHaveBeenCalledWith({
-        left: expect.any(Number),
-        behavior: ATTR_VALUES.SMOOTH,
-      })
+
+      // The smooth jump rides the scroll spring — animating class arms
+      // (or the instant arm under reduced-motion writes immediately).
+      await waitFor(
+        () => track.classList.contains(AWC_CLASSES.AWC_TRACK_ANIMATING) || track.scrollLeft !== 0
+      )
 
       carousel.remove()
     })
 
-    test('_scrollToSlide scrolls when rects report non-zero widths', () => {
+    test('_scrollToSlide scrolls when rects report non-zero widths', async () => {
       const carousel = document.createElement(COMPONENT_TAGS.AWARDS_CAROUSEL)
 
       carousel.items = sampleProjects
@@ -533,10 +537,9 @@ describe('Carousel Web Components Suite - Full Interaction, Clones & Responsive 
 
       carousel._scrollToSlide(0)
 
-      expect(track.scrollTo).toHaveBeenCalledWith({
-        left: expect.any(Number),
-        behavior: ATTR_VALUES.SMOOTH,
-      })
+      await waitFor(
+        () => track.classList.contains(AWC_CLASSES.AWC_TRACK_ANIMATING) || track.scrollLeft !== 0
+      )
 
       carousel.remove()
     })

@@ -3,6 +3,7 @@
  * @description JSX for MediaFigure — layered placeholder/thumb/high-res crossfade stack (or the muted looping video path) plus the expand affordance buttons.
  */
 
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
@@ -40,6 +41,15 @@ export function renderMediaFigure(c: MediaFigure) {
     <figure
       className={c.canExpand ? INTERNAL_CLASSES.INTERNAL_EXPAND : ATTR_VALUES.EMPTY}
       title={c.label}
+      // The media's declared intrinsic size, published as custom props so
+      // the SCSS sizing chain can clamp every box (placeholder, slide,
+      // cover) at natural dimensions — the painted file may never render
+      // larger than its source, no matter how tall the strip or wide the
+      // container is.
+      style={{
+        '--mf-natural-w': `${mediaW}${COMMON_ATTRS.PX}`,
+        '--mf-natural-h': `${mediaH}${COMMON_ATTRS.PX}`,
+      }}
     >
       <img
         decoding={MEDIA_ATTRS.DECODING_ASYNC}
