@@ -4148,6 +4148,8 @@ https://luiskr.com/docs/coverage-website/views/project/modal.ts.html
 https://luiskr.com/docs/coverage-website/views/project/render.tsx.html
 https://luiskr.com/docs/desktop/README.md
 https://luiskr.com/docs/desktop/electron-builder.yml
+https://luiskr.com/docs/desktop/icon.ico
+https://luiskr.com/docs/desktop/icon.png
 https://luiskr.com/docs/desktop/launcher-main.mjs
 https://luiskr.com/docs/desktop/launcher.html
 https://luiskr.com/docs/desktop/main.mjs
