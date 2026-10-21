@@ -22712,6 +22712,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/fs-retry.md</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/generate-sitemap.md</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -45007,6 +45012,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/reports/chunk-budget.json</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/reports/console-scan.json</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -45143,6 +45153,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/shared/scripts/build/deploy-info.mjs</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/shared/scripts/build/fs-retry.mjs</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
