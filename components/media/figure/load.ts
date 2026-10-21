@@ -23,6 +23,7 @@ import {
 import { encodeMediaUrl, webpSibling } from '@core/utils/media.js'
 import { svgPlaceholder } from '@core/utils/dom.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
+import { upscaleImage2x } from '@core/utils/ml/super-res.js'
 import type { MediaFigure } from '../MediaFigure.js'
 
 /**
@@ -231,6 +232,17 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
 
       if (best && !overBudget) {
         gpuAccel.processTextureGPU(best, fig.displayWidth, fig.displayHeight)
+
+        // ML super-resolution — when the best confirmed rung still
+        // under-resolves the display box, a 2× ORT pass (WebNN → WebGPU
+        // → wasm) re-uploads a sharper bitmap into the same texture
+        // layer. Enhancement never blocks the climb: it lands whenever
+        // the EP answers, and a null result changes nothing.
+        if (best.naturalWidth && best.naturalWidth < fig.displayWidth) {
+          void upscaleImage2x(best).then((bmp) => {
+            if (bmp) gpuAccel.processBitmapGPU(bmp, fig.displayWidth, fig.displayHeight)
+          })
+        }
       }
 
       return

@@ -3090,6 +3090,7 @@ https://luiskr.com/docs/core/tokens/data/animation-ids.ts
 https://luiskr.com/docs/core/tokens/data/cms-keys.ts
 https://luiskr.com/docs/core/tokens/data/component-keys.ts
 https://luiskr.com/docs/core/tokens/data/log.ts
+https://luiskr.com/docs/core/tokens/data/ml.ts
 https://luiskr.com/docs/core/tokens/data/notify.ts
 https://luiskr.com/docs/core/tokens/data/storage.ts
 https://luiskr.com/docs/core/tokens/data/ui-keys.ts
@@ -3296,6 +3297,10 @@ https://luiskr.com/docs/core/utils/media
 https://luiskr.com/docs/core/utils/media.ts
 https://luiskr.com/docs/core/utils/media/local-media-cache.ts
 https://luiskr.com/docs/core/utils/media/manifest.ts
+https://luiskr.com/docs/core/utils/ml
+https://luiskr.com/docs/core/utils/ml/frame-time.ts
+https://luiskr.com/docs/core/utils/ml/ort-engine.ts
+https://luiskr.com/docs/core/utils/ml/super-res.ts
 https://luiskr.com/docs/core/utils/motion
 https://luiskr.com/docs/core/utils/motion/bezier.ts
 https://luiskr.com/docs/core/utils/motion/genie.ts
@@ -4974,6 +4979,7 @@ https://luiskr.com/docs/docs/architecture
 https://luiskr.com/docs/docs/architecture/architecture.md
 https://luiskr.com/docs/docs/architecture/cms.md
 https://luiskr.com/docs/docs/architecture/data-model.md
+https://luiskr.com/docs/docs/architecture/ml-acceleration.md
 https://luiskr.com/docs/docs/architecture/playground.md
 https://luiskr.com/docs/docs/architecture/routing.md
 https://luiskr.com/docs/docs/architecture/star-field.md
@@ -10082,6 +10088,7 @@ https://luiskr.com/docs/shared/scripts/build/build.mjs
 https://luiskr.com/docs/shared/scripts/build/compress-queue.mjs
 https://luiskr.com/docs/shared/scripts/build/deploy-info.mjs
 https://luiskr.com/docs/shared/scripts/build/fs-retry.mjs
+https://luiskr.com/docs/shared/scripts/build/gen-onnx-models.mjs
 https://luiskr.com/docs/shared/scripts/build/generate-sitemap.js
 https://luiskr.com/docs/shared/scripts/build/media-manifest.mjs
 https://luiskr.com/docs/shared/scripts/build/stamp-content-signal.mjs
@@ -10533,6 +10540,18 @@ https://luiskr.com/docs/website/public/meta/tln/llms.txt
 https://luiskr.com/docs/website/public/meta/tln/robots.txt
 https://luiskr.com/docs/website/public/meta/tln/urllist.txt
 https://luiskr.com/docs/website/public/meta/urllist.txt
+https://luiskr.com/docs/website/public/models
+https://luiskr.com/docs/website/public/models/diagram-cost.onnx
+https://luiskr.com/docs/website/public/models/frametime.onnx
+https://luiskr.com/docs/website/public/models/intent.onnx
+https://luiskr.com/docs/website/public/models/superres-2x.onnx
+https://luiskr.com/docs/website/public/ort
+https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.asyncify.mjs
+https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.asyncify.wasm
+https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.jsep.mjs
+https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.jsep.wasm
+https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.mjs
+https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.wasm
 https://luiskr.com/docs/website/public/wasm
 https://luiskr.com/docs/website/public/wasm/burger
 https://luiskr.com/docs/website/public/wasm/burger/luiskr_burger.d.ts
