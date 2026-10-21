@@ -9,6 +9,7 @@
 
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { IMAGE_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
@@ -133,9 +134,13 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
 
   /**
    * Publishes a confirmed tier into the visible high layer — the probe
-   * already holds the bytes, so the src swap paints from cache without a
-   * reload flash. Re-queries the element each rung because _updateDom
-   * rebuilds the shadow DOM wholesale between steps.
+   * already holds the bytes. The tier mounts as a NEW img stacked over
+   * the painted one (reassigning the live img.src would blank the box
+   * while the upgrade re-decodes — the rung blink); the clone mounts
+   * empty, paints once its own `load` fires, and retires every layer
+   * underneath in the same task, so the swap is atomic per frame.
+   * Re-queries the topmost layer each rung because _updateDom rebuilds
+   * the shadow DOM wholesale between steps.
    */
   const publish = (url: string): void => {
     fig.isLoaded = true
@@ -144,18 +149,57 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
     fig.highResSrc = url
     fig.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
 
-    const highEl = fig.$<HTMLImageElement>(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
+    const highs = fig.$$<HTMLImageElement>(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
+
+    const highEl = highs[highs.length - 1]
 
     if (highEl) {
-      highEl.src = url
+      const successor = highEl.cloneNode(false) as HTMLImageElement
 
-      highEl.classList.add(MEDIA_CLASSES.RENDER_MEDIA_LOADED)
+      successor.addEventListener(
+        WINDOW_EVENTS.LOAD,
+        () => {
+          // Detached by a mid-flight _updateDom → the rebuilt DOM already
+          // emits fig.highResSrc; a stray layer must never prune it.
+          if (!successor.isConnected) return
 
-      const thumbEl = fig.$<HTMLElement>(`.${MEDIA_CLASSES.RENDER_MEDIA_THUMB}`)
+          // Retire the layers UNDER the successor only — the ladder climbs
+          // serially but a slower clone can still be painting below while
+          // the next probe already resolved; index order in the live DOM
+          // is the stacking order, so removing anything at a lower index
+          // is safe, removing a NEWER layer would strand the climb.
+          const layers = fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
+          const topIdx = layers.indexOf(successor)
 
-      if (thumbEl) {
-        thumbEl.style.display = ATTR_VALUES.NONE
-      }
+          layers.forEach((el, i) => {
+            if (i < topIdx) el.remove()
+          })
+
+          // Now that a real bitmap occupies the box the LQIP can leave —
+          // hiding it any earlier blanks the frame while the clone
+          // finishes its first paint.
+          const thumbEl = fig.$<HTMLElement>(`.${MEDIA_CLASSES.RENDER_MEDIA_THUMB}`)
+
+          if (thumbEl) {
+            thumbEl.style.display = ATTR_VALUES.NONE
+          }
+        },
+        { once: true }
+      )
+
+      successor.addEventListener(
+        WINDOW_EVENTS.ERROR,
+        () => {
+          successor.remove()
+        },
+        { once: true }
+      )
+
+      highEl.after(successor)
+
+      successor.src = url
+
+      successor.classList.add(MEDIA_CLASSES.RENDER_MEDIA_LOADED)
     } else if (fig._isMounted) {
       fig._updateDom()
     }

@@ -135,6 +135,10 @@ export const openNavMenu = (host: NavMenuHost): void => {
 
   host._menuOpen = true
 
+  // The burger's pooled droplet morphs into the close X while the
+  // overlay opens — same morph the shader/fallback mirror on the way out.
+  host._burgerBtn?.setOpen(true)
+
   // Arms the residual-input guard — the menu mounts synchronously inside
   // the burger click's dispatch, so a second press of an in-place
   // double-click would otherwise land on a freshly mounted menu item.
@@ -228,6 +232,9 @@ export const closeNavMenu = (host: NavMenuHost): void => {
   if (!host._menuOpen || host._menuClosing) return
 
   host._menuClosing = true
+
+  // The X morphs back into the four squares while the overlay dissolves.
+  host._burgerBtn?.setOpen(false)
 
   const modal = host.$(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL}`)
 
