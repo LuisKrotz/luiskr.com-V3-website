@@ -18,6 +18,8 @@ import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { __srState, __resetSr } from '@core/utils/ml/super-res.js'
+import { __decState, __resetDec } from '@core/utils/wasm/wasm-image-decoder.js'
+import { warmFirstRung } from '@website/components/media/figure/load.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
@@ -189,19 +191,23 @@ describe('MediaFigure deep paths', () => {
     el.remove()
   })
 
-  test('onDestroy disconnects both observers', async () => {
+  test('onDestroy disconnects all observers', async () => {
     const el = mountFigure()
     const vobs = { disconnect: jest.fn() }
     const iobs = { disconnect: jest.fn() }
+    const wobs = { disconnect: jest.fn() }
 
     el.observer = vobs
     el.imgObserver = iobs
+    el.warmObserver = wobs
     el.onDestroy()
 
     expect(vobs.disconnect).toHaveBeenCalled()
     expect(iobs.disconnect).toHaveBeenCalled()
+    expect(wobs.disconnect).toHaveBeenCalled()
     expect(el.observer).toBeNull()
     expect(el.imgObserver).toBeNull()
+    expect(el.warmObserver).toBeNull()
 
     el.remove()
   })
@@ -297,6 +303,133 @@ describe('MediaFigure deep paths', () => {
     __srState.next = null
     globalThis.Image = RealImage
     el.remove()
+  })
+
+  test('a decoded wasm bitmap uploads via processBitmapGPU and drives super-res', async () => {
+    const el = mountFigure()
+
+    await flush()
+
+    __resetSr()
+    __resetDec()
+    __decState.next = { width: 400, height: 225 } // under-resolved bitmap
+
+    const RealImage = window.Image
+    const uploadSpy = jest.spyOn(gpuAccel, 'processBitmapGPU').mockReturnValue(true)
+    const texSpy = jest.spyOn(gpuAccel, 'processTextureGPU').mockReturnValue(true)
+
+    class FakeImage {
+      constructor() {
+        this.naturalWidth = 8
+        this.naturalHeight = 8
+      }
+      set src(_v) {
+        setTimeout(() => this.onload?.(), 0)
+      }
+    }
+
+    el.isLoaded = false
+
+    window.Image = FakeImage
+    el.loadHighRes()
+
+    await flush(30)
+
+    // The worker-decoded bitmap went through processBitmapGPU inside
+    // decodeImageWASM — the classic img texture path stays untouched,
+    // and the super-res pass received the decoded bitmap as its source.
+    expect(__decState.calls.length).toBe(1)
+    expect(texSpy).not.toHaveBeenCalled()
+    expect(__srState.calls.length).toBe(1)
+    expect(__srState.calls[0]).toBe(__decState.next)
+
+    uploadSpy.mockRestore()
+    texSpy.mockRestore()
+    globalThis.Image = RealImage
+    el.remove()
+  })
+
+  test('a fully-resolved decoded bitmap skips the super-res pass', async () => {
+    const el = mountFigure()
+
+    await flush()
+
+    __resetSr()
+    __resetDec()
+    __decState.next = { width: 1600, height: 900 } // already ≥ display box
+
+    const RealImage = window.Image
+
+    class FakeImage {
+      constructor() {
+        this.naturalWidth = 8
+        this.naturalHeight = 8
+      }
+      set src(_v) {
+        setTimeout(() => this.onload?.(), 0)
+      }
+    }
+
+    el.isLoaded = false
+
+    window.Image = FakeImage
+    el.loadHighRes()
+
+    await flush(30)
+
+    expect(__decState.calls.length).toBe(1)
+    expect(__srState.calls.length).toBe(0)
+
+    globalThis.Image = RealImage
+    el.remove()
+  })
+
+  test('warmFirstRung fires a detached first-rung fetch once', async () => {
+    const el = mountFigure()
+
+    await flush()
+
+    const loaded = []
+    const RealImage = window.Image
+
+    class FakeImage {
+      set src(v) {
+        loaded.push(v)
+      }
+    }
+
+    // Clear the observer-driven warm + load before the explicit probe —
+    // the mount flush already ran both observers against the real Image.
+    el.warmed = false
+    el.isLoaded = false
+
+    window.Image = FakeImage
+
+    warmFirstRung(el)
+
+    expect(el.warmed).toBe(true)
+    expect(loaded.length).toBe(1)
+
+    warmFirstRung(el) // warmed latch — no second fetch
+
+    expect(loaded.length).toBe(1)
+
+    el.isLoaded = true
+    el.warmed = false
+    warmFirstRung(el) // loaded figures don't warm
+
+    expect(loaded.length).toBe(1)
+
+    const vid = mountFigure({ [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE })
+
+    warmFirstRung(vid) // videos have no image ladder
+
+    expect(vid.warmed).toBe(false)
+    expect(loaded.length).toBe(1)
+
+    globalThis.Image = RealImage
+    el.remove()
+    vid.remove()
   })
 
   test('non-English locale renders no audio-language note on muted videos', async () => {

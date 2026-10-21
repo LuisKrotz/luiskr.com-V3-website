@@ -23,6 +23,7 @@ import {
 import { encodeMediaUrl, webpSibling } from '@core/utils/media.js'
 import { svgPlaceholder } from '@core/utils/dom.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
+import { wasmImageDecoder } from '@core/utils/wasm/wasm-image-decoder.js'
 import { upscaleImage2x } from '@core/utils/ml/super-res.js'
 import type { MediaFigure } from '../MediaFigure.js'
 
@@ -85,6 +86,40 @@ export function resolveMediaSources(fig: MediaFigure): void {
  */
 export function mediaPlaceholder(w: number, h: number): string {
   return svgPlaceholder(w, h)
+}
+
+/**
+ * CDN warm ordering — fires a detached fetch of the FIRST ladder rung
+ * while the figure is still ~600px outside the viewport. The request
+ * itself warms the CDN edge and the browser HTTP cache (decodeImageWASM
+ * replays it via `force-cache`), so the 100px-margin climb starts on a
+ * hot rung instead of a cold one. Warms only the entry rung — the climb
+ * ascends serially, so warming the top rung early would fight the low
+ * rung's fetch for bandwidth and warm a resource that may never publish.
+ * Never publishes, never marks loaded — pure network warm.
+ */
+export function warmFirstRung(fig: MediaFigure): void {
+  if (fig.isVideo || fig.isLoaded || fig.warmed) return
+
+  fig.warmed = true
+
+  const storage = store.getters.getStorage()
+  const stem = encodeMediaUrl(storage + fig.mediaSrc)
+
+  const ladder = mediaRungs(stem)
+  const first = ladder[0]
+
+  const url = first
+    ? first.webp || first.jpg
+    : encodeMediaUrl(`${stem}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)
+
+  // Same constructor resolution as the climb — window.Image first so
+  // test/DOM-realms that stub it stay authoritative.
+  const ImageCtor = typeof window !== TYPE_STRINGS.UNDEFINED && window.Image ? window.Image : Image
+
+  const probe = new ImageCtor()
+
+  probe.src = url
 }
 
 /**
@@ -231,18 +266,42 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
       fig.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
 
       if (best && !overBudget) {
-        gpuAccel.processTextureGPU(best, fig.displayWidth, fig.displayHeight)
+        // WASM decode first — the worker-side createImageBitmap reuses
+        // the HTTP cache (no re-download), resizes on the GPU during
+        // decompression, and uploads zero-copy via processBitmapGPU
+        // inside decodeImageWASM itself. A null result falls back to
+        // the classic img-element texture upload.
+        const bestUrl = best.currentSrc || best.src
 
-        // ML super-resolution — when the best confirmed rung still
-        // under-resolves the display box, a 2× ORT pass (WebNN → WebGPU
-        // → wasm) re-uploads a sharper bitmap into the same texture
-        // layer. Enhancement never blocks the climb: it lands whenever
-        // the EP answers, and a null result changes nothing.
-        if (best.naturalWidth && best.naturalWidth < fig.displayWidth) {
-          void upscaleImage2x(best).then((bmp) => {
-            if (bmp) gpuAccel.processBitmapGPU(bmp, fig.displayWidth, fig.displayHeight)
+        void wasmImageDecoder
+          .decodeImageWASM(bestUrl, fig.displayWidth, fig.displayHeight)
+          .then((bitmap) => {
+            const src: ImageBitmap | HTMLImageElement = bitmap ?? (best as HTMLImageElement)
+
+            if (!bitmap) {
+              gpuAccel.processTextureGPU(
+                src as HTMLImageElement,
+                fig.displayWidth,
+                fig.displayHeight
+              )
+            }
+
+            // ML super-resolution — when the best confirmed rung still
+            // under-resolves the display box, a 2× ORT pass (WebNN →
+            // WebGPU → wasm) re-uploads a sharper bitmap into the same
+            // texture layer. Enhancement never blocks the climb: it
+            // lands whenever the EP answers, and a null result changes
+            // nothing. The decoded bitmap is preferred as the source —
+            // its dimensions are the real pixel count, and drawImage
+            // accepts it directly.
+            const srcW = bitmap ? bitmap.width : (src as HTMLImageElement).naturalWidth
+
+            if (srcW && srcW < fig.displayWidth) {
+              void upscaleImage2x(src).then((bmp) => {
+                if (bmp) gpuAccel.processBitmapGPU(bmp, fig.displayWidth, fig.displayHeight)
+              })
+            }
           })
-        }
       }
 
       return

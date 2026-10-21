@@ -54,6 +54,8 @@ export class MediaFigure extends BaseComponent {
   videoWebm: string[] = [] // [main, scaled] webm video source URLs
   observer: IntersectionObserver | null = null // video viewport IntersectionObserver
   imgObserver: IntersectionObserver | null = null // image lazy-load IntersectionObserver
+  warmObserver: IntersectionObserver | null = null // CDN warm-up IntersectionObserver (wider margin)
+  warmed = false // first-rung CDN/HTTP-cache warm already dispatched
   _expandBrackets: (() => void) | null = null // teardown for the open-1 corner-brackets WebGPU widget
   isIntersecting = false // last observed viewport state
 
@@ -200,6 +202,12 @@ export class MediaFigure extends BaseComponent {
       this.imgObserver.disconnect()
 
       this.imgObserver = null
+    }
+
+    if (this.warmObserver) {
+      this.warmObserver.disconnect()
+
+      this.warmObserver = null
     }
 
     if (this._expandBrackets) {

@@ -813,6 +813,7 @@ https://luiskr.com/docs/coverage-core/core/tokens/data/cms-keys.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/data/component-keys.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/data/index.html
 https://luiskr.com/docs/coverage-core/core/tokens/data/log.ts.html
+https://luiskr.com/docs/coverage-core/core/tokens/data/ml.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/data/notify.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/data/storage.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/data/ui-keys.ts.html
@@ -1039,6 +1040,11 @@ https://luiskr.com/docs/coverage-core/core/utils/media.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/media/index.html
 https://luiskr.com/docs/coverage-core/core/utils/media/local-media-cache.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/media/manifest.ts.html
+https://luiskr.com/docs/coverage-core/core/utils/ml
+https://luiskr.com/docs/coverage-core/core/utils/ml/frame-time.ts.html
+https://luiskr.com/docs/coverage-core/core/utils/ml/index.html
+https://luiskr.com/docs/coverage-core/core/utils/ml/ort-engine.ts.html
+https://luiskr.com/docs/coverage-core/core/utils/ml/super-res.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/motion
 https://luiskr.com/docs/coverage-core/core/utils/motion/bezier.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/motion/genie.ts.html

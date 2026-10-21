@@ -15,6 +15,7 @@ import store from '@core/store.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 import { mountCornerBrackets } from '@core/utils/gpu/corner-brackets.js'
 import type { MediaFigure } from '../MediaFigure.js'
+import { warmFirstRung } from './load.js'
 import { VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
 /**
@@ -153,6 +154,28 @@ export function mountMediaFigure(c: MediaFigure): void {
       )
 
       c.imgObserver.observe(highImg)
+
+      // Warm band — a much wider margin (~600px) fires a single detached
+      // fetch of the FIRST ladder rung, warming the CDN edge + HTTP cache
+      // before the 100px load margin starts the real climb. One-shot.
+      c.warmObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !c.warmed) {
+              warmFirstRung(c)
+
+              if (c.warmObserver) {
+                c.warmObserver.disconnect()
+
+                c.warmObserver = null
+              }
+            }
+          })
+        },
+        { rootMargin: QUERY_STRINGS.ROOT_MARGIN_600, threshold: 0.01 }
+      )
+
+      c.warmObserver.observe(highImg)
     }
   }
 }
