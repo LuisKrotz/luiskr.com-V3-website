@@ -10232,6 +10232,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/core/tokens/data/ml.ts</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/core/tokens/data/notify.ts</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -11258,6 +11263,26 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/core/utils/media/manifest.ts</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/core/utils/ml</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/core/utils/ml/frame-time.ts</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/core/utils/ml/ort-engine.ts</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/core/utils/ml/super-res.ts</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -19648,6 +19673,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/architecture/data-model.md</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/architecture/ml-acceleration.md</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -45192,6 +45222,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/shared/scripts/build/gen-onnx-models.mjs</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/shared/scripts/build/generate-sitemap.js</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -47443,6 +47478,66 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/website/public/meta/urllist.txt</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/models</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/models/diagram-cost.onnx</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/models/frametime.onnx</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/models/intent.onnx</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/models/superres-2x.onnx</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/ort</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.asyncify.mjs</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.asyncify.wasm</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.jsep.mjs</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.jsep.wasm</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.mjs</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/public/ort/ort-wasm-simd-threaded.wasm</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>

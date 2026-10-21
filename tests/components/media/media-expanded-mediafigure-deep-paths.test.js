@@ -17,6 +17,8 @@ import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
+import { __srState, __resetSr } from '@core/utils/ml/super-res.js'
+import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
@@ -226,6 +228,74 @@ describe('MediaFigure deep paths', () => {
 
     globalThis.Image = RealImage
 
+    el.remove()
+  })
+
+  test('low-res ladder end requests an ML upscale and uploads the bitmap', async () => {
+    const el = mountFigure()
+
+    await flush()
+    __resetSr() // clear any observer-driven load before the explicit probe
+
+    const RealImage = window.Image
+
+    class FakeImage {
+      constructor() {
+        this.naturalWidth = 8 // tiny — under the 800px display width
+        this.naturalHeight = 8
+      }
+      set src(_v) {
+        setTimeout(() => this.onload?.(), 0)
+      }
+    }
+
+    el.isLoaded = false // reset any observer-driven load before probing
+
+    window.Image = FakeImage
+    el.loadHighRes()
+
+    await flush(30)
+
+    expect(el.isLoaded).toBe(true)
+    expect(__srState.calls.length).toBe(1)
+
+    el.remove()
+    globalThis.Image = RealImage
+  })
+
+  test('a resolved super-res bitmap re-uploads through processBitmapGPU', async () => {
+    const el = mountFigure()
+
+    await flush()
+
+    __resetSr() // clear any observer-driven load before the explicit probe
+    __srState.next = { __enhanced: true }
+
+    const RealImage = window.Image
+    const uploadSpy = jest.spyOn(gpuAccel, 'processBitmapGPU').mockReturnValue(true)
+
+    class FakeImage {
+      constructor() {
+        this.naturalWidth = 8
+        this.naturalHeight = 8
+      }
+      set src(_v) {
+        setTimeout(() => this.onload?.(), 0)
+      }
+    }
+
+    el.isLoaded = false // reset any observer-driven load before probing
+
+    window.Image = FakeImage
+    el.loadHighRes()
+
+    await flush(30)
+
+    expect(uploadSpy).toHaveBeenCalledWith(__srState.next, 800, 450)
+
+    uploadSpy.mockRestore()
+    __srState.next = null
+    globalThis.Image = RealImage
     el.remove()
   })
 
