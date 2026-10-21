@@ -8,14 +8,12 @@
  */
 
 import { NAV_BURGER_CLASSES, NAV_CLASSES, NAV_MENU_CLASSES } from '@core/tokens/classes/nav.js'
-import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h } from '@core/jsx.js'
 import { MenuBackgroundWebGL } from '@core/utils/canvas/loaders/menu-background-webgl.js'
-import { CloseButtonWebGL } from '@core/utils/canvas/widgets/close-button.js'
 import { BurgerButtonWebGL } from '@core/utils/canvas/widgets/burger-button-webgl.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
@@ -31,22 +29,18 @@ export interface NavMenuHost extends NavFlagHost {
   _menuOpenedAt: number
   /** Close animation in flight — guards double-close. */
   _menuClosing: boolean
-  /** Open animation completed — close X may snap to drawn state. */
+  /** Open animation completed — entrance animations stop re-running. */
   _menuSettled: boolean
   /** Settle-delay timer handle; cleared on destroy/close. */
   _menuSettleTimer: ReturnType<typeof setTimeout> | null
   /** Live menu-background widget over the fullscreen canvas. */
   _menuBg: MenuBackgroundWebGL | null
-  /** Live close-X widget. */
-  _menuCloseBtn: CloseButtonWebGL | null
-  /** Live burger widget. */
+  /** Live burger widget — doubles as the menu's close control when open. */
   _burgerBtn: BurgerButtonWebGL | null
   /** Persistent burger canvas (survives re-renders). */
   _burgerCanvasEl: HTMLCanvasElement | null
   /** Persistent menu background canvas. */
   _menuCanvasEl: HTMLCanvasElement | null
-  /** Persistent close-X canvas. */
-  _menuCloseCanvasEl: HTMLCanvasElement | null
   /** True while the nav floats over a dark band (contrast variant). */
   _onDark: boolean
   /** Shadow-scoped querySelector. */
@@ -99,17 +93,6 @@ export const navMenuCanvas = (host: NavMenuHost): HTMLCanvasElement => {
   }
 
   return host._menuCanvasEl
-}
-
-/** Canvas JSX for the WebGL menu close (X) icon. */
-export const navMenuCloseCanvas = (host: NavMenuHost): HTMLCanvasElement => {
-  if (!host._menuCloseCanvasEl) {
-    host._menuCloseCanvasEl = (
-      <canvas className={PREF_CLASSES.PREF_CLOSE_CANVAS} />
-    ) as HTMLCanvasElement
-  }
-
-  return host._menuCloseCanvasEl
 }
 
 /** Opens/closes the fullscreen menu overlay. */
@@ -169,18 +152,6 @@ export const mountNavMenuWebGL = (host: NavMenuHost): void => {
     host._menuBg = new MenuBackgroundWebGL(canvas)
 
     host._menuBg.start()
-  }
-
-  const closeCanvas = host._menuCloseCanvasEl
-
-  if (closeCanvas && closeCanvas.isConnected && !host._menuCloseBtn) {
-    applyAnimationDesc(closeCanvas, ANIMATION_IDS.CLOSE_BUTTON)
-
-    host._menuCloseBtn = new CloseButtonWebGL(closeCanvas, () => closeNavMenu(host))
-
-    if (host._menuSettled) {
-      host._menuCloseBtn.drawProgress = 1
-    }
   }
 
   if (!host._menuSettled && !host._menuSettleTimer) {
@@ -263,14 +234,6 @@ export const closeNavMenu = (host: NavMenuHost): void => {
       host._menuBg = null
 
       host._menuCanvasEl = null
-    }
-
-    if (host._menuCloseBtn) {
-      host._menuCloseBtn.destroy()
-
-      host._menuCloseBtn = null
-
-      host._menuCloseCanvasEl = null
     }
 
     destroyNavFlag(host)

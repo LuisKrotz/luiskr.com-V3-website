@@ -15,7 +15,6 @@ import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { SECTIONS } from '@core/tokens/base.js'
 import { NAV_BURGER_CLASSES, NAV_CLASSES, NAV_MENU_CLASSES } from '@core/tokens/classes/nav.js'
-import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
 import { NAV_UI_KEYS, SECTION_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
@@ -166,16 +165,9 @@ export const renderAppNav = (nav: AppNav) => {
 
         <div className={NAV_MENU_CLASSES.NAV_MENU_MODAL_FALLBACK} aria-hidden={ATTR_VALUES.TRUE} />
 
-        <div className={NAV_MENU_CLASSES.NAV_MENU_MODAL_HEADER}>
-          <button
-            className={PREF_CLASSES.PREF_CLOSE_BTN}
-            type={FORM_ATTRS.TYPE_BUTTON}
-            aria-label={closeLabel}
-            onClick={() => nav._closeMenu()}
-          >
-            {nav._menuOpen ? nav._menuCloseCanvas() : null}
-          </button>
-        </div>
+        {/* No dedicated close button here: the persistent burger stays
+            above the overlay at the same coordinates and morphs into
+            the close control — two stacked buttons would paint two Xs. */}
 
         {nav._menuOpen &&
           (() => {
