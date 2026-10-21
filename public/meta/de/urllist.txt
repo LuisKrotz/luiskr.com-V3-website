@@ -7155,6 +7155,7 @@ https://luiskr.com/docs/local-modules/sprintf-js/package.json
 https://luiskr.com/docs/local-modules/sprintf-js/test
 https://luiskr.com/docs/local-modules/sprintf-js/test/sprintf.test.js
 https://luiskr.com/docs/reports/axe-report.json
+https://luiskr.com/docs/reports/gate-result.json
 https://luiskr.com/docs/shared/README.md
 https://luiskr.com/docs/shared/build
 https://luiskr.com/docs/shared/build/docs

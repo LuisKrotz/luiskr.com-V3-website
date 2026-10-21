@@ -40892,6 +40892,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/reports/gate-result.json</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/shared/README.md</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
