@@ -1099,6 +1099,7 @@ https://luiskr.com/docs/core/tokens/selectors/common.ts
 https://luiskr.com/docs/core/tokens/selectors/cookies.ts
 https://luiskr.com/docs/core/tokens/selectors/docs.ts
 https://luiskr.com/docs/core/tokens/selectors/draw-text.ts
+https://luiskr.com/docs/core/tokens/selectors/loader.ts
 https://luiskr.com/docs/core/tokens/selectors/mosaic.ts
 https://luiskr.com/docs/core/tokens/selectors/nav.ts
 https://luiskr.com/docs/core/tokens/selectors/skeleton.ts
