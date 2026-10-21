@@ -4128,6 +4128,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/tokens/data/ml.ts.html</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/coverage-core/core/tokens/data/notify.ts.html</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -5254,6 +5259,31 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/coverage-core/core/utils/media/manifest.ts.html</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/utils/ml</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/utils/ml/frame-time.ts.html</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/utils/ml/index.html</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/utils/ml/ort-engine.ts.html</loc>
+    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/utils/ml/super-res.ts.html</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
