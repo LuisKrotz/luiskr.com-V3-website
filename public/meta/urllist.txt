@@ -8747,7 +8747,6 @@ https://luiskr.com/docs/docs/typedoc/shared/src/App
 https://luiskr.com/docs/docs/typedoc/shared/src/App/README.md
 https://luiskr.com/docs/docs/typedoc/shared/src/App/classes
 https://luiskr.com/docs/docs/typedoc/shared/src/App/classes/AppRoot.md
-https://luiskr.com/docs/docs/typedoc/shared/src/app
 https://luiskr.com/docs/docs/typedoc/shared/src/app/boot
 https://luiskr.com/docs/docs/typedoc/shared/src/app/boot/README.md
 https://luiskr.com/docs/docs/typedoc/shared/src/app/boot/functions
@@ -9420,7 +9419,6 @@ https://luiskr.com/docs/docs/typedoc/website/components/portfolio/Related
 https://luiskr.com/docs/docs/typedoc/website/components/portfolio/Related/README.md
 https://luiskr.com/docs/docs/typedoc/website/components/portfolio/Related/classes
 https://luiskr.com/docs/docs/typedoc/website/components/portfolio/Related/classes/PortfolioRelated.md
-https://luiskr.com/docs/docs/typedoc/website/components/portfolio/related
 https://luiskr.com/docs/docs/typedoc/website/components/portfolio/related/data
 https://luiskr.com/docs/docs/typedoc/website/components/portfolio/related/data/README.md
 https://luiskr.com/docs/docs/typedoc/website/components/portfolio/related/data/functions

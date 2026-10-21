@@ -30098,11 +30098,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://luiskr.com/docs/docs/typedoc/shared/src/app</loc>
-    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://luiskr.com/docs/docs/typedoc/shared/src/app/boot</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -33459,11 +33454,6 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/typedoc/website/components/portfolio/Related/classes/PortfolioRelated.md</loc>
-    <lastmod>2026-10-21T00:00:00+00:00</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://luiskr.com/docs/docs/typedoc/website/components/portfolio/related</loc>
     <lastmod>2026-10-21T00:00:00+00:00</lastmod>
     <priority>0.6</priority>
   </url>
