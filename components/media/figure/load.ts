@@ -1,9 +1,10 @@
 /**
  * @file media-load.ts
  * @description Media URL matrix + progressive loading for <media-figure>:
- * CDN variant resolution (poster/mp4 tiers, thumb vs Q50 high-res), the
- * zero-CLS SVG placeholder data-URI, and the detached-preload swap that
- * fades the high-res image in over the thumb.
+ * CDN variant resolution (poster/mp4 tiers, LQIP thumb vs the ascending
+ * quality ladder), the zero-CLS SVG placeholder data-URI, and the
+ * detached-preload climb that fades each confirmed quality rung in over
+ * the last until the highest available tier is reached.
  */
 
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
@@ -12,8 +13,13 @@ import { IMAGE_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
-import { mediaKeyExists, mediaManifestReady } from '@core/utils/media/manifest.js'
-import { encodeMediaUrl } from '@core/utils/media.js'
+import {
+  mediaKeyExists,
+  mediaManifestReady,
+  mediaRungs,
+  type CoverRung,
+} from '@core/utils/media/manifest.js'
+import { encodeMediaUrl, webpSibling } from '@core/utils/media.js'
 import { svgPlaceholder } from '@core/utils/dom.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 import type { MediaFigure } from '../MediaFigure.js'
@@ -80,11 +86,12 @@ export function mediaPlaceholder(w: number, h: number): string {
 }
 
 /**
- * Thumb → high-res swap. A detached Image preloads the Q50 variant —
- * webp first, jpg on 404 (the "if webp exists" check is the request
- * itself, no manifest round-trip); on load the visible element swaps src
- * + gets the loaded class (the CSS crossfade) and the thumb hides. The
- * 4096²-pixel budget gates the GPU texture upload only — oversized
+ * Thumb → high-res quality ladder. Detached Image probes climb the
+ * manifest-proven rungs (q50 → q75 → raw original → uncompressed) — webp
+ * first, jpg on 404 (the "if webp exists" check is the request itself, no
+ * manifest round-trip); every confirmed tier republishes the same high
+ * layer's src, so the painted box upgrades in place and can never tear.
+ * The 4096²-pixel budget gates the GPU texture upload only — oversized
  * sources still fetch and decode (the browser owns that memory), so a
  * big file can never pin its card on the blurred thumb.
  * Errors mark loaded anyway — a broken image must not pin the skeleton
@@ -105,25 +112,42 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
   const overBudget = height * width > IMAGE_DIMENSIONS.MAX_DECODE_PIXELS
 
   const storage = store.getters.getStorage()
-  const base = encodeMediaUrl(storage + fig.mediaSrc + MEDIA.MOZ + MEDIA.Q50)
-  const jpgUrl = base + MEDIA.EXT
-  const webpUrl = base + MEDIA.WEBP_EXT
+  const stem = encodeMediaUrl(storage + fig.mediaSrc)
 
-  // Manifest says "no webp" ⇒ skip the doomed probe and start on the
-  // original; unknown ⇒ probe webp first (the request IS the check).
-  let targetUrl = mediaManifestReady() && !mediaKeyExists(webpUrl) ? jpgUrl : webpUrl
+  // Manifest-proven ascending rungs; when the manifest can't prove a
+  // single tier (absent, or the media was never converted) fall back to
+  // the historic blind Q50 probe — the request itself is the check.
+  const ladder: CoverRung[] = mediaRungs(stem)
 
-  const highEl = fig.$<HTMLImageElement>(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
+  if (!ladder.length) {
+    const q50 = encodeMediaUrl(`${stem}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)
 
-  const finish = () => {
+    ladder.push({
+      jpg: q50,
+      webp: mediaManifestReady() ? ATTR_VALUES.EMPTY : webpSibling(q50),
+    })
+  }
+
+  /** Highest confirmed probe — the bitmap handed to the GPU at chain end. */
+  let best: HTMLImageElement | null = null
+
+  /**
+   * Publishes a confirmed tier into the visible high layer — the probe
+   * already holds the bytes, so the src swap paints from cache without a
+   * reload flash. Re-queries the element each rung because _updateDom
+   * rebuilds the shadow DOM wholesale between steps.
+   */
+  const publish = (url: string): void => {
     fig.isLoaded = true
     // Publish only the confirmed URL — assigning highResSrc earlier would
     // let a mid-flight _updateDom bind a 404 webp into the visible img.
-    fig.highResSrc = targetUrl
+    fig.highResSrc = url
     fig.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
 
+    const highEl = fig.$<HTMLImageElement>(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
+
     if (highEl) {
-      highEl.src = targetUrl
+      highEl.src = url
 
       highEl.classList.add(MEDIA_CLASSES.RENDER_MEDIA_LOADED)
 
@@ -145,34 +169,56 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
         : null
 
   if (!ImageClass) {
-    targetUrl = jpgUrl
-    finish()
+    publish(ladder[ladder.length - 1].jpg)
 
     return
   }
 
-  const img = new ImageClass()
+  /**
+   * Probes rung `i` through a detached Image; on confirm the tier paints
+   * and the climb continues, stopping when the highest proven quality is
+   * reached. A proven-but-dead webp retries once as jpg; a dead jpg just
+   * skips to the next rung — the best confirmed tier stays painted.
+   */
+  const climb = (i: number): void => {
+    if (i >= ladder.length) {
+      fig.isLoaded = true
+      fig.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
 
-  img.src = targetUrl
-
-  img.onload = () => {
-    if (!overBudget) {
-      gpuAccel.processTextureGPU(img, fig.displayWidth, fig.displayHeight)
-    }
-
-    finish()
-  }
-
-  img.onerror = () => {
-    if (img.src !== jpgUrl) {
-      // No webp sibling on the bucket — fall back to the jpg original.
-      targetUrl = jpgUrl
-      img.src = jpgUrl
+      if (best && !overBudget) {
+        gpuAccel.processTextureGPU(best, fig.displayWidth, fig.displayHeight)
+      }
 
       return
     }
 
-    fig.isLoaded = true
-    fig.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
+    const rung = ladder[i]
+    const probe = new ImageClass()
+
+    let target = rung.webp || rung.jpg
+
+    probe.onload = () => {
+      best = probe
+
+      publish(target)
+      climb(i + 1)
+    }
+
+    probe.onerror = () => {
+      // A manifest-proven webp can still fail to decode — retry the jpg
+      // once; a dead jpg leaves the painted rung standing and climbs on.
+      if (target !== rung.jpg) {
+        target = rung.jpg
+        probe.src = target
+
+        return
+      }
+
+      climb(i + 1)
+    }
+
+    probe.src = target
   }
+
+  climb(0)
 }
