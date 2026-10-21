@@ -190,20 +190,37 @@ describe('media-manifest webp sources', () => {
 
       expect(fig.highResSrc.endsWith(`${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)).toBe(true)
 
+      // Each confirmed tier mounts as a NEW stacked layer — the swap
+      // retires the layers underneath on the successor's own load, so
+      // the painted frame never blanks mid-climb.
+      const settleTop = () => {
+        const tops = fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
+
+        tops[tops.length - 1].dispatchEvent(new Event(WINDOW_EVENTS.LOAD))
+      }
+
+      settleTop()
+
       // Rung 1 — the proven webp sibling rides its own rung.
       expect(probes[1].src.endsWith(`${MEDIA.MOZ}${MEDIA.Q75}${MEDIA.WEBP_EXT}`)).toBe(true)
 
       probes[1].onload()
+
+      settleTop()
 
       // Rung 2 — the uncompressed top tier ends the climb.
       expect(probes[2].src.endsWith(`${MEDIA.MOZ}${MEDIA.Q100}${MEDIA.EXT}`)).toBe(true)
 
       probes[2].onload()
 
-      const high = fig.$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
+      settleTop()
+
+      const highs = fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
+      const high = highs[highs.length - 1]
 
       expect(fig.isLoaded).toBe(true)
       expect(fig.highResSrc.endsWith(`${MEDIA.MOZ}${MEDIA.Q100}${MEDIA.EXT}`)).toBe(true)
+      expect(highs.length).toBe(1)
       expect(high.src).toBe(fig.highResSrc)
       expect(high.classList.contains(MEDIA_CLASSES.RENDER_MEDIA_LOADED)).toBe(true)
       expect(probes.length).toBe(3)
@@ -261,7 +278,9 @@ describe('media-manifest webp sources', () => {
     const lad2Pic = highs[1].parentElement
 
     expect(
-      ladPic.querySelector('source').getAttribute('srcset')
+      ladPic
+        .querySelector('source')
+        .getAttribute('srcset')
         .endsWith(`${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.WEBP_EXT}`)
     ).toBe(true)
     expect(lad2Pic.querySelector('source')).toBeNull()
@@ -275,6 +294,11 @@ describe('media-manifest webp sources', () => {
       }
     }
 
+    const allHighs = () =>
+      Array.from(
+        mosaic.shadowRoot.querySelectorAll(`img.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_HIGH}`)
+      )
+
     try {
       // First load — rung-0 confirmed, registry records, q75 is probed.
       highs[0].dispatchEvent(new Event(WINDOW_EVENTS.LOAD))
@@ -285,17 +309,31 @@ describe('media-manifest webp sources', () => {
       expect(highs[0].classList.contains(HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_LOADED)).toBe(true)
       expect(probes.at(-1).src.endsWith(`${MEDIA.MOZ}${MEDIA.Q75}${MEDIA.EXT}`)).toBe(true)
 
-      // Probe confirms → the same painted img swaps to q75 and climbs
-      // to the trusted original on the next step.
+      // Probe confirms → q75 mounts as a NEW stacked layer; the painted
+      // rung stays connected (and unpainted-src untouched) until the
+      // successor's own load retires it — no blank frame mid-climb.
       probes.at(-1).onload()
-      highs[0].dispatchEvent(new Event(WINDOW_EVENTS.LOAD))
 
+      const step1 = allHighs().find((el) =>
+        el.getAttribute('src').endsWith(`${MEDIA.MOZ}${MEDIA.Q75}${MEDIA.EXT}`)
+      )
+
+      expect(step1).toBeTruthy()
+      expect(highs[0].isConnected).toBe(true)
+
+      step1.dispatchEvent(new Event(WINDOW_EVENTS.LOAD))
+
+      expect(highs[0].isConnected).toBe(false)
       expect(probes.at(-1).src).toBe(coverKey)
 
       probes.at(-1).onload()
-      highs[0].dispatchEvent(new Event(WINDOW_EVENTS.LOAD))
 
-      expect(highs[0].src).toBe(coverKey)
+      const step2 = allHighs().find((el) => el.getAttribute('src') === coverKey)
+
+      expect(step2).toBeTruthy()
+
+      step2.dispatchEvent(new Event(WINDOW_EVENTS.LOAD))
+
       expect(mosaic._loadedCovers.get(coverKey)).toBe(coverKey)
 
       // Re-render — the registry's reached tier re-emits directly with
@@ -329,9 +367,7 @@ describe('media-manifest webp sources', () => {
       _packSkeleton: () => ({ height: 0, boxes: [] }),
     })
 
-    expect(
-      bare.querySelector(`img.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_HIGH}`)
-    ).not.toBeNull()
+    expect(bare.querySelector(`img.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_HIGH}`)).not.toBeNull()
   })
 
   test('related cards paint the same ladder and resume from their registry', () => {
@@ -420,8 +456,6 @@ describe('media-manifest webp sources', () => {
       _toggleNote() {},
     })
 
-    expect(
-      bare.querySelector(`img.${RELATED_CLASSES.RELATED_MOSAIC_IMG_HIGH}`)
-    ).not.toBeNull()
+    expect(bare.querySelector(`img.${RELATED_CLASSES.RELATED_MOSAIC_IMG_HIGH}`)).not.toBeNull()
   })
 })

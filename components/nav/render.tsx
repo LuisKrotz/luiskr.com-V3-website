@@ -144,7 +144,10 @@ export const renderAppNav = (nav: AppNav) => {
             aria-expanded={nav._menuOpen ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE}
             onClick={() => nav._toggleMenu()}
           >
-            <span className={NAV_BURGER_CLASSES.NAV_BURGER_LINE} />
+            <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
+            <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
+            <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
+            <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
           </button>
         </div>
       )}
