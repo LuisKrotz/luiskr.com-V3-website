@@ -273,7 +273,15 @@ export function mountMediaExpanded(el: MediaExpanded): void {
       if (closeCanvas) {
         applyAnimationDesc(closeCanvas, ANIMATION_IDS.CLOSE_BUTTON)
 
-        el._closeBtn = new CloseButtonWebGL(closeCanvas, () => el.startClose())
+        const closeBtn = new CloseButtonWebGL(closeCanvas, () => el.startClose())
+
+        // The modal mounts mid-genie while the media pipeline is already
+        // saturating frames — the signature X draw-in (0→1 over ~50
+        // frames) would stall and freeze a half-drawn glyph on screen.
+        // Snap to the drawn state; the genie entrance is the animation.
+        closeBtn.drawProgress = 1
+
+        el._closeBtn = closeBtn
       }
 
       // Corner-bracket widgets on the close-bar + bottom close buttons

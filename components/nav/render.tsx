@@ -108,6 +108,12 @@ export const renderAppNav = (nav: AppNav) => {
 
   const menuLabel = (t?.menu || appText(NAV_UI_KEYS.MENU)) as string
 
+  const closeLabel = (t?.close || appText(NAV_UI_KEYS.CLOSE)) as string
+
+  // While the menu is open the burger IS the close control — it sits
+  // exactly over the modal's close button and morphs into it.
+  const burgerLabel = nav._menuOpen ? closeLabel : menuLabel
+
   // The space playground's scene is always dark — the nav needs the
   // light-ink variant there regardless of the global theme, otherwise
   // light mode paints dark links over the dark canvas.
@@ -136,11 +142,11 @@ export const renderAppNav = (nav: AppNav) => {
 
       {!isNotFound && (
         <div className={`${NAV_CLASSES.NAV_MOBILE_STRIP} ${NAV_BURGER_CLASSES.NAV_BURGER_WRAP}`}>
-          {nav._burgerCanvas(menuLabel)}
+          {nav._burgerCanvas(burgerLabel)}
           <button
             className={NAV_BURGER_CLASSES.NAV_BURGER_FALLBACK}
             type={FORM_ATTRS.TYPE_BUTTON}
-            aria-label={menuLabel}
+            aria-label={burgerLabel}
             aria-expanded={nav._menuOpen ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE}
             onClick={() => nav._toggleMenu()}
           >
@@ -164,7 +170,7 @@ export const renderAppNav = (nav: AppNav) => {
           <button
             className={PREF_CLASSES.PREF_CLOSE_BTN}
             type={FORM_ATTRS.TYPE_BUTTON}
-            aria-label={t?.close || appText(NAV_UI_KEYS.CLOSE)}
+            aria-label={closeLabel}
             onClick={() => nav._closeMenu()}
           >
             {nav._menuOpen ? nav._menuCloseCanvas() : null}
