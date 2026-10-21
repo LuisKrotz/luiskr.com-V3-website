@@ -15,7 +15,8 @@ import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { IMAGE_SIZES } from '@core/tokens/media/sizes.js'
 import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
 import { coverVariants } from '@core/utils/media/manifest.js'
-import { encodeMediaUrl } from '@core/utils/media.js'
+import { coverLadderStep, encodeMediaUrl } from '@core/utils/media.js'
+import { svgPlaceholder } from '@core/utils/dom.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import { h } from '@core/jsx.js'
 import type { MosaicItem } from './pack.js'
@@ -42,11 +43,29 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
   // literal spaces ('brazilian leather/…') which break srcset parsing.
   const coverSrc = encodeMediaUrl(`${host.storage}${DB_PATHS.COVERS}${item.image}${host.ext}`)
 
-  // Manifest-gated derivative matrix — the mozjpeg full-res (~70%
-  // smaller, same pixels) as the default, its 768px mobile tier under
-  // the small-viewport query, webp siblings per tier. Every variant is
-  // manifest-proven; absent ⇒ the multi-MB original degrades in.
+  // Manifest-gated progressive matrix — the kodak LQIP (plus its 768px
+  // mobile tier and webp siblings) paints first; the high layer then
+  // climbs the proven rungs (q50 → q75 → original → uncompressed) over
+  // it, each confirmed tier swapped into the same painted box. Every
+  // variant is manifest-proven; no LQIP ⇒ the original stands alone.
   const covers = coverVariants(coverSrc)
+
+  const isLcpTile = i < SKELETON_MOSAIC.MOSAIC_LCP_TILES
+
+  const decoding = isLcpTile ? MEDIA_ATTRS.DECODING_SYNC : MEDIA_ATTRS.DECODING_ASYNC
+
+  const loading = isLcpTile ? MEDIA_ATTRS.LOADING_EAGER : MEDIA_ATTRS.LOADING_LAZY
+
+  const fetchpriority = isLcpTile ? MEDIA_ATTRS.FETCH_PRIORITY_HIGH : MEDIA_ATTRS.FETCH_PRIORITY_LOW
+
+  // The loaded class rides on the markup when the cover already upgraded
+  // — _updateDom rebuilds every card node, so without the registry the
+  // fade would replay from opacity 0 on each hover/translations render.
+  // The registry holds the highest confirmed tier, so a rebuilt card
+  // re-emits that rung directly and the ladder resumes from there.
+  const reached = host._loadedCovers?.get(coverSrc)
+
+  const alreadyLoaded = covers.rungs.length > 0 && Boolean(reached)
 
   return (
     <a
@@ -60,6 +79,15 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
         className={HOME_MOSAIC_CLASSES.HOME_MOSAIC_MEDIA}
         style={host.cards[i]?.media || ATTR_VALUES.EMPTY}
       >
+        <img
+          className={`${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG} ${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_PLACEHOLDER}`}
+          src={svgPlaceholder(GENERIC_DIMENSIONS.DEFAULT_WIDTH, GENERIC_DIMENSIONS.DEFAULT_HEIGHT)}
+          alt={ATTR_VALUES.EMPTY}
+          aria-hidden={ATTR_VALUES.TRUE}
+          width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
+          height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
+        />
+
         <picture>
           {(covers.mobileWebp || covers.mobileJpg) && (
             <source
@@ -72,22 +100,10 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
           {covers.webp && <source srcset={covers.webp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
 
           <img
-            decoding={
-              i < SKELETON_MOSAIC.MOSAIC_LCP_TILES
-                ? MEDIA_ATTRS.DECODING_SYNC
-                : MEDIA_ATTRS.DECODING_ASYNC
-            }
-            loading={
-              i < SKELETON_MOSAIC.MOSAIC_LCP_TILES
-                ? MEDIA_ATTRS.LOADING_EAGER
-                : MEDIA_ATTRS.LOADING_LAZY
-            }
-            fetchpriority={
-              i < SKELETON_MOSAIC.MOSAIC_LCP_TILES
-                ? MEDIA_ATTRS.FETCH_PRIORITY_HIGH
-                : MEDIA_ATTRS.FETCH_PRIORITY_LOW
-            }
-            className={HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG}
+            decoding={decoding}
+            loading={loading}
+            fetchpriority={fetchpriority}
+            className={`${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG} ${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_THUMB}`}
             src={covers.src}
             alt={item.label || item.title || ATTR_VALUES.EMPTY}
             width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
@@ -95,6 +111,36 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
             sizes={IMAGE_SIZES.HOME_MOSAIC}
           />
         </picture>
+
+        {covers.rungs.length > 0 && (
+          <picture>
+            {!reached && covers.rungs[0].webp && (
+              <source srcset={covers.rungs[0].webp} type={MEDIA_ATTRS.IMAGE_WEBP} />
+            )}
+
+            <img
+              decoding={decoding}
+              loading={loading}
+              fetchpriority={fetchpriority}
+              className={`${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG} ${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_HIGH} ${alreadyLoaded ? HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_LOADED : ATTR_VALUES.EMPTY}`}
+              src={reached || covers.rungs[0].jpg}
+              alt={ATTR_VALUES.EMPTY}
+              aria-hidden={ATTR_VALUES.TRUE}
+              width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
+              height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
+              sizes={IMAGE_SIZES.HOME_MOSAIC}
+              onLoad={(e: Event) =>
+                coverLadderStep(
+                  host._loadedCovers,
+                  coverSrc,
+                  e.currentTarget as HTMLImageElement,
+                  covers.rungs,
+                  HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_LOADED
+                )
+              }
+            />
+          </picture>
+        )}
         <div className={HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_OVERLAY}>
           <h2 className={HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE}>
             {item.label || item.title || ATTR_VALUES.EMPTY}

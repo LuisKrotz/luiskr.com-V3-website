@@ -8,6 +8,7 @@
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
 import { coverVariants } from '@core/utils/media/manifest.js'
+import { coverLadderStep } from '@core/utils/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
@@ -21,7 +22,8 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h, Fragment } from '@core/jsx.js'
-import { isPlainClick } from '@core/utils/dom.js'
+import { isPlainClick, svgPlaceholder } from '@core/utils/dom.js'
+import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { componentText, rightsParts } from '@core/locale/ui-text.js'
 import { getFallbackLegalLinks } from '@core/utils/data/legal-links.js'
 import store from '@core/store.js'
@@ -36,13 +38,24 @@ const SKELETON_TILES = [1, 2, 3, 4, 5, 6]
 const SKELETON_SOCIALS = 4
 
 /** One related-project card (link + cover + title/description). */
-const renderCard = (project: RelatedCard, isCurrent: boolean) => {
+const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boolean) => {
   const activeClass = isCurrent ? ROUTER_CLASSES.ROUTER_LINK_ACTIVE : ATTR_VALUES.EMPTY
 
-  // Manifest-gated derivative matrix — mozjpeg full-res + 768px mobile
-  // tier + webp siblings, each proven by the bucket manifest so no
-  // <source> can 404 into a dead card.
+  // Manifest-gated progressive matrix — the kodak LQIP (mobile tier +
+  // webp siblings) paints first; the high layer then climbs the proven
+  // rungs (q50 → q75 → original → uncompressed) over it, each confirmed
+  // tier swapped into the same painted box. Every variant is
+  // manifest-proven so no <source> can 404 into a dead card.
   const covers = coverVariants(project.imageSrc)
+
+  // The loaded class rides on the markup when the cover already upgraded
+  // — _updateDom rebuilds every card node, so without the registry the
+  // fade would replay from opacity 0 on each re-render. The registry
+  // holds the highest confirmed tier, so a rebuilt card re-emits that
+  // rung directly and the ladder resumes from there.
+  const reached = project.imageSrc ? host._loadedCovers?.get(project.imageSrc) : undefined
+
+  const alreadyLoaded = covers.rungs.length > 0 && Boolean(reached)
 
   return (
     <a
@@ -59,27 +72,69 @@ const renderCard = (project: RelatedCard, isCurrent: boolean) => {
     >
       <div className={RELATED_CLASSES.RELATED_MOSAIC_MEDIA}>
         {project.imageSrc ? (
-          <picture>
-            {(covers.mobileWebp || covers.mobileJpg) && (
-              <source
-                media={MEDIA_QUERIES.MAX_WIDTH_768}
-                srcset={covers.mobileWebp || covers.mobileJpg}
-                type={covers.mobileWebp ? MEDIA_ATTRS.IMAGE_WEBP : undefined}
-              />
-            )}
-
-            {covers.webp && <source srcset={covers.webp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
-
+          <Fragment>
             <img
-              src={covers.src}
-              alt={project.description || ATTR_VALUES.EMPTY}
-              className={RELATED_CLASSES.RELATED_MOSAIC_IMG}
-              loading={MEDIA_ATTRS.LOADING_LAZY}
-              decoding={MEDIA_ATTRS.DECODING_ASYNC}
+              className={`${RELATED_CLASSES.RELATED_MOSAIC_IMG} ${RELATED_CLASSES.RELATED_MOSAIC_IMG_PLACEHOLDER}`}
+              src={svgPlaceholder(
+                project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH,
+                project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT
+              )}
+              alt={ATTR_VALUES.EMPTY}
+              aria-hidden={ATTR_VALUES.TRUE}
               width={project.imageW || undefined}
               height={project.imageH || undefined}
             />
-          </picture>
+
+            <picture>
+              {(covers.mobileWebp || covers.mobileJpg) && (
+                <source
+                  media={MEDIA_QUERIES.MAX_WIDTH_768}
+                  srcset={covers.mobileWebp || covers.mobileJpg}
+                  type={covers.mobileWebp ? MEDIA_ATTRS.IMAGE_WEBP : undefined}
+                />
+              )}
+
+              {covers.webp && <source srcset={covers.webp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
+
+              <img
+                src={covers.src}
+                alt={project.description || ATTR_VALUES.EMPTY}
+                className={`${RELATED_CLASSES.RELATED_MOSAIC_IMG} ${RELATED_CLASSES.RELATED_MOSAIC_IMG_THUMB}`}
+                loading={MEDIA_ATTRS.LOADING_LAZY}
+                decoding={MEDIA_ATTRS.DECODING_ASYNC}
+                width={project.imageW || undefined}
+                height={project.imageH || undefined}
+              />
+            </picture>
+
+            {covers.rungs.length > 0 && (
+              <picture>
+                {!reached && covers.rungs[0].webp && (
+                  <source srcset={covers.rungs[0].webp} type={MEDIA_ATTRS.IMAGE_WEBP} />
+                )}
+
+                <img
+                  src={reached || covers.rungs[0].jpg}
+                  alt={ATTR_VALUES.EMPTY}
+                  aria-hidden={ATTR_VALUES.TRUE}
+                  className={`${RELATED_CLASSES.RELATED_MOSAIC_IMG} ${RELATED_CLASSES.RELATED_MOSAIC_IMG_HIGH} ${alreadyLoaded ? RELATED_CLASSES.RELATED_MOSAIC_IMG_LOADED : ATTR_VALUES.EMPTY}`}
+                  loading={MEDIA_ATTRS.LOADING_LAZY}
+                  decoding={MEDIA_ATTRS.DECODING_ASYNC}
+                  width={project.imageW || undefined}
+                  height={project.imageH || undefined}
+                  onLoad={(e: Event) =>
+                    coverLadderStep(
+                      host._loadedCovers,
+                      project.imageSrc,
+                      e.currentTarget as HTMLImageElement,
+                      covers.rungs,
+                      RELATED_CLASSES.RELATED_MOSAIC_IMG_LOADED
+                    )
+                  }
+                />
+              </picture>
+            )}
+          </Fragment>
         ) : (
           <div className={SKELETON_CLASSES.SKELETON_MEDIA} />
         )}
@@ -278,7 +333,7 @@ export function renderRelated(host: PortfolioRelated) {
         {projects.length ? (
           <div className={RELATED_CLASSES.RELATED_MOSAIC}>
             {projects.map((project, projectkey) => (
-              <Fragment key={projectkey}>{renderCard(project, isCurrent(project))}</Fragment>
+              <Fragment key={projectkey}>{renderCard(host, project, isCurrent(project))}</Fragment>
             ))}
           </div>
         ) : (

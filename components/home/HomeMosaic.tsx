@@ -63,6 +63,7 @@ export class HomeMosaic extends BaseComponent {
   _bracketTeardown: (() => void) | null = null // corner-brackets WebGPU widgets on card CTAs
   _ringSession: RingSheenSession | null = null // instanced border-sheen overlay on the card wall
   _ringEl: Element | null = null // the .home-mosaic node the ring session mounted on
+  _loadedCovers = new Map<string, string>() // cover key → highest confirmed painted tier — re-renders re-emit it loaded
 
   constructor() {
     super(homeMosaicStyles)

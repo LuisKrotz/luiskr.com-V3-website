@@ -54,6 +54,8 @@ export class PortfolioRelated extends BaseComponent {
 
   _ringEl: Element | null = null // the .related-mosaic node the ring session mounted on
 
+  _loadedCovers = new Map<string, string>() // cover key → highest confirmed painted tier — re-renders re-emit it loaded
+
   constructor() {
     super(internalStyles)
   }

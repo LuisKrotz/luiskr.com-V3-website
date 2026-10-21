@@ -293,15 +293,18 @@ describe('HomeMosaic tails', () => {
     mosaicEl.cards = []
     mosaicEl._updateDom()
 
+    // Each card now paints the progressive stack — SVG placeholder first,
+    // then the LQIP thumb carrying the priority/alt contract (no manifest
+    // is loaded in tests, so no high rungs layer is emitted).
     const imgs = mosaicEl.shadowRoot.querySelectorAll(HTML_TAGS.IMG)
 
-    expect(imgs[0].getAttribute(MEDIA_ATTRS.DECODING)).toBe(MEDIA_ATTRS.DECODING_SYNC)
-    expect(imgs[0].getAttribute(MEDIA_ATTRS.LOADING)).toBe(MEDIA_ATTRS.LOADING_EAGER)
-    expect(imgs[2].getAttribute(MEDIA_ATTRS.DECODING)).toBe(MEDIA_ATTRS.DECODING_ASYNC)
-    expect(imgs[2].getAttribute(MEDIA_ATTRS.LOADING)).toBe(MEDIA_ATTRS.LOADING_LAZY)
-    expect(imgs[2].getAttribute('fetchpriority')).toBe(MEDIA_ATTRS.FETCH_PRIORITY_LOW)
-    expect(imgs[1].getAttribute(MEDIA_ATTRS.ALT)).toBe('Only Title')
-    expect(imgs[2].getAttribute(MEDIA_ATTRS.ALT)).toBe(ATTR_VALUES.EMPTY)
+    expect(imgs[1].getAttribute(MEDIA_ATTRS.DECODING)).toBe(MEDIA_ATTRS.DECODING_SYNC)
+    expect(imgs[1].getAttribute(MEDIA_ATTRS.LOADING)).toBe(MEDIA_ATTRS.LOADING_EAGER)
+    expect(imgs[5].getAttribute(MEDIA_ATTRS.DECODING)).toBe(MEDIA_ATTRS.DECODING_ASYNC)
+    expect(imgs[5].getAttribute(MEDIA_ATTRS.LOADING)).toBe(MEDIA_ATTRS.LOADING_LAZY)
+    expect(imgs[5].getAttribute('fetchpriority')).toBe(MEDIA_ATTRS.FETCH_PRIORITY_LOW)
+    expect(imgs[3].getAttribute(MEDIA_ATTRS.ALT)).toBe('Only Title')
+    expect(imgs[5].getAttribute(MEDIA_ATTRS.ALT)).toBe(ATTR_VALUES.EMPTY)
   })
 
   test('processedItems ignores non-array values', () => {
