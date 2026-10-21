@@ -1576,6 +1576,7 @@ https://luiskr.com/docs/coverage-core/core/tokens/selectors/cookies.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/selectors/docs.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/selectors/draw-text.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/selectors/index.html
+https://luiskr.com/docs/coverage-core/core/tokens/selectors/loader.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/selectors/mosaic.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/selectors/nav.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/selectors/skeleton.ts.html
