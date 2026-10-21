@@ -32,7 +32,6 @@ const navStub = (over = {}) => ({
   locale: LOCALES.EN,
   _burgerCanvas: () => null,
   _menuCanvas: () => null,
-  _menuCloseCanvas: () => null,
   renderLocaleFlag: () => null,
   handleLang: () => {},
   handlePreferences: () => {},
@@ -54,9 +53,7 @@ describe('nav menu + render tails', () => {
       _menuOpen: true,
       $: jest.fn(() => null),
       _menuCanvasEl: null,
-      _menuCloseCanvasEl: null,
       _menuBg: null,
-      _menuCloseBtn: null,
       _menuSettled: true,
       _menuSettleTimer: null,
     }
@@ -64,7 +61,6 @@ describe('nav menu + render tails', () => {
     mountNavMenuWebGL(host)
 
     expect(host._menuBg).toBeNull()
-    expect(host._menuCloseBtn).toBeNull()
   })
 
   test('playground and star-field menu anchors keep native semantics on modified clicks', () => {

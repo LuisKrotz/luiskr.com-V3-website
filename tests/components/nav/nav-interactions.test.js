@@ -392,11 +392,6 @@ describe('AppNav interactions', () => {
 
     expect(menuCanvas).toBe(menuCanvas2)
 
-    const closeCanvas = el._menuCloseCanvas()
-    const closeCanvas2 = el._menuCloseCanvas()
-
-    expect(closeCanvas).toBe(closeCanvas2)
-
     el.remove()
   })
 
@@ -423,7 +418,7 @@ describe('AppNav interactions', () => {
     el.remove()
   })
 
-  test('menu-open render exposes flag + close canvases for mounting', async () => {
+  test('menu-open render exposes the background canvas for mounting', async () => {
     const el = mount()
 
     await flush()
@@ -432,13 +427,13 @@ describe('AppNav interactions', () => {
 
     await flush()
 
-    const close = el._menuCloseCanvasEl
+    const bg = el._menuCanvasEl
 
     expect(el._menuOpen).toBe(true)
 
-    if (close) el._mountMenuWebGL()
+    if (bg) el._mountMenuWebGL()
 
-    // Close path with an already-destroyed bg only clears the close btn.
+    // Close path with an already-destroyed bg stays clean.
     el._menuClosing = false
     el._closeMenu()
 
@@ -453,7 +448,6 @@ describe('AppNav interactions', () => {
     await flush()
 
     el._menuSettleTimer = setTimeout(() => {}, 10000)
-    el._menuCloseBtn = { destroy: jest.fn() }
     el._menuBg = { destroy: jest.fn(), release: jest.fn() }
     el._burgerBtn = { destroy: jest.fn() }
 

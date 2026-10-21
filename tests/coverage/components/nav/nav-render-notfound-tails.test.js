@@ -24,7 +24,6 @@ const navStub = (over = {}) => ({
   locale: 'en',
   _burgerCanvas: () => null,
   _menuCanvas: () => null,
-  _menuCloseCanvas: () => null,
   renderLocaleFlag: () => null,
   handleLang: () => {},
   handlePreferences: () => {},

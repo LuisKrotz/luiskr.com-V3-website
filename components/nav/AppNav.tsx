@@ -26,7 +26,6 @@ import { LANG_OPTIONS, LANG_SLUGS } from '@core/i18n.js'
 import { predictiveLoader } from '@core/predictive-loader.js'
 import type { FlagWebGL } from '@core/utils/canvas/widgets/flag-webgl.js'
 import type { MenuBackgroundWebGL } from '@core/utils/canvas/loaders/menu-background-webgl.js'
-import type { CloseButtonWebGL } from '@core/utils/canvas/widgets/close-button.js'
 import type { BurgerButtonWebGL } from '@core/utils/canvas/widgets/burger-button-webgl.js'
 import { destroyNavFlag, mountNavFlag, navFlagCanvas, renderNavLocaleFlag } from './flag.js'
 import { goToAbout, scrollToContact, scrollToTop } from './scroll.js'
@@ -45,7 +44,6 @@ import {
   mountNavMenuWebGL,
   navBurgerCanvas,
   navMenuCanvas,
-  navMenuCloseCanvas,
   openNavMenu,
   toggleNavMenu,
 } from './menu.js'
@@ -114,25 +112,22 @@ export class AppNav extends BaseComponent {
   _onDark = false
 
   // Menu overlay state machine: open → (settling) → settled → closing →
-  // closed. _menuSettled marks the end of the open animation — the close
-  // button's X is snapped to fully-drawn on reopen if a previous open
-  // already completed.
+  // closed. _menuSettled marks the end of the open animation — the
+  // overlay's staggered-entrance animations stop re-running from there.
   /** Menu overlay is open. */
   _menuOpen = false
   /** performance.now() of the open transition — feeds the residual-input guard. */
   _menuOpenedAt = 0
   /** Close animation in flight — blocks re-entry/double-close. */
   _menuClosing = false
-  /** Open animation completed — close X can snap to drawn state on reopen. */
+  /** Open animation completed — entrance animations settle to final state. */
   _menuSettled = false
   /** Handle for the settle delay; cleared on destroy so no timer outlives the element. */
   _menuSettleTimer: ReturnType<typeof setTimeout> | null = null
 
   /** MenuBackgroundWebGL instance — owns the fullscreen contour canvas. */
   _menuBg: MenuBackgroundWebGL | null = null
-  /** CloseButtonWebGL on the menu's X. */
-  _menuCloseBtn: CloseButtonWebGL | null = null
-  /** BurgerButtonWebGL on the persistent burger canvas. */
+  /** BurgerButtonWebGL on the persistent burger canvas — morphs into the close control while the menu is open. */
   _burgerBtn: BurgerButtonWebGL | null = null
 
   // Persistent canvas elements — created once, never re-created by
@@ -141,8 +136,6 @@ export class AppNav extends BaseComponent {
   _burgerCanvasEl: HTMLCanvasElement | null = null
   /** Fullscreen menu background canvas host. */
   _menuCanvasEl: HTMLCanvasElement | null = null
-  /** Menu close-X canvas host. */
-  _menuCloseCanvasEl: HTMLCanvasElement | null = null
   /** Menu flag canvas + the locale it was built for (rebuilt on change). */
   _menuFlagCanvasEl: HTMLCanvasElement | null = null
   _menuFlagLang: string | null = null
@@ -335,12 +328,6 @@ export class AppNav extends BaseComponent {
       this._burgerBtn = null
     }
 
-    if (this._menuCloseBtn) {
-      this._menuCloseBtn.destroy()
-
-      this._menuCloseBtn = null
-    }
-
     if (this._menuBg) {
       this._menuBg.destroy?.()
 
@@ -528,12 +515,6 @@ export class AppNav extends BaseComponent {
 
   _menuCanvas(): HTMLCanvasElement {
     return navMenuCanvas(this)
-  }
-
-  /** Canvas JSX for the WebGL menu close (X) icon. */
-
-  _menuCloseCanvas(): HTMLCanvasElement {
-    return navMenuCloseCanvas(this)
   }
 
   /** Opens/closes the fullscreen menu overlay. */
