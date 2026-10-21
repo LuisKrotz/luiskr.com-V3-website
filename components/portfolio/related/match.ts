@@ -54,6 +54,10 @@ function matches(h: HomeItem | undefined, cLink: string, pPage: string): boolean
 
   const hLabel = normalize(h.label || h.title || CHAR_STRINGS.EMPTY)
 
+  /* istanbul ignore next -- unreachable through buildProjectsList: `matches` only runs
+     behind `matchesExact`'s `??`, and every row satisfying rule 1 (link or image-name
+     equality) was already claimed by that exact pass — the fast path stays for the
+     standalone matcher contract. */
   if (hLink && cLink && (hLink === cLink || hImg === cLink)) return true
 
   if (hLink && (cLink.includes(hLink) || hLink.includes(cLink))) return true
