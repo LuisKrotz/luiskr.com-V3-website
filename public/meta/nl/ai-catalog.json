@@ -8,7 +8,7 @@
     {
       "identifier": "urn:air:luiskr.com:portfolio:info",
       "displayName": "Luis Krötz Portfolio & Projects",
-      "type": "text/markdown",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
       "url": "https://luiskr.com/nl/llms.txt",
       "description": "Portfolio, case studies, and engineering experience of Software Engineer Luis Krötz.",
       "representativeQueries": [

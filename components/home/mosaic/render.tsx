@@ -13,7 +13,8 @@ import { DB_PATHS } from '@core/tokens/routes/paths.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { IMAGE_SIZES } from '@core/tokens/media/sizes.js'
-import { webpIfExists } from '@core/utils/media/manifest.js'
+import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
+import { coverVariants } from '@core/utils/media/manifest.js'
 import { encodeMediaUrl } from '@core/utils/media.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import { h } from '@core/jsx.js'
@@ -41,9 +42,11 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
   // literal spaces ('brazilian leather/…') which break srcset parsing.
   const coverSrc = encodeMediaUrl(`${host.storage}${DB_PATHS.COVERS}${item.image}${host.ext}`)
 
-  // <source> selection is type-based — a 404 webp never falls back to the
-  // <img>, so the webp is offered only when the bucket manifest confirms it.
-  const coverWebp = webpIfExists(coverSrc)
+  // Manifest-gated derivative matrix — the mozjpeg full-res (~70%
+  // smaller, same pixels) as the default, its 768px mobile tier under
+  // the small-viewport query, webp siblings per tier. Every variant is
+  // manifest-proven; absent ⇒ the multi-MB original degrades in.
+  const covers = coverVariants(coverSrc)
 
   return (
     <a
@@ -58,7 +61,15 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
         style={host.cards[i]?.media || ATTR_VALUES.EMPTY}
       >
         <picture>
-          {coverWebp && <source srcset={coverWebp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
+          {(covers.mobileWebp || covers.mobileJpg) && (
+            <source
+              media={MEDIA_QUERIES.MAX_WIDTH_768}
+              srcset={covers.mobileWebp || covers.mobileJpg}
+              type={covers.mobileWebp ? MEDIA_ATTRS.IMAGE_WEBP : undefined}
+            />
+          )}
+
+          {covers.webp && <source srcset={covers.webp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
 
           <img
             decoding={
@@ -77,7 +88,7 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
                 : MEDIA_ATTRS.FETCH_PRIORITY_LOW
             }
             className={HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG}
-            src={coverSrc}
+            src={covers.src}
             alt={item.label || item.title || ATTR_VALUES.EMPTY}
             width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
             height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}

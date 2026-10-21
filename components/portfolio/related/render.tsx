@@ -6,7 +6,8 @@
  */
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
-import { webpIfExists } from '@core/utils/media/manifest.js'
+import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
+import { coverVariants } from '@core/utils/media/manifest.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
@@ -38,9 +39,10 @@ const SKELETON_SOCIALS = 4
 const renderCard = (project: RelatedCard, isCurrent: boolean) => {
   const activeClass = isCurrent ? ROUTER_CLASSES.ROUTER_LINK_ACTIVE : ATTR_VALUES.EMPTY
 
-  // <source> selection is type-based — a 404 webp never falls back to the
-  // <img>, so the variant is offered only when the bucket manifest lists it.
-  const coverWebp = webpIfExists(project.imageSrc)
+  // Manifest-gated derivative matrix — mozjpeg full-res + 768px mobile
+  // tier + webp siblings, each proven by the bucket manifest so no
+  // <source> can 404 into a dead card.
+  const covers = coverVariants(project.imageSrc)
 
   return (
     <a
@@ -58,10 +60,18 @@ const renderCard = (project: RelatedCard, isCurrent: boolean) => {
       <div className={RELATED_CLASSES.RELATED_MOSAIC_MEDIA}>
         {project.imageSrc ? (
           <picture>
-            {coverWebp && <source srcset={coverWebp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
+            {(covers.mobileWebp || covers.mobileJpg) && (
+              <source
+                media={MEDIA_QUERIES.MAX_WIDTH_768}
+                srcset={covers.mobileWebp || covers.mobileJpg}
+                type={covers.mobileWebp ? MEDIA_ATTRS.IMAGE_WEBP : undefined}
+              />
+            )}
+
+            {covers.webp && <source srcset={covers.webp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
 
             <img
-              src={project.imageSrc}
+              src={covers.src}
               alt={project.description || ATTR_VALUES.EMPTY}
               className={RELATED_CLASSES.RELATED_MOSAIC_IMG}
               loading={MEDIA_ATTRS.LOADING_LAZY}
