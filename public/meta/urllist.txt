@@ -5642,6 +5642,8 @@ https://luiskr.com/docs/docs/jsdocs/shared/scripts/module.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/modules.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/scaffold
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/scaffold/new-experiment.md
+https://luiskr.com/docs/docs/jsdocs/shared/scripts/serve
+https://luiskr.com/docs/docs/jsdocs/shared/scripts/serve/security-headers.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/setup.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/test
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/test/merge-coverage.md
@@ -5769,6 +5771,7 @@ https://luiskr.com/docs/docs/jsdocs/website/components/media/figure/modal.md
 https://luiskr.com/docs/docs/jsdocs/website/components/media/figure/mount.md
 https://luiskr.com/docs/docs/jsdocs/website/components/media/figure/render.md
 https://luiskr.com/docs/docs/jsdocs/website/components/media/figure/video.md
+https://luiskr.com/docs/docs/jsdocs/website/components/media/modal-trigger.md
 https://luiskr.com/docs/docs/jsdocs/website/components/nav
 https://luiskr.com/docs/docs/jsdocs/website/components/nav/AppNav.md
 https://luiskr.com/docs/docs/jsdocs/website/components/nav/flag.md
