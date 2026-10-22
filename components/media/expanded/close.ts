@@ -20,6 +20,7 @@ import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
+import { restoreMediaModalTrigger } from '../modal-trigger.js'
 import { startGenieClose } from './genie.js'
 import type { MediaExpanded } from '../MediaExpanded.js'
 
@@ -73,6 +74,11 @@ const teardownExpandedModal = (el: MediaExpanded): void => {
       isVideo: false,
     },
   })
+
+  // 4. Return focus to the control that opened the modal — the trigger
+  //    closure re-queries its figure's expand button (survives figure
+  //    re-renders), so AT/keyboard users land back where they started.
+  restoreMediaModalTrigger()
 }
 
 /**

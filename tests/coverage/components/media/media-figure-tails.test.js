@@ -8,10 +8,12 @@
  */
 import { describe, test, expect, jest } from '@jest/globals'
 import { openMediaModal } from '@website/components/media/figure/modal.js'
+import { restoreMediaModalTrigger } from '@website/components/media/modal-trigger.js'
 import { mountMediaFigure } from '@website/components/media/figure/mount.js'
 import store from '@core/store.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
+import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { TEST_TEXT, TEST_URLS } from '@tests/fixtures/test-constants.js'
 
 describe('media figure modal + mount tails', () => {
@@ -64,5 +66,32 @@ describe('media figure modal + mount tails', () => {
     // mount is skipped (openBtn resolved null).
     expect(c.addScopedListener).toHaveBeenCalled()
     expect(c._expandBrackets).toBeUndefined()
+  })
+
+  test('modal close restores focus to the trigger figure open button', () => {
+    const openBtn = { isConnected: true, focus: jest.fn() }
+
+    const c = {
+      canExpand: true,
+      isVideo: false,
+      mediaSrc: TEST_URLS.IMG,
+      label: TEST_TEXT.HEADING,
+      mediaWidth: 800,
+      mediaHeight: 450,
+      slugify: () => TEST_TEXT.HEADING,
+      $: jest.fn((sel) =>
+        typeof sel === 'string' && sel.includes(EXPAND_MODAL_CLASSES.EXPAND_MODAL_OPEN_1)
+          ? openBtn
+          : null
+      ),
+    }
+
+    openMediaModal(c)
+
+    restoreMediaModalTrigger()
+
+    expect(openBtn.focus).toHaveBeenCalled()
+
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
   })
 })

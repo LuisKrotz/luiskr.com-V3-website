@@ -10,6 +10,7 @@ import { COOKIE_CLASSES } from '@core/tokens/classes/cookies.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { AWC_CLASSES } from '@core/tokens/classes/awards-carousel.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { NAV_TEXT } from '@core/tokens/strings/text.js'
 import { LANG_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { CONTACT_CLASSES } from '@core/tokens/classes/contact.js'
@@ -93,6 +94,24 @@ describe('ContactSection', () => {
     contactEl._updateDom()
     const seps = contactEl.shadowRoot.querySelectorAll(`.${CONTACT_CLASSES.CONTACT_SEPARATOR}`)
     expect(seps.length).toBe(2)
+  })
+
+  test('emits the footer heading ladder for AT navigation', () => {
+    store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, {
+      contact: {
+        title: NAV_TEXT.GET_IN_TOUCH,
+        line1: [
+          { description: 'Email', link: 'mailto:test@example.com' },
+          { description: 'GitHub', link: 'https://github.com/luiskr' },
+        ],
+      },
+    })
+    contactEl._updateDom()
+
+    // h2 "Footer" landmark heading → h3 "Contact" title → h4 per link.
+    expect(contactEl.shadowRoot.querySelectorAll(`h2.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(1)
+    expect(contactEl.shadowRoot.querySelector(`h3.${CONTACT_CLASSES.CONTACT_TITLE}`)).not.toBeNull()
+    expect(contactEl.shadowRoot.querySelectorAll(`h4.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(2)
   })
 
   test('updates DOM reactively on store mutations', () => {

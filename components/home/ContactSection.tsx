@@ -11,6 +11,7 @@ import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { CONTACT_CLASSES } from '@core/tokens/classes/contact.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
+import { A11Y_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { LANG_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { LOCALES } from '@core/tokens/locales.js'
@@ -81,13 +82,18 @@ export class ContactSection extends BaseComponent {
     if (!translations) {
       return (
         <footer className={CONTACT_CLASSES.CONTACT}>
-          <h2 className={CONTACT_CLASSES.CONTACT_TITLE}>
+          {/* Landmark heading for AT navigation — sr-only + data-nosnippet:
+              a jump target ('Footer > Contact'), never indexed. */}
+          <h2 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+            {appText(A11Y_UI_KEYS.A11Y_FOOTER)}
+          </h2>
+          <h3 className={CONTACT_CLASSES.CONTACT_TITLE}>
             <span
               {...{ [ARIA_ATTRS.ARIA_HIDDEN]: ATTR_VALUES.TRUE }}
               className={`${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_TITLE_SM}`}
             />
             <span className={A11Y_CLASSES.SR_ONLY}>{appText(CMS_KEYS.CONTACT)}</span>
-          </h2>
+          </h3>
           <div className={CONTACT_CLASSES.CONTACT_SOCIAL}>
             {Array.from({ length: 4 }, (_, i) => (
               <span
@@ -104,7 +110,12 @@ export class ContactSection extends BaseComponent {
 
     return (
       <footer className={CONTACT_CLASSES.CONTACT}>
-        <h2 className={CONTACT_CLASSES.CONTACT_TITLE}>
+        {/* Landmark heading for AT navigation — sr-only + data-nosnippet:
+            a jump target ('Footer > Contact'), never indexed. */}
+        <h2 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+          {appText(A11Y_UI_KEYS.A11Y_FOOTER)}
+        </h2>
+        <h3 className={CONTACT_CLASSES.CONTACT_TITLE}>
           {/* Light-DOM text mirrors `text` — tests/no-upgrade paths read it;
               unslotted children never paint. */}
           <draw-text
@@ -112,10 +123,19 @@ export class ContactSection extends BaseComponent {
           >
             {String(translations.title || componentText(SECTION_COMPONENT_KEYS.CONTACT_TITLE))}
           </draw-text>
-        </h2>
+        </h3>
         <div className={CONTACT_CLASSES.CONTACT_SOCIAL}>
           {line1.map((item, n) => (
             <Fragment key={item.link}>
+              {/* Heading per social link — AT heading-jump lands on it,
+                  Tab reaches the anchor next. sr-only, never indexed;
+                  skipped when the link has no copy (empty headings are
+                  an axe violation). */}
+              {item.description ? (
+                <h4 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                  {item.description}
+                </h4>
+              ) : null}
               <a
                 href={item.link}
                 target={DOM_STRINGS.BLANK}

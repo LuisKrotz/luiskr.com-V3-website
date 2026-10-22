@@ -28,6 +28,8 @@ import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { ROUTER_CLASSES } from '@core/tokens/classes/router.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
+import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
@@ -42,6 +44,16 @@ describe('legal Footer tails', () => {
     el.onStoreUpdate?.()
 
     await flush()
+
+    // Heading ladder: one sr-only h2 "Footer" landmark heading + one h3
+    // per footer link — the AT heading-jump contract on internals/legal.
+    const links = el.shadowRoot.querySelectorAll(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`)
+
+    expect(el.shadowRoot.querySelectorAll(`h2.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(1)
+    expect(el.shadowRoot.querySelectorAll(`h3.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(
+      links.length
+    )
+
     el.remove()
   })
 

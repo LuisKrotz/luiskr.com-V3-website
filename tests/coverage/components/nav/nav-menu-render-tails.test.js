@@ -14,6 +14,8 @@ import router from '@core/router/router.js'
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
 import { LOCALES } from '@core/tokens/locales.js'
 import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
+import { NAV_CLASSES, NAV_BURGER_CLASSES, NAV_MENU_CLASSES } from '@core/tokens/classes/nav.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 
 const navStub = (over = {}) => ({
@@ -85,5 +87,55 @@ describe('nav menu + render tails', () => {
     expect(nav._closeMenu).not.toHaveBeenCalled()
 
     pushSpy.mockRestore()
+  })
+
+  test('playground and star-field menu anchors route through the SPA on plain clicks', () => {
+    const nav = navStub()
+    const tree = renderAppNav(nav)
+    const pushSpy = jest.spyOn(router, 'push').mockImplementation(() => {})
+
+    for (const key of [CMS_KEYS.EARTH_PLAYGROUND, CMS_KEYS.STAR_FIELD]) {
+      const href = localePath(key, LOCALES.EN)
+      const anchor = tree.querySelector(`a[href="${href}"]`)
+
+      expect(anchor).toBeTruthy()
+
+      anchor.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+
+      expect(pushSpy).toHaveBeenCalledWith(href)
+    }
+
+    expect(nav._closeMenu).toHaveBeenCalled()
+
+    pushSpy.mockRestore()
+  })
+
+  test('action item delegates to handleAction and burger fallback toggles the menu', () => {
+    const nav = navStub({ handleAction: jest.fn(), _toggleMenu: jest.fn() })
+    const tree = renderAppNav(nav)
+
+    // Heading structure: one sr-only h2 for the menu landmark + one h3
+    // per item — the AT heading-jump contract.
+    const items = tree.querySelectorAll(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM}`)
+
+    expect(tree.querySelectorAll(`h2.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(1)
+    expect(tree.querySelectorAll(`h3.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(items.length)
+
+    const actionAnchor = tree.querySelector(`a.${NAV_CLASSES.NAV_ACTION_BTN}`)
+
+    expect(actionAnchor).toBeTruthy()
+
+    actionAnchor.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+
+    expect(nav._closeMenu).toHaveBeenCalled()
+    expect(nav.handleAction).toHaveBeenCalled()
+
+    const burger = tree.querySelector(`button.${NAV_BURGER_CLASSES.NAV_BURGER_FALLBACK}`)
+
+    expect(burger).toBeTruthy()
+
+    burger.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+
+    expect(nav._toggleMenu).toHaveBeenCalled()
   })
 })

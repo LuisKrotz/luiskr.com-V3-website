@@ -282,6 +282,11 @@ export const renderAppNav = (nav: AppNav) => {
 
             return (
               <div className={NAV_MENU_CLASSES.NAV_MENU_MODAL_CONTENT}>
+                {/* Landmark heading for AT navigation — sr-only +
+                    data-nosnippet: a jump target, never indexed. */}
+                <h2 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                  {menuLabel}
+                </h2>
                 {items.map((item) => {
                   const timing = drawTiming(item.label)
 
@@ -307,29 +312,42 @@ export const renderAppNav = (nav: AppNav) => {
                   )
 
                   // Route items are real anchors (right-click/new-tab/crawl);
-                  // dialog triggers stay buttons.
-                  return item.href ? (
-                    <a
-                      className={itemCls}
-                      href={item.href}
-                      aria-label={item.label}
-                      title={item.title || undefined}
-                      style={itemStyle}
-                      onClick={item.onClick}
-                    >
-                      {itemBody}
-                    </a>
-                  ) : (
-                    <button
-                      className={itemCls}
-                      type={FORM_ATTRS.TYPE_BUTTON}
-                      aria-label={item.label}
-                      title={item.title || undefined}
-                      style={itemStyle}
-                      onClick={item.onClick}
-                    >
-                      {itemBody}
-                    </button>
+                  // dialog triggers stay buttons. The sr-only h3 ahead of
+                  // each is the AT heading-jump target; absolutely
+                  // positioned, it never claims a grid cell.
+                  return (
+                    <Fragment key={item.label}>
+                      {/* sr-only heading — skipped when label resolves
+                          empty so no empty-heading axe violation fires. */}
+                      {item.label ? (
+                        <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                          {item.label}
+                        </h3>
+                      ) : null}
+                      {item.href ? (
+                        <a
+                          className={itemCls}
+                          href={item.href}
+                          aria-label={item.label}
+                          title={item.title || undefined}
+                          style={itemStyle}
+                          onClick={item.onClick}
+                        >
+                          {itemBody}
+                        </a>
+                      ) : (
+                        <button
+                          className={itemCls}
+                          type={FORM_ATTRS.TYPE_BUTTON}
+                          aria-label={item.label}
+                          title={item.title || undefined}
+                          style={itemStyle}
+                          onClick={item.onClick}
+                        >
+                          {itemBody}
+                        </button>
+                      )}
+                    </Fragment>
                   )
                 })}
               </div>

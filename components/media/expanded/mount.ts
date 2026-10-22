@@ -173,6 +173,13 @@ export function mountMediaExpanded(el: MediaExpanded): void {
     el.addScopedListener(btn, MOUSE_EVENTS.CLICK, () => el.startClose())
   })
 
+  // Initial focus lands on the header ✕ — AT/keyboard users reach the
+  // dismiss affordance first; the dialog's focus trap keeps cycling
+  // inside the modal from there.
+  const headerClose = el.$(`.${PREF_CLASSES.PREF_CLOSE_BTN}`) as HTMLElement | null
+
+  headerClose?.focus()
+
   // The media item is the element the genie warp animates — it carries
   // the translated description (the transient overlay canvas stays
   // aria-hidden, decorative-only).
