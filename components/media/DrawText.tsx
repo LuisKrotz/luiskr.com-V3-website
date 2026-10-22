@@ -43,6 +43,7 @@ export class DrawText extends HTMLElement {
   _isMounted = false // connectedCallback ran
   _styleEl: HTMLStyleElement | CSSStyleSheet | null = null // adopted shared sheet OR per-instance <style>
   _contentEl: HTMLSpanElement | null = null // cached content wrapper (skips re-query)
+  _srEl: HTMLSpanElement | null = null // visually-hidden real-text node — the accessible twin of the aria-hidden word spans
   _fitObserver: ResizeObserver | null = null // parent-size watcher for the `fit` scale-down
   _effectiveOffset: number | null = null // resolved start offset — set at trigger time (ordered elements subtract elapsed session time)
   _gpuHandle: { destroy(): void } | null = null // live rust/text-draw widget during the reveal

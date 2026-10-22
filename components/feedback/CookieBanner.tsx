@@ -212,7 +212,7 @@ export class CookieBanner extends BaseComponent {
     const c = this.translations.cookies
 
     return (
-      <aside className={COOKIE_CLASSES.COOKIES}>
+      <aside className={COOKIE_CLASSES.COOKIES} aria-label={appText(COOKIE_UI_KEYS.COOKIES_REGION)}>
         <p
           className={COOKIE_CLASSES.COOKIES_INFO}
           dangerouslySetInnerHTML={{ __html: c.message || ATTR_VALUES.EMPTY }}

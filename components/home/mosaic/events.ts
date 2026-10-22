@@ -4,11 +4,16 @@
  * relatedTarget), and debounced relayout on window resize.
  */
 
-import { FOCUS_EVENTS, MOUSE_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
+import {
+  FOCUS_EVENTS,
+  KEYBOARD_EVENTS,
+  MOUSE_EVENTS,
+  WINDOW_EVENTS,
+} from '@core/tokens/events/dom.js'
 import { MOSAIC_SELECTORS } from '@core/tokens/selectors/mosaic.js'
 import { predictiveLoader } from '@core/predictive-loader.js'
 import { isPlainClick } from '@core/utils/dom.js'
-import { cardIdxFromEvent } from './interactions.js'
+import { cardIdxFromEvent, onCardKeyDown } from './interactions.js'
 import type { HomeMosaic } from '../HomeMosaic.js'
 
 /** Binds click/hover/leave/resize handlers inside the shadow root. */
@@ -27,7 +32,13 @@ export function bindEvents(host: HomeMosaic): void {
     if (!isPlainClick(e)) return
 
     e.preventDefault()
-    host.onClick(item, card.idx)
+    host.onClick(item, card.idx, e)
+  })
+
+  // Arrow keys walk the packed wall spatially (roving focus over the
+  // card anchors); Enter lands as a click on the focused <a>.
+  host.addScopedListener(host.shadowRoot, KEYBOARD_EVENTS.KEYDOWN, (e) => {
+    onCardKeyDown(host, e)
   })
 
   host.addScopedListener(host.shadowRoot, MOUSE_EVENTS.MOUSEOVER, (e) => {

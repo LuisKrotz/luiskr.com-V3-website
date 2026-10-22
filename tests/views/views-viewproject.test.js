@@ -75,6 +75,20 @@ describe('ViewProject', () => {
     expect(mediaFigure.getAttribute(MEDIA_ATTRS.HEIGHT)).toBe('1080')
   })
 
+  test('renders cover without folder as a root-relative src', () => {
+    projectEl.translations = {
+      title: 'Loose Cover',
+      cover: { src: 'cover', size: [1920, 1080], isVideo: false, label: 'Cover Art' },
+      sections: [],
+    }
+    projectEl._updateDom()
+
+    const mediaFigure = projectEl.shadowRoot.querySelector(S.MEDIA_FIGURE)
+
+    expect(mediaFigure).not.toBeNull()
+    expect(mediaFigure.getAttribute(MEDIA_ATTRS.SRC)).toBe('cover')
+  })
+
   test('renders video cover with autoPlay and isVideo attributes', () => {
     projectEl.translations = {
       title: 'Video Showcase',

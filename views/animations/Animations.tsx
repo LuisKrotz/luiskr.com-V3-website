@@ -182,7 +182,7 @@ export class ViewAnimations extends BaseComponent {
               {[1, 2, 3].map((n) => (
                 <section key={n} className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION}>
                   <h2
-                    aria-hidden="true"
+                    aria-hidden={ATTR_VALUES.TRUE}
                     className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_SECTION_TITLE}`}
                   />
                   <p

@@ -74,6 +74,30 @@ describe('media-figure warm-up', () => {
     }
   })
 
+  test('the realm Image resolves the probe when window.Image is absent', () => {
+    const loaded = []
+    const origWin = window.Image
+    const origGlobal = globalThis.Image
+
+    window.Image = undefined
+    globalThis.Image = class {
+      set src(v) {
+        loaded.push(v)
+      }
+    }
+
+    try {
+      // window.Image falsy → ImageCtor falls to the realm-global Image arm.
+      warmFirstRung(detachedFigure(WARM_JPG_KEY))
+
+      expect(loaded.length).toBe(1)
+      expect(loaded[0].endsWith(`${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)).toBe(true)
+    } finally {
+      window.Image = origWin
+      globalThis.Image = origGlobal
+    }
+  })
+
   test('unmanifested src warms the historic q50 blind rung', () => {
     // Manifest is latched from the first test — an unproven stem yields
     // no rungs, so the warm probe walks the blind q50 fallback.

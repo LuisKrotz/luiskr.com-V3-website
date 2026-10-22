@@ -3,7 +3,7 @@
  * for <home-mosaic> cards.
  */
 
-import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
+import { KEYS, MEDIA_QUERIES } from '@core/tokens/primitives.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
@@ -145,8 +145,13 @@ export function projectHref(item: MosaicItem): string {
  * first tap expands the details (records bottomH so the wall reflows),
  * second tap on the SAME card navigates — the two-tap pattern gives
  * touch users the hover preview desktop users get for free.
+ * Keyboard/NVDA/Narrator activation synthesizes a click with `detail`
+ * === 0 (no pointer coordinates) — it must navigate outright, never
+ * queue as a "first tap". 'ontouchstart' in window is true for every
+ * touchscreen laptop, so without this gate Enter only expanded the
+ * card and screen readers announced "no action".
  */
-export function onClick(host: HomeMosaic, item: MosaicItem, i: number): void {
+export function onClick(host: HomeMosaic, item: MosaicItem, i: number, e?: Event): void {
   const isTouch =
     Boolean(host.hasTouch) ||
     TOUCH_EVENTS.TOUCHSTART in window ||
@@ -156,7 +161,9 @@ export function onClick(host: HomeMosaic, item: MosaicItem, i: number): void {
 
   const dest = projectHref(item)
 
-  if (isTouch && host.touchIdx !== i) {
+  const keyboardActivation = e !== undefined && (e as MouseEvent).detail === 0
+
+  if (isTouch && !keyboardActivation && host.touchIdx !== i) {
     const prevIdx = host.touchIdx
     host.touchIdx = i
 
@@ -187,4 +194,105 @@ export function onClick(host: HomeMosaic, item: MosaicItem, i: number): void {
   } else {
     router.push(dest)
   }
+}
+
+/** Center point of packed card `i` parsed from its absolute style box. */
+function cardCenter(host: HomeMosaic, i: number): { x: number; y: number } | null {
+  const style = host.cards[i]?.card
+
+  if (!style) return null
+
+  const left = parseFloat(style.left)
+
+  const top = parseFloat(style.top)
+
+  const w = parseFloat(style.width)
+
+  const h = parseFloat(style.height)
+
+  if ([left, top, w, h].some(Number.isNaN)) return null
+
+  return { x: left + w / 2, y: top + h / 2 }
+}
+
+/**
+ * Nearest card in the arrow direction — the packed wall is masonry, so
+ * neighbors are resolved spatially from card centers, not DOM order.
+ * The direction must dominate (dx for left/right, dy for up/down) and
+ * the cross-axis distance is penalized 2× so ArrowDown prefers the card
+ * directly below over a far diagonal.
+ * @returns The target card index, or null at the wall's edge.
+ */
+function nextCardIdx(host: HomeMosaic, fromIdx: number, key: string): number | null {
+  const from = cardCenter(host, fromIdx)
+
+  if (!from) return null
+
+  let best: number | null = null
+
+  let bestScore = Infinity
+
+  for (let j = 0; j < host.processedItems.length; j++) {
+    if (j === fromIdx) continue
+
+    const c = cardCenter(host, j)
+
+    if (!c) continue
+
+    const dx = c.x - from.x
+    const dy = c.y - from.y
+
+    const horizontal = key === KEYS.ARROW_LEFT || key === KEYS.ARROW_RIGHT
+
+    const primary = horizontal ? dx : dy
+    const cross = horizontal ? dy : dx
+
+    const forward = horizontal ? key === KEYS.ARROW_RIGHT : key === KEYS.ARROW_DOWN
+
+    if (forward ? primary <= 0 : primary >= 0) continue
+
+    const score = Math.abs(primary) + Math.abs(cross) * 2
+
+    if (score < bestScore) {
+      bestScore = score
+      best = j
+    }
+  }
+
+  return best
+}
+
+/**
+ * Arrow-key navigation — moves focus to the nearest card in the arrow
+ * direction (roving focus over the card anchors; the focusin handler
+ * then expands it exactly like hover). Non-arrow keys pass through.
+ */
+export function onCardKeyDown(host: HomeMosaic, e: Event): void {
+  const key = (e as KeyboardEvent).key
+
+  if (
+    key !== KEYS.ARROW_LEFT &&
+    key !== KEYS.ARROW_RIGHT &&
+    key !== KEYS.ARROW_UP &&
+    key !== KEYS.ARROW_DOWN
+  )
+    return
+
+  const card = cardIdxFromEvent(e)
+
+  if (!card) return
+
+  const target = nextCardIdx(host, card.idx, key)
+
+  if (target === null) return
+
+  const targetEl = host.$(
+    `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM}[${DATA_ATTRS.DATA_INDEX}="${target}"]`
+  )
+
+  if (!targetEl) return
+
+  e.preventDefault()
+
+  ;(targetEl as HTMLElement).focus()
 }

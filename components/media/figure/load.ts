@@ -9,7 +9,8 @@
 
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
-import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
+import { ANIMATION_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
+import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 import { IMAGE_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
@@ -195,30 +196,51 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
       successor.addEventListener(
         WINDOW_EVENTS.LOAD,
         () => {
-          // Detached by a mid-flight _updateDom → the rebuilt DOM already
-          // emits fig.highResSrc; a stray layer must never prune it.
-          if (!successor.isConnected) return
+          /**
+           * Retires every layer UNDER the successor once it is fully
+           * painted AND fully opaque — never at load. Removing mid-fade
+           * (or before first paint) leaves a translucent rung over an
+           * empty figure box for the transition's remainder: the visible
+           * quality-swap blink. transitionend fires at fade completion;
+           * the timeout covers reduced-motion/no-transition environments
+           * where the event never lands. Index order is recomputed at
+           * retire time so a newer layer mounted above is never pruned.
+           */
+          let retired = false
 
-          // Retire the layers UNDER the successor only — the ladder climbs
-          // serially but a slower clone can still be painting below while
-          // the next probe already resolved; index order in the live DOM
-          // is the stacking order, so removing anything at a lower index
-          // is safe, removing a NEWER layer would strand the climb.
-          const layers = fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
-          const topIdx = layers.indexOf(successor)
+          const retire = () => {
+            // Detached by a mid-flight _updateDom → the rebuilt DOM already
+            // emits fig.highResSrc; a stray layer must never prune it.
+            if (retired || !successor.isConnected) return
 
-          layers.forEach((el, i) => {
-            if (i < topIdx) el.remove()
-          })
+            retired = true
 
-          // Now that a real bitmap occupies the box the LQIP can leave —
-          // hiding it any earlier blanks the frame while the clone
-          // finishes its first paint.
-          const thumbEl = fig.$<HTMLElement>(`.${MEDIA_CLASSES.RENDER_MEDIA_THUMB}`)
+            const layers = fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
+            const topIdx = layers.indexOf(successor)
 
-          if (thumbEl) {
-            thumbEl.style.display = ATTR_VALUES.NONE
+            layers.forEach((el, i) => {
+              if (i < topIdx) el.remove()
+            })
+
+            // Now that a real bitmap occupies the box the LQIP can leave —
+            // hiding it any earlier blanks the frame while the clone
+            // finishes its first paint.
+            const thumbEl = fig.$<HTMLElement>(`.${MEDIA_CLASSES.RENDER_MEDIA_THUMB}`)
+
+            if (thumbEl) {
+              thumbEl.style.display = ATTR_VALUES.NONE
+            }
           }
+
+          const onFadeEnd = () => {
+            successor.removeEventListener(ANIMATION_EVENTS.TRANSITIONEND, onFadeEnd)
+
+            retire()
+          }
+
+          successor.addEventListener(ANIMATION_EVENTS.TRANSITIONEND, onFadeEnd)
+
+          setTimeout(retire, ANIMATION_DURATIONS.MEDIA_LAYER_RETIRE)
         },
         { once: true }
       )

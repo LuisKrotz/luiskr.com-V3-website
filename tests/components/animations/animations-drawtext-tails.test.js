@@ -13,6 +13,7 @@ import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { CSS_STRINGS } from '@core/tokens/strings/css.js'
 
@@ -131,7 +132,13 @@ describe('DrawText tails', () => {
         'a<br/><em>hi</em><em></em><a href="/x">L</a><a href="/x"></a><a aria-label="z">M</a> b',
     })
 
-    expect(el.shadowRoot.innerHTML).toContain(ARIA_ATTRS.ARIA_LABEL)
+    // Anchors drop their aria-label for an sr-only twin — authored labels
+    // can drift from the drawn text (label_name_visible), so the in-anchor
+    // sr-only copy is the accessible name now. The twin uses the
+    // opacity-based variant: inside shadow DOM innerText reports "" and
+    // clip-path-hidden nodes are hidden-from-AT to name-from-content
+    // walks, so a clip-path twin would leave the link unnamed.
+    expect(el.shadowRoot.innerHTML).toContain(A11Y_CLASSES.SR_ONLY_ALPHA)
 
     el.remove()
   })

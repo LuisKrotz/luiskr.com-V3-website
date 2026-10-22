@@ -8,8 +8,8 @@
  * never raw CMS HTML).
  */
 
-import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { DRAW_TEXT_CLASSES } from '@core/tokens/classes/draw-text.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { CSS_STRINGS } from '@core/tokens/strings/css.js'
@@ -144,17 +144,33 @@ const tagToHtml = (token: DrawToken, renderWord: RenderWord): string => {
   // sets one) — emit the children unwrapped rather than an `<undefined>` tag.
   if (!token.tag) return innerContent
 
-  const labelAttr =
-    token.tag.toLowerCase() === DOM_STRINGS.A_TAG &&
-    !(token.attrStr || ATTR_VALUES.EMPTY).includes(ARIA_ATTRS.ARIA_LABEL)
-      ? ` aria-label="${escapeHtml(
+  // Anchors get an sr-only copy of the drawn inner text as their first
+  // child instead of an aria-label — the char-split children are
+  // aria-hidden, so name-from-content resolves to exactly the plain
+  // string while keeping the link's accessible name and visible text
+  // identical for label-in-name checkers (IBM joins per-char text nodes
+  // with spaces, so an explicit aria-label could never match). An
+  // authored aria-label is dropped for the same reason. The twin uses
+  // the opacity-based sr-only-alpha recipe rather than the clipped one:
+  // inside shadow DOM Chromium reports "" for innerText, and engines
+  // that fall back to a content walk treat clip-path-hidden nodes as
+  // hidden-from-AT — an alpha-hidden node still feeds the anchor's
+  // accessible name in every animation state.
+  const attrStr =
+    token.tag.toLowerCase() === DOM_STRINGS.A_TAG
+      ? (token.attrStr || ATTR_VALUES.EMPTY).replace(/\s*aria-label="[^"]*"/iu, ATTR_VALUES.EMPTY)
+      : token.attrStr || ATTR_VALUES.EMPTY
+
+  const content =
+    token.tag.toLowerCase() === DOM_STRINGS.A_TAG
+      ? `<span class="${A11Y_CLASSES.SR_ONLY_ALPHA}">${escapeHtml(
           stripHtml(token.inner || ATTR_VALUES.EMPTY)
             .split(CHAR_STRINGS.SPACE_CHAR)
             .join(CHAR_STRINGS.NBSP)
-        )}"`
-      : ATTR_VALUES.EMPTY
+        )}</span>${innerContent}`
+      : innerContent
 
-  return `<${token.tag} ${token.attrStr || ATTR_VALUES.EMPTY}${labelAttr}>${innerContent}</${token.tag}>`
+  return `<${token.tag} ${attrStr}>${content}</${token.tag}>`
 }
 
 /**

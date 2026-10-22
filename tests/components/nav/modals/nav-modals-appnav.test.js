@@ -69,7 +69,8 @@ describe('AppNav', () => {
     const logoDrawText = logoBtn.querySelector(COMPONENT_TAGS.DRAW_TEXT)
 
     expect(nav).not.toBeNull()
-    expect(nav.getAttribute(ARIA_ATTRS.ROLE)).toBe(ARIA_ATTRS.ROLE_NAVIGATION)
+    expect(nav.tagName.toLowerCase()).toBe(HTML_TAGS.NAV)
+    expect(nav.getAttribute(ARIA_ATTRS.ROLE)).toBeNull()
     expect(logoBtn.textContent).toContain('LK PORTFOLIO')
     expect(logoBtn.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toBeNull()
     expect(logoDrawText).toBeTruthy()

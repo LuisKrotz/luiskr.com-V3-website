@@ -5,6 +5,7 @@
 
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { DRAW_TEXT_CLASSES } from '@core/tokens/classes/draw-text.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import drawTextStyles from '@core/sass/components/media/draw-text.scss?inline'
@@ -23,11 +24,18 @@ export function updateDom(host: DrawText): void {
   const pendingClass =
     !host._isVisible && !host._hasAnimated ? DRAW_TEXT_CLASSES.DRAW_TEXT_PENDING : ATTR_VALUES.EMPTY
 
-  // Every rendered word/char span is aria-hidden, so the host must carry
-  // the accessible name itself — without this a wrapping <h2>/<a> reads as
-  // an empty heading/link (axe "empty heading"). Syncing to the live text
-  // also satisfies label-content-name-mismatch: the label IS the visible
-  // string. `aria-label` is not an observed attribute, so no loop.
+  // Every rendered word/char span is aria-hidden, so the accessible text
+  // must come from elsewhere. Two surfaces carry it:
+  //   1. aria-label on the host — honored where AT computes a name for
+  //      the element itself (and satisfies label-content-name-mismatch:
+  //      the label IS the visible string). `aria-label` is not an
+  //      observed attribute, so no loop.
+  //   2. The .sr-only shadow child — real text, visually clipped. Generic
+  //      elements' aria-labels are skipped by Chromium's accName walk, so
+  //      wrapping <h2>/<a>/<button> would compute an EMPTY name off the
+  //      aria-hidden spans alone; a genuine text node is what name-from-
+  //      content and screen-reader browse mode actually read (NVDA/
+  //      Narrator "no text" regression).
   const label = stripHtml(host.text).trim()
 
   if (label) {
@@ -35,6 +43,16 @@ export function updateDom(host: DrawText): void {
   } else if (host.hasAttribute(ARIA_ATTRS.ARIA_LABEL)) {
     host.removeAttribute(ARIA_ATTRS.ARIA_LABEL)
   }
+
+  if (!host._srEl) {
+    host._srEl = document.createElement(HTML_TAGS.SPAN)
+
+    host._srEl.className = A11Y_CLASSES.SR_ONLY
+
+    host.shadowRoot!.appendChild(host._srEl)
+  }
+
+  host._srEl.textContent = label
 
   if (!host._styleEl) {
     const sheet = getSharedSheet()

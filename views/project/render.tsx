@@ -34,6 +34,7 @@ export function renderProject(c: ViewProject) {
         <h1
           className={INTERNAL_CLASSES.INTERNAL_TITLE}
           aria-label={t?.title ? stripHtml(t.title) : undefined}
+          aria-hidden={t?.title ? undefined : ATTR_VALUES.TRUE}
         >
           {t?.title ? (
             <draw-text
@@ -79,7 +80,7 @@ export function renderProject(c: ViewProject) {
         {t?.sections ? (
           <div>
             {t.sections.map((section, parentKey) => (
-              <section
+              <div
                 key={parentKey}
                 style={{ [CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT]: c.sectionItemHeight(section) }}
               >
@@ -89,37 +90,19 @@ export function renderProject(c: ViewProject) {
 
                     return (
                       <div key={childKey} className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION}>
-                        {textItems.map((item, itemKey) => {
-                          const delay = c.textDelay(textItems)
-                          const offset = c.textOffset(textItems, itemKey)
-
-                          if (childKey === 0 && itemKey < 1) {
-                            return (
-                              <h2
-                                key={itemKey}
-                                className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT}
-                                aria-label={stripHtml(item)}
-                              >
-                                <draw-text
-                                  text={item}
-                                  trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
-                                  delay={delay}
-                                  offset={offset}
-                                />
-                              </h2>
-                            )
-                          }
-                          return (
-                            <p key={itemKey} className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT}>
-                              <draw-text
-                                text={item}
-                                trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
-                                delay={delay}
-                                offset={offset}
-                              />
-                            </p>
-                          )
-                        })}
+                        {/* Body copy is paragraphs, not headings — the page's
+                            only real heading is the h1 title (the related
+                            block carries its own h2). */}
+                        {textItems.map((item, itemKey) => (
+                          <p key={itemKey} className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT}>
+                            <draw-text
+                              text={item}
+                              trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
+                              delay={c.textDelay(textItems)}
+                              offset={c.textOffset(textItems, itemKey)}
+                            />
+                          </p>
+                        ))}
                       </div>
                     )
                   } else {
@@ -134,13 +117,13 @@ export function renderProject(c: ViewProject) {
                     )
                   }
                 })}
-              </section>
+              </div>
             ))}
           </div>
         ) : (
           <div>
-            {/* Same wrapper + carousel height var as the loaded section, so content lands without a shift */}
-            <section
+            {/* Same wrapper + carousel height var as the loaded block, so content lands without a shift */}
+            <div
               style={{
                 [CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT]: CAROUSEL_LAYOUT.SKELETON_ITEM_HEIGHT,
               }}
@@ -208,7 +191,7 @@ export function renderProject(c: ViewProject) {
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
           </div>
         )}
 

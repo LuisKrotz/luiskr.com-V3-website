@@ -192,8 +192,8 @@ export class HomeMosaic extends BaseComponent {
    * Card activation — see mosaic-interactions.ts for the desktop-nav /
    * two-tap-on-touch split.
    */
-  onClick(item: MosaicItem, i: number): void {
-    onClick(this, item, i)
+  onClick(item: MosaicItem, i: number, e?: Event): void {
+    onClick(this, item, i, e)
   }
 
   /** Style object for one skeleton placeholder box. */

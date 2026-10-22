@@ -26,7 +26,7 @@ import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
 import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
-import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
+import { ANIMATION_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import store from '@core/store.js'
 
 describe('media-manifest webp sources', () => {
@@ -191,12 +191,16 @@ describe('media-manifest webp sources', () => {
       expect(fig.highResSrc.endsWith(`${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)).toBe(true)
 
       // Each confirmed tier mounts as a NEW stacked layer — the swap
-      // retires the layers underneath on the successor's own load, so
+      // retires the layers underneath once the successor's own load has
+      // painted AND its opacity fade has completed (transitionend), so
       // the painted frame never blanks mid-climb.
       const settleTop = () => {
         const tops = fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
 
-        tops[tops.length - 1].dispatchEvent(new Event(WINDOW_EVENTS.LOAD))
+        const top = tops[tops.length - 1]
+
+        top.dispatchEvent(new Event(WINDOW_EVENTS.LOAD))
+        top.dispatchEvent(new Event(ANIMATION_EVENTS.TRANSITIONEND))
       }
 
       settleTop()

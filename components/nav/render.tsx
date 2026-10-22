@@ -10,15 +10,16 @@
  */
 
 import { BASE_TITLE } from '@core/tokens/routes.js'
-import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { SECTIONS } from '@core/tokens/base.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { NAV_BURGER_CLASSES, NAV_CLASSES, NAV_MENU_CLASSES } from '@core/tokens/classes/nav.js'
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
 import { NAV_UI_KEYS, SECTION_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
+import { APP_IDS } from '@core/tokens/ids/app.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MENU_CSS_PROPS } from '@core/tokens/css/menu.js'
 import { h, Fragment } from '@core/jsx.js'
@@ -115,18 +116,29 @@ export const renderAppNav = (nav: AppNav) => {
 
   // The space playground's scene is always dark — the nav needs the
   // light-ink variant there regardless of the global theme, otherwise
-  // light mode paints dark links over the dark canvas.
+  // light mode paints dark links over the dark canvas. While the menu
+  // is open the modal is the surface under the control, so the burger
+  // (morphed into the close X) uses theme ink like every other page;
+  // _menuOpen stays true through the close dissolve, releasing --on-dark
+  // exactly when the dark scene is revealed again.
   const onDark =
-    (nav.isHomePage && (nav.onBottom || nav.activeSection === SECTIONS.CONTACT)) ||
-    nav.isPlaygroundPage
+    !nav._menuOpen &&
+    ((nav.isHomePage && (nav.onBottom || nav.activeSection === SECTIONS.CONTACT)) ||
+      nav.isPlaygroundPage)
 
   nav._onDark = onDark
 
   return (
     <nav
       className={`${NAV_CLASSES.NAV}${onDark ? ` ${NAV_CLASSES.NAV_ON_DARK}` : CHAR_STRINGS.EMPTY}${nav.isPlaygroundPage ? ` ${NAV_CLASSES.NAV_PLAYGROUND}` : CHAR_STRINGS.EMPTY}`}
-      role={ARIA_ATTRS.ROLE_NAVIGATION}
     >
+      {/* Keyboard skip-nav — first focusable node in the shell; hidden
+          until :focus-visible, jumps to the routed <main>. Lives inside
+          the nav landmark so every node sits within a landmark. */}
+      <a className={A11Y_CLASSES.SKIP_LINK} href={`${CHAR_STRINGS.HASH}${APP_IDS.MAIN_CONTENT}`}>
+        {appText(NAV_UI_KEYS.SKIP) as string}
+      </a>
+
       {/* Real anchor — right-click / open-in-new-tab reach the localized
           home route; the click handler only intercepts plain clicks. */}
       <a
