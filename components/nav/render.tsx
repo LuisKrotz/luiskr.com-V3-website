@@ -11,6 +11,7 @@
 
 import { BASE_TITLE } from '@core/tokens/routes.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
+import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { SECTIONS } from '@core/tokens/base.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
@@ -128,9 +129,109 @@ export const renderAppNav = (nav: AppNav) => {
 
   nav._onDark = onDark
 
+  // Menu items — computed unconditionally so the persistent index below
+  // and the open modal render the SAME list (one declaration, two
+  // surfaces); route items carry real hrefs, dialog triggers stay
+  // buttons.
+  const aboutLabel = String(aboutDesc)
+  const actionText = String(actionLabel)
+  const playgroundLabel = String(t?.earthPlayground || appText(CMS_KEYS.EARTH_PLAYGROUND))
+  const starFieldLabel = String(t?.starField || appText(CMS_KEYS.STAR_FIELD))
+  const prefLabel = String(t?.preferences || appText(NAV_UI_KEYS.PREFERENCES))
+  const langLabel = String(nav.currentLangLabel)
+
+  const items: Array<{
+    label: string
+    cls: string
+    onClick: (e: Event) => void
+    prefix?: unknown
+    title?: string
+    /** Route items render as real anchors — right-click and
+     *  open-in-new-tab reach the href; plain clicks go through
+     *  the SPA handler. Dialog triggers stay buttons. */
+    href?: string
+  }> = []
+
+  if (!isNotFound) {
+    items.push({
+      label: aboutLabel,
+      cls: NAV_CLASSES.NAV_ABOUT_BTN,
+      href: localePath(CMS_KEYS.ABOUT, nav.locale),
+      onClick: (e: Event) => {
+        nav._closeMenu()
+
+        nav.handleAbout(e)
+      },
+    })
+  }
+
+  if (!isNotFound) {
+    items.push({
+      label: actionText,
+      cls: `${NAV_CLASSES.NAV_ACTION_BTN}${nav.onBottom ? ` ${NAV_CLASSES.NAV_SELECTED_WORK}` : CHAR_STRINGS.EMPTY}`,
+      href: nav.onBottom ? localePath('', nav.locale) : localePath(CMS_KEYS.CONTACT, nav.locale),
+      onClick: (e: Event) => {
+        nav._closeMenu()
+
+        nav.handleAction(e)
+      },
+    })
+  }
+
+  if (!nav.isEarthPlaygroundPage) {
+    items.push({
+      label: playgroundLabel,
+      cls: CHAR_STRINGS.EMPTY,
+      href: localePath(CMS_KEYS.EARTH_PLAYGROUND, nav.locale),
+      onClick: (e: Event) => {
+        if (!isPlainClick(e)) return
+
+        e.preventDefault()
+        nav._closeMenu()
+
+        router.push(localePath(CMS_KEYS.EARTH_PLAYGROUND, nav.locale))
+      },
+    })
+  }
+
+  if (!nav.isStarFieldPage) {
+    items.push({
+      label: starFieldLabel,
+      cls: CHAR_STRINGS.EMPTY,
+      href: localePath(CMS_KEYS.STAR_FIELD, nav.locale),
+      onClick: (e: Event) => {
+        if (!isPlainClick(e)) return
+
+        e.preventDefault()
+        nav._closeMenu()
+
+        router.push(localePath(CMS_KEYS.STAR_FIELD, nav.locale))
+      },
+    })
+  }
+
+  items.push({
+    label: prefLabel,
+    cls: NAV_CLASSES.NAV_PREF_BTN,
+    onClick: (e: Event) => nav.handlePreferences(e),
+  })
+
+  // The docs portal is English-only — the language switcher is
+  // suppressed there (prefs/about/playground/contact remain).
+  if (!nav.currentRoute?.meta?.docsRoute) {
+    items.push({
+      label: langLabel,
+      cls: `${NAV_MENU_CLASSES.NAV_MENU_MODAL_FLAG} ${NAV_CLASSES.NAV_LANG_OPEN_BTN}`,
+      title: nav.currentLangLabel,
+      prefix: nav.renderLocaleFlag(),
+      onClick: (e: Event) => nav.handleLang(e),
+    })
+  }
+
   return (
     <nav
       className={`${NAV_CLASSES.NAV}${onDark ? ` ${NAV_CLASSES.NAV_ON_DARK}` : CHAR_STRINGS.EMPTY}${nav.isPlaygroundPage ? ` ${NAV_CLASSES.NAV_PLAYGROUND}` : CHAR_STRINGS.EMPTY}`}
+      aria-label={title}
     >
       {/* Keyboard skip-nav — first focusable node in the shell; hidden
           until :focus-visible, jumps to the routed <main>. Lives inside
@@ -159,6 +260,7 @@ export const renderAppNav = (nav: AppNav) => {
             type={FORM_ATTRS.TYPE_BUTTON}
             aria-label={burgerLabel}
             aria-expanded={nav._menuOpen ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE}
+            aria-controls={APP_IDS.NAV_MENU_PANEL}
             onClick={() => nav._toggleMenu()}
           >
             <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
@@ -169,9 +271,59 @@ export const renderAppNav = (nav: AppNav) => {
         </div>
       )}
 
-      {/* Fullscreen menu modal — the single menu for every breakpoint */}
+      {/* Menu index — the persistent copy of the items below: an
+          sr-only landmark list of real anchors + action buttons kept in
+          the a11y tree and DOM while the overlay is closed, so heading
+          maps, landmark lists, crawlers and agents can enumerate the
+          menu's links and functionality in every state. inert while the
+          modal owns the same items so they're never announced twice;
+          tabindex -1 keeps the hidden copies out of sequential tab
+          order (the modal's own items are the interactive set). */}
+      <nav
+        className={A11Y_CLASSES.SR_ONLY}
+        aria-label={menuLabel}
+        inert={nav._menuOpen}
+        data-nosnippet
+      >
+        <h2>{menuLabel}</h2>
+        <ul>
+          {items.map((item) => (
+            <li key={item.label}>
+              <h3>
+                {item.href ? (
+                  <a
+                    href={item.href}
+                    title={item.title || undefined}
+                    tabIndex={CHAR_STRINGS.MINUS_ONE}
+                    onClick={item.onClick}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <button
+                    type={FORM_ATTRS.TYPE_BUTTON}
+                    title={item.title || undefined}
+                    tabIndex={CHAR_STRINGS.MINUS_ONE}
+                    onClick={item.onClick}
+                  >
+                    {item.label}
+                  </button>
+                )}
+              </h3>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Fullscreen menu modal — the single menu for every breakpoint.
+          While open it IS the navigation landmark (aria-labelledby → the
+          sr-only h2); the id is the burger toggles' aria-controls
+          target. */}
       <div
         className={`${NAV_MENU_CLASSES.NAV_MENU_MODAL}${nav._menuOpen ? ` ${NAV_MENU_CLASSES.NAV_MENU_MODAL_OPEN}` : CHAR_STRINGS.EMPTY}${nav._menuClosing ? ` ${NAV_MENU_CLASSES.NAV_MENU_MODAL_CLOSING}` : CHAR_STRINGS.EMPTY}${nav._menuSettled ? ` ${NAV_MENU_CLASSES.NAV_MENU_MODAL_SETTLED}` : CHAR_STRINGS.EMPTY}`}
+        id={APP_IDS.NAV_MENU_PANEL}
+        role={nav._menuOpen ? ARIA_ATTRS.ROLE_NAVIGATION : undefined}
+        aria-labelledby={nav._menuOpen ? APP_IDS.NAV_MENU_TITLE : undefined}
       >
         {nav._menuOpen ? nav._menuCanvas() : null}
 
@@ -181,178 +333,81 @@ export const renderAppNav = (nav: AppNav) => {
             above the overlay at the same coordinates and morphs into
             the close control — two stacked buttons would paint two Xs. */}
 
-        {nav._menuOpen &&
-          (() => {
-            const aboutLabel = String(aboutDesc)
-            const actionText = String(actionLabel)
-            const playgroundLabel = String(t?.earthPlayground || appText(CMS_KEYS.EARTH_PLAYGROUND))
-            const starFieldLabel = String(t?.starField || appText(CMS_KEYS.STAR_FIELD))
-            const prefLabel = String(t?.preferences || appText(NAV_UI_KEYS.PREFERENCES))
-            const langLabel = String(nav.currentLangLabel)
+        {nav._menuOpen && (
+          <div className={NAV_MENU_CLASSES.NAV_MENU_MODAL_CONTENT}>
+            {/* Landmark heading for AT navigation — sr-only +
+                data-nosnippet: a jump target, never indexed. The id
+                makes the open overlay a labelled navigation landmark;
+                the persistent index copy above carries the same items
+                for closed-state discovery. */}
+            <h2 className={A11Y_CLASSES.SR_ONLY} id={APP_IDS.NAV_MENU_TITLE} data-nosnippet>
+              {menuLabel}
+            </h2>
+            {items.map((item) => {
+              const timing = drawTiming(item.label)
 
-            const items: Array<{
-              label: string
-              cls: string
-              onClick: (e: Event) => void
-              prefix?: unknown
-              title?: string
-              /** Route items render as real anchors — right-click and
-               *  open-in-new-tab reach the href; plain clicks go through
-               *  the SPA handler. Dialog triggers stay buttons. */
-              href?: string
-            }> = []
+              // Active highlighting: only about/action rows can light
+              // up — matched by class since items are plain data.
+              const active =
+                item.cls === NAV_CLASSES.NAV_ABOUT_BTN
+                  ? aboutActive
+                  : item.cls.includes(NAV_CLASSES.NAV_ACTION_BTN)
+                    ? actionActive
+                    : false
 
-            if (!isNotFound) {
-              items.push({
-                label: aboutLabel,
-                cls: NAV_CLASSES.NAV_ABOUT_BTN,
-                href: localePath(CMS_KEYS.ABOUT, nav.locale),
-                onClick: (e: Event) => {
-                  nav._closeMenu()
+              const itemCls = `${itemClass(active)} ${item.cls}`.trim()
+              const itemStyle = {
+                [MENU_CSS_PROPS.DRAW_MS]: `${timing.underline}ms`,
+                [MENU_CSS_PROPS.OFFSET_MS]: `${timing.offset}ms`,
+              }
+              const itemBody = (
+                <Fragment>
+                  {item.prefix}
+                  {itemLabel(item.label, timing.offset)}
+                </Fragment>
+              )
 
-                  nav.handleAbout(e)
-                },
-              })
-            }
-
-            if (!isNotFound) {
-              items.push({
-                label: actionText,
-                cls: `${NAV_CLASSES.NAV_ACTION_BTN}${nav.onBottom ? ` ${NAV_CLASSES.NAV_SELECTED_WORK}` : CHAR_STRINGS.EMPTY}`,
-                href: nav.onBottom
-                  ? localePath('', nav.locale)
-                  : localePath(CMS_KEYS.CONTACT, nav.locale),
-                onClick: (e: Event) => {
-                  nav._closeMenu()
-
-                  nav.handleAction(e)
-                },
-              })
-            }
-
-            if (!nav.isEarthPlaygroundPage) {
-              items.push({
-                label: playgroundLabel,
-                cls: CHAR_STRINGS.EMPTY,
-                href: localePath(CMS_KEYS.EARTH_PLAYGROUND, nav.locale),
-                onClick: (e: Event) => {
-                  if (!isPlainClick(e)) return
-
-                  e.preventDefault()
-                  nav._closeMenu()
-
-                  router.push(localePath(CMS_KEYS.EARTH_PLAYGROUND, nav.locale))
-                },
-              })
-            }
-
-            if (!nav.isStarFieldPage) {
-              items.push({
-                label: starFieldLabel,
-                cls: CHAR_STRINGS.EMPTY,
-                href: localePath(CMS_KEYS.STAR_FIELD, nav.locale),
-                onClick: (e: Event) => {
-                  if (!isPlainClick(e)) return
-
-                  e.preventDefault()
-                  nav._closeMenu()
-
-                  router.push(localePath(CMS_KEYS.STAR_FIELD, nav.locale))
-                },
-              })
-            }
-
-            items.push({
-              label: prefLabel,
-              cls: NAV_CLASSES.NAV_PREF_BTN,
-              onClick: (e: Event) => nav.handlePreferences(e),
-            })
-
-            // The docs portal is English-only — the language switcher is
-            // suppressed there (prefs/about/playground/contact remain).
-            if (!nav.currentRoute?.meta?.docsRoute) {
-              items.push({
-                label: langLabel,
-                cls: `${NAV_MENU_CLASSES.NAV_MENU_MODAL_FLAG} ${NAV_CLASSES.NAV_LANG_OPEN_BTN}`,
-                title: nav.currentLangLabel,
-                prefix: nav.renderLocaleFlag(),
-                onClick: (e: Event) => nav.handleLang(e),
-              })
-            }
-
-            return (
-              <div className={NAV_MENU_CLASSES.NAV_MENU_MODAL_CONTENT}>
-                {/* Landmark heading for AT navigation — sr-only +
-                    data-nosnippet: a jump target, never indexed. */}
-                <h2 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                  {menuLabel}
-                </h2>
-                {items.map((item) => {
-                  const timing = drawTiming(item.label)
-
-                  // Active highlighting: only about/action rows can light
-                  // up — matched by class since items are plain data.
-                  const active =
-                    item.cls === NAV_CLASSES.NAV_ABOUT_BTN
-                      ? aboutActive
-                      : item.cls.includes(NAV_CLASSES.NAV_ACTION_BTN)
-                        ? actionActive
-                        : false
-
-                  const itemCls = `${itemClass(active)} ${item.cls}`.trim()
-                  const itemStyle = {
-                    [MENU_CSS_PROPS.DRAW_MS]: `${timing.underline}ms`,
-                    [MENU_CSS_PROPS.OFFSET_MS]: `${timing.offset}ms`,
-                  }
-                  const itemBody = (
-                    <Fragment>
-                      {item.prefix}
-                      {itemLabel(item.label, timing.offset)}
-                    </Fragment>
-                  )
-
-                  // Route items are real anchors (right-click/new-tab/crawl);
-                  // dialog triggers stay buttons. The sr-only h3 ahead of
-                  // each is the AT heading-jump target; absolutely
-                  // positioned, it never claims a grid cell.
-                  return (
-                    <Fragment key={item.label}>
-                      {/* sr-only heading — skipped when label resolves
+              // Route items are real anchors (right-click/new-tab/crawl);
+              // dialog triggers stay buttons. The sr-only h3 ahead of
+              // each is the AT heading-jump target; absolutely
+              // positioned, it never claims a grid cell.
+              return (
+                <Fragment key={item.label}>
+                  {/* sr-only heading — skipped when label resolves
                           empty so no empty-heading axe violation fires. */}
-                      {item.label ? (
-                        <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                          {item.label}
-                        </h3>
-                      ) : null}
-                      {item.href ? (
-                        <a
-                          className={itemCls}
-                          href={item.href}
-                          aria-label={item.label}
-                          title={item.title || undefined}
-                          style={itemStyle}
-                          onClick={item.onClick}
-                        >
-                          {itemBody}
-                        </a>
-                      ) : (
-                        <button
-                          className={itemCls}
-                          type={FORM_ATTRS.TYPE_BUTTON}
-                          aria-label={item.label}
-                          title={item.title || undefined}
-                          style={itemStyle}
-                          onClick={item.onClick}
-                        >
-                          {itemBody}
-                        </button>
-                      )}
-                    </Fragment>
-                  )
-                })}
-              </div>
-            )
-          })()}
+                  {item.label ? (
+                    <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                      {item.label}
+                    </h3>
+                  ) : null}
+                  {item.href ? (
+                    <a
+                      className={itemCls}
+                      href={item.href}
+                      aria-label={item.label}
+                      title={item.title || undefined}
+                      style={itemStyle}
+                      onClick={item.onClick}
+                    >
+                      {itemBody}
+                    </a>
+                  ) : (
+                    <button
+                      className={itemCls}
+                      type={FORM_ATTRS.TYPE_BUTTON}
+                      aria-label={item.label}
+                      title={item.title || undefined}
+                      style={itemStyle}
+                      onClick={item.onClick}
+                    >
+                      {itemBody}
+                    </button>
+                  )}
+                </Fragment>
+              )
+            })}
+          </div>
+        )}
       </div>
     </nav>
   )

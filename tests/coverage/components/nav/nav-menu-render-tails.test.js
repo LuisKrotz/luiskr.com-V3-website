@@ -17,6 +17,9 @@ import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { NAV_CLASSES, NAV_BURGER_CLASSES, NAV_MENU_CLASSES } from '@core/tokens/classes/nav.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
+import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
+import { APP_IDS } from '@core/tokens/ids/app.js'
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 
 const navStub = (over = {}) => ({
   translations: null,
@@ -72,7 +75,9 @@ describe('nav menu + render tails', () => {
 
     for (const key of [CMS_KEYS.EARTH_PLAYGROUND, CMS_KEYS.STAR_FIELD]) {
       const href = localePath(key, LOCALES.EN)
-      const anchor = tree.querySelector(`a[href="${href}"]`)
+      // Modal copy — the persistent index anchors share the href but
+      // are classless, so the item class scopes to the overlay row.
+      const anchor = tree.querySelector(`a.${NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM}[href="${href}"]`)
 
       expect(anchor).toBeTruthy()
 
@@ -96,7 +101,7 @@ describe('nav menu + render tails', () => {
 
     for (const key of [CMS_KEYS.EARTH_PLAYGROUND, CMS_KEYS.STAR_FIELD]) {
       const href = localePath(key, LOCALES.EN)
-      const anchor = tree.querySelector(`a[href="${href}"]`)
+      const anchor = tree.querySelector(`a.${NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM}[href="${href}"]`)
 
       expect(anchor).toBeTruthy()
 
@@ -108,6 +113,16 @@ describe('nav menu + render tails', () => {
     expect(nav._closeMenu).toHaveBeenCalled()
 
     pushSpy.mockRestore()
+  })
+
+  test('modal items skip their sr-only heading when a label resolves empty', () => {
+    // An empty locale label (currentLangLabel '') must not produce an
+    // empty h3 — heading maps only get rows that carry copy.
+    const tree = renderAppNav(navStub({ currentLangLabel: '' }))
+    const modalItems = tree.querySelectorAll(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM}`)
+    const headings = tree.querySelectorAll(`h3.${A11Y_CLASSES.SR_ONLY}`)
+
+    expect(headings.length).toBe(modalItems.length - 1)
   })
 
   test('action item delegates to handleAction and burger fallback toggles the menu', () => {
@@ -125,7 +140,9 @@ describe('nav menu + render tails', () => {
 
     expect(actionAnchor).toBeTruthy()
 
-    actionAnchor.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+    actionAnchor.dispatchEvent(
+      new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true })
+    )
 
     expect(nav._closeMenu).toHaveBeenCalled()
     expect(nav.handleAction).toHaveBeenCalled()
@@ -137,5 +154,60 @@ describe('nav menu + render tails', () => {
     burger.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
 
     expect(nav._toggleMenu).toHaveBeenCalled()
+  })
+
+  test('persistent menu index lists every item in closed state and goes inert while open', () => {
+    // Open state — the index exists but is inert; the modal carries the
+    // navigation landmark + labelledby wiring.
+    const openNav = navStub({ _menuOpen: true })
+    const openTree = renderAppNav(openNav)
+    const openIndex = openTree.querySelector(`nav.${A11Y_CLASSES.SR_ONLY}`)
+    const modal = openTree.querySelector(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL}`)
+
+    expect(openIndex).toBeTruthy()
+    expect(openIndex.hasAttribute(COMMON_ATTRS.INERT)).toBe(true)
+    expect(openIndex.querySelectorAll('h3 a, h3 button').length).toBeGreaterThan(0)
+    expect(modal.getAttribute(ARIA_ATTRS.ROLE)).toBe(ARIA_ATTRS.ROLE_NAVIGATION)
+    expect(modal.getAttribute(ARIA_ATTRS.ARIA_LABELLEDBY)).toBe(APP_IDS.NAV_MENU_TITLE)
+    expect(modal.id).toBe(APP_IDS.NAV_MENU_PANEL)
+    expect(openTree.querySelector(`#${APP_IDS.NAV_MENU_TITLE}`)).toBeTruthy()
+
+    // Closed state — the index is the live copy of the menu (the
+    // heading-map/crawler surface) and the modal is landmark-free.
+    const closedTree = renderAppNav(navStub({ _menuOpen: false }))
+    const closedIndex = closedTree.querySelector(`nav.${A11Y_CLASSES.SR_ONLY}`)
+    const closedModal = closedTree.querySelector(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL}`)
+
+    expect(closedIndex.hasAttribute(COMMON_ATTRS.INERT)).toBe(false)
+    expect(closedIndex.querySelectorAll('h3 a, h3 button').length).toBe(
+      openIndex.querySelectorAll('h3 a, h3 button').length
+    )
+    expect(
+      closedIndex.querySelector(`a[href="${localePath(CMS_KEYS.ABOUT, LOCALES.EN)}"]`)
+    ).toBeTruthy()
+    expect(closedIndex.querySelector(`a[tabindex="-1"]`)).toBeTruthy()
+    expect(closedModal.getAttribute(ARIA_ATTRS.ROLE)).toBeNull()
+    expect(closedModal.getAttribute(ARIA_ATTRS.ARIA_LABELLEDBY)).toBeNull()
+
+    // Both burger toggles point at the overlay via aria-controls.
+    expect(
+      closedTree
+        .querySelector(`button.${NAV_BURGER_CLASSES.NAV_BURGER_FALLBACK}`)
+        .getAttribute(ARIA_ATTRS.ARIA_CONTROLS)
+    ).toBe(APP_IDS.NAV_MENU_PANEL)
+
+    // Index items delegate to the same handlers as the modal items —
+    // the first button item is the preferences trigger.
+    const prefNav = navStub({ _menuOpen: false, handlePreferences: jest.fn() })
+    const prefTree = renderAppNav(prefNav)
+    const prefIndexBtn = [...prefTree.querySelectorAll(`nav.${A11Y_CLASSES.SR_ONLY} h3 button`)][0]
+
+    expect(prefIndexBtn).toBeTruthy()
+
+    prefIndexBtn.dispatchEvent(
+      new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true })
+    )
+
+    expect(prefNav.handlePreferences).toHaveBeenCalled()
   })
 })
