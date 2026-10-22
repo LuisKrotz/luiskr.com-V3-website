@@ -133,10 +133,10 @@ export const renderCarouselSlide = (item: CarouselItem | null, folder: string, i
     <div className={slideItemClasses} style={mediaStyle}>
       {/* Per-item heading — the AT jump target that names this slide.
           tabindex=-1 lets SR focus land on it; the native-scroll track
-          reveals the slide when the heading is jumped to. sr-only +
-          data-nosnippet: navigable, never indexed. */}
+          reveals the slide when the heading is jumped to. sr-only
+          visually; the media label stays indexable for agents/SEO. */}
       {label ? (
-        <h4 className={A11Y_CLASSES.SR_ONLY} data-nosnippet tabIndex={-1}>
+        <h4 className={A11Y_CLASSES.SR_ONLY} tabIndex={-1}>
           {label}
         </h4>
       ) : null}
