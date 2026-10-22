@@ -18,6 +18,7 @@ import { BurgerButtonWebGL } from '@core/utils/canvas/widgets/burger-button-webg
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { destroyNavFlag, type NavFlagHost } from './flag.js'
+import { APP_IDS } from '@core/tokens/ids/app.js'
 import { NAV_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 
@@ -80,6 +81,8 @@ export const navBurgerCanvas = (host: NavMenuHost, label: string): HTMLCanvasEle
     ARIA_ATTRS.ARIA_EXPANDED,
     host._menuOpen ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE
   )
+
+  host._burgerCanvasEl.setAttribute(ARIA_ATTRS.ARIA_CONTROLS, APP_IDS.NAV_MENU_PANEL)
 
   return host._burgerCanvasEl
 }
