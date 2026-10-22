@@ -9,15 +9,18 @@
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { ABOUT_CLASSES } from '@core/tokens/classes/about.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { SECTION_IDS } from '@core/tokens/ids/sections.js'
+import { A11Y_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { IMAGE_SIZES } from '@core/tokens/media/sizes.js'
 import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
 import { BaseComponent } from '@core/Component.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
-import { h } from '@core/jsx.js'
+import { indexedText } from '@core/locale/ui-text.js'
+import { h, Fragment } from '@core/jsx.js'
 import { calcDrawTextDelay, calcDrawTextOffset } from '@core/utils/wasm/wasm-layout.js'
 import { stripHtml } from '@core/utils/string.js'
 import { getGravatarSrcset, getOptimizedGravatar } from '@core/utils/media.js'
@@ -194,14 +197,21 @@ export class AboutSection extends BaseComponent {
             <div className={ABOUT_CLASSES.ABOUT_PROFILE_TEXT_COL}>
               {this.aboutTranslations ? (
                 drawData.col1.map((item) => (
-                  <p key={item.key} className={ABOUT_CLASSES.ABOUT_ITEM_TEXT}>
-                    <DrawText
-                      text={item.text}
-                      delay={drawData.charDelay}
-                      offset={item.offset}
-                      trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
-                    />
-                  </p>
+                  // Hidden navigation heading per paragraph — sr-only +
+                  // data-nosnippet: an a11y jump target, never indexed.
+                  <Fragment key={item.key}>
+                    <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                      {indexedText(A11Y_UI_KEYS.A11Y_PARAGRAPH, item.key + 1)}
+                    </h3>
+                    <p className={ABOUT_CLASSES.ABOUT_ITEM_TEXT}>
+                      <DrawText
+                        text={item.text}
+                        delay={drawData.charDelay}
+                        offset={item.offset}
+                        trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
+                      />
+                    </p>
+                  </Fragment>
                 ))
               ) : (
                 <div>
@@ -226,14 +236,19 @@ export class AboutSection extends BaseComponent {
               <div className={ABOUT_CLASSES.ABOUT_PROFILE_TEXT_COL}>
                 {this.aboutTranslations ? (
                   drawData.col2.map((item) => (
-                    <p key={item.key} className={ABOUT_CLASSES.ABOUT_ITEM_TEXT}>
-                      <DrawText
-                        text={item.text}
-                        delay={drawData.charDelay}
-                        offset={item.offset}
-                        trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
-                      />
-                    </p>
+                    <Fragment key={item.key}>
+                      <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                        {indexedText(A11Y_UI_KEYS.A11Y_PARAGRAPH, item.key + 1)}
+                      </h3>
+                      <p className={ABOUT_CLASSES.ABOUT_ITEM_TEXT}>
+                        <DrawText
+                          text={item.text}
+                          delay={drawData.charDelay}
+                          offset={item.offset}
+                          trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
+                        />
+                      </p>
+                    </Fragment>
                   ))
                 ) : (
                   <div>

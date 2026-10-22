@@ -7,21 +7,22 @@
 
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { LEGAL_CLASSES } from '@core/tokens/classes/legal.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
-import { SECTION_UI_KEYS } from '@core/tokens/data/ui-keys.js'
+import { A11Y_UI_KEYS, SECTION_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { VIEW_TAGS } from '@core/tokens/elements/views.js'
 import { LOCALES } from '@core/tokens/locales.js'
 import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
-import { h } from '@core/jsx.js'
+import { h, Fragment } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
-import { appText } from '@core/locale/ui-text.js'
+import { appText, indexedText } from '@core/locale/ui-text.js'
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import type { DbSnapshot } from '@core/utils/data/db.js'
 import type { RouteDescriptor } from '@core/router/router.js'
@@ -247,15 +248,23 @@ export class ViewLegal extends BaseComponent {
                     />
                   </h2>
                   {(section.content || []).map((paragraph, pKey) => (
-                    <p key={pKey} className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT}>
-                      <draw-text
-                        text={paragraph}
-                        trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
-                        delay={delay}
-                        offset={offsets[pKey + 1]}
-                        ordered={ATTR_VALUES.TRUE}
-                      />
-                    </p>
+                    // Hidden navigation heading per paragraph — sr-only +
+                    // data-nosnippet: an a11y jump target, never indexed.
+                    // Numbering restarts under each section h2.
+                    <Fragment key={pKey}>
+                      <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                        {indexedText(A11Y_UI_KEYS.A11Y_PARAGRAPH, pKey + 1)}
+                      </h3>
+                      <p className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT}>
+                        <draw-text
+                          text={paragraph}
+                          trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
+                          delay={delay}
+                          offset={offsets[pKey + 1]}
+                          ordered={ATTR_VALUES.TRUE}
+                        />
+                      </p>
+                    </Fragment>
                   ))}
                 </section>
               ))}

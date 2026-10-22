@@ -7,15 +7,16 @@ import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { INTERNAL_CLASSES, PROJECT_CLASSES } from '@core/tokens/classes/project.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
-import { MEDIA_UI_KEYS } from '@core/tokens/data/ui-keys.js'
+import { A11Y_UI_KEYS, MEDIA_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
-import { h } from '@core/jsx.js'
-import { appText } from '@core/locale/ui-text.js'
+import { h, Fragment } from '@core/jsx.js'
+import { appText, indexedText } from '@core/locale/ui-text.js'
 import { stripHtml, svgPlaceholder } from '@core/utils/index.js'
 import type { ViewProject } from './Project.js'
 import { COVER_DIMENSIONS, GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
@@ -84,6 +85,12 @@ export function renderProject(c: ViewProject) {
                 key={parentKey}
                 style={{ [CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT]: c.sectionItemHeight(section) }}
               >
+                {/* Hidden navigation heading (h2) per section — sr-only +
+                    data-nosnippet so assistive tech gets a jump target the
+                    crawlers never index. Runtime-only: never prerendered. */}
+                <h2 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                  {indexedText(A11Y_UI_KEYS.A11Y_SECTION, parentKey + 1)}
+                </h2>
                 {section.map((child, childKey) => {
                   if (typeof child[0] === TYPE_STRINGS.STRING) {
                     const textItems = child as string[]
@@ -106,14 +113,24 @@ export function renderProject(c: ViewProject) {
                       </div>
                     )
                   } else {
+                    // Carousel ordinal within THIS section — carousels are
+                    // the non-string children, counted up to this child.
+                    const carouselIdx = section
+                      .slice(0, childKey + 1)
+                      .filter((c) => typeof c[0] !== TYPE_STRINGS.STRING).length
+
                     return (
-                      <custom-carousel
-                        key={childKey}
-                        {...{
-                          [DATA_ATTRS.DATA_SEC_IDX]: parentKey,
-                          [DATA_ATTRS.DATA_CAROUSEL_IDX]: childKey,
-                        }}
-                      />
+                      <Fragment key={childKey}>
+                        <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                          {indexedText(A11Y_UI_KEYS.A11Y_CAROUSEL, carouselIdx)}
+                        </h3>
+                        <custom-carousel
+                          {...{
+                            [DATA_ATTRS.DATA_SEC_IDX]: parentKey,
+                            [DATA_ATTRS.DATA_CAROUSEL_IDX]: childKey,
+                          }}
+                        />
+                      </Fragment>
                     )
                   }
                 })}
