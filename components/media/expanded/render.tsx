@@ -60,6 +60,7 @@ export function renderMediaExpanded(el: MediaExpanded) {
       <div className={EXPAND_MODAL_CLASSES.EXPAND_MODAL_CLOSE_AREA} />
       <figure
         className={`${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_FIGURE} ${el.isVideo ? EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_FIGURE_VIDEO : ATTR_VALUES.EMPTY}`}
+        aria-label={el.alt}
       >
         {!el.isVideo ? (
           <Fragment>

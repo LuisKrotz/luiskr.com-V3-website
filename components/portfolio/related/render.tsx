@@ -81,8 +81,8 @@ const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boo
               )}
               alt={ATTR_VALUES.EMPTY}
               aria-hidden={ATTR_VALUES.TRUE}
-              width={project.imageW || undefined}
-              height={project.imageH || undefined}
+              width={project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH}
+              height={project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
             />
 
             <picture>
@@ -102,8 +102,8 @@ const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boo
                 className={`${RELATED_CLASSES.RELATED_MOSAIC_IMG} ${RELATED_CLASSES.RELATED_MOSAIC_IMG_THUMB}`}
                 loading={MEDIA_ATTRS.LOADING_LAZY}
                 decoding={MEDIA_ATTRS.DECODING_ASYNC}
-                width={project.imageW || undefined}
-                height={project.imageH || undefined}
+                width={project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH}
+                height={project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
               />
             </picture>
 
@@ -120,8 +120,8 @@ const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boo
                   className={`${RELATED_CLASSES.RELATED_MOSAIC_IMG} ${RELATED_CLASSES.RELATED_MOSAIC_IMG_HIGH} ${alreadyLoaded ? RELATED_CLASSES.RELATED_MOSAIC_IMG_LOADED : ATTR_VALUES.EMPTY}`}
                   loading={MEDIA_ATTRS.LOADING_LAZY}
                   decoding={MEDIA_ATTRS.DECODING_ASYNC}
-                  width={project.imageW || undefined}
-                  height={project.imageH || undefined}
+                  width={project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH}
+                  height={project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
                   onLoad={(e: Event) =>
                     coverLadderStep(
                       host._loadedCovers,
@@ -318,7 +318,10 @@ export function renderRelated(host: PortfolioRelated) {
 
   return (
     <footer className={INTERNAL_CLASSES.INTERNAL_FOOTER}>
-      <h2 className={INTERNAL_CLASSES.INTERNAL_FOOTER_TITLE}>
+      <h2
+        className={INTERNAL_CLASSES.INTERNAL_FOOTER_TITLE}
+        aria-hidden={host.translations?.title ? undefined : ATTR_VALUES.TRUE}
+      >
         {host.translations?.title ? (
           <draw-text
             text={host.translations.title}

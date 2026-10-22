@@ -124,6 +124,24 @@ describe('expanded mount tails', () => {
     expect(el.$).toHaveBeenCalled()
   })
 
+  test('a null media-cache hit falls through to the exhausted-candidates return', async () => {
+    const { mountMediaExpanded } = await import('@website/components/media/expanded/mount.js')
+    const { localMediaCache } = await import('@core/utils/media/local-media-cache.js')
+    const spy = jest.spyOn(localMediaCache, 'fetchOrGetLocalMedia').mockResolvedValue(null)
+    const el = makeEl({ source: TEST_URLS.IMG, shadowRoot: { querySelectorAll: () => [] } })
+
+    mountMediaExpanded(el)
+
+    // Double-rAF deferred mounts → loadFullRes → attempt(0) sees the null
+    // localUrl, falls to attempt(1), which hits the candidates-length
+    // early return.
+    await flush(160)
+
+    expect(spy).toHaveBeenCalledWith(TEST_URLS.IMG)
+
+    spy.mockRestore()
+  })
+
   test('scroll snapback falls back to 0 for a non-numeric parked transform', async () => {
     const { mountMediaExpanded } = await import('@website/components/media/expanded/mount.js')
     const scrollSpy = jest.spyOn(window, 'scrollTo').mockImplementation(() => {})

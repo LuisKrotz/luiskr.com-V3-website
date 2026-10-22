@@ -64,6 +64,29 @@ jest.unstable_mockModule('@core/utils/gpu/webgpu-widget.js', () => ({
 
 const flush = (ms = 40) => new Promise((r) => setTimeout(r, ms))
 
+/**
+ * Bounded condition poll — the widget mount resolves through an async
+ * module boundary, so a fixed sleep races under parallel coverage load:
+ * the mount can land after the sleep ends (missing the observed state)
+ * or the drive loop can finish before it (state already torn down).
+ * Polling the settle predicate keeps the suite fast when healthy and
+ * resilient under contention; the deadline simply defers to the
+ * assertion, which fails exactly as before.
+ */
+const until = async (pred, ms = 3000) => {
+  const t0 = Date.now()
+
+  while (!pred()) {
+    if (Date.now() - t0 > ms) return
+
+    await new Promise((r) => setTimeout(r, 5))
+  }
+}
+
+/** Settled = the mount was kept (_gpuHandle) or disarmed (destroy). */
+const mounted = (host) => host._gpuHandle === mountResult
+const destroyed = () => mountResult?.destroy?.mock?.calls.length > 0
+
 const RECT = { left: 10, top: 20, right: 110, bottom: 44, width: 100, height: 24 }
 
 let imgDataThrows = false
@@ -266,7 +289,7 @@ describe('draw-text gpu reveal', () => {
 
     tryGpuDraw(host, 100)
 
-    await flush()
+    await until(() => host._gpuPending === false && host.shadowRoot.querySelector('canvas') === null)
 
     expect(host._gpuPending).toBe(false)
     expect(host._gpuHandle).toBeNull()
@@ -284,7 +307,7 @@ describe('draw-text gpu reveal', () => {
     tryGpuDraw(host, 100)
     host._isMounted = false
 
-    await flush(80)
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
     expect(host._gpuHandle).toBeNull()
@@ -299,7 +322,7 @@ describe('draw-text gpu reveal', () => {
 
     tryGpuDraw(host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
     expect(host._gpuHandle).toBeNull()
@@ -316,7 +339,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
     tryGpuDraw(host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
 
@@ -326,7 +349,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
     tryGpuDraw(host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
 
@@ -336,7 +359,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
     tryGpuDraw(host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
 
@@ -347,7 +370,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
     tryGpuDraw(host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
   })
@@ -361,7 +384,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
     tryGpuDraw(host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
     expect(host._gpuHandle).toBeNull()
@@ -400,7 +423,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
     tryGpuDraw(host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
   })
@@ -412,9 +435,21 @@ describe('draw-text gpu reveal', () => {
     cleanups.push(contentEl)
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
 
-    tryGpuDraw(host, 40) // totalMs — the drive loop finishes right after
+    // totalMs stays huge so the drive loop can never out-finish the
+    // observation window (a delayed first tick under load could land
+    // with elapsed > totalMs → finish before the class ever paints).
+    // The suppression class lands on the drive loop's first painted
+    // tick — verifyOverlay's probe also calls frame(), so frames>0 is
+    // not the paint signal; the class itself is.
+    tryGpuDraw(host, 40000)
 
-    await flush()
+    await until(() => contentEl.classList.contains(DRAW_TEXT_CLASSES.DRAW_TEXT_GPU))
+
+    // One more drive tick with `painted` already true exercises the
+    // already-painted arm (no second class-list write).
+    const framesAtPaint = w.frames.length
+
+    await until(() => w.frames.length > framesAtPaint)
 
     expect(host._gpuHandle).toBe(mountResult)
     expect(contentEl.classList.contains(DRAW_TEXT_CLASSES.DRAW_TEXT_GPU)).toBe(true)
@@ -425,9 +460,12 @@ describe('draw-text gpu reveal', () => {
     expect(w.triggers).toBe(1)
     expect(w.resizes.length).toBe(1)
 
-    await flush(80)
+    // Drive finish deterministically — the next tick sees !alive.
+    w.frame = () => false
 
-    // totalMs elapsed → finish() dropped the class + tore the widget down.
+    await until(destroyed)
+
+    // finish() dropped the class + tore the widget down.
     expect(w.frames.length).toBeGreaterThan(0)
     expect(contentEl.classList.contains(DRAW_TEXT_CLASSES.DRAW_TEXT_GPU)).toBe(false)
     expect(mountResult.destroy).toHaveBeenCalled()
@@ -458,7 +496,7 @@ describe('draw-text gpu reveal', () => {
 
     tryGpuDraw(host, 40)
 
-    await flush()
+    await until(() => w.chars.length > 0 && w.chars[0].length === 24)
 
     expect(w.chars[0].length).toBe(24)
     // Record stride 12 — [8] delay, [9] dur: char0 → 200+0·25, char1
@@ -479,11 +517,13 @@ describe('draw-text gpu reveal', () => {
 
     cleanups.push(contentEl)
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
-    tryGpuDraw(host, 40)
+    tryGpuDraw(host, 40000)
 
-    await flush()
+    await until(() => mounted(host))
 
     expect(host._gpuHandle).toBe(mountResult)
+
+    teardownGpuDraw(host)
 
     if (dprDesc) Object.defineProperty(window, 'devicePixelRatio', dprDesc)
   })
@@ -497,7 +537,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
     tryGpuDraw(host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
     expect(host._gpuHandle).toBeNull()
@@ -512,7 +552,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: makeWidget(), destroy: jest.fn() }
     tryGpuDraw(host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
   })
@@ -525,12 +565,14 @@ describe('draw-text gpu reveal', () => {
 
     cleanups.push(contentEl)
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
-    tryGpuDraw(host, 40)
+    tryGpuDraw(host, 40000)
 
-    await flush()
+    await until(() => mounted(host))
 
     expect(host._gpuHandle).toBe(mountResult)
     expect(w.atlases.length).toBe(1)
+
+    teardownGpuDraw(host)
   })
 
   test('empty computed fontSize falls back to the em defaults', async () => {
@@ -541,12 +583,14 @@ describe('draw-text gpu reveal', () => {
 
     cleanups.push(contentEl)
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
-    tryGpuDraw(host, 40)
+    tryGpuDraw(host, 40000)
 
-    await flush()
+    await until(() => mounted(host))
 
     expect(host._gpuHandle).toBe(mountResult)
     expect(w.chars.length).toBe(1)
+
+    teardownGpuDraw(host)
   })
 
   test('an empty-text char takes the EMPTY fallbacks in measure+fill', async () => {
@@ -556,12 +600,14 @@ describe('draw-text gpu reveal', () => {
     char.textContent = ''
     cleanups.push(contentEl)
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
-    tryGpuDraw(host, 40)
+    tryGpuDraw(host, 40000)
 
-    await flush()
+    await until(() => mounted(host))
 
     expect(host._gpuHandle).toBe(mountResult)
     expect(w.atlases.length).toBe(1)
+
+    teardownGpuDraw(host)
   })
 
   test('worker-backed handles probe the render worker — all verdict arms', async () => {
@@ -577,7 +623,7 @@ describe('draw-text gpu reveal', () => {
     }
     tryGpuDraw(a.host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
 
@@ -588,7 +634,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: makeWidget(), probe: async () => 0, destroy: jest.fn() }
     tryGpuDraw(b.host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
 
@@ -599,7 +645,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: makeWidget(), probe: async () => 1, destroy: jest.fn() }
     tryGpuDraw(c.host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
 
@@ -609,11 +655,13 @@ describe('draw-text gpu reveal', () => {
 
     cleanups.push(d.contentEl)
     mountResult = { canvas: null, widget: w, probe: async () => probeResult, destroy: jest.fn() }
-    tryGpuDraw(d.host, 100)
+    tryGpuDraw(d.host, 40000)
 
-    await flush()
+    await until(() => d.host._gpuHandle === mountResult)
 
     expect(d.host._gpuHandle).toBe(mountResult)
+
+    teardownGpuDraw(d.host)
   })
 
   test('a throwing device buffer drops into the verify catch arm', async () => {
@@ -625,7 +673,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: makeWidget(), destroy: jest.fn() }
     tryGpuDraw(host, 100)
 
-    await flush()
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
   })
@@ -642,7 +690,7 @@ describe('draw-text gpu reveal', () => {
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
     tryGpuDraw(host, 40000) // long — the loop must still be armed at teardown
 
-    await flush()
+    await until(() => mounted(host))
 
     expect(host._gpuHandle).toBe(mountResult)
     expect(host._gpuRaf).not.toBe(0)
@@ -665,15 +713,19 @@ describe('draw-text gpu reveal', () => {
 
     cleanups.push(contentEl)
     mountResult = { canvas: null, widget: w, destroy: jest.fn() }
-    tryGpuDraw(host, 40)
+    tryGpuDraw(host, 40000)
 
-    await flush()
+    await until(() => mounted(host))
 
     expect(host._gpuHandle).toBe(mountResult)
 
     host._rootEl = null // DOM root dropped between mount and finish
 
-    await flush(100)
+    // totalMs is parked at 40s so the loop outlives the harness — drive
+    // finish deterministically with a dead frame on the next tick.
+    w.frame = () => false
+
+    await until(destroyed)
 
     expect(mountResult.destroy).toHaveBeenCalled()
     expect(host._gpuHandle).toBeNull()

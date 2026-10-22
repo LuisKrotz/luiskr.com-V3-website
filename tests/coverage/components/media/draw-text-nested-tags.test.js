@@ -3,12 +3,13 @@
  * markup handling in website/components/media/draw-text/render.ts: CMS content
  * like `<a href="/"><span>label</span></a>` must tokenize its inner markup
  * (not leak raw `<`/`>` into innerHTML), text chars must be entity-escaped,
- * and generated anchor aria-labels must be escaped too. These tests mount the
+ * and anchor sr-only twins must be escaped too. These tests mount the
  * emitted HTML into a real DOM so the assertions observe the *rendered* text
  * — the exact surface where the `>luiskr` leak was visible.
  */
 
 import { parseTokens, renderContent } from '@website/components/media/draw-text/render.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { CSS_STRINGS } from '@core/tokens/strings/css.js'
@@ -36,9 +37,10 @@ describe('draw-text nested markup', () => {
     expect(anchor.getAttribute(DOM_STRINGS.HREF)).toBe('/')
     expect(anchor.querySelector(HTML_TAGS.SPAN)).toBeTruthy()
 
-    // Rendered text is the label itself — a stray '>' or '<span' here is the
-    // old leak where nested markup was emitted as literal text.
-    expect(host.textContent).toBe('luiskr')
+    // Rendered text is the sr-only twin + the drawn label — a stray '>' or
+    // '<span' here is the old leak where nested markup was emitted as
+    // literal text.
+    expect(host.textContent).toBe('luiskrluiskr')
   })
 
   test('nested tag tokens parse recursively — chunks contain the inner tag', () => {
@@ -64,21 +66,30 @@ describe('draw-text nested markup', () => {
     expect(plain.querySelector('b, i, a')).toBeNull()
   })
 
-  test('generated aria-label strips nested markup and escapes quotes', () => {
+  test('sr-only twin strips nested markup and escapes quotes', () => {
     const html = renderContent('<a href="/">say "hi" <b>there</b></a>', 10, 0)
 
-    // Label text is NBSP-joined and the quote char must arrive as &quot; —
-    // a raw " inside the attribute would break out of it.
+    // Twin text is NBSP-joined and the quote char must arrive as &quot; —
+    // a raw " inside the span would still be safe markup, but the escaping
+    // keeps the twin byte-identical to the old attribute contract.
     expect(html).toContain(
-      `aria-label="say${CHAR_STRINGS.NBSP}&quot;hi&quot;${CHAR_STRINGS.NBSP}there"`
+      `>say${CHAR_STRINGS.NBSP}&quot;hi&quot;${CHAR_STRINGS.NBSP}there<`
     )
   })
 
-  test('anchor with an authored aria-label keeps it untouched', () => {
+  test('authored aria-label is dropped in favor of the sr-only twin', () => {
+    // label_name_visible requires the accessible name to match the
+    // visible text — an authored label that drifts from the rendered
+    // chars (case/whitespace) is a violation, and IBM joins per-char
+    // text nodes with spaces, so the name must come from the in-anchor
+    // sr-only copy of the drawn text instead of any attribute. The twin
+    // uses the opacity variant — inside shadow DOM innerText is "" and
+    // clip-path-hidden nodes don't feed name-from-content.
     const html = renderContent('<a href="/" aria-label="custom">x</a>', 10, 0)
 
-    expect(html).toContain('aria-label="custom"')
-    expect(html.match(/aria-label/g).length).toBe(1)
+    expect(html).not.toContain('aria-label')
+    expect(html).toContain(A11Y_CLASSES.SR_ONLY_ALPHA)
+    expect(html).toContain('>x<')
   })
 
   test('<br>, nested <br>, empty tag, and stray angle brackets render safely', () => {
