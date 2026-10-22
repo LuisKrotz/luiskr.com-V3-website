@@ -6,11 +6,12 @@
  * the SPA router, and the source credit line.
  */
 
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
 import { AWC_CLASSES } from '@core/tokens/classes/awards-carousel.js'
 import { FOOTER_CLASSES } from '@core/tokens/classes/footer.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
-import { AWARDS_UI_KEYS } from '@core/tokens/data/ui-keys.js'
+import { A11Y_UI_KEYS, AWARDS_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
@@ -20,7 +21,7 @@ import '@website/components/media/DrawText.js'
 import router from '@core/router/router.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { DOCS_STRINGS } from '@core/tokens/strings/docs.js'
-import { appText, componentText, rightsParts } from '@core/locale/ui-text.js'
+import { appText, componentText, indexedText, rightsParts } from '@core/locale/ui-text.js'
 import type { AwardsMentions } from '../AwardsMentions.js'
 import { SOURCE_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
 import { SOCIAL_URLS } from '@core/tokens/media/urls.js'
@@ -67,7 +68,14 @@ export function renderAwards(el: AwardsMentions) {
       </div>
 
       {el.items && el.items.length ? (
-        <awards-carousel className={AWC_CLASSES.AWC_AWARDS} />
+        // Hidden navigation heading for the carousel — sr-only +
+        // data-nosnippet: an a11y jump target, never indexed.
+        <Fragment>
+          <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+            {indexedText(A11Y_UI_KEYS.A11Y_CAROUSEL, 1)}
+          </h3>
+          <awards-carousel className={AWC_CLASSES.AWC_AWARDS} />
+        </Fragment>
       ) : (
         <div className={AWARDS_CLASSES.AWARDS_FOOTER_SKEL}>
           <span className={SKELETON_CLASSES.SKELETON_BADGE} />
