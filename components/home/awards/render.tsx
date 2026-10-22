@@ -22,9 +22,29 @@ import router from '@core/router/router.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { DOCS_STRINGS } from '@core/tokens/strings/docs.js'
 import { appText, componentText, indexedText, rightsParts } from '@core/locale/ui-text.js'
+import { excerptHeading } from '@core/utils/string.js'
 import type { AwardsMentions } from '../AwardsMentions.js'
 import { SOURCE_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
 import { SOCIAL_URLS } from '@core/tokens/media/urls.js'
+
+/**
+ * Names the mentions carousel — the localized ordinal ('Carousel 1') plus
+ * the lead item's own text so the AT jump target is meaningful. The
+ * ordinal alone is the fallback for unlabeled items.
+ * @param items The award entries feeding the carousel.
+ * @returns The sr-only heading text.
+ */
+const carouselHeading = (items: unknown[]): string => {
+  const first = items[0] as { description?: string; content?: string; label?: string } | undefined
+
+  const lead = excerptHeading(
+    first?.description || first?.content || first?.label || ATTR_VALUES.EMPTY
+  )
+
+  const ordinal = indexedText(A11Y_UI_KEYS.A11Y_CAROUSEL, 1)
+
+  return lead ? `${ordinal} ${CHAR_STRINGS.EM_DASH} ${lead}` : ordinal
+}
 
 /** Copyright line with the © glyph and the year set in bold. */
 const renderRights = () => {
@@ -73,13 +93,12 @@ export function renderAwards(el: AwardsMentions) {
       </div>
 
       {el.items && el.items.length ? (
-        // Hidden navigation heading for the carousel — the ordinal
-        // template ('Carousel 1' localized). sr-only + data-nosnippet: an
-        // a11y jump target, never indexed.
+        // Hidden navigation heading for the carousel — the localized
+        // ordinal plus the lead item's own text so the jump target is
+        // meaningful ('Carousel 1 — FWA of the Day'). sr-only visually;
+        // the derived name stays indexable.
         <Fragment>
-          <h4 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-            {indexedText(A11Y_UI_KEYS.A11Y_CAROUSEL, 1)}
-          </h4>
+          <h4 className={A11Y_CLASSES.SR_ONLY}>{carouselHeading(el.items)}</h4>
           <awards-carousel className={AWC_CLASSES.AWC_AWARDS} />
         </Fragment>
       ) : (

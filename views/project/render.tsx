@@ -14,6 +14,7 @@ import { INTERNAL_CLASSES, PROJECT_CLASSES } from '@core/tokens/classes/project.
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
 import { A11Y_UI_KEYS, MEDIA_UI_KEYS } from '@core/tokens/data/ui-keys.js'
+import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h, Fragment } from '@core/jsx.js'
 import { appText, indexedText } from '@core/locale/ui-text.js'
@@ -22,6 +23,14 @@ import type { ProjectMediaItem, SectionChild } from './types.js'
 import type { ViewProject } from './Project.js'
 import { COVER_DIMENSIONS, GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
+
+/**
+ * Lead text naming one media carousel — the first item's label; '' lets
+ * the caller render the ordinal template alone.
+ * @param items the carousel's media rows
+ */
+const carouselLeadText = (items: ProjectMediaItem[]): string =>
+  String(items[0]?.label || ATTR_VALUES.EMPTY)
 
 /**
  * Lead text naming one project section — the first paragraph of its first
@@ -111,11 +120,11 @@ export function renderProject(c: ViewProject) {
                 key={parentKey}
                 style={{ [CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT]: c.sectionItemHeight(section) }}
               >
-                {/* Hidden navigation heading (h2) per section — named after
-                    the section's own lead text; the numbered template is the
-                    fallback for content-less rows. sr-only + data-nosnippet:
-                    an a11y jump target, never indexed, never prerendered. */}
-                <h2 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                {/* Navigation heading (h2) per section — named after the
+                    section's own lead text; the numbered template is the
+                    fallback for content-less rows. sr-only visually, but the
+                    content-derived name stays indexable for agents/SEO. */}
+                <h2 className={A11Y_CLASSES.SR_ONLY}>
                   {excerptHeading(sectionLeadText(section)) ||
                     indexedText(A11Y_UI_KEYS.A11Y_SECTION, parentKey + 1)}
                 </h2>
@@ -141,13 +150,23 @@ export function renderProject(c: ViewProject) {
                       </div>
                     )
                   } else {
+                    const mediaItems = child as ProjectMediaItem[]
+
+                    const lead = excerptHeading(carouselLeadText(mediaItems))
+
                     return (
                       <Fragment key={childKey}>
-                        <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                          {indexedText(
-                            A11Y_UI_KEYS.A11Y_CAROUSEL,
-                            carouselNums[parentKey][childKey]
-                          )}
+                        {/* Carousel heading — the localized ordinal ('Carousel
+                            N') plus the carousel's own lead label so the jump
+                            target is meaningful, not just a number. sr-only
+                            visually; the derived name stays indexable. */}
+                        <h3 className={A11Y_CLASSES.SR_ONLY}>
+                          {lead
+                            ? `${indexedText(A11Y_UI_KEYS.A11Y_CAROUSEL, carouselNums[parentKey][childKey])} ${CHAR_STRINGS.EM_DASH} ${lead}`
+                            : indexedText(
+                                A11Y_UI_KEYS.A11Y_CAROUSEL,
+                                carouselNums[parentKey][childKey]
+                              )}
                         </h3>
                         <custom-carousel
                           {...{

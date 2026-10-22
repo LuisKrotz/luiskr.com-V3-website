@@ -154,7 +154,7 @@ export function renderAwardsCarousel(host: AwardsCarousel) {
               aria-label={`${idx + 1} of ${host.items.length}`}
             >
               {slideHeading ? (
-                <h5 className={A11Y_CLASSES.SR_ONLY} data-nosnippet tabIndex={-1}>
+                <h5 className={A11Y_CLASSES.SR_ONLY} tabIndex={-1}>
                   {slideHeading}
                 </h5>
               ) : null}
