@@ -15327,6 +15327,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/coverage-website/components/media/modal-trigger.ts.html</loc>
+    <lastmod>2026-10-22T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/coverage-website/components/nav</loc>
     <lastmod>2026-10-22T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -46758,6 +46763,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/website/components/media/figure/video.ts</loc>
+    <lastmod>2026-10-22T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/components/media/modal-trigger.ts</loc>
     <lastmod>2026-10-22T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>

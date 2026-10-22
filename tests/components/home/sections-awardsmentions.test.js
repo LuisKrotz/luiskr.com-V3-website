@@ -13,6 +13,7 @@ import { COOKIE_CLASSES } from '@core/tokens/classes/cookies.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { AWC_CLASSES } from '@core/tokens/classes/awards-carousel.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { LANG_MUTATIONS, UI_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { LINK_ATTRS } from '@core/tokens/attrs/link.js'
@@ -193,6 +194,42 @@ describe('AwardsMentions', () => {
     expect(SCSS.awardsFooter).toMatch(/&-links\s*\{/)
     expect(SCSS.awardsFooter).toMatch(/&-item\s*\{/)
     expect(SCSS.awardsFooter).toMatch(/&-sep\s*\{/)
+  })
+
+  test('emits the footer heading ladder for AT navigation', () => {
+    awardsEl.items = [
+      { text: TEST_AWARDS.AWWARDS_SOTD, sub: '2024' },
+      { text: TEST_AWARDS.FWA_OF_THE_DAY, sub: '2023' },
+    ]
+
+    // h2 "Footer" → h3 title → h4 "Carousel 1" → h5 per award inside the
+    // carousel shadow → h3 per legal link + docs + source headings.
+    expect(awardsEl.shadowRoot.querySelectorAll(`h2.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(1)
+    expect(
+      awardsEl.shadowRoot.querySelector(`h3.${AWARDS_CLASSES.AWARDS_FOOTER_TITLE}`)
+    ).not.toBeNull()
+    expect(awardsEl.shadowRoot.querySelectorAll(`h4.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(1)
+
+    const linkCount = awardsEl.shadowRoot.querySelectorAll(
+      `.${AWARDS_CLASSES.AWARDS_FOOTER_ITEM}`
+    ).length
+
+    // h3 sr-only headings: one per legal link + docs entry + source line.
+    expect(awardsEl.shadowRoot.querySelectorAll(`h3.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(
+      linkCount + 2
+    )
+
+    const awc = awardsEl.shadowRoot.querySelector(S.AWARDS_CAROUSEL)
+
+    // Items without description/content/label emit no heading — an
+    // empty heading would be an axe empty-heading violation.
+    expect(awc.shadowRoot.querySelectorAll(`h5.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(0)
+
+    awardsEl.items = [
+      { description: 'Site of the Day', sub: '2024' },
+      { label: 'Award of the Year', sub: '2023' },
+    ]
+    expect(awc.shadowRoot.querySelectorAll(`h5.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(2)
   })
 
   test('does not re-render awards-carousel when unrelated store mutation occurs', () => {

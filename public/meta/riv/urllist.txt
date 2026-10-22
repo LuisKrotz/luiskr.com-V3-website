@@ -1353,6 +1353,7 @@ https://luiskr.com/docs/coverage-website/components/media/figure/mount.ts.html
 https://luiskr.com/docs/coverage-website/components/media/figure/render.tsx.html
 https://luiskr.com/docs/coverage-website/components/media/figure/video.ts.html
 https://luiskr.com/docs/coverage-website/components/media/index.html
+https://luiskr.com/docs/coverage-website/components/media/modal-trigger.ts.html
 https://luiskr.com/docs/coverage-website/components/nav
 https://luiskr.com/docs/coverage-website/components/nav/AppNav.tsx.html
 https://luiskr.com/docs/coverage-website/components/nav/flag.tsx.html
@@ -7640,6 +7641,7 @@ https://luiskr.com/docs/website/components/media/figure/modal.ts
 https://luiskr.com/docs/website/components/media/figure/mount.ts
 https://luiskr.com/docs/website/components/media/figure/render.tsx
 https://luiskr.com/docs/website/components/media/figure/video.ts
+https://luiskr.com/docs/website/components/media/modal-trigger.ts
 https://luiskr.com/docs/website/components/nav
 https://luiskr.com/docs/website/components/nav/AppNav.tsx
 https://luiskr.com/docs/website/components/nav/flag.tsx

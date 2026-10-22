@@ -4,7 +4,7 @@
  */
 
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
-import { MODAL_CLASSES } from '@core/tokens/classes/modal.js'
+import { EXPAND_MODAL_CLASSES, MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
@@ -12,6 +12,7 @@ import { ROUTE_PATHS } from '@core/tokens/routes.js'
 import { ROUTE_STRINGS } from '@core/tokens/strings/routes.js'
 import store from '@core/store.js'
 import { encodeMediaUrl } from '@core/utils/media.js'
+import { setMediaModalTrigger } from '../modal-trigger.js'
 import type { MediaFigure } from '../MediaFigure.js'
 
 /**
@@ -20,6 +21,16 @@ import type { MediaFigure } from '../MediaFigure.js'
  */
 export function openMediaModal(c: MediaFigure): void {
   if (!c.canExpand) return
+
+  // Record the trigger so close restores focus to this figure's expand
+  // control — resolved lazily (the shadow button is re-queried at
+  // restore time, surviving any figure re-render while the modal sat
+  // open).
+  setMediaModalTrigger(() => {
+    const openBtn = c.$(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_OPEN_1}`) as HTMLElement | null
+
+    if (openBtn?.isConnected) openBtn.focus()
+  })
 
   const scrollY = window.scrollY
 

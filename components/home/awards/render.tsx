@@ -50,10 +50,15 @@ export function renderAwards(el: AwardsMentions) {
 
   return (
     <footer className={AWARDS_CLASSES.AWARDS_FOOTER}>
+      {/* Landmark heading for AT navigation — sr-only + data-nosnippet:
+          a jump target ('Footer > …'), never indexed. */}
+      <h2 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+        {appText(A11Y_UI_KEYS.A11Y_FOOTER)}
+      </h2>
       <div className={AWARDS_CLASSES.AWARDS_FOOTER_HEADER}>
-        <h2 className={AWARDS_CLASSES.AWARDS_FOOTER_TITLE}>
+        <h3 className={AWARDS_CLASSES.AWARDS_FOOTER_TITLE}>
           <draw-text text={el.title}>{el.title}</draw-text>
-        </h2>
+        </h3>
 
         <div
           className={AWARDS_CLASSES.AWARDS_FOOTER_PROGRESS}
@@ -72,9 +77,9 @@ export function renderAwards(el: AwardsMentions) {
         // template ('Carousel 1' localized). sr-only + data-nosnippet: an
         // a11y jump target, never indexed.
         <Fragment>
-          <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+          <h4 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
             {indexedText(A11Y_UI_KEYS.A11Y_CAROUSEL, 1)}
-          </h3>
+          </h4>
           <awards-carousel className={AWC_CLASSES.AWC_AWARDS} />
         </Fragment>
       ) : (
@@ -91,6 +96,15 @@ export function renderAwards(el: AwardsMentions) {
       >
         {links.map((link, i) => (
           <Fragment key={link.link}>
+            {/* Heading per footer link — AT heading-jump lands on it,
+                Tab reaches the anchor next. sr-only, never indexed;
+                skipped when the link has no copy (empty headings are
+                an axe violation). */}
+            {link.page ? (
+              <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                {link.page}
+              </h3>
+            ) : null}
             <a
               className={AWARDS_CLASSES.AWARDS_FOOTER_ITEM}
               href={link.link}
@@ -111,7 +125,11 @@ export function renderAwards(el: AwardsMentions) {
         ))}
       </nav>
 
-      {/* Docs-portal entry — English title/route, localized description */}
+      {/* Docs-portal entry — English title/route, localized description.
+          Heading before the link so AT heading-jump reaches it. */}
+      <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+        {DOCS_STRINGS.TITLE}
+      </h3>
       <p className={FOOTER_CLASSES.FOOTER_DOCS}>
         <a
           className={FOOTER_CLASSES.FOOTER_DOCS_LINK}
@@ -134,6 +152,9 @@ export function renderAwards(el: AwardsMentions) {
         </span>
       </p>
 
+      <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+        {componentText(SOURCE_COMPONENT_KEYS.SOURCE_LABEL)}
+      </h3>
       <p className={FOOTER_CLASSES.FOOTER_SOURCE}>
         {componentText(SOURCE_COMPONENT_KEYS.SOURCE_LABEL)}
         {CHAR_STRINGS.SPACE_CHAR}

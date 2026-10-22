@@ -6,6 +6,7 @@
  * node loads.
  */
 
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { LINK_ATTRS } from '@core/tokens/attrs/link.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { CONTACT_CLASSES } from '@core/tokens/classes/contact.js'
@@ -13,6 +14,7 @@ import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { ROUTER_CLASSES } from '@core/tokens/classes/router.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
+import { A11Y_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { SOURCE_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
@@ -32,7 +34,7 @@ import internalStyles from '@core/sass/components/internals/internals.scss?inlin
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import { mountDividerSheen } from '@core/utils/gpu/divider-sheen.js'
 import { getFallbackLegalLinks, type LegalLink } from '@core/utils/data/legal-links.js'
-import { componentText, rightsParts } from '@core/locale/ui-text.js'
+import { appText, componentText, rightsParts } from '@core/locale/ui-text.js'
 import { devError } from '@core/devlog.js'
 
 export { getFallbackLegalLinks }
@@ -145,6 +147,11 @@ export class LegalFooter extends BaseComponent {
 
     return (
       <footer className={INTERNAL_CLASSES.INTERNAL_FOOTER}>
+        {/* Landmark heading for AT navigation — sr-only + data-nosnippet:
+            a jump target ('Footer > …'), never indexed. */}
+        <h2 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+          {appText(A11Y_UI_KEYS.A11Y_FOOTER)}
+        </h2>
         <div className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS}>
           {links.map((item, n) => {
             // Exact match OR suffix match (localized prefix means the
@@ -160,6 +167,15 @@ export class LegalFooter extends BaseComponent {
 
             return (
               <Fragment key={item.link || n}>
+                {/* Heading per footer link — AT heading-jump lands on it,
+                    Tab reaches the anchor next. sr-only, never indexed;
+                    skipped when the link has no copy (empty headings are
+                    an axe violation). */}
+                {item.page ? (
+                  <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                    {item.page}
+                  </h3>
+                ) : null}
                 <a
                   className={`${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK} ${CONTACT_CLASSES.CONTACT_OTHER_LINK} ${activeClass}`}
                   href={item.link}

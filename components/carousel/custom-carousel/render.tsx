@@ -6,6 +6,7 @@
  * template serves both sides). No state — everything arrives as params.
  */
 
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { SVG_ATTRS } from '@core/tokens/attrs/svg.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
@@ -130,6 +131,16 @@ export const renderCarouselSlide = (item: CarouselItem | null, folder: string, i
 
   return (
     <div className={slideItemClasses} style={mediaStyle}>
+      {/* Per-item heading — the AT jump target that names this slide.
+          tabindex=-1 lets SR focus land on it; the native-scroll track
+          reveals the slide when the heading is jumped to. sr-only +
+          data-nosnippet: navigable, never indexed. */}
+      {label ? (
+        <h4 className={A11Y_CLASSES.SR_ONLY} data-nosnippet tabIndex={-1}>
+          {label}
+        </h4>
+      ) : null}
+
       {isMixedLandscape ? (
         <div className={CAROUSEL_CLASSES.CAROUSEL_SLIDE_PATTERN} aria-hidden={ATTR_VALUES.TRUE}>
           {[CAROUSEL_CLASSES.CAROUSEL_PATTERN_TOP, CAROUSEL_CLASSES.CAROUSEL_PATTERN_BOTTOM].map(

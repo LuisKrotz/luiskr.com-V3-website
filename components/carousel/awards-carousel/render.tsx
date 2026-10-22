@@ -2,6 +2,7 @@
  * @file awards-carousel/render.tsx — slide + template JSX.
  */
 
+import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
@@ -13,6 +14,7 @@ import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { h } from '@core/jsx.js'
 import store from '@core/store.js'
 import { encodeMediaUrl } from '@core/utils/media.js'
+import { excerptHeading } from '@core/utils/string.js'
 import { appText } from '@core/locale/ui-text.js'
 import type { AwardsCarousel } from '../AwardsCarousel.js'
 import type { CarouselSlide } from './types.js'
@@ -134,16 +136,32 @@ export function renderAwardsCarousel(host: AwardsCarousel) {
 
       <div className={AWC_CLASSES.AWC_TRACK}>
         {renderCloneSlide(host, lastItem, AWC_CLASSES.AWC_SLIDE_CLONE_LAST)}
-        {host.items.map((item, idx) => (
-          <div
-            key={idx}
-            className={`${AWC_CLASSES.AWC_SLIDE} ${host.currentIndex === idx ? AWC_CLASSES.AWC_SLIDE_ACTIVE : ATTR_VALUES.EMPTY}`}
-            role={ARIA_ATTRS.ROLE_GROUP}
-            aria-label={`${idx + 1} of ${host.items.length}`}
-          >
-            {renderItem(host, item)}
-          </div>
-        ))}
+        {host.items.map((item, idx) => {
+          // Per-item heading — the AT jump target that names this
+          // award; emitted only when the item has real copy so slides
+          // never produce an empty heading (the role=group aria-label
+          // already names bare items). tabindex=-1 lets SR focus land
+          // on it; the native-scroll track reveals the slide on jump.
+          const slideHeading = excerptHeading(
+            item.description || item.content || item.label || ATTR_VALUES.EMPTY
+          )
+
+          return (
+            <div
+              key={idx}
+              className={`${AWC_CLASSES.AWC_SLIDE} ${host.currentIndex === idx ? AWC_CLASSES.AWC_SLIDE_ACTIVE : ATTR_VALUES.EMPTY}`}
+              role={ARIA_ATTRS.ROLE_GROUP}
+              aria-label={`${idx + 1} of ${host.items.length}`}
+            >
+              {slideHeading ? (
+                <h5 className={A11Y_CLASSES.SR_ONLY} data-nosnippet tabIndex={-1}>
+                  {slideHeading}
+                </h5>
+              ) : null}
+              {renderItem(host, item)}
+            </div>
+          )
+        })}
         {renderCloneSlide(host, firstItem, AWC_CLASSES.AWC_SLIDE_CLONE_FIRST)}
       </div>
     </div>
