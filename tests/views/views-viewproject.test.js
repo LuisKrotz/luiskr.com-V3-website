@@ -164,7 +164,7 @@ describe('ViewProject', () => {
     expect(carousel.items.length).toBe(2)
   })
 
-  test('a11y headings derive from section text and media labels', () => {
+  test('a11y headings derive from section text; carousels use localized ordinals', () => {
     projectEl.translations = {
       title: 'Labeled Gallery',
       folder: 'gallery/',
@@ -173,6 +173,7 @@ describe('ViewProject', () => {
           ['Joining the studio marked the first chapter of this build.'],
           [{ src: 'slide1', size: [1, 1], label: 'Brand overview carousel' }],
         ],
+        [[{ src: 'slide2', size: [1, 1], label: 'Second gallery carousel' }]],
       ],
     }
     projectEl._updateDom()
@@ -182,7 +183,9 @@ describe('ViewProject', () => {
     )
 
     expect(heads.some((h) => h.startsWith('Joining the studio'))).toBe(true)
-    expect(heads).toContain('Brand overview carousel')
+    expect(heads).toContain('Carousel 1')
+    expect(heads).toContain('Carousel 2')
+    expect(heads).not.toContain('Brand overview carousel')
   })
 
   test('a11y headings fall back to localized ordinals when content yields no lead', () => {
