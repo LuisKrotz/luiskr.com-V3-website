@@ -40,19 +40,20 @@ const sectionLeadText = (section: SectionChild[]): string => {
 }
 
 /**
- * Lead text naming one media carousel — its first item label ('' when
- * unlabeled so the caller falls back to the ordinal heading).
- * @param items the carousel's media children
- */
-const carouselLeadText = (items: ProjectMediaItem[]): string =>
-  String(items[0]?.label || ATTR_VALUES.EMPTY)
-
-/**
  * Renders project.
  * @param c — the component
  */
 export function renderProject(c: ViewProject) {
   const t = c.translations
+
+  // Global carousel ordinals — 'Carousel 1, 2, 3…' counts every media
+  // block on the page regardless of which section hosts it, so hidden
+  // headings stay unique jump targets in a screen reader's heading list.
+  let carouselSeq = 0
+
+  const carouselNums = (t?.sections ?? []).map((section) =>
+    section.map((child) => (typeof child[0] === TYPE_STRINGS.STRING ? 0 : ++carouselSeq))
+  )
 
   return (
     <article>
@@ -140,17 +141,13 @@ export function renderProject(c: ViewProject) {
                       </div>
                     )
                   } else {
-                    // Carousel ordinal within THIS section — carousels are
-                    // the non-string children, counted up to this child.
-                    const carouselIdx = section
-                      .slice(0, childKey + 1)
-                      .filter((c) => typeof c[0] !== TYPE_STRINGS.STRING).length
-
                     return (
                       <Fragment key={childKey}>
                         <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                          {excerptHeading(carouselLeadText(child as ProjectMediaItem[])) ||
-                            indexedText(A11Y_UI_KEYS.A11Y_CAROUSEL, carouselIdx)}
+                          {indexedText(
+                            A11Y_UI_KEYS.A11Y_CAROUSEL,
+                            carouselNums[parentKey][childKey]
+                          )}
                         </h3>
                         <custom-carousel
                           {...{
