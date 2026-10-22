@@ -17,10 +17,35 @@ import { A11Y_UI_KEYS, MEDIA_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h, Fragment } from '@core/jsx.js'
 import { appText, indexedText } from '@core/locale/ui-text.js'
-import { stripHtml, svgPlaceholder } from '@core/utils/index.js'
+import { excerptHeading, stripHtml, svgPlaceholder } from '@core/utils/index.js'
+import type { ProjectMediaItem, SectionChild } from './types.js'
 import type { ViewProject } from './Project.js'
 import { COVER_DIMENSIONS, GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
+
+/**
+ * Lead text naming one project section — the first paragraph of its first
+ * text block when present, else the first media label; '' lets the caller
+ * fall back to the generic ordinal heading.
+ * @param section one row of mixed text/media children
+ */
+const sectionLeadText = (section: SectionChild[]): string => {
+  const textChild = section.find((child) => typeof child[0] === TYPE_STRINGS.STRING)
+
+  if (textChild) return String(textChild[0] || ATTR_VALUES.EMPTY)
+
+  const mediaChild = section.find((child) => typeof child[0] !== TYPE_STRINGS.STRING)
+
+  return String((mediaChild as ProjectMediaItem[] | undefined)?.[0]?.label || ATTR_VALUES.EMPTY)
+}
+
+/**
+ * Lead text naming one media carousel — its first item label ('' when
+ * unlabeled so the caller falls back to the ordinal heading).
+ * @param items the carousel's media children
+ */
+const carouselLeadText = (items: ProjectMediaItem[]): string =>
+  String(items[0]?.label || ATTR_VALUES.EMPTY)
 
 /**
  * Renders project.
@@ -85,11 +110,13 @@ export function renderProject(c: ViewProject) {
                 key={parentKey}
                 style={{ [CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT]: c.sectionItemHeight(section) }}
               >
-                {/* Hidden navigation heading (h2) per section — sr-only +
-                    data-nosnippet so assistive tech gets a jump target the
-                    crawlers never index. Runtime-only: never prerendered. */}
+                {/* Hidden navigation heading (h2) per section — named after
+                    the section's own lead text; the numbered template is the
+                    fallback for content-less rows. sr-only + data-nosnippet:
+                    an a11y jump target, never indexed, never prerendered. */}
                 <h2 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                  {indexedText(A11Y_UI_KEYS.A11Y_SECTION, parentKey + 1)}
+                  {excerptHeading(sectionLeadText(section)) ||
+                    indexedText(A11Y_UI_KEYS.A11Y_SECTION, parentKey + 1)}
                 </h2>
                 {section.map((child, childKey) => {
                   if (typeof child[0] === TYPE_STRINGS.STRING) {
@@ -122,7 +149,8 @@ export function renderProject(c: ViewProject) {
                     return (
                       <Fragment key={childKey}>
                         <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                          {indexedText(A11Y_UI_KEYS.A11Y_CAROUSEL, carouselIdx)}
+                          {excerptHeading(carouselLeadText(child as ProjectMediaItem[])) ||
+                            indexedText(A11Y_UI_KEYS.A11Y_CAROUSEL, carouselIdx)}
                         </h3>
                         <custom-carousel
                           {...{
