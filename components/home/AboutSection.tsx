@@ -22,7 +22,7 @@ import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import { indexedText } from '@core/locale/ui-text.js'
 import { h, Fragment } from '@core/jsx.js'
 import { calcDrawTextDelay, calcDrawTextOffset } from '@core/utils/wasm/wasm-layout.js'
-import { stripHtml } from '@core/utils/string.js'
+import { excerptHeading, stripHtml } from '@core/utils/string.js'
 import { getGravatarSrcset, getOptimizedGravatar } from '@core/utils/media.js'
 import { attachGlitch, disarmGlitch } from './about/glitch.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
@@ -197,11 +197,14 @@ export class AboutSection extends BaseComponent {
             <div className={ABOUT_CLASSES.ABOUT_PROFILE_TEXT_COL}>
               {this.aboutTranslations ? (
                 drawData.col1.map((item) => (
-                  // Hidden navigation heading per paragraph — sr-only +
-                  // data-nosnippet: an a11y jump target, never indexed.
+                  // Hidden navigation heading per paragraph — named after
+                  // the paragraph's own lead text, the numbered template is
+                  // the fallback. sr-only + data-nosnippet: an a11y jump
+                  // target, never indexed.
                   <Fragment key={item.key}>
                     <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                      {indexedText(A11Y_UI_KEYS.A11Y_PARAGRAPH, item.key + 1)}
+                      {excerptHeading(item.text) ||
+                        indexedText(A11Y_UI_KEYS.A11Y_PARAGRAPH, item.key + 1)}
                     </h3>
                     <p className={ABOUT_CLASSES.ABOUT_ITEM_TEXT}>
                       <DrawText
@@ -238,7 +241,8 @@ export class AboutSection extends BaseComponent {
                   drawData.col2.map((item) => (
                     <Fragment key={item.key}>
                       <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                        {indexedText(A11Y_UI_KEYS.A11Y_PARAGRAPH, item.key + 1)}
+                        {excerptHeading(item.text) ||
+                          indexedText(A11Y_UI_KEYS.A11Y_PARAGRAPH, item.key + 1)}
                       </h3>
                       <p className={ABOUT_CLASSES.ABOUT_ITEM_TEXT}>
                         <DrawText

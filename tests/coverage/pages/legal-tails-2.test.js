@@ -67,7 +67,7 @@ describe('Legal tails 2', () => {
     document.body.appendChild(el)
     await flush()
 
-    el.translations = { sections: [{ content: null }, {}] }
+    el.translations = { sections: [{ content: null }, { content: ['', 'Body copy.'] }, {}] }
     el._updateDom()
 
     el.translations = {}

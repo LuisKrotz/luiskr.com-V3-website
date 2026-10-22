@@ -52,4 +52,31 @@ describe('AboutSection side-info tails', () => {
 
     el.remove()
   })
+
+  test('empty paragraph text falls back to the localized ordinal heading', async () => {
+    const el = document.createElement(COMPONENT_TAGS.ABOUT_SECTION)
+    document.body.appendChild(el)
+    await flush()
+
+    el.aboutTranslations = { title: 't', col1: [''], col2: ['<br/>'] }
+    await flush()
+
+    const heads = [...el.shadowRoot.querySelectorAll('h3')]
+
+    expect(heads.length).toBe(2)
+    expect(heads.every((h) => h.textContent.trim().length > 0)).toBe(true)
+
+    el.remove()
+  })
+
+  test('gravatar getters tolerate an unset profile picture', async () => {
+    const el = document.createElement(COMPONENT_TAGS.ABOUT_SECTION)
+
+    el.profilePicture = null
+
+    expect(typeof el.optimizedProfilePicture).toBe('string')
+    expect(typeof el.profilePictureSrcset).toBe('string')
+
+    el.remove()
+  })
 })

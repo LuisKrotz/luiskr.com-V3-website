@@ -164,6 +164,46 @@ describe('ViewProject', () => {
     expect(carousel.items.length).toBe(2)
   })
 
+  test('a11y headings derive from section text and media labels', () => {
+    projectEl.translations = {
+      title: 'Labeled Gallery',
+      folder: 'gallery/',
+      sections: [
+        [
+          ['Joining the studio marked the first chapter of this build.'],
+          [{ src: 'slide1', size: [1, 1], label: 'Brand overview carousel' }],
+        ],
+      ],
+    }
+    projectEl._updateDom()
+
+    const heads = [...projectEl.shadowRoot.querySelectorAll('h2, h3')].map((h) =>
+      h.textContent.trim()
+    )
+
+    expect(heads.some((h) => h.startsWith('Joining the studio'))).toBe(true)
+    expect(heads).toContain('Brand overview carousel')
+  })
+
+  test('a11y headings fall back to localized ordinals when content yields no lead', () => {
+    projectEl.translations = {
+      title: 'Unlabeled Gallery',
+      folder: 'gallery/',
+      sections: [
+        [[''], [{ src: 'slide1', size: [1, 1] }]],
+        [[{ src: 'media-only', size: [1, 1] }]],
+      ],
+    }
+    projectEl._updateDom()
+
+    const heads = [...projectEl.shadowRoot.querySelectorAll('h2, h3')].map((h) =>
+      h.textContent.trim()
+    )
+
+    expect(heads.length).toBeGreaterThanOrEqual(3)
+    expect(heads.every((h) => h.length > 0)).toBe(true)
+  })
+
   test('renders portfolio-related component at bottom of article', () => {
     const related = projectEl.shadowRoot.querySelector(S.PORTFOLIO_RELATED)
     expect(related).not.toBeNull()

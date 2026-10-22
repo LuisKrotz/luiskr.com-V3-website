@@ -17,6 +17,7 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { h, Fragment } from '@core/jsx.js'
 import { isPlainClick } from '@core/utils/dom.js'
+import { excerptHeading } from '@core/utils/string.js'
 import '@website/components/media/DrawText.js'
 import router from '@core/router/router.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
@@ -25,6 +26,23 @@ import { appText, componentText, indexedText, rightsParts } from '@core/locale/u
 import type { AwardsMentions } from '../AwardsMentions.js'
 import { SOURCE_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
 import { SOCIAL_URLS } from '@core/tokens/media/urls.js'
+
+/** Minimal copy fields a slide may carry — mirrors the awards slide shape. */
+interface AwardLead {
+  label?: string
+  content?: string
+}
+
+/**
+ * Lead text naming the awards carousel — the first slide's label or
+ * content field; '' lets the caller fall back to the ordinal heading.
+ * @param items the pushed award entries (partial CMS rows tolerated)
+ */
+const awardLeadText = (items: unknown[] | null): string => {
+  const first = items?.[0] as AwardLead | undefined
+
+  return String(first?.label || first?.content || ATTR_VALUES.EMPTY)
+}
 
 /** Copyright line with the © glyph and the year set in bold. */
 const renderRights = () => {
@@ -68,11 +86,13 @@ export function renderAwards(el: AwardsMentions) {
       </div>
 
       {el.items && el.items.length ? (
-        // Hidden navigation heading for the carousel — sr-only +
-        // data-nosnippet: an a11y jump target, never indexed.
+        // Hidden navigation heading for the carousel — named after the
+        // first award's own label/content, the ordinal template is the
+        // fallback. sr-only + data-nosnippet: an a11y jump target, never
+        // indexed.
         <Fragment>
           <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-            {indexedText(A11Y_UI_KEYS.A11Y_CAROUSEL, 1)}
+            {excerptHeading(awardLeadText(el.items)) || indexedText(A11Y_UI_KEYS.A11Y_CAROUSEL, 1)}
           </h3>
           <awards-carousel className={AWC_CLASSES.AWC_AWARDS} />
         </Fragment>

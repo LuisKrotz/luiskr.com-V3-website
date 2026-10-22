@@ -26,7 +26,7 @@ import { appText, indexedText } from '@core/locale/ui-text.js'
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import type { DbSnapshot } from '@core/utils/data/db.js'
 import type { RouteDescriptor } from '@core/router/router.js'
-import { stripHtml, toMetaDescription } from '@core/utils/index.js'
+import { excerptHeading, stripHtml, toMetaDescription } from '@core/utils/index.js'
 import { setMetaDescription } from '@core/router/navigate.js'
 import { calcDrawTextDelay, calcDrawTextOrderedOffset } from '@core/utils/wasm/wasm-layout.js'
 import { DRAW_TIMINGS } from '@core/tokens/media/dimensions.js'
@@ -248,12 +248,14 @@ export class ViewLegal extends BaseComponent {
                     />
                   </h2>
                   {(section.content || []).map((paragraph, pKey) => (
-                    // Hidden navigation heading per paragraph — sr-only +
-                    // data-nosnippet: an a11y jump target, never indexed.
-                    // Numbering restarts under each section h2.
+                    // Hidden navigation heading per paragraph — named after
+                    // the paragraph's own lead text; the numbered template
+                    // is the fallback. sr-only + data-nosnippet: an a11y
+                    // jump target, never indexed.
                     <Fragment key={pKey}>
                       <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                        {indexedText(A11Y_UI_KEYS.A11Y_PARAGRAPH, pKey + 1)}
+                        {excerptHeading(paragraph) ||
+                          indexedText(A11Y_UI_KEYS.A11Y_PARAGRAPH, pKey + 1)}
                       </h3>
                       <p className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT}>
                         <draw-text
