@@ -12533,6 +12533,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/media/budget.md</loc>
+    <lastmod>2026-10-23T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/media/cache.md</loc>
     <lastmod>2026-10-23T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -13383,6 +13388,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/media/policy.md</loc>
+    <lastmod>2026-10-23T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/ml</loc>
     <lastmod>2026-10-23T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -13409,6 +13419,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/motion/bezier.md</loc>
+    <lastmod>2026-10-23T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/motion/frame.md</loc>
     <lastmod>2026-10-23T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -14189,6 +14204,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/shared/build/docs-portal.md</loc>
+    <lastmod>2026-10-23T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/shared/build/docs/encode.md</loc>
     <lastmod>2026-10-23T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>

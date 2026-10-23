@@ -3183,6 +3183,7 @@ https://luiskr.com/docs/docs/jsdocs/core/tokens/layout/space.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/locales.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/media
 https://luiskr.com/docs/docs/jsdocs/core/tokens/media.md
+https://luiskr.com/docs/docs/jsdocs/core/tokens/media/budget.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/media/cache.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/media/dimensions.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/media/flag-texture.md
@@ -3353,12 +3354,14 @@ https://luiskr.com/docs/docs/jsdocs/core/utils/media
 https://luiskr.com/docs/docs/jsdocs/core/utils/media.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/media/local-media-cache.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/media/manifest.md
+https://luiskr.com/docs/docs/jsdocs/core/utils/media/policy.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/ml
 https://luiskr.com/docs/docs/jsdocs/core/utils/ml/frame-time.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/ml/ort-engine.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/ml/super-res.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/motion
 https://luiskr.com/docs/docs/jsdocs/core/utils/motion/bezier.md
+https://luiskr.com/docs/docs/jsdocs/core/utils/motion/frame.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/motion/genie.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/motion/route-warmer.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/motion/scroll-spring.md
@@ -3515,6 +3518,7 @@ https://luiskr.com/docs/docs/jsdocs/shared
 https://luiskr.com/docs/docs/jsdocs/shared/build
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs-portal.md
+https://luiskr.com/docs/docs/jsdocs/shared/build/docs/encode.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs/redact.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs/render.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs/scan.md
