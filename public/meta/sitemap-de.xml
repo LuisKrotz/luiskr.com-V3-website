@@ -22917,6 +22917,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/predeploy.md</loc>
+    <lastmod>2026-10-23T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/stamp-content-signal.md</loc>
     <lastmod>2026-10-23T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -45423,6 +45428,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/shared/scripts/build/media-manifest.mjs</loc>
+    <lastmod>2026-10-23T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/shared/scripts/build/predeploy.mjs</loc>
     <lastmod>2026-10-23T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
