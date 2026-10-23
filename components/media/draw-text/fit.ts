@@ -81,8 +81,7 @@ function widestWord(host: DrawText): number {
 export function fitText(host: DrawText): void {
   if (!host.hasAttribute(COMMON_ATTRS.FIT)) return
 
-  host.style.fontSize = ATTR_VALUES.EMPTY
-  host.style.letterSpacing = ATTR_VALUES.EMPTY
+  clearFitStyles(host)
 
   const avail = availableWidth(host)
 
@@ -104,6 +103,21 @@ export function fitText(host: DrawText): void {
   host.style.fontSize = `${baseFont * scale}${CHAR_STRINGS.PX}`
 
   if (baseSpacing) host.style.letterSpacing = `${baseSpacing * scale}${CHAR_STRINGS.PX}`
+}
+
+/**
+ * Clears a host's inline fit overrides — but only when one is actually
+ * set. Writing `style.fontSize = ''` on a host that never received an
+ * override still serializes+mutates the style attribute, invalidating
+ * layout for nothing; first-fit hosts (the common flush case) can go
+ * straight to measurement against the pending layout instead of paying
+ * an extra clear→reflow cycle.
+ * @param host — the draw-text element
+ */
+function clearFitStyles(host: DrawText): void {
+  if (host.style.fontSize) host.style.fontSize = ATTR_VALUES.EMPTY
+
+  if (host.style.letterSpacing) host.style.letterSpacing = ATTR_VALUES.EMPTY
 }
 
 /**
@@ -179,10 +193,7 @@ function flushFits(): void {
 
   if (!hosts.length) return
 
-  for (const host of hosts) {
-    host.style.fontSize = ATTR_VALUES.EMPTY
-    host.style.letterSpacing = ATTR_VALUES.EMPTY
-  }
+  hosts.forEach(clearFitStyles)
 
   const measured = hosts.map((host) => ({ host, m: measureFit(host) }))
 
@@ -241,6 +252,5 @@ export function teardownFit(host: DrawText): void {
 
   fitQueue.delete(host)
 
-  host.style.fontSize = ATTR_VALUES.EMPTY
-  host.style.letterSpacing = ATTR_VALUES.EMPTY
+  clearFitStyles(host)
 }
