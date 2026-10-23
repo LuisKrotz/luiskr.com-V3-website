@@ -26,6 +26,7 @@ import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { WEBGL_STRINGS } from '@core/tokens/strings/webgl.js'
 import { GENIE_TIMING } from '@core/tokens/motion/genie.js'
 import { VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
+import { slugify } from '@core/utils/index.js'
 import { TEST_URLS } from '@tests/fixtures/test-constants.js'
 
 /** Mutable flag — whether the WebGPU widget layer is opted-in. */
@@ -788,6 +789,35 @@ describe('expanded genie tails', () => {
     const origPath = window.location.pathname
 
     window.history.replaceState({}, ATTR_VALUES.EMPTY, '/portfolio/p/deep-link-cover')
+
+    const el = fakeEl()
+
+    startGenieOpen(el, () => {})
+
+    pump(1)
+
+    expect(el._genie).not.toBeNull()
+
+    window.history.replaceState({}, ATTR_VALUES.EMPTY, origPath)
+    fig.remove()
+  })
+
+  test('live figure rect resolves by legacy raw slug on deep-link open', () => {
+    // Labels over MEDIA_SLUG_MAX_LENGTH cap in mediaSlugSeq but the
+    // raw slugify form — what older modal opens wrote — must still
+    // resolve the origin figure so the genie warp starts on it.
+    const longLabel =
+      'Legacy deep link cover with a very long caption that keeps going well past eighty characters'
+
+    const fig = document.createElement(COMPONENT_TAGS.MEDIA_FIGURE)
+
+    fig.setAttribute(FORM_ATTRS.LABEL, longLabel)
+    fig.getBoundingClientRect = () => rectOf(RECT)
+    document.body.appendChild(fig)
+
+    const origPath = window.location.pathname
+
+    window.history.replaceState({}, ATTR_VALUES.EMPTY, `/portfolio/p/${slugify(longLabel)}`)
 
     const el = fakeEl()
 

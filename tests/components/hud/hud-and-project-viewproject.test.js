@@ -226,6 +226,72 @@ describe('ViewProject', () => {
     el.remove()
   })
 
+  test('checkAutoOpenModal resolves capped canonical + legacy raw media slugs', () => {
+    const el = makeView()
+
+    const longLabel =
+      'Vibra – a empresa mais inovadora do segmento no Brasil | Production and Distribution Business | Full page'
+
+    const cappedSlug = 'vibra-a-empresa-mais-inovadora-do-segmento-no-brasil-production-and'
+
+    const legacySlug =
+      'vibra-a-empresa-mais-inovadora-do-segmento-no-brasil-production-and-distribution-business-full-page'
+
+    el.translations = {
+      folder: 'vibra',
+      sections: [
+        [[{ label: longLabel, src: TEST_TEXT.SECOND, isVideo: false, size: [800, 450] }]],
+        [[{ src: TEST_TEXT.SECOND, size: [800, 450] }]],
+        [[{ label: TEST_TEXT.BODY, src: '', size: [800, 450] }]],
+      ],
+    }
+
+    const prevRoute = router.currentRoute
+
+    // The build/sitemap emit the MEDIA_SLUG_MAX_LENGTH-capped slug — a
+    // deep link with it must auto-open the modal.
+    router.currentRoute = { params: { slug: cappedSlug } }
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
+    el.checkAutoOpenModal()
+
+    expect(store.getters.getModal()?.open).toBe(true)
+    expect(store.getters.getModal()?.media?.alt).toBe(longLabel)
+
+    // Older modal opens wrote the raw uncapped slugify — shared links
+    // still resolve through the legacy pass, and the address bar
+    // canonicalizes to the emitted slug.
+    window.history.replaceState({}, '', `/portfolio/vibra/${legacySlug}`)
+
+    router.currentRoute = { params: { slug: legacySlug } }
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
+    el.checkAutoOpenModal()
+
+    expect(store.getters.getModal()?.open).toBe(true)
+    expect(store.getters.getModal()?.media?.alt).toBe(longLabel)
+    expect(window.location.pathname).toBe(`/portfolio/vibra/${cappedSlug}`)
+
+    // Ordinals disambiguate duplicate labels in document order — the
+    // second item's `-2` slug opens the second item, not the first.
+    el.translations = {
+      folder: 'vibra',
+      sections: [
+        [[{ label: TEST_TEXT.HEADING, src: 'first-dup', isVideo: false, size: [800, 450] }]],
+        [[{ label: TEST_TEXT.HEADING, src: 'second-dup', isVideo: false, size: [800, 450] }]],
+      ],
+    }
+
+    router.currentRoute = { params: { slug: 'sample-heading-2' } }
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
+    el.checkAutoOpenModal()
+
+    expect(store.getters.getModal()?.open).toBe(true)
+    expect(store.getters.getModal()?.media?.source).toContain('second-dup')
+
+    router.currentRoute = prevRoute
+
+    el.remove()
+  })
+
   test('loadData walks the URL fallback then resolves via SWR', async () => {
     window.history.replaceState({}, '', `${ROUTE_PATHS.PORTFOLIO}${TEST_PROJECTS.CICB}`)
 
