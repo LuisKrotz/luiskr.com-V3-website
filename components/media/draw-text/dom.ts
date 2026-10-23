@@ -10,8 +10,9 @@ import { DRAW_TEXT_CLASSES } from '@core/tokens/classes/draw-text.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import drawTextStyles from '@core/sass/components/media/draw-text.scss?inline'
 import { stripHtml } from '@core/utils/string.js'
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import type { DrawText } from '../DrawText.js'
-import { renderContent } from './render.js'
+import { renderContent, RENDER_MODES } from './render.js'
 import { getSharedSheet } from './sheet.js'
 
 /** Re-renders the shadow DOM for current props. */
@@ -79,10 +80,16 @@ export function updateDom(host: DrawText): void {
   host._contentEl.className =
     `${DRAW_TEXT_CLASSES.DRAW_TEXT} ${visibleClass} ${doneClass} ${pendingClass}`.trim()
 
-  host._contentEl.innerHTML = renderContent(
-    host.text,
-    host.delay,
-    host.offset,
-    host._needsCharSpans
-  )
+  // Render mode: chars only while the reveal runs; 'words' for `fit`
+  // hosts (fitText measures .draw-text__word boxes — a fit element that
+  // rendered plain could overflow unscaled until its trigger fires);
+  // 'plain' everywhere else — a paragraph collapses into per-run spans
+  // instead of holding ~2 nodes per word for its whole lifetime.
+  const mode = host._needsCharSpans
+    ? RENDER_MODES.CHARS
+    : host.hasAttribute(COMMON_ATTRS.FIT)
+      ? RENDER_MODES.WORDS
+      : RENDER_MODES.PLAIN
+
+  host._contentEl.innerHTML = renderContent(host.text, host.delay, host.offset, mode)
 }

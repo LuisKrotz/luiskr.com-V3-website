@@ -14,6 +14,7 @@
  */
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals'
 import store from '@core/store.js'
+import { framePool } from '@core/utils/motion/frame.js'
 import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
@@ -262,6 +263,11 @@ describe('expanded genie tails', () => {
     globalThis.cancelAnimationFrame = () => {}
     performance.now = () => nowMs
 
+    // Take over any frame the shared pool armed before this queue
+    // installed — flush runs the pending pump now; its re-arm lands
+    // here so later pump() calls drive it deterministically.
+    framePool.flush((nowMs += 16.7))
+
     origGetContext = document.createElement(HTML_TAGS.CANVAS).constructor.prototype.getContext
 
     document.createElement(HTML_TAGS.CANVAS).constructor.prototype.getContext = function (type) {
@@ -273,6 +279,20 @@ describe('expanded genie tails', () => {
   })
 
   afterEach(() => {
+    // Sessions ride the shared framePool now — its pump callback is the
+    // only entry the manual queue ever holds, and the pool's armed flag
+    // clears inside that pump. Wiping rafQueue while armed would strand
+    // the pool (every later request queues but nothing ever pumps), so
+    // detach the test hosts — live sessions see isConnected false and
+    // settle on the next tick — then pump until the pool reports idle.
+    document.body.innerHTML = ''
+
+    let guard = GENIE_TIMING.MAX_MS
+
+    while (framePool.size() && guard-- > 0) pump(1)
+
+    rafQueue = []
+
     globalThis.requestAnimationFrame = origRaf
     globalThis.cancelAnimationFrame = origCaf
     performance.now = origNow
@@ -404,6 +424,114 @@ describe('expanded genie tails', () => {
 
     expect(el._genie).toBeNull()
     expect(dead.dispose).toHaveBeenCalled()
+  })
+
+  test('renderer frame() throwing resolves like a dead backend', () => {
+    const el = fakeEl()
+
+    startGenieOpen(el, () => {})
+
+    pump(1)
+
+    // A wasm boundary call escaping mid-frame is dead the same way a
+    // false return is — the catch keeps veil + overlay from latching.
+    const throwing = {
+      frame: () => {
+        throw new Error('wasm boom')
+      },
+      dispose: jest.fn(),
+    }
+
+    el._genie.renderer.dispose()
+    el._genie.renderer = throwing
+
+    pump(1)
+
+    expect(el._genie).toBeNull()
+    expect(throwing.dispose).toHaveBeenCalled()
+  })
+
+  test('measureAttach throw resolves the run through the cancelled path', () => {
+    const el = fakeEl()
+    const content = contentOf(el)
+    let done = 0
+
+    // Rect reads live inside the first frame's try — a layout read that
+    // throws must unveil + teardown rather than latch the overlay.
+    content.getBoundingClientRect = () => {
+      throw new Error('layout boom')
+    }
+
+    expect(startGenieOpen(el, () => done++)).toBe(true)
+
+    pump(1)
+
+    expect(el._genie).toBeNull()
+    expect(done).toBe(1)
+  })
+
+  test('measureAttach throw keeps a superseding session owner intact', () => {
+    const el = fakeEl()
+    const content = contentOf(el)
+    let done = 0
+
+    content.getBoundingClientRect = () => {
+      throw new Error('layout boom')
+    }
+
+    startGenieOpen(el, () => done++)
+
+    // Another session claimed _genie before the first tick — the throw
+    // path must not null it out (el._genie === s else arm).
+    const decoy = { cancelled: false }
+
+    el._genie = decoy
+
+    pump(1)
+
+    expect(el._genie).toBe(decoy)
+    expect(done).toBe(1)
+  })
+
+  test('sheet cache reuses a matching bake and rebuilds on any key drift', () => {
+    const el = fakeEl()
+
+    startGenieOpen(el, () => {})
+
+    pump(1) // measure+attach — primes el._genieSheet
+    pump(200)
+
+    const primed = el._genieSheet
+
+    expect(primed).toBeTruthy()
+    expect(primed.sheet).toBeTruthy()
+
+    // Each key mismatch forces the rebake arm — every operand of the &&
+    // chain gets evaluated once (istanbul counts per-operand evals).
+    const drifts = [
+      { content: document.createElement(HTML_TAGS.DIV) },
+      { dpr: primed.dpr + 1 },
+      { vw: -1 },
+      { vh: -1 },
+      { dark: !primed.dark },
+    ]
+
+    for (const patch of drifts) {
+      el._genieSheet = { ...primed, ...patch }
+
+      startGenieOpen(el, () => {})
+
+      pump(1)
+      pump(200)
+    }
+
+    // Full match — the hit arm hands the cached sheet back unchanged.
+    el._genieSheet = primed
+
+    startGenieOpen(el, () => {})
+
+    pump(1)
+    pump(200)
   })
 
   // ── cancel ────────────────────────────────────────────────────────────

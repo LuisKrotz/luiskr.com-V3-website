@@ -362,6 +362,9 @@ describe('MediaFigure — Progressive Loading & Media', () => {
 
     test('video render has <source> with type="video/mp4"', () => {
       el.setAttribute(MEDIA_ATTRS.IS_VIDEO, STATE_STRINGS.TRUE)
+      // Empty-source videos emit no <source> at all now (a src="" is a
+      // meaningless candidate) — populate the resolved URL matrix first.
+      el.video = ['url-primary.mp4', 'url-scale.mp4']
       const html = toHtml(el.render())
       expect(html).toContain('type="video/mp4"')
     })

@@ -20,6 +20,7 @@ import { CAROUSEL_CLASSES } from '@core/tokens/classes/carousel.js'
 import { AWC_CLASSES } from '@core/tokens/classes/awards-carousel.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MOUSE_EVENTS, POINTER_EVENTS } from '@core/tokens/events/dom.js'
+import { framePool } from '@core/utils/motion/frame.js'
 
 const SLIDES = [
   { src: 'a.webp', size: [800, 450], label: 'One', canExpand: true },
@@ -48,6 +49,11 @@ const mockRaf = () => {
     q[id - 1] = null
   }
 
+  // Take over any frame the shared pool armed before this queue
+  // installed — the flush runs the pending pump now and its re-arm
+  // lands here, so `pump(n)` drives the spring deterministically.
+  framePool.flush(performance.now())
+
   const pump = (n, dt = 16) => {
     for (let i = 0; i < n; i++) {
       now += dt
@@ -60,6 +66,15 @@ const mockRaf = () => {
   return {
     pump,
     restore: () => {
+      // Flush callbacks still armed in this queue before handing rAF
+      // back — a stranded framePool pump would leave the pool's rafId
+      // pointing at a dead handle, starving every later request.
+      for (let i = 0; i < 100 && q.length; i++) {
+        const batch = [...q]
+        q.length = 0
+        batch.forEach((cb) => cb && cb(now))
+      }
+
       globalThis.requestAnimationFrame = realRaf
       globalThis.cancelAnimationFrame = realCaf
     },

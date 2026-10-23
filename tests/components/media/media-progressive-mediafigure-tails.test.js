@@ -112,6 +112,30 @@ describe('MediaFigure tails', () => {
     el.remove()
   })
 
+  test('_ensureVideoSource leads with the scaled pair when the box is small', () => {
+    const el = mount({ ...videoAttrs(), [MEDIA_ATTRS.WIDTH]: '4000' })
+    const vid = el.$(HTML_TAGS.VIDEO)
+
+    vid.load = () => {}
+
+    vid.querySelectorAll(MEDIA_ATTRS.SOURCE).forEach((s) => s.remove())
+
+    el.video = [TEST_URLS.A, TEST_URLS.B]
+    el.videoWebm = [TEST_URLS.IMG, TEST_URLS.VIDEO]
+    el._ensureVideoSource(vid)
+
+    const srcs = vid.querySelectorAll(MEDIA_ATTRS.SOURCE)
+
+    // prefersScaledVideo arm — scaled webm + scaled mp4 lead the list,
+    // then the full-quality pair, so a small box never commits to 4K.
+    expect(srcs[0].src).toBe(TEST_URLS.VIDEO)
+    expect(srcs[1].src).toBe(TEST_URLS.B)
+    expect(srcs[2].src).toBe(TEST_URLS.IMG)
+    expect(srcs[3].src).toBe(TEST_URLS.A)
+
+    el.remove()
+  })
+
   test('video observer arms: intersecting, leaving, paused guards', () => {
     const el = mount(videoAttrs())
     const vid = el.$(HTML_TAGS.VIDEO)

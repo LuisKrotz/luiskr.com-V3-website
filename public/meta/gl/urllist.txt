@@ -371,6 +371,7 @@ https://luiskr.com/docs/core/tokens/layout/space.ts
 https://luiskr.com/docs/core/tokens/locales.ts
 https://luiskr.com/docs/core/tokens/media
 https://luiskr.com/docs/core/tokens/media.ts
+https://luiskr.com/docs/core/tokens/media/budget.ts
 https://luiskr.com/docs/core/tokens/media/cache.ts
 https://luiskr.com/docs/core/tokens/media/dimensions.ts
 https://luiskr.com/docs/core/tokens/media/flag-texture.ts
@@ -542,12 +543,14 @@ https://luiskr.com/docs/core/utils/media
 https://luiskr.com/docs/core/utils/media.ts
 https://luiskr.com/docs/core/utils/media/local-media-cache.ts
 https://luiskr.com/docs/core/utils/media/manifest.ts
+https://luiskr.com/docs/core/utils/media/policy.ts
 https://luiskr.com/docs/core/utils/ml
 https://luiskr.com/docs/core/utils/ml/frame-time.ts
 https://luiskr.com/docs/core/utils/ml/ort-engine.ts
 https://luiskr.com/docs/core/utils/ml/super-res.ts
 https://luiskr.com/docs/core/utils/motion
 https://luiskr.com/docs/core/utils/motion/bezier.ts
+https://luiskr.com/docs/core/utils/motion/frame.ts
 https://luiskr.com/docs/core/utils/motion/genie.ts
 https://luiskr.com/docs/core/utils/motion/route-warmer.ts
 https://luiskr.com/docs/core/utils/motion/scroll-spring.ts
@@ -851,6 +854,7 @@ https://luiskr.com/docs/coverage-core/core/tokens/layout/masonry.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/layout/space.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/locales.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/media
+https://luiskr.com/docs/coverage-core/core/tokens/media/budget.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/media/cache.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/media/dimensions.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/media/flag-texture.ts.html
@@ -1042,6 +1046,7 @@ https://luiskr.com/docs/coverage-core/core/utils/media.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/media/index.html
 https://luiskr.com/docs/coverage-core/core/utils/media/local-media-cache.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/media/manifest.ts.html
+https://luiskr.com/docs/coverage-core/core/utils/media/policy.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/ml
 https://luiskr.com/docs/coverage-core/core/utils/ml/frame-time.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/ml/index.html
@@ -1049,6 +1054,7 @@ https://luiskr.com/docs/coverage-core/core/utils/ml/ort-engine.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/ml/super-res.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/motion
 https://luiskr.com/docs/coverage-core/core/utils/motion/bezier.ts.html
+https://luiskr.com/docs/coverage-core/core/utils/motion/frame.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/motion/genie.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/motion/index.html
 https://luiskr.com/docs/coverage-core/core/utils/motion/route-warmer.ts.html
@@ -7339,6 +7345,7 @@ https://luiskr.com/docs/shared/README.md
 https://luiskr.com/docs/shared/build
 https://luiskr.com/docs/shared/build/docs
 https://luiskr.com/docs/shared/build/docs-portal.mjs
+https://luiskr.com/docs/shared/build/docs/encode.mjs
 https://luiskr.com/docs/shared/build/docs/redact.mjs
 https://luiskr.com/docs/shared/build/docs/render.mjs
 https://luiskr.com/docs/shared/build/docs/scan.mjs

@@ -9,6 +9,7 @@
  */
 
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { DRAW_TEXT_CLASSES } from '@core/tokens/classes/draw-text.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
@@ -17,6 +18,30 @@ import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { escapeHtml, stripHtml } from '@core/utils/string.js'
 import type { DrawChar, DrawToken } from './types.js'
 import { DRAW_TIMINGS } from '@core/tokens/media/dimensions.js'
+
+/**
+ * Render modes for the shadow content:
+ *   'plain' — pending/done states: contiguous word/space/br runs collapse
+ *     into ONE aria-hidden span (O(paragraphs) nodes instead of O(words);
+ *     a 500-word legal paragraph would otherwise mount ~1000 permanent
+ *     spans for text that may never animate). Tags keep real markup —
+ *     an anchor's plain inner text is its accessible name.
+ *   'words' — the fit fallback: `fitText` measures `.draw-text__word`
+ *     inline-blocks, so `fit` elements keep word spans pre/post animation.
+ *   'chars' — the animating state: per-char spans inside word spans.
+ * All modes share one geometry: spaces are literal/natural-width text
+ * everywhere (nbsp inside tags, matching the char-mode link rule), and
+ * word spans are nowrap inline-blocks — so pending → animating → done
+ * swaps never reflow the line.
+ */
+export type DrawRenderMode = 'plain' | 'words' | 'chars'
+
+/** Frozen render-mode token map — sole declaration site for the mode literals. */
+export const RENDER_MODES = Object.freeze({
+  PLAIN: 'plain',
+  WORDS: 'words',
+  CHARS: 'chars',
+} as const)
 
 /**
  * Tokenizes the text into word/space/br/inline-tag chunks. Words split
@@ -185,8 +210,10 @@ const tagToHtml = (token: DrawToken, renderWord: RenderWord): string => {
 export const tokenToHtml = (token: DrawToken, renderWord: RenderWord): string => {
   if (token.type === CSS_STRINGS.TOKEN_BR) return '<br aria-hidden="true" />'
 
-  if (token.type === CSS_STRINGS.TOKEN_SPACE)
-    return `<span class="${DRAW_TEXT_CLASSES.DRAW_TEXT_SPACE}" aria-hidden="true">&nbsp;</span>`
+  // Natural-width literal space between word spans — a breakable point
+  // with the same metrics as plain text, so every render mode shares
+  // one geometry and state swaps never reflow the line.
+  if (token.type === CSS_STRINGS.TOKEN_SPACE) return CHAR_STRINGS.SPACE_CHAR
 
   if (token.type === CSS_STRINGS.TOKEN_WORD) return renderWord(token.chars)
 
@@ -230,6 +257,105 @@ export const renderWordHtml = (
 }
 
 /**
+ * One plain-mode token → markup. Words become escaped text (no span —
+ * a pending paragraph needs zero per-word nodes), top-level spaces
+ * become literal spaces, tags recurse through plainTagToHtml.
+ * @param chunk The parsed token.
+ * @returns HTML string for the token.
+ */
+const plainChunkToHtml = (chunk: DrawToken): string => {
+  if (chunk.type === CSS_STRINGS.TOKEN_WORD)
+    return (chunk.chars || []).map((ch) => escapeHtml(ch.value)).join(ATTR_VALUES.EMPTY)
+
+  // Inside tags the space is nbsp — same unbreakable rule the animated
+  // render applies inside links (a link's words stay one visual unit).
+  if (chunk.type === CSS_STRINGS.TOKEN_SPACE) return CHAR_STRINGS.NBSP
+
+  if (chunk.type === CSS_STRINGS.TOKEN_BR) return '<br aria-hidden="true" />'
+
+  if (chunk.type === CSS_STRINGS.TOKEN_TAG) return plainTagToHtml(chunk)
+
+  return ATTR_VALUES.EMPTY
+}
+
+/**
+ * Plain-mode tag — real markup with a single aria-hidden wrapper for the
+ * inner text (every visual copy stays hidden so the host's sr-only twin
+ * is the one announcement). Anchors additionally carry the sr-only-alpha
+ * twin — identical accessible-name topology to the animated render —
+ * and keep their authored attrStr minus aria-label for the same
+ * label-in-name parity reason documented at tagToHtml.
+ * @param token The tag token.
+ * @returns HTML for the tag block.
+ */
+const plainTagToHtml = (token: DrawToken): string => {
+  const inner = (token.chunks || []).map(plainChunkToHtml).join(ATTR_VALUES.EMPTY)
+
+  if (!token.tag) return inner
+
+  const isAnchor = token.tag.toLowerCase() === DOM_STRINGS.A_TAG
+
+  const attrStr = isAnchor
+    ? (token.attrStr || ATTR_VALUES.EMPTY).replace(/\s*aria-label="[^"]*"/iu, ATTR_VALUES.EMPTY)
+    : token.attrStr || ATTR_VALUES.EMPTY
+
+  const twin = isAnchor
+    ? `<span class="${A11Y_CLASSES.SR_ONLY_ALPHA}">${escapeHtml(
+        stripHtml(token.inner || ATTR_VALUES.EMPTY)
+          .split(CHAR_STRINGS.SPACE_CHAR)
+          .join(CHAR_STRINGS.NBSP)
+      )}</span>`
+    : ATTR_VALUES.EMPTY
+
+  const hidden = `<span ${ARIA_ATTRS.ARIA_HIDDEN}="${ATTR_VALUES.TRUE}">${inner}</span>`
+
+  return `<${token.tag} ${attrStr}>${twin}${hidden}</${token.tag}>`
+}
+
+/**
+ * Plain-mode assembly — consecutive word/space/br tokens collapse into
+ * ONE aria-hidden span per run (a run can hold an entire paragraph), and
+ * tag tokens emit real elements via plainTagToHtml so interactive
+ * content stays reachable. Spaces inside a run are literal (natural
+ * width — the same metrics the span modes use at top level).
+ * @param tokens Parsed top-level tokens.
+ * @returns The assembled plain-mode HTML.
+ * Exported so the run-collapse and malformed-token fallbacks are
+ * unit-testable — same contract as tokenToHtml/renderWordHtml.
+ */
+export const plainTokensToHtml = (tokens: DrawToken[]): string => {
+  const parts: string[] = []
+
+  let run = ATTR_VALUES.EMPTY
+
+  const flush = (): void => {
+    if (!run) return
+
+    parts.push(`<span ${ARIA_ATTRS.ARIA_HIDDEN}="${ATTR_VALUES.TRUE}">${run}</span>`)
+
+    run = ATTR_VALUES.EMPTY
+  }
+
+  for (const token of tokens) {
+    if (token.type === CSS_STRINGS.TOKEN_TAG) {
+      flush()
+
+      parts.push(plainTagToHtml(token))
+    } else if (token.type === CSS_STRINGS.TOKEN_WORD) {
+      run += (token.chars || []).map((ch) => escapeHtml(ch.value)).join(ATTR_VALUES.EMPTY)
+    } else if (token.type === CSS_STRINGS.TOKEN_SPACE) {
+      run += CHAR_STRINGS.SPACE_CHAR
+    } else if (token.type === CSS_STRINGS.TOKEN_BR) {
+      run += '<br aria-hidden="true" />'
+    }
+  }
+
+  flush()
+
+  return parts.join(ATTR_VALUES.EMPTY)
+}
+
+/**
  * Full pipeline: text → tokens → HTML string. The `wi` closure counter
  * assigns each rendered word a sequential index so the word-level
  * cascade (`--wi`/`--word-delay`) staggers in reading order, including
@@ -238,22 +364,28 @@ export const renderWordHtml = (
  * @param text Raw text (may contain <br> and inline tags).
  * @param delay Per-char stagger delay in ms.
  * @param offset Base delay offset in ms.
- * @param withChars Whether to emit per-char spans (false = plain text).
+ * @param mode Which render to emit — 'chars' mounts the animating char
+ *   spans, 'words' mounts measureable word spans (the `fit` fallback),
+ *   'plain' collapses text into per-run aria-hidden spans (default for
+ *   pending/done — O(paragraphs) nodes, not O(words)).
  * @returns The assembled HTML string.
  */
 export function renderContent(
   text: string,
   delay: number,
   offset: number,
-  withChars = true
+  mode: DrawRenderMode = RENDER_MODES.CHARS
 ): string {
   if (!text) return ATTR_VALUES.EMPTY
 
   const tokens = parseTokens(text)
 
+  if (mode === RENDER_MODES.PLAIN) return plainTokensToHtml(tokens)
+
   let wi = 0
 
-  const renderWord: RenderWord = (chars) => renderWordHtml(chars, wi++, delay, offset, withChars)
+  const renderWord: RenderWord = (chars) =>
+    renderWordHtml(chars, wi++, delay, offset, mode === RENDER_MODES.CHARS)
 
   const htmlParts = tokens.map((token) => tokenToHtml(token, renderWord))
 

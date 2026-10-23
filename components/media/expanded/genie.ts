@@ -23,6 +23,7 @@ import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
+import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { WEBGL_STRINGS } from '@core/tokens/strings/webgl.js'
@@ -36,6 +37,7 @@ import { GenieCanvas2D } from './genie-canvas.js'
 import { buildGenieSheet } from './genie-texture.js'
 import type { GenieSheet } from './genie-texture.js'
 import { mountGenieGpu } from './genie-gpu.js'
+import { framePool } from '@core/utils/motion/frame.js'
 import type { MediaExpanded } from '../MediaExpanded.js'
 
 /** Viewport-space rect the genie field interpolates between. */
@@ -268,6 +270,12 @@ const tick = (el: MediaExpanded, s: GenieSession): void => {
 
   s.last = now
 
+  // The queued id is consumed — clearing it keeps cancelGenie honest:
+  // a same-task cancel targets nothing, and a mid-tick throw leaves the
+  // field at 0 so startGenie's cancelGenie resolves cleanly instead of
+  // carrying a dead id into the new session.
+  s.raf = 0
+
   // First frame: the measure+mount phase runs here — inside a rAF task
   // the rect reads are the task's first reads (never interleaved with
   // the mount task's writes), and the overlay canvas' append feeds the
@@ -275,7 +283,23 @@ const tick = (el: MediaExpanded, s: GenieSession): void => {
   if (!s.measured) {
     s.measured = true
 
-    measureAttach(el, s)
+    try {
+      measureAttach(el, s)
+    } catch {
+      // A throw mid-measure (rect reads, canvas build, backend pick)
+      // would otherwise latch the veil + overlay forever — resolve the
+      // run through the same path as attach's dead backend: unveil,
+      // drop the overlay, settle.
+      s.cancelled = true
+
+      if (el._genie === s) el._genie = null
+
+      teardownOverlay(s, el)
+
+      s.done()
+
+      return
+    }
 
     // attach() may have resolved the run already (cancelled session or
     // no backend) — its dead path flags the session cancelled; nothing
@@ -293,7 +317,17 @@ const tick = (el: MediaExpanded, s: GenieSession): void => {
 
   const settled = raw >= 1 || now - s.started > GENIE_TIMING.MAX_MS || !el.isConnected
 
-  const alive = s.renderer?.frame(dt, s.p) !== false
+  // A renderer that returns false is dead by contract; one that THROWS
+  // (a wasm boundary call escaping before its false path — device loss
+  // mid-frame) is dead the same way. Without the catch the exception
+  // would escape the pooled tick and latch veil + overlay permanently.
+  let alive: boolean
+
+  try {
+    alive = s.renderer?.frame(dt, s.p) !== false
+  } catch {
+    alive = false
+  }
 
   // Terminal landing frame — when the clock crosses 1, the frame just
   // drawn is the converged pose (the media exactly on the destination
@@ -305,7 +339,7 @@ const tick = (el: MediaExpanded, s: GenieSession): void => {
   if (settled && !s.landed && alive && el.isConnected) {
     s.landed = true
 
-    s.raf = requestAnimationFrame(s.cb)
+    s.raf = framePool.request(s.cb)
 
     return
   }
@@ -320,7 +354,7 @@ const tick = (el: MediaExpanded, s: GenieSession): void => {
     return
   }
 
-  s.raf = requestAnimationFrame(s.cb)
+  s.raf = framePool.request(s.cb)
 }
 
 /**
@@ -390,7 +424,7 @@ const startGenie = (el: MediaExpanded, opening: boolean, done: () => void): bool
     content.classList.add(EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_VEIL)
   }
 
-  session.raf = requestAnimationFrame(session.cb)
+  session.raf = framePool.request(session.cb)
 
   return true
 }
@@ -410,23 +444,42 @@ const measureAttach = (el: MediaExpanded, session: GenieSession): void => {
 
   const dpr = Math.min(GENIE_DPR_CAP, window.devicePixelRatio || 1)
 
-  // The composited modal surface — one bake shared by every backend.
-  // Built here, inside the first rAF task, so its layout reads sit
-  // beside the rect measurements instead of interleaving with the
-  // caller's mount-task writes (forced-reflow governance). A bake that
-  // throws (dead 2D surface, detached mid-flight) degrades to a null
-  // sheet — the backends still warp, ghosted, and the run resolves.
-  let sheet: GenieSheet | null = null
-
-  try {
-    sheet = buildGenieSheet(session.content, dpr)
-  } catch {
-    sheet = null
-  }
-
   const vw = window.innerWidth
 
   const vh = window.innerHeight
+
+  const dark = document.documentElement.classList.contains(STATE_CLASSES.DARK_MODE)
+
+  // The composited modal surface — one bake shared by every backend
+  // and reused across the modal's open→close pair (the close run is
+  // geometrically identical to the open's, so rebaking would pay the
+  // same layout reads for an identical texture). The key is
+  // (content, dpr, viewport, theme): a re-render, zoom, resize or
+  // theme flip all miss and rebake; media-swap/loaded-state paths
+  // invalidate el._genieSheet explicitly. A failed bake is never
+  // cached — the next session retries.
+  let sheet: GenieSheet | null = null
+
+  const cached = el._genieSheet
+
+  if (
+    cached &&
+    cached.content === session.content &&
+    cached.dpr === dpr &&
+    cached.vw === vw &&
+    cached.vh === vh &&
+    cached.dark === dark
+  ) {
+    sheet = cached.sheet
+  } else {
+    try {
+      sheet = buildGenieSheet(session.content, dpr)
+    } catch {
+      sheet = null
+    }
+
+    if (sheet) el._genieSheet = { content: session.content, dpr, vw, vh, dark, sheet }
+  }
 
   /**
    * Attaches a resolved backend mid-flight — the spring has already
@@ -469,7 +522,7 @@ const measureAttach = (el: MediaExpanded, session: GenieSession): void => {
 
       if (el._genie === session) el._genie = null
 
-      cancelAnimationFrame(session.raf)
+      framePool.cancel(session.raf)
 
       teardownOverlay(session, el)
 
@@ -498,11 +551,15 @@ const measureAttach = (el: MediaExpanded, session: GenieSession): void => {
   }
 
   /**
-   * The overlay canvas factory — fullscreen, device-px capped, and
-   * already in the shadow (the worker route needs it in the DOM before
-   * transferToOffscreen).
+   * The overlay canvas factory — fullscreen, device-px capped. The
+   * `attach` flag controls the shadow append: the GPU/worker route
+   * needs the canvas in the DOM before transferToOffscreen, while the
+   * 2D route builds its renderer detached so the ctor's style reads
+   * can't force a layout against the just-appended canvas — the
+   * append lands after every read, keeping the task to one flush.
+   * @param attach Whether to append the canvas to the host shadow.
    */
-  const makeCanvas = (): HTMLCanvasElement => {
+  const makeCanvas = (attach: boolean): HTMLCanvasElement => {
     const c = document.createElement(HTML_TAGS.CANVAS)
 
     c.className = EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_CANVAS
@@ -510,36 +567,38 @@ const measureAttach = (el: MediaExpanded, session: GenieSession): void => {
     c.width = Math.max(1, Math.round(vw * dpr))
     c.height = Math.max(1, Math.round(vh * dpr))
 
-    el.shadowRoot?.appendChild(c)
+    if (attach) el.shadowRoot?.appendChild(c)
 
     return c
   }
 
   /**
    * The universal 2D backend — acquires the context and wraps the
-   * strip-warp renderer. Null when the canvas refuses a 2D context or
-   * the renderer construction throws — a hard throw here must never
-   * latch the veil, so construction is wrapped; on failure the canvas
-   * is dropped and the session resolves to `done` via attach(null).
+   * strip-warp renderer. The canvas stays detached through context
+   * acquisition and renderer construction so the ctor's
+   * getComputedStyle reads don't force layout against a just-appended
+   * node; the append lands last (no reads after it, so no flush).
+   * Null when the canvas refuses a 2D context or the renderer
+   * construction throws — a hard throw here must never latch the
+   * veil, so construction is wrapped; on failure the session
+   * resolves to `done` via attach(null).
    */
   const canvas2d = (): GenieRenderer | null => {
-    const canvas = makeCanvas()
+    const canvas = makeCanvas(false)
 
     try {
       const ctx = canvas.getContext(WEBGL_STRINGS.CONTEXT_2D, { desynchronized: true })
 
-      if (!ctx) {
-        canvas.remove()
-
-        return null
-      }
+      if (!ctx) return null
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
 
-      return new GenieCanvas2D(canvas, ctx, sheet, from, to, session.opening, el)
-    } catch {
-      canvas.remove()
+      const renderer = new GenieCanvas2D(canvas, ctx, sheet, from, to, session.opening, el)
 
+      el.shadowRoot?.appendChild(canvas)
+
+      return renderer
+    } catch {
       return null
     }
   }
@@ -554,7 +613,7 @@ const measureAttach = (el: MediaExpanded, session: GenieSession): void => {
     // renderer is disposed rather than swapped mid-flight.
     let gpuSettled = false
 
-    mountGenieGpu(makeCanvas(), el, from, to, session.opening, sheet)
+    mountGenieGpu(makeCanvas(true), el, from, to, session.opening, sheet)
       .then((renderer) => {
         gpuSettled = true
 
@@ -614,7 +673,7 @@ export const cancelGenie = (el: MediaExpanded): void => {
 
   el._genie = null
 
-  if (s.raf) cancelAnimationFrame(s.raf)
+  if (s.raf) framePool.cancel(s.raf)
 
   teardownOverlay(s, el)
 }

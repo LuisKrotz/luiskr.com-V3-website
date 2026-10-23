@@ -13,6 +13,7 @@ import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { h, Fragment } from '@core/jsx.js'
 import { componentText } from '@core/locale/ui-text.js'
 import store from '@core/store.js'
+import { prefersScaledVideo, videoAutoplayAllowed } from '@core/utils/media/policy.js'
 import type { MediaFigure } from '../MediaFigure.js'
 import { MEDIA_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
 
@@ -35,7 +36,22 @@ export function renderMediaFigure(c: MediaFigure) {
 
   const isHeroItem = c.classes.includes(INTERNAL_CLASSES.INTERNAL_MAIN_ITEM)
 
-  const shouldPreloadVideo = c.autoPlay || isHeroItem
+  // A 'low' connection budget (saveData/≤2g) downgrades autoplay videos
+  // to poster-only: preload stays 'none' and the autoplay attribute is
+  // withheld so the browser can never start the stream — the IO/play
+  // path enforces the same policy at the other end.
+  const autoplayAllowed = videoAutoplayAllowed()
+
+  const shouldPreloadVideo = (c.autoPlay || isHeroItem) && autoplayAllowed
+
+  // Tier selection — the browser walks <source> top-down and commits to
+  // the first one that resolves, so on a box the scaled (-2x) tier
+  // already over-resolves, the scaled pair must lead: otherwise a phone
+  // always pulls the 4K/1080p stream and the scaled transcodes never
+  // fire. The same check picks the matching half-size poster.
+  const scaledVideo = c.isVideo && prefersScaledVideo(c.mediaWidth, c.clientWidth)
+
+  const posterSrc = c.isVideo ? c.poster[scaledVideo ? 1 : 0] || c.poster[0] : ATTR_VALUES.EMPTY
 
   return (
     <figure
@@ -89,7 +105,7 @@ export function renderMediaFigure(c: MediaFigure) {
         <Fragment>
           <video
             className={`${MEDIA_CLASSES.RENDER_MEDIA} ${c.classes}`}
-            poster={c.poster[0] || ATTR_VALUES.EMPTY}
+            poster={posterSrc || ATTR_VALUES.EMPTY}
             width={mediaW}
             height={mediaH}
             preload={shouldPreloadVideo ? MEDIA_ATTRS.METADATA : ATTR_VALUES.NONE}
@@ -99,24 +115,25 @@ export function renderMediaFigure(c: MediaFigure) {
             muted
             controlsList={MEDIA_ATTRS.NO_DOWNLOAD}
             disablePictureInPicture
-            autoPlay={c.autoPlay}
+            autoPlay={c.autoPlay && autoplayAllowed}
             controls={store.getters.getReducedMotion()}
           >
             <track kind={MEDIA_ATTRS.CAPTIONS} />
 
-            {c.videoSrcWebmMain ? (
-              <source src={c.videoSrcWebmMain} type={MEDIA_ATTRS.VIDEO_WEBM} />
-            ) : null}
-
-            {c.videoSrcWebmFallback ? (
-              <source src={c.videoSrcWebmFallback} type={MEDIA_ATTRS.VIDEO_WEBM} />
-            ) : null}
-
-            <source src={c.videoSrcMain} type={MEDIA_ATTRS.VIDEO_MP4} />
-
-            {c.videoSrcFallback ? (
-              <source src={c.videoSrcFallback} type={MEDIA_ATTRS.VIDEO_MP4} />
-            ) : null}
+            {(scaledVideo
+              ? [
+                  [c.videoSrcWebmFallback, MEDIA_ATTRS.VIDEO_WEBM],
+                  [c.videoSrcFallback, MEDIA_ATTRS.VIDEO_MP4],
+                  [c.videoSrcWebmMain, MEDIA_ATTRS.VIDEO_WEBM],
+                  [c.videoSrcMain, MEDIA_ATTRS.VIDEO_MP4],
+                ]
+              : [
+                  [c.videoSrcWebmMain, MEDIA_ATTRS.VIDEO_WEBM],
+                  [c.videoSrcWebmFallback, MEDIA_ATTRS.VIDEO_WEBM],
+                  [c.videoSrcMain, MEDIA_ATTRS.VIDEO_MP4],
+                  [c.videoSrcFallback, MEDIA_ATTRS.VIDEO_MP4],
+                ]
+            ).map(([src, type]) => (src ? <source src={src} type={type} /> : null))}
           </video>
         </Fragment>
       )}

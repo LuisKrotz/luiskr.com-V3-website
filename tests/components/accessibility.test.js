@@ -20,6 +20,7 @@ import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 import { DATA_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { DRAW_TEXT_SELECTORS } from '@core/tokens/selectors/draw-text.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
@@ -64,14 +65,18 @@ describe('Accessibility — WCAG 2.1 AA Compliance', () => {
       })
     })
 
-    test('.draw-text__space elements have aria-hidden="true"', () => {
+    test('pending runs are wrapped in a single aria-hidden span', () => {
       const el = document.createElement(COMPONENT_TAGS.DRAW_TEXT)
       el.setAttribute(FORM_ATTRS.TEXT, TEST_TEXT.HELLO_WORLD)
+      el.setAttribute(COMMON_ATTRS.TRIGGER, COMMON_ATTRS.TRIGGER_VIEWPORT)
       document.body.appendChild(el)
-      const spaces = el.shadowRoot.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_SPACE)
-      spaces.forEach((sp) => {
-        expect(sp.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(STATE_STRINGS.TRUE)
-      })
+      // Pending state emits one aria-hidden run per contiguous text block —
+      // a whole paragraph is O(1) nodes, not O(words) — and the sr-only
+      // twin remains the only announcement.
+      const runs = el.shadowRoot.querySelectorAll(
+        `span[${ARIA_ATTRS.ARIA_HIDDEN}="${STATE_STRINGS.TRUE}"]`
+      )
+      expect(runs.length).toBeGreaterThan(0)
     })
 
     test('<br> elements inside draw-text have aria-hidden="true"', () => {

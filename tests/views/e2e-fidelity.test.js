@@ -95,6 +95,11 @@ describe('Automated End-to-End Feature & Fidelity Test Suite (50+ Tests)', () =>
       expect(paraDraw).not.toBeNull()
 
       const pShadow = paraDraw.shadowRoot
+
+      // Word/char spans mount when the reveal triggers — before that the
+      // pending render is collapsed plain text.
+      paraDraw.trigger()
+
       const words = pShadow.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_WORD)
       expect(words.length).toBeGreaterThanOrEqual(15)
 
@@ -105,11 +110,11 @@ describe('Automated End-to-End Feature & Fidelity Test Suite (50+ Tests)', () =>
       expect(wordValues).toContain('Software')
       expect(wordValues).toContain('Engineer')
 
-      const spaces = pShadow.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_SPACE)
-      expect(spaces.length).toBeGreaterThanOrEqual(10)
-      spaces.forEach((sp) => {
-        expect(sp.innerHTML).toMatch(/(&nbsp;|&#32;|\s)/)
-        expect(sp.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(STATE_STRINGS.TRUE)
+      // Rendered words stay aria-hidden — the sr-only twin is the single
+      // announcement, and spaces are literal breakable text (no span storm).
+      expect(pShadow.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_SPACE).length).toBe(0)
+      words.forEach((w) => {
+        expect(w.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(STATE_STRINGS.TRUE)
       })
     })
 

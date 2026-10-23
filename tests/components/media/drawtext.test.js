@@ -77,16 +77,16 @@ describe('DrawText Web Component - Typography, Parsing & Animation Engine (50+ T
       expect(words[1].textContent).toBe('World')
     })
 
-    test('creates explicit non-breaking spaces with aria-hidden="true"', () => {
+    test('keeps natural breakable spaces between words (no span storm)', () => {
       const el = document.createElement(COMPONENT_TAGS.DRAW_TEXT)
       el.setAttribute(FORM_ATTRS.TEXT, 'Three Words Here')
       document.body.appendChild(el)
-      const spaces = el.shadowRoot.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_SPACE)
-      expect(spaces.length).toBe(2)
-      spaces.forEach((sp) => {
-        expect(sp.innerHTML).toBe('&nbsp;')
-        expect(sp.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(STATE_STRINGS.TRUE)
-      })
+      // Spaces render as literal text nodes — natural width, breakable —
+      // so the animated, pending and done renders share one geometry and
+      // state swaps never reflow the line.
+      expect(el.shadowRoot.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_SPACE).length).toBe(0)
+      const wrapper = el.shadowRoot.querySelector(DRAW_TEXT_SELECTORS.DRAW_TEXT)
+      expect(wrapper.textContent).toBe('Three Words Here')
     })
 
     test('handles single word without spaces', () => {
@@ -382,12 +382,15 @@ describe('DrawText Web Component - Typography, Parsing & Animation Engine (50+ T
   })
 
   describe('8. Accessibility & Reduced Motion Compliance', () => {
-    test('spaces have aria-hidden to prevent screen-readers announcing &nbsp;', () => {
+    test('rendered words are aria-hidden so only the sr twin announces', () => {
       const el = document.createElement(COMPONENT_TAGS.DRAW_TEXT)
       el.setAttribute(FORM_ATTRS.TEXT, 'Word A Word B')
       document.body.appendChild(el)
-      const space = el.shadowRoot.querySelector(DRAW_TEXT_SELECTORS.DRAW_TEXT_SPACE)
-      expect(space.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(STATE_STRINGS.TRUE)
+      const words = el.shadowRoot.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_WORD)
+      expect(words.length).toBeGreaterThan(0)
+      words.forEach((w) => {
+        expect(w.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(STATE_STRINGS.TRUE)
+      })
     })
 
     test('respects reduced-motion mode and reveals text immediately', () => {

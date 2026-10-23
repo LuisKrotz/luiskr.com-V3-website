@@ -492,17 +492,19 @@ describe('Animation System — Timing, Easing & Reduced Motion (200+ tests)', ()
     test('word and space elements are interleaved correctly', () => {
       document.body.appendChild(el)
       const words = el.shadowRoot.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_WORD)
-      const spaces = el.shadowRoot.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_SPACE)
-      // TEST_TEXT.HELLO_WORLD = 2 words, 1 space
+      // TEST_TEXT.HELLO_WORLD = 2 words joined by one literal-space text
+      // node (natural width, breakable — shared geometry across modes).
+      const wrapper = el.shadowRoot.querySelector(DRAW_TEXT_SELECTORS.DRAW_TEXT)
       expect(words).toHaveLength(2)
-      expect(spaces).toHaveLength(1)
+      expect(wrapper.textContent).toBe(TEST_TEXT.HELLO_WORLD)
+      expect(el.shadowRoot.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_SPACE)).toHaveLength(0)
     })
 
-    test('spaces have aria-hidden="true"', () => {
+    test('rendered words have aria-hidden="true"', () => {
       document.body.appendChild(el)
-      const spaces = el.shadowRoot.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_SPACE)
-      spaces.forEach((sp) => {
-        expect(sp.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(STATE_STRINGS.TRUE)
+      const words = el.shadowRoot.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_WORD)
+      words.forEach((w) => {
+        expect(w.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(STATE_STRINGS.TRUE)
       })
     })
 
