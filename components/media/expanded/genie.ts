@@ -29,7 +29,7 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { WEBGL_STRINGS } from '@core/tokens/strings/webgl.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { GENIE_TIMING } from '@core/tokens/motion/genie.js'
-import { mediaSlugSeq } from '@core/utils/index.js'
+import { mediaSlugSeq, slugify } from '@core/utils/index.js'
 
 import { webgpuWidgetsEnabled } from '@core/utils/gpu/webgpu-widget.js'
 import store from '@core/store.js'
@@ -147,14 +147,23 @@ const figureForUrl = (el: MediaExpanded): Element | null => {
 
   const seen = new Map<string, number>()
 
-  const figs = root.querySelectorAll(COMPONENT_TAGS.MEDIA_FIGURE)
+  const figs = Array.from(root.querySelectorAll(COMPONENT_TAGS.MEDIA_FIGURE))
 
-  for (const fig of Array.from(figs)) {
+  for (const fig of figs) {
     const label = fig.getAttribute(FORM_ATTRS.LABEL) || ATTR_VALUES.EMPTY
 
     if (!label) continue
 
     if (mediaSlugSeq(seen, label) === slug) return fig
+  }
+
+  // Legacy raw-slugify URLs (written before the canonical capped +
+  // ordinaled convention) — deferred pass so a raw slug can't shadow a
+  // later figure's canonical slug.
+  for (const fig of figs) {
+    const label = fig.getAttribute(FORM_ATTRS.LABEL) || ATTR_VALUES.EMPTY
+
+    if (label && slugify(label) === slug) return fig
   }
 
   return null
