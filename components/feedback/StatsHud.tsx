@@ -38,6 +38,9 @@ class StatsHud extends BaseComponent {
 
   private _statsCb: ((_snap: StatsSnapshot) => void) | null = null
 
+  /** Whether the engine feed is live — mirrors showStats, tracked so onStoreUpdate can toggle. */
+  private _subscribed = false
+
   constructor() {
     super(statsHudStyles)
   }
@@ -52,7 +55,10 @@ class StatsHud extends BaseComponent {
    * Lifecycle: store subscription drives show/hide re-renders; the engine
    * subscription is a *direct* channel — stats update every ~500ms, far
    * too hot for the store's full-subscriber broadcast, so _updateStatsDom
-   * patches text nodes imperatively without re-running render().
+   * patches text nodes imperatively without re-running render(). The
+   * engine subscription only exists while the HUD is enabled: subscribing
+   * a hidden HUD would keep the FPS rAF loop, PerformanceObservers and
+   * the fetch-patch sampler running on every page forever.
    */
   override onMounted() {
     this.subscribe(store)
@@ -63,20 +69,39 @@ class StatsHud extends BaseComponent {
       this._updateStatsDom()
     }
 
-    statsEngine.subscribe(this._statsCb)
+    if (this.showStats && !this._subscribed) {
+      statsEngine.subscribe(this._statsCb)
+
+      this._subscribed = true
+    }
   }
 
   /** Lifecycle: stops the engine feed so the subscription outlives no element. */
   override onDestroy() {
-    if (this._statsCb) {
+    if (this._statsCb && this._subscribed) {
       statsEngine.unsubscribe(this._statsCb)
 
-      this._statsCb = null
+      this._subscribed = false
     }
+
+    this._statsCb = null
   }
 
-  /** Store change → full re-render (covers the HUD's show/hide toggle). */
+  /** Store change → re-render + resync the engine feed to the toggle. */
   override onStoreUpdate() {
+    const enabled = this.showStats
+    const subscribed = this._subscribed
+
+    if (enabled && !subscribed && this._statsCb) {
+      statsEngine.subscribe(this._statsCb)
+
+      this._subscribed = true
+    } else if (!enabled && subscribed && this._statsCb) {
+      statsEngine.unsubscribe(this._statsCb)
+
+      this._subscribed = false
+    }
+
     this._updateDom()
   }
 
