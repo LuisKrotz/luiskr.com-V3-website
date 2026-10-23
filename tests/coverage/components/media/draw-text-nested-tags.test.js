@@ -52,14 +52,14 @@ describe('draw-text nested markup', () => {
   })
 
   test('text chars are entity-escaped in both render modes', () => {
-    const nb = CHAR_STRINGS.NBSP
-    const expected = `2${nb}<${nb}3${nb}&${nb}"4"${nb}'5'`
+    const expected = '2 < 3 & "4" \'5\''
     const animated = mountHtml(renderContent('2 < 3 & "4" \'5\'', 10, 0))
     const plain = mountHtml(renderContent('2 < 3 & "4" \'5\'', 10, 0, false))
 
     // innerHTML assignment un-escapes entities — textContent must round-trip
-    // the source (spaces render as NBSP space-chunks), proving nothing was
-    // emitted as raw markup.
+    // the source (top-level spaces render as natural literal-space text
+    // nodes — shared geometry across modes), proving nothing was emitted
+    // as raw markup.
     expect(animated.textContent).toBe(expected)
     expect(plain.textContent).toBe(expected)
     expect(animated.querySelector('b, i, a')).toBeNull()
@@ -72,9 +72,7 @@ describe('draw-text nested markup', () => {
     // Twin text is NBSP-joined and the quote char must arrive as &quot; —
     // a raw " inside the span would still be safe markup, but the escaping
     // keeps the twin byte-identical to the old attribute contract.
-    expect(html).toContain(
-      `>say${CHAR_STRINGS.NBSP}&quot;hi&quot;${CHAR_STRINGS.NBSP}there<`
-    )
+    expect(html).toContain(`>say${CHAR_STRINGS.NBSP}&quot;hi&quot;${CHAR_STRINGS.NBSP}there<`)
   })
 
   test('authored aria-label is dropped in favor of the sr-only twin', () => {
@@ -97,8 +95,8 @@ describe('draw-text nested markup', () => {
 
     expect(host.querySelectorAll(CSS_STRINGS.TOKEN_BR)).toHaveLength(2)
     expect(host.querySelector('i')).toBeTruthy()
-    expect(host.textContent).toBe(
-      `ab${CHAR_STRINGS.NBSP}${CHAR_STRINGS.NBSP}c${CHAR_STRINGS.NBSP}de`
-    )
+    // Top-level spaces are literal text nodes; the nbsp contract only
+    // survives INSIDE tags (a link's words stay one visual unit).
+    expect(host.textContent).toBe('ab  c de')
   })
 })

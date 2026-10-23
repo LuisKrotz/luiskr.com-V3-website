@@ -14,6 +14,7 @@ import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
 import store from '@core/store.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 import { mountCornerBrackets } from '@core/utils/gpu/corner-brackets.js'
+import { videoAutoplayAllowed } from '@core/utils/media/policy.js'
 import type { MediaFigure } from '../MediaFigure.js'
 import { warmFirstRung } from './load.js'
 import { VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
@@ -100,10 +101,13 @@ export function mountMediaFigure(c: MediaFigure): void {
         }
       })
 
-      if (!isReduced) {
+      if (!isReduced && videoAutoplayAllowed()) {
         // Viewport-gated playback: sources are only attached once the
         // video is ≥15% visible (saves bandwidth on below-fold media),
-        // and leaving the viewport pauses it — no offscreen decode.
+        // and leaving the viewport pauses it — no offscreen decode. A
+        // 'low' connection budget (saveData/≤2g) skips this branch like
+        // reduced-motion: the poster stays painted and no stream bytes
+        // are ever fetched.
         c.observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {

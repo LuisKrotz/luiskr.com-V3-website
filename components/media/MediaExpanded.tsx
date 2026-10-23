@@ -20,6 +20,7 @@ import { startExpandedClose } from './expanded/close.js'
 import { cancelGenie } from './expanded/genie.js'
 import { renderMediaExpanded } from './expanded/render.js'
 import type { GenieSession } from './expanded/genie.js'
+import type { GenieSheet } from './expanded/genie-texture.js'
 import modalStyles from '@core/sass/components/internals/modal.scss?inline'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
@@ -32,6 +33,22 @@ export class MediaExpanded extends BaseComponent {
   _closeBtn: { destroy(): void } | null = null // CloseButtonWebGL on the header ✕
   _brackets: (() => void) | null = null // teardown for the close-button corner-brackets WebGPU widgets
   _genie: GenieSession | null = null // live genie-warp session (open/close transition)
+  /**
+   * Baked warp sheet reused across this modal's open→close pair — keyed
+   * on (content, dpr, viewport, theme): any of those changing rebakes.
+   * Invalidated when the media item's pixels or box change after the
+   * bake (full-res swap, figure-loaded flip). The sheet's restamp
+   * sources are live element refs, so a <video> sheet stays current
+   * frame-by-frame without a rebake.
+   */
+  _genieSheet: {
+    content: HTMLElement
+    dpr: number
+    vw: number
+    vh: number
+    dark: boolean
+    sheet: GenieSheet
+  } | null = null
 
   static get observedAttributes(): string[] {
     return [
@@ -125,6 +142,8 @@ export class MediaExpanded extends BaseComponent {
 
   override onDestroy() {
     cancelGenie(this)
+
+    this._genieSheet = null
 
     // A detached <video> keeps decoding+playing — the element leaves the
     // DOM on close but the media pipeline doesn't stop itself. Pause so

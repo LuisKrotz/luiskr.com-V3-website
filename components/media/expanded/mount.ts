@@ -74,6 +74,10 @@ function loadFullRes(el: MediaExpanded): void {
 
         if (imgEl) imgEl.src = localUrl
 
+        // The baked genie sheet holds the thumb-resolution pixels —
+        // the close warp rebakes against the full-res surface.
+        el._genieSheet = null
+
         // Terminal state — the figure's skeleton shimmer releases even on
         // the error path (a broken swap must not pin the shimmer forever).
         el.$(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_FIGURE}`)?.classList.add(
@@ -323,6 +327,10 @@ export function mountMediaExpanded(el: MediaExpanded): void {
             el.$(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_FIGURE}`)?.classList.add(
               EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_FIGURE_LOADED
             )
+
+            // The shimmer-less figure bakes differently — the close
+            // warp rebakes against the loaded surface.
+            el._genieSheet = null
           }
 
           el.addScopedListener(vid, MEDIA_EVENTS.LOADEDDATA, markLoaded)

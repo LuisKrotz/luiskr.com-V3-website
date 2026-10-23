@@ -15,6 +15,7 @@ import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h } from '@core/jsx.js'
 import { MenuBackgroundWebGL } from '@core/utils/canvas/loaders/menu-background-webgl.js'
 import { BurgerButtonWebGL } from '@core/utils/canvas/widgets/burger-button-webgl.js'
+import { webglContextDead } from '@core/utils/canvas/webgl-mode.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { destroyNavFlag, type NavFlagHost } from './flag.js'
@@ -176,7 +177,32 @@ export const mountNavMenuWebGL = (host: NavMenuHost): void => {
 export const mountNavBurgerWebGL = (host: NavMenuHost): void => {
   if (typeof window === TYPE_STRINGS.UNDEFINED) return
 
-  const burgerCanvas = host._burgerCanvasEl
+  let burgerCanvas = host._burgerCanvasEl
+
+  // A real runtime context loss (GPU eviction — not a recoverable pool
+  // purge) leaves the widget pinned on the CSS fallback while the canvas's
+  // context binding stays permanently dead: retrying it can never recover.
+  // Swap in a fresh canvas — a new binding gets a clean context — and let
+  // the normal attach path rebuild the widget on it.
+  if (
+    host._burgerBtn &&
+    host._burgerBtn.useWebGL === false &&
+    burgerCanvas &&
+    burgerCanvas.isConnected &&
+    webglContextDead(burgerCanvas)
+  ) {
+    const label = burgerCanvas.getAttribute(ARIA_ATTRS.ARIA_LABEL) || ATTR_VALUES.EMPTY
+
+    host._burgerBtn.destroy()
+
+    host._burgerBtn = null
+
+    host._burgerCanvasEl = null
+
+    burgerCanvas.replaceWith(navBurgerCanvas(host, label))
+
+    burgerCanvas = host._burgerCanvasEl
+  }
 
   if (!burgerCanvas || !burgerCanvas.isConnected) {
     if (host._burgerBtn) {
@@ -192,6 +218,10 @@ export const mountNavBurgerWebGL = (host: NavMenuHost): void => {
     applyAnimationDesc(burgerCanvas, ANIMATION_IDS.BURGER_BUTTON)
 
     host._burgerBtn = new BurgerButtonWebGL(burgerCanvas, () => toggleNavMenu(host))
+
+    // Re-applies the open morph — a rebuilt widget starts at the closed
+    // squares state even while the overlay is open.
+    host._burgerBtn.setOpen(host._menuOpen)
   }
 }
 

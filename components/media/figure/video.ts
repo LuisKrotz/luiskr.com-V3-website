@@ -10,6 +10,7 @@ import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import store from '@core/store.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
+import { prefersScaledVideo, videoAutoplayAllowed } from '@core/utils/media/policy.js'
 import type { MediaFigure } from '../MediaFigure.js'
 import { VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
@@ -30,18 +31,38 @@ export function ensureVideoSource(fig: MediaFigure, vid: HTMLVideoElement | null
   }
 
   // webm first — the browser walks the list until a source resolves, so
-  // a missing webm simply falls through to the mp4 originals.
-  append(fig.videoSrcWebmMain, MEDIA_ATTRS.VIDEO_WEBM)
-  append(fig.videoSrcWebmFallback, MEDIA_ATTRS.VIDEO_WEBM)
-  append(fig.videoSrcMain, MEDIA_ATTRS.VIDEO_MP4)
-  append(fig.videoSrcFallback, MEDIA_ATTRS.VIDEO_MP4)
+  // a missing webm simply falls through to the mp4 originals. When the
+  // rendered box can't resolve the full stream, the scaled (-2x) pair
+  // leads instead so a phone never commits to the 4K/1080p download.
+  const scaledFirst = prefersScaledVideo(fig.mediaWidth, fig.clientWidth)
+
+  const ordered: Array<[string, string]> = scaledFirst
+    ? [
+        [fig.videoSrcWebmFallback, MEDIA_ATTRS.VIDEO_WEBM],
+        [fig.videoSrcFallback, MEDIA_ATTRS.VIDEO_MP4],
+        [fig.videoSrcWebmMain, MEDIA_ATTRS.VIDEO_WEBM],
+        [fig.videoSrcMain, MEDIA_ATTRS.VIDEO_MP4],
+      ]
+    : [
+        [fig.videoSrcWebmMain, MEDIA_ATTRS.VIDEO_WEBM],
+        [fig.videoSrcWebmFallback, MEDIA_ATTRS.VIDEO_WEBM],
+        [fig.videoSrcMain, MEDIA_ATTRS.VIDEO_MP4],
+        [fig.videoSrcFallback, MEDIA_ATTRS.VIDEO_MP4],
+      ]
+
+  for (const [src, type] of ordered) append(src, type)
 
   vid.load()
 }
 
 /** Starts muted playback honoring reduced-motion/autoplay prefs. */
 export function playVideo(fig: MediaFigure, target: HTMLVideoElement | null): void {
-  if (!store.getters.getReducedMotion() && store.getters.getVideoAutoplay() && target?.play) {
+  if (
+    !store.getters.getReducedMotion() &&
+    videoAutoplayAllowed() &&
+    store.getters.getVideoAutoplay() &&
+    target?.play
+  ) {
     fig._ensureVideoSource(target)
 
     target
@@ -83,7 +104,12 @@ export function syncVideoPlayback(fig: MediaFigure): void {
     if (!vid.paused) {
       vid.pause()
     }
-  } else if (fig.isIntersecting && vid.paused && !store.getters.getReducedMotion()) {
+  } else if (
+    fig.isIntersecting &&
+    vid.paused &&
+    !store.getters.getReducedMotion() &&
+    videoAutoplayAllowed()
+  ) {
     fig._ensureVideoSource(vid)
 
     vid.play().catch(() => {})

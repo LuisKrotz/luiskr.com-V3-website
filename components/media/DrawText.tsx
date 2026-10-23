@@ -20,7 +20,7 @@ import { DRAW_TEXT_SELECTORS } from '@core/tokens/selectors/draw-text.js'
 import { updateDom } from './draw-text/dom.js'
 import { scheduleFit, setupFit, teardownFit } from './draw-text/fit.js'
 import { teardownGpuDraw } from './draw-text/gpu.js'
-import { parseTokens, renderContent } from './draw-text/render.js'
+import { parseTokens, renderContent, RENDER_MODES } from './draw-text/render.js'
 import {
   registerOrdered,
   setupTrigger,
@@ -289,7 +289,12 @@ export class DrawText extends HTMLElement {
   /** Builds the animated span tree (delegate — ./draw-text/render.ts). */
 
   _renderContent(withChars = true): string {
-    return renderContent(this.text, this.delay, this._effectiveOffset ?? this.offset, withChars)
+    return renderContent(
+      this.text,
+      this.delay,
+      this._effectiveOffset ?? this.offset,
+      withChars ? RENDER_MODES.CHARS : RENDER_MODES.WORDS
+    )
   }
 }
 

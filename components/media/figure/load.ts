@@ -22,6 +22,7 @@ import {
   type CoverRung,
 } from '@core/utils/media/manifest.js'
 import { encodeMediaUrl, webpSibling } from '@core/utils/media.js'
+import { ladderCeiling } from '@core/utils/media/policy.js'
 import { svgPlaceholder } from '@core/utils/dom.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 import { wasmImageDecoder } from '@core/utils/wasm/wasm-image-decoder.js'
@@ -270,8 +271,13 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
         ? Image
         : null
 
+  // Budget ceiling — connection tier + the rendered box width bound how
+  // high the climb may go; rungs past it (original/uncompressed) can
+  // never be resolved by this card and are pure transfer waste.
+  const ceiling = ladderCeiling(ladder.length, fig.clientWidth)
+
   if (!ImageClass) {
-    publish(ladder[ladder.length - 1].jpg)
+    publish(ladder[Math.min(ladder.length - 1, ceiling)].jpg)
 
     return
   }
@@ -283,7 +289,7 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
    * skips to the next rung — the best confirmed tier stays painted.
    */
   const climb = (i: number): void => {
-    if (i >= ladder.length) {
+    if (i >= ladder.length || i > ceiling) {
       fig.isLoaded = true
       fig.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
 

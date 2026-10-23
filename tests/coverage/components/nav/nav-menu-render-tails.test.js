@@ -7,7 +7,14 @@
  * anchors so modified clicks keep native <a href> semantics.
  */
 import { describe, test, expect, jest } from '@jest/globals'
-import { mountNavMenuWebGL } from '@website/components/nav/menu.js'
+import {
+  mountNavMenuWebGL,
+  mountNavBurgerWebGL,
+  navBurgerCanvas,
+  toggleNavMenu,
+  openNavMenu,
+  closeNavMenu,
+} from '@website/components/nav/menu.js'
 import { renderAppNav } from '@website/components/nav/render.js'
 import { localePath } from '@core/i18n.js'
 import router from '@core/router/router.js'
@@ -18,8 +25,13 @@ import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { NAV_CLASSES, NAV_BURGER_CLASSES, NAV_MENU_CLASSES } from '@core/tokens/classes/nav.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
+import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 import { APP_IDS } from '@core/tokens/ids/app.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
+import { HTML_TAGS } from '@core/tokens/elements/html.js'
+import { WEBGL_STRINGS } from '@core/tokens/strings/webgl.js'
+import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 
 const navStub = (over = {}) => ({
   translations: null,
@@ -66,6 +78,330 @@ describe('nav menu + render tails', () => {
     mountNavMenuWebGL(host)
 
     expect(host._menuBg).toBeNull()
+  })
+
+  test('mountNavBurgerWebGL swaps a permanently dead canvas binding and rebuilds the widget', () => {
+    // A live canvas whose bound context is lost and unrestorable — the
+    // real-GPU-eviction signature webglContextDead() reports true for.
+    const dead = document.createElement(HTML_TAGS.CANVAS)
+
+    dead.setAttribute(ARIA_ATTRS.ARIA_LABEL, TEST_TEXT.HEADING)
+
+    dead.getContext = (type) =>
+      String(type) === WEBGL_STRINGS.WEBGL
+        ? { isContextLost: () => true, getExtension: () => null }
+        : null
+
+    const parent = document.createElement(HTML_TAGS.DIV)
+
+    parent.appendChild(dead)
+    document.body.appendChild(parent)
+
+    const destroy = jest.fn()
+    const host = {
+      _burgerBtn: { useWebGL: false, destroy },
+      _burgerCanvasEl: dead,
+      _menuOpen: false,
+      _onDark: false,
+      _updateDom: jest.fn(),
+    }
+
+    mountNavBurgerWebGL(host)
+
+    // The dead element left the DOM; the persistent slot points at the
+    // fresh connected canvas and a rebuilt widget carries the label over.
+    expect(destroy).toHaveBeenCalled()
+    expect(dead.isConnected).toBe(false)
+    expect(host._burgerCanvasEl).not.toBe(dead)
+    expect(host._burgerCanvasEl.isConnected).toBe(true)
+    expect(host._burgerCanvasEl.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toBe(TEST_TEXT.HEADING)
+    expect(host._burgerBtn).toBeTruthy()
+
+    // The rebuilt widget's click route is the toggle closure — firing it
+    // opens the menu on the stub host (covers the widget callback arm).
+    host._burgerCanvasEl.dispatchEvent(
+      new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true })
+    )
+
+    expect(host._menuOpen).toBe(true)
+    expect(host._updateDom).toHaveBeenCalled()
+
+    host._burgerBtn.destroy()
+    parent.remove()
+  })
+
+  test('mountNavBurgerWebGL swap defaults the label when the dead canvas has none', () => {
+    // Same unrecoverable-loss signature, minus aria-label — the fresh
+    // canvas must come up with the empty-label arm, not a null attr.
+    const dead = document.createElement(HTML_TAGS.CANVAS)
+
+    dead.getContext = (type) =>
+      String(type) === WEBGL_STRINGS.WEBGL
+        ? { isContextLost: () => true, getExtension: () => null }
+        : null
+
+    const parent = document.createElement(HTML_TAGS.DIV)
+
+    parent.appendChild(dead)
+    document.body.appendChild(parent)
+
+    const host = {
+      _burgerBtn: { useWebGL: false, destroy: jest.fn() },
+      _burgerCanvasEl: dead,
+      _menuOpen: false,
+      _onDark: false,
+    }
+
+    mountNavBurgerWebGL(host)
+
+    expect(host._burgerCanvasEl).not.toBe(dead)
+    expect(host._burgerCanvasEl.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toBe(ATTR_VALUES.EMPTY)
+
+    host._burgerBtn.destroy()
+    parent.remove()
+  })
+
+  test('mountNavBurgerWebGL tears the widget down when the canvas left the DOM', () => {
+    // !burgerCanvas arm — nav states that drop the burger (404) must
+    // destroy the live widget instead of leaking its GL context.
+    const destroy = jest.fn()
+    const host = { _burgerBtn: { destroy }, _burgerCanvasEl: null }
+
+    mountNavBurgerWebGL(host)
+
+    expect(destroy).toHaveBeenCalled()
+    expect(host._burgerBtn).toBeNull()
+
+    // !isConnected arm — canvas exists but is detached; nothing to
+    // destroy on the widget-null path either.
+    const detached = document.createElement(HTML_TAGS.CANVAS)
+    const host2 = { _burgerBtn: null, _burgerCanvasEl: detached }
+
+    mountNavBurgerWebGL(host2)
+
+    expect(host2._burgerBtn).toBeNull()
+  })
+
+  test('mountNavMenuWebGL mounts the background widget on a connected canvas', () => {
+    const canvas = document.createElement(HTML_TAGS.CANVAS)
+
+    document.body.appendChild(canvas)
+
+    const host = {
+      _menuOpen: true,
+      $: () => null,
+      _menuCanvasEl: canvas,
+      _menuBg: null,
+      _menuSettled: true,
+      _menuSettleTimer: null,
+    }
+
+    mountNavMenuWebGL(host)
+
+    expect(host._menuBg).toBeTruthy()
+
+    host._menuBg.destroy()
+    canvas.remove()
+  })
+
+  test('navBurgerCanvas builds the element once and reuses it after', () => {
+    const host = { _burgerCanvasEl: null, _onDark: false, _menuOpen: false }
+
+    const created = navBurgerCanvas(host, TEST_TEXT.HEADING)
+
+    expect(created).toBe(host._burgerCanvasEl)
+    expect(created.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toBe(TEST_TEXT.HEADING)
+
+    const again = navBurgerCanvas(host, TEST_TEXT.HEADING)
+
+    expect(again).toBe(created)
+  })
+
+  test('toggleNavMenu opens a closed menu and openNavMenu no-ops while open', () => {
+    const host = {
+      _menuOpen: false,
+      _menuClosing: false,
+      _menuSettled: false,
+      _burgerBtn: null,
+      _updateDom: jest.fn(),
+    }
+
+    toggleNavMenu(host)
+
+    // Else arm — no burger widget, so the optional setOpen hop no-ops.
+    expect(host._menuOpen).toBe(true)
+    expect(host._updateDom).toHaveBeenCalledTimes(1)
+
+    // Early return arm — a second open on an open menu is a no-op.
+    openNavMenu(host)
+
+    expect(host._updateDom).toHaveBeenCalledTimes(1)
+
+    // Burger-present arm — the open morph is pushed to the live widget.
+    const withBurger = { ...host, _menuOpen: false, _burgerBtn: { setOpen: jest.fn() } }
+
+    openNavMenu(withBurger)
+
+    expect(withBurger._burgerBtn.setOpen).toHaveBeenCalledWith(true)
+  })
+
+  test('toggleNavMenu on an open menu walks the close path', () => {
+    jest.useFakeTimers()
+
+    const host = {
+      _menuOpen: true,
+      _menuClosing: false,
+      _menuSettled: true,
+      _menuSettleTimer: null,
+      _menuBg: null,
+      _menuCanvasEl: null,
+      _burgerBtn: null,
+      _navFlags: [],
+      _menuFlagCanvasEl: null,
+      _menuFlagLang: null,
+      $: () => null,
+      _updateDom: jest.fn(),
+    }
+
+    // if arm — the overlay is open, so the toggle routes to closeNavMenu.
+    toggleNavMenu(host)
+
+    expect(host._menuClosing).toBe(true)
+
+    jest.advanceTimersByTime(ANIMATION_DURATIONS.MENU_CLOSE_DURATION)
+
+    expect(host._menuOpen).toBe(false)
+
+    jest.useRealTimers()
+  })
+
+  test('mountNavBurgerWebGL no-ops without a window (SSR)', () => {
+    const winDesc = Object.getOwnPropertyDescriptor(globalThis, 'window')
+
+    Object.defineProperty(globalThis, 'window', { value: undefined, configurable: true })
+
+    try {
+      const host = { _burgerBtn: null, _burgerCanvasEl: null }
+
+      mountNavBurgerWebGL(host)
+
+      expect(host._burgerBtn).toBeNull()
+    } finally {
+      if (winDesc) Object.defineProperty(globalThis, 'window', winDesc)
+    }
+  })
+
+  test('mountNavMenuWebGL describes the overlay when the modal node exists', () => {
+    // if(modal) arm — the absent-modal tail above covers the skip path.
+    const modal = document.createElement(HTML_TAGS.DIV)
+
+    document.body.appendChild(modal)
+
+    const host = {
+      _menuOpen: true,
+      $: jest.fn(() => modal),
+      _menuCanvasEl: null,
+      _menuBg: null,
+      _menuSettled: true,
+      _menuSettleTimer: null,
+    }
+
+    mountNavMenuWebGL(host)
+
+    expect(host.$).toHaveBeenCalled()
+
+    modal.remove()
+  })
+
+  test('settle timer leaves _menuSettled false when the menu closed first', () => {
+    jest.useFakeTimers()
+
+    const host = {
+      _menuOpen: true,
+      $: () => null,
+      _menuCanvasEl: null,
+      _menuBg: null,
+      _menuSettled: false,
+      _menuSettleTimer: null,
+    }
+
+    mountNavMenuWebGL(host)
+
+    expect(host._menuSettleTimer).not.toBeNull()
+
+    // Menu closed while the settle delay was still pending — the timer
+    // callback must not stamp _menuSettled on a closed overlay.
+    host._menuOpen = false
+
+    jest.advanceTimersByTime(ANIMATION_DURATIONS.MENU_SETTLE_DURATION)
+
+    expect(host._menuSettleTimer).toBeNull()
+    expect(host._menuSettled).toBe(false)
+
+    jest.useRealTimers()
+  })
+
+  test('closeNavMenu timer clears state with no settle timer or background', () => {
+    jest.useFakeTimers()
+
+    const host = {
+      _menuOpen: true,
+      _menuClosing: false,
+      _menuSettled: true,
+      _menuSettleTimer: null,
+      _menuBg: null,
+      _menuCanvasEl: null,
+      _burgerBtn: null,
+      _navFlags: [],
+      _menuFlagCanvasEl: null,
+      _menuFlagLang: null,
+      $: () => null,
+      _updateDom: jest.fn(),
+    }
+
+    closeNavMenu(host)
+
+    expect(host._menuClosing).toBe(true)
+
+    // No _menuSettleTimer / _menuBg — the close timer's null arms run.
+    jest.advanceTimersByTime(ANIMATION_DURATIONS.MENU_CLOSE_DURATION)
+
+    expect(host._menuOpen).toBe(false)
+    expect(host._menuClosing).toBe(false)
+    expect(host._menuSettled).toBe(false)
+
+    jest.useRealTimers()
+  })
+
+  test('closeNavMenu timer bails when the close was cancelled mid-flight', () => {
+    jest.useFakeTimers()
+
+    const host = {
+      _menuOpen: true,
+      _menuClosing: false,
+      _menuSettled: true,
+      _menuSettleTimer: null,
+      _menuBg: null,
+      _menuCanvasEl: null,
+      _burgerBtn: null,
+      _navFlags: [],
+      _menuFlagCanvasEl: null,
+      _menuFlagLang: null,
+      $: () => null,
+      _updateDom: jest.fn(),
+    }
+
+    closeNavMenu(host)
+
+    // A second path reset the flag before the dissolve timer fired —
+    // the callback must return early instead of tearing the menu down.
+    host._menuClosing = false
+
+    jest.advanceTimersByTime(ANIMATION_DURATIONS.MENU_CLOSE_DURATION)
+
+    expect(host._menuOpen).toBe(true)
+
+    jest.useRealTimers()
   })
 
   test('playground and star-field menu anchors keep native semantics on modified clicks', () => {
