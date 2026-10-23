@@ -114,6 +114,17 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
 
         {covers.rungs.length > 0 && (
           <picture>
+            {/* Mobile-stem entry rung for ≤768px viewports — the climb
+                continues on covers.mobileRungs once it paints, so the
+                first fetch is already the 768px-wide derivative. */}
+            {!reached && covers.mobileRungs.length > 0 && (
+              <source
+                media={MEDIA_QUERIES.MAX_WIDTH_768}
+                srcset={covers.mobileRungs[0].webp || covers.mobileRungs[0].jpg}
+                type={covers.mobileRungs[0].webp ? MEDIA_ATTRS.IMAGE_WEBP : undefined}
+              />
+            )}
+
             {!reached && covers.rungs[0].webp && (
               <source srcset={covers.rungs[0].webp} type={MEDIA_ATTRS.IMAGE_WEBP} />
             )}
@@ -135,7 +146,8 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
                   coverSrc,
                   e.currentTarget as HTMLImageElement,
                   covers.rungs,
-                  HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_LOADED
+                  HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_LOADED,
+                  covers.mobileRungs
                 )
               }
             />

@@ -22,7 +22,7 @@ import {
   type CoverRung,
 } from '@core/utils/media/manifest.js'
 import { encodeMediaUrl, webpSibling } from '@core/utils/media.js'
-import { ladderCeiling } from '@core/utils/media/policy.js'
+import { ladderCeiling, smallMediaBox } from '@core/utils/media/policy.js'
 import { svgPlaceholder } from '@core/utils/dom.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 import { wasmImageDecoder } from '@core/utils/wasm/wasm-image-decoder.js'
@@ -108,7 +108,7 @@ export function warmFirstRung(fig: MediaFigure): void {
   const storage = store.getters.getStorage()
   const stem = encodeMediaUrl(storage + fig.mediaSrc)
 
-  const ladder = mediaRungs(stem)
+  const ladder = figureLadder(stem, fig.clientWidth)
   const first = ladder[0]
 
   const url = first
@@ -122,6 +122,27 @@ export function warmFirstRung(fig: MediaFigure): void {
   const probe = new ImageCtor()
 
   probe.src = url
+}
+
+/**
+ * The ascending rung ladder a figure climbs — the 768px-wide
+ * `{stem}-mobile` derivative stem when the rendered box is ≤768 CSS px
+ * and the manifest proves mobile tiers exist, else the full-width stem.
+ * Every mobile rung is a fraction of its full-width twin's bytes and a
+ * box that small cannot resolve the difference — Lighthouse counts the
+ * full-width climb as pure waste.
+ * @param stem Emission-encoded extensionless media stem.
+ * @param boxWidthCssPx Rendered figure width (0 = pre-layout → full stem).
+ * @returns Proven ascending rungs — may be empty (manifest absent).
+ */
+function figureLadder(stem: string, boxWidthCssPx: number): CoverRung[] {
+  if (smallMediaBox(boxWidthCssPx)) {
+    const mobile = mediaRungs(`${stem}${MEDIA.MOBILE_SUFFIX}`)
+
+    if (mobile.length) return mobile
+  }
+
+  return mediaRungs(stem)
 }
 
 /**
@@ -156,7 +177,7 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
   // Manifest-proven ascending rungs; when the manifest can't prove a
   // single tier (absent, or the media was never converted) fall back to
   // the historic blind Q50 probe — the request itself is the check.
-  const ladder: CoverRung[] = mediaRungs(stem)
+  const ladder: CoverRung[] = figureLadder(stem, fig.clientWidth)
 
   if (!ladder.length) {
     const q50 = encodeMediaUrl(`${stem}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)

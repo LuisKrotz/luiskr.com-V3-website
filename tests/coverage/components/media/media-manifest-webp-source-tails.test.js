@@ -51,10 +51,18 @@ describe('media-manifest webp sources', () => {
         `fig/pic${MEDIA.MOZ}${MEDIA.Q100}${MEDIA.EXT}`,
         // covers/lad — cover ladder: kodak LQIP, q50 (+webp), q75 (jpg
         // only); the trusted passthrough original rides the '' rung.
+        // The -mobile stem proves one ladder tier so the high layer's
+        // <source media> emits and ≤768px boxes climb the mobile stem.
         `${LADDER_KEY}${MEDIA.MOZ}${MEDIA.THUMB_SUFFIX}${MEDIA.EXT}`,
         `${LADDER_KEY}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`,
         `${LADDER_KEY}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.WEBP_EXT}`,
         `${LADDER_KEY}${MEDIA.MOZ}${MEDIA.Q75}${MEDIA.EXT}`,
+        `${LADDER_KEY}${MEDIA.MOBILE_SUFFIX}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`,
+        // covers/mob2 — thumb + a -mobile q50 with its webp sibling, so
+        // the mobile <source>'s type/srcset take the webp-true arms.
+        `covers/mob2${MEDIA.MOZ}${MEDIA.THUMB_SUFFIX}${MEDIA.EXT}`,
+        `covers/mob2${MEDIA.MOBILE_SUFFIX}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`,
+        `covers/mob2${MEDIA.MOBILE_SUFFIX}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.WEBP_EXT}`,
         // covers/lad2 — same ladder minus the q50 webp sibling so the
         // rung-0 <source> gate takes its webp-absent arm.
         `${JPG_ONLY_KEY}${MEDIA.MOZ}${MEDIA.THUMB_SUFFIX}${MEDIA.EXT}`,
@@ -267,6 +275,7 @@ describe('media-manifest webp sources', () => {
     mosaic.processedItems = [
       { label: 'Ladder Card', link: 'lad', image: 'lad', featured: false },
       { label: 'Ladder Jpg', link: 'lad2', image: 'lad2', featured: false },
+      { label: 'Ladder Mob', link: 'mob2', image: 'mob2', featured: false },
     ]
     mosaic._updateDom()
 
@@ -274,7 +283,7 @@ describe('media-manifest webp sources', () => {
       `img.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_HIGH}`
     )
 
-    expect(highs.length).toBe(2)
+    expect(highs.length).toBe(3)
     expect(highs[0].getAttribute('src').endsWith(`${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)).toBe(true)
 
     // rung-0 webp rides <source> only where the sibling is proven.
@@ -283,11 +292,35 @@ describe('media-manifest webp sources', () => {
 
     expect(
       ladPic
-        .querySelector('source')
+        .querySelector('source:not([media])')
         .getAttribute('srcset')
         .endsWith(`${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.WEBP_EXT}`)
     ).toBe(true)
+    // The mobile-stem entry rung emits as the media-scoped <source> —
+    // first matching source wins on ≤768px viewports.
+    const mobileSource = ladPic.querySelector('source[media]')
+
+    expect(mobileSource).not.toBeNull()
+    expect(
+      mobileSource
+        .getAttribute('srcset')
+        .endsWith(`${MEDIA.MOBILE_SUFFIX}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)
+    ).toBe(true)
+    expect(mobileSource.getAttribute('type')).toBeNull()
     expect(lad2Pic.querySelector('source')).toBeNull()
+
+    // covers/mob2's mobile rung-0 carries a proven webp — the media
+    // source prefers it and stamps the image/webp type.
+    const mob2Pic = highs[2].parentElement
+    const mob2Mobile = mob2Pic.querySelector('source[media]')
+
+    expect(mob2Mobile).not.toBeNull()
+    expect(
+      mob2Mobile
+        .getAttribute('srcset')
+        .endsWith(`${MEDIA.MOBILE_SUFFIX}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.WEBP_EXT}`)
+    ).toBe(true)
+    expect(mob2Mobile.getAttribute('type')).toBe(MEDIA_ATTRS.IMAGE_WEBP)
 
     const origImage = window.Image
     const probes = []
@@ -378,6 +411,7 @@ describe('media-manifest webp sources', () => {
     store.state.portfoliolist = [
       { link: 'rel', image: 'lad', label: 'Rel Lad' },
       { link: 'rel2', image: 'lad2', label: 'Rel Lad2' },
+      { link: 'rel3', image: 'mob2', label: 'Rel Mob2' },
     ]
 
     const related = new PortfolioRelated()
@@ -389,6 +423,7 @@ describe('media-manifest webp sources', () => {
       projects: [
         { link: '/portfolio/rel', page: 'Rel' },
         { link: '/portfolio/rel2', page: 'Rel2' },
+        { link: '/portfolio/rel3', page: 'Rel3' },
       ],
     }
     related._updateDom()
@@ -397,9 +432,14 @@ describe('media-manifest webp sources', () => {
       `img.${RELATED_CLASSES.RELATED_MOSAIC_IMG_HIGH}`
     )
 
-    expect(highs.length).toBe(2)
+    expect(highs.length).toBe(3)
     expect(highs[0].parentElement.querySelector('source')).not.toBeNull()
     expect(highs[1].parentElement.querySelector('source')).toBeNull()
+    // covers/mob2's proven mobile webp → the media-scoped <source>
+    // stamps type="image/webp" (the webp-true arm).
+    expect(highs[2].parentElement.querySelector('source[media]').getAttribute('type')).toBe(
+      MEDIA_ATTRS.IMAGE_WEBP
+    )
 
     const origImage = window.Image
     const probes = []

@@ -39,9 +39,11 @@ describe('media-figure warm-up', () => {
     globalThis.fetch = jest.fn(async () => ({
       ok: true,
       json: async () => [
-        // warm/webp — q50 jpg + webp sibling proven
+        // warm/webp — q50 jpg + webp sibling proven, plus a -mobile
+        // stem ladder (its own manifest-gated q50 tier)
         `${WARM_KEY}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`,
         `${WARM_KEY}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.WEBP_EXT}`,
+        `${WARM_KEY}${MEDIA.MOBILE_SUFFIX}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`,
         // warm/jpg — q50 jpg only, so rung 0 falls to the jpg arm
         `${WARM_JPG_KEY}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`,
       ],
@@ -68,6 +70,32 @@ describe('media-figure warm-up', () => {
 
       expect(loaded.at(-1).endsWith(`${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)).toBe(true)
       expect(loaded.at(-1).endsWith(MEDIA.WEBP_EXT)).toBe(false)
+
+      // ≤768px box — the -mobile stem ladder replaces the desktop one
+      // (every mobile rung is a fraction of its full-width twin's bytes).
+      const small = detachedFigure(WARM_KEY)
+
+      Object.defineProperty(small, 'clientWidth', { value: 385, configurable: true })
+
+      warmFirstRung(small)
+
+      expect(
+        loaded.at(-1).endsWith(`${MEDIA.MOBILE_SUFFIX}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)
+      ).toBe(true)
+
+      // ≤768px box on a stem with no proven mobile tiers — falls back to
+      // the desktop ladder (mediaRungs(mobileStem).length false arm).
+      const smallNoMob = detachedFigure(WARM_JPG_KEY)
+
+      Object.defineProperty(smallNoMob, 'clientWidth', {
+        value: 385,
+        configurable: true,
+      })
+
+      warmFirstRung(smallNoMob)
+
+      expect(loaded.at(-1).endsWith(`${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)).toBe(true)
+      expect(loaded.at(-1).includes(MEDIA.MOBILE_SUFFIX)).toBe(false)
     } finally {
       window.Image = origImage
       globalThis.fetch = realFetch
