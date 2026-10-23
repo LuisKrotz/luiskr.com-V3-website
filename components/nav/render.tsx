@@ -233,13 +233,6 @@ export const renderAppNav = (nav: AppNav) => {
       className={`${NAV_CLASSES.NAV}${onDark ? ` ${NAV_CLASSES.NAV_ON_DARK}` : CHAR_STRINGS.EMPTY}${nav.isPlaygroundPage ? ` ${NAV_CLASSES.NAV_PLAYGROUND}` : CHAR_STRINGS.EMPTY}`}
       aria-label={title}
     >
-      {/* Keyboard skip-nav — first focusable node in the shell; hidden
-          until :focus-visible, jumps to the routed <main>. Lives inside
-          the nav landmark so every node sits within a landmark. */}
-      <a className={A11Y_CLASSES.SKIP_LINK} href={`${CHAR_STRINGS.HASH}${APP_IDS.MAIN_CONTENT}`}>
-        {appText(NAV_UI_KEYS.SKIP) as string}
-      </a>
-
       {/* Real anchor — right-click / open-in-new-tab reach the localized
           home route; the click handler only intercepts plain clicks. */}
       <a

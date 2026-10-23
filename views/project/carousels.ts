@@ -50,9 +50,14 @@ export function bindProjectCarousels(view: ViewProject): void {
   eager.forEach(configure)
 
   if (view._bindIdle) {
-    if (typeof cancelIdleCallback === TYPE_STRINGS.FUNCTION) cancelIdleCallback(view._bindIdle)
-
-    clearTimeout(view._bindIdle)
+    // Cancel through the same api that scheduled it (see schedule below):
+    // rIC handles and timer handles are independent counters — a blind
+    // clearTimeout() on an rIC id cancels an unrelated pending timer.
+    if (typeof cancelIdleCallback === TYPE_STRINGS.FUNCTION) {
+      cancelIdleCallback(view._bindIdle)
+    } else {
+      clearTimeout(view._bindIdle)
+    }
   }
 
   const schedule = (fn: () => void): number =>
