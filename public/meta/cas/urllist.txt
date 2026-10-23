@@ -3560,6 +3560,7 @@ https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/fs-retry.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/gen-onnx-models.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/generate-sitemap.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/media-manifest.md
+https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/predeploy.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/stamp-content-signal.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/docs
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/docs/gen-docs.md
@@ -8062,6 +8063,7 @@ https://luiskr.com/docs/shared/scripts/build/fs-retry.mjs
 https://luiskr.com/docs/shared/scripts/build/gen-onnx-models.mjs
 https://luiskr.com/docs/shared/scripts/build/generate-sitemap.js
 https://luiskr.com/docs/shared/scripts/build/media-manifest.mjs
+https://luiskr.com/docs/shared/scripts/build/predeploy.mjs
 https://luiskr.com/docs/shared/scripts/build/stamp-content-signal.mjs
 https://luiskr.com/docs/shared/scripts/docs
 https://luiskr.com/docs/shared/scripts/docs/gen-docs.mjs
