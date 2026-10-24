@@ -5693,6 +5693,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/coverage-docs/tree-icon.tsx.html</loc>
+    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/coverage-earth/base.css</loc>
     <lastmod>2026-10-24T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -7303,6 +7308,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs-exp/docs/_map.scss</loc>
+    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs-exp/docs/_media.scss</loc>
     <lastmod>2026-10-24T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -7379,6 +7389,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs-exp/telemetry.ts</loc>
+    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs-exp/tree-icon.tsx</loc>
     <lastmod>2026-10-24T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -12848,7 +12863,17 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/starfield/badge.md</loc>
+    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/starfield/kinds.md</loc>
+    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/starfield/music.md</loc>
     <lastmod>2026-10-24T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -13748,6 +13773,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/experiments/docs/tree-icon.md</loc>
+    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/experiments/docs/vite.config.md</loc>
     <lastmod>2026-10-24T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -14264,6 +14294,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/experiments/star-field/star/i18n.md</loc>
+    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/experiments/star-field/star/music.md</loc>
     <lastmod>2026-10-24T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
