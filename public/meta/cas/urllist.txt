@@ -1815,6 +1815,7 @@ https://luiskr.com/docs/coverage-docs/render.tsx.html
 https://luiskr.com/docs/coverage-docs/sort-arrow-sprite.png
 https://luiskr.com/docs/coverage-docs/sorter.js
 https://luiskr.com/docs/coverage-docs/telemetry.ts.html
+https://luiskr.com/docs/coverage-docs/tree-icon.tsx.html
 https://luiskr.com/docs/coverage-earth/base.css
 https://luiskr.com/docs/coverage-earth/block-navigation.js
 https://luiskr.com/docs/coverage-earth/coverage-final.json
@@ -2137,6 +2138,7 @@ https://luiskr.com/docs/docs-exp/docs/_content.scss
 https://luiskr.com/docs/docs-exp/docs/_crumbs.scss
 https://luiskr.com/docs/docs-exp/docs/_grid.scss
 https://luiskr.com/docs/docs-exp/docs/_loader.scss
+https://luiskr.com/docs/docs-exp/docs/_map.scss
 https://luiskr.com/docs/docs-exp/docs/_media.scss
 https://luiskr.com/docs/docs-exp/docs/_protected.scss
 https://luiskr.com/docs/docs-exp/docs/_rendered.scss
@@ -2153,6 +2155,7 @@ https://luiskr.com/docs/docs-exp/mermaid.ts
 https://luiskr.com/docs/docs-exp/package.json
 https://luiskr.com/docs/docs-exp/render.tsx
 https://luiskr.com/docs/docs-exp/telemetry.ts
+https://luiskr.com/docs/docs-exp/tree-icon.tsx
 https://luiskr.com/docs/docs-exp/tsconfig.json
 https://luiskr.com/docs/docs-exp/vite.config.js
 https://luiskr.com/docs/docs/LICENSE
@@ -3246,7 +3249,9 @@ https://luiskr.com/docs/docs/jsdocs/core/tokens/selectors/nav.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/selectors/skeleton.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/starfield
 https://luiskr.com/docs/docs/jsdocs/core/tokens/starfield.md
+https://luiskr.com/docs/docs/jsdocs/core/tokens/starfield/badge.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/starfield/kinds.md
+https://luiskr.com/docs/docs/jsdocs/core/tokens/starfield/music.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/starfield/params
 https://luiskr.com/docs/docs/jsdocs/core/tokens/starfield/params.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/starfield/params/bodies.md
@@ -3426,6 +3431,7 @@ https://luiskr.com/docs/docs/jsdocs/experiments/docs/manifest.md
 https://luiskr.com/docs/docs/jsdocs/experiments/docs/mermaid.md
 https://luiskr.com/docs/docs/jsdocs/experiments/docs/render.md
 https://luiskr.com/docs/docs/jsdocs/experiments/docs/telemetry.md
+https://luiskr.com/docs/docs/jsdocs/experiments/docs/tree-icon.md
 https://luiskr.com/docs/docs/jsdocs/experiments/docs/vite.config.md
 https://luiskr.com/docs/docs/jsdocs/experiments/earth-playground
 https://luiskr.com/docs/docs/jsdocs/experiments/earth-playground/SpacePlayground.md
@@ -3530,6 +3536,7 @@ https://luiskr.com/docs/docs/jsdocs/experiments/star-field/star
 https://luiskr.com/docs/docs/jsdocs/experiments/star-field/star/boot.md
 https://luiskr.com/docs/docs/jsdocs/experiments/star-field/star/dossier.md
 https://luiskr.com/docs/docs/jsdocs/experiments/star-field/star/i18n.md
+https://luiskr.com/docs/docs/jsdocs/experiments/star-field/star/music.md
 https://luiskr.com/docs/docs/jsdocs/experiments/star-field/star/render.md
 https://luiskr.com/docs/docs/jsdocs/experiments/star-field/starfield-engine.md
 https://luiskr.com/docs/docs/jsdocs/experiments/star-field/vite.config.md
