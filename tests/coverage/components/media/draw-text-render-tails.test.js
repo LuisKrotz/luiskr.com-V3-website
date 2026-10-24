@@ -90,11 +90,13 @@ describe('draw-text render tails', () => {
       plainTokensToHtml([{ type: CSS_STRINGS.TOKEN_TAG, chunks: [{ type: 'unknown' }] }])
     ).toBe(ATTR_VALUES.EMPTY)
 
-    // Tag token with no chunks field — the `|| []` inner fallback.
+    // Tag token with no chunks field — the `|| []` inner fallback emits
+    // a bare real element (no empty hidden span — hidden wrappers only
+    // exist where a text run actually produced content).
     const chunkless = plainTokensToHtml([{ type: CSS_STRINGS.TOKEN_TAG, tag: 'b' }])
 
     expect(chunkless).toContain('<b ')
-    expect(chunkless).toContain(ARIA_ATTRS.ARIA_HIDDEN)
+    expect(chunkless).not.toContain(ARIA_ATTRS.ARIA_HIDDEN)
 
     const html = plainTokensToHtml([
       { type: CSS_STRINGS.TOKEN_WORD, chars: [{ ci: 0, value: 'a' }] },
