@@ -24,8 +24,10 @@ import { VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
  * @param c — the component
  */
 export function mountMediaFigure(c: MediaFigure): void {
-  gpuAccel.accelerateElementGPU(c)
-
+  // No blanket will-change: the figure element itself never transforms —
+  // the expand modal's genie warp animates a canvas sheet elsewhere.
+  // Forcing a composited layer per figure on a 100+-figure page is pure
+  // layer bloat (the Safari patch disables this call for that reason).
   c.subscribe(store)
 
   if (c.classes) {

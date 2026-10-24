@@ -257,39 +257,21 @@ export const renderWordHtml = (
 }
 
 /**
- * One plain-mode token → markup. Words become escaped text (no span —
- * a pending paragraph needs zero per-word nodes), top-level spaces
- * become literal spaces, tags recurse through plainTagToHtml.
- * @param chunk The parsed token.
- * @returns HTML string for the token.
- */
-const plainChunkToHtml = (chunk: DrawToken): string => {
-  if (chunk.type === CSS_STRINGS.TOKEN_WORD)
-    return (chunk.chars || []).map((ch) => escapeHtml(ch.value)).join(ATTR_VALUES.EMPTY)
-
-  // Inside tags the space is nbsp — same unbreakable rule the animated
-  // render applies inside links (a link's words stay one visual unit).
-  if (chunk.type === CSS_STRINGS.TOKEN_SPACE) return CHAR_STRINGS.NBSP
-
-  if (chunk.type === CSS_STRINGS.TOKEN_BR) return '<br aria-hidden="true" />'
-
-  if (chunk.type === CSS_STRINGS.TOKEN_TAG) return plainTagToHtml(chunk)
-
-  return ATTR_VALUES.EMPTY
-}
-
-/**
- * Plain-mode tag — real markup with a single aria-hidden wrapper for the
- * inner text (every visual copy stays hidden so the host's sr-only twin
- * is the one announcement). Anchors additionally carry the sr-only-alpha
- * twin — identical accessible-name topology to the animated render —
- * and keep their authored attrStr minus aria-label for the same
- * label-in-name parity reason documented at tagToHtml.
+ * Plain-mode tag — the element itself stays a real, reachable node while
+ * its text content collapses via the recursive plainTokensToHtml call
+ * (runs wrap in per-run aria-hidden spans so the host's sr-only twin is
+ * the one announcement). The single outer aria-hidden wrapper this
+ * replaced hid interactive descendants too — `<strong><a>…` mounted a
+ * focusable link inside an aria-hidden subtree (axe aria-hidden-focus,
+ * and the link vanished from the accessibility tree entirely). Anchors
+ * additionally carry the sr-only-alpha twin — identical accessible-name
+ * topology to the animated render — and keep their authored attrStr
+ * minus aria-label for the label-in-name parity reason at tagToHtml.
  * @param token The tag token.
  * @returns HTML for the tag block.
  */
 const plainTagToHtml = (token: DrawToken): string => {
-  const inner = (token.chunks || []).map(plainChunkToHtml).join(ATTR_VALUES.EMPTY)
+  const inner = plainTokensToHtml(token.chunks || [], true)
 
   if (!token.tag) return inner
 
@@ -307,23 +289,25 @@ const plainTagToHtml = (token: DrawToken): string => {
       )}</span>`
     : ATTR_VALUES.EMPTY
 
-  const hidden = `<span ${ARIA_ATTRS.ARIA_HIDDEN}="${ATTR_VALUES.TRUE}">${inner}</span>`
-
-  return `<${token.tag} ${attrStr}>${twin}${hidden}</${token.tag}>`
+  return `<${token.tag} ${attrStr}>${twin}${inner}</${token.tag}>`
 }
 
 /**
  * Plain-mode assembly — consecutive word/space/br tokens collapse into
  * ONE aria-hidden span per run (a run can hold an entire paragraph), and
  * tag tokens emit real elements via plainTagToHtml so interactive
- * content stays reachable. Spaces inside a run are literal (natural
- * width — the same metrics the span modes use at top level).
+ * content stays reachable. Top-level spaces are literal (natural
+ * width — the same metrics the span modes use); inside a tag they are
+ * nbsp — the same unbreakable rule the animated render applies inside
+ * links (a link's words stay one visual unit).
  * @param tokens Parsed top-level tokens.
+ * @param insideTag True when collapsing a tag's inner chunks — spaces
+ *   become nbsp per the in-link/in-tag rule above.
  * @returns The assembled plain-mode HTML.
  * Exported so the run-collapse and malformed-token fallbacks are
  * unit-testable — same contract as tokenToHtml/renderWordHtml.
  */
-export const plainTokensToHtml = (tokens: DrawToken[]): string => {
+export const plainTokensToHtml = (tokens: DrawToken[], insideTag = false): string => {
   const parts: string[] = []
 
   let run = ATTR_VALUES.EMPTY
@@ -344,7 +328,7 @@ export const plainTokensToHtml = (tokens: DrawToken[]): string => {
     } else if (token.type === CSS_STRINGS.TOKEN_WORD) {
       run += (token.chars || []).map((ch) => escapeHtml(ch.value)).join(ATTR_VALUES.EMPTY)
     } else if (token.type === CSS_STRINGS.TOKEN_SPACE) {
-      run += CHAR_STRINGS.SPACE_CHAR
+      run += insideTag ? CHAR_STRINGS.NBSP : CHAR_STRINGS.SPACE_CHAR
     } else if (token.type === CSS_STRINGS.TOKEN_BR) {
       run += '<br aria-hidden="true" />'
     }
