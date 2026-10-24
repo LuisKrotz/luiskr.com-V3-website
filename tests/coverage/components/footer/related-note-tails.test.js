@@ -95,8 +95,10 @@ describe('PortfolioRelated note truncation tails', () => {
 
   test('watch arms: same-element skip, rebind on re-render, missing note', async () => {
     const savedRO = globalThis.ResizeObserver
+    const savedIO = globalThis.IntersectionObserver
     const observed = []
     let roCb = null
+    let ioCb = null
     let disconnected = 0
 
     globalThis.ResizeObserver = class {
@@ -109,6 +111,15 @@ describe('PortfolioRelated note truncation tails', () => {
       disconnect() {
         disconnected++
       }
+      unobserve() {}
+    }
+
+    globalThis.IntersectionObserver = class {
+      constructor(cb) {
+        ioCb = cb
+      }
+      observe() {}
+      disconnect() {}
       unobserve() {}
     }
 
@@ -138,8 +149,9 @@ describe('PortfolioRelated note truncation tails', () => {
       expect(observed[observed.length - 1]).toBe(el.shadowRoot.querySelector(NOTE_SEL))
       expect(el._noteEl).toBe(el.shadowRoot.querySelector(NOTE_SEL))
 
-      // Firing the observer callback queues the measure — the rAF
+      // Open the viewport gate, then fire the RO callback — the rAF
       // debounce collapses repeated ticks into a single read.
+      ioCb([{ isIntersecting: true }])
       roCb()
       roCb()
 
@@ -150,6 +162,9 @@ describe('PortfolioRelated note truncation tails', () => {
     } finally {
       if (savedRO === undefined) delete globalThis.ResizeObserver
       else globalThis.ResizeObserver = savedRO
+
+      if (savedIO === undefined) delete globalThis.IntersectionObserver
+      else globalThis.IntersectionObserver = savedIO
 
       cleanup()
     }
@@ -185,13 +200,101 @@ describe('PortfolioRelated note truncation tails', () => {
     // onDestroy disconnects a live observer, cancels a queued measure
     // and clears the refs.
     el._noteRO = { disconnect() {} }
+    el._noteIO = { disconnect() {} }
+    el._noteSeen = true
     el._noteEl = el
     el._measureRaf = requestAnimationFrame(() => {})
     el.onDestroy()
     expect(el._noteRO).toBeNull()
+    expect(el._noteIO).toBeNull()
+    expect(el._noteSeen).toBe(false)
     expect(el._noteEl).toBeNull()
     expect(el._measureRaf).toBe(0)
 
     cleanup()
+  })
+
+  test('viewport gate: IO fire opens the measure gate; offscreen + rebind arms', async () => {
+    const savedIO = globalThis.IntersectionObserver
+    const observed = []
+    let ioCb = null
+    let disconnected = 0
+
+    globalThis.IntersectionObserver = class {
+      constructor(cb) {
+        ioCb = cb
+      }
+      observe(el) {
+        observed.push(el)
+      }
+      disconnect() {
+        disconnected++
+      }
+      unobserve() {}
+    }
+
+    const el = new PortfolioRelated()
+    const cleanup = mount(el)
+
+    try {
+      el.translations = { ...NOTE_TRANSLATIONS }
+      el._updateDom()
+
+      // Gate closed — queued measures drop while the note is unseen, and
+      // the approach observer is bound to the live note node.
+      el._queueNoteMeasure()
+      expect(el._measureRaf).toBe(0)
+      expect(el._noteSeen).toBe(false)
+      expect(el._noteIO).not.toBeNull()
+      expect(observed[observed.length - 1]).toBe(el.shadowRoot.querySelector(NOTE_SEL))
+
+      // A re-rendered node rebinds — the stale observer disconnects.
+      const ioBefore = disconnected
+
+      el._updateDom()
+      expect(disconnected).toBe(ioBefore + 1)
+      expect(observed[observed.length - 1]).toBe(el.shadowRoot.querySelector(NOTE_SEL))
+
+      // A non-intersecting entry keeps the gate closed.
+      ioCb([{ isIntersecting: false }])
+      expect(el._noteSeen).toBe(false)
+      expect(el._noteIO).not.toBeNull()
+
+      // Intersecting → gate opens, observer released, measure queued.
+      ioCb([{ isIntersecting: true }])
+      expect(el._noteSeen).toBe(true)
+      expect(el._noteIO).toBeNull()
+      expect(el._measureRaf).not.toBe(0)
+
+      await flushRaf()
+      expect(el._measureRaf).toBe(0)
+
+      // Seen + fresh node → no new approach observer is created.
+      el._updateDom()
+      expect(el._noteIO).toBeNull()
+    } finally {
+      globalThis.IntersectionObserver = savedIO
+      cleanup()
+    }
+  })
+
+  test('no IntersectionObserver → the gate opens eagerly', () => {
+    const savedIO = globalThis.IntersectionObserver
+
+    delete globalThis.IntersectionObserver
+
+    const el = new PortfolioRelated()
+    const cleanup = mount(el)
+
+    try {
+      el.translations = { ...NOTE_TRANSLATIONS }
+      el._updateDom()
+
+      expect(el._noteSeen).toBe(true)
+      expect(el._noteIO).toBeNull()
+    } finally {
+      globalThis.IntersectionObserver = savedIO
+      cleanup()
+    }
   })
 })

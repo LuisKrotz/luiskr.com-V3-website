@@ -49,7 +49,15 @@ export function renderMediaFigure(c: MediaFigure) {
   // already over-resolves, the scaled pair must lead: otherwise a phone
   // always pulls the 4K/1080p stream and the scaled transcodes never
   // fire. The same check picks the matching half-size poster.
-  const scaledVideo = c.isVideo && prefersScaledVideo(c.mediaWidth, c.clientWidth)
+  // The clientWidth read is a layout query — re-deriving it on every
+  // render forces a reflow per publish wave, and the poster tier never
+  // legitimately flips mid-session, so the first computed answer is
+  // memoized on the figure.
+  if (c.isVideo && c._scaledVideo === undefined) {
+    c._scaledVideo = prefersScaledVideo(c.mediaWidth, c.clientWidth)
+  }
+
+  const scaledVideo = c.isVideo && c._scaledVideo === true
 
   const posterSrc = c.isVideo ? c.poster[scaledVideo ? 1 : 0] || c.poster[0] : ATTR_VALUES.EMPTY
 

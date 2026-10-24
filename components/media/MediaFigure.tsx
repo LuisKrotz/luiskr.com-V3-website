@@ -53,6 +53,8 @@ export class MediaFigure extends BaseComponent {
   imgObserver: IntersectionObserver | null = null // image lazy-load IntersectionObserver
   warmObserver: IntersectionObserver | null = null // CDN warm-up IntersectionObserver (wider margin)
   warmed = false // first-rung CDN/HTTP-cache warm already dispatched
+  _scaledVideo: boolean | undefined = undefined // memoized poster/source tier pick — render must not re-query clientWidth per pass
+  _ladderBox = -1 // memoized figure box width (px) for ladder/stem picks — one layout read per figure
   _expandBrackets: (() => void) | null = null // teardown for the open-1 corner-brackets WebGPU widget
   isIntersecting = false // last observed viewport state
 

@@ -11,6 +11,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
+import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
@@ -43,6 +44,10 @@ export class PortfolioRelated extends BaseComponent {
   _noteTruncated = false // true while the clamped note overflows its line
 
   _noteEl: Element | null = null // last note button the observer bound to
+
+  _noteSeen = false // gate — the footer note never measures before it nears the viewport
+
+  _noteIO: IntersectionObserver | null = null // first-approach observer that opens the measure gate
 
   _noteRO: ResizeObserver | null = null
 
@@ -99,7 +104,7 @@ export class PortfolioRelated extends BaseComponent {
    * flagged). Bursts (render → RO fire → render) collapse into one read.
    */
   _queueNoteMeasure(): void {
-    if (this._measureRaf) return
+    if (this._measureRaf || !this._noteSeen) return
 
     this._measureRaf = requestAnimationFrame(() => {
       this._measureRaf = 0
@@ -121,13 +126,51 @@ export class PortfolioRelated extends BaseComponent {
       return
     }
 
+    // The note sits at the page's footer — measuring it at mount costs a
+    // whole-document forced layout inside the boot window (the
+    // forced-reflow Lighthouse finding), so the first measure is gated
+    // behind viewport proximity: the IO opens the gate ~200px out, then
+    // the queued rAF read runs on a clean frame. Without IO support the
+    // gate opens immediately, preserving the eager-measure fallback.
+    // The strip's node is recreated on every render, so the observer
+    // rebinds on node identity the same way the RO does below.
+    const freshNode = this._noteEl !== noteEl
+
+    if (freshNode) {
+      this._noteEl = noteEl
+
+      if (!this._noteSeen) {
+        if (typeof IntersectionObserver === TYPE_STRINGS.UNDEFINED) {
+          this._noteSeen = true
+        } else {
+          this._noteIO?.disconnect()
+
+          this._noteIO = new IntersectionObserver(
+            (entries) => {
+              for (const entry of entries) {
+                if (!entry.isIntersecting) continue
+
+                this._noteSeen = true
+
+                this._noteIO?.disconnect()
+                this._noteIO = null
+
+                this._queueNoteMeasure()
+              }
+            },
+            { rootMargin: QUERY_STRINGS.ROOT_MARGIN_200 }
+          )
+
+          this._noteIO.observe(noteEl)
+        }
+      }
+    }
+
     this._queueNoteMeasure()
 
-    if (typeof ResizeObserver === TYPE_STRINGS.UNDEFINED || this._noteEl === noteEl) return
+    if (typeof ResizeObserver === TYPE_STRINGS.UNDEFINED || !freshNode) return
 
     this._noteRO?.disconnect()
-
-    this._noteEl = noteEl
 
     this._noteRO = new ResizeObserver(() => this._queueNoteMeasure())
 
@@ -189,6 +232,12 @@ export class PortfolioRelated extends BaseComponent {
     this._noteRO?.disconnect()
 
     this._noteRO = null
+
+    this._noteIO?.disconnect()
+
+    this._noteIO = null
+
+    this._noteSeen = false
 
     this._noteEl = null
 

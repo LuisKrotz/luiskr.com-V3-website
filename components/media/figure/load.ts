@@ -108,7 +108,7 @@ export function warmFirstRung(fig: MediaFigure): void {
   const storage = store.getters.getStorage()
   const stem = encodeMediaUrl(storage + fig.mediaSrc)
 
-  const ladder = figureLadder(stem, fig.clientWidth)
+  const ladder = figureLadder(stem, ladderBoxWidth(fig))
   const first = ladder[0]
 
   const url = first
@@ -122,6 +122,23 @@ export function warmFirstRung(fig: MediaFigure): void {
   const probe = new ImageCtor()
 
   probe.src = url
+}
+
+/**
+ * The figure's rendered box width for stem/ladder picks — read once and
+ * memoized. clientWidth is a synchronous layout query: with ~100 figures
+ * on a media page, one read per warm AND per climb re-entrant during the
+ * mount/publish storms stacks into the forced-reflow budget Lighthouse
+ * attributes to this callsite. A stale-after-resize value only shifts
+ * which quality tier loads — never correctness — so the cached read is
+ * the right trade.
+ * @param fig The mounted figure.
+ * @returns Rendered CSS-pixel width (0 before first layout).
+ */
+function ladderBoxWidth(fig: MediaFigure): number {
+  if (fig._ladderBox < 0) fig._ladderBox = fig.clientWidth
+
+  return fig._ladderBox
 }
 
 /**
@@ -177,7 +194,7 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
   // Manifest-proven ascending rungs; when the manifest can't prove a
   // single tier (absent, or the media was never converted) fall back to
   // the historic blind Q50 probe — the request itself is the check.
-  const ladder: CoverRung[] = figureLadder(stem, fig.clientWidth)
+  const ladder: CoverRung[] = figureLadder(stem, ladderBoxWidth(fig))
 
   if (!ladder.length) {
     const q50 = encodeMediaUrl(`${stem}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)
@@ -295,7 +312,7 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
   // Budget ceiling — connection tier + the rendered box width bound how
   // high the climb may go; rungs past it (original/uncompressed) can
   // never be resolved by this card and are pure transfer waste.
-  const ceiling = ladderCeiling(ladder.length, fig.clientWidth)
+  const ceiling = ladderCeiling(ladder.length, ladderBoxWidth(fig))
 
   if (!ImageClass) {
     publish(ladder[Math.min(ladder.length - 1, ceiling)].jpg)
