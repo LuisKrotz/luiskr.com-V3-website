@@ -15837,11 +15837,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://luiskr.com/docs/docs-exp/folder-svg.tsx</loc>
-    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://luiskr.com/docs/docs-exp/gl-strip.ts</loc>
     <lastmod>2026-10-24T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -22223,11 +22218,6 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/experiments/docs/dev.md</loc>
-    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://luiskr.com/docs/docs/jsdocs/experiments/docs/folder-svg.md</loc>
     <lastmod>2026-10-24T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>
@@ -45407,21 +45397,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://luiskr.com/docs/reports/coverage-run</loc>
-    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://luiskr.com/docs/reports/coverage-run/coverage-final.json</loc>
-    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://luiskr.com/docs/reports/coverage-run/coverage-summary.json</loc>
-    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://luiskr.com/docs/reports/gate-result.json</loc>
     <lastmod>2026-10-24T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
@@ -45453,6 +45428,11 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/shared/build/docs/encode.mjs</loc>
+    <lastmod>2026-10-24T00:00:00+00:00</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/shared/build/docs/highlight.mjs</loc>
     <lastmod>2026-10-24T00:00:00+00:00</lastmod>
     <priority>0.7</priority>
   </url>

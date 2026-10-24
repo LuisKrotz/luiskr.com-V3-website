@@ -2144,7 +2144,6 @@ https://luiskr.com/docs/docs-exp/docs/_protected.scss
 https://luiskr.com/docs/docs-exp/docs/_rendered.scss
 https://luiskr.com/docs/docs-exp/docs/_treeview.scss
 https://luiskr.com/docs/docs-exp/docs/_viewer.scss
-https://luiskr.com/docs/docs-exp/folder-svg.tsx
 https://luiskr.com/docs/docs-exp/gl-strip.ts
 https://luiskr.com/docs/docs-exp/index.html
 https://luiskr.com/docs/docs-exp/index.ts
@@ -3422,7 +3421,6 @@ https://luiskr.com/docs/docs/jsdocs/experiments/docs/arch-scene.md
 https://luiskr.com/docs/docs/jsdocs/experiments/docs/copy-guard.md
 https://luiskr.com/docs/docs/jsdocs/experiments/docs/coverage-nav.md
 https://luiskr.com/docs/docs/jsdocs/experiments/docs/dev.md
-https://luiskr.com/docs/docs/jsdocs/experiments/docs/folder-svg.md
 https://luiskr.com/docs/docs/jsdocs/experiments/docs/gl-strip.md
 https://luiskr.com/docs/docs/jsdocs/experiments/docs/index.md
 https://luiskr.com/docs/docs/jsdocs/experiments/docs/jest.config.md
@@ -8058,9 +8056,6 @@ https://luiskr.com/docs/reports/a11y-checker.json
 https://luiskr.com/docs/reports/axe-report.json
 https://luiskr.com/docs/reports/chunk-budget.json
 https://luiskr.com/docs/reports/console-scan.json
-https://luiskr.com/docs/reports/coverage-run
-https://luiskr.com/docs/reports/coverage-run/coverage-final.json
-https://luiskr.com/docs/reports/coverage-run/coverage-summary.json
 https://luiskr.com/docs/reports/gate-result.json
 https://luiskr.com/docs/reports/snyk-report.json
 https://luiskr.com/docs/shared/README.md
@@ -8068,6 +8063,7 @@ https://luiskr.com/docs/shared/build
 https://luiskr.com/docs/shared/build/docs
 https://luiskr.com/docs/shared/build/docs-portal.mjs
 https://luiskr.com/docs/shared/build/docs/encode.mjs
+https://luiskr.com/docs/shared/build/docs/highlight.mjs
 https://luiskr.com/docs/shared/build/docs/redact.mjs
 https://luiskr.com/docs/shared/build/docs/render.mjs
 https://luiskr.com/docs/shared/build/docs/scan.mjs
