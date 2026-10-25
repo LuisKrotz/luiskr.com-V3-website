@@ -27,7 +27,7 @@ export function setupObserver(host: AwardsCarousel): void {
     host.isFullyVisible = true
     host.isEnteredViewport = true
     root.classList.add(AWC_CLASSES.AWC_IN_VIEW)
-    if (!store.getters.getReducedMotion()) host._startAutoplay()
+    if (!store.getters.getReducedMotion() && !store.getters.getOverlayOpen()) host._startAutoplay()
     return
   }
 
@@ -47,7 +47,7 @@ export function setupObserver(host: AwardsCarousel): void {
         host.isFullyVisible = isFullyVisible
 
         if (isFullyVisible) {
-          if (!store.getters.getReducedMotion() && !store.getters.getModal()?.open) {
+          if (!store.getters.getReducedMotion() && !store.getters.getOverlayOpen()) {
             host._startAutoplay()
           }
         } else {

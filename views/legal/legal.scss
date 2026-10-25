@@ -124,7 +124,7 @@ article {
     @extend .txt-md;
 
     font-family: var(--font-primary);
-    font-weight: 100;
+    font-weight: calc(100 + var(--fw-lift));
     word-break: normal;
     overflow-wrap: break-word;
     hyphens: none;

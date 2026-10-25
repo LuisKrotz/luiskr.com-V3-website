@@ -17,7 +17,7 @@ import { AWC_CLASSES } from '@core/tokens/classes/awards-carousel.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
-import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
+import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
@@ -578,7 +578,22 @@ describe('Carousel Web Components Suite - Full Interaction, Clones & Responsive 
       expect(carousel.isFullyVisible).toBe(true)
       expect(carousel.isEnteredViewport).toBe(true)
 
+      // Overlay arms in the no-IO fallback: open expand modal / nav menu
+      // must not let autoplay start.
       store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
+      store.commit(MODAL_MUTATIONS.SET_MODAL, { open: true })
+      carousel._stopAutoplay()
+      carousel._setupObserver()
+
+      expect(carousel.autoplayRunning).toBe(false)
+
+      store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, true)
+      carousel._setupObserver()
+
+      expect(carousel.autoplayRunning).toBe(false)
+
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
       carousel._setupObserver()
 
       globalThis.IntersectionObserver = IO
@@ -623,6 +638,76 @@ describe('Carousel Web Components Suite - Full Interaction, Clones & Responsive 
       carousel.remove()
     })
 
+    test('observer callback does not start autoplay while the nav menu is open', () => {
+      const carousel = document.createElement(COMPONENT_TAGS.AWARDS_CAROUSEL)
+
+      carousel.items = sampleProjects
+      document.body.appendChild(carousel)
+
+      carousel._setupObserver()
+
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, true)
+      carousel.observer.callback([{ isIntersecting: true, intersectionRatio: 1, target: carousel }])
+
+      expect(carousel.isFullyVisible).toBe(true)
+      expect(carousel.autoplayRunning).toBeFalsy()
+
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
+      carousel.observer.callback([{ isIntersecting: true, intersectionRatio: 1, target: carousel }])
+
+      expect(carousel.autoplayRunning).toBe(true)
+
+      carousel._stopAutoplay()
+      carousel.remove()
+    })
+
+    test('onStoreUpdate pauses autoplay under an open overlay and resumes on close', () => {
+      const carousel = document.createElement(COMPONENT_TAGS.AWARDS_CAROUSEL)
+
+      carousel.items = sampleProjects
+      document.body.appendChild(carousel)
+
+      carousel.isFullyVisible = true
+
+      // Nav menu open → the commit's notify pauses a running cycle.
+      carousel._startAutoplay()
+      expect(carousel.autoplayRunning).toBe(true)
+
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, true)
+
+      expect(carousel.autoplayRunning).toBe(false)
+
+      // Menu close → the resume arm restarts a still-visible carousel.
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
+
+      expect(carousel.autoplayRunning).toBe(true)
+
+      // Expand modal open → same pause arm.
+      store.commit(MODAL_MUTATIONS.SET_MODAL, { open: true })
+
+      expect(carousel.autoplayRunning).toBe(false)
+
+      store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
+
+      // Preferences + language dialogs are covering overlays too.
+      store.commit(MODAL_MUTATIONS.TOGGLE_PREFERENCES_MODAL, true)
+
+      expect(carousel.autoplayRunning).toBe(false)
+
+      store.commit(MODAL_MUTATIONS.TOGGLE_PREFERENCES_MODAL, false)
+
+      expect(carousel.autoplayRunning).toBe(true)
+
+      store.commit(MODAL_MUTATIONS.TOGGLE_LANG_DIALOG, true)
+
+      expect(carousel.autoplayRunning).toBe(false)
+
+      store.commit(MODAL_MUTATIONS.TOGGLE_LANG_DIALOG, false)
+      carousel._stopAutoplay()
+      carousel.remove()
+    })
+
     test('_startAutoplay stops early under reduced motion or when not fully visible', () => {
       const carousel = document.createElement(COMPONENT_TAGS.AWARDS_CAROUSEL)
 
@@ -638,6 +723,19 @@ describe('Carousel Web Components Suite - Full Interaction, Clones & Responsive 
       carousel._startAutoplay()
       expect(carousel.autoplayRunning).toBeFalsy()
 
+      // Overlay arms — the ticker itself refuses to run under an open
+      // nav menu or expand modal, not just the observer gate.
+      store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, true)
+      carousel._startAutoplay()
+      expect(carousel.autoplayRunning).toBeFalsy()
+
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
+      store.commit(MODAL_MUTATIONS.SET_MODAL, { open: true })
+      carousel._startAutoplay()
+      expect(carousel.autoplayRunning).toBeFalsy()
+
+      store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
       carousel.remove()
     })
 

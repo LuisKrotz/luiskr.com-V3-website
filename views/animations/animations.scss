@@ -62,7 +62,7 @@ $_B_INTERNAL: 'internal';
 
   display: block;
   font-family: var(--font-primary);
-  font-weight: 100;
+  font-weight: calc(100 + var(--fw-lift));
   word-break: normal;
   overflow-wrap: break-word;
   hyphens: none;
@@ -123,7 +123,7 @@ article {
   @extend .txt-md;
 
   font-family: var(--font-primary);
-  font-weight: 300;
+  font-weight: calc(300 + var(--fw-lift));
   color: var(--text-primary);
   padding-bottom: to-rem($space-sm);
 }
@@ -132,7 +132,7 @@ article {
   @extend .txt-md;
 
   font-family: var(--font-primary);
-  font-weight: 100;
+  font-weight: calc(100 + var(--fw-lift));
   word-break: normal;
   overflow-wrap: break-word;
   hyphens: none;

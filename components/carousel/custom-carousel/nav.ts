@@ -450,7 +450,7 @@ export function setupIntersectionObserver(c: CustomCarousel) {
 
     c.isFullyVisible = true
 
-    if (!store.getters.getReducedMotion()) c._startAutoplay()
+    if (!store.getters.getReducedMotion() && !store.getters.getOverlayOpen()) c._startAutoplay()
 
     return
   }
@@ -481,7 +481,7 @@ export function setupIntersectionObserver(c: CustomCarousel) {
         c.isFullyVisible = isVisible
 
         if (isVisible) {
-          if (!store.getters.getReducedMotion() && !store.getters.getModal()?.open) {
+          if (!store.getters.getReducedMotion() && !store.getters.getOverlayOpen()) {
             c._startAutoplay()
           }
         } else {

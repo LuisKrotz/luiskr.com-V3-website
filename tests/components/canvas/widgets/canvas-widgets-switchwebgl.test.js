@@ -56,6 +56,7 @@ describe('SwitchWebGL', () => {
     expect(new SwitchWebGL(makeCanvasWithGL(), SWITCH_TYPES.STATS)._contextCode()).toBe(0.0)
     expect(new SwitchWebGL(makeCanvasWithGL(), SWITCH_TYPES.GRID)._contextCode()).toBe(1.0)
     expect(new SwitchWebGL(makeCanvasWithGL(), SWITCH_TYPES.MOTION)._contextCode()).toBe(2.0)
+    expect(new SwitchWebGL(makeCanvasWithGL(), SWITCH_TYPES.CONTRAST)._contextCode()).toBe(3.0)
 
     function makeCanvasWithGL() {
       const c = makeCanvas()

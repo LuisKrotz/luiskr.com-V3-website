@@ -51,6 +51,7 @@ describe('AppNav', () => {
 
   beforeEach(() => {
     store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
+    store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
     navEl = new AppNav()
     cleanup = mount(navEl)
   })
@@ -339,6 +340,37 @@ describe('AppNav', () => {
     expect(closed.classList.contains(NAV_MENU_CLASSES.NAV_MENU_MODAL_OPEN)).toBe(false)
     expect(closed.classList.contains(NAV_MENU_CLASSES.NAV_MENU_MODAL_CLOSING)).toBe(false)
     jest.useRealTimers()
+  })
+
+  test('menu open latches navMenuOpen in the store; the dissolve releases it', () => {
+    jest.useFakeTimers()
+
+    navEl._openMenu()
+
+    expect(store.getters.getNavMenuOpen()).toBe(true)
+
+    navEl._closeMenu()
+
+    // The overlay still owns the frame during the dissolve — the flag
+    // only releases when _menuOpen actually flips.
+    expect(store.getters.getNavMenuOpen()).toBe(true)
+
+    jest.advanceTimersByTime(ANIMATION_DURATIONS.MENU_CLOSE_DURATION)
+
+    expect(navEl._menuOpen).toBe(false)
+    expect(store.getters.getNavMenuOpen()).toBe(false)
+
+    jest.useRealTimers()
+  })
+
+  test('onDestroy while the menu is open releases navMenuOpen', () => {
+    navEl._openMenu()
+
+    expect(store.getters.getNavMenuOpen()).toBe(true)
+
+    navEl.onDestroy()
+
+    expect(store.getters.getNavMenuOpen()).toBe(false)
   })
 
   test('re-render while open keeps the same menu canvas and WebGL instance (no context churn)', () => {

@@ -19,7 +19,7 @@ beforeEach(() => {
 
 // ─── SwitchWebGL 2D path ─────────────────────────────────────────────────────
 describe('SwitchWebGL — Canvas2D fallback', () => {
-  test.each([SWITCH_TYPES.STATS, SWITCH_TYPES.GRID, SWITCH_TYPES.MOTION])(
+  test.each([SWITCH_TYPES.STATS, SWITCH_TYPES.GRID, SWITCH_TYPES.MOTION, SWITCH_TYPES.CONTRAST])(
     'renders the %s context through the 2D path',
     async (contextType) => {
       const canvas = makeCanvas()

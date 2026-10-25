@@ -13,7 +13,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
-import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
+import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
@@ -187,6 +187,77 @@ describe('MediaFigure deep paths', () => {
     el.onStoreUpdate()
 
     await flush(10)
+
+    el.remove()
+  })
+
+  test('nav menu open pauses page videos and the viewport gate honors overlays', async () => {
+    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
+    store.commit(PREF_MUTATIONS.SET_VIDEO_AUTOPLAY, true)
+
+    const el = mountFigure({ [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE })
+
+    await flush()
+
+    const vid = el.$(HTML_TAGS.VIDEO)
+
+    vid.load = jest.fn()
+    vid.pause = jest.fn()
+    vid.play = jest.fn(() => Promise.resolve())
+    Object.defineProperty(vid, 'paused', { configurable: true, writable: true, value: false })
+
+    // Menu open → the store sync pauses a playing page video.
+    store.commit(MODAL_MUTATIONS.SET_NAV_MENU, true)
+
+    expect(vid.pause).toHaveBeenCalled()
+
+    vid.paused = true // reflect what a real pause() leaves behind
+
+    // While the menu owns the frame a viewport entry must not restart
+    // playback.
+    el.observer.callback([{ isIntersecting: true, target: vid }])
+
+    expect(vid.play).not.toHaveBeenCalled()
+
+    // Menu close → the sync resume arm plays the still-intersecting video.
+    store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
+
+    expect(vid.play).toHaveBeenCalledTimes(1)
+
+    // Expand-modal arm — the same overlay gate on the observer path.
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: true })
+    el.observer.callback([{ isIntersecting: true, target: vid }])
+
+    expect(vid.play).toHaveBeenCalledTimes(1)
+
+    // Modal close → resume through the same sync path.
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
+
+    expect(vid.play).toHaveBeenCalledTimes(2)
+
+    // Preferences + language dialogs are covering overlays too — open
+    // pauses (the video still reports playing via the stub), close
+    // resumes.
+    vid.paused = false
+    vid.pause.mockClear()
+    vid.play.mockClear()
+
+    store.commit(MODAL_MUTATIONS.TOGGLE_PREFERENCES_MODAL, true)
+
+    expect(vid.pause).toHaveBeenCalled()
+
+    vid.paused = true
+    store.commit(MODAL_MUTATIONS.TOGGLE_PREFERENCES_MODAL, false)
+
+    expect(vid.play).toHaveBeenCalledTimes(1)
+
+    vid.paused = false
+    vid.pause.mockClear()
+    store.commit(MODAL_MUTATIONS.TOGGLE_LANG_DIALOG, true)
+
+    expect(vid.pause).toHaveBeenCalled()
+
+    store.commit(MODAL_MUTATIONS.TOGGLE_LANG_DIALOG, false)
 
     el.remove()
   })

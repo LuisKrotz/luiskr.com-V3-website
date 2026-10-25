@@ -13,13 +13,15 @@ import type { AwardsCarousel } from '../AwardsCarousel.js'
 
 /**
  * Starts the auto-advance ticker. Bails (and actively stops any running
- * cycle) under reduced-motion or before ≥50% visibility — autoplay must
- * never run on an unseen or motion-sensitive carousel. Re-bases the clock
- * on each start so a fresh cycle always gets a full dwell.
+ * cycle) under reduced-motion, before ≥50% visibility, or while a
+ * page-covering overlay (expand modal, nav menu, preferences or
+ * language dialog) owns the frame — autoplay must never run on an
+ * unseen, covered, or motion-sensitive carousel.
+ * Re-bases the clock on each start so a fresh cycle always gets a full dwell.
  * @param host The AwardsCarousel element.
  */
 export function startAutoplay(host: AwardsCarousel): void {
-  if (store.getters.getReducedMotion() || !host.isFullyVisible) {
+  if (store.getters.getReducedMotion() || !host.isFullyVisible || store.getters.getOverlayOpen()) {
     host._stopAutoplay()
     return
   }

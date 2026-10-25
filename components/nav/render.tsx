@@ -15,6 +15,7 @@ import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { SECTIONS } from '@core/tokens/base.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
+import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { NAV_BURGER_CLASSES, NAV_CLASSES, NAV_MENU_CLASSES } from '@core/tokens/classes/nav.js'
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
 import { NAV_UI_KEYS, SECTION_UI_KEYS } from '@core/tokens/data/ui-keys.js'
@@ -24,6 +25,7 @@ import { APP_IDS } from '@core/tokens/ids/app.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MENU_CSS_PROPS } from '@core/tokens/css/menu.js'
 import { h, Fragment } from '@core/jsx.js'
+import { renderNavGear } from './gear.js'
 import { isPlainClick } from '@core/utils/dom.js'
 import '@website/components/media/DrawText.js'
 import store from '@core/store.js'
@@ -108,11 +110,16 @@ export const renderAppNav = (nav: AppNav) => {
   // is open the modal is the surface under the control, so the burger
   // (morphed into the close X) uses theme ink like every other page;
   // _menuOpen stays true through the close dissolve, releasing --on-dark
-  // exactly when the dark scene is revealed again.
+  // exactly when the dark scene is revealed again. The contact/footer
+  // band is now theme-flipping (--bg-secondary) — only dark in dark
+  // mode — so the bottom-of-page inversion applies under dark mode only;
+  // light mode keeps theme ink over the light band.
+  const darkTheme = document.documentElement.classList.contains(STATE_CLASSES.DARK_MODE)
+
   const onDark =
     !nav._menuOpen &&
-    ((nav.isHomePage && (nav.onBottom || nav.activeSection === SECTIONS.CONTACT)) ||
-      nav.isPlaygroundPage)
+    (nav.isPlaygroundPage ||
+      (darkTheme && nav.isHomePage && (nav.onBottom || nav.activeSection === SECTIONS.CONTACT)))
 
   nav._onDark = onDark
 
@@ -268,10 +275,11 @@ export const renderAppNav = (nav: AppNav) => {
 
           {/* Round flag button — language switcher moved out of the menu
               modal: the disc holds the locale flag; on hover/focus the
-              strip expands horizontally on the spring curve (the same
-              organic ease the mosaic tiles use) to reveal the language
-              name. Click/Enter opens the language dialog. Hidden on the
-              English-only docs portal — no switcher exists there. */}
+              strip expands horizontally on the water curve (a
+              critically damped settle — smooth, zero overshoot) to
+              reveal the language name at hairline weight. Click/Enter
+              opens the language dialog. Hidden on the English-only
+              docs portal — no switcher exists there. */}
           {!nav.currentRoute?.meta?.docsRoute && (
             <button
               className={NAV_CLASSES.NAV_FLAG_BTN}
@@ -289,8 +297,8 @@ export const renderAppNav = (nav: AppNav) => {
           )}
 
           {/* Round gear button — preferences moved out of the menu
-              modal: a drawn gear that spins on hover/focus and opens the
-              preferences dialog on click/Enter. */}
+              modal: a machined-steel gear on a slow perpetual spin that
+              opens the preferences dialog on click/Enter. */}
           <button
             className={NAV_CLASSES.NAV_GEAR_BTN}
             type={FORM_ATTRS.TYPE_BUTTON}
@@ -298,20 +306,7 @@ export const renderAppNav = (nav: AppNav) => {
             title={prefLabel}
             onClick={(e: Event) => nav.handlePreferences(e)}
           >
-            <svg
-              className={NAV_CLASSES.NAV_GEAR_SVG}
-              viewBox="0 0 24 24"
-              aria-hidden={ATTR_VALUES.TRUE}
-              focusable={ATTR_VALUES.FALSE}
-            >
-              {/* Gear silhouette: a toothed ring with the hub punched out
-                  via evenodd — the disc behind shows through the hole,
-                  so the glyph reads as a real gear, not a sun. */}
-              <path
-                fill-rule="evenodd"
-                d="M12 8.6a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8zM20 13.7c.11-.54.17-1.12.17-1.7s-.06-1.16-.17-1.7l2-1.57a.53.53 0 0 0 .13-.67l-1.9-3.3a.52.52 0 0 0-.63-.23L17.2 5.5a7.9 7.9 0 0 0-2.93-1.7L13.9 1.5A.52.52 0 0 0 13.4 1h-2.8a.52.52 0 0 0-.52.41l-.37 2.3a7.9 7.9 0 0 0-2.93 1.7L4.4 4.5a.52.52 0 0 0-.63.23l-1.9 3.3a.53.53 0 0 0 .13.67l2 1.57a8.2 8.2 0 0 0 0 3.4l-2 1.57a.53.53 0 0 0-.13.67l1.9 3.3c.14.24.44.33.63.23l2.38-.94a7.9 7.9 0 0 0 2.93 1.7l.37 2.3c.05.22.26.41.52.41h2.8c.24 0 .44-.19.5-.41l.37-2.3a7.9 7.9 0 0 0 2.93-1.7l2.38.94c.19.1.47 0 .63-.23l1.9-3.3a.53.53 0 0 0-.13-.67L20 13.7z"
-              />
-            </svg>
+            {renderNavGear()}
           </button>
         </div>
       )}
@@ -423,7 +418,16 @@ export const renderAppNav = (nav: AppNav) => {
               return (
                 <Fragment key={item.label}>
                   {groupStart ? (
-                    <div className={NAV_MENU_CLASSES.NAV_MENU_MODAL_GROUP}>
+                    // The divider's fade leads its group's first label by
+                    // one stagger step — the break lands just before the
+                    // items it heads (--offset-ms consumed by the group's
+                    // --open animation in _menu-overlay.scss).
+                    <div
+                      className={NAV_MENU_CLASSES.NAV_MENU_MODAL_GROUP}
+                      style={{
+                        [MENU_CSS_PROPS.OFFSET_MS]: `${Math.max(0, timing.offset - DRAW_TIMINGS.MENU_LABEL_STAGGER_MS)}ms`,
+                      }}
+                    >
                       <span className={NAV_MENU_CLASSES.NAV_MENU_MODAL_GROUP_TITLE}>
                         {item.group}
                       </span>

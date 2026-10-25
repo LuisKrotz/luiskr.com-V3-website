@@ -500,6 +500,35 @@ describe('CustomCarousel internals', () => {
       cleanup(el)
     })
 
+    test('onStoreUpdate stops autoplay while the nav menu is open and resumes on close', () => {
+      const el = makeCarousel()
+      const stop = jest.spyOn(el, '_stopAutoplay')
+      const arrow = () => ({
+        setReducedMotion: jest.fn(),
+        setHover: jest.fn(),
+        setPlaying: jest.fn(),
+        setProgress: jest.fn(),
+        destroy: jest.fn(),
+      })
+
+      el._prevArrow = arrow()
+      el._nextArrow = arrow()
+
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, true)
+      el.onStoreUpdate()
+
+      expect(stop).toHaveBeenCalled()
+
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
+      el.isFullyVisible = true
+      el.onStoreUpdate()
+
+      expect(el.autoplayRunning).toBe(true)
+
+      stop.mockRestore?.()
+      cleanup(el)
+    })
+
     test('_mountWebGLArrows replaces stale canvas widgets', () => {
       const el = makeCarousel()
 

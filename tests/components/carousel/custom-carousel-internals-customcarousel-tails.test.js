@@ -177,6 +177,22 @@ describe('CustomCarousel tails', () => {
 
     store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, true)
     el._setupIntersectionObserver()
+
+    // Overlay gates in the no-IO fallback: an open expand modal or nav
+    // menu must not let autoplay start either.
+    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: true })
+    el._setupIntersectionObserver()
+
+    expect(el.autoplayRunning).toBe(false)
+
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
+    store.commit(MODAL_MUTATIONS.SET_NAV_MENU, true)
+    el._setupIntersectionObserver()
+
+    expect(el.autoplayRunning).toBe(false)
+
+    store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
     globalThis.IntersectionObserver = IO
 
     const disc = jest.fn()
@@ -210,6 +226,15 @@ describe('CustomCarousel tails', () => {
     cb([{ isIntersecting: true, intersectionRatio: 0.5, target: el }])
     store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
     store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
+
+    // Nav-menu gate: a visible entry while the menu overlay is open
+    // must not start autoplay; closing releases the gate.
+    store.commit(MODAL_MUTATIONS.SET_NAV_MENU, true)
+    cb([{ isIntersecting: true, intersectionRatio: 0.5, target: el }])
+
+    expect(el.autoplayRunning).toBe(false)
+
+    store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
     cb([{ isIntersecting: true, intersectionRatio: 0.5, target: el }])
     cb([{ isIntersecting: false, intersectionRatio: 0, target: el }])
 

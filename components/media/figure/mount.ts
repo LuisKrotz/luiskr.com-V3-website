@@ -161,7 +161,15 @@ export function mountMediaFigure(c: MediaFigure): void {
               if (entry.isIntersecting) {
                 c._ensureVideoSource(vid)
 
-                if (store.getters.getVideoAutoplay() && vid.paused) {
+                // Overlay gate: the page sits under a covering layer
+                // while any overlay (expand modal, nav menu, dialogs)
+                // is open — a stray entry (resize/orientation) must not
+                // restart playback.
+                if (
+                  store.getters.getVideoAutoplay() &&
+                  !store.getters.getOverlayOpen() &&
+                  vid.paused
+                ) {
                   vid.play().catch(() => {})
                 }
               } else {

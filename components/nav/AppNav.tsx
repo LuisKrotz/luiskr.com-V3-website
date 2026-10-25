@@ -13,6 +13,7 @@ import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { SECTIONS } from '@core/tokens/base.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { KEYBOARD_EVENTS } from '@core/tokens/events/dom.js'
+import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { ROUTE_NAMES, ROUTE_PREFIXES } from '@core/tokens/routes/names.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
@@ -316,6 +317,12 @@ export class AppNav extends BaseComponent {
   /** Lifecycle: destroys the burger/menu/flag GL widgets and unbinds listeners. */
 
   override onDestroy() {
+    // Dying mid-open/mid-close must not leave the page-wide pause flag
+    // latched — carousels and videos would stay frozen forever.
+    if (this._menuOpen) {
+      store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
+    }
+
     this._destroyNavFlag()
 
     if (this._menuSettleTimer) {

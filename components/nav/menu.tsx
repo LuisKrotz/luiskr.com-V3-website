@@ -22,6 +22,8 @@ import type { NavFlagHost } from './flag.js'
 import { APP_IDS } from '@core/tokens/ids/app.js'
 import { NAV_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
+import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
+import store from '@core/store.js'
 
 /** Host surface the menu helpers need (satisfied by AppNav). */
 export interface NavMenuHost extends NavFlagHost {
@@ -121,6 +123,12 @@ export const openNavMenu = (host: NavMenuHost): void => {
   host._menuSettled = false
 
   host._menuOpen = true
+
+  // Page-wide pause signal: carousel autoplay and media videos read
+  // navMenuOpen through their store subscriptions and stop for the whole
+  // open cycle — a fullscreen overlay makes ambient playback underneath
+  // invisible wasted decode/composite work.
+  store.commit(MODAL_MUTATIONS.SET_NAV_MENU, true)
 
   // The burger's pooled droplet morphs into the close X while the
   // overlay opens — same morph the shader/fallback mirror on the way out.
@@ -260,6 +268,10 @@ export const closeNavMenu = (host: NavMenuHost): void => {
     host._menuSettled = false
 
     host._menuOpen = false
+
+    // Release the page-wide pause only once the overlay is actually
+    // gone — autoplay/videos resume through the same store notify.
+    store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
 
     if (host._menuBg) {
       host._menuBg.destroy()

@@ -153,10 +153,19 @@ export class AwardsCarousel extends BaseComponent {
     )
   }
 
-  /** Reduced-motion commit → kill autoplay immediately (no residual RAF). */
+  /**
+   * Overlay/pref commits → kill autoplay immediately (no residual RAF);
+   * an overlay closing resumes a stopped cycle only when the carousel is
+   * still ≥50% on screen. The !autoplayRunning guard matters: store
+   * commits arrive for unrelated state too, and a bare _startAutoplay
+   * would re-base the dwell clock (and stack a second RAF chain) on
+   * every commit.
+   */
   override onStoreUpdate() {
-    if (store.getters.getReducedMotion()) {
+    if (store.getters.getReducedMotion() || store.getters.getOverlayOpen()) {
       this._stopAutoplay()
+    } else if (this.isFullyVisible && !this.autoplayRunning) {
+      this._startAutoplay()
     }
   }
 

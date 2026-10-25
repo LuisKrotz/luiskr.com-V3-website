@@ -38,20 +38,21 @@ export function onUnmounted(host: CustomCarousel): void {
 
 /**
  * Store change → propagate reduced-motion to both arrows and gate
- * autoplay on reduced-motion / open-modal. The resume arm requires BOTH
+ * autoplay on reduced-motion / any open overlay (expand modal, nav
+ * menu, preferences or language dialog). The resume arm requires BOTH
  * `isActive` (carousel mode, not side-by-side) and `isFullyVisible` —
- * a modal closing must not revive a carousel that's offscreen.
+ * an overlay closing must not revive a carousel that's offscreen.
  */
 export function onStoreUpdate(host: CustomCarousel): void {
   const isReduced = store.getters.getReducedMotion()
 
-  const isModal = Boolean(store.getters.getModal()?.open)
+  const isOverlay = store.getters.getOverlayOpen()
 
   host._prevArrow?.setReducedMotion(isReduced)
 
   host._nextArrow?.setReducedMotion(isReduced)
 
-  if (isReduced || isModal) {
+  if (isReduced || isOverlay) {
     host._stopAutoplay()
   } else if (host.isActive && host.isFullyVisible) {
     host._startAutoplay()

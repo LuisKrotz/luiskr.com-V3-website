@@ -25,7 +25,7 @@
   &-title {
     @extend .ttl-xl;
 
-    font-weight: 100;
+    font-weight: calc(100 + var(--fw-lift));
     text-transform: uppercase;
     text-align: left;
     padding-top: to-rem($space-3xl);
@@ -51,7 +51,7 @@
     &--archive {
       @extend .ttl-md;
 
-      font-weight: 100;
+      font-weight: calc(100 + var(--fw-lift));
       border-top: 1px solid var(--grey-2);
       padding-top: to-rem($space-xl);
       padding-bottom: to-rem($space-xl);
