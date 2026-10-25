@@ -101,6 +101,11 @@ export function onHover(host: HomeMosaic, i: number): void {
   }
 
   requestAnimationFrame(() => {
+    // Pointer/focus may have left mid-frame — writing bottomHMap now
+    // would leave a stale expansion height behind, inflating the column
+    // on the next hover and leaving a visible gap in the wall.
+    if (host.hoveredIdx !== i && host.touchIdx !== i) return
+
     const detail = detailEl(host, i)
 
     if (detail) {
@@ -121,6 +126,10 @@ export function onLeave(host: HomeMosaic): void {
   if (prevIdx !== null) {
     removeDesc(host, prevIdx)
     disarmCardBurn(host, prevIdx)
+
+    // Drop the measured height with the hover — keeping it would re-inflate
+    // the column by a stale (possibly taller) value on the next pass.
+    delete host.bottomHMap[prevIdx]
   }
 
   host.layout()

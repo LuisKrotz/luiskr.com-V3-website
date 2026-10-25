@@ -80,6 +80,31 @@ describe('ViewLegal', () => {
     expect(sectionDraws[0].getAttribute(FORM_ATTRS.TEXT)).toBe('Data Collection')
   })
 
+  test('renders paragraphs as plain HTML — only titles mount draw-text (mount latency)', () => {
+    legalEl.translations = {
+      title: ROUTE_NAMES.PRIVACY,
+      sections: [
+        {
+          title: 'Data Collection',
+          content: ['We collect <strong>minimal</strong> data.', 'No trackers.'],
+        },
+      ],
+    }
+    legalEl._updateDom()
+
+    const section = legalEl.shadowRoot.querySelector(`.${INTERNAL_CLASSES.INTERNAL_DESCRIPTION}`)
+    // One draw-text per section: the h2 title only — ~50 fewer shadow
+    // roots on long legal docs (the TBT fix), and paragraph text never
+    // un-paints after the parked article already showed it (SI).
+    expect(section.querySelectorAll(COMPONENT_TAGS.DRAW_TEXT).length).toBe(1)
+
+    const paras = section.querySelectorAll('p')
+    expect(paras.length).toBe(2)
+    expect(paras[0].textContent).toContain('minimal')
+    expect(paras[0].querySelector('strong')).not.toBeNull()
+    expect(paras[1].textContent).toBe('No trackers.')
+  })
+
   test('renders sections in order when translations arrive without a title', () => {
     legalEl.translations = {
       sections: [{ title: 'Only Section', content: ['Body copy.'] }],

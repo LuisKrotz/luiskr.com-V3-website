@@ -248,6 +248,23 @@ describe('Carousel Web Components Suite - Full Interaction, Clones & Responsive 
       const dots = carousel.shadowRoot.querySelectorAll(S.AWC_DOT)
       expect(dots[2].classList.contains(AWC_CLASSES.AWC_DOT_ACTIVE)).toBe(true)
     })
+
+    // IBM input_label_visible — each dot must carry a rendered label, not
+    // just aria-label; the visible index is also a non-color active cue.
+    test('each dot renders a visible slide index (input_label_visible)', () => {
+      const carousel = document.createElement(COMPONENT_TAGS.AWARDS_CAROUSEL)
+      carousel.variant = 'awards'
+      carousel.showDots = true
+      carousel.items = sampleProjects
+      document.body.appendChild(carousel)
+
+      const dots = carousel.shadowRoot.querySelectorAll(S.AWC_DOT)
+      dots.forEach((dot, i) => {
+        const num = dot.querySelector(`.${AWC_CLASSES.AWC_DOT_NUM}`)
+        expect(num).not.toBeNull()
+        expect(num.textContent.trim()).toBe(`${i + 1}`)
+      })
+    })
   })
 
   describe('5. AwardsCarousel - Touch & Swiping Physics', () => {

@@ -55,19 +55,6 @@ export const renderAppNav = (nav: AppNav) => {
 
   const isNotFound = nav.currentRoute?.name === ROUTE_NAMES.NOT_FOUND
 
-  const isProjectRoute = nav.currentRoute?.meta?.projectRoute === true
-
-  let actionLabel = t?.contact || appText(CMS_KEYS.CONTACT)
-
-  // CTA label precedence: near document bottom → "selected work" (home
-  // scrolls to the mosaic, internals navigate home); on a project page →
-  // "related" (jumps to related projects); otherwise plain "contact".
-  if (nav.onBottom) {
-    actionLabel = t?.featured || appText(NAV_UI_KEYS.SELECTED_WORK)
-  } else if (isProjectRoute) {
-    actionLabel = t?.related || appText(CMS_KEYS.RELATED)
-  }
-
   const logoClasses = `${NAV_CLASSES.NAV_LINK} ${!nav.isHomePage ? NAV_CLASSES.NAV_BACK : CHAR_STRINGS.EMPTY} ${nav.isHomePage && nav.activeSection === SECTIONS.HOME ? NAV_CLASSES.NAV_ACTIVE : CHAR_STRINGS.EMPTY} ${NAV_CLASSES.NAV_LOGO_BTN}`
 
   const aboutActive = nav.isHomePage && nav.activeSection === SECTIONS.ABOUT && !nav.onBottom
@@ -134,11 +121,15 @@ export const renderAppNav = (nav: AppNav) => {
   // surfaces); route items carry real hrefs, dialog triggers stay
   // buttons.
   const aboutLabel = String(aboutDesc)
-  const actionText = String(actionLabel)
+  const selectedWorkLabel = String(t?.featured || appText(NAV_UI_KEYS.SELECTED_WORK))
+  const scrollUpLabel = String(t?.scrollUp || appText(NAV_UI_KEYS.SCROLL_UP))
+  const contactLabel = String(t?.contact || appText(CMS_KEYS.CONTACT))
+  const contactText = nav.onBottom ? scrollUpLabel : contactLabel
   const playgroundLabel = String(t?.earthPlayground || appText(CMS_KEYS.EARTH_PLAYGROUND))
   const starFieldLabel = String(t?.starField || appText(CMS_KEYS.STAR_FIELD))
   const prefLabel = String(t?.preferences || appText(NAV_UI_KEYS.PREFERENCES))
   const langLabel = String(nav.currentLangLabel)
+  const experimentsLabel = String(t?.experiments || appText(NAV_UI_KEYS.EXPERIMENTS))
 
   const items: Array<{
     label: string
@@ -150,7 +141,32 @@ export const renderAppNav = (nav: AppNav) => {
      *  open-in-new-tab reach the href; plain clicks go through
      *  the SPA handler. Dialog triggers stay buttons. */
     href?: string
+    /** Category heading rendered above the first item carrying it —
+     *  groups experiment links under a localized "Experiments" title. */
+    group?: string
   }> = []
+
+  if (!isNotFound) {
+    // Selected work — scrolls to the mosaic on home; on other routes it
+    // navigates home. Already over the section → just closes the menu.
+    items.push({
+      label: selectedWorkLabel,
+      cls: `${NAV_CLASSES.NAV_ACTION_BTN} ${NAV_CLASSES.NAV_SELECTED_WORK}`,
+      href: localePath('', nav.locale),
+      onClick: (e: Event) => {
+        if (e && !isPlainClick(e)) return
+
+        e?.preventDefault?.()
+        nav._closeMenu()
+
+        if (!nav.isHomePage) {
+          router.push(localePath('', nav.locale))
+        } else if (nav.onBottom || nav.activeSection !== SECTIONS.HOME) {
+          nav.scrollToTop()
+        }
+      },
+    })
+  }
 
   if (!isNotFound) {
     items.push({
@@ -166,9 +182,11 @@ export const renderAppNav = (nav: AppNav) => {
   }
 
   if (!isNotFound) {
+    // Contact — or "scroll up" when the contact band is already showing:
+    // the CTA at page bottom morphs into a return-to-top affordance.
     items.push({
-      label: actionText,
-      cls: `${NAV_CLASSES.NAV_ACTION_BTN}${nav.onBottom ? ` ${NAV_CLASSES.NAV_SELECTED_WORK}` : CHAR_STRINGS.EMPTY}`,
+      label: contactText,
+      cls: `${NAV_CLASSES.NAV_ACTION_BTN}${nav.onBottom ? ` ${NAV_CLASSES.NAV_SCROLL_DOWN}` : CHAR_STRINGS.EMPTY}`,
       href: nav.onBottom ? localePath('', nav.locale) : localePath(CMS_KEYS.CONTACT, nav.locale),
       onClick: (e: Event) => {
         nav._closeMenu()
@@ -182,6 +200,7 @@ export const renderAppNav = (nav: AppNav) => {
     items.push({
       label: playgroundLabel,
       cls: CHAR_STRINGS.EMPTY,
+      group: experimentsLabel,
       href: localePath(CMS_KEYS.EARTH_PLAYGROUND, nav.locale),
       onClick: (e: Event) => {
         if (!isPlainClick(e)) return
@@ -198,6 +217,7 @@ export const renderAppNav = (nav: AppNav) => {
     items.push({
       label: starFieldLabel,
       cls: CHAR_STRINGS.EMPTY,
+      group: experimentsLabel,
       href: localePath(CMS_KEYS.STAR_FIELD, nav.locale),
       onClick: (e: Event) => {
         if (!isPlainClick(e)) return
@@ -207,24 +227,6 @@ export const renderAppNav = (nav: AppNav) => {
 
         router.push(localePath(CMS_KEYS.STAR_FIELD, nav.locale))
       },
-    })
-  }
-
-  items.push({
-    label: prefLabel,
-    cls: NAV_CLASSES.NAV_PREF_BTN,
-    onClick: (e: Event) => nav.handlePreferences(e),
-  })
-
-  // The docs portal is English-only — the language switcher is
-  // suppressed there (prefs/about/playground/contact remain).
-  if (!nav.currentRoute?.meta?.docsRoute) {
-    items.push({
-      label: langLabel,
-      cls: `${NAV_MENU_CLASSES.NAV_MENU_MODAL_FLAG} ${NAV_CLASSES.NAV_LANG_OPEN_BTN}`,
-      title: nav.currentLangLabel,
-      prefix: nav.renderLocaleFlag(),
-      onClick: (e: Event) => nav.handleLang(e),
     })
   }
 
@@ -246,20 +248,70 @@ export const renderAppNav = (nav: AppNav) => {
       </a>
 
       {!isNotFound && (
-        <div className={`${NAV_CLASSES.NAV_MOBILE_STRIP} ${NAV_BURGER_CLASSES.NAV_BURGER_WRAP}`}>
-          {nav._burgerCanvas(burgerLabel)}
+        <div className={NAV_CLASSES.NAV_MOBILE_STRIP}>
+          <div className={NAV_BURGER_CLASSES.NAV_BURGER_WRAP}>
+            {nav._burgerCanvas(burgerLabel)}
+            <button
+              className={NAV_BURGER_CLASSES.NAV_BURGER_FALLBACK}
+              type={FORM_ATTRS.TYPE_BUTTON}
+              aria-label={burgerLabel}
+              aria-expanded={nav._menuOpen ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE}
+              aria-controls={APP_IDS.NAV_MENU_PANEL}
+              onClick={() => nav._toggleMenu()}
+            >
+              <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
+              <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
+              <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
+              <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
+            </button>
+          </div>
+
+          {/* Round flag button — language switcher moved out of the menu
+              modal: the disc holds the locale flag; on hover/focus the
+              strip expands horizontally on the spring curve (the same
+              organic ease the mosaic tiles use) to reveal the language
+              name. Click/Enter opens the language dialog. Hidden on the
+              English-only docs portal — no switcher exists there. */}
+          {!nav.currentRoute?.meta?.docsRoute && (
+            <button
+              className={NAV_CLASSES.NAV_FLAG_BTN}
+              type={FORM_ATTRS.TYPE_BUTTON}
+              lang={nav.locale}
+              aria-label={langLabel}
+              title={langLabel}
+              onClick={(e: Event) => nav.handleLang(e)}
+            >
+              {nav.renderLocaleFlag()}
+              <span className={NAV_CLASSES.NAV_FLAG_LABEL} aria-hidden={ATTR_VALUES.TRUE}>
+                {nav.currentLangLabel}
+              </span>
+            </button>
+          )}
+
+          {/* Round gear button — preferences moved out of the menu
+              modal: a drawn gear that spins on hover/focus and opens the
+              preferences dialog on click/Enter. */}
           <button
-            className={NAV_BURGER_CLASSES.NAV_BURGER_FALLBACK}
+            className={NAV_CLASSES.NAV_GEAR_BTN}
             type={FORM_ATTRS.TYPE_BUTTON}
-            aria-label={burgerLabel}
-            aria-expanded={nav._menuOpen ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE}
-            aria-controls={APP_IDS.NAV_MENU_PANEL}
-            onClick={() => nav._toggleMenu()}
+            aria-label={prefLabel}
+            title={prefLabel}
+            onClick={(e: Event) => nav.handlePreferences(e)}
           >
-            <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
-            <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
-            <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
-            <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
+            <svg
+              className={NAV_CLASSES.NAV_GEAR_SVG}
+              viewBox="0 0 24 24"
+              aria-hidden={ATTR_VALUES.TRUE}
+              focusable={ATTR_VALUES.FALSE}
+            >
+              {/* Gear silhouette: a toothed ring with the hub punched out
+                  via evenodd — the disc behind shows through the hole,
+                  so the glyph reads as a real gear, not a sun. */}
+              <path
+                fill-rule="evenodd"
+                d="M12 8.6a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8zM20 13.7c.11-.54.17-1.12.17-1.7s-.06-1.16-.17-1.7l2-1.57a.53.53 0 0 0 .13-.67l-1.9-3.3a.52.52 0 0 0-.63-.23L17.2 5.5a7.9 7.9 0 0 0-2.93-1.7L13.9 1.5A.52.52 0 0 0 13.4 1h-2.8a.52.52 0 0 0-.52.41l-.37 2.3a7.9 7.9 0 0 0-2.93 1.7L4.4 4.5a.52.52 0 0 0-.63.23l-1.9 3.3a.53.53 0 0 0 .13.67l2 1.57a8.2 8.2 0 0 0 0 3.4l-2 1.57a.53.53 0 0 0-.13.67l1.9 3.3c.14.24.44.33.63.23l2.38-.94a7.9 7.9 0 0 0 2.93 1.7l.37 2.3c.05.22.26.41.52.41h2.8c.24 0 .44-.19.5-.41l.37-2.3a7.9 7.9 0 0 0 2.93-1.7l2.38.94c.19.1.47 0 .63-.23l1.9-3.3a.53.53 0 0 0-.13-.67L20 13.7z"
+              />
+            </svg>
           </button>
         </div>
       )}
@@ -336,8 +388,12 @@ export const renderAppNav = (nav: AppNav) => {
             <h2 className={A11Y_CLASSES.SR_ONLY} id={APP_IDS.NAV_MENU_TITLE} data-nosnippet>
               {menuLabel}
             </h2>
-            {items.map((item) => {
+            {items.map((item, i) => {
               const timing = drawTiming(item.label)
+
+              // First item of a group gets the localized category
+              // heading ("Experiments" above the playground pair).
+              const groupStart = item.group && (!i || items[i - 1].group !== item.group)
 
               // Active highlighting: only about/action rows can light
               // up — matched by class since items are plain data.
@@ -366,13 +422,19 @@ export const renderAppNav = (nav: AppNav) => {
               // positioned, it never claims a grid cell.
               return (
                 <Fragment key={item.label}>
-                  {/* sr-only heading — skipped when label resolves
-                          empty so no empty-heading axe violation fires. */}
-                  {item.label ? (
-                    <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                      {item.label}
-                    </h3>
+                  {groupStart ? (
+                    <div className={NAV_MENU_CLASSES.NAV_MENU_MODAL_GROUP}>
+                      <span className={NAV_MENU_CLASSES.NAV_MENU_MODAL_GROUP_TITLE}>
+                        {item.group}
+                      </span>
+                    </div>
                   ) : null}
+                  {/* sr-only heading — the AT heading-jump target for
+                      the item (every label resolves non-empty through
+                      its appText fallback). */}
+                  <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                    {item.label}
+                  </h3>
                   {item.href ? (
                     <a
                       className={itemCls}

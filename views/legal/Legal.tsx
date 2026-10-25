@@ -167,14 +167,16 @@ export class ViewLegal extends BaseComponent {
     const LegalFooter = COMPONENT_TAGS.LEGAL_FOOTER
 
     /**
-     * Ordered reveal plan — one running cursor across the whole document
-     * so titles and paragraphs cascade in reading order even when several
-     * sections are in the viewport at once. Each item's offset is the
-     * cumulative duration of every item before it (chars × its section's
-     * per-char delay) plus a global index step; the `ordered` attribute
-     * makes draw-text read that offset against the shared session clock.
+     * Ordered reveal plan for the TITLE cascade — one running cursor over
+     * h1 + section h2s so titles still draw in reading order. Paragraphs
+     * render as plain HTML instead of draw-text elements: the parked
+     * article already painted this text, and a draw-text upgrade re-hides
+     * every char (opacity-0 spans) then re-cascades — a long legal doc was
+     * un-painting seconds of already-visible body text at mount (SI), on
+     * top of ~50 shadow-root upgrades (TBT). Plain paragraphs paint once
+     * and stay painted.
      */
-    const drawPlan: { section: LegalSection; offsets: number[]; delay: number }[] = []
+    const drawPlan: { section: LegalSection; offset: number; delay: number }[] = []
 
     // The <h1> title leads the schedule — index 0, its reveal duration
     // (chars × DRAW_DEFAULT_DELAY, the attr-free default) seeds the cursor.
@@ -182,21 +184,15 @@ export class ViewLegal extends BaseComponent {
     let itemIdx = t?.title ? 1 : 0
 
     for (const section of t?.sections || []) {
-      const items = [section.title || CHAR_STRINGS.EMPTY, ...(section.content || [])]
+      const title = section.title || CHAR_STRINGS.EMPTY
 
-      const totalChars = items.reduce((sum, str) => sum + stripHtml(str).length, 0) || 1
+      const delay = calcDrawTextDelay(stripHtml(title).length || 1)
 
-      const delay = calcDrawTextDelay(totalChars)
+      const offset = calcDrawTextOrderedOffset(itemIdx++, scheduledMs)
 
-      const offsets = items.map((str) => {
-        const offset = calcDrawTextOrderedOffset(itemIdx++, scheduledMs)
+      scheduledMs += stripHtml(title).length * delay
 
-        scheduledMs += stripHtml(str).length * delay
-
-        return offset
-      })
-
-      drawPlan.push({ section, offsets, delay })
+      drawPlan.push({ section, offset, delay })
     }
 
     return (
@@ -233,7 +229,7 @@ export class ViewLegal extends BaseComponent {
 
           {t?.sections ? (
             <div>
-              {drawPlan.map(({ section, offsets, delay }, key) => (
+              {drawPlan.map(({ section, offset, delay }, key) => (
                 <section key={key} className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION}>
                   <h2
                     className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT}
@@ -243,7 +239,7 @@ export class ViewLegal extends BaseComponent {
                       text={section.title || CHAR_STRINGS.EMPTY}
                       trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
                       delay={delay}
-                      offset={offsets[0]}
+                      offset={offset}
                       ordered={ATTR_VALUES.TRUE}
                     />
                   </h2>
@@ -257,15 +253,10 @@ export class ViewLegal extends BaseComponent {
                         {excerptHeading(paragraph) ||
                           indexedText(A11Y_UI_KEYS.A11Y_PARAGRAPH, pKey + 1)}
                       </h3>
-                      <p className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT}>
-                        <draw-text
-                          text={paragraph}
-                          trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
-                          delay={delay}
-                          offset={offsets[pKey + 1]}
-                          ordered={ATTR_VALUES.TRUE}
-                        />
-                      </p>
+                      <p
+                        className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT}
+                        dangerouslySetInnerHTML={{ __html: paragraph }}
+                      />
                     </Fragment>
                   ))}
                 </section>

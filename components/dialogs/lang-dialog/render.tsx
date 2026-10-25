@@ -118,7 +118,7 @@ export function renderLangDialog(host: LangDialog) {
             type={FORM_ATTRS.BUTTON}
             onClick={() => host.close()}
           >
-            <canvas className={PREF_CLASSES.PREF_CLOSE_CANVAS} />
+            <canvas className={PREF_CLASSES.PREF_CLOSE_CANVAS} aria-hidden={ATTR_VALUES.TRUE} />
           </button>
         </header>
 

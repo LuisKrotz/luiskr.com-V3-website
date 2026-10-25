@@ -4,6 +4,7 @@
  */
 
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
+import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
@@ -11,6 +12,10 @@ import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { h, Fragment } from '@core/jsx.js'
+import { ASSET_PATHS } from '@core/tokens/routes/paths.js'
+import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
+import { STATE_STRINGS } from '@core/tokens/strings/state.js'
+import { LANG_STRINGS } from '@core/tokens/strings/langs.js'
 import { componentText } from '@core/locale/ui-text.js'
 import store from '@core/store.js'
 import { prefersScaledVideo, videoAutoplayAllowed } from '@core/utils/media/policy.js'
@@ -125,8 +130,28 @@ export function renderMediaFigure(c: MediaFigure) {
             disablePictureInPicture
             autoPlay={c.autoPlay && autoplayAllowed}
             controls={store.getters.getReducedMotion()}
+            // Ambient loops ship without native controls, so the element
+            // itself is the control: tabbable + named, Space/Enter toggles
+            // playback in mount.ts (media_keyboard_controllable). <video>
+            // allows only the application widget role (button is rejected
+            // by aria-allowed-role); playback state rides aria-description
+            // since aria-pressed is button-only too.
+            role={ARIA_ATTRS.ROLE_APPLICATION}
+            aria-description={STATE_STRINGS.PAUSED}
+            tabIndex={ATTR_VALUES.TABINDEX_ZERO}
+            aria-label={c.label || undefined}
+            title={c.label || undefined}
           >
-            <track kind={MEDIA_ATTRS.CAPTIONS} />
+            {/* Muted ambient loops have no meaningful audio — the track
+                exists so the caption contract is explicit (empty vtt),
+                not an unverifiable absence. */}
+            <track
+              kind={MEDIA_ATTRS.CAPTIONS}
+              src={ASSET_PATHS.EMPTY_CAPTIONS}
+              srcLang={LANG_STRINGS.EN}
+              label={DOM_STRINGS.NO_AUDIO_LABEL}
+              default
+            />
 
             {(scaledVideo
               ? [

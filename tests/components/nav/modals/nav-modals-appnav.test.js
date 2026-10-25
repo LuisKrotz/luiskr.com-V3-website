@@ -93,23 +93,26 @@ describe('AppNav', () => {
     expect(navEl.shadowRoot.querySelector(S.NAV_PREF_BTN)).toBeNull()
   })
 
-  test('open menu renders About, Action, Preferences, and Language items', () => {
+  test('open menu renders Selected Work, About, Contact and the experiments group', () => {
     navEl.translations = {
       about: { description: NAV_TEXT.ABOUT_ME },
       contact: NAV_TEXT.GET_IN_TOUCH,
-      preferences: 'Settings',
+      featured: NAV_TEXT.SELECTED_WORK,
+      experiments: 'Experiments',
     }
     navEl._openMenu()
 
     const aboutBtn = navEl.shadowRoot.querySelector(S.NAV_ABOUT_BTN)
-    const actionBtn = navEl.shadowRoot.querySelector(S.NAV_ACTION_BTN)
-    const prefBtn = navEl.shadowRoot.querySelector(S.NAV_PREF_BTN)
-    const langBtn = navEl.shadowRoot.querySelector(S.NAV_LANG_OPEN_BTN)
+    const workBtn = navEl.shadowRoot.querySelector(`.${NAV_CLASSES.NAV_SELECTED_WORK}`)
+    const group = navEl.shadowRoot.querySelector(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL_GROUP}`)
 
     expect(aboutBtn.textContent).toContain(NAV_TEXT.ABOUT_ME)
-    expect(actionBtn.textContent).toContain(NAV_TEXT.GET_IN_TOUCH)
-    expect(prefBtn.textContent).toContain('Settings')
-    expect(langBtn).not.toBeNull()
+    expect(workBtn.textContent).toContain(NAV_TEXT.SELECTED_WORK)
+    expect(group.textContent).toContain('Experiments')
+    // Dialogs moved out of the modal into the strip chips.
+    expect(
+      navEl.shadowRoot.querySelectorAll(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM} button`)
+    ).toHaveLength(0)
   })
 
   test('action item reflects selected work state when onBottom is true', () => {
@@ -142,8 +145,8 @@ describe('AppNav', () => {
     window.addEventListener(APP_EVENTS.OPEN_PREFERENCES_MODAL, listener)
 
     navEl._openMenu()
-    const prefBtn = navEl.shadowRoot.querySelector(S.NAV_PREF_BTN)
-    prefBtn.click()
+    const gearBtn = navEl.shadowRoot.querySelector(`.${NAV_CLASSES.NAV_GEAR_BTN}`)
+    gearBtn.click()
 
     expect(store.getters.getPreferencesOpen()).toBe(true)
     expect(store.getters.getModalOrigin()).toEqual({ x: expect.any(Number), y: expect.any(Number) })
@@ -160,8 +163,8 @@ describe('AppNav', () => {
     window.addEventListener(APP_EVENTS.OPEN_LANG_DIALOG, listener)
 
     navEl._openMenu()
-    const langBtn = navEl.shadowRoot.querySelector(S.NAV_LANG_OPEN_BTN)
-    langBtn.click()
+    const flagBtn = navEl.shadowRoot.querySelector(`.${NAV_CLASSES.NAV_FLAG_BTN}`)
+    flagBtn.click()
 
     expect(store.getters.getLangDialogOpen()).toBe(true)
     expect(windowEventFired).toBe(true)
@@ -203,8 +206,8 @@ describe('AppNav', () => {
     router.currentRoute = { name: ROUTE_NAMES.DOCS, meta: { docsRoute: true } }
     navEl._openMenu()
 
-    expect(navEl.shadowRoot.querySelector(S.NAV_LANG_OPEN_BTN)).toBeNull()
-    expect(navEl.shadowRoot.querySelector(S.NAV_PREF_BTN)).not.toBeNull()
+    expect(navEl.shadowRoot.querySelector(`.${NAV_CLASSES.NAV_FLAG_BTN}`)).toBeNull()
+    expect(navEl.shadowRoot.querySelector(`.${NAV_CLASSES.NAV_GEAR_BTN}`)).not.toBeNull()
     expect(navEl.shadowRoot.querySelector(S.NAV_ABOUT_BTN)).not.toBeNull()
 
     const labels = [...navEl.shadowRoot.querySelectorAll(COMPONENT_TAGS.DRAW_TEXT)].map((el) =>
@@ -359,24 +362,26 @@ describe('AppNav', () => {
     expect(navEl._burgerBtn).toBe(burger)
   })
 
-  test('preferences item keeps the menu open', () => {
+  test('gear chip opens preferences while the menu stays open', () => {
     navEl._openMenu()
-    const items = navEl.shadowRoot.querySelectorAll(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM}`)
-    items[items.length - 2].click()
+    const gearBtn = navEl.shadowRoot.querySelector(`.${NAV_CLASSES.NAV_GEAR_BTN}`)
+    gearBtn.click()
     expect(navEl._menuOpen).toBe(true)
     expect(navEl._menuClosing).toBe(false)
     const modal = navEl.shadowRoot.querySelector(NAV_SELECTORS.NAV_MENU_MODAL)
     expect(modal.classList.contains(NAV_MENU_CLASSES.NAV_MENU_MODAL_OPEN)).toBe(true)
+    store.commit(MODAL_MUTATIONS.TOGGLE_PREFERENCES_MODAL, false)
   })
 
-  test('language item keeps the menu open', () => {
+  test('flag chip opens the language dialog while the menu stays open', () => {
     navEl._openMenu()
-    const items = navEl.shadowRoot.querySelectorAll(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM}`)
-    items[items.length - 1].click()
+    const flagBtn = navEl.shadowRoot.querySelector(`.${NAV_CLASSES.NAV_FLAG_BTN}`)
+    flagBtn.click()
     expect(navEl._menuOpen).toBe(true)
     expect(navEl._menuClosing).toBe(false)
     const modal = navEl.shadowRoot.querySelector(NAV_SELECTORS.NAV_MENU_MODAL)
     expect(modal.classList.contains(NAV_MENU_CLASSES.NAV_MENU_MODAL_OPEN)).toBe(true)
+    store.commit(MODAL_MUTATIONS.TOGGLE_LANG_DIALOG, false)
   })
 
   test('earth playground item closes the menu', () => {

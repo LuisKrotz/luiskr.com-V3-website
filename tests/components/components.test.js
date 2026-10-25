@@ -57,7 +57,9 @@ const S = {
   NAV_LOGO_BTN: `.${NAV_CLASSES.NAV_LOGO_BTN}`,
   NAV_ABOUT_BTN: `.${NAV_CLASSES.NAV_ABOUT_BTN}`,
   NAV_ACTION_BTN: `.${NAV_CLASSES.NAV_ACTION_BTN}`,
+  NAV_CONTACT_BTN: `.${NAV_CLASSES.NAV_ACTION_BTN}:not(.${NAV_CLASSES.NAV_SELECTED_WORK})`,
   NAV_PREF_BTN: `.${NAV_CLASSES.NAV_PREF_BTN}`,
+  NAV_GEAR_BTN: `.${NAV_CLASSES.NAV_GEAR_BTN}`,
   PREF_DIALOG: `.${PREF_CLASSES.PREF_DIALOG}`,
   PREF_BACKDROP: `.${PREF_CLASSES.PREF_BACKDROP}`,
   HOME_MOSAIC_ITEM: `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM}`,
@@ -122,26 +124,27 @@ describe('Web Components Suite - Structure, Events & Reactive Fidelity (50+ Test
       const shadow = nav.shadowRoot
       expect(shadow.querySelector(S.NAV_LOGO_BTN).textContent.trim()).toBe(TEST_TEXT.LUIS_KROTZ)
       expect(shadow.querySelector(S.NAV_ABOUT_BTN).textContent.trim()).toBe(NAV_TEXT.ABOUT_ME)
-      expect(shadow.querySelector(S.NAV_ACTION_BTN).textContent.trim()).toBe('Contact Me')
+      expect(shadow.querySelector(S.NAV_CONTACT_BTN).textContent.trim()).toBe('Contact Me')
     })
 
-    test('updateScrollState transitions contact action button to selected work text', () => {
+    test('updateScrollState flips contact to the scroll-up label at page bottom', () => {
       const nav = document.createElement(COMPONENT_TAGS.APP_NAV)
       document.body.appendChild(nav)
       nav.translations = {
         title: 'Luis',
         contact: NAV_TEXT.CONTACT,
         featured: NAV_TEXT.SELECTED_WORK,
+        scrollUp: TEST_TEXT.SECOND,
       }
 
       nav._openMenu()
       nav.updateScrollState(SECTION_IDS.CONTACT, true)
-      const updatedBtn = nav.shadowRoot.querySelector(S.NAV_ACTION_BTN)
-      expect(updatedBtn.textContent.trim()).toBe(NAV_TEXT.SELECTED_WORK)
-      expect(updatedBtn.classList.contains(NAV_CLASSES.NAV_SELECTED_WORK)).toBe(true)
+      const updatedBtn = nav.shadowRoot.querySelector(S.NAV_CONTACT_BTN)
+      expect(updatedBtn.textContent.trim()).toBe(TEST_TEXT.SECOND)
+      expect(updatedBtn.classList.contains(NAV_CLASSES.NAV_SCROLL_DOWN)).toBe(true)
 
       nav.updateScrollState(SECTION_IDS.CONTACT, false)
-      expect(nav.shadowRoot.querySelector(S.NAV_ACTION_BTN).textContent.trim()).toBe(
+      expect(nav.shadowRoot.querySelector(S.NAV_CONTACT_BTN).textContent.trim()).toBe(
         NAV_TEXT.CONTACT
       )
     })
@@ -157,13 +160,13 @@ describe('Web Components Suite - Structure, Events & Reactive Fidelity (50+ Test
       expect(router.currentRoute.name).toBe(ROUTE_NAMES.HOME)
     })
 
-    test('clicking preferences button opens preferences modal in store', () => {
+    test('clicking the gear chip opens preferences modal in store', () => {
       const nav = document.createElement(COMPONENT_TAGS.APP_NAV)
       document.body.appendChild(nav)
       nav._openMenu()
-      const prefBtn = nav.shadowRoot.querySelector(S.NAV_PREF_BTN)
-      expect(prefBtn).not.toBeNull()
-      prefBtn.click()
+      const gearBtn = nav.shadowRoot.querySelector(S.NAV_GEAR_BTN)
+      expect(gearBtn).not.toBeNull()
+      gearBtn.click()
       expect(store.getters.getPreferencesOpen()).toBe(true)
     })
   })

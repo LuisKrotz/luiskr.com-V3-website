@@ -65,11 +65,15 @@ export function updateSwitchesUI(host: PreferencesModal): void {
 
   const reduced = host.reducedMotion
 
+  const contrast = host.highContrast
+
   host._switches?.[SWITCH_TYPES.STATS]?.setActive(statsForNerds)
 
   host._switches?.[SWITCH_TYPES.GRID]?.setActive(showGrid)
 
   host._switches?.[SWITCH_TYPES.MOTION]?.setActive(reduced)
+
+  host._switches?.[SWITCH_TYPES.CONTRAST]?.setActive(contrast)
 
   const t = host.t
 
@@ -77,5 +81,7 @@ export function updateSwitchesUI(host: PreferencesModal): void {
 
   syncSwitchButton(host, t.devTools.showGrid, showGrid)
 
-  syncSwitchButton(host, t.devTools.reducedMotion, reduced)
+  syncSwitchButton(host, t.a11y.reducedMotion, reduced)
+
+  syncSwitchButton(host, t.a11y.highContrast, contrast)
 }

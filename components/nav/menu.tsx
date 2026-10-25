@@ -18,7 +18,7 @@ import { BurgerButtonWebGL } from '@core/utils/canvas/widgets/burger-button-webg
 import { webglContextDead } from '@core/utils/canvas/webgl-mode.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
-import { destroyNavFlag, type NavFlagHost } from './flag.js'
+import type { NavFlagHost } from './flag.js'
 import { APP_IDS } from '@core/tokens/ids/app.js'
 import { NAV_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
@@ -92,7 +92,7 @@ export const navBurgerCanvas = (host: NavMenuHost, label: string): HTMLCanvasEle
 export const navMenuCanvas = (host: NavMenuHost): HTMLCanvasElement => {
   if (!host._menuCanvasEl) {
     host._menuCanvasEl = (
-      <canvas className={NAV_MENU_CLASSES.NAV_MENU_MODAL_CANVAS} />
+      <canvas className={NAV_MENU_CLASSES.NAV_MENU_MODAL_CANVAS} aria-hidden={ATTR_VALUES.TRUE} />
     ) as HTMLCanvasElement
   }
 
@@ -269,8 +269,10 @@ export const closeNavMenu = (host: NavMenuHost): void => {
       host._menuCanvasEl = null
     }
 
-    destroyNavFlag(host)
-
+    // The flag widget is NOT torn down here — it moved out of the menu
+    // into the persistent nav strip (round flag button), so its GL
+    // context survives open/close like the burger's. It dies with the
+    // component (onDestroy → _destroyNavFlag).
     host._updateDom()
   }, ANIMATION_DURATIONS.MENU_CLOSE_DURATION)
 }

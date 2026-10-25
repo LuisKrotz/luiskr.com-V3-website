@@ -31,6 +31,21 @@ export interface PrefNode {
     /** Light-theme radio option. */
     light: PrefThemeOption
   }
+  /** Accessibility section — contrast and motion toggles copy. */
+  a11y: {
+    /** Section heading. */
+    title: string
+    /** Section description under the heading. */
+    desc: string
+    /** Label for the reduced-motion override toggle. */
+    reducedMotion: string
+    /** Description under the reduced-motion toggle. */
+    reducedMotionDesc: string
+    /** Label for the high-contrast toggle. */
+    highContrast: string
+    /** Description under the high-contrast toggle. */
+    highContrastDesc: string
+  }
   /** Developer-tools section — diagnostic toggles copy. */
   devTools: {
     /** Section heading. */
@@ -43,10 +58,6 @@ export interface PrefNode {
     showGrid: string
     /** Description under the grid toggle. */
     showGridDesc: string
-    /** Label for the reduced-motion override toggle. */
-    reducedMotion: string
-    /** Description under the reduced-motion toggle. */
-    reducedMotionDesc: string
   }
 }
 

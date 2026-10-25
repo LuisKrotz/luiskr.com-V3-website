@@ -17,6 +17,8 @@ import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
+import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { MEDIA_EVENTS, MOUSE_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
@@ -81,6 +83,26 @@ describe('MediaFigure tails', () => {
 
     vid.setAttribute(MEDIA_ATTRS.POSTER, TEST_URLS.A)
     vid.dispatchEvent(new window.Event(WINDOW_EVENTS.ERROR))
+
+    el.remove()
+  })
+
+  test('ambient video exposes the toggle contract (widget role + playback state)', () => {
+    const el = mount(videoAttrs())
+    const vid = el.$(HTML_TAGS.VIDEO)
+
+    // element_tabbable_role_valid: a tabbable element needs a widget
+    // role — Space/Enter toggles playback. <video> accepts only the
+    // application role (button is rejected by aria-allowed-role) and
+    // aria-pressed is button-only, so state rides aria-description.
+    expect(vid.getAttribute(ARIA_ATTRS.ROLE)).toBe(ARIA_ATTRS.ROLE_APPLICATION)
+    expect(vid.getAttribute(ARIA_ATTRS.ARIA_DESCRIPTION)).toBe(STATE_STRINGS.PAUSED)
+
+    vid.dispatchEvent(new window.Event(MEDIA_EVENTS.PLAY))
+    expect(vid.getAttribute(ARIA_ATTRS.ARIA_DESCRIPTION)).toBe(STATE_STRINGS.PLAYING)
+
+    vid.dispatchEvent(new window.Event(MEDIA_EVENTS.PAUSE))
+    expect(vid.getAttribute(ARIA_ATTRS.ARIA_DESCRIPTION)).toBe(STATE_STRINGS.PAUSED)
 
     el.remove()
   })

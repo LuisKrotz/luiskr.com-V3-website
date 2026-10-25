@@ -2923,6 +2923,8 @@ https://luiskr.com/docs/core/sass/base/structure
 https://luiskr.com/docs/core/sass/base/structure/_a11y.scss
 https://luiskr.com/docs/core/sass/base/structure/_dark-mode.scss
 https://luiskr.com/docs/core/sass/base/structure/_document.scss
+https://luiskr.com/docs/core/sass/base/structure/_focus.scss
+https://luiskr.com/docs/core/sass/base/structure/_high-contrast.scss
 https://luiskr.com/docs/core/sass/base/structure/_print.scss
 https://luiskr.com/docs/core/sass/base/structure/_skeleton-utils.scss
 https://luiskr.com/docs/core/sass/base/structure/_tokens.scss
@@ -5610,6 +5612,7 @@ https://luiskr.com/docs/docs/jsdocs/shared/build
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs-portal.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs/encode.md
+https://luiskr.com/docs/docs/jsdocs/shared/build/docs/highlight.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs/redact.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs/render.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs/scan.md
@@ -10464,6 +10467,7 @@ https://luiskr.com/docs/website/jest.config.mjs
 https://luiskr.com/docs/website/package.json
 https://luiskr.com/docs/website/public
 https://luiskr.com/docs/website/public/assets
+https://luiskr.com/docs/website/public/assets/empty-captions.vtt
 https://luiskr.com/docs/website/public/assets/flags
 https://luiskr.com/docs/website/public/assets/flags/ar.svg
 https://luiskr.com/docs/website/public/assets/flags/br.svg

@@ -2,7 +2,7 @@
  * @file canvas-widgets-switchwebgl.test.js
  * @description Split from canvas-widgets.test.js — covers the "SwitchWebGL" describe.
  */
-import { describe, test, expect, beforeEach } from '@jest/globals'
+import { describe, test, expect, beforeEach, jest } from '@jest/globals'
 import { SwitchWebGL } from '@core/utils/canvas/widgets/switch-slider.js'
 import { webglPool } from '@core/utils/canvas/webgl-pool.js'
 import { attachMockGL, attachNoGL } from '@tests/fixtures/mock-webgl.js'
@@ -126,6 +126,69 @@ describe('SwitchWebGL', () => {
     const sw = new SwitchWebGL(canvas, SWITCH_TYPES.STATS, false)
 
     expect(sw.useWebGL).toBe(false)
+
+    sw.destroy()
+  })
+
+  test('toggle and setActive re-arm a dead loop once reduced motion lifts', async () => {
+    const canvas = makeCanvas()
+
+    attachMockGL(canvas)
+
+    const sw = new SwitchWebGL(canvas, SWITCH_TYPES.MOTION, false)
+
+    // Kill the rAF loop as reduced-motion would have — the next toggle
+    // must re-arm it or the knob freezes at the old position.
+    if (sw.animId) {
+      const { framePool } = await import('@core/utils/motion/frame.js')
+
+      framePool.cancel(sw.animId)
+      sw.animId = null
+    }
+
+    const animateSpy = jest.spyOn(sw, 'animate')
+
+    sw.toggle()
+
+    expect(sw.targetP).toBe(1)
+    expect(animateSpy).toHaveBeenCalled()
+
+    animateSpy.mockClear()
+    sw.animId = null
+    sw.setActive(false)
+
+    expect(sw.targetP).toBe(0)
+    expect(animateSpy).toHaveBeenCalled()
+
+    // A live loop is never double-armed.
+    animateSpy.mockClear()
+    sw.animId = 7
+    sw.setActive(true)
+
+    expect(animateSpy).not.toHaveBeenCalled()
+
+    sw.animId = null
+    sw.destroy()
+  })
+
+  test('toggle snaps statically while reduced motion holds', () => {
+    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, true)
+
+    const canvas = makeCanvas()
+
+    attachMockGL(canvas)
+
+    const sw = new SwitchWebGL(canvas, SWITCH_TYPES.MOTION, false)
+
+    const animateSpy = jest.spyOn(sw, 'animate')
+
+    sw.toggle()
+    sw.setActive(true)
+
+    expect(sw.currentP).toBe(sw.targetP)
+    expect(animateSpy).not.toHaveBeenCalled()
+
+    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
 
     sw.destroy()
   })

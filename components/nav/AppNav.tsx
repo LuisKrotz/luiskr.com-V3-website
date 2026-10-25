@@ -88,6 +88,8 @@ interface AppNavTranslations {
   earthPlayground?: string
   starField?: string
   preferences?: string
+  experiments?: string
+  scrollUp?: string
 }
 
 /**

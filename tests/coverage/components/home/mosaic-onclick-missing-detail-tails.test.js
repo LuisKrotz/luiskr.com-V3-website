@@ -3,10 +3,11 @@
  * @description Coverage tail for components/home/mosaic/interactions.ts —
  * the `if (d)` else arm inside onClick's deferred rAF measure: when the
  * details panel for the tapped card is absent from the shadow root, the
- * callback must skip the height write and still reflow the wall.
+ * callback must skip the height write and still reflow the wall. Also
+ * covers onHover's mid-frame leave guard (no stale bottomHMap write).
  */
 import { describe, test, expect, jest } from '@jest/globals'
-import { onClick } from '@website/components/home/mosaic/interactions.js'
+import { onClick, onHover, onLeave } from '@website/components/home/mosaic/interactions.js'
 import { waitFor, TEST_PROJECTS } from '@tests/fixtures/test-constants.js'
 
 describe('onClick missing-detail tail', () => {
@@ -31,5 +32,31 @@ describe('onClick missing-detail tail', () => {
     await waitFor(() => host.layout.mock.calls.length > 0)
 
     expect(host.bottomHMap[0]).toBeUndefined()
+  })
+
+  test('onHover defers then skips the height write when the pointer left mid-frame', async () => {
+    // hoveredIdx cleared before the rAF lands → the callback must bail
+    // without writing a stale expansion height (the phantom-gap case).
+    const host = {
+      hasTouch: false,
+      hoveredIdx: null,
+      touchIdx: null,
+      bottomHMap: {},
+      processedItems: [{ description: 'd' }],
+      $: jest.fn(() => null),
+      layout: jest.fn(),
+      _updateDom: jest.fn(),
+    }
+
+    onHover(host, 0)
+    onLeave(host)
+
+    // The leave pass runs one layout; the deferred hover callback must
+    // not queue another or seed a phantom bottomH entry.
+    await waitFor(() => host.layout.mock.calls.length >= 1)
+    await new Promise((r) => setTimeout(r, 50))
+
+    expect(host.bottomHMap[0]).toBeUndefined()
+    expect(host.layout).toHaveBeenCalledTimes(2)
   })
 })

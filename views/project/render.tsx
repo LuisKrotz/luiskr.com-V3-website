@@ -182,73 +182,80 @@ export function renderProject(c: ViewProject) {
             ))}
           </div>
         ) : (
-          <div>
-            {/* Same wrapper + carousel height var as the loaded block, so content lands without a shift */}
-            <div
-              style={{
-                [CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT]: CAROUSEL_LAYOUT.SKELETON_ITEM_HEIGHT,
-              }}
-            >
-              <div className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION}>
-                <div
-                  aria-hidden={ATTR_VALUES.TRUE}
-                  className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_SECTION_TITLE}`}
-                />
-                <p
-                  className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_PARA_FULL}`}
-                />
-                <p
-                  className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_PARA_94}`}
-                />
-                <p
-                  className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_PARA_98}`}
-                />
-                <p
-                  className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_PARA_FULL}`}
-                />
-                <p
-                  className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_PARA_65}`}
-                />
-              </div>
-              <div className={INTERNAL_CLASSES.INTERNAL_EXTRA}>
-                <div className={INTERNAL_CLASSES.INTERNAL_EXTRA_SCROLL}>
-                  <div className={INTERNAL_CLASSES.INTERNAL_EXTRA_ITEM}>
-                    <figure>
-                      <img
-                        decoding={MEDIA_ATTRS.DECODING_ASYNC}
-                        className={MEDIA_CLASSES.RENDER_PLACEHOLDER}
-                        src={svgPlaceholder(
-                          GENERIC_DIMENSIONS.DEFAULT_WIDTH,
-                          GENERIC_DIMENSIONS.DEFAULT_HEIGHT
-                        )}
-                        width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
-                        height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
-                        alt={ATTR_VALUES.EMPTY}
-                        aria-hidden={ATTR_VALUES.TRUE}
-                      />
-                      <div
-                        className={`${MEDIA_CLASSES.RENDER_MEDIA} ${SKELETON_CLASSES.SKELETON_MEDIA}`}
-                      />
-                    </figure>
-                  </div>
-                  <div className={INTERNAL_CLASSES.INTERNAL_EXTRA_ITEM}>
-                    <figure>
-                      <img
-                        decoding={MEDIA_ATTRS.DECODING_ASYNC}
-                        className={MEDIA_CLASSES.RENDER_PLACEHOLDER}
-                        src={svgPlaceholder(
-                          GENERIC_DIMENSIONS.DEFAULT_WIDTH,
-                          GENERIC_DIMENSIONS.DEFAULT_HEIGHT
-                        )}
-                        width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
-                        height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
-                        alt={ATTR_VALUES.EMPTY}
-                        aria-hidden={ATTR_VALUES.TRUE}
-                      />
-                      <div
-                        className={`${MEDIA_CLASSES.RENDER_MEDIA} ${SKELETON_CLASSES.SKELETON_MEDIA}`}
-                      />
-                    </figure>
+          // Pending-content stand-in: the host reserves flow height while
+          // the placeholder paints as an absolute overlay inside it — a
+          // flow-positioned placeholder's removal counts its vacated area
+          // as a layout shift (measured ~0.16 CLS), while the overlay's
+          // removal moves no sibling box.
+          <div className={SKELETON_CLASSES.SKELETON_HOST}>
+            <div className={SKELETON_CLASSES.SKELETON_OVERLAY}>
+              {/* Same wrapper + carousel height var as the loaded block, so content lands without a shift */}
+              <div
+                style={{
+                  [CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT]: CAROUSEL_LAYOUT.SKELETON_ITEM_HEIGHT,
+                }}
+              >
+                <div className={INTERNAL_CLASSES.INTERNAL_DESCRIPTION}>
+                  <div
+                    aria-hidden={ATTR_VALUES.TRUE}
+                    className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_SECTION_TITLE}`}
+                  />
+                  <p
+                    className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_PARA_FULL}`}
+                  />
+                  <p
+                    className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_PARA_94}`}
+                  />
+                  <p
+                    className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_PARA_98}`}
+                  />
+                  <p
+                    className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_PARA_FULL}`}
+                  />
+                  <p
+                    className={`${INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${SKELETON_CLASSES.SKELETON_PARA_65}`}
+                  />
+                </div>
+                <div className={INTERNAL_CLASSES.INTERNAL_EXTRA}>
+                  <div className={INTERNAL_CLASSES.INTERNAL_EXTRA_SCROLL}>
+                    <div className={INTERNAL_CLASSES.INTERNAL_EXTRA_ITEM}>
+                      <figure>
+                        <img
+                          decoding={MEDIA_ATTRS.DECODING_ASYNC}
+                          className={MEDIA_CLASSES.RENDER_PLACEHOLDER}
+                          src={svgPlaceholder(
+                            GENERIC_DIMENSIONS.DEFAULT_WIDTH,
+                            GENERIC_DIMENSIONS.DEFAULT_HEIGHT
+                          )}
+                          width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
+                          height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
+                          alt={ATTR_VALUES.EMPTY}
+                          aria-hidden={ATTR_VALUES.TRUE}
+                        />
+                        <div
+                          className={`${MEDIA_CLASSES.RENDER_MEDIA} ${SKELETON_CLASSES.SKELETON_MEDIA}`}
+                        />
+                      </figure>
+                    </div>
+                    <div className={INTERNAL_CLASSES.INTERNAL_EXTRA_ITEM}>
+                      <figure>
+                        <img
+                          decoding={MEDIA_ATTRS.DECODING_ASYNC}
+                          className={MEDIA_CLASSES.RENDER_PLACEHOLDER}
+                          src={svgPlaceholder(
+                            GENERIC_DIMENSIONS.DEFAULT_WIDTH,
+                            GENERIC_DIMENSIONS.DEFAULT_HEIGHT
+                          )}
+                          width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
+                          height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
+                          alt={ATTR_VALUES.EMPTY}
+                          aria-hidden={ATTR_VALUES.TRUE}
+                        />
+                        <div
+                          className={`${MEDIA_CLASSES.RENDER_MEDIA} ${SKELETON_CLASSES.SKELETON_MEDIA}`}
+                        />
+                      </figure>
+                    </div>
                   </div>
                 </div>
               </div>

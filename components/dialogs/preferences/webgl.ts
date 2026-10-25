@@ -27,6 +27,7 @@ function commitSwitch(type: string): void {
   if (type === SWITCH_TYPES.STATS) store.commit(PREF_MUTATIONS.TOGGLE_STATS_FOR_NERDS)
   else if (type === SWITCH_TYPES.GRID) store.commit(PREF_MUTATIONS.TOGGLE_SHOW_GRID)
   else if (type === SWITCH_TYPES.MOTION) store.commit(PREF_MUTATIONS.TOGGLE_REDUCED_MOTION)
+  else if (type === SWITCH_TYPES.CONTRAST) store.commit(PREF_MUTATIONS.TOGGLE_HIGH_CONTRAST)
 }
 
 /** Current toggle state for a switch type. */
@@ -34,6 +35,7 @@ function switchActive(host: PreferencesModal, type: string): boolean {
   if (type === SWITCH_TYPES.STATS) return store.getters.getStatsForNerds()
   if (type === SWITCH_TYPES.GRID) return store.getters.getShowGrid()
   if (type === SWITCH_TYPES.MOTION) return host.reducedMotion
+  if (type === SWITCH_TYPES.CONTRAST) return host.highContrast
 
   return false
 }

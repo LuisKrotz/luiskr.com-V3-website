@@ -89,6 +89,7 @@ export function renderPreferences(host: PreferencesModal) {
   const t = host.t
   const theme = host.currentTheme
   const reduced = host.reducedMotion
+  const highContrast = host.highContrast
   const statsForNerds = store.getters.getStatsForNerds()
   const showGrid = store.getters.getShowGrid()
 
@@ -116,7 +117,7 @@ export function renderPreferences(host: PreferencesModal) {
             type={FORM_ATTRS.BUTTON}
             onClick={() => host.close()}
           >
-            <canvas className={PREF_CLASSES.PREF_CLOSE_CANVAS} />
+            <canvas className={PREF_CLASSES.PREF_CLOSE_CANVAS} aria-hidden={ATTR_VALUES.TRUE} />
           </button>
         </header>
 
@@ -142,6 +143,27 @@ export function renderPreferences(host: PreferencesModal) {
             </div>
           </section>
 
+          {/* Accessibility before developer tools — contrast and motion
+              are user-facing aids; diagnostics stay last. */}
+          <section className={PREF_CLASSES.PREF_SECTION}>
+            <h3 className={PREF_CLASSES.PREF_SECTION_TITLE}>{t.a11y.title}</h3>
+            <p className={PREF_CLASSES.PREF_SECTION_DESC}>{t.a11y.desc}</p>
+            {renderSwitchRow(
+              t.a11y.reducedMotion,
+              t.a11y.reducedMotionDesc,
+              reduced,
+              SWITCH_TYPES.MOTION,
+              PREF_MUTATIONS.TOGGLE_REDUCED_MOTION
+            )}
+            {renderSwitchRow(
+              t.a11y.highContrast,
+              t.a11y.highContrastDesc,
+              highContrast,
+              SWITCH_TYPES.CONTRAST,
+              PREF_MUTATIONS.TOGGLE_HIGH_CONTRAST
+            )}
+          </section>
+
           <section className={PREF_CLASSES.PREF_SECTION}>
             <h3 className={PREF_CLASSES.PREF_SECTION_TITLE}>{t.devTools.title}</h3>
             {renderSwitchRow(
@@ -157,13 +179,6 @@ export function renderPreferences(host: PreferencesModal) {
               showGrid,
               SWITCH_TYPES.GRID,
               PREF_MUTATIONS.TOGGLE_SHOW_GRID
-            )}
-            {renderSwitchRow(
-              t.devTools.reducedMotion,
-              t.devTools.reducedMotionDesc,
-              reduced,
-              SWITCH_TYPES.MOTION,
-              PREF_MUTATIONS.TOGGLE_REDUCED_MOTION
             )}
           </section>
         </div>

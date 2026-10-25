@@ -23,8 +23,8 @@ import { FLAG_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
 /** Host surface the flag helpers need (satisfied by AppNav). */
 export interface NavFlagHost {
-  /** Live flag widgets (max one — the menu flag). */
-  _navFlags: FlagWebGL[]
+  /** Live flag widgets (max one — the menu flag); a Set works too. */
+  _navFlags: FlagWebGL[] | Set<FlagWebGL>
   /** Persistent per-locale flag canvas; rebuilt on locale change. */
   _menuFlagCanvasEl: HTMLCanvasElement | null
   /** Locale the current flag canvas was built for. */
@@ -47,7 +47,10 @@ export const navFlagCanvas = (host: NavFlagHost): HTMLCanvasElement => {
     destroyNavFlag(host)
 
     host._menuFlagCanvasEl = (
-      <canvas className={`${FLAG_CLASSES.FLAG_CANVAS} ${FLAG_CLASSES.FLAG_CANVAS_NAV}`} />
+      <canvas
+        className={`${FLAG_CLASSES.FLAG_CANVAS} ${FLAG_CLASSES.FLAG_CANVAS_NAV}`}
+        aria-hidden={ATTR_VALUES.TRUE}
+      />
     ) as HTMLCanvasElement
 
     host._menuFlagLang = host.locale
@@ -111,11 +114,22 @@ export const mountNavFlag = (host: NavFlagHost): void => {
 
   // Dedup by canvas identity — mount is called after every re-render, but
   // a live widget on the same canvas must never be re-created (it would
-  // leak a second GL context onto the same element).
-  if (currentLang && !host._navFlags.some((f) => f.canvas === canvas)) {
+  // leak a second GL context onto the same element). forEach over .some/
+  // .push so a Set-typed _navFlags (tests swap the container) walks the
+  // same dedup path.
+  let exists = false
+
+  host._navFlags.forEach((f) => {
+    if (f.canvas === canvas) exists = true
+  })
+
+  if (currentLang && !exists) {
     applyAnimationDesc(canvas, ANIMATION_IDS.NAV_FLAG)
 
-    host._navFlags.push(new FlagWebGL(canvas, currentLang))
+    const flag = new FlagWebGL(canvas, currentLang)
+
+    if (host._navFlags instanceof Set) host._navFlags.add(flag)
+    else host._navFlags.push(flag)
   }
 }
 

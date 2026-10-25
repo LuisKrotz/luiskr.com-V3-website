@@ -4,11 +4,19 @@
  */
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
+import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
+import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
-import { MEDIA_EVENTS, MOUSE_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
+import {
+  KEYBOARD_EVENTS,
+  MEDIA_EVENTS,
+  MOUSE_EVENTS,
+  WINDOW_EVENTS,
+} from '@core/tokens/events/dom.js'
+import { KEYS } from '@core/tokens/primitives.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
 import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
 import store from '@core/store.js'
@@ -101,6 +109,41 @@ export function mountMediaFigure(c: MediaFigure): void {
         if (el?.hasAttribute(MEDIA_ATTRS.POSTER)) {
           el.removeAttribute(MEDIA_ATTRS.POSTER)
         }
+      })
+
+      // Keyboard contract for ambient loops: muted videos render without
+      // native controls (except under reduced-motion), so the element
+      // itself is the control — Space/Enter toggles playback. Intentional
+      // activation bypasses autoplay policy gates: a reduced-motion user
+      // who deliberately presses play still gets playback.
+      c.addScopedListener(vid, KEYBOARD_EVENTS.KEYDOWN, (e) => {
+        const key = (e as KeyboardEvent).key
+
+        if (key !== KEYS.SPACE && key !== KEYS.ENTER) return
+
+        e.preventDefault()
+
+        if (vid.paused) {
+          c._ensureVideoSource(vid)
+
+          vid.play().catch(() => {})
+        } else {
+          vid.pause()
+        }
+      })
+
+      // aria-description tracks real playback — autoplay, viewport gating,
+      // reduced-motion sync and the keydown toggle all funnel through
+      // the media element's own events, so one pair of listeners keeps
+      // the toggle state truthful no matter which path flips it. (The
+      // pressed-state attribute is button-role-only; the legal widget
+      // role on <video> is application.)
+      c.addScopedListener(vid, MEDIA_EVENTS.PLAY, () => {
+        vid.setAttribute(ARIA_ATTRS.ARIA_DESCRIPTION, STATE_STRINGS.PLAYING)
+      })
+
+      c.addScopedListener(vid, MEDIA_EVENTS.PAUSE, () => {
+        vid.setAttribute(ARIA_ATTRS.ARIA_DESCRIPTION, STATE_STRINGS.PAUSED)
       })
 
       if (!isReduced && videoAutoplayAllowed()) {

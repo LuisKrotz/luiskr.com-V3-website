@@ -32,6 +32,7 @@ import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { THEME_CSS_PROPS } from '@core/tokens/css/theme.js'
+import { ASSET_PATHS } from '@core/tokens/routes/paths.js'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -148,6 +149,18 @@ describe('Accessibility — WCAG 2.1 AA Compliance', () => {
       })
     })
 
+    // IBM input_label_visible — a rendered index inside each dot is the
+    // visible label (and a non-color cue for the active slide).
+    test('dot buttons render a visible slide index (input_label_visible)', () => {
+      const el = createCarousel()
+      const dots = el.$$(CAROUSEL_SELECTORS.CAROUSEL_DOT)
+      dots.forEach((dot, i) => {
+        const num = dot.querySelector(`.${CAROUSEL_CLASSES.CAROUSEL_DOT_NUM}`)
+        expect(num).not.toBeNull()
+        expect(num.textContent.trim()).toBe(`${i + 1}`)
+      })
+    })
+
     test('carousel slides have role="group"', () => {
       const el = createCarousel()
       const slides = el.$$(CAROUSEL_SELECTORS.CAROUSEL_SLIDES_NOT_CLONE)
@@ -251,12 +264,13 @@ describe('Accessibility — WCAG 2.1 AA Compliance', () => {
       expect(dots[2]?.classList.contains(CAROUSEL_CLASSES.CAROUSEL_DOT_ACTIVE)).toBe(false)
     })
 
-    test('counter displays correct position', () => {
+    test('each dot renders its visible slide number', () => {
       const el = createCarousel()
-      el.currentIndex = 1
-      el._updateActiveClasses()
-      const counter = el.$(CAROUSEL_SELECTORS.CAROUSEL_COUNTER)
-      expect(counter?.textContent).toBe('2 of 3')
+      const dots = el.$$(CAROUSEL_SELECTORS.CAROUSEL_DOT)
+      const nums = dots.map(
+        (d) => d.querySelector(`.${CAROUSEL_CLASSES.CAROUSEL_DOT_NUM}`)?.textContent
+      )
+      expect(nums).toEqual(['1', '2', '3'])
     })
   })
 
@@ -364,6 +378,32 @@ describe('Accessibility — WCAG 2.1 AA Compliance', () => {
       // (the template has: ${store.getters.getReducedMotion() ? MEDIA_ATTRS.CONTROLS : ''})
       const hasControlsAttr = /\bcontrols\b/.test(html)
       expect(hasControlsAttr).toBe(false)
+    })
+
+    // IBM media_keyboard_controllable — ambient loops ship without native
+    // controls, so the element itself must be tabbable + named; the keydown
+    // toggle lives in mount.ts.
+    test('video is keyboard-tabbable with an accessible name', () => {
+      const el = document.createElement(COMPONENT_TAGS.MEDIA_FIGURE)
+      el.setAttribute(MEDIA_ATTRS.IS_VIDEO, STATE_STRINGS.TRUE)
+      el.setAttribute(FORM_ATTRS.LABEL, 'Ambient loop')
+      document.body.appendChild(el)
+      const html = toHtml(el.render())
+      expect(html).toContain('tabindex="0"')
+      expect(html).toContain('aria-label="Ambient loop"')
+    })
+
+    // IBM caption_track_exists — muted loops have no meaningful audio, but
+    // the explicit empty captions track makes that contract verifiable
+    // instead of an unproven absence.
+    test('video ships an explicit captions track', () => {
+      const el = document.createElement(COMPONENT_TAGS.MEDIA_FIGURE)
+      el.setAttribute(MEDIA_ATTRS.IS_VIDEO, STATE_STRINGS.TRUE)
+      document.body.appendChild(el)
+      const html = toHtml(el.render())
+      expect(html).toContain(`<track`)
+      expect(html).toContain(`kind="${MEDIA_ATTRS.CAPTIONS}"`)
+      expect(html).toContain(ASSET_PATHS.EMPTY_CAPTIONS)
     })
   })
 

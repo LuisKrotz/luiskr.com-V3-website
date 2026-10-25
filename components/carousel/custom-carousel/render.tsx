@@ -202,7 +202,7 @@ export const renderArrowButton = (direction: string, lang: CarouselLang, circumf
       aria-label={isPrev ? lang.prev : lang.next}
       type={FORM_ATTRS.BUTTON}
     >
-      <canvas className={CAROUSEL_CLASSES.CAROUSEL_BTN_CANVAS} />
+      <canvas className={CAROUSEL_CLASSES.CAROUSEL_BTN_CANVAS} aria-hidden={ATTR_VALUES.TRUE} />
 
       <svg
         className={CAROUSEL_CLASSES.CAROUSEL_BTN_RING}
@@ -235,13 +235,10 @@ export const renderArrowButton = (direction: string, lang: CarouselLang, circumf
   )
 }
 
-/** Dot-navigation strip: localized "N of M" counter + one button per real slide. */
+/** Dot-navigation strip — one numbered disc per real slide (the visible
+ *  index lives inside each dot, IBM input_label_visible). */
 const renderDots = (host: CustomCarousel, lang: CarouselLang) => (
   <div className={CAROUSEL_CLASSES.CAROUSEL_INDICATORS}>
-    <span className={CAROUSEL_CLASSES.CAROUSEL_COUNTER}>
-      {host.currentIndex + 1} {lang.ofLabel} {host.items.length}
-    </span>
-
     <div className={CAROUSEL_CLASSES.CAROUSEL_DOTS}>
       {host.items.map((_, idx) => (
         <button
@@ -249,7 +246,11 @@ const renderDots = (host: CustomCarousel, lang: CarouselLang) => (
           className={`${CAROUSEL_CLASSES.CAROUSEL_DOT} ${host.currentIndex === idx ? CAROUSEL_CLASSES.CAROUSEL_DOT_ACTIVE : ATTR_VALUES.EMPTY}`}
           aria-label={`${idx + 1} ${lang.ofLabel} ${host.items.length}`}
           type={FORM_ATTRS.BUTTON}
-        />
+        >
+          <span className={CAROUSEL_CLASSES.CAROUSEL_DOT_NUM} aria-hidden={ATTR_VALUES.TRUE}>
+            {idx + 1}
+          </span>
+        </button>
       ))}
     </div>
   </div>

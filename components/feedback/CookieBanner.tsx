@@ -21,6 +21,7 @@ import { BaseComponent } from '@core/Component.js'
 import { appText } from '@core/locale/ui-text.js'
 import appStyles from '@core/sass/components/shell/app/cookies-banner.scss?inline'
 import { PREF_STORAGE_KEYS } from '@core/tokens/data/storage.js'
+import { APP_IDS } from '@core/tokens/ids/app.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 
 interface CookieCopy {
@@ -212,9 +213,13 @@ export class CookieBanner extends BaseComponent {
     const c = this.translations.cookies
 
     return (
-      <aside className={COOKIE_CLASSES.COOKIES} aria-label={appText(COOKIE_UI_KEYS.COOKIES_REGION)}>
+      // Complementary landmarks need a VISIBLE label — aria-labelledby on
+      // the rendered consent copy satisfies it where aria-label could not
+      // (IBM aria_complementary_label_visible).
+      <aside className={COOKIE_CLASSES.COOKIES} aria-labelledby={APP_IDS.COOKIES_INFO}>
         <p
           className={COOKIE_CLASSES.COOKIES_INFO}
+          id={APP_IDS.COOKIES_INFO}
           dangerouslySetInnerHTML={{ __html: c.message || ATTR_VALUES.EMPTY }}
         />
 

@@ -152,7 +152,9 @@ const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boo
         <div className={RELATED_CLASSES.RELATED_MOSAIC_OVERLAY} />
       </div>
       <div className={RELATED_CLASSES.RELATED_MOSAIC_INFO}>
-        <span className={RELATED_CLASSES.RELATED_MOSAIC_TITLE}>{project.page}</span>
+        {/* Project name is the card's heading — real <h3> under the
+            footer's h2, not a lookalike div (text_block_heading). */}
+        <h3 className={RELATED_CLASSES.RELATED_MOSAIC_TITLE}>{project.page}</h3>
         {project.description ? (
           <div className={RELATED_CLASSES.RELATED_MOSAIC_DESC}>
             <draw-text text={project.description} delay={ATTR_VALUES.DELAY_25} />

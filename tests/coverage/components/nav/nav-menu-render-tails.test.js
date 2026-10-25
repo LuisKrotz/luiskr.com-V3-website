@@ -19,6 +19,7 @@ import { renderAppNav } from '@website/components/nav/render.js'
 import { localePath } from '@core/i18n.js'
 import router from '@core/router/router.js'
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
+import { SECTIONS } from '@core/tokens/base.js'
 import { LOCALES } from '@core/tokens/locales.js'
 import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
@@ -57,6 +58,7 @@ const navStub = (over = {}) => ({
   handleLogo: () => {},
   handleAbout: () => {},
   handleAction: () => {},
+  scrollToTop: jest.fn(),
   _onDark: null,
   ...over,
 })
@@ -451,14 +453,12 @@ describe('nav menu + render tails', () => {
     pushSpy.mockRestore()
   })
 
-  test('modal items skip their sr-only heading when a label resolves empty', () => {
-    // An empty locale label (currentLangLabel '') must not produce an
-    // empty h3 — heading maps only get rows that carry copy.
-    const tree = renderAppNav(navStub({ currentLangLabel: '' }))
-    const modalItems = tree.querySelectorAll(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM}`)
-    const headings = tree.querySelectorAll(`h3.${A11Y_CLASSES.SR_ONLY}`)
+  test('modal renders the experiments category heading above the playground pair', () => {
+    const tree = renderAppNav(navStub())
+    const group = tree.querySelector(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL_GROUP}`)
 
-    expect(headings.length).toBe(modalItems.length - 1)
+    expect(group).toBeTruthy()
+    expect(group.querySelector(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL_GROUP_TITLE}`)).toBeTruthy()
   })
 
   test('action item delegates to handleAction and burger fallback toggles the menu', () => {
@@ -472,7 +472,11 @@ describe('nav menu + render tails', () => {
     expect(tree.querySelectorAll(`h2.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(1)
     expect(tree.querySelectorAll(`h3.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(items.length)
 
-    const actionAnchor = tree.querySelector(`a.${NAV_CLASSES.NAV_ACTION_BTN}`)
+    // Two rows carry nav-action-btn now (selected-work + contact) —
+    // scope to the contact anchor by its href.
+    const actionAnchor = tree.querySelector(
+      `a.${NAV_CLASSES.NAV_ACTION_BTN}[href="${localePath(CMS_KEYS.CONTACT, LOCALES.EN)}"]`
+    )
 
     expect(actionAnchor).toBeTruthy()
 
@@ -532,18 +536,93 @@ describe('nav menu + render tails', () => {
         .getAttribute(ARIA_ATTRS.ARIA_CONTROLS)
     ).toBe(APP_IDS.NAV_MENU_PANEL)
 
-    // Index items delegate to the same handlers as the modal items —
-    // the first button item is the preferences trigger.
+    // Preferences moved out of the modal into the round gear chip —
+    // it delegates to the same handler the old menu row did.
     const prefNav = navStub({ _menuOpen: false, handlePreferences: jest.fn() })
     const prefTree = renderAppNav(prefNav)
-    const prefIndexBtn = [...prefTree.querySelectorAll(`nav.${A11Y_CLASSES.SR_ONLY} h3 button`)][0]
+    const gearBtn = prefTree.querySelector(`button.${NAV_CLASSES.NAV_GEAR_BTN}`)
 
-    expect(prefIndexBtn).toBeTruthy()
+    expect(gearBtn).toBeTruthy()
 
-    prefIndexBtn.dispatchEvent(
-      new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true })
-    )
+    gearBtn.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
 
     expect(prefNav.handlePreferences).toHaveBeenCalled()
+  })
+
+  test('selected-work item scrolls to the mosaic, closes only when already over it', () => {
+    // Home, mid-page → scrolls to the top mosaic section.
+    const nav = navStub({ isHomePage: true, activeSection: null, onBottom: false })
+    const tree = renderAppNav(nav)
+    const anchor = tree.querySelector(`a.${NAV_CLASSES.NAV_SELECTED_WORK}`)
+
+    expect(anchor).toBeTruthy()
+
+    anchor.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+
+    expect(nav._closeMenu).toHaveBeenCalled()
+    expect(nav.scrollToTop).toHaveBeenCalled()
+
+    // Home, already over the section → the menu just closes.
+    const topNav = navStub({
+      isHomePage: true,
+      activeSection: SECTIONS.HOME,
+      onBottom: false,
+    })
+    const topTree = renderAppNav(topNav)
+
+    topTree
+      .querySelector(`a.${NAV_CLASSES.NAV_SELECTED_WORK}`)
+      .dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+
+    expect(topNav._closeMenu).toHaveBeenCalled()
+    expect(topNav.scrollToTop).not.toHaveBeenCalled()
+  })
+
+  test('selected-work item navigates home off-home and keeps native semantics on modified clicks', () => {
+    const nav = navStub({ isHomePage: false })
+    const tree = renderAppNav(nav)
+    const pushSpy = jest.spyOn(router, 'push').mockImplementation(() => {})
+    const anchor = tree.querySelector(`a.${NAV_CLASSES.NAV_SELECTED_WORK}`)
+
+    anchor.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+
+    expect(pushSpy).toHaveBeenCalledWith(localePath('', LOCALES.EN))
+    expect(nav._closeMenu).toHaveBeenCalled()
+
+    const ev = ctrlClick()
+
+    anchor.dispatchEvent(ev)
+
+    expect(ev.defaultPrevented).toBe(false)
+
+    pushSpy.mockRestore()
+  })
+
+  test('contact item flips to the scroll-up label at page bottom', () => {
+    const nav = navStub({ onBottom: true })
+    const tree = renderAppNav(nav)
+    const anchor = tree.querySelector(
+      `a.${NAV_CLASSES.NAV_ACTION_BTN}.${NAV_CLASSES.NAV_SCROLL_DOWN}`
+    )
+
+    expect(anchor).toBeTruthy()
+    expect(anchor.getAttribute('href')).toBe(localePath('', LOCALES.EN))
+  })
+
+  test('flag chip opens the language dialog and is suppressed on the docs route', () => {
+    const nav = navStub({ handleLang: jest.fn() })
+    const tree = renderAppNav(nav)
+    const flagBtn = tree.querySelector(`button.${NAV_CLASSES.NAV_FLAG_BTN}`)
+
+    expect(flagBtn).toBeTruthy()
+
+    flagBtn.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+
+    expect(nav.handleLang).toHaveBeenCalled()
+
+    const docsNav = navStub({ currentRoute: { name: ROUTE_NAMES.HOME, meta: { docsRoute: true } } })
+    const docsTree = renderAppNav(docsNav)
+
+    expect(docsTree.querySelector(`button.${NAV_CLASSES.NAV_FLAG_BTN}`)).toBeNull()
   })
 })

@@ -80,6 +80,7 @@ export class PreferencesModal extends BaseComponent {
       done: p.done ?? PREF_DEFAULTS.done,
       closeLabel: p.closeLabel ?? PREF_DEFAULTS.closeLabel,
       appearance: { ...PREF_DEFAULTS.appearance, ...(p.appearance ?? {}) },
+      a11y: { ...PREF_DEFAULTS.a11y, ...(p.a11y ?? {}) },
       devTools: { ...PREF_DEFAULTS.devTools, ...(p.devTools ?? {}) },
     }
   }
@@ -100,6 +101,12 @@ export class PreferencesModal extends BaseComponent {
 
   get reducedMotion(): boolean {
     return store.getters.getReducedMotion()
+  }
+
+  /** Whether high contrast is enabled. */
+
+  get highContrast(): boolean {
+    return store.getters.getHighContrast()
   }
 
   /** Live analytics from the NPU predictor for the dev-tools readout. */

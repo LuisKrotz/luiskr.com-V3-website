@@ -84,7 +84,11 @@ function renderDots(host: AwardsCarousel) {
             type={FORM_ATTRS.BUTTON}
             className={`${AWC_CLASSES.AWC_DOT} ${host.currentIndex === idx ? AWC_CLASSES.AWC_DOT_ACTIVE : ATTR_VALUES.EMPTY}`}
             aria-label={`${appText(MEDIA_UI_KEYS.MEDIA_GO_TO_SLIDE)} ${idx + 1}`}
-          />
+          >
+            <span className={AWC_CLASSES.AWC_DOT_NUM} aria-hidden={ATTR_VALUES.TRUE}>
+              {idx + 1}
+            </span>
+          </button>
         ))}
       </div>
     </div>

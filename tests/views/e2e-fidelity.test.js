@@ -193,10 +193,12 @@ describe('Automated End-to-End Feature & Fidelity Test Suite (50+ Tests)', () =>
         contact: NAV_TEXT.CONTACT,
         preferences: 'Preferences',
         featured: NAV_TEXT.SELECTED_WORK,
+        scrollUp: TEST_TEXT.SECOND,
       }
       document.body.appendChild(nav)
       nav._openMenu()
 
+      const contactSel = `${NAV_SELECTORS.NAV_ACTION_BTN}:not(.${NAV_CLASSES.NAV_SELECTED_WORK})`
       const shadow = nav.shadowRoot
       expect(shadow.querySelector(NAV_SELECTORS.NAV_LOGO_BTN).textContent.trim()).toBe(
         TEST_TEXT.LUIS_KROTZ
@@ -204,19 +206,13 @@ describe('Automated End-to-End Feature & Fidelity Test Suite (50+ Tests)', () =>
       expect(shadow.querySelector(NAV_SELECTORS.NAV_ABOUT_BTN).textContent.trim()).toBe(
         ROUTE_NAMES.ABOUT
       )
-      expect(shadow.querySelector(NAV_SELECTORS.NAV_ACTION_BTN).textContent.trim()).toBe(
-        ROUTE_NAMES.CONTACT
-      )
+      expect(shadow.querySelector(contactSel).textContent.trim()).toBe(ROUTE_NAMES.CONTACT)
 
       nav.updateScrollState(SECTION_IDS.CONTACT, true)
-      expect(shadow.querySelector(NAV_SELECTORS.NAV_ACTION_BTN).textContent.trim()).toBe(
-        NAV_TEXT.SELECTED_WORK
+      expect(shadow.querySelector(contactSel).textContent.trim()).toBe(TEST_TEXT.SECOND)
+      expect(shadow.querySelector(contactSel).classList.contains(NAV_CLASSES.NAV_SCROLL_DOWN)).toBe(
+        true
       )
-      expect(
-        shadow
-          .querySelector(NAV_SELECTORS.NAV_ACTION_BTN)
-          .classList.contains(NAV_CLASSES.NAV_SELECTED_WORK)
-      ).toBe(true)
     })
 
     test('Preferences toggle opens and updates application theme across DOM', () => {

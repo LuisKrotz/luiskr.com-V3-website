@@ -15,6 +15,9 @@ import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
+import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
+import { LANG_STRINGS } from '@core/tokens/strings/langs.js'
+import { ASSET_PATHS } from '@core/tokens/routes/paths.js'
 import { h, Fragment } from '@core/jsx.js'
 import store from '@core/store.js'
 import { componentText } from '@core/locale/ui-text.js'
@@ -50,7 +53,10 @@ export function renderMediaExpanded(el: MediaExpanded) {
           aria-label={closeText}
           onClick={() => el.startClose()}
         >
-          <canvas className={`${PREF_CLASSES.PREF_CLOSE_CANVAS} ${STATE_CLASSES.IS_FALLBACK}`} />
+          <canvas
+            className={`${PREF_CLASSES.PREF_CLOSE_CANVAS} ${STATE_CLASSES.IS_FALLBACK}`}
+            aria-hidden={ATTR_VALUES.TRUE}
+          />
           <span
             className={EXPAND_MODAL_CLASSES.EXPAND_MODAL_CLOSE_BAR_FALLBACK}
             aria-hidden={ATTR_VALUES.TRUE}
@@ -104,6 +110,15 @@ export function renderMediaExpanded(el: MediaExpanded) {
               {el.sourceWebm ? <source src={el.sourceWebm} type={MEDIA_ATTRS.VIDEO_WEBM} /> : null}
 
               <source src={el.source} type={MEDIA_ATTRS.VIDEO_MP4} />
+              {/* Muted ambient loops carry no meaningful audio — the
+                  track makes the no-caption state explicit. */}
+              <track
+                kind={MEDIA_ATTRS.CAPTIONS}
+                src={ASSET_PATHS.EMPTY_CAPTIONS}
+                srcLang={LANG_STRINGS.EN}
+                label={DOM_STRINGS.NO_AUDIO_LABEL}
+                default
+              />
             </video>
           </Fragment>
         )}
