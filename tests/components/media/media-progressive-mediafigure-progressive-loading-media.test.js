@@ -360,13 +360,24 @@ describe('MediaFigure — Progressive Loading & Media', () => {
       expect(html).toContain(MEDIA_ATTRS.MUTED)
     })
 
-    test('video render has <source> with type="video/mp4"', () => {
+    test('video render defers <source> attach until playable', () => {
       el.setAttribute(MEDIA_ATTRS.IS_VIDEO, STATE_STRINGS.TRUE)
-      // Empty-source videos emit no <source> at all now (a src="" is a
-      // meaningless candidate) — populate the resolved URL matrix first.
+      // <source> children are deliberately absent at render — the
+      // IntersectionObserver/_ensureVideoSource gate attaches them when
+      // the video first becomes playable, so below-fold ambient loops
+      // never start a stream the viewer may never see.
       el.video = ['url-primary.mp4', 'url-scale.mp4']
       const html = toHtml(el.render())
-      expect(html).toContain('type="video/mp4"')
+      expect(html).not.toContain('type="video/mp4"')
+
+      const vid = document.createElement(HTML_TAGS.VIDEO)
+
+      vid.load = () => {}
+      el._ensureVideoSource(vid)
+
+      expect(vid.querySelector(MEDIA_ATTRS.SOURCE).getAttribute(FORM_ATTRS.TYPE)).toBe(
+        MEDIA_ATTRS.VIDEO_MP4
+      )
     })
 
     test('canExpand adds expand buttons', () => {

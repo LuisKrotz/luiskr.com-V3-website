@@ -17,6 +17,7 @@ import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
+import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
 import { predictiveLoader } from '@core/predictive-loader.js'
@@ -36,6 +37,7 @@ import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
 import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
 import { mountCornerBracketsAll } from '@core/utils/gpu/corner-brackets.js'
 import { mountRingSheen } from '@core/utils/gpu/ring-sheen.js'
+import { onMediaManifest } from '@core/utils/media/manifest.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import type { RingSheenSession } from '@core/utils/gpu/ring-sheen.js'
@@ -64,6 +66,7 @@ export class HomeMosaic extends BaseComponent {
   _ringSession: RingSheenSession | null = null // instanced border-sheen overlay on the card wall
   _ringEl: Element | null = null // the .home-mosaic node the ring session mounted on
   _loadedCovers = new Map<string, string>() // cover key → highest confirmed painted tier — re-renders re-emit it loaded
+  _unsubManifest: (() => void) | null = null // media-manifest arrival — re-renders cards with proven webp rungs
 
   constructor() {
     super(homeMosaicStyles)
@@ -131,6 +134,13 @@ export class HomeMosaic extends BaseComponent {
 
   override onMounted() {
     bindEvents(this)
+
+    // The covers manifest is boot-idle-deferred, so first render emits
+    // originals-only <img>s; on arrival the cards rebuild with proven
+    // thumb/webp rungs and the browser re-fetches the light variants.
+    this._unsubManifest = onMediaManifest(() => {
+      this._updateDom()
+    })
   }
 
   override onDestroy() {
@@ -142,6 +152,12 @@ export class HomeMosaic extends BaseComponent {
     this._ringSession?.destroy()
     this._ringSession = null
     this._ringEl = null
+
+    if (typeof this._unsubManifest === TYPE_STRINGS.FUNCTION) {
+      this._unsubManifest?.()
+
+      this._unsubManifest = null
+    }
   }
 
   /** Debounced re-layout (resize/data changes). */

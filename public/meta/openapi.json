@@ -85,6 +85,86 @@
           }
         }
       }
+    },
+    "/llm/index.json": {
+      "get": {
+        "summary": "LLM replica index",
+        "description": "Machine-readable catalog of the site's full-content replica surface — every public route as Markdown and JSON in all 16 languages. Lists per-locale route indexes (/llm/<locale>/routes.json), the addressing conventions (/llm/<locale>/<route>.{md,json} canonical tree plus <route>.md/.json siblings) and the Content-Signal usage policy (ai-train=yes, search=yes, ai-input=yes).",
+        "operationId": "getLlmIndex",
+        "responses": {
+          "200": {
+            "description": "Replica index document.",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/llm/index.md": {
+      "get": {
+        "summary": "LLM replica index (Markdown)",
+        "description": "Human/agent-readable index of the replica surface — same catalog as /llm/index.json in Markdown form.",
+        "operationId": "getLlmIndexMd",
+        "responses": {
+          "200": {
+            "description": "Replica index document.",
+            "content": { "text/markdown": {} }
+          }
+        }
+      }
+    },
+    "/llm/{locale}/routes.json": {
+      "get": {
+        "summary": "Per-locale replica route list",
+        "description": "Every replica route for one locale (en, br, es, de, hrk, cas, riv, gn, it, ru, fr, tln, nl, ca, gl, ga) — route path, page type, title and its .md/.json replica URLs.",
+        "operationId": "getLlmLocaleRoutes",
+        "parameters": [
+          {
+            "name": "locale",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Locale code (en, br, es, de, hrk, cas, riv, gn, it, ru, fr, tln, nl, ca, gl, ga)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Per-locale route list.",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    },
+    "/llm/{locale}/{routePath}": {
+      "get": {
+        "summary": "Page replica (Markdown or JSON)",
+        "description": "Full-content replica of one public route — append .md for the Markdown replica or .json for the structured JSON replica (e.g. /llm/en/portfolio/metcha.md, /llm/br/lgpd.json). The same replicas are also served as siblings at <route>.md / <route>.json. English routes live under /llm/en/; the docs portal surface is English-only.",
+        "operationId": "getLlmReplica",
+        "parameters": [
+          {
+            "name": "locale",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Locale code."
+          },
+          {
+            "name": "routePath",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Replica file path ending in .md or .json (e.g. portfolio/metcha.md, docs/shared/src/App.ts.json)."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Full-content page replica.",
+            "content": {
+              "text/markdown": {},
+              "application/json": {}
+            }
+          }
+        }
+      }
     }
   }
 }

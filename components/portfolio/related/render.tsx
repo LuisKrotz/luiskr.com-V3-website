@@ -7,7 +7,11 @@
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
-import { coverVariants } from '@core/utils/media/manifest.js'
+import {
+  coverVariants,
+  mediaManifestReady,
+  mediaManifestFailed,
+} from '@core/utils/media/manifest.js'
 import { coverLadderStep } from '@core/utils/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
@@ -96,8 +100,20 @@ const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boo
 
               {covers.webp && <source srcset={covers.webp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
 
+              {/* The manifest is boot-idle-deferred: until it settles the
+                  real URL stays off the wire — the LQIP placeholder owns
+                  the box, so a never-proven original can't drag a ~300KB
+                  jpg into the LCP/first-payload budget. On arrival the
+                  manifest listener re-renders with proven thumbs/webp. */}
               <img
-                src={covers.src}
+                src={
+                  mediaManifestReady() || mediaManifestFailed()
+                    ? covers.src
+                    : svgPlaceholder(
+                        project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH,
+                        project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT
+                      )
+                }
                 alt={project.description || ATTR_VALUES.EMPTY}
                 className={`${RELATED_CLASSES.RELATED_MOSAIC_IMG} ${RELATED_CLASSES.RELATED_MOSAIC_IMG_THUMB}`}
                 loading={MEDIA_ATTRS.LOADING_LAZY}
@@ -107,6 +123,12 @@ const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boo
               />
             </picture>
 
+            {/* Degenerate ladders (the original is the ONLY proven rung)
+                can't pay a full-res fetch a card box resolves — the entry
+                img then rides the already-warm kodak thumb URL (a cache
+                hit, zero new bytes) and its original-webp <source> stays
+                out of the DOM. Real ladders still enter at their lightest
+                rung. */}
             {covers.rungs.length > 0 && (
               <picture>
                 {/* Mobile-stem entry rung for ≤768px viewports — the
@@ -119,12 +141,15 @@ const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boo
                   />
                 )}
 
-                {!reached && covers.rungs[0].webp && (
+                {!reached && covers.rungs[0].jpg !== project.imageSrc && covers.rungs[0].webp && (
                   <source srcset={covers.rungs[0].webp} type={MEDIA_ATTRS.IMAGE_WEBP} />
                 )}
 
                 <img
-                  src={reached || covers.rungs[0].jpg}
+                  src={
+                    reached ||
+                    (covers.rungs[0].jpg === project.imageSrc ? covers.src : covers.rungs[0].jpg)
+                  }
                   alt={ATTR_VALUES.EMPTY}
                   aria-hidden={ATTR_VALUES.TRUE}
                   className={`${RELATED_CLASSES.RELATED_MOSAIC_IMG} ${RELATED_CLASSES.RELATED_MOSAIC_IMG_HIGH} ${alreadyLoaded ? RELATED_CLASSES.RELATED_MOSAIC_IMG_LOADED : ATTR_VALUES.EMPTY}`}

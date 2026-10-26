@@ -19,6 +19,7 @@ import router from '@core/router/router.js'
 import { buildProjectsList } from './related/match.js'
 import { fetchData, storedTranslations } from './related/data.js'
 import { renderRelated } from './related/render.js'
+import { onMediaManifest } from '@core/utils/media/manifest.js'
 import { mountDividerSheen } from '@core/utils/gpu/divider-sheen.js'
 import { mountRingSheen } from '@core/utils/gpu/ring-sheen.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
@@ -38,6 +39,8 @@ export class PortfolioRelated extends BaseComponent {
   homePortfolio: HomeItem[] = []
 
   _unsubRouter: (() => void) | null = null
+
+  _unsubManifest: (() => void) | null = null // media-manifest arrival — re-renders cards with proven webp rungs
 
   _noteOpen = false // disclaimer expand state (clamped to its first line)
 
@@ -205,6 +208,13 @@ export class PortfolioRelated extends BaseComponent {
       this._updateDom()
     })
 
+    // The covers manifest is boot-idle-deferred, so first render emits
+    // originals-only <img>s; on arrival the cards rebuild with proven
+    // thumb/webp rungs and the browser re-fetches the light variants.
+    this._unsubManifest = onMediaManifest(() => {
+      this._updateDom()
+    })
+
     if (!this.translations?.title) {
       this.translations = storedTranslations()
     }
@@ -227,6 +237,12 @@ export class PortfolioRelated extends BaseComponent {
       this._unsubRouter?.()
 
       this._unsubRouter = null
+    }
+
+    if (typeof this._unsubManifest === TYPE_STRINGS.FUNCTION) {
+      this._unsubManifest?.()
+
+      this._unsubManifest = null
     }
 
     this._noteRO?.disconnect()

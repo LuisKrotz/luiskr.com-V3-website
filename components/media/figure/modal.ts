@@ -16,7 +16,7 @@ import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
 import { encodeMediaUrl } from '@core/utils/media.js'
 import { mediaSlugSeq } from '@core/utils/index.js'
-import { setMediaModalTrigger } from '../modal-trigger.js'
+import { setMediaModalTrigger, setMediaPageTitle } from '../modal-trigger.js'
 import type { MediaFigure } from '../MediaFigure.js'
 
 /**
@@ -128,5 +128,8 @@ export function openMediaModal(c: MediaFigure): void {
     if (window.location.pathname !== newPath) {
       window.history.replaceState({}, ATTR_VALUES.EMPTY, newPath)
     }
+
+    // The URL is now the media's own watch page — the title names it.
+    setMediaPageTitle(c.label)
   }
 }

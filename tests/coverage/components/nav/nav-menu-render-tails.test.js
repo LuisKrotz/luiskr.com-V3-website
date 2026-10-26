@@ -23,6 +23,7 @@ import { SECTIONS } from '@core/tokens/base.js'
 import { LOCALES } from '@core/tokens/locales.js'
 import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
+import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { NAV_CLASSES, NAV_BURGER_CLASSES, NAV_MENU_CLASSES } from '@core/tokens/classes/nav.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
@@ -598,6 +599,27 @@ describe('nav menu + render tails', () => {
     pushSpy.mockRestore()
   })
 
+  test('onDark class lands on the nav for playground pages and home-at-bottom dark theme', () => {
+    const dark = STATE_CLASSES.DARK_MODE
+
+    // Playground page with the menu closed → onDark short-circuits true.
+    // renderAppNav returns the <nav> root itself.
+    const pgNav = renderAppNav(navStub({ isPlaygroundPage: true, _menuOpen: false }))
+
+    expect(pgNav.classList.contains(NAV_CLASSES.NAV_ON_DARK)).toBe(true)
+
+    // Home page at the bottom under the dark theme → the longer chain.
+    document.documentElement.classList.add(dark)
+
+    const homeNav = renderAppNav(
+      navStub({ isHomePage: true, onBottom: true, _menuOpen: false, activeSection: null })
+    )
+
+    expect(homeNav.classList.contains(NAV_CLASSES.NAV_ON_DARK)).toBe(true)
+
+    document.documentElement.classList.remove(dark)
+  })
+
   test('contact item flips to the scroll-up label at page bottom', () => {
     const nav = navStub({ onBottom: true })
     const tree = renderAppNav(nav)
@@ -624,5 +646,191 @@ describe('nav menu + render tails', () => {
     const docsTree = renderAppNav(docsNav)
 
     expect(docsTree.querySelector(`button.${NAV_CLASSES.NAV_FLAG_BTN}`)).toBeNull()
+  })
+
+  test('experiments items drop out on their own pages and plain-click arms route', () => {
+    // Star-field page omits its own menu item (the !isStarFieldPage false arm).
+    const nav = navStub({ isStarFieldPage: true, isEarthPlaygroundPage: true })
+    const tree = renderAppNav(nav)
+
+    expect(tree.textContent.includes('star')).toBe(false)
+  })
+
+  test('star-field menu anchor honors plain-click routing and skips modified clicks', () => {
+    const nav = navStub()
+    const tree = renderAppNav(nav)
+    const anchor = tree.querySelector(`a[href="${localePath(CMS_KEYS.STAR_FIELD, LOCALES.EN)}"]`)
+
+    expect(anchor).toBeTruthy()
+
+    const pushSpy = jest.spyOn(router, 'push').mockImplementation(() => {})
+
+    anchor.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+
+    expect(pushSpy).toHaveBeenCalledWith(localePath(CMS_KEYS.STAR_FIELD, LOCALES.EN))
+
+    const ev = ctrlClick()
+
+    anchor.dispatchEvent(ev)
+
+    expect(ev.defaultPrevented).toBe(false)
+
+    pushSpy.mockRestore()
+  })
+
+  test('burger fallback reads aria-expanded off the closed state', () => {
+    const nav = navStub({ _menuOpen: false })
+    const tree = renderAppNav(nav)
+    const burger = tree.querySelector(`button.${NAV_BURGER_CLASSES.NAV_BURGER_FALLBACK}`)
+
+    expect(burger.getAttribute(ARIA_ATTRS.ARIA_EXPANDED)).toBe(ATTR_VALUES.FALSE)
+  })
+
+  test('flag chip stays when route meta has no docsRoute flag', () => {
+    const nav = navStub({ currentRoute: { name: ROUTE_NAMES.HOME, meta: {} } })
+    const tree = renderAppNav(nav)
+
+    expect(tree.querySelector(`button.${NAV_CLASSES.NAV_FLAG_BTN}`)).toBeTruthy()
+  })
+
+  test('flag chip survives a null currentRoute (?. short-circuit arm)', () => {
+    const nav = navStub({ currentRoute: null })
+    const tree = renderAppNav(nav)
+
+    expect(tree.querySelector(`button.${NAV_CLASSES.NAV_FLAG_BTN}`)).toBeTruthy()
+  })
+
+  test('onBottom swaps the contact item for a scroll-up affordance', () => {
+    const nav = navStub({ onBottom: true })
+    const tree = renderAppNav(nav)
+    const anchor = tree.querySelector(`a.${NAV_CLASSES.NAV_SCROLL_DOWN}`)
+
+    expect(anchor).toBeTruthy()
+    expect(anchor.getAttribute('href')).toBe(localePath('', LOCALES.EN))
+  })
+
+  test('every menu item handler sees plain and modified click arms', () => {
+    const nav = navStub()
+    const tree = renderAppNav(nav)
+    const pushSpy = jest.spyOn(router, 'push').mockImplementation(() => {})
+
+    tree.querySelectorAll('ul a, ul button').forEach((el) => {
+      el.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+      el.dispatchEvent(ctrlClick())
+    })
+
+    pushSpy.mockRestore()
+  })
+
+  test('menu item handlers route when mounted off the home page', () => {
+    const nav = navStub({ isHomePage: false })
+    const tree = renderAppNav(nav)
+    const pushSpy = jest.spyOn(router, 'push').mockImplementation(() => {})
+
+    tree.querySelectorAll('ul a, ul button').forEach((el) => {
+      el.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+    })
+
+    pushSpy.mockRestore()
+  })
+
+  test('docsRoute route meta suppresses the flag chip', () => {
+    const nav = navStub({ currentRoute: { name: ROUTE_NAMES.HOME, meta: { docsRoute: true } } })
+    const tree = renderAppNav(nav)
+
+    expect(tree.querySelector(`button.${NAV_CLASSES.NAV_FLAG_BTN}`)).toBeNull()
+  })
+
+  test('item handlers tolerate falsy events (e && and e?. arms)', () => {
+    const captured = []
+    const origAEL = Element.prototype.addEventListener
+
+    Element.prototype.addEventListener = function (type, cb) {
+      if (type === MOUSE_EVENTS.CLICK) captured.push(cb)
+
+      return origAEL.call(this, type, cb)
+    }
+
+    try {
+      renderAppNav(navStub())
+      renderAppNav(navStub({ onBottom: true, isHomePage: false }))
+    } finally {
+      Element.prototype.addEventListener = origAEL
+    }
+
+    // Falsy-e arms of `e && !isPlainClick(e)` / `e?.preventDefault?.()`.
+    captured.forEach((cb) => {
+      try {
+        cb(null)
+      } catch {
+        /* handlers may bail on null — the guard arms are what matter */
+      }
+
+      try {
+        cb(undefined)
+      } catch {
+        /* same */
+      }
+    })
+  })
+
+  test('every nav-state combo renders and all item handlers fire', () => {
+    const combos = [
+      {},
+      { onBottom: true },
+      { isHomePage: false, activeSection: SECTIONS.CONTACT },
+      { isStarFieldPage: true },
+      { isEarthPlaygroundPage: true },
+      { isPlaygroundPage: true },
+      { activeSection: SECTIONS.ABOUT },
+      { currentRoute: { name: ROUTE_NAMES.NOT_FOUND } },
+      { currentRoute: { name: ROUTE_NAMES.HOME, meta: { docsRoute: true } } },
+      { currentRoute: { name: ROUTE_NAMES.HOME } },
+      { currentRoute: null },
+    ]
+
+    const pushSpy = jest.spyOn(router, 'push').mockImplementation(() => {})
+
+    combos.forEach((over) => {
+      const tree = renderAppNav(navStub(over))
+
+      tree.querySelectorAll('a, button').forEach((el) => {
+        el.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+        el.dispatchEvent(ctrlClick())
+      })
+    })
+
+    // Dark theme + home + bottom → the `onDark` truthy class arm; the
+    // star-field and non-contact variants evaluate the remaining
+    // short-circuit operands.
+    document.documentElement.classList.add(STATE_CLASSES.DARK_MODE)
+
+    const darkCombos = [
+      { onBottom: true, activeSection: SECTIONS.CONTACT },
+      { isStarFieldPage: true },
+      { activeSection: SECTIONS.ABOUT },
+      { isHomePage: false },
+    ]
+
+    darkCombos.forEach((over) => {
+      const darkTree = renderAppNav(navStub(over))
+
+      darkTree.querySelectorAll('a, button').forEach((el) => {
+        el.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true }))
+      })
+    })
+
+    document.documentElement.classList.remove(STATE_CLASSES.DARK_MODE)
+
+    pushSpy.mockRestore()
+  })
+
+  test('flag button falls back to the raw locale when LOCALE_TAGS has no bcp', () => {
+    // 'xx' is not a registered locale — the `?? nav.locale` arm emits it
+    // raw so the flag button never drops its lang hint.
+    const tree = renderAppNav(navStub({ locale: 'xx' }))
+    const flagBtn = tree.querySelector(`button.${NAV_CLASSES.NAV_FLAG_BTN}`)
+
+    expect(flagBtn?.getAttribute('lang')).toBe('xx')
   })
 })

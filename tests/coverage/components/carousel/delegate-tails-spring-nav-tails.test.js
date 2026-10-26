@@ -137,9 +137,22 @@ describe('spring nav tails', () => {
     expect(el.teleportTimer).toBe(null)
     expect(el.isNavigating).toBe(false)
     expect(track.classList.contains(CAROUSEL_CLASSES.CAROUSEL_TRACK_ANIMATING)).toBe(false)
+  })
 
-    raf.restore()
-    cleanup(el)
+  test('scheduleTeleport watchdog fires _jumpToSlide after TELEPORT_DELAY', async () => {
+    const { scheduleTeleport } = await import('@website/components/carousel/custom-carousel/nav.js')
+    const { el } = makeCarousel()
+
+    el._jumpToSlide = jest.fn()
+    scheduleTeleport(el, 2)
+    scheduleTeleport(el, 3)
+
+    await waitFor(() => el.teleportTimer === null, 1600)
+
+    expect(el._jumpToSlide).toHaveBeenCalledWith(3, false)
+    expect(el.pendingTeleport).toBe(null)
+
+    el.remove()
   })
 
   test('custom: teleport watchdog fires when the clone is unmeasurable (no spring)', async () => {

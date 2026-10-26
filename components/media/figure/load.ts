@@ -111,6 +111,12 @@ export function warmFirstRung(fig: MediaFigure): void {
   const ladder = figureLadder(stem, ladderBoxWidth(fig))
   const first = ladder[0]
 
+  // A degenerate ladder's entry rung IS the uncompressed original —
+  // warming it pays a full-res fetch for a warm benefit the box can't
+  // resolve, and the climb itself is a no-op (nothing cheaper to paint).
+  // Skip the probe entirely; the painted thumb already owns the slot.
+  if (first && first.jpg === `${stem}${MEDIA.EXT}`) return
+
   const url = first
     ? first.webp || first.jpg
     : encodeMediaUrl(`${stem}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)
@@ -195,6 +201,16 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
   // single tier (absent, or the media was never converted) fall back to
   // the historic blind Q50 probe — the request itself is the check.
   const ladder: CoverRung[] = figureLadder(stem, ladderBoxWidth(fig))
+
+  // Degenerate ladder — the only proven rung is the original. Small boxes
+  // can never resolve the difference, so the thumb stays painted and no
+  // full-res probe fires; large boxes still get the honest climb.
+  if (
+    ladder.length === 1 &&
+    ladder[0].jpg === `${stem}${MEDIA.EXT}` &&
+    smallMediaBox(ladderBoxWidth(fig))
+  )
+    return
 
   if (!ladder.length) {
     const q50 = encodeMediaUrl(`${stem}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`)

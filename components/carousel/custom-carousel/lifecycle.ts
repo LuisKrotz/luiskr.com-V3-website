@@ -6,6 +6,7 @@
  */
 
 import store from '@core/store.js'
+import { onMediaManifest } from '@core/utils/media/manifest.js'
 import type { CustomCarousel } from '../CustomCarousel.js'
 
 /**
@@ -25,6 +26,13 @@ export function onMounted(host: CustomCarousel): void {
   host._startFitObserver()
 
   host.subscribe(store)
+
+  // The covers manifest is boot-idle-deferred — the first slide render
+  // emits originals-only <img>s; on arrival the rebuild emits proven
+  // webp thumbs and the browser re-fetches the light variants.
+  host._unsubManifest = onMediaManifest(() => {
+    host._updateDom()
+  })
 }
 
 /** Disconnects the ResizeObserver tracking the host width. */
@@ -82,4 +90,8 @@ export function onDestroy(host: CustomCarousel): void {
   }
 
   host._cancelNavSpring()
+
+  host._unsubManifest?.()
+
+  host._unsubManifest = null
 }

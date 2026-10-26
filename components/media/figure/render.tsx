@@ -153,20 +153,13 @@ export function renderMediaFigure(c: MediaFigure) {
               default
             />
 
-            {(scaledVideo
-              ? [
-                  [c.videoSrcWebmFallback, MEDIA_ATTRS.VIDEO_WEBM],
-                  [c.videoSrcFallback, MEDIA_ATTRS.VIDEO_MP4],
-                  [c.videoSrcWebmMain, MEDIA_ATTRS.VIDEO_WEBM],
-                  [c.videoSrcMain, MEDIA_ATTRS.VIDEO_MP4],
-                ]
-              : [
-                  [c.videoSrcWebmMain, MEDIA_ATTRS.VIDEO_WEBM],
-                  [c.videoSrcWebmFallback, MEDIA_ATTRS.VIDEO_WEBM],
-                  [c.videoSrcMain, MEDIA_ATTRS.VIDEO_MP4],
-                  [c.videoSrcFallback, MEDIA_ATTRS.VIDEO_MP4],
-                ]
-            ).map(([src, type]) => (src ? <source src={src} type={type} /> : null))}
+            {/* <source> children are deliberately absent — emitting them
+                eagerly would let autoPlay+metadata start the stream
+                before the IntersectionObserver gate, downloading
+                megabytes of video the viewer may never scroll to. The
+                sources attach lazily through _ensureVideoSource (IO ≥15%
+                intersect, hover, or keyboard play), which walks the same
+                scaled-first ordering. */}
           </video>
         </Fragment>
       )}

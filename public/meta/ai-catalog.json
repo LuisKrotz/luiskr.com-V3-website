@@ -64,6 +64,19 @@
         "site animation accessibility descriptions",
         "what animations does luiskr.com use"
       ]
+    },
+    {
+      "identifier": "urn:air:luiskr.com:replicas:index",
+      "displayName": "LLM Replica Index",
+      "type": "application/json",
+      "url": "https://luiskr.com/llm/index.json",
+      "description": "Catalog of the site's full-content replica surface: every public route as Markdown and JSON in all 16 languages (~19k routes × 2 formats). Canonical mirror tree under /llm/<locale>/<route>.{md,json}; sibling convention appends .md/.json to any page URL. Policy: ai-train=yes, search=yes, ai-input=yes.",
+      "representativeQueries": [
+        "luiskr.com llm replicas",
+        "luiskr.com markdown copies of pages",
+        "luiskr.com json api for all pages",
+        "llms.txt full content export"
+      ]
     }
   ]
 }

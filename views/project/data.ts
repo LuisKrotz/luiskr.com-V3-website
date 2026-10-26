@@ -10,12 +10,10 @@ import { BASE_TITLE } from '@core/tokens/routes.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
-import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { LOCALES } from '@core/tokens/locales.js'
 import { PROJECT_ALIASES } from '@core/tokens/routes/aliases.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
-import { SCHEMA_STRINGS } from '@core/tokens/strings/schema.js'
-import { generateProjectSchema, updateJsonLd } from '@core/utils/index.js'
+import { generateProjectSchema, updateJsonLd, setRobotsMeta } from '@core/utils/index.js'
 import { toMetaDescription } from '@core/utils/string.js'
 import { setMetaContent, setMetaDescription } from '@core/router/navigate.js'
 import store from '@core/store.js'
@@ -29,27 +27,10 @@ import type { ProjectTranslations } from './types.js'
 import { SCROLL_TIMINGS } from '@core/tokens/media/dimensions.js'
 import { devError } from '@core/devlog.js'
 
-/** Toggles the noindex meta for draft/hidden projects. */
+/** Toggles the noindex meta for draft/hidden projects — delegates to the
+ * shared head authority in core/utils/schema so every surface agrees. */
 export function updateRobotsMeta(noindex: boolean): void {
-  if (typeof document === TYPE_STRINGS.UNDEFINED) return
-
-  let meta = document.querySelector<HTMLMetaElement>(QUERY_STRINGS.META_ROBOTS)
-
-  if (noindex) {
-    if (!meta) {
-      meta = document.createElement(HTML_TAGS.META)
-
-      meta.name = 'robots'
-
-      document.head.appendChild(meta)
-    }
-
-    meta.content = SCHEMA_STRINGS.NOINDEX_NOFOLLOW
-  } else {
-    if (meta) {
-      meta.remove()
-    }
-  }
+  setRobotsMeta(noindex)
 }
 
 /**
@@ -160,6 +141,11 @@ export function loadData(view: ViewProject, wait: number | false = false): void 
       } else {
         setTimeout(reveal, wait)
       }
+    } else {
+      // Missing/unknown project slug — the URL is a soft-404 duplicate of
+      // the SPA shell, so it must noindex rather than compete with real
+      // routes.
+      view.updateRobotsMeta(true)
     }
   }
 

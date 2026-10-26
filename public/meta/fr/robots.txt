@@ -2,5 +2,8 @@ User-agent: *
 Disallow: /cms
 Disallow: /admin
 Disallow: /langs/
+Disallow: /docs-content/
+Disallow: /deploy-info/
+Disallow: /meta/
 
 Sitemap: https://luiskr.com/sitemap-fr.xml

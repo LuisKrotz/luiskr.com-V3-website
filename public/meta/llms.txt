@@ -49,7 +49,19 @@
 - [Agent skills index](https://luiskr.com/.well-known/agent-skills/index.json): sha256-pinned SKILL.md files under `/meta/skills/`.
 - [MCP server card](https://luiskr.com/.well-known/mcp/server-card.json): SEP-1649 card describing the read-only resource surface.
 - [Message-signatures directory](https://luiskr.com/.well-known/http-message-signatures-directory): Web Bot Auth JWKS for request-signature verification.
-- Usage preferences: `Content-Signal` in `/robots.txt` (`ai-train=no, search=yes, ai-input=no`); `Link` response headers advertise these resources on every page.
+- Usage preferences: `Content-Signal: ai-train=yes, search=yes, ai-input=yes` on every response (and stamped into deployed `robots.txt` files); `Link` response headers advertise these resources on every page.
+
+## Full-Content Replicas (`/llm/`)
+
+Every public route ships a build-time **Markdown replica** and **JSON replica** containing the page's complete localized content and every media asset — ~19,000 routes × 2 formats × 16 languages, generated from the site's Firebase data.
+
+- [Replica index (JSON)](https://luiskr.com/llm/index.json): machine-readable catalog — per-locale route lists, conventions, policy.
+- [Replica index (Markdown)](https://luiskr.com/llm/index.md): human/agent-readable entry point.
+- Per-locale route lists: `/llm/<locale>/routes.json` (en, br, es, de, hrk, cas, riv, gn, it, ru, fr, tln, nl, ca, gl, ga).
+- **Canonical tree**: `/llm/<locale>/<route>.md` and `/llm/<locale>/<route>.json` — English routes live under `/llm/en/` (`/` → `/llm/en/index.md`), docs are English-only.
+- **Sibling convention**: append `.md` or `.json` to any page URL — `https://luiskr.com/portfolio/metcha.md`, `https://luiskr.com/br/lgpd.json`, `https://luiskr.com/star-field-experiment/mars.md`.
+- Coverage: home, about, contact, legal, animations, both playgrounds, all 13 project pages, all ~520 localized media deep links, all 144 star-field body dossiers, and the entire `/docs/` portal (5,900+ files) — in every locale where the route exists.
+- Each page advertises its replicas with `<link rel="alternate" type="text/markdown">` + `<link rel="alternate" type="application/json">` in `<head>`.
 
 ## Contact
 

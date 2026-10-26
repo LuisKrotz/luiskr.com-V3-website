@@ -18,6 +18,7 @@ import {
 } from '@core/tokens/events/dom.js'
 import { KEYS } from '@core/tokens/primitives.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
+import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
 import store from '@core/store.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
@@ -153,24 +154,47 @@ export function mountMediaFigure(c: MediaFigure): void {
         // 'low' connection budget (saveData/≤2g) skips this branch like
         // reduced-motion: the poster stays painted and no stream bytes
         // are ever fetched.
-        c.observer = new IntersectionObserver(
+        const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               c.isIntersecting = entry.isIntersecting
 
               if (entry.isIntersecting) {
-                c._ensureVideoSource(vid)
+                // Defer the source attach + play to an idle slice — a
+                // video that streams the moment it intersects races the
+                // page's own LCP/TBT budget on throttled links. The
+                // hover/keyboard paths stay immediate: a deliberate play
+                // intent always wins over the budget.
+                const start = () => {
+                  // Stale-observer bail: a queued idle start must never
+                  // fire after this observer was disconnected/replaced
+                  // (patch re-bind, re-mount, onDestroy) — it would
+                  // replay the entry against newer store/DOM state.
+                  if (c.observer !== observer) return
 
-                // Overlay gate: the page sits under a covering layer
-                // while any overlay (expand modal, nav menu, dialogs)
-                // is open — a stray entry (resize/orientation) must not
-                // restart playback.
-                if (
-                  store.getters.getVideoAutoplay() &&
-                  !store.getters.getOverlayOpen() &&
-                  vid.paused
-                ) {
-                  vid.play().catch(() => {})
+                  c._ensureVideoSource(vid)
+
+                  // Overlay gate: the page sits under a covering layer
+                  // while any overlay (expand modal, nav menu, dialogs)
+                  // is open — a stray entry (resize/orientation) must not
+                  // restart playback.
+                  if (
+                    store.getters.getVideoAutoplay() &&
+                    !store.getters.getOverlayOpen() &&
+                    vid.paused
+                  ) {
+                    const p = vid.play()
+
+                    // Non-promise play() (older WebKit, stubs) has no
+                    // rejection surface — only chain .catch on a thenable.
+                    if (p && typeof p.catch === TYPE_STRINGS.FUNCTION) p.catch(() => {})
+                  }
+                }
+
+                if (typeof window.requestIdleCallback === TYPE_STRINGS.FUNCTION) {
+                  window.requestIdleCallback(start)
+                } else {
+                  setTimeout(start, 0)
                 }
               } else {
                 if (!vid.paused) {
@@ -182,7 +206,9 @@ export function mountMediaFigure(c: MediaFigure): void {
           { threshold: 0.15 }
         )
 
-        c.observer.observe(vid)
+        c.observer = observer
+
+        observer.observe(vid)
       }
     }
   } else {

@@ -10,6 +10,7 @@ import { ROUTE_PATHS } from '@core/tokens/routes.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
 import { mediaSlugSeq, buildMediaUrls, slugify } from '@core/utils/index.js'
+import { setMediaPageTitle } from '@website/components/media/modal-trigger.js'
 import router from '@core/router/router.js'
 import type { ViewProject } from './Project.js'
 import type { ProjectMediaItem } from './types.js'
@@ -20,9 +21,16 @@ import type { ProjectMediaItem } from './types.js'
  * behave identically.
  * @param storage CDN base URL from the store.
  * @param folder Project folder segment for the media path.
+ * @param label The resolved media label (both match passes require a
+ * truthy label, so the empty fallback lives at the row builder).
  * @param item The matched project media item.
  */
-const openModalForItem = (storage: string, folder: string, item: ProjectMediaItem): void => {
+const openModalForItem = (
+  storage: string,
+  folder: string,
+  label: string,
+  item: ProjectMediaItem
+): void => {
   const { source, thumb, isVideo } = buildMediaUrls(storage, folder, item)
 
   store.commit(MODAL_MUTATIONS.SET_MODAL, {
@@ -38,6 +46,9 @@ const openModalForItem = (storage: string, folder: string, item: ProjectMediaIte
       isVideo,
     },
   })
+
+  // The route is the media's own watch page — the title names its asset.
+  setMediaPageTitle(label)
 }
 
 /**
@@ -83,22 +94,22 @@ export function checkAutoOpenModal(c: ViewProject): void {
 
     const canonical = label && item.src ? mediaSlugSeq(seen, label) : ATTR_VALUES.EMPTY
 
-    return { item, raw: slugify(label), canonical }
+    return { item, label, raw: slugify(label), canonical }
   })
 
   // Pass 1 — canonical slugs only, so a raw slug can never shadow a
   // later item's canonical slug.
-  for (const { item, canonical } of rows) {
+  for (const { item, label, canonical } of rows) {
     if (canonical === slug) {
-      openModalForItem(storage, folder, item)
+      openModalForItem(storage, folder, label, item)
       return
     }
   }
 
   // Pass 2 — legacy raw slugs; already-shared links keep resolving.
-  for (const { item, raw, canonical } of rows) {
+  for (const { item, label, raw, canonical } of rows) {
     if (canonical && raw === slug) {
-      openModalForItem(storage, folder, item)
+      openModalForItem(storage, folder, label, item)
 
       // Canonicalize the address bar to the emitted slug — the raw
       // variant has no prerendered dist route and competing URLs split
@@ -113,4 +124,10 @@ export function checkAutoOpenModal(c: ViewProject): void {
       return
     }
   }
+
+  // Slug never resolved — the URL is either a foreign-locale deep link or
+  // a stale/deleted label. It renders the same project view as the bare
+  // /portfolio/<slug> page, so it must noindex instead of competing as a
+  // duplicate with a self-canonical.
+  c.updateRobotsMeta(true)
 }

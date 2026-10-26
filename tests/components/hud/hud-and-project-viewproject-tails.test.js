@@ -378,6 +378,23 @@ describe('ViewProject tails', () => {
     el.remove()
   })
 
+  test('resolveProjectSlug returns empty when window is absent', async () => {
+    const { resolveProjectSlug } = await import('@website/views/project/data.js')
+    const prevRoute = router.currentRoute
+    const savedWindow = globalThis.window
+
+    router.currentRoute = { params: {} }
+
+    try {
+      delete globalThis.window
+
+      expect(resolveProjectSlug({})).toBe(CHAR_STRINGS.EMPTY)
+    } finally {
+      globalThis.window = savedWindow
+      router.currentRoute = prevRoute
+    }
+  })
+
   test('registration guard respects an existing custom element', async () => {
     jest.resetModules()
 

@@ -121,6 +121,8 @@ export class CustomCarousel extends BaseComponent {
   _isSideBySide = false
   /** ResizeObserver on the host for _measureFit re-runs. */
   _fitObserver: ResizeObserver | null = null
+  /** Media-manifest arrival sub — re-renders slides with proven webp thumbs. */
+  _unsubManifest: (() => void) | null = null
   /** Last width the fit observer saw — dedups sub-pixel RO noise. */
   _lastObservedWidth = 0
   /** Latched by any user interaction — autoplay never resumes after. */

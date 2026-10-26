@@ -20,7 +20,7 @@ import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
-import { restoreMediaModalTrigger } from '../modal-trigger.js'
+import { restoreMediaModalTrigger, restoreMediaPageTitle } from '../modal-trigger.js'
 import { startGenieClose } from './genie.js'
 import type { MediaExpanded } from '../MediaExpanded.js'
 
@@ -44,6 +44,9 @@ const teardownExpandedModal = (el: MediaExpanded): void => {
 
     window.history.replaceState({}, ATTR_VALUES.EMPTY, basePath)
   }
+
+  // The media slug left the URL — the watch-page title leaves with it.
+  restoreMediaPageTitle()
 
   // 2. Native dialog close
   const dialog =

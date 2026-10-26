@@ -14,7 +14,11 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { IMAGE_SIZES } from '@core/tokens/media/sizes.js'
 import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
-import { coverVariants } from '@core/utils/media/manifest.js'
+import {
+  coverVariants,
+  mediaManifestReady,
+  mediaManifestFailed,
+} from '@core/utils/media/manifest.js'
 import { coverLadderStep, encodeMediaUrl } from '@core/utils/media.js'
 import { svgPlaceholder } from '@core/utils/dom.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
@@ -99,12 +103,24 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
 
           {covers.webp && <source srcset={covers.webp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
 
+          {/* The manifest is boot-idle-deferred: until it settles the real
+              URL stays off the wire — the LQIP placeholder owns the box, so
+              a never-proven original can't drag a ~300KB jpg into the
+              LCP/first-payload budget. On arrival the manifest listener
+              re-renders with proven thumbs/webp. */}
           <img
             decoding={decoding}
             loading={loading}
             fetchpriority={fetchpriority}
             className={`${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG} ${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_THUMB}`}
-            src={covers.src}
+            src={
+              mediaManifestReady() || mediaManifestFailed()
+                ? covers.src
+                : svgPlaceholder(
+                    GENERIC_DIMENSIONS.DEFAULT_WIDTH,
+                    GENERIC_DIMENSIONS.DEFAULT_HEIGHT
+                  )
+            }
             alt={item.label || item.title || ATTR_VALUES.EMPTY}
             width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
             height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
@@ -112,6 +128,11 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
           />
         </picture>
 
+        {/* Degenerate ladders (the original is the ONLY proven rung) can't
+            pay a full-res fetch a card box resolves — the entry img then
+            rides the already-warm kodak thumb URL (a cache hit, zero new
+            bytes) and its original-webp <source> stays out of the DOM.
+            Real ladders still enter at their lightest rung. */}
         {covers.rungs.length > 0 && (
           <picture>
             {/* Mobile-stem entry rung for ≤768px viewports — the climb
@@ -125,7 +146,7 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
               />
             )}
 
-            {!reached && covers.rungs[0].webp && (
+            {!reached && covers.rungs[0].jpg !== coverSrc && covers.rungs[0].webp && (
               <source srcset={covers.rungs[0].webp} type={MEDIA_ATTRS.IMAGE_WEBP} />
             )}
 
@@ -134,7 +155,7 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
               loading={loading}
               fetchpriority={fetchpriority}
               className={`${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG} ${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_HIGH} ${alreadyLoaded ? HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_LOADED : ATTR_VALUES.EMPTY}`}
-              src={reached || covers.rungs[0].jpg}
+              src={reached || (covers.rungs[0].jpg === coverSrc ? covers.src : covers.rungs[0].jpg)}
               alt={ATTR_VALUES.EMPTY}
               aria-hidden={ATTR_VALUES.TRUE}
               width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}

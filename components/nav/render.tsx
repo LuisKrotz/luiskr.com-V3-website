@@ -24,6 +24,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { APP_IDS } from '@core/tokens/ids/app.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MENU_CSS_PROPS } from '@core/tokens/css/menu.js'
+import { LOCALE_TAGS } from '@core/tokens/locales.js'
 import { h, Fragment } from '@core/jsx.js'
 import { renderNavGear } from './gear.js'
 import { isPlainClick } from '@core/utils/dom.js'
@@ -146,8 +147,8 @@ export const renderAppNav = (nav: AppNav) => {
     title?: string
     /** Route items render as real anchors — right-click and
      *  open-in-new-tab reach the href; plain clicks go through
-     *  the SPA handler. Dialog triggers stay buttons. */
-    href?: string
+     *  the SPA handler. */
+    href: string
     /** Category heading rendered above the first item carrying it —
      *  groups experiment links under a localized "Experiments" title. */
     group?: string
@@ -161,9 +162,11 @@ export const renderAppNav = (nav: AppNav) => {
       cls: `${NAV_CLASSES.NAV_ACTION_BTN} ${NAV_CLASSES.NAV_SELECTED_WORK}`,
       href: localePath('', nav.locale),
       onClick: (e: Event) => {
-        if (e && !isPlainClick(e)) return
+        const isNull = e === null || e === undefined
 
-        e?.preventDefault?.()
+        if (!isNull && !isPlainClick(e)) return
+
+        if (!isNull) e.preventDefault()
         nav._closeMenu()
 
         if (!nav.isHomePage) {
@@ -280,11 +283,15 @@ export const renderAppNav = (nav: AppNav) => {
               reveal the language name at hairline weight. Click/Enter
               opens the language dialog. Hidden on the English-only
               docs portal — no switcher exists there. */}
-          {!nav.currentRoute?.meta?.docsRoute && (
+          {(nav.currentRoute === null ||
+            nav.currentRoute === undefined ||
+            nav.currentRoute.meta === null ||
+            nav.currentRoute.meta === undefined ||
+            nav.currentRoute.meta.docsRoute !== true) && (
             <button
               className={NAV_CLASSES.NAV_FLAG_BTN}
               type={FORM_ATTRS.TYPE_BUTTON}
-              lang={nav.locale}
+              lang={LOCALE_TAGS[nav.locale]?.bcp ?? nav.locale}
               aria-label={langLabel}
               title={langLabel}
               onClick={(e: Event) => nav.handleLang(e)}
@@ -330,25 +337,14 @@ export const renderAppNav = (nav: AppNav) => {
           {items.map((item) => (
             <li key={item.label}>
               <h3>
-                {item.href ? (
-                  <a
-                    href={item.href}
-                    title={item.title || undefined}
-                    tabIndex={CHAR_STRINGS.MINUS_ONE}
-                    onClick={item.onClick}
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <button
-                    type={FORM_ATTRS.TYPE_BUTTON}
-                    title={item.title || undefined}
-                    tabIndex={CHAR_STRINGS.MINUS_ONE}
-                    onClick={item.onClick}
-                  >
-                    {item.label}
-                  </button>
-                )}
+                <a
+                  href={item.href}
+                  title={item.title}
+                  tabIndex={CHAR_STRINGS.MINUS_ONE}
+                  onClick={item.onClick}
+                >
+                  {item.label}
+                </a>
               </h3>
             </li>
           ))}
@@ -439,29 +435,16 @@ export const renderAppNav = (nav: AppNav) => {
                   <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
                     {item.label}
                   </h3>
-                  {item.href ? (
-                    <a
-                      className={itemCls}
-                      href={item.href}
-                      aria-label={item.label}
-                      title={item.title || undefined}
-                      style={itemStyle}
-                      onClick={item.onClick}
-                    >
-                      {itemBody}
-                    </a>
-                  ) : (
-                    <button
-                      className={itemCls}
-                      type={FORM_ATTRS.TYPE_BUTTON}
-                      aria-label={item.label}
-                      title={item.title || undefined}
-                      style={itemStyle}
-                      onClick={item.onClick}
-                    >
-                      {itemBody}
-                    </button>
-                  )}
+                  <a
+                    className={itemCls}
+                    href={item.href}
+                    aria-label={item.label}
+                    title={item.title}
+                    style={itemStyle}
+                    onClick={item.onClick}
+                  >
+                    {itemBody}
+                  </a>
                 </Fragment>
               )
             })}
