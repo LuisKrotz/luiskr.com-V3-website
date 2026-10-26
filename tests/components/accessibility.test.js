@@ -390,7 +390,10 @@ describe('Accessibility — WCAG 2.1 AA Compliance', () => {
       document.body.appendChild(el)
       const html = toHtml(el.render())
       expect(html).toContain('tabindex="0"')
-      expect(html).toContain('aria-label="Ambient loop"')
+      // Name carries the paused state — the checker's ARIA table predates
+      // aria-description, so state folds into aria-label.
+      expect(html).toContain('aria-label="Ambient loop')
+      expect(html).toContain(STATE_STRINGS.PAUSED)
     })
 
     // IBM caption_track_exists — muted loops have no meaningful audio, but

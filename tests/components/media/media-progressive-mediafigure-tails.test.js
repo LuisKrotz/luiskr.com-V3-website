@@ -94,15 +94,16 @@ describe('MediaFigure tails', () => {
     // element_tabbable_role_valid: a tabbable element needs a widget
     // role — Space/Enter toggles playback. <video> accepts only the
     // application role (button is rejected by aria-allowed-role) and
-    // aria-pressed is button-only, so state rides aria-description.
+    // aria-pressed is button-only and the a11y checker predates
+    // aria-description, so state folds into the accessible name.
     expect(vid.getAttribute(ARIA_ATTRS.ROLE)).toBe(ARIA_ATTRS.ROLE_APPLICATION)
-    expect(vid.getAttribute(ARIA_ATTRS.ARIA_DESCRIPTION)).toBe(STATE_STRINGS.PAUSED)
+    expect(vid.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toContain(STATE_STRINGS.PAUSED)
 
     vid.dispatchEvent(new window.Event(MEDIA_EVENTS.PLAY))
-    expect(vid.getAttribute(ARIA_ATTRS.ARIA_DESCRIPTION)).toBe(STATE_STRINGS.PLAYING)
+    expect(vid.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toContain(STATE_STRINGS.PLAYING)
 
     vid.dispatchEvent(new window.Event(MEDIA_EVENTS.PAUSE))
-    expect(vid.getAttribute(ARIA_ATTRS.ARIA_DESCRIPTION)).toBe(STATE_STRINGS.PAUSED)
+    expect(vid.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toContain(STATE_STRINGS.PAUSED)
 
     el.remove()
   })

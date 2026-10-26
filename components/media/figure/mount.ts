@@ -6,6 +6,7 @@
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
+import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
@@ -133,19 +134,20 @@ export function mountMediaFigure(c: MediaFigure): void {
         }
       })
 
-      // aria-description tracks real playback — autoplay, viewport gating,
-      // reduced-motion sync and the keydown toggle all funnel through
-      // the media element's own events, so one pair of listeners keeps
-      // the toggle state truthful no matter which path flips it. (The
-      // pressed-state attribute is button-role-only; the legal widget
-      // role on <video> is application.)
-      c.addScopedListener(vid, MEDIA_EVENTS.PLAY, () => {
-        vid.setAttribute(ARIA_ATTRS.ARIA_DESCRIPTION, STATE_STRINGS.PLAYING)
-      })
+      // The accessible name tracks real playback — autoplay, viewport
+      // gating, reduced-motion sync and the keydown toggle all funnel
+      // through the media element's own events, so one pair of listeners
+      // keeps the toggle state truthful no matter which path flips it.
+      // (aria-pressed is button-role-only and the a11y checker's ARIA
+      // table predates aria-description, so the state rides aria-label —
+      // the legal widget role on <video> is application.)
+      const setLabel = (state: string) => {
+        vid.setAttribute(ARIA_ATTRS.ARIA_LABEL, `${c.label} ${CHAR_STRINGS.EM_DASH} ${state}`)
+      }
 
-      c.addScopedListener(vid, MEDIA_EVENTS.PAUSE, () => {
-        vid.setAttribute(ARIA_ATTRS.ARIA_DESCRIPTION, STATE_STRINGS.PAUSED)
-      })
+      c.addScopedListener(vid, MEDIA_EVENTS.PLAY, () => setLabel(STATE_STRINGS.PLAYING))
+
+      c.addScopedListener(vid, MEDIA_EVENTS.PAUSE, () => setLabel(STATE_STRINGS.PAUSED))
 
       if (!isReduced && videoAutoplayAllowed()) {
         // Viewport-gated playback: sources are only attached once the

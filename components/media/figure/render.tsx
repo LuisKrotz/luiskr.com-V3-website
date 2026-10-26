@@ -14,6 +14,7 @@ import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { h, Fragment } from '@core/jsx.js'
 import { ASSET_PATHS } from '@core/tokens/routes/paths.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
+import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { LANG_STRINGS } from '@core/tokens/strings/langs.js'
 import { componentText } from '@core/locale/ui-text.js'
@@ -134,12 +135,14 @@ export function renderMediaFigure(c: MediaFigure) {
             // itself is the control: tabbable + named, Space/Enter toggles
             // playback in mount.ts (media_keyboard_controllable). <video>
             // allows only the application widget role (button is rejected
-            // by aria-allowed-role); playback state rides aria-description
-            // since aria-pressed is button-only too.
+            // by aria-allowed-role); playback state folds into the
+            // aria-label since aria-pressed is button-only and the a11y
+            // checker's ARIA table predates aria-description.
             role={ARIA_ATTRS.ROLE_APPLICATION}
-            aria-description={STATE_STRINGS.PAUSED}
             tabIndex={ATTR_VALUES.TABINDEX_ZERO}
-            aria-label={c.label || undefined}
+            aria-label={
+              c.label ? `${c.label} ${CHAR_STRINGS.EM_DASH} ${STATE_STRINGS.PAUSED}` : undefined
+            }
             title={c.label || undefined}
           >
             {/* Muted ambient loops have no meaningful audio — the track

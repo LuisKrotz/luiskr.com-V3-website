@@ -357,14 +357,15 @@ describe('media figure modal + mount tails', () => {
 
       expect(vid.hasAttribute(MEDIA_ATTRS.POSTER)).toBe(false)
 
-      // Play/pause mirror into aria-description.
+      // Play/pause mirror into the accessible name (aria-label) — the
+      // checker rejects aria-description on <video>.
       listeners[MEDIA_EVENTS.PLAY]()
 
-      expect(vid.getAttribute(ARIA_ATTRS.ARIA_DESCRIPTION)).toBe(STATE_STRINGS.PLAYING)
+      expect(vid.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toContain(STATE_STRINGS.PLAYING)
 
       listeners[MEDIA_EVENTS.PAUSE]()
 
-      expect(vid.getAttribute(ARIA_ATTRS.ARIA_DESCRIPTION)).toBe(STATE_STRINGS.PAUSED)
+      expect(vid.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toContain(STATE_STRINGS.PAUSED)
 
       // Observer gate — intersecting primes sources; the autoplay+overlay+
       // paused trio allows playback, each operand's false arm blocks it.
