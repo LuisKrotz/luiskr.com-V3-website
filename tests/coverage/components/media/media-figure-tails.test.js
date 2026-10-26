@@ -274,6 +274,13 @@ describe('media figure modal + mount tails', () => {
       unobserve() {}
     }
 
+    const rsDesc = Object.getOwnPropertyDescriptor(document, 'readyState')
+
+    Object.defineProperty(document, 'readyState', {
+      value: STATE_STRINGS.COMPLETE,
+      configurable: true,
+    })
+
     try {
       const fig = document.createElement(HTML_TAGS.FIGURE)
       const vid = document.createElement(HTML_TAGS.VIDEO)
@@ -401,8 +408,46 @@ describe('media figure modal + mount tails', () => {
       await flushIdle()
 
       await Promise.resolve()
+
+      // Load-window gate — while the document is still loading, an
+      // intersecting entry parks the ambient attach on a one-shot 'load'
+      // listener instead of stealing critical-path bytes; the attach
+      // lands only once the window finishes loading.
+      Object.defineProperty(document, 'readyState', {
+        value: STATE_STRINGS.LOADING,
+        configurable: true,
+      })
+
+      let ensured = c._ensureVideoSource.mock.calls.length
+      ioCb([{ isIntersecting: true }])
+      await flushIdle()
+
+      expect(c._ensureVideoSource).toHaveBeenCalledTimes(ensured)
+
+      listeners[WINDOW_EVENTS.LOAD]()
+      await flushIdle()
+
+      expect(c._ensureVideoSource).toHaveBeenCalledTimes(ensured + 1)
+
+      Object.defineProperty(document, 'readyState', {
+        value: STATE_STRINGS.COMPLETE,
+        configurable: true,
+      })
+
+      // Stale-position bail — an entry that left the viewport before its
+      // deferred slice runs must not attach a stream or start playback.
+      ensured = c._ensureVideoSource.mock.calls.length
+      const playCalls = vid.play.mock.calls.length
+      ioCb([{ isIntersecting: true }])
+      ioCb([{ isIntersecting: false }])
+      await flushIdle()
+
+      expect(c._ensureVideoSource).toHaveBeenCalledTimes(ensured)
+      expect(vid.play).toHaveBeenCalledTimes(playCalls)
     } finally {
       globalThis.IntersectionObserver = IO
+
+      if (rsDesc) Object.defineProperty(document, 'readyState', rsDesc)
     }
   })
 

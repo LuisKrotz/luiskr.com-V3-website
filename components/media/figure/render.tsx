@@ -123,7 +123,6 @@ export function renderMediaFigure(c: MediaFigure) {
             width={mediaW}
             height={mediaH}
             preload={shouldPreloadVideo ? MEDIA_ATTRS.METADATA : ATTR_VALUES.NONE}
-            fetchpriority={isHeroItem ? MEDIA_ATTRS.FETCH_PRIORITY_HIGH : undefined}
             playsInline
             loop
             muted

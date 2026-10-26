@@ -168,11 +168,12 @@ export function mountMediaFigure(c: MediaFigure): void {
                 // hover/keyboard paths stay immediate: a deliberate play
                 // intent always wins over the budget.
                 const start = () => {
-                  // Stale-observer bail: a queued idle start must never
-                  // fire after this observer was disconnected/replaced
-                  // (patch re-bind, re-mount, onDestroy) — it would
-                  // replay the entry against newer store/DOM state.
-                  if (c.observer !== observer) return
+                  // Stale-observer/stale-position bail: a queued deferred
+                  // start must never fire after this observer was
+                  // disconnected/replaced (patch re-bind, re-mount,
+                  // onDestroy) or after the element left the viewport —
+                  // either would replay the entry against newer state.
+                  if (c.observer !== observer || !c.isIntersecting) return
 
                   c._ensureVideoSource(vid)
 
@@ -193,10 +194,25 @@ export function mountMediaFigure(c: MediaFigure): void {
                   }
                 }
 
-                if (typeof window.requestIdleCallback === TYPE_STRINGS.FUNCTION) {
-                  window.requestIdleCallback(start)
+                const queueIdle = () => {
+                  if (typeof window.requestIdleCallback === TYPE_STRINGS.FUNCTION) {
+                    window.requestIdleCallback(start)
+                  } else {
+                    setTimeout(start, 0)
+                  }
+                }
+
+                // Ambient loops are decorative — the poster already owns
+                // the paint — so an unrequested stream must not race the
+                // page's own load window: a multi-MB fetch + decode while
+                // the document is still loading steals critical-path
+                // bandwidth and main-thread the boot veil needs. Post-load
+                // intersections take the usual idle slice; pre-load ones
+                // park on a one-shot 'load' listener.
+                if (document.readyState === STATE_STRINGS.COMPLETE) {
+                  queueIdle()
                 } else {
-                  setTimeout(start, 0)
+                  c.addScopedListener(window, WINDOW_EVENTS.LOAD, queueIdle, { once: true })
                 }
               } else {
                 if (!vid.paused) {
