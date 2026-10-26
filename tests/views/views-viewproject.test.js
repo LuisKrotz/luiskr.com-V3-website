@@ -218,11 +218,11 @@ describe('ViewProject', () => {
   })
 
   // ─── SCSS structural assertions ───────────────────────────────────────────
-  test('internals.scss defines .internal-main with flex centering and dark background', () => {
+  test('internals.scss defines .internal-main with flex centering and themed background', () => {
     expect(SCSS.internals).toMatch(/&-main\s*\{[\s\S]*?display:\s*flex/)
     expect(SCSS.internals).toMatch(/&-main\s*\{[\s\S]*?align-items:\s*center/)
     expect(SCSS.internals).toMatch(/&-main\s*\{[\s\S]*?justify-content:\s*center/)
-    expect(SCSS.internals).toMatch(/&-main\s*\{[\s\S]*?background-color:\s*var\(--bg-dark\)/)
+    expect(SCSS.internals).toMatch(/&-main\s*\{[\s\S]*?background-color:\s*var\(--bg-secondary\)/)
   })
 
   test('internals.scss defines dynamic carousel item min-height', () => {

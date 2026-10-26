@@ -863,6 +863,7 @@ https://luiskr.com/docs/core/sass/base/structure/_skeleton-utils.scss
 https://luiskr.com/docs/core/sass/base/structure/_tokens.scss
 https://luiskr.com/docs/core/sass/components
 https://luiskr.com/docs/core/sass/components/carousel
+https://luiskr.com/docs/core/sass/components/carousel/_dot-nav.scss
 https://luiskr.com/docs/core/sass/components/carousel/awards-carousel
 https://luiskr.com/docs/core/sass/components/carousel/awards-carousel.scss
 https://luiskr.com/docs/core/sass/components/carousel/awards-carousel/_awards.scss
@@ -1018,6 +1019,7 @@ https://luiskr.com/docs/core/tokens/css/carousel.ts
 https://luiskr.com/docs/core/tokens/css/cookies.ts
 https://luiskr.com/docs/core/tokens/css/genie.ts
 https://luiskr.com/docs/core/tokens/css/menu.ts
+https://luiskr.com/docs/core/tokens/css/nav.ts
 https://luiskr.com/docs/core/tokens/css/skeleton.ts
 https://luiskr.com/docs/core/tokens/css/starfield.ts
 https://luiskr.com/docs/core/tokens/css/theme.ts
@@ -8382,6 +8384,7 @@ https://luiskr.com/docs/website/components/media/modal-trigger.ts
 https://luiskr.com/docs/website/components/nav
 https://luiskr.com/docs/website/components/nav/AppNav.tsx
 https://luiskr.com/docs/website/components/nav/flag.tsx
+https://luiskr.com/docs/website/components/nav/gear.tsx
 https://luiskr.com/docs/website/components/nav/handlers.ts
 https://luiskr.com/docs/website/components/nav/menu.tsx
 https://luiskr.com/docs/website/components/nav/render.tsx
@@ -8641,10 +8644,12 @@ https://luiskr.com/docs/website/public/wasm/skeleton/luiskr_skeleton.js
 https://luiskr.com/docs/website/public/wasm/skeleton/luiskr_skeleton_bg.wasm
 https://luiskr.com/docs/website/public/wasm/skeleton/luiskr_skeleton_bg.wasm.d.ts
 https://luiskr.com/docs/website/public/wasm/switch-slider
+https://luiskr.com/docs/website/public/wasm/switch-slider/README.md
 https://luiskr.com/docs/website/public/wasm/switch-slider/luiskr_switch_slider.d.ts
 https://luiskr.com/docs/website/public/wasm/switch-slider/luiskr_switch_slider.js
 https://luiskr.com/docs/website/public/wasm/switch-slider/luiskr_switch_slider_bg.wasm
 https://luiskr.com/docs/website/public/wasm/switch-slider/luiskr_switch_slider_bg.wasm.d.ts
+https://luiskr.com/docs/website/public/wasm/switch-slider/package.json
 https://luiskr.com/docs/website/public/wasm/text-draw
 https://luiskr.com/docs/website/public/wasm/text-draw/luiskr_text_draw.d.ts
 https://luiskr.com/docs/website/public/wasm/text-draw/luiskr_text_draw.js
