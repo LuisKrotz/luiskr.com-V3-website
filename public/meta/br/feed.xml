@@ -6,7 +6,7 @@
   <atom:link href="https://luiskr.com/br/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Oi, eu sou o Luis, engenheiro de software focado em UX. Atualmente trabalho na Dell no Dell Design System .</description>
   <language>pt-BR</language>
-  <lastBuildDate>Tue, 27 Oct 2026 06:52:46 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 27 Oct 2026 17:54:21 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/br/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
@@ -69,11 +69,19 @@
     <description>Visão Geral</description>
   </item>
   <item>
+    <title>Dell Design System</title>
+    <link>https://luiskr.com/br/portfolio/dell-design-system</link>
+    <guid>https://luiskr.com/br/portfolio/dell-design-system</guid>
+    <description>Entrar na Dell em 6 de junho de 2022, pouco depois de a Transainc fechar as portas, marcou um momento decisivo na minha carreira profissional.</description>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
+  </item>
+  <item>
     <title>Marco Almeida</title>
     <link>https://luiskr.com/br/portfolio/aboutmarco</link>
     <guid>https://luiskr.com/br/portfolio/aboutmarco</guid>
     <description>O portfólio do Marco foi desenvolvido como projeto freelance em 2021.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4" medium="video"/>
   </item>
   <item>
@@ -81,7 +89,6 @@
     <link>https://luiskr.com/br/portfolio/cecerele</link>
     <guid>https://luiskr.com/br/portfolio/cecerele</guid>
     <description>Conheci a Joana, da Cecerelê, por meio de um amigo em comum, o Sagu, em novembro de 2020.</description>
-    <media:content url="" medium="image"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
   </item>
   <item>
@@ -89,7 +96,7 @@
     <link>https://luiskr.com/br/portfolio/cicb</link>
     <guid>https://luiskr.com/br/portfolio/cicb</guid>
     <description>Brazilian Leather é um projeto desenvolvido na Transa, por meio de uma parceria entre CICB e Apex-Brasil.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4" medium="video"/>
   </item>
   <item>
@@ -97,23 +104,15 @@
     <link>https://luiskr.com/br/portfolio/coza</link>
     <guid>https://luiskr.com/br/portfolio/coza</guid>
     <description>O site da Coza foi desenvolvido na Transa de 2017 a 2019.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
-  </item>
-  <item>
-    <title>Dell Design System</title>
-    <link>https://luiskr.com/br/portfolio/dell-design-system</link>
-    <guid>https://luiskr.com/br/portfolio/dell-design-system</guid>
-    <description>Entrar na Dell em 6 de junho de 2022, pouco depois de a Transainc fechar as portas, marcou um momento decisivo na minha carreira profissional.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg" medium="image"/>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
   </item>
   <item>
     <title>Melissa</title>
     <link>https://luiskr.com/br/portfolio/melissa</link>
     <guid>https://luiskr.com/br/portfolio/melissa</guid>
     <description>O site da Melissa foi um projeto desenvolvido pela TRANSA INC.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4" medium="video"/>
   </item>
   <item>
@@ -121,7 +120,7 @@
     <link>https://luiskr.com/br/portfolio/metcha</link>
     <guid>https://luiskr.com/br/portfolio/metcha</guid>
     <description>METCHA: o oráculo de couro, design e cultura.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4" medium="video"/>
   </item>
   <item>
@@ -129,7 +128,7 @@
     <link>https://luiskr.com/br/portfolio/mini-melissa</link>
     <guid>https://luiskr.com/br/portfolio/mini-melissa</guid>
     <description>A Mini Melissa foi um projeto desenvolvido na Transa para o Grupo Grendene como canal dedicado da marca Mini Melissa.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
@@ -137,7 +136,7 @@
     <link>https://luiskr.com/br/portfolio/mor</link>
     <guid>https://luiskr.com/br/portfolio/mor</guid>
     <description>O site da MOR foi desenvolvido na Transa.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
@@ -145,7 +144,7 @@
     <link>https://luiskr.com/br/portfolio/nathalia-bond</link>
     <guid>https://luiskr.com/br/portfolio/nathalia-bond</guid>
     <description>Conheci a Nathalia, da Nathalia Bond, Clínica de Desenvolvimento, por meio de um amigo em comum, o Marco Anuschek, em outubro de 2021.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4" medium="video"/>
   </item>
   <item>
@@ -160,7 +159,7 @@
     <link>https://luiskr.com/br/portfolio/transa</link>
     <guid>https://luiskr.com/br/portfolio/transa</guid>
     <description>O site da Transa foi desenvolvido com Vue, CSS (Sass) e PHP (Laravel) em 2021.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4" medium="video"/>
   </item>
   <item>
@@ -168,7 +167,7 @@
     <link>https://luiskr.com/br/portfolio/vibra</link>
     <guid>https://luiskr.com/br/portfolio/vibra</guid>
     <description>O Vibra foi um site desenvolvido na Transa em 2016 e ficou online até 2021.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4" medium="video"/>
   </item>
 </channel>

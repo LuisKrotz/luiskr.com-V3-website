@@ -16,6 +16,7 @@ import type { CarouselLang } from './render.js'
 import type { CustomCarousel } from '../CustomCarousel.js'
 import { CAROUSEL_LAYOUT, CAROUSEL_TIMING } from '@core/tokens/motion/carousel.js'
 import { cancelSpringScroll, springScrollTo } from '@core/utils/motion/scroll-spring.js'
+import { isScrolling, onScrollStop } from '@core/utils/motion/scroll-state.js'
 
 /**
  * Drives the track to `left` through the shared scroll spring — the
@@ -470,40 +471,64 @@ export function setupIntersectionObserver(c: CustomCarousel) {
     c.observer = null
   }
 
+  const applyVisibility = () => {
+    if (c.isInViewport) {
+      c.isEnteredViewport = true
+
+      root.classList.add(CAROUSEL_CLASSES.CAROUSEL_IN_VIEW)
+
+      c._mountWebGLArrows()
+
+      // Re-arms a positioning jump that bailed while offscreen —
+      // jumpToSlide's retry only spins while the carousel is in view,
+      // so entry must re-run it or an unmeasured mount would park the
+      // track on the clone slide. Instant (non-smooth): snapping into
+      // place on entry is the same contract the awards carousel uses.
+      c._jumpToSlide(c.currentIndex, false)
+    } else {
+      // Out of view: release the arrow canvases, they are rebuilt on return
+      c._destroyWebGLArrows()
+    }
+
+    if (c.isFullyVisible) {
+      if (!store.getters.getReducedMotion() && !store.getters.getOverlayOpen()) {
+        c._startAutoplay()
+      }
+    } else {
+      c._stopAutoplay()
+    }
+  }
+
   c.observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          c.isEnteredViewport = true
+        // Live flags update every crossing; the expensive side-effects
+        // (WebGL arrow mount/destroy, slide re-jump, autoplay churn) do
+        // not — mid-scroll they would re-run for each threshold the
+        // carousel passes and burn the frame budget the gesture itself
+        // needs (scroll-fps gate). They apply once at scroll settle from
+        // the latest flags.
+        c.isInViewport = entry.isIntersecting
 
-          root.classList.add(CAROUSEL_CLASSES.CAROUSEL_IN_VIEW)
-
-          c._mountWebGLArrows()
-
-          // Re-arms a positioning jump that bailed while offscreen —
-          // jumpToSlide's retry only spins while the carousel is in view,
-          // so entry must re-run it or an unmeasured mount would park the
-          // track on the clone slide. Instant (non-smooth): snapping into
-          // place on entry is the same contract the awards carousel uses.
-          c._jumpToSlide(c.currentIndex, false)
-        } else {
-          // Out of view: release the arrow canvases, they are rebuilt on return
-          c._destroyWebGLArrows()
-        }
-
-        const isVisible =
+        c.isFullyVisible =
           entry.isIntersecting && entry.intersectionRatio >= CAROUSEL_LAYOUT.VISIBILITY_RATIO
-
-        c.isFullyVisible = isVisible
-
-        if (isVisible) {
-          if (!store.getters.getReducedMotion() && !store.getters.getOverlayOpen()) {
-            c._startAutoplay()
-          }
-        } else {
-          c._stopAutoplay()
-        }
       })
+
+      if (isScrolling()) {
+        if (!c._scrollSettleQueued) {
+          c._scrollSettleQueued = true
+
+          onScrollStop(() => {
+            c._scrollSettleQueued = false
+
+            applyVisibility()
+          })
+        }
+
+        return
+      }
+
+      applyVisibility()
     },
     { threshold: [0, CAROUSEL_LAYOUT.VISIBILITY_RATIO, 0.5, 1.0] }
   )

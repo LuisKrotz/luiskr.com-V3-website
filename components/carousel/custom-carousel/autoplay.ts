@@ -10,6 +10,7 @@
 import { CAROUSEL_SELECTORS } from '@core/tokens/selectors/carousel.js'
 import { calcCarouselRingOffset } from '@core/utils/wasm/wasm-layout.js'
 import { CAROUSEL_TIMING } from '@core/tokens/motion/carousel.js'
+import { isScrolling, onScrollStop } from '@core/utils/motion/scroll-state.js'
 
 /** Slice of CarouselArrowWebGL the autoplay engine drives. */
 export interface CarouselArrowLike {
@@ -167,6 +168,27 @@ export const regressRingToZero = (c: CarouselAutoplayHost): void => {
  */
 export const tickCarouselAutoplay = (c: CarouselAutoplayHost, timestamp: number): void => {
   if (!c.autoplayRunning) return
+
+  // Mid-scroll park: writing the ring's dashoffset + arrow arcs every
+  // frame while the page is flying by spends the frame budget the
+  // gesture itself needs (scroll-fps gate). The clock freezes and the
+  // tick re-arms once the scroll settles — elapsed is pinned so the
+  // dwell doesn't advance while parked.
+  if (isScrolling()) {
+    const parked = c.autoplayElapsed
+
+    c.rafId = null
+
+    onScrollStop(() => {
+      if (!c.autoplayRunning) return
+
+      c.autoplayStart = performance.now() - parked
+
+      c.rafId = requestAnimationFrame((ts) => tickCarouselAutoplay(c, ts))
+    })
+
+    return
+  }
 
   // Clock guard: heal a NaN start (e.g. backdated from a NaN elapsed),
   // then clamp NaN/negative deltas — a poisoned clock must never write

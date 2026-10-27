@@ -6,7 +6,7 @@
   <atom:link href="https://luiskr.com/nl/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Hoi, ik ben Luis, een software engineer met focus op UX. Momenteel werk ik bij Dell aan het Dell Design System .</description>
   <language>nl</language>
-  <lastBuildDate>Tue, 27 Oct 2026 06:52:46 GMT</lastBuildDate>
+  <lastBuildDate>Tue, 27 Oct 2026 17:54:21 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/nl/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
@@ -69,11 +69,19 @@
     <description>Overzicht</description>
   </item>
   <item>
+    <title>Dell Design System</title>
+    <link>https://luiskr.com/nl/portfolio/dell-design-system</link>
+    <guid>https://luiskr.com/nl/portfolio/dell-design-system</guid>
+    <description>Mijn start bij Dell op 6 juni 2022, kort nadat Transainc zijn deuren sloot, markeerde een beslissend keerpunt in mijn professionele carrière.</description>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
+  </item>
+  <item>
     <title>Marco Almeida</title>
     <link>https://luiskr.com/nl/portfolio/aboutmarco</link>
     <guid>https://luiskr.com/nl/portfolio/aboutmarco</guid>
     <description>Het portfolio van Marco werd in 2021 als freelanceproject ontwikkeld.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4" medium="video"/>
   </item>
   <item>
@@ -81,7 +89,6 @@
     <link>https://luiskr.com/nl/portfolio/cecerele</link>
     <guid>https://luiskr.com/nl/portfolio/cecerele</guid>
     <description>Ik ontmoette Joana van Cecerelê via een gemeenschappelijke vriend, Sagu, in november 2020.</description>
-    <media:content url="" medium="image"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
   </item>
   <item>
@@ -89,7 +96,7 @@
     <link>https://luiskr.com/nl/portfolio/cicb</link>
     <guid>https://luiskr.com/nl/portfolio/cicb</guid>
     <description>Brazilian Leather is een bij Transa ontwikkeld project, via een partnerschap tussen CICB en Apex-Brasil.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4" medium="video"/>
   </item>
   <item>
@@ -97,23 +104,15 @@
     <link>https://luiskr.com/nl/portfolio/coza</link>
     <guid>https://luiskr.com/nl/portfolio/coza</guid>
     <description>De website van Coza werd bij Transa van 2017 tot 2019 ontwikkeld.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
-  </item>
-  <item>
-    <title>Dell Design System</title>
-    <link>https://luiskr.com/nl/portfolio/dell-design-system</link>
-    <guid>https://luiskr.com/nl/portfolio/dell-design-system</guid>
-    <description>Mijn start bij Dell op 6 juni 2022, kort nadat Transainc zijn deuren sloot, markeerde een beslissend keerpunt in mijn professionele carrière.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg" medium="image"/>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
   </item>
   <item>
     <title>Melissa</title>
     <link>https://luiskr.com/nl/portfolio/melissa</link>
     <guid>https://luiskr.com/nl/portfolio/melissa</guid>
     <description>De website van Melissa was een project ontwikkeld door TRANSA INC.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4" medium="video"/>
   </item>
   <item>
@@ -121,7 +120,7 @@
     <link>https://luiskr.com/nl/portfolio/metcha</link>
     <guid>https://luiskr.com/nl/portfolio/metcha</guid>
     <description>METCHA: het orakel van leer, design en cultuur.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4" medium="video"/>
   </item>
   <item>
@@ -129,7 +128,7 @@
     <link>https://luiskr.com/nl/portfolio/mini-melissa</link>
     <guid>https://luiskr.com/nl/portfolio/mini-melissa</guid>
     <description>Mini Melissa was een bij Transa ontwikkeld project voor de Grendene Group als eigen kanaal voor het merk Mini Melissa.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
@@ -137,7 +136,7 @@
     <link>https://luiskr.com/nl/portfolio/mor</link>
     <guid>https://luiskr.com/nl/portfolio/mor</guid>
     <description>De website van MOR werd bij Transa ontwikkeld.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
@@ -145,7 +144,7 @@
     <link>https://luiskr.com/nl/portfolio/nathalia-bond</link>
     <guid>https://luiskr.com/nl/portfolio/nathalia-bond</guid>
     <description>Ik ontmoette Nathalia van Nathalia Bond, Clínica de Desenvolvimento, via een gemeenschappelijke vriend, Marco Anuschek, in oktober 2021.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4" medium="video"/>
   </item>
   <item>
@@ -160,7 +159,7 @@
     <link>https://luiskr.com/nl/portfolio/transa</link>
     <guid>https://luiskr.com/nl/portfolio/transa</guid>
     <description>De website van Transa werd in 2021 ontwikkeld met Vue, CSS (Sass) en PHP (Laravel).</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4" medium="video"/>
   </item>
   <item>
@@ -168,7 +167,7 @@
     <link>https://luiskr.com/nl/portfolio/vibra</link>
     <guid>https://luiskr.com/nl/portfolio/vibra</guid>
     <description>Vibra was een in 2016 bij Transa ontwikkelde website die tot 2021 online bleef.</description>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4" medium="video"/>
   </item>
 </channel>

@@ -1,6 +1,7 @@
 /**
- * @file website/index.ts
- * @description Barrel for the `website` module — the public site's routable
+ * Website module barrel.
+ *
+ * Public site's routable
  * surface (home, legal, not-found, project detail). Importing the barrel runs
  * each view module once, so every `<view-*>` element self-registers via its
  * `customElements.define` guard and every component the views pull in is

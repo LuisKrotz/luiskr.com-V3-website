@@ -112,7 +112,7 @@ function titleWordBoxes(title: HTMLElement): TitleWordBox[] | null {
 
 /**
  * Rasterizes the h2 text into the paper canvas. Words are drawn at their
- * DOM Range fragment positions (see {@link titleWordBoxes}), so the raster
+ * DOM Range fragment positions (see `titleWordBoxes`), so the raster
  * is pixel-faithful to the rendered title — same wraps, same spacing.
  * Engines without Range fall back to a measured word-pack matching the
  * DOM box, drawn bottom-anchored like the overlay's `align-items:

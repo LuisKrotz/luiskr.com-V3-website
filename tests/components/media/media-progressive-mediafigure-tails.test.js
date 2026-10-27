@@ -5,7 +5,7 @@
 import { jest } from '@jest/globals'
 import '@website/components/media/MediaFigure.js'
 import store from '@core/store.js'
-import { TEST_PROJECTS, TEST_TEXT, TEST_URLS } from '@tests/fixtures/test-constants.js'
+import { TEST_PROJECTS, TEST_TEXT, TEST_URLS, waitFor } from '@tests/fixtures/test-constants.js'
 import { CDN_URLS } from '@core/tokens/media/urls.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
@@ -184,15 +184,33 @@ describe('MediaFigure tails', () => {
     el.remove()
   })
 
-  test('video mount under reduced motion skips the observer', () => {
+  test('reduced-motion video loads only its poster after it enters view', async () => {
+    const priorReduced = store.getters.getReducedMotion()
+    const readyState = Object.getOwnPropertyDescriptor(document, 'readyState')
+
     store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, true)
+    Object.defineProperty(document, 'readyState', {
+      value: STATE_STRINGS.COMPLETE,
+      configurable: true,
+    })
 
     const el = mount(videoAttrs())
+    const vid = el.$(HTML_TAGS.VIDEO)
 
-    expect(el.observer).toBeNull()
+    expect(el.observer).toBeTruthy()
+    expect(vid.getAttribute(MEDIA_ATTRS.POSTER)).toBe(ATTR_VALUES.EMPTY)
 
-    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
-    el.remove()
+    try {
+      await waitFor(() => Boolean(vid.poster))
+
+      expect(vid.querySelector(MEDIA_ATTRS.SOURCE)).toBeNull()
+    } finally {
+      store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, priorReduced)
+
+      if (readyState) Object.defineProperty(document, 'readyState', readyState)
+
+      el.remove()
+    }
   })
 
   test('onStoreUpdate handles autoplay toggles and missing video', () => {

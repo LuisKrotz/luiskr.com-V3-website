@@ -13,6 +13,7 @@
  */
 import { describe, test, expect, jest } from '@jest/globals'
 import { openMediaModal } from '@website/components/media/figure/modal.js'
+import { playVideo } from '@website/components/media/figure/video.js'
 import {
   restoreMediaModalTrigger,
   setMediaPageTitle,
@@ -34,15 +35,51 @@ import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { KEYS } from '@core/tokens/primitives.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
+import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
-import { TEST_PROJECTS, TEST_TEXT, TEST_URLS } from '@tests/fixtures/test-constants.js'
+import { TEST_PROJECTS, TEST_TEXT, TEST_URLS, waitFor } from '@tests/fixtures/test-constants.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { slugify } from '@core/utils/index.js'
+import { isScrolling } from '@core/utils/motion/scroll-state.js'
 
 describe('media figure modal + mount tails', () => {
+  test('playVideo swallows a rejected playback promise', () => {
+    const priorReduced = store.getters.getReducedMotion()
+    const priorAutoplay = store.getters.getVideoAutoplay()
+    const catchHandler = jest.fn()
+    const target = {
+      play: jest.fn(() => ({
+        then: () => ({
+          catch: (handler) => {
+            handler()
+            catchHandler()
+          },
+        }),
+      })),
+    }
+    const fig = {
+      _ensureVideoSource: jest.fn(),
+      displayWidth: 0,
+      displayHeight: 0,
+    }
+
+    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
+    store.commit(PREF_MUTATIONS.SET_VIDEO_AUTOPLAY, true)
+
+    try {
+      playVideo(fig, target)
+
+      expect(target.play).toHaveBeenCalled()
+      expect(catchHandler).toHaveBeenCalled()
+    } finally {
+      store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, priorReduced)
+      store.commit(PREF_MUTATIONS.SET_VIDEO_AUTOPLAY, priorAutoplay)
+    }
+  })
+
   test('openMediaModal returns early when the figure cannot expand', () => {
     store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
 
@@ -329,7 +366,10 @@ describe('media figure modal + mount tails', () => {
 
       mountMediaFigure(c)
 
-      const ioCb = ioCbs.find((cb) => String(cb).includes('_ensureVideoSource'))
+      // Pooled observers share one IntersectionObserver across figures —
+      // the handle's callback delivers entries to this figure's handler
+      // the same way its old private observer did.
+      const ioCb = (entries) => c.observer.callback(entries)
 
       expect(c.classList.add).toHaveBeenCalledWith(TEST_TEXT.STALE)
 
@@ -550,7 +590,7 @@ describe('media figure modal + mount tails', () => {
     expect(c.openModal).toHaveBeenCalled()
   })
 
-  test('img arm lazy-loads high res once the figure intersects', () => {
+  test('img arm defers high-res loading until scrolling settles', async () => {
     const IO = globalThis.IntersectionObserver
     const ioCbs = []
 
@@ -574,6 +614,7 @@ describe('media figure modal + mount tails', () => {
         addScopedListener: jest.fn(),
         classList: { add: jest.fn() },
         isLoaded: true,
+        isConnected: true,
         imgObserver: null,
         loadHighRes: jest.fn(),
         // warmFirstRung parks its own warmObserver on the component —
@@ -584,24 +625,136 @@ describe('media figure modal + mount tails', () => {
 
       mountMediaFigure(c)
 
-      const imgCb = ioCbs.find((cb) => String(cb).includes('loadHighRes'))
+      // Pooled observers share one IntersectionObserver across figures —
+      // the handle's callback delivers entries to this figure's handler
+      // the same way its old private observer did, including after the
+      // one-shot disconnect clears the field.
+      const imgHandle = c.imgObserver
+
+      const imgCb = (entries) => imgHandle.callback(entries)
 
       // Already-loaded figure ignores the intersecting entry.
       imgCb([{ isIntersecting: true }])
 
       expect(c.loadHighRes).not.toHaveBeenCalled()
 
-      // First intersecting entry loads high res and disconnects; a second
-      // entry lands on the cleared observer (the `if (c.imgObserver)` false arm).
+      // The first intersection parks the quality climb until scroll-end and
+      // disconnects; subsequent entries hit the cleared-observer arm.
       c.isLoaded = false
+
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLL))
       imgCb([{ isIntersecting: true }])
 
-      expect(c.loadHighRes).toHaveBeenCalledTimes(1)
+      expect(c.loadHighRes).not.toHaveBeenCalled()
       expect(c.imgObserver).toBeNull()
+
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLLEND))
+
+      await waitFor(() => c.loadHighRes.mock.calls.length === 1)
+
+      expect(c.loadHighRes).toHaveBeenCalledTimes(1)
+
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLL))
+      imgCb([{ isIntersecting: true }])
+      c.isLoaded = true
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLLEND))
+
+      await waitFor(() => !isScrolling())
+
+      expect(c.loadHighRes).toHaveBeenCalledTimes(1)
+
+      c.isLoaded = false
+      c.isConnected = true
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLL))
+      imgCb([{ isIntersecting: true }])
+      c.isConnected = false
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLLEND))
+
+      await waitFor(() => !isScrolling())
+
+      expect(c.loadHighRes).toHaveBeenCalledTimes(1)
 
       imgCb([{ isIntersecting: false }])
     } finally {
       globalThis.IntersectionObserver = IO
+    }
+  })
+
+  test('poster-only video decoding waits for a visible scroll-stop idle slice', async () => {
+    const IO = globalThis.IntersectionObserver
+    const readyState = Object.getOwnPropertyDescriptor(document, 'readyState')
+    const requestIdleCallback = window.requestIdleCallback
+    let ioCb
+    let idleCallback = null
+
+    globalThis.IntersectionObserver = class {
+      constructor(callback) {
+        ioCb = callback
+      }
+      observe() {}
+      disconnect() {}
+      unobserve() {}
+    }
+    window.requestIdleCallback = (callback) => {
+      idleCallback = callback
+
+      return 1
+    }
+
+    Object.defineProperty(document, 'readyState', {
+      value: STATE_STRINGS.COMPLETE,
+      configurable: true,
+    })
+    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, true)
+
+    const video = document.createElement(HTML_TAGS.VIDEO)
+    video.poster = ATTR_VALUES.EMPTY
+
+    const c = {
+      subscribe: jest.fn(),
+      classes: '',
+      canExpand: false,
+      isVideo: true,
+      poster: [TEST_URLS.IMG],
+      _scaledVideo: false,
+      $: jest.fn((selector) => (selector === HTML_TAGS.VIDEO ? video : null)),
+      addScopedListener: jest.fn(),
+      isConnected: true,
+      isIntersecting: false,
+      observer: null,
+      _ensureVideoSource: jest.fn(),
+    }
+
+    try {
+      mountMediaFigure(c)
+
+      expect(video.poster).toBe(ATTR_VALUES.EMPTY)
+
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLL))
+      ioCb([{ isIntersecting: true }])
+
+      expect(video.poster).toBe(ATTR_VALUES.EMPTY)
+
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLLEND))
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLL))
+      idleCallback?.()
+
+      expect(video.poster).toBe('')
+
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLLEND))
+      idleCallback?.()
+
+      await waitFor(() => video.poster === TEST_URLS.IMG)
+
+      expect(c._ensureVideoSource).not.toHaveBeenCalled()
+    } finally {
+      globalThis.IntersectionObserver = IO
+      window.requestIdleCallback = requestIdleCallback
+      store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
+
+      if (readyState) Object.defineProperty(document, 'readyState', readyState)
+
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLLEND))
     }
   })
 

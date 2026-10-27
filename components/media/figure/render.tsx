@@ -67,6 +67,10 @@ export function renderMediaFigure(c: MediaFigure) {
 
   const posterSrc = c.isVideo ? c.poster[scaledVideo ? 1 : 0] || c.poster[0] : ATTR_VALUES.EMPTY
 
+  // Keep offscreen posters out of the scroll decode path; the viewport
+  // observer attaches them after scroll settles, while the hero stays eager.
+  const initialPoster = isHeroItem ? posterSrc : ATTR_VALUES.EMPTY
+
   return (
     <figure
       className={c.canExpand ? INTERNAL_CLASSES.INTERNAL_EXPAND : ATTR_VALUES.EMPTY}
@@ -119,7 +123,7 @@ export function renderMediaFigure(c: MediaFigure) {
         <Fragment>
           <video
             className={`${MEDIA_CLASSES.RENDER_MEDIA} ${c.classes}`}
-            poster={posterSrc || ATTR_VALUES.EMPTY}
+            poster={initialPoster || ATTR_VALUES.EMPTY}
             width={mediaW}
             height={mediaH}
             preload={shouldPreloadVideo ? MEDIA_ATTRS.METADATA : ATTR_VALUES.NONE}

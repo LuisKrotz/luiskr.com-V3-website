@@ -12,6 +12,7 @@ import { openMediaModal } from './figure/modal.js'
 import { renderMediaFigure } from './figure/render.js'
 import { loadHighRes, mediaPlaceholder, resolveMediaSources } from './figure/load.js'
 import { ensureVideoSource, pauseVideo, playVideo, syncVideoPlayback } from './figure/video.js'
+import type { SharedObserverHandle } from './figure/shared-observer.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
@@ -49,9 +50,9 @@ export class MediaFigure extends BaseComponent {
   poster: string[] = [] // [main, scaled] video poster URLs
   video: string[] = [] // [main, scaled] mp4 video source URLs
   videoWebm: string[] = [] // [main, scaled] webm video source URLs
-  observer: IntersectionObserver | null = null // video viewport IntersectionObserver
-  imgObserver: IntersectionObserver | null = null // image lazy-load IntersectionObserver
-  warmObserver: IntersectionObserver | null = null // CDN warm-up IntersectionObserver (wider margin)
+  observer: SharedObserverHandle | null = null // video viewport observer — pooled shared-observer handle
+  imgObserver: SharedObserverHandle | null = null // image lazy-load observer — pooled shared-observer handle
+  warmObserver: SharedObserverHandle | null = null // CDN warm-up observer — pooled shared-observer handle (wider margin)
   warmed = false // first-rung CDN/HTTP-cache warm already dispatched
   _scaledVideo: boolean | undefined = undefined // memoized poster/source tier pick — render must not re-query clientWidth per pass
   _ladderBox = -1 // memoized figure box width (px) for ladder/stem picks — one layout read per figure

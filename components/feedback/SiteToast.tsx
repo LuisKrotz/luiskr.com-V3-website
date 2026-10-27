@@ -54,18 +54,17 @@ export class SiteToast extends BaseComponent {
 
   /**
    * Queues a toast item and starts its auto-dismiss clock.
-   * @param item.text - body copy (already localized by the caller)
-   * @param item.type - NOTIFY_TYPES entry; styles the BEM modifier
-   * @param item.title - optional eyebrow heading
-   * @param item.duration - ms until auto-dismiss; ≤0 pins it
+   * @param options - Toast text, severity, optional title, and dismiss duration.
    * @returns the item id (null when text was empty)
    */
-  push({
-    text,
-    type = NOTIFY_TYPES.ERROR,
-    title = CHAR_STRINGS.EMPTY,
-    duration = NOTIFY.TOAST_DURATION,
-  }: Partial<ToastItem> = {}): number | null {
+  push(options: Partial<ToastItem> = {}): number | null {
+    const {
+      text,
+      type = NOTIFY_TYPES.ERROR,
+      title = CHAR_STRINGS.EMPTY,
+      duration = NOTIFY.TOAST_DURATION,
+    } = options
+
     if (!text) return null
 
     const id = ++this._seq

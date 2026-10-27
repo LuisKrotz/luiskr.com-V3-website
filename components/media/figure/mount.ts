@@ -4,6 +4,7 @@
  */
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
+import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
@@ -21,14 +22,55 @@ import { KEYS } from '@core/tokens/primitives.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
-import { onScrollStop } from '@core/utils/motion/scroll-state.js'
+import { isScrolling, onScrollStop } from '@core/utils/motion/scroll-state.js'
 import store from '@core/store.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 import { mountCornerBrackets } from '@core/utils/gpu/corner-brackets.js'
 import { videoAutoplayAllowed } from '@core/utils/media/policy.js'
 import type { MediaFigure } from '../MediaFigure.js'
 import { warmFirstRung } from './load.js'
-import { VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
+import { MEDIA_OBSERVER_THRESHOLDS, VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
+import { observeShared } from './shared-observer.js'
+
+/**
+ * Releases the loading shimmer and removes a broken video poster.
+ * @param c Media figure whose loading state changes.
+ * @param event Error event from the video element.
+ * @returns Nothing; the failed poster is removed when present.
+ */
+export function handleVideoError(c: MediaFigure, event: Event): void {
+  c.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
+
+  const el = event.target as HTMLElement | null
+
+  if (el?.hasAttribute(MEDIA_ATTRS.POSTER)) {
+    el.removeAttribute(MEDIA_ATTRS.POSTER)
+  }
+}
+
+/**
+ * Applies the video's keyboard toggle contract when autoplay is disabled
+ * by preference but the viewer deliberately activates the control.
+ * @param c Media figure that owns the video.
+ * @param vid Video element whose source and playback state change.
+ * @param event Keyboard event from the video control.
+ * @returns Nothing; handled keys update playback and cancel their default.
+ */
+export function handleVideoKeydown(c: MediaFigure, vid: HTMLVideoElement, event: Event): void {
+  const key = (event as KeyboardEvent).key
+
+  if (key !== KEYS.SPACE && key !== KEYS.ENTER) return
+
+  event.preventDefault()
+
+  if (vid.paused) {
+    c._ensureVideoSource(vid)
+
+    void vid.play().catch(() => {})
+  } else {
+    vid.pause()
+  }
+}
 
 /**
  * Mounts media figure.
@@ -69,6 +111,8 @@ export function mountMediaFigure(c: MediaFigure): void {
 
   if (c.isVideo) {
     const isReduced = store.getters.getReducedMotion()
+    const autoplayAllowed = !isReduced && videoAutoplayAllowed()
+    const poster = c.poster?.[c._scaledVideo ? 1 : 0] || c.poster?.[0] || ATTR_VALUES.EMPTY
 
     const vid = c.$<HTMLVideoElement>(HTML_TAGS.VIDEO)
 
@@ -103,37 +147,14 @@ export function mountMediaFigure(c: MediaFigure): void {
         )
       })
 
-      c.addScopedListener(vid, WINDOW_EVENTS.ERROR, (e) => {
-        // Video failed — terminal state, the loading shimmer releases.
-        c.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
-
-        const el = (e as Event).target as HTMLElement | null
-
-        if (el?.hasAttribute(MEDIA_ATTRS.POSTER)) {
-          el.removeAttribute(MEDIA_ATTRS.POSTER)
-        }
-      })
+      c.addScopedListener(vid, WINDOW_EVENTS.ERROR, handleVideoError.bind(null, c))
 
       // Keyboard contract for ambient loops: muted videos render without
       // native controls (except under reduced-motion), so the element
       // itself is the control — Space/Enter toggles playback. Intentional
       // activation bypasses autoplay policy gates: a reduced-motion user
       // who deliberately presses play still gets playback.
-      c.addScopedListener(vid, KEYBOARD_EVENTS.KEYDOWN, (e) => {
-        const key = (e as KeyboardEvent).key
-
-        if (key !== KEYS.SPACE && key !== KEYS.ENTER) return
-
-        e.preventDefault()
-
-        if (vid.paused) {
-          c._ensureVideoSource(vid)
-
-          vid.play().catch(() => {})
-        } else {
-          vid.pause()
-        }
-      })
+      c.addScopedListener(vid, KEYBOARD_EVENTS.KEYDOWN, handleVideoKeydown.bind(null, c, vid))
 
       // The accessible name tracks real playback — autoplay, viewport
       // gating, reduced-motion sync and the keydown toggle all funnel
@@ -150,92 +171,104 @@ export function mountMediaFigure(c: MediaFigure): void {
 
       c.addScopedListener(vid, MEDIA_EVENTS.PAUSE, () => setLabel(STATE_STRINGS.PAUSED))
 
-      if (!isReduced && videoAutoplayAllowed()) {
-        // Viewport-gated playback: sources are only attached once the
-        // video is ≥15% visible (saves bandwidth on below-fold media),
-        // and leaving the viewport pauses it — no offscreen decode. A
-        // 'low' connection budget (saveData/≤2g) skips this branch like
-        // reduced-motion: the poster stays painted and no stream bytes
-        // are ever fetched.
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              c.isIntersecting = entry.isIntersecting
+      const needsPoster = Boolean(poster && !vid.poster)
 
-              if (entry.isIntersecting) {
-                // Defer the source attach + play to an idle slice — a
-                // video that streams the moment it intersects races the
-                // page's own LCP/TBT budget on throttled links. The
-                // hover/keyboard paths stay immediate: a deliberate play
-                // intent always wins over the budget.
-                const start = () => {
-                  // Stale-observer/stale-position bail: a queued deferred
-                  // start must never fire after this observer was
-                  // disconnected/replaced (patch re-bind, re-mount,
-                  // onDestroy) or after the element left the viewport —
-                  // either would replay the entry against newer state.
-                  if (c.observer !== observer || !c.isIntersecting) return
+      if (autoplayAllowed || needsPoster) {
+        // Posters and video streams are both viewport-gated. The hero
+        // poster is already in the initial markup; every later poster waits
+        // until the figure is visible and scrolling has settled, keeping
+        // image decode/upload work out of the gesture window. A 'low'
+        // connection budget or reduced-motion still loads only that poster.
+        const observerHandler = (entry: IntersectionObserverEntry) => {
+          c.isIntersecting = entry.isIntersecting
 
-                  c._ensureVideoSource(vid)
-
-                  // Overlay gate: the page sits under a covering layer
-                  // while any overlay (expand modal, nav menu, dialogs)
-                  // is open — a stray entry (resize/orientation) must not
-                  // restart playback.
-                  if (
-                    store.getters.getVideoAutoplay() &&
-                    !store.getters.getOverlayOpen() &&
-                    vid.paused
-                  ) {
-                    const p = vid.play()
-
-                    // Non-promise play() (older WebKit, stubs) has no
-                    // rejection surface — only chain .catch on a thenable.
-                    if (p && typeof p.catch === TYPE_STRINGS.FUNCTION) p.catch(() => {})
-                  }
-                }
-
-                const queueIdle = () => {
-                  if (typeof window.requestIdleCallback === TYPE_STRINGS.FUNCTION) {
-                    window.requestIdleCallback(start)
-                  } else {
-                    setTimeout(start, 0)
-                  }
-                }
-
-                // Ambient attach also waits out an in-flight scroll
-                // gesture — decoding a stream mid-fling spends the frame
-                // budget the scroll itself needs (scroll-fps gate). The
-                // parked start re-reads isIntersecting, so a figure that
-                // exited mid-gesture never attaches at all; onScrollStop
-                // fires immediately when the window isn't scrolling.
-                const queueStart = () => onScrollStop(queueIdle)
-
-                // Ambient loops are decorative — the poster already owns
-                // the paint — so an unrequested stream must not race the
-                // page's own load window: a multi-MB fetch + decode while
-                // the document is still loading steals critical-path
-                // bandwidth and main-thread the boot veil needs. Post-load
-                // intersections take the usual idle slice; pre-load ones
-                // park on a one-shot 'load' listener.
-                if (document.readyState === STATE_STRINGS.COMPLETE) {
-                  queueStart()
-                } else {
-                  c.addScopedListener(window, WINDOW_EVENTS.LOAD, queueStart, { once: true })
-                }
+          if (entry.isIntersecting) {
+            const queueIdle = () => {
+              if (typeof window.requestIdleCallback === TYPE_STRINGS.FUNCTION) {
+                window.requestIdleCallback(start)
               } else {
-                if (!vid.paused) {
-                  vid.pause()
-                }
+                setTimeout(start, 0)
               }
-            })
-          },
-          { threshold: 0.15 }
-        )
+            }
+
+            // Defer the source attach + play to an idle slice — a
+            // video that streams the moment it intersects races the
+            // page's own LCP/TBT budget on throttled links. The
+            // hover/keyboard paths stay immediate: a deliberate play
+            // intent always wins over the budget.
+            const start = () => {
+              // Stale-observer/stale-position bail: a queued deferred
+              // start must never fire after this observer was
+              // disconnected/replaced (patch re-bind, re-mount,
+              // onDestroy) or after the element left the viewport —
+              // either would replay the entry against newer state.
+              if (c.observer !== observer || !c.isIntersecting) return
+
+              if (isScrolling()) {
+                onScrollStop(queueIdle)
+
+                return
+              }
+
+              if (!vid.poster && poster) vid.poster = poster
+
+              if (!autoplayAllowed) return
+
+              c._ensureVideoSource(vid)
+
+              // Overlay gate: the page sits under a covering layer
+              // while any overlay (expand modal, nav menu, dialogs)
+              // is open — a stray entry (resize/orientation) must not
+              // restart playback.
+              if (
+                store.getters.getVideoAutoplay() &&
+                !store.getters.getOverlayOpen() &&
+                vid.paused
+              ) {
+                const p = vid.play()
+
+                // Non-promise play() (older WebKit, stubs) has no
+                // rejection surface — only chain .catch on a thenable.
+                if (p && typeof p.catch === TYPE_STRINGS.FUNCTION) p.catch(() => {})
+              }
+            }
+
+            // Ambient attach also waits out an in-flight scroll
+            // gesture — decoding a stream mid-fling spends the frame
+            // budget the scroll itself needs (scroll-fps gate). The
+            // parked start re-reads isIntersecting, so a figure that
+            // exited mid-gesture never attaches at all; onScrollStop
+            // fires immediately when the window isn't scrolling.
+            const queueStart = () => onScrollStop(queueIdle)
+
+            // Ambient loops are decorative — the poster already owns
+            // the paint — so an unrequested stream must not race the
+            // page's own load window: a multi-MB fetch + decode while
+            // the document is still loading steals critical-path
+            // bandwidth and main-thread the boot veil needs. Post-load
+            // intersections take the usual idle slice; pre-load ones
+            // park on a one-shot 'load' listener.
+            if (document.readyState === STATE_STRINGS.COMPLETE) {
+              queueStart()
+            } else {
+              c.addScopedListener(window, WINDOW_EVENTS.LOAD, queueStart, { once: true })
+            }
+          } else {
+            if (!vid.paused) {
+              vid.pause()
+            }
+          }
+        }
+
+        // Pooled observer — one IntersectionObserver instance per options
+        // signature serves every figure on the page; a private instance
+        // per figure (~500 on media pages) made per-frame
+        // computeIntersections dominate the scroll budget.
+        const observer = observeShared(vid, observerHandler, {
+          threshold: MEDIA_OBSERVER_THRESHOLDS.VIDEO_OBSERVER_THRESHOLD,
+        })
 
         c.observer = observer
-
-        observer.observe(vid)
       }
     }
   } else {
@@ -245,47 +278,57 @@ export function mountMediaFigure(c: MediaFigure): void {
       // Progressive enhancement: 100px rootMargin starts the high-res
       // fetch just before the card scrolls into view — by the time the
       // user sees it, the thumb→high-res swap has usually completed.
-      // One-shot: disconnects after the first load.
-      c.imgObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !c.isLoaded) {
+      // One-shot: disconnects after the first load. Pooled like the video
+      // observer — hundreds of private IO instances was the scroll-fps
+      // regression on media pages.
+      c.imgObserver = observeShared(
+        highImg,
+        (entry) => {
+          if (entry.isIntersecting && !c.isLoaded) {
+            // Keep image fetch/decode work off the active gesture; the
+            // blurred thumb remains painted until the scroll settles.
+            const loadAfterScroll = () => {
+              if (!c.isConnected || c.isLoaded) return
+
               c.loadHighRes()
-
-              if (c.imgObserver) {
-                c.imgObserver.disconnect()
-
-                c.imgObserver = null
-              }
             }
-          })
-        },
-        { rootMargin: QUERY_STRINGS.ROOT_MARGIN_100, threshold: 0.01 }
-      )
 
-      c.imgObserver.observe(highImg)
+            onScrollStop(loadAfterScroll)
+
+            if (c.imgObserver) {
+              c.imgObserver.disconnect()
+
+              c.imgObserver = null
+            }
+          }
+        },
+        {
+          rootMargin: QUERY_STRINGS.ROOT_MARGIN_100,
+          threshold: MEDIA_OBSERVER_THRESHOLDS.IMAGE_OBSERVER_THRESHOLD,
+        }
+      )
 
       // Warm band — a much wider margin (~600px) fires a single detached
       // fetch of the FIRST ladder rung, warming the CDN edge + HTTP cache
       // before the 100px load margin starts the real climb. One-shot.
-      c.warmObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !c.warmed) {
-              warmFirstRung(c)
+      c.warmObserver = observeShared(
+        highImg,
+        (entry) => {
+          if (entry.isIntersecting && !c.warmed) {
+            warmFirstRung(c)
 
-              if (c.warmObserver) {
-                c.warmObserver.disconnect()
+            if (c.warmObserver) {
+              c.warmObserver.disconnect()
 
-                c.warmObserver = null
-              }
+              c.warmObserver = null
             }
-          })
+          }
         },
-        { rootMargin: QUERY_STRINGS.ROOT_MARGIN_600, threshold: 0.01 }
+        {
+          rootMargin: QUERY_STRINGS.ROOT_MARGIN_600,
+          threshold: MEDIA_OBSERVER_THRESHOLDS.IMAGE_OBSERVER_THRESHOLD,
+        }
       )
-
-      c.warmObserver.observe(highImg)
     }
   }
 }
