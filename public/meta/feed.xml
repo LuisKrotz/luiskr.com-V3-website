@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+  <title>Luis Krötz</title>
+  <link>https://luiskr.com/</link>
+  <atom:link href="https://luiskr.com/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Hi, I'm Luis, a Software Engineer focused on UX. Currently working at Dell on the Dell Design System .</description>
+  <language>en</language>
+  <lastBuildDate>Tue, 27 Oct 2026 03:36:33 GMT</lastBuildDate>
+  <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/</link></image>
+  <item>
+    <title>Luis Krötz — Portfolio</title>
+    <link>https://luiskr.com/</link>
+    <guid>https://luiskr.com/</guid>
+    <description>Hi, I'm Luis, a Software Engineer focused on UX. Currently working at Dell on the Dell Design System .</description>
+  </item>
+  <item>
+    <title>About</title>
+    <link>https://luiskr.com/about</link>
+    <guid>https://luiskr.com/about</guid>
+    <description>Hi, I'm Luis, a Software Engineer focused on UX. Currently working at Dell on the Dell Design System .</description>
+  </item>
+  <item>
+    <title>Contact</title>
+    <link>https://luiskr.com/contact</link>
+    <guid>https://luiskr.com/contact</guid>
+    <description>Contact</description>
+  </item>
+  <item>
+    <title>Privacy Policy</title>
+    <link>https://luiskr.com/privacy-policy</link>
+    <guid>https://luiskr.com/privacy-policy</guid>
+    <description>At luiskr , accessible from https://luiskr.com , one of my main priorities is the privacy of my visitors. This Privacy Policy document contains types of information that is collected and recorded by luiskr.com and how I use it.</description>
+  </item>
+  <item>
+    <title>GDPR</title>
+    <link>https://luiskr.com/gdpr</link>
+    <guid>https://luiskr.com/gdpr</guid>
+    <description>I want to make sure you are fully aware of your data protection rights. Every user is entitled to the following:</description>
+  </item>
+  <item>
+    <title>Terms of Use</title>
+    <link>https://luiskr.com/terms-of-use</link>
+    <guid>https://luiskr.com/terms-of-use</guid>
+    <description>The luiskr.com website located at luiskr.com is under MIT LICENSE. Luiskr.com is created by Luis Krötz, certain features of the Site may be subject to additional guidelines, terms, or rules, which will be posted on the Site in connection with such features.</description>
+  </item>
+  <item>
+    <title>Mozilla Public License 2.0</title>
+    <link>https://luiskr.com/license</link>
+    <guid>https://luiskr.com/license</guid>
+    <description>This page contains the complete, official text of the Mozilla Public License 2.0 (MPL 2.0), the license under which the source code of this website is made available. The license is a worldwide, royalty-free grant valid in every country and territory.</description>
+  </item>
+  <item>
+    <title>Animations Reference</title>
+    <link>https://luiskr.com/animations</link>
+    <guid>https://luiskr.com/animations</guid>
+    <description>Every animation on the site, described — element, motion, trigger, technology and purpose — so readers, assistive tech and AI agents can inspect the full motion vocabulary.</description>
+  </item>
+  <item>
+    <title>Earth Playground</title>
+    <link>https://luiskr.com/earth-playground</link>
+    <guid>https://luiskr.com/earth-playground</guid>
+    <description>Interactive WebGL Earth playground — adjust terrain, atmosphere, lighting and post-processing live.</description>
+  </item>
+  <item>
+    <title>Star Field</title>
+    <link>https://luiskr.com/star-field-experiment</link>
+    <guid>https://luiskr.com/star-field-experiment</guid>
+    <description>Overview</description>
+  </item>
+  <item>
+    <title>Marco Almeida</title>
+    <link>https://luiskr.com/portfolio/aboutmarco</link>
+    <guid>https://luiskr.com/portfolio/aboutmarco</guid>
+    <description>Marco's Portfolio was developed as a freelance project in 2021.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Cecerelê</title>
+    <link>https://luiskr.com/portfolio/cecerele</link>
+    <guid>https://luiskr.com/portfolio/cecerele</guid>
+    <description>I met Joana from Cecerelê through a mutual friend, Sagu, in November 2020.</description>
+    <media:content url="" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Brazilian Leather</title>
+    <link>https://luiskr.com/portfolio/cicb</link>
+    <guid>https://luiskr.com/portfolio/cicb</guid>
+    <description>Brazilian Leather is a project developed at Transa, through a partnership between CICB and Apex-Brasil.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Coza</title>
+    <link>https://luiskr.com/portfolio/coza</link>
+    <guid>https://luiskr.com/portfolio/coza</guid>
+    <description>Coza's website was developed at Transa from 2017 to 2019.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Dell Design System</title>
+    <link>https://luiskr.com/portfolio/dell-design-system</link>
+    <guid>https://luiskr.com/portfolio/dell-design-system</guid>
+    <description>Joining Dell on June 6th, 2022, shortly after Transainc closed its doors, marked a pivotal turning point in my professional career.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Melissa</title>
+    <link>https://luiskr.com/portfolio/melissa</link>
+    <guid>https://luiskr.com/portfolio/melissa</guid>
+    <description>Melissa's website was a project developed by TRANSA INC.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>METCHA</title>
+    <link>https://luiskr.com/portfolio/metcha</link>
+    <guid>https://luiskr.com/portfolio/metcha</guid>
+    <description>METCHA: the oracle of leather, design, and culture.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Mini Melissa</title>
+    <link>https://luiskr.com/portfolio/mini-melissa</link>
+    <guid>https://luiskr.com/portfolio/mini-melissa</guid>
+    <description>Mini Melissa was a project developed at Transa for the Grendene Group as a dedicated channel for the Mini Melissa brand.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>MOR</title>
+    <link>https://luiskr.com/portfolio/mor</link>
+    <guid>https://luiskr.com/portfolio/mor</guid>
+    <description>MOR's website was developed at Transa.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Nathalia Bond</title>
+    <link>https://luiskr.com/portfolio/nathalia-bond</link>
+    <guid>https://luiskr.com/portfolio/nathalia-bond</guid>
+    <description>I met Nathalia from Nathalia Bond, Clínica de Desenvolvimento, through a mutual friend, Marco Anuschek, in October 2021.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Genesysinf, Sageweb</title>
+    <link>https://luiskr.com/portfolio/sage</link>
+    <guid>https://luiskr.com/portfolio/sage</guid>
+    <description>Sage is a fiscal software developed by Genesysinf, based in Santana do Livramento, Brazil.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-atalhos-mozjpg-uncompressed.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Transa</title>
+    <link>https://luiskr.com/portfolio/transa</link>
+    <guid>https://luiskr.com/portfolio/transa</guid>
+    <description>Transa's website was developed with Vue, CSS (Sass), and PHP (Laravel) in 2021.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Vibra</title>
+    <link>https://luiskr.com/portfolio/vibra</link>
+    <guid>https://luiskr.com/portfolio/vibra</guid>
+    <description>Vibra was a website developed at Transa in 2016 and stayed online until 2021.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4" medium="video"/>
+  </item>
+</channel>
+</rss>

@@ -49,6 +49,7 @@
 - [Agent skills index](https://luiskr.com/.well-known/agent-skills/index.json): sha256-pinned SKILL.md files under `/meta/skills/`.
 - [MCP server card](https://luiskr.com/.well-known/mcp/server-card.json): SEP-1649 card describing the read-only resource surface.
 - [Message-signatures directory](https://luiskr.com/.well-known/http-message-signatures-directory): Web Bot Auth JWKS for request-signature verification.
+- [RSS feed](https://luiskr.com/feed.xml): RSS 2.0 + Media RSS channel — every content page and all 13 portfolio projects with cover media attached; localized twins at `/<locale>/feed.xml` (`/rss.xml` aliases the English feed).
 - Usage preferences: `Content-Signal: ai-train=yes, search=yes, ai-input=yes` on every response (and stamped into deployed `robots.txt` files); `Link` response headers advertise these resources on every page.
 
 ## Experiment Data Endpoints (`/experiments/`)

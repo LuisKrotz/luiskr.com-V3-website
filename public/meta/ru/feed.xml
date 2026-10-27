@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+  <title>Luis Krötz</title>
+  <link>https://luiskr.com/ru/</link>
+  <atom:link href="https://luiskr.com/ru/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Привет, я Луис, инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
+  <language>ru</language>
+  <lastBuildDate>Tue, 27 Oct 2026 03:36:33 GMT</lastBuildDate>
+  <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/ru/</link></image>
+  <item>
+    <title>Luis Krötz — Portfolio</title>
+    <link>https://luiskr.com/ru/</link>
+    <guid>https://luiskr.com/ru/</guid>
+    <description>Привет, я Луис, инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
+  </item>
+  <item>
+    <title>Обо мне</title>
+    <link>https://luiskr.com/ru/obo-mne</link>
+    <guid>https://luiskr.com/ru/obo-mne</guid>
+    <description>Привет, я Луис, инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
+  </item>
+  <item>
+    <title>Контакты</title>
+    <link>https://luiskr.com/ru/kontakty</link>
+    <guid>https://luiskr.com/ru/kontakty</guid>
+    <description>Контакты</description>
+  </item>
+  <item>
+    <title>Политика конфиденциальности</title>
+    <link>https://luiskr.com/ru/politika-konfidentsialnosti</link>
+    <guid>https://luiskr.com/ru/politika-konfidentsialnosti</guid>
+    <description>На сайте luiskr , доступном по адресу https://luiskr.com , одним из моих главных приоритетов является конфиденциальность посетителей. Этот документ Политики конфиденциальности содержит типы информации, которая собирается и регистрируется сайтом luiskr.com , и то, как я её использую.</description>
+  </item>
+  <item>
+    <title>GDPR</title>
+    <link>https://luiskr.com/ru/gdpr</link>
+    <guid>https://luiskr.com/ru/gdpr</guid>
+    <description>Я хочу быть уверен, что вы полностью осведомлены о своих правах на защиту данных. Каждый пользователь имеет право на следующее:</description>
+  </item>
+  <item>
+    <title>Условия использования</title>
+    <link>https://luiskr.com/ru/usloviya-ispolzovaniya</link>
+    <guid>https://luiskr.com/ru/usloviya-ispolzovaniya</guid>
+    <description>Сайт luiskr.com, расположенный по адресу luiskr.com , распространяется по лицензии MIT. Luiskr.com создан Луисом Крётцем; на отдельные функции Сайта могут распространяться дополнительные руководства, условия или правила, которые будут опубликованы на Сайте в связи с такими функциями.</description>
+  </item>
+  <item>
+    <title>Mozilla Public License 2.0</title>
+    <link>https://luiskr.com/ru/litsenziya</link>
+    <guid>https://luiskr.com/ru/litsenziya</guid>
+    <description>Эта страница содержит полный официальный текст Mozilla Public License 2.0 (MPL 2.0) — лицензии, под которой распространяется исходный код этого сайта. Лицензия представляет собой всемирную безвозмездную концессию, действующую во всех странах и на всех территориях.</description>
+  </item>
+  <item>
+    <title>Справочник анимаций</title>
+    <link>https://luiskr.com/ru/animatsii</link>
+    <guid>https://luiskr.com/ru/animatsii</guid>
+    <description>Все анимации сайта, описанные — элемент, движение, триггер, технология и назначение — для читателей, вспомогательных технологий и ИИ-агентов.</description>
+  </item>
+  <item>
+    <title>Земная песочница</title>
+    <link>https://luiskr.com/ru/zemnaya-pesochnitsa</link>
+    <guid>https://luiskr.com/ru/zemnaya-pesochnitsa</guid>
+    <description>Интерактивная WebGL-Земля — настраивайте рельеф, атмосферу, освещение и постобработку в реальном времени.</description>
+  </item>
+  <item>
+    <title>Звёздное поле</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole</link>
+    <guid>https://luiskr.com/ru/zvezdnoe-pole</guid>
+    <description>Обзор</description>
+  </item>
+  <item>
+    <title>Марко Алмейда</title>
+    <link>https://luiskr.com/ru/portfolio/aboutmarco</link>
+    <guid>https://luiskr.com/ru/portfolio/aboutmarco</guid>
+    <description>Портфолио Марко было разработано как фриланс-проект в 2021 году.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Сесереле</title>
+    <link>https://luiskr.com/ru/portfolio/cecerele</link>
+    <guid>https://luiskr.com/ru/portfolio/cecerele</guid>
+    <description>Я познакомился с Жоаной из Cecerelê через общего друга, Сагу, в ноябре 2020 года.</description>
+    <media:content url="" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Бразилиан Лезер</title>
+    <link>https://luiskr.com/ru/portfolio/cicb</link>
+    <guid>https://luiskr.com/ru/portfolio/cicb</guid>
+    <description>Brazilian Leather это проект, разработанный в Transa в партнёрстве между CICB и Apex-Brasil.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Коза</title>
+    <link>https://luiskr.com/ru/portfolio/coza</link>
+    <guid>https://luiskr.com/ru/portfolio/coza</guid>
+    <description>Сайт Coza был разработан в Transa с 2017 по 2019 год.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Делл Дизайн Систем</title>
+    <link>https://luiskr.com/ru/portfolio/dell-design-system</link>
+    <guid>https://luiskr.com/ru/portfolio/dell-design-system</guid>
+    <description>Приход в Dell 6 июня 2022 года, вскоре после закрытия Transainc, стал ключевым поворотным моментом в моей профессиональной карьере.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Мелисса</title>
+    <link>https://luiskr.com/ru/portfolio/melissa</link>
+    <guid>https://luiskr.com/ru/portfolio/melissa</guid>
+    <description>Сайт Melissa был проектом, разработанным в TRANSA INC.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>МЕТЧА</title>
+    <link>https://luiskr.com/ru/portfolio/metcha</link>
+    <guid>https://luiskr.com/ru/portfolio/metcha</guid>
+    <description>METCHA: оракул кожи, дизайна и культуры.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Мини Мелисса</title>
+    <link>https://luiskr.com/ru/portfolio/mini-melissa</link>
+    <guid>https://luiskr.com/ru/portfolio/mini-melissa</guid>
+    <description>Mini Melissa был проектом, разработанным в Transa для группы Grendene как отдельный канал для бренда Mini Melissa.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>МОР</title>
+    <link>https://luiskr.com/ru/portfolio/mor</link>
+    <guid>https://luiskr.com/ru/portfolio/mor</guid>
+    <description>Сайт MOR был разработан в Transa.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Наталия Бонд</title>
+    <link>https://luiskr.com/ru/portfolio/nathalia-bond</link>
+    <guid>https://luiskr.com/ru/portfolio/nathalia-bond</guid>
+    <description>Я познакомился с Натальей из Nathalia Bond, Clínica de Desenvolvimento, через общего друга, Марко Анушека, в октябре 2021 года.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Дженесисинф, Сейджвеб</title>
+    <link>https://luiskr.com/ru/portfolio/sage</link>
+    <guid>https://luiskr.com/ru/portfolio/sage</guid>
+    <description>Sage это фискальное программное обеспечение, разработанное Genesysinf, компанией из Сантана-ду-Ливраменту, Бразилия.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-atalhos-mozjpg-uncompressed.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Транса</title>
+    <link>https://luiskr.com/ru/portfolio/transa</link>
+    <guid>https://luiskr.com/ru/portfolio/transa</guid>
+    <description>Сайт Transa был разработан на Vue, CSS (Sass) и PHP (Laravel) в 2021 году.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Вибра</title>
+    <link>https://luiskr.com/ru/portfolio/vibra</link>
+    <guid>https://luiskr.com/ru/portfolio/vibra</guid>
+    <description>Vibra был сайтом, разработанным в Transa в 2016 году и остававшимся онлайн до 2021 года.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4" medium="video"/>
+  </item>
+</channel>
+</rss>

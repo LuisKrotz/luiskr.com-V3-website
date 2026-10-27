@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+<channel>
+  <title>Luis Krötz</title>
+  <link>https://luiskr.com/ga/</link>
+  <atom:link href="https://luiskr.com/ga/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Dia duit, mise Luis, Innealtóir Bogearraí dírithe ar UX. Faoi láthair ag obair ag Dell ar an Dell Design System .</description>
+  <language>ga</language>
+  <lastBuildDate>Tue, 27 Oct 2026 03:36:33 GMT</lastBuildDate>
+  <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/ga/</link></image>
+  <item>
+    <title>Luis Krötz — Portfolio</title>
+    <link>https://luiskr.com/ga/</link>
+    <guid>https://luiskr.com/ga/</guid>
+    <description>Dia duit, mise Luis, Innealtóir Bogearraí dírithe ar UX. Faoi láthair ag obair ag Dell ar an Dell Design System .</description>
+  </item>
+  <item>
+    <title>Maidir liom</title>
+    <link>https://luiskr.com/ga/faoi-mhe</link>
+    <guid>https://luiskr.com/ga/faoi-mhe</guid>
+    <description>Dia duit, mise Luis, Innealtóir Bogearraí dírithe ar UX. Faoi láthair ag obair ag Dell ar an Dell Design System .</description>
+  </item>
+  <item>
+    <title>Teagmháil</title>
+    <link>https://luiskr.com/ga/teagmhail</link>
+    <guid>https://luiskr.com/ga/teagmhail</guid>
+    <description>Teagmháil</description>
+  </item>
+  <item>
+    <title>Polasaí Príobháideachta</title>
+    <link>https://luiskr.com/ga/beartas-probhaideachta</link>
+    <guid>https://luiskr.com/ga/beartas-probhaideachta</guid>
+    <description>Ag luiskr , ar fáil ó https://luiskr.com , tá príobháideacht mo chuairteoirí ar cheann de mo phríomhthosaíochtaí. Tá cineálacha faisnéise sa doiciméad Polasaí Príobháideachta seo a bhailítear agus a dtaifeadtar ag luiskr.com agus conas a úsáidim í.</description>
+  </item>
+  <item>
+    <title>GDPR</title>
+    <link>https://luiskr.com/ga/gdpr</link>
+    <guid>https://luiskr.com/ga/gdpr</guid>
+    <description>Ba mhaith liom a chinntiú go bhfuil tú go hiomlán ar an eolas faoi do chearta cosanta sonraí. Tá gach úsáideoir i dteideal an mhéid seo a leanas:</description>
+  </item>
+  <item>
+    <title>Téarmaí Úsáide</title>
+    <link>https://luiskr.com/ga/tearmai-usaide</link>
+    <guid>https://luiskr.com/ga/tearmai-usaide</guid>
+    <description>Tá suíomh gréasáin luiskr.com atá suite ag luiskr.com faoi CHEADÚNAS MIT. Chruthaigh Luis Krötz Luiskr.com ; féadfaidh gnéithe áirithe den Suíomh a bheith faoi réir treoirlínte, téarmaí nó rialacha breise, a fhóilseofar ar an Suíomh i gcomhar leis na gnéithe sin.</description>
+  </item>
+  <item>
+    <title>Ceadúnas Poiblí Mozilla 2.0</title>
+    <link>https://luiskr.com/ga/ceadunas</link>
+    <guid>https://luiskr.com/ga/ceadunas</guid>
+    <description>Tá lánthéacs oifigiúil an Cheadúnais Phoiblí Mozilla 2.0 (MPL 2.0) ar an leathanach seo — an cheadúnas faoina bhfoilsítear cód foinse an tsuímh ghréasáin seo. Ceadúnas domhanda, saor ó dhleacht, is ea é atá bailí i ngach tír agus críoch.</description>
+  </item>
+  <item>
+    <title>Tagairt Beochana</title>
+    <link>https://luiskr.com/ga/beochan</link>
+    <guid>https://luiskr.com/ga/beochan</guid>
+    <description>Gach beochan ar an suíomh, curtha síos — eilimint, gluaiseacht, spreagadh, teicneolaíocht agus cuspóir — do léitheoirí, do theicneolaíocht chuiditheach agus do ghníomhairí AI.</description>
+  </item>
+  <item>
+    <title>Clós Spraoi an Domhain</title>
+    <link>https://luiskr.com/ga/playground-an-domhain</link>
+    <guid>https://luiskr.com/ga/playground-an-domhain</guid>
+    <description>Clós súgartha WebGL idirghníomhach den Domhan — coigeartaigh tír-raon, atmaisféar, soilsiú agus iarphróiseáil beo.</description>
+  </item>
+  <item>
+    <title>Réimse Réalta</title>
+    <link>https://luiskr.com/ga/turgnamh-reimse-realta</link>
+    <guid>https://luiskr.com/ga/turgnamh-reimse-realta</guid>
+    <description>Forbhreathnú</description>
+  </item>
+  <item>
+    <title>Marco Almeida</title>
+    <link>https://luiskr.com/ga/portfolio/aboutmarco</link>
+    <guid>https://luiskr.com/ga/portfolio/aboutmarco</guid>
+    <description>Forbraíodh Punann Marco mar thionscnamh saoráideach in 2021.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Cecerelê</title>
+    <link>https://luiskr.com/ga/portfolio/cecerele</link>
+    <guid>https://luiskr.com/ga/portfolio/cecerele</guid>
+    <description>Chas mé le Joana ó Cecerelê trí chara comhchoiteann, Sagu, i mí na Samhna 2020.</description>
+    <media:content url="" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Brazilian Leather</title>
+    <link>https://luiskr.com/ga/portfolio/cicb</link>
+    <guid>https://luiskr.com/ga/portfolio/cicb</guid>
+    <description>Is tionscnamh é Brazilian Leather a forbraíodh ag Transa, trí chomhpháirtíocht idir CICB agus Apex-Brasil.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Coza</title>
+    <link>https://luiskr.com/ga/portfolio/coza</link>
+    <guid>https://luiskr.com/ga/portfolio/coza</guid>
+    <description>Forbraíodh suíomh Coza ag Transa ó 2017 go 2019.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Dell Design System</title>
+    <link>https://luiskr.com/ga/portfolio/dell-design-system</link>
+    <guid>https://luiskr.com/ga/portfolio/dell-design-system</guid>
+    <description>Ba phointe cinniúnach i mo shaol gairmiúil é dul isteach i Dell ar an 6 Meitheamh 2022, go gairid tar éis do Transainc a dhoirse a dhúnadh.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Melissa</title>
+    <link>https://luiskr.com/ga/portfolio/melissa</link>
+    <guid>https://luiskr.com/ga/portfolio/melissa</guid>
+    <description>Ba thionscnamh é suíomh gréasáin Melissa a d'fhorbair TRANSA INC.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>METCHA</title>
+    <link>https://luiskr.com/ga/portfolio/metcha</link>
+    <guid>https://luiskr.com/ga/portfolio/metcha</guid>
+    <description>METCHA: fáidh an leathair, an dearaidh agus na cultúir.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Mini Melissa</title>
+    <link>https://luiskr.com/ga/portfolio/mini-melissa</link>
+    <guid>https://luiskr.com/ga/portfolio/mini-melissa</guid>
+    <description>Ba thionscnamh é Mini Melissa a forbraíodh ag Transa do Ghrúpa Grendene mar chainéal tiomnaithe don bhranda Mini Melissa.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>MOR</title>
+    <link>https://luiskr.com/ga/portfolio/mor</link>
+    <guid>https://luiskr.com/ga/portfolio/mor</guid>
+    <description>Forbraíodh suíomh gréasáin MOR ag Transa.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Nathalia Bond</title>
+    <link>https://luiskr.com/ga/portfolio/nathalia-bond</link>
+    <guid>https://luiskr.com/ga/portfolio/nathalia-bond</guid>
+    <description>Chas mé le Nathalia ó Nathalia Bond, Clínica de Desenvolvimento, trí chara comhchoiteann, Marco Anuschek, i mí Dheireadh Fómhair 2021.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Genesysinf, Sageweb</title>
+    <link>https://luiskr.com/ga/portfolio/sage</link>
+    <guid>https://luiskr.com/ga/portfolio/sage</guid>
+    <description>Is bogearraí fioscacha é Sage a d'fhorbair Genesysinf, atá lonnaithe i Santana do Livramento, an Bhrasaíl.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-atalhos-mozjpg-uncompressed.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Transa</title>
+    <link>https://luiskr.com/ga/portfolio/transa</link>
+    <guid>https://luiskr.com/ga/portfolio/transa</guid>
+    <description>Forbraíodh suíomh gréasáin Transa le Vue, CSS (Sass) agus PHP (Laravel) in 2021.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Vibra</title>
+    <link>https://luiskr.com/ga/portfolio/vibra</link>
+    <guid>https://luiskr.com/ga/portfolio/vibra</guid>
+    <description>Ba shuíomh gréasáin é Vibra a forbraíodh ag Transa in 2016 agus a d'fhan ar líne go dtí 2021.</description>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg" medium="image"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4" medium="video"/>
+  </item>
+</channel>
+</rss>
