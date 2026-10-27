@@ -444,6 +444,23 @@ describe('media figure modal + mount tails', () => {
 
       expect(c._ensureVideoSource).toHaveBeenCalledTimes(ensured)
       expect(vid.play).toHaveBeenCalledTimes(playCalls)
+
+      // Scroll-gesture park — an intersect that lands mid-scroll waits
+      // for the gesture to settle before the attach+decode runs (scroll
+      // frames own the budget). scrollend fires it; the 150ms sleep also
+      // covers the debounce fallback on engines without scrollend.
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLL))
+      ensured = c._ensureVideoSource.mock.calls.length
+      ioCb([{ isIntersecting: true }])
+      await flushIdle()
+
+      expect(c._ensureVideoSource).toHaveBeenCalledTimes(ensured)
+
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLLEND))
+      await new Promise((r) => setTimeout(r, 150))
+      await flushIdle()
+
+      expect(c._ensureVideoSource).toHaveBeenCalledTimes(ensured + 1)
     } finally {
       globalThis.IntersectionObserver = IO
 

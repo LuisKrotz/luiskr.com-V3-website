@@ -21,6 +21,7 @@ import { KEYS } from '@core/tokens/primitives.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
+import { onScrollStop } from '@core/utils/motion/scroll-state.js'
 import store from '@core/store.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 import { mountCornerBrackets } from '@core/utils/gpu/corner-brackets.js'
@@ -202,6 +203,14 @@ export function mountMediaFigure(c: MediaFigure): void {
                   }
                 }
 
+                // Ambient attach also waits out an in-flight scroll
+                // gesture — decoding a stream mid-fling spends the frame
+                // budget the scroll itself needs (scroll-fps gate). The
+                // parked start re-reads isIntersecting, so a figure that
+                // exited mid-gesture never attaches at all; onScrollStop
+                // fires immediately when the window isn't scrolling.
+                const queueStart = () => onScrollStop(queueIdle)
+
                 // Ambient loops are decorative — the poster already owns
                 // the paint — so an unrequested stream must not race the
                 // page's own load window: a multi-MB fetch + decode while
@@ -210,9 +219,9 @@ export function mountMediaFigure(c: MediaFigure): void {
                 // intersections take the usual idle slice; pre-load ones
                 // park on a one-shot 'load' listener.
                 if (document.readyState === STATE_STRINGS.COMPLETE) {
-                  queueIdle()
+                  queueStart()
                 } else {
-                  c.addScopedListener(window, WINDOW_EVENTS.LOAD, queueIdle, { once: true })
+                  c.addScopedListener(window, WINDOW_EVENTS.LOAD, queueStart, { once: true })
                 }
               } else {
                 if (!vid.paused) {
