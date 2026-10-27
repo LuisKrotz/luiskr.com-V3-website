@@ -9,7 +9,6 @@
 
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
-import { CAROUSEL_SELECTORS } from '@core/tokens/selectors/carousel.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
@@ -360,10 +359,6 @@ export function getSmallestPortraitRatio(items: CarouselItem[]): number | null {
  * @param c The CustomCarousel element.
  */
 export function setHeightVar(c: CustomCarousel) {
-  const firstSlide = c.$(CAROUSEL_SELECTORS.CAROUSEL_SLIDES_NOT_CLONE)
-
-  if (!firstSlide) return
-
   const firstItem = c.items?.[0]
 
   let slideH
@@ -387,8 +382,6 @@ export function setHeightVar(c: CustomCarousel) {
         slideH = Math.round(hostW * minPortraitRatio)
       } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
         slideH = Math.round(calcMediaBox(firstItem.size[0], firstItem.size[1], hostW, maxH).height)
-      } else {
-        slideH = firstSlide.clientHeight || 0
       }
     } else if (c.landscapeRatio) {
       const ratioMultiplier = getRatioMultiplier(c.landscapeRatio)
@@ -396,21 +389,23 @@ export function setHeightVar(c: CustomCarousel) {
       slideH = Math.round(hostW / ratioMultiplier)
     } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
       slideH = Math.round(calcMediaBox(firstItem.size[0], firstItem.size[1], hostW, maxH).height)
-    } else {
-      slideH = firstSlide.clientHeight || 0
     }
   } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
     slideH = Math.round(calcMediaBox(firstItem.size[0], firstItem.size[1], hostW, maxH).height)
-  } else {
-    slideH = firstSlide.clientHeight || 0
   }
 
-  if (slideH <= 0) return
+  // No usable size data → publish nothing. The old fallback measured the
+  // first slide's box, but before media dims resolve that box is just the
+  // ~70dvh --mf-h placeholder — publishing it locked every slide to the
+  // placeholder height until real dims arrived (the visible
+  // wrong→right-height jump). Unsized slides instead keep sizing from
+  // their own content/--mf-natural-* vars, which is always correct.
+  if (!slideH) return
 
   // The strip may be less tall than the projection to honor the smallest
   // file: min natural height across items caps the uniform slide height,
   // so no rendered slide can exceed its source file's real pixels.
-  const naturalCapH = (c.items || []).reduce(
+  const naturalCapH = c.items.reduce(
     (minH, item) => (item.size?.[1] ? Math.min(minH, item.size[1]) : minH),
     Infinity
   )

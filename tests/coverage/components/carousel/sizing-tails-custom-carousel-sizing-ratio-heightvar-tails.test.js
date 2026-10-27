@@ -67,7 +67,7 @@ describe('custom-carousel sizing ratio + setHeightVar tails', () => {
     expect(el.style.setProperty).toHaveBeenCalled()
   })
 
-  test('setHeightVar mobile+mixed reads firstSlide.clientHeight when firstItem has no size', () => {
+  test('setHeightVar mobile+mixed with no item sizes publishes nothing', () => {
     const el = stubEl({
       isMobile: true,
       isMixed: true,
@@ -77,10 +77,12 @@ describe('custom-carousel sizing ratio + setHeightVar tails', () => {
 
     setHeightVar(el)
 
-    expect(el.style.setProperty).toHaveBeenCalled()
+    // No fallback to measuring the slide box — that captured the ~70dvh
+    // placeholder height and locked it in until real dims arrived.
+    expect(el.style.setProperty).not.toHaveBeenCalled()
   })
 
-  test('setHeightVar mobile+mixed with clientHeight 0 hits the ||0 arm and returns early', () => {
+  test('setHeightVar mobile+mixed sizeless second call stays unpublished', () => {
     const el = stubEl({
       isMobile: true,
       isMixed: true,
@@ -104,7 +106,7 @@ describe('custom-carousel sizing ratio + setHeightVar tails', () => {
     expect(el.style.setProperty).toHaveBeenCalled()
   })
 
-  test('setHeightVar mobile non-mixed without landscapeRatio or size uses clientHeight', () => {
+  test('setHeightVar mobile non-mixed without landscapeRatio or size publishes nothing', () => {
     const el = stubEl({
       isMobile: true,
       items: [{ src: 'a.webp' }],
@@ -113,19 +115,18 @@ describe('custom-carousel sizing ratio + setHeightVar tails', () => {
 
     setHeightVar(el)
 
-    expect(el.style.setProperty).toHaveBeenCalled()
+    expect(el.style.setProperty).not.toHaveBeenCalled()
   })
 
-  test('setHeightVar without items falls back to [] in the natural-height cap', () => {
+  test('setHeightVar without items publishes nothing', () => {
     const el = stubEl({ items: undefined, slideH: 350 })
 
     setHeightVar(el)
 
-    // naturalCapH = reduce over [] → Infinity → finalH = min(350, maxH).
-    expect(el.style.setProperty).toHaveBeenCalled()
+    expect(el.style.setProperty).not.toHaveBeenCalled()
   })
 
-  test('setHeightVar mobile non-mixed with clientHeight 0 hits the ||0 arm and returns early', () => {
+  test('setHeightVar mobile non-mixed desktop-shape sizeless item stays unpublished', () => {
     const el = stubEl({
       isMobile: true,
       items: [{ src: 'a.webp' }],
