@@ -12,6 +12,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { VIEW_TAGS } from '@core/tokens/elements/views.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
+import { SCHEMA_STRINGS } from '@core/tokens/strings/schema.js'
 import { BASE_TITLE } from '@core/tokens/routes.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MODAL_CLASSES } from '@core/tokens/classes/modal.js'
@@ -30,7 +31,7 @@ describe('ViewProject tails', () => {
     return el
   }
 
-  test('updateRobotsMeta creates, reuses, removes, and skips without document', () => {
+  test('updateRobotsMeta creates, reuses, toggles, and skips without document', () => {
     const el = makeView()
 
     document.querySelector(QUERY_STRINGS.META_ROBOTS)?.remove()
@@ -40,7 +41,9 @@ describe('ViewProject tails', () => {
     el.updateRobotsMeta(false)
     el.updateRobotsMeta(false)
 
-    expect(document.querySelector(QUERY_STRINGS.META_ROBOTS)).toBeNull()
+    expect(document.querySelector(QUERY_STRINGS.META_ROBOTS)?.content).toBe(
+      SCHEMA_STRINGS.INDEX_RICH_DIRECTIVES
+    )
 
     const doc = globalThis.document
 
