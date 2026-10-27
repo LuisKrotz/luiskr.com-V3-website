@@ -360,7 +360,12 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
   const climb = (i: number): void => {
     if (i >= ladder.length || i > ceiling) {
       fig.isLoaded = true
-      fig.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED)
+
+      // The LOADED class flips thumb/skeleton visibility — a style recalc
+      // that must not land mid-fling (same scroll-gesture park as the
+      // publish swap above); the isLoaded flag stays immediate so
+      // early-returns and the imgObserver gate still read fresh state.
+      onScrollStop(() => fig.classList.add(MEDIA_CLASSES.MEDIA_FIGURE_LOADED))
 
       if (best && !overBudget) {
         // WASM decode first — the worker-side createImageBitmap reuses
