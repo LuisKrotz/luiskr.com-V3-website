@@ -122,6 +122,20 @@ export function renderMediaExpanded(el: MediaExpanded) {
             </video>
           </Fragment>
         )}
+        {/* Full-res fetch indicator — the thumb/poster paints instantly
+            while the original asset streams through the disk-cache →
+            WASM-decode pipeline, so the figure carries a visible bottom
+            load bar + centered spinner until the media layer stamps
+            --loaded (mount's swap/markLoaded). Decorative only — the
+            figure's aria-label already names the surface. */}
+        <span
+          className={EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_SPIN}
+          aria-hidden={ATTR_VALUES.TRUE}
+        />
+        <span
+          className={EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_LOAD}
+          aria-hidden={ATTR_VALUES.TRUE}
+        />
       </figure>
 
       <button className={EXPAND_MODAL_CLASSES.EXPAND_MODAL_CLOSE_BOTTOM} type={FORM_ATTRS.BUTTON}>
