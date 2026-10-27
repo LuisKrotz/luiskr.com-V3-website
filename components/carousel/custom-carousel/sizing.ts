@@ -361,7 +361,22 @@ export function getSmallestPortraitRatio(items: CarouselItem[]): number | null {
 export function setHeightVar(c: CustomCarousel) {
   const firstItem = c.items?.[0]
 
-  let slideH
+  const firstSize = firstItem?.size?.[0] && firstItem?.size?.[1] ? firstItem.size : null
+
+  const minPortraitRatio = c.isMobile && c.isMixed ? getSmallestPortraitRatio(c.items) : null
+
+  const landscapeMultiplier =
+    c.isMobile && !c.isMixed && c.landscapeRatio ? getRatioMultiplier(c.landscapeRatio) : null
+
+  // Data-only gate — decided before any layout read so mounts with no
+  // computable height never touch clientWidth/innerWidth (forced-reflow
+  // gate). When nothing can produce a height, publish nothing: the old
+  // fallback measured the first slide's box, but pre-dims that box is
+  // just the ~70dvh --mf-h placeholder — publishing it locked every
+  // slide at the placeholder height until real sizes arrived (the
+  // visible wrong→right-height jump on prod). Unsized carousels instead
+  // keep sizing from their own content/--mf-natural-* vars.
+  if (minPortraitRatio === null && landscapeMultiplier === null && firstSize === null) return
 
   const hostW =
     c.clientWidth ||
@@ -374,33 +389,15 @@ export function setHeightVar(c: CustomCarousel) {
       ? Math.round((window.innerHeight * CAROUSEL_LAYOUT.MAX_HEIGHT_VH) / 100)
       : GENERIC_DIMENSIONS.ITEM_FALLBACK_HEIGHT
 
-  if (c.isMobile) {
-    if (c.isMixed) {
-      const minPortraitRatio = getSmallestPortraitRatio(c.items)
+  const size = firstSize as number[] // non-null here — the data gate above
 
-      if (minPortraitRatio !== null) {
-        slideH = Math.round(hostW * minPortraitRatio)
-      } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
-        slideH = Math.round(calcMediaBox(firstItem.size[0], firstItem.size[1], hostW, maxH).height)
-      }
-    } else if (c.landscapeRatio) {
-      const ratioMultiplier = getRatioMultiplier(c.landscapeRatio)
-
-      slideH = Math.round(hostW / ratioMultiplier)
-    } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
-      slideH = Math.round(calcMediaBox(firstItem.size[0], firstItem.size[1], hostW, maxH).height)
-    }
-  } else if (firstItem?.size?.[0] && firstItem?.size?.[1]) {
-    slideH = Math.round(calcMediaBox(firstItem.size[0], firstItem.size[1], hostW, maxH).height)
-  }
-
-  // No usable size data → publish nothing. The old fallback measured the
-  // first slide's box, but before media dims resolve that box is just the
-  // ~70dvh --mf-h placeholder — publishing it locked every slide to the
-  // placeholder height until real dims arrived (the visible
-  // wrong→right-height jump). Unsized slides instead keep sizing from
-  // their own content/--mf-natural-* vars, which is always correct.
-  if (!slideH) return
+  const slideH = Math.round(
+    minPortraitRatio !== null
+      ? hostW * minPortraitRatio
+      : landscapeMultiplier !== null
+        ? hostW / landscapeMultiplier
+        : calcMediaBox(size[0], size[1], hostW, maxH).height
+  )
 
   // The strip may be less tall than the projection to honor the smallest
   // file: min natural height across items caps the uniform slide height,
