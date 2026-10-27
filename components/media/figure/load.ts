@@ -24,6 +24,7 @@ import {
 import { encodeMediaUrl, webpSibling } from '@core/utils/media.js'
 import { ladderCeiling, smallMediaBox } from '@core/utils/media/policy.js'
 import { svgPlaceholder } from '@core/utils/dom.js'
+import { onScrollStop } from '@core/utils/motion/scroll-state.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 import { wasmImageDecoder } from '@core/utils/wasm/wasm-image-decoder.js'
 import { upscaleImage2x } from '@core/utils/ml/super-res.js'
@@ -234,7 +235,7 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
    * Re-queries the topmost layer each rung because _updateDom rebuilds
    * the shadow DOM wholesale between steps.
    */
-  const publish = (url: string): void => {
+  const publishDom = (url: string): void => {
     fig.isLoaded = true
     // Publish only the confirmed URL — assigning highResSrc earlier would
     // let a mid-flight _updateDom bind a 404 webp into the visible img.
@@ -317,6 +318,20 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
       fig._updateDom()
     }
   }
+
+  /**
+   * Scroll-gesture park for the DOM swap — clone/insert/transition churn
+   * mid-fling spends the frame budget the scroll itself needs (scroll-fps
+   * gate floors: 120fps mobile / 240fps desktop). Probes keep fetching and
+   * decoding off the gesture path; only the visible layer swap waits for
+   * scroll-idle, and the painted thumb already owns the box so nothing
+   * blanks. onScrollStop fires immediately when the window isn't
+   * scrolling, so a static viewport sees no added latency. Parked calls
+   * fire in registration order — the climb confirms rungs serially, so
+   * the LAST publish is always the highest proven tier.
+   * @param url Confirmed rung URL ready to paint.
+   */
+  const publish = (url: string): void => onScrollStop(() => publishDom(url))
 
   const ImageClass: typeof Image | null =
     typeof window !== TYPE_STRINGS.UNDEFINED && window.Image

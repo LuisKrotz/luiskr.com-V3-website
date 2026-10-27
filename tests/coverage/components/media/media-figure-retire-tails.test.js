@@ -211,4 +211,43 @@ describe('media-figure retire tails', () => {
 
     fig.remove()
   })
+
+  test('publish parks on an in-flight scroll gesture, lands at scroll-stop', async () => {
+    const fig = mount({ [MEDIA_ATTRS.SRC]: TEST_TEXT.SECOND })
+    const highsBefore = fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`).length
+
+    window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLL))
+
+    const origImage = window.Image
+
+    let inst = null
+
+    window.Image = class {
+      constructor() {
+        inst = this
+      }
+    }
+
+    try {
+      fig.isLoaded = false
+      await fig.loadHighRes()
+      inst.onload()
+    } finally {
+      window.Image = origImage
+    }
+
+    await new Promise((r) => setTimeout(r, 0))
+
+    // Mid-gesture — the DOM swap is parked, no new layer yet.
+    expect(fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`).length).toBe(highsBefore)
+
+    // Gesture settles — scrollend, or the 120ms debounce where the event
+    // doesn't exist, drains the parked publish.
+    window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLLEND))
+    await new Promise((r) => setTimeout(r, 150))
+
+    expect(fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`).length).toBeGreaterThan(highsBefore)
+
+    fig.remove()
+  })
 })
