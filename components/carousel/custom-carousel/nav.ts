@@ -310,7 +310,16 @@ export function jumpToSlide(c: CustomCarousel, idx: number, smooth = false) {
   const scrollLeft = calcSlideCenterOffset(track, slide)
 
   if (scrollLeft === null) {
-    requestAnimationFrame(() => c._jumpToSlide(idx, smooth))
+    // Retry next frame only while the jump can still matter — an
+    // unmeasurable slide otherwise spins this rAF chain forever, and a
+    // page of deferred carousels burning forced layout reads every frame
+    // is exactly the scroll-fps floor miss. Offscreen/disconnected/
+    // hidden stops are safe: deferred carousels re-jump from configure,
+    // in-view re-entry re-arms through the observer path, and the
+    // clone-edge jumps are pixel-identical anyway.
+    if (c.isConnected && !document.hidden && (!c.observer || c.isEnteredViewport)) {
+      requestAnimationFrame(() => c._jumpToSlide(idx, smooth))
+    }
 
     return
   }
@@ -470,6 +479,13 @@ export function setupIntersectionObserver(c: CustomCarousel) {
           root.classList.add(CAROUSEL_CLASSES.CAROUSEL_IN_VIEW)
 
           c._mountWebGLArrows()
+
+          // Re-arms a positioning jump that bailed while offscreen —
+          // jumpToSlide's retry only spins while the carousel is in view,
+          // so entry must re-run it or an unmeasured mount would park the
+          // track on the clone slide. Instant (non-smooth): snapping into
+          // place on entry is the same contract the awards carousel uses.
+          c._jumpToSlide(c.currentIndex, false)
         } else {
           // Out of view: release the arrow canvases, they are rebuilt on return
           c._destroyWebGLArrows()

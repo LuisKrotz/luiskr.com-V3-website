@@ -201,6 +201,89 @@ describe('spring nav tails', () => {
     cleanup(el)
   })
 
+  test('custom: jumpToSlide unmeasurable — retries in view, bails offscreen/hidden/disconnected', () => {
+    const { el, track } = makeCarousel()
+    const rafSpy = jest.spyOn(globalThis, 'requestAnimationFrame')
+
+    track.querySelectorAll('*').forEach((child) => {
+      child.getBoundingClientRect = () => rect(0, 0, 0)
+    })
+
+    // No observer yet → pre-IO retries still arm (mount-time path).
+    el._jumpToSlide(1, false)
+    expect(rafSpy).toHaveBeenCalledTimes(1)
+
+    // Armed observer + never entered viewport → bail without a rAF.
+    el.observer = { disconnect: () => {} }
+    el.isEnteredViewport = false
+    el._jumpToSlide(1, false)
+    expect(rafSpy).toHaveBeenCalledTimes(1)
+
+    // In view → retry chain armed.
+    el.isEnteredViewport = true
+    el._jumpToSlide(1, false)
+    expect(rafSpy).toHaveBeenCalledTimes(2)
+
+    // Hidden document → bail.
+    Object.defineProperty(document, 'hidden', { get: () => true, configurable: true })
+    el._jumpToSlide(1, false)
+    Object.defineProperty(document, 'hidden', { get: () => false, configurable: true })
+    expect(rafSpy).toHaveBeenCalledTimes(2)
+
+    // Disconnected → bail.
+    el.remove()
+    el._jumpToSlide(1, false)
+    expect(rafSpy).toHaveBeenCalledTimes(2)
+
+    rafSpy.mockRestore()
+  })
+
+  test('custom: IO entry re-arms a bailed positioning jump', () => {
+    const { el } = makeCarousel()
+
+    el.observer = { disconnect: () => {} }
+    el.isEnteredViewport = false
+
+    const spy = jest.spyOn(el, '_jumpToSlide')
+
+    el._setupIntersectionObserver()
+
+    const io = el.observer
+
+    io?.callback
+      ? io.callback([{ isIntersecting: true, intersectionRatio: 1 }], io)
+      : expect(typeof io?.observe).toBe('function')
+
+    cleanup(el)
+    spy.mockRestore()
+  })
+
+  test('awards: jumpToSlide unmeasurable — retries in view, bails offscreen/hidden/disconnected', () => {
+    const el = makeAwards()
+    const rafSpy = jest.spyOn(globalThis, 'requestAnimationFrame')
+
+    // happy-dom reports clientWidth 0 — the unmeasurable retry path.
+    el.isEnteredViewport = false
+    el._jumpToSlide(0, false)
+    expect(rafSpy).not.toHaveBeenCalled()
+
+    el.isEnteredViewport = true
+    el._jumpToSlide(0, false)
+    expect(rafSpy).toHaveBeenCalledTimes(1)
+
+    Object.defineProperty(document, 'hidden', { get: () => true, configurable: true })
+    el._jumpToSlide(0, false)
+    Object.defineProperty(document, 'hidden', { get: () => false, configurable: true })
+    expect(rafSpy).toHaveBeenCalledTimes(1)
+
+    el.remove()
+    el._jumpToSlide(0, false)
+    expect(rafSpy).toHaveBeenCalledTimes(1)
+
+    rafSpy.mockRestore()
+    cleanup(el)
+  })
+
   test('custom: wheel + pointerdown takeover cancels the nav spring', () => {
     const { el, track } = makeCarousel()
 

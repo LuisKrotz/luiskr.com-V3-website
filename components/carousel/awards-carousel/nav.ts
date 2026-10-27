@@ -109,7 +109,13 @@ export function jumpToSlide(host: AwardsCarousel, idx: number, smooth = false): 
   const trackWidth = track.clientWidth
   const slideWidth = slide.clientWidth
   if (!trackWidth || !slideWidth) {
-    requestAnimationFrame(() => jumpToSlide(host, idx, smooth))
+    // Same retry bound as the custom carousel: only spin the rAF chain
+    // while the host is onscreen — an offscreen unmeasurable carousel
+    // would loop forced layout reads every frame (scroll-fps floor).
+    // Entry re-arms the jump via observer.ts's isIntersecting path.
+    if (host.isConnected && !document.hidden && host.isEnteredViewport) {
+      requestAnimationFrame(() => jumpToSlide(host, idx, smooth))
+    }
     return
   }
 
