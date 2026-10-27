@@ -22,11 +22,32 @@
       "displayName": "Earth Playground",
       "type": "text/html",
       "url": "https://luiskr.com/gn/earth-playground",
-      "description": "3D photorealistic Earth WebGPU simulation — atmospheric scattering, dynamic lighting, real-time post-processing and interactive controls. Localized in all 16 site languages.",
+      "description": "3D photorealistic Earth WebGPU simulation — atmospheric scattering, dynamic lighting, real-time post-processing and interactive controls. Localized in all 16 site languages. Engine screenshots published under the CDN share/ prefix form the rotating social-share card set and are image-indexed in every locale.",
       "representativeQueries": [
         "luiskr.com earth playground",
         "WebGPU earth simulation demo",
-        "interactive 3D planet earth"
+        "interactive 3D planet earth",
+        "earth images render",
+        "imagens da terra webgl",
+        "imágenes de la tierra 3d",
+        "erde bilder render",
+        "рендер земли",
+        "images de la terre 3d",
+        "immagini della terra",
+        "íomhánna an domhain",
+        "yvy ra'anga"
+      ]
+    },
+    {
+      "identifier": "urn:air:luiskr.com:experiences:earth-playground:share",
+      "displayName": "Earth Playground share captures",
+      "type": "application/json",
+      "url": "https://luiskr.com/gn/meta/earth-playground-share.json",
+      "description": "Machine manifest of the Earth Playground social-share image set — every engine screenshot under the CDN share/ prefix. og:image rotation picks one randomly per fetch; the full set is indexable via sitemap image tags and JSON-LD ImageObjects.",
+      "representativeQueries": [
+        "earth playground screenshots",
+        "luiskr.com earth renders",
+        "planet earth webgl captures"
       ]
     },
     {
@@ -34,11 +55,34 @@
       "displayName": "Star Field",
       "type": "text/html",
       "url": "https://luiskr.com/gn/star-field-experiment",
-      "description": "three.js cosmic-navigation experiment — simulated galaxy of catalogued stars plus authored bodies (solar system, exoplanets, deep-sky objects) with localized dossiers. Bodies deep-link via /star-field-experiment/<body-id>.",
+      "description": "three.js cosmic-navigation experiment — simulated galaxy of catalogued stars plus authored bodies (solar system, exoplanets, deep-sky objects) with localized dossiers. Bodies deep-link via /star-field-experiment/<body-id>. Engine screenshots under the CDN share/ prefix form the rotating social-share card set and are image-indexed in every locale.",
       "representativeQueries": [
         "luiskr.com star field experiment",
         "interactive galaxy simulation",
-        "exoplanet systems 3D browser demo"
+        "exoplanet systems 3D browser demo",
+        "stars webgl threejs demo",
+        "star images render",
+        "imagens de estrelas webgl",
+        "imágenes de estrellas 3d",
+        "sterne bilder render",
+        "рендер звёзд",
+        "images d'étoiles 3d",
+        "immagini di stelle",
+        "íomhánna réaltaí",
+        "mbyja ra'anga"
+      ]
+    },
+    {
+      "identifier": "urn:air:luiskr.com:experiences:star-field:share",
+      "displayName": "Star Field share captures",
+      "type": "application/json",
+      "url": "https://luiskr.com/gn/meta/star-field-share.json",
+      "description": "Machine manifest of the Star Field social-share image set — every engine screenshot under the CDN star-field share/ prefix. og:image rotation picks one randomly per fetch; the full set is indexable via sitemap image tags and JSON-LD ImageObjects.",
+      "representativeQueries": [
+        "star field screenshots",
+        "luiskr.com star renders",
+        "stars webgl captures",
+        "galaxy threejs captures"
       ]
     },
     {
@@ -63,6 +107,19 @@
         "luiskr.com animations list",
         "site animation accessibility descriptions",
         "what animations does luiskr.com use"
+      ]
+    },
+    {
+      "identifier": "urn:air:luiskr.com:replicas:index",
+      "displayName": "LLM Replica Index",
+      "type": "application/json",
+      "url": "https://luiskr.com/gn/llm/index.json",
+      "description": "Catalog of the site's full-content replica surface: every public route as Markdown and JSON in all 16 languages (~19k routes × 2 formats). Canonical mirror tree under /llm/<locale>/<route>.{md,json}; sibling convention appends .md/.json to any page URL. Policy: ai-train=yes, search=yes, ai-input=yes.",
+      "representativeQueries": [
+        "luiskr.com llm replicas",
+        "luiskr.com markdown copies of pages",
+        "luiskr.com json api for all pages",
+        "llms.txt full content export"
       ]
     }
   ]

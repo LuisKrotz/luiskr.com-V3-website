@@ -27,8 +27,8 @@
 
 ## Interactive Experiences
 
-- [Earth Playground](https://luiskr.com/earth-playground): 3D photorealistic Earth WebGPU simulation engine with atmospheric scattering, dynamic lighting, real-time post-processing and interactive sci-fi controls (available in all languages: `/earth-playground` and localized slugs like `/br/playground-da-terra`).
-- [Star Field](https://luiskr.com/star-field-experiment): three.js cosmic-navigation experiment — a simulated galaxy of 100k+ catalogued stars plus 134 authored bodies (solar system, exoplanet systems, deep-sky objects) with localized dossiers. Deep-link any body via `/star-field-experiment/<body-id>` (e.g. `/star-field-experiment/mars`); localized slugs like `/br/experimento-campo-estelar` also resolve.
+- [Earth Playground](https://luiskr.com/earth-playground): 3D photorealistic Earth WebGPU simulation engine with atmospheric scattering, dynamic lighting, real-time post-processing and interactive sci-fi controls (available in all languages: `/earth-playground` and localized slugs like `/br/playground-da-terra`). The engine's own 2×-resolution captures form a rotating social-share set — every screenshot under `public/_v3/experiments/earth-playground/share/` on the CDN is enumerated per page (og:image rotation, `image:image` sitemap tags, an `ImageObject` ItemList in JSON-LD, and a parked gallery section in the emitted HTML) and through the machine manifest at [/meta/earth-playground-share.json](https://luiskr.com/meta/earth-playground-share.json); localized earth-image search themes link the captures to this portfolio in all 16 languages. The full control surface (every slider/checkbox's param, range and default) plus the engine start state ship in the page's static markup, a `WebApplication` JSON-LD entity, and the route's `.md`/`.json` replicas (`content.controls` / `content.engineDefaults`).
+- [Star Field](https://luiskr.com/star-field-experiment): three.js cosmic-navigation experiment — a simulated galaxy of 100k+ catalogued stars plus 134 authored bodies (solar system, exoplanet systems, deep-sky objects) with localized dossiers. Deep-link any body via `/star-field-experiment/<body-id>` (e.g. `/star-field-experiment/mars`); localized slugs like `/br/experimento-campo-estelar` also resolve. The index page lists every body (ItemList + `DataCatalog`/`Dataset` JSON-LD), and the whole 139,563-record registry is fetchable as JSON — see the data endpoints below. Engine screenshots under the CDN `experiments/star-field/share/` prefix form the route's rotating social-share card set (random capture per fetch via `/meta/star-field-share.json`) and are image-indexed in every locale through sitemap `image:image` tags, a JSON-LD `ImageObject` ItemList and the page's parked share-gallery figures.
 - [Animations Reference](https://luiskr.com/animations): every animation on the site, described — element, motion, trigger, technology and purpose — as static readable markup (no JavaScript required). Localized slugs like `/br/animacoes` resolve; the same records drive runtime `aria-label`/`longdesc`/`aria-describedby` on the animated elements themselves.
 
 ## Documentation Portal
@@ -50,6 +50,17 @@
 - [MCP server card](https://luiskr.com/.well-known/mcp/server-card.json): SEP-1649 card describing the read-only resource surface.
 - [Message-signatures directory](https://luiskr.com/.well-known/http-message-signatures-directory): Web Bot Auth JWKS for request-signature verification.
 - Usage preferences: `Content-Signal: ai-train=yes, search=yes, ai-input=yes` on every response (and stamped into deployed `robots.txt` files); `Link` response headers advertise these resources on every page.
+
+## Experiment Data Endpoints (`/experiments/`)
+
+The canvas-rendered experiments ship their complete datasets as static JSON/binary so agents can read every object without executing WebGL:
+
+- [Star-field registry manifest](https://luiskr.com/experiments/star-field/data/index/manifest.json): 139,563 catalogued objects — `{total, shardSize, kinds: {star, exoplanet, dso: {count, shards[]}}}`. Sources: HYG Star Database (119,626 stars), NASA Exoplanet Archive (5,974 planets), OpenNGC (13,963 deep-sky objects).
+- Registry shards: `/experiments/star-field/data/index/<kind>-NNN.json` — 1,000-record JSON arrays (`star-000`…`star-119`, `exoplanet-000`…`exoplanet-005`, `dso-000`…`dso-013`); abbreviated fields documented on the index page and in the replica's `content.deepCatalog`.
+- [Packed binary](https://luiskr.com/experiments/star-field/data/deep-field.bin): the same catalog as float32-LE records (x,y,z ly, magnitude, B-V, kind) behind a uint32 count header.
+- Body dossier JSONs: `/experiments/star-field/data/<locale>/<body-id>.json` — the raw localized dossier (facts, history, credited NASA imagery/audio) behind each `/star-field-experiment/<body-id>` page.
+- [Earth Playground replica](https://luiskr.com/earth-playground.json): `content.controls` (group/label/param/type/range/shipped+effective defaults) and `content.engineDefaults` (the engine's GUI-constants start state) — also mirrored in `/earth-playground.md` and every locale twin.
+- Share-capture manifests: [`/meta/earth-playground-share.json`](https://luiskr.com/meta/earth-playground-share.json) and [`/meta/star-field-share.json`](https://luiskr.com/meta/star-field-share.json) — `{generated, prefix, count, images[], files[]}` listings of each experiment's social-share screenshot set. The runtime draws one image at random into the `og:image`/`twitter:image`/`itemprop` card metas on every page fetch; the full sets are indexed via sitemap image tags, JSON-LD `ImageObject` ItemLists and per-page gallery figures in all 16 languages.
 
 ## Full-Content Replicas (`/llm/`)
 
