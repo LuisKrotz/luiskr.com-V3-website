@@ -22,6 +22,7 @@ import { KEYS } from '@core/tokens/primitives.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
+import { CAROUSEL_LOADING } from '@core/tokens/motion/carousel.js'
 import { isScrolling, onScrollStop } from '@core/utils/motion/scroll-state.js'
 import store from '@core/store.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
@@ -185,7 +186,14 @@ export function mountMediaFigure(c: MediaFigure): void {
           if (entry.isIntersecting) {
             const queueIdle = () => {
               if (typeof window.requestIdleCallback === TYPE_STRINGS.FUNCTION) {
-                window.requestIdleCallback(start)
+                // Bounded deferral — without a timeout a busy load window
+                // can starve rIC until real idle, delaying source/poster
+                // attach (and natural-dims/height resolution) until the
+                // user scrolls or taps. 250ms keeps the UX prompt while
+                // still yielding to the initial burst.
+                window.requestIdleCallback(start, {
+                  timeout: CAROUSEL_LOADING.DEFERRED_TIMEOUT,
+                })
               } else {
                 setTimeout(start, 0)
               }
