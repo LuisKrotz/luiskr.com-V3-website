@@ -30,7 +30,7 @@ import { videoAutoplayAllowed } from '@core/utils/media/policy.js'
 import type { MediaFigure } from '../MediaFigure.js'
 import { warmFirstRung } from './load.js'
 import { MEDIA_OBSERVER_THRESHOLDS, VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
-import { observeShared } from './shared-observer.js'
+import { observeShared } from '@core/utils/dom/shared-observer.js'
 
 /**
  * Releases the loading shimmer and removes a broken video poster.

@@ -7,7 +7,7 @@
  */
 import { jest } from '@jest/globals'
 
-import { observeShared } from '@website/components/media/figure/shared-observer.js'
+import { observeShared } from '@core/utils/dom/shared-observer.js'
 import { mountMediaFigure } from '@website/components/media/figure/mount.js'
 import { isScrolling } from '@core/utils/motion/scroll-state.js'
 import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
