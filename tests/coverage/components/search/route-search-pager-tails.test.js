@@ -15,12 +15,15 @@ import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 
 import '@website/components/search/RouteSearch.js'
 
+/** Token aliases — classes/kinds/page-size constants used throughout. */
 const C = ROUTE_SEARCH_CLASSES
 const K = ROUTE_SEARCH_KINDS
 const PAGE = ROUTE_SEARCH_LIMITS.MAX_HITS
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
+/** Mounts a <route-search> element and waits for its async mount to settle. */
 const mount = async () => {
   const el = document.createElement(COMPONENT_TAGS.ROUTE_SEARCH)
 
@@ -41,7 +44,9 @@ const make = (n, kind) =>
     thumb: '',
   }))
 
+/** Shadow-DOM query shorthand — assertions run inside the search root. */
 const q = (el, sel) => el.shadowRoot.querySelector(sel)
+/** Pager-region lookups — the paging UI elements under test. */
 const pager = (el) => q(el, `.${C.ROUTE_SEARCH_PAGER}`)
 const status = (el) => q(el, `.${C.ROUTE_SEARCH_PAGER_STATUS}`)
 const prev = (el) => q(el, `.${C.ROUTE_SEARCH_PAGER_PREV}`)

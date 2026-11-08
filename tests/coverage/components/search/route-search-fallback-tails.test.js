@@ -33,6 +33,7 @@ beforeAll(async () => {
   loadCatalog = data.loadCatalog
 })
 
+/** Polls `fn` until it returns truthy — async UI has no fixed settle tick. */
 const waitFor = async (fn, tries = 40) => {
   for (let i = 0; i < tries; i++) {
     const v = fn()

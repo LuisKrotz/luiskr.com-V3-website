@@ -16,6 +16,7 @@ import store from '@core/store.js'
 
 /** Per-test control over the SWR snapshot the loader consumes. */
 let dbReply = { exists: () => false, val: () => ({}) }
+/** When set, the db mock rejects with this error instead of replying. */
 let dbThrow = null
 
 jest.unstable_mockModule('@core/utils/data/db.js', () => ({
@@ -44,6 +45,7 @@ beforeAll(async () => {
   groupLabel = data.groupLabel
 })
 
+/** Fixed 40ms wait — the SWR loader resolves within one timer pass. */
 const wait = () => new Promise((r) => setTimeout(r, 40))
 
 describe('route-search data tails', () => {

@@ -17,6 +17,7 @@ import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { waitFor } from '@tests/fixtures/test-constants.js'
 
+/** Zero-ms flush — observer callbacks fire within one macrotask. */
 const flushIdle = () => new Promise((r) => setTimeout(r, 0))
 
 afterEach(() => {

@@ -13,9 +13,12 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 
 import { LOCALES } from '@core/constants.js'
 
+/** Timer flush — view-branch renders settle within a tick or two. */
 const flush = (ms = 0) => new Promise((r) => setTimeout(r, ms))
 
+/** Saved globalThis.fetch — the mock is installed per test, restored after. */
 let origFetch
+/** Disposers the tests register — afterEach runs each to undo mounts. */
 let cleanups = []
 
 beforeEach(() => {

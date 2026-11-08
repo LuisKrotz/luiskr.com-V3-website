@@ -22,6 +22,7 @@ import { __decState, __resetDec } from '@core/utils/wasm/wasm-image-decoder.js'
 import { warmFirstRung } from '@website/components/media/figure/load.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 // ─── MediaFigure ─────────────────────────────────────────────────────────────

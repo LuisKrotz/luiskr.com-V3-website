@@ -22,8 +22,10 @@ jest.unstable_mockModule('@website/components/media/expanded/genie.js', () => ({
   cancelGenie: jest.fn(),
 }))
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
+/** Selector constants for the expand-modal DOM the assertions query. */
 const CONTENT_SEL = `.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_CONTENT}`
 const ITEM_SEL = `.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`
 const FIGURE_SEL = `.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_FIGURE}`

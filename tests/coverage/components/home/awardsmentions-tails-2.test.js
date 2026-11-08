@@ -8,6 +8,7 @@ import '@website/components/home/AwardsMentions.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { LANG_MUTATIONS } from '@core/tokens/events/mutations.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 100) => new Promise((r) => setTimeout(r, ms))
 
 describe('AwardsMentions tails 2', () => {

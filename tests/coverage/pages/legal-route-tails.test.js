@@ -18,6 +18,7 @@ import '@website/views/legal/Legal.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { VIEW_TAGS } from '@core/tokens/elements/views.js'
 
+/** Generous flush — view render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('Legal route tails', () => {

@@ -22,6 +22,7 @@ import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 import { LOCALES } from '@core/tokens/locales.js'
 import store from '@core/store.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('route-search data arms', () => {

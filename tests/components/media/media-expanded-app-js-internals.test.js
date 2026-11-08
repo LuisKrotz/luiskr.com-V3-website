@@ -6,6 +6,7 @@ import '@website/components/media/MediaExpanded.js'
 import '@website/components/media/MediaFigure.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 // ─── App.js modal + view reconciliation ──────────────────────────────────────

@@ -71,6 +71,7 @@ const menuHost = (over = {}) => ({
   ...over,
 })
 
+/** Fake `this` for the nav handlers — jest fns record every internal call. */
 const handlerHost = () => ({
   _captureOrigin: jest.fn(),
   _menuOpen: false,

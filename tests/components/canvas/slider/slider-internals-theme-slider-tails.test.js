@@ -11,6 +11,7 @@ import { GL_EVENTS } from '@core/tokens/events/dom.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
 
+/** Canvas with a stubbed getBoundingClientRect — widget sizing reads real boxes. */
 const makeCanvas = () => {
   const canvas = document.createElement(HTML_TAGS.CANVAS)
 
@@ -26,6 +27,7 @@ const makeCanvas = () => {
   return canvas
 }
 
+/** Frame-tick flush — widget rAF steps need real timers past microtasks. */
 const _flushFrames = (ms = 60) => new Promise((r) => setTimeout(r, ms))
 
 // ─── theme-slider tails ──────────────────────────────────────────────────────

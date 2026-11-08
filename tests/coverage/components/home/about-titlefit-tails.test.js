@@ -18,9 +18,13 @@ import {
 } from '@website/components/home/about/titlefit.js'
 import { mount } from '@tests/fixtures/test-constants.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
+/** Fixture image URL — the titlefit loader decodes this as the portrait. */
 const TEST_PIC = 'https://www.gravatar.com/avatar/test?d=mp'
+/** Translation strings the about section renders during fit tests. */
 const TEST_TRANSLATIONS = { title: 'About me', frame: 'Hi there' }
+/** Picture-wrapper selector — resolved fresh per test (re-render safe). */
 const PIC_SEL = `.${ABOUT_CLASSES.ABOUT_PROFILE_PICTURE}`
 
 describe('AboutSection titlefit tails', () => {

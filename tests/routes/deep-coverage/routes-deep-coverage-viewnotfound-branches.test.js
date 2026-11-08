@@ -16,9 +16,12 @@ import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 
+/** Timer flush — view-branch renders settle within a tick or two. */
 const _flush = (ms = 0) => new Promise((r) => setTimeout(r, ms))
 
+/** Saved globalThis.fetch — the mock is installed per test, restored after. */
 let origFetch
+/** Disposers the tests register — afterEach runs each to undo mounts. */
 let cleanups = []
 
 beforeEach(() => {

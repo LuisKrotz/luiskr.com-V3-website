@@ -19,6 +19,7 @@ import {
 import { INTERNAL_MOSAIC, LAYOUT } from '@core/tokens/layout/masonry.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
+/** Container width (px) the pack-layout assertions compute against. */
 const W = 1200
 
 describe('mediaItemHeightRatio', () => {

@@ -8,6 +8,7 @@ import { describe, test, expect, jest } from '@jest/globals'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { TOAST_CLASSES } from '@core/tokens/classes/toast.js'
 
+/** Zero-ms flush — toast queue drains within one macrotask. */
 const _flush = () => new Promise((resolve) => setTimeout(resolve, 0))
 
 /** Fresh notify module (fresh _seen/_toastEl/_globalBound state) per call. */
@@ -26,6 +27,7 @@ const _mountToast = () => {
   return el
 }
 
+/** Lists the toast item elements inside the component's shadow root. */
 const _items = (el) =>
   Array.from(el.shadowRoot.querySelectorAll(`.${TOAST_CLASSES.SITE_TOAST_ITEM}`))
 

@@ -24,6 +24,7 @@ const middleClick = () => ({
   stopPropagation: jest.fn(),
 })
 
+/** Fake `this` for the nav handlers — jest fns record every internal call. */
 const hostStub = () => ({
   isHomePage: false,
   onBottom: false,

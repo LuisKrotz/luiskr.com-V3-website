@@ -17,9 +17,12 @@ import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { CSS_STRINGS } from '@core/tokens/strings/css.js'
 
+/** ESM __dirname — needed to resolve the repo-relative sass path. */
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+/** Absolute path to the shared component stylesheets under test. */
 const sassDir = path.join(__dirname, '..', '..', '..', '..', 'core', 'sass', 'components')
 
+/** Reads a component .scss file as text for the assertions. */
 function _readSass(filename) {
   return fs.readFileSync(path.join(sassDir, filename), 'utf-8')
 }

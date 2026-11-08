@@ -31,6 +31,7 @@ import { ROUTER_CLASSES } from '@core/tokens/classes/router.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('legal Footer tails', () => {

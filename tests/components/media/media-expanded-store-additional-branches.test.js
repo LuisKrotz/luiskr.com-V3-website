@@ -7,6 +7,7 @@ import '@website/components/media/MediaExpanded.js'
 import '@website/components/media/MediaFigure.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 
+/** Generous flush — store-subscription renders need real timers. */
 const _flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 // ─── store branches ──────────────────────────────────────────────────────────

@@ -21,6 +21,7 @@ import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('legal Footer RSS feed link', () => {

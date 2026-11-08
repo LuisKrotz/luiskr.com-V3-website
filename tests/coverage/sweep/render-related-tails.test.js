@@ -17,6 +17,7 @@ import { LOCALES } from '@core/tokens/locales.js'
 import { TEST_TEXT, TEST_PROJECTS, TEST_URLS } from '@tests/fixtures/test-constants.js'
 import store from '@core/store.js'
 
+/** Minimal nav-store surface components read — overridable per test. */
 const navStub = (over = {}) => ({
   translations: null,
   currentRoute: { name: ROUTE_NAMES.HOME },

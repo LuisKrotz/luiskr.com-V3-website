@@ -17,8 +17,10 @@ import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 
+/** Extra-generous flush — awards render + delegated listeners settle late. */
 const flush = (ms = 150) => new Promise((r) => setTimeout(r, ms))
 
+/** Ctrl+click event — delegated link handlers bail out on modifier clicks. */
 const ctrlClick = () =>
   new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true, ctrlKey: true })
 

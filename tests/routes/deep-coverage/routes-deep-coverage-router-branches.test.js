@@ -8,9 +8,12 @@ import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 
 import { ROUTE_NAMES } from '@core/constants.js'
 
+/** Timer flush — router branch renders settle within a tick or two. */
 const _flush = (ms = 0) => new Promise((r) => setTimeout(r, ms))
 
+/** Saved globalThis.fetch — the mock is installed per test, restored after. */
 let origFetch
+/** Disposers the tests register — afterEach runs each to undo mounts. */
 let cleanups = []
 
 beforeEach(() => {

@@ -38,10 +38,17 @@ function releaseGesture(host: MentionsDeck, deck: Element | null, pointerId: num
 }
 
 /**
- * Pointer-down on the deck — arms gesture bookkeeping and takes the
- * capture so the move/up stream keeps landing on the deck even when the
- * pointer leaves the card mid-swipe. Non-primary mouse buttons and
- * already-tracked pointers are ignored.
+ * Pointer-down on the deck — arms gesture bookkeeping only. Pointer
+ * capture is deliberately NOT taken here: capturing on down retargets
+ * the synthesized click to the capture element, so plain taps on cards
+ * would never reach the outbound anchors. Capture arms the moment the
+ * drag commits past slop (onPointerMove) — committed drags suppress
+ * the trailing click anyway. A fresh gesture also clears a stale
+ * `_suppressClick`: when a swipe or pointercancel synthesizes no
+ * trailing click (touch), an unconsumed flag would otherwise swallow
+ * the next real link click — the browser's own trailing click after a
+ * drag is never preceded by a new pointerdown. Non-primary mouse
+ * buttons and already-tracked pointers are ignored.
  * @param host The MentionsDeck element.
  * @param e The pointerdown event.
  */
@@ -68,19 +75,7 @@ export function onPointerDown(host: MentionsDeck, e: Event): void {
 
   host._gestureDead = false
 
-  const deck = deckFromEvent(e)
-
-  const cap = (deck as HTMLElement | null)?.setPointerCapture
-
-  if (cap && host._pointerId !== null) {
-    try {
-      cap.call(deck, host._pointerId)
-    } catch {
-      // Engines without pointer-capture support (or a synthetic event)
-      // still deliver the scoped listeners — the gesture just can't track
-      // outside the deck bounds.
-    }
-  }
+  host._suppressClick = false
 }
 
 /**
@@ -124,6 +119,23 @@ export function onPointerMove(host: MentionsDeck, e: Event): void {
     host
       .$(MENTIONS_DECK_SELECTORS.MENTIONS_DECK_DECK)
       ?.classList.add(MENTIONS_DECK_CLASSES.MENTIONS_DECK_DECK_DRAGGING)
+
+    // Capture arms at commit — the move/up stream keeps landing on the
+    // deck when the pointer leaves mid-swipe; sub-slop taps stay
+    // capture-free so the click still targets the card link.
+    const deck = deckFromEvent(e)
+
+    const cap = (deck as HTMLElement | null)?.setPointerCapture
+
+    if (cap && host._pointerId !== null) {
+      try {
+        cap.call(deck, host._pointerId)
+      } catch {
+        // Engines without pointer-capture support (or a synthetic event)
+        // still deliver the scoped listeners — the gesture just can't
+        // track outside the deck bounds.
+      }
+    }
   }
 
   const dt = last.timeStamp - host._lastT

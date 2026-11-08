@@ -8,6 +8,7 @@
 import { describe, test, expect, jest } from '@jest/globals'
 import { NAV_CLASSES } from '@core/tokens/classes/nav.js'
 
+/** Fake aura session — jest fns record the lifecycle calls under test. */
 const session = {
   setProgress: jest.fn(),
   refresh: jest.fn(),

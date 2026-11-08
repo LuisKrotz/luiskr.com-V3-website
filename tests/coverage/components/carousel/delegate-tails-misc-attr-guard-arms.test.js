@@ -20,11 +20,13 @@ import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 
+/** Slide fixture — expand + video flags cover the attr-guard arms. */
 const _SLIDES = [
   { src: 'a.webp', size: [800, 450], label: 'One', canExpand: true },
   { src: 'b.webp', size: [800, 450], label: 'Two', isVideo: true },
 ]
 
+/** DOMRect factory — the layout math only reads the box fields. */
 const _rect = (w = 300, h = 200) => ({ left: 0, top: 0, width: w, height: h, right: w, bottom: h })
 
 afterEach(() => {

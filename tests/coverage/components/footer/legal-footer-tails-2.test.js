@@ -22,6 +22,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 100) => new Promise((r) => setTimeout(r, ms))
 
 describe('legal Footer tails 2', () => {

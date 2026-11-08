@@ -40,6 +40,8 @@ export interface TitleFitSession {
   fontsWired: boolean
 }
 
+/** Title + picture selectors — resolved fresh each fit so re-renders
+ *  inside the shadow root never read a detached element. */
 const _TITLE_SEL = `.${ABOUT_CLASSES.ABOUT_TITLE}`
 const _PIC_SEL = `.${ABOUT_CLASSES.ABOUT_PROFILE_PICTURE}`
 

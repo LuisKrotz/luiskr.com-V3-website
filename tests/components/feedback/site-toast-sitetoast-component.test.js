@@ -16,6 +16,7 @@ import { NAV_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 
+/** Zero-ms flush — toast queue drains within one macrotask. */
 const _flush = () => new Promise((resolve) => setTimeout(resolve, 0))
 
 /** Fresh notify module (fresh _seen/_toastEl/_globalBound state) per call. */
@@ -34,6 +35,7 @@ const mountToast = () => {
   return el
 }
 
+/** Lists the toast item elements inside the component's shadow root. */
 const items = (el) =>
   Array.from(el.shadowRoot.querySelectorAll(`.${TOAST_CLASSES.SITE_TOAST_ITEM}`))
 

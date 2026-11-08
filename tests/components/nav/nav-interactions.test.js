@@ -22,8 +22,10 @@ import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { LANG_SLUGS } from '@core/locale/lang-slugs.js'
 
+/** Generous flush — nav interaction queues need real timers past microtasks. */
 const flush = (ms = 60) => new Promise((r) => setTimeout(r, ms))
 
+/** Mounts a bare <app-nav> into the document and returns the element. */
 const mount = () => {
   const el = document.createElement(COMPONENT_TAGS.APP_NAV)
 
@@ -32,6 +34,7 @@ const mount = () => {
   return el
 }
 
+/** Stubs router.currentRoute for the duration of `fn`, then restores it. */
 const withRoute = (name, fn) => {
   const prev = router.currentRoute
 

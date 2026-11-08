@@ -23,6 +23,7 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { APP_EVENTS } from '@core/tokens/events/app.js'
 import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 // ─── MediaExpanded ───────────────────────────────────────────────────────────

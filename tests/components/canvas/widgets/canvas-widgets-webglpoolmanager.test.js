@@ -10,12 +10,16 @@ import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 
+/** Bare canvas — the pool only needs the element handle in these tests. */
 const makeCanvas = () => document.createElement(HTML_TAGS.CANVAS)
 
+/** Frame-tick flush — pool acquisition/rAF steps need real timers. */
 const _flushFrames = (ms = 80) => new Promise((resolve) => setTimeout(resolve, ms))
 
+/** The pool's own constructor — webglPool is the module's singleton. */
 const WebGLPoolManager = webglPool.constructor
 
+/** Canvas with a stubbed getBoundingClientRect — pool sizing reads real boxes. */
 const _makeRectCanvas = (width = 300) => {
   const canvas = makeCanvas()
 

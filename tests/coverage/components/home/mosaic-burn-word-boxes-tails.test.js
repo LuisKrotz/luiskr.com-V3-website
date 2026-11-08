@@ -10,6 +10,7 @@ import { describe, test, expect, afterEach } from '@jest/globals'
 import { rasterizeTitle } from '@core/utils/burn/paper.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 
+/** Original document.createRange — stubbed per test, restored after. */
 const savedCreateRange = Object.getOwnPropertyDescriptor(document, 'createRange')
 
 /** Recording 2d ctx — tracks fillText/measureText calls, swallows the rest. */

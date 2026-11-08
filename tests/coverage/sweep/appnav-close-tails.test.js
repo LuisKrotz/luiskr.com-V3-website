@@ -8,6 +8,7 @@ import { renderRelated } from '@website/components/portfolio/related/render.js'
 import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
 import { TEST_TEXT, TEST_PROJECTS, TEST_URLS } from '@tests/fixtures/test-constants.js'
 
+/** Very generous flush — nav close animations take multiple frames. */
 const flush = (ms = 400) => new Promise((r) => setTimeout(r, ms))
 
 describe('AppNav close-settle timer arm', () => {

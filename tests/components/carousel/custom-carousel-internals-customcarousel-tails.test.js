@@ -14,14 +14,17 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { CAROUSEL_TIMING } from '@core/tokens/motion/carousel.js'
 import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 
+/** Slide fixture — minimal src/size/label rows the carousel renders. */
 const SLIDES = [
   { src: 'a.webp', size: [800, 450], label: 'One', canExpand: true },
   { src: 'b.webp', size: [800, 450], label: 'Two', isVideo: true },
   { src: 'c.webp', label: 'Three' },
 ]
 
+/** DOMRect factory — the scroll/sizing math only reads the box fields. */
 const rect = (w = 300, h = 200) => ({ left: 0, top: 0, width: w, height: h, right: w, bottom: h })
 
+/** Mounts a <custom-carousel> with stubbed track rects so scroll math runs. */
 const makeCarousel = (slides = SLIDES) => {
   const el = document.createElement(COMPONENT_TAGS.CUSTOM_CAROUSEL)
 
@@ -45,6 +48,7 @@ const makeCarousel = (slides = SLIDES) => {
   return el
 }
 
+/** Detaches a mounted element — afterEach cleanup for stray mounts. */
 const cleanup = (el) => {
   el?.remove()
 }

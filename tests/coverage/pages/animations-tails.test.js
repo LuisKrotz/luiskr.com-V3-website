@@ -17,6 +17,7 @@ import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 
+/** Generous flush — view render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('Animations tails', () => {

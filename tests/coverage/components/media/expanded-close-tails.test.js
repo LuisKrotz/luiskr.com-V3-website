@@ -11,6 +11,7 @@ import store from '@core/store.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 
+/** Fake expand-modal element — the close path only reads these members. */
 const stubEl = ({ content = null } = {}) => ({
   isClosing: false,
   closest: jest.fn(() => null),

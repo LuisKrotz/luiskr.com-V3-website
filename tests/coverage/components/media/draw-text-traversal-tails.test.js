@@ -10,8 +10,11 @@
 import { describe, test, expect } from '@jest/globals'
 import { bakeTraversalField } from '@website/components/media/draw-text/traversal.js'
 
+/** Byte offset of the alpha channel inside RGBA pixel data. */
 const A = 3 // alpha byte offset
+/** Alpha value for inked (foreground) pixels in the fixture buffers. */
 const INK = 255
+/** Alpha value for paper (background) pixels in the fixture buffers. */
 const PAPER = 0
 
 /** Paints `data` white-on-transparent at (x,y) — ink pixel. */

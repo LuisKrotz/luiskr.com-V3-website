@@ -15,6 +15,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 import store from '@core/store.js'
 
+/** Extra-generous flush — modal load paths settle slowly. */
 const flush = (ms = 120) => new Promise((r) => setTimeout(r, ms))
 
 describe('loadCatalog fetch arms', () => {

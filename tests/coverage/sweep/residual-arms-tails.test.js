@@ -17,8 +17,10 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import store from '@core/store.js'
 
+/** Extra-generous flush — these residual branches settle slowly. */
 const flush = (ms = 120) => new Promise((r) => setTimeout(r, ms))
 
+/** Minimal nav-store surface components read — overridable per test. */
 const navStub = (over = {}) => ({
   translations: null,
   currentRoute: { name: ROUTE_NAMES.ABOUT },

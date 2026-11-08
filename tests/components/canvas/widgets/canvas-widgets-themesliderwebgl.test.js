@@ -15,12 +15,16 @@ import { GL_EVENTS, KEYBOARD_EVENTS, MOUSE_EVENTS } from '@core/tokens/events/do
 import { KEYS } from '@core/constants.js'
 import { THEME } from '@core/tokens/theme/theme.js'
 
+/** Bare canvas — the widget only needs the element handle in these tests. */
 const makeCanvas = () => document.createElement(HTML_TAGS.CANVAS)
 
+/** Frame-tick flush — widget rAF steps need real timers past microtasks. */
 const flushFrames = (ms = 80) => new Promise((resolve) => setTimeout(resolve, ms))
 
+/** The pool's own constructor — webglPool is the module's singleton. */
 const _WebGLPoolManager = webglPool.constructor
 
+/** Canvas with a stubbed getBoundingClientRect — widget sizing reads real boxes. */
 const makeRectCanvas = (width = 300) => {
   const canvas = makeCanvas()
 

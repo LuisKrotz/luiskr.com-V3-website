@@ -49,8 +49,10 @@ import {
 import { LANG_MUTATIONS, MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { resetViewportCache } from '@core/utils/dom.js'
 
+/** Generous flush — deck render/interaction queues need real timers. */
 const flush = (ms = 60) => new Promise((r) => setTimeout(r, ms))
 
+/** Award-row fixtures — icon-only, media, and bare-link rows cover the arms. */
 const ITEMS = [
   { description: TEST_AWARDS.AWWARDS_SOTD, link: 'https://a.test', icon: '🏆' },
   { description: TEST_AWARDS.FWA_OF_THE_DAY, link: 'https://b.test' },
@@ -62,6 +64,7 @@ const ITEMS = [
   { link: 'https://d.test' },
 ]
 
+/** Synthetic PointerEvent shape — the deck handlers only read these fields. */
 const pointerEvt = (over = {}, target = null) => ({
   pointerId: 1,
   button: 0,
@@ -191,6 +194,31 @@ describe('MentionsDeck', () => {
     expect(el.activeIdx).toBe(1)
     expect(deck.classList.contains(C.MENTIONS_DECK_DECK_DRAGGING)).toBe(false)
     expect(el._suppressClick).toBe(true)
+  })
+
+  test('taps stay capture-free so clicks reach the link; a stale suppress flag clears on the next pointerdown', () => {
+    deck.setPointerCapture = jest.fn()
+
+    onPointerDown(el, pointerEvt({}, deck))
+    // No capture on down — the synthesized click keeps targeting the card anchor.
+    expect(deck.setPointerCapture).not.toHaveBeenCalled()
+
+    onPointerEnd(el, pointerEvt({}, deck))
+    expect(el._dragActive).toBe(false)
+
+    // A committed drag arms capture at the slop boundary instead.
+    onPointerDown(el, pointerEvt({}, deck))
+    onPointerMove(el, pointerEvt({ clientX: -30, timeStamp: 16 }, deck))
+    expect(deck.setPointerCapture).toHaveBeenCalledWith(1)
+
+    onPointerEnd(el, pointerEvt({ clientX: -30, timeStamp: 60 }, deck))
+
+    // A swipe/cancel that synthesized no click leaves the flag armed —
+    // the next fresh pointerdown must clear it so a real tap navigates.
+    el._suppressClick = true
+    onPointerDown(el, pointerEvt({}, deck))
+    expect(el._suppressClick).toBe(false)
+    onPointerEnd(el, pointerEvt({}, deck))
   })
 
   test('a steeper vertical track yields the gesture to page scroll', () => {

@@ -21,6 +21,7 @@ const STUB_HOST_W = 320
 /** Expected uniform fallback height: hostW projected through 16:9, rounded. */
 const FALLBACK_PX = `${Math.round(STUB_HOST_W / CAROUSEL_LAYOUT.RATIO_16_9)}px`
 
+/** Original innerWidth/innerHeight descriptors — restored after each test. */
 const savedWidth = Object.getOwnPropertyDescriptor(window, 'innerWidth')
 const savedHeight = Object.getOwnPropertyDescriptor(window, 'innerHeight')
 

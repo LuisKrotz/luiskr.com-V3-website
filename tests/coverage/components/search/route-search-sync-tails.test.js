@@ -22,6 +22,7 @@ import { mount } from '@tests/fixtures/test-constants.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 
+/** Shadow-DOM selector bundle for the route-search element surface. */
 const S = {
   ROOT: `.${ROUTE_SEARCH_CLASSES.ROUTE_SEARCH}`,
   INPUT: `.${ROUTE_SEARCH_CLASSES.ROUTE_SEARCH_INPUT}`,
@@ -30,8 +31,10 @@ const S = {
   NEXT: `.${ROUTE_SEARCH_CLASSES.ROUTE_SEARCH_PAGER_NEXT}`,
 }
 
+/** Short flush — sync tails poll frequently so each tick stays cheap. */
 const flush = (ms = 40) => new Promise((r) => setTimeout(r, ms))
 
+/** Polls `fn` until it returns truthy — async UI has no fixed settle tick. */
 const waitFor = async (fn, tries = 40) => {
   for (let i = 0; i < tries; i++) {
     const v = fn()

@@ -152,9 +152,11 @@ const mock2D = (canvas) => {
 
 /** Manual rAF queue — the spring clock steps only when tests pump it. */
 let rafQueue = []
+/** Next rAF id + the manual clock — pump() advances nowMs and fires queued callbacks. */
 let rafSeq = 1
 let nowMs = 0
 
+/** Steps the manual clock by `dt` ms per frame and drains the rAF queue each step. */
 const pump = (frames = 1, dt = 16.7) => {
   for (let i = 0; i < frames; i++) {
     nowMs += dt
@@ -169,8 +171,10 @@ const flushAsync = async () => {
   for (let i = 0; i < 6; i++) await Promise.resolve()
 }
 
+/** Source rect in x/y/w/h form — the genie math inputs. */
 const RECT = { x: 10, y: 20, w: 200, h: 100 }
 
+/** Converts the x/y/w/h rect into the DOMRect shape the code under test expects. */
 const rectOf = (r) => ({
   left: r.x,
   top: r.y,

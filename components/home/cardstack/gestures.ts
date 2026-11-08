@@ -42,8 +42,12 @@ function releaseGesture(host: CardStack, deck: Element | null, pointerId: number
  * the synthesized click to the capture element, so plain taps on cards
  * would never reach the link handlers. Capture arms the moment the
  * drag commits past slop (onPointerMove) — committed drags suppress
- * the trailing click anyway. Non-primary buttons and already-tracked
- * pointers are ignored.
+ * the trailing click anyway. A fresh gesture also clears a stale
+ * `_suppressClick`: when a swipe or pointercancel synthesizes no
+ * trailing click (touch), an unconsumed flag would otherwise swallow
+ * the next real click — the browser's own trailing click after a
+ * drag is never preceded by a new pointerdown. Non-primary buttons
+ * and already-tracked pointers are ignored.
  */
 export function onPointerDown(host: CardStack, e: Event): void {
   const pe = e as PointerEvent
@@ -67,6 +71,8 @@ export function onPointerDown(host: CardStack, e: Event): void {
   host._dragActive = false
 
   host._gestureDead = false
+
+  host._suppressClick = false
 }
 
 /**

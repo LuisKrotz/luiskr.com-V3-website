@@ -45,8 +45,10 @@ afterEach(() => {
   document.documentElement.classList.remove(STATE_CLASSES.DARK_MODE)
 })
 
+/** Bare canvas — the widget only needs the element handle in these tests. */
 const _makeCanvas = () => document.createElement(HTML_TAGS.CANVAS)
 
+/** Frame-tick flush — widget rAF steps need real timers past microtasks. */
 const flushFrames = (ms = 80) => new Promise((resolve) => setTimeout(resolve, ms))
 
 // ─── SkeletonWebGL ───────────────────────────────────────────────────────────

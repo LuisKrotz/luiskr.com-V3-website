@@ -25,6 +25,7 @@ import {
 import { scoreRoutesJs, normalizeSearchText } from '@core/utils/wasm/wasm-search.js'
 import { framePool } from '@core/utils/motion/frame.js'
 
+/** Shadow-DOM selector bundle for the route-search element surface. */
 const S = {
   ROOT: `.${ROUTE_SEARCH_CLASSES.ROUTE_SEARCH}`,
   INPUT: `.${ROUTE_SEARCH_CLASSES.ROUTE_SEARCH_INPUT}`,
@@ -44,6 +45,7 @@ const S = {
   PREVIEW: `.${ROUTE_SEARCH_CLASSES.ROUTE_SEARCH_PREVIEW}`,
 }
 
+/** Polls `fn` until it returns truthy — async UI has no fixed settle tick. */
 const waitFor = async (fn, tries = 40) => {
   for (let i = 0; i < tries; i++) {
     const v = fn()

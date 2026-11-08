@@ -22,11 +22,13 @@ import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { CAROUSEL_CLASSES } from '@core/tokens/classes/carousel.js'
 import { waitFor } from '@tests/fixtures/test-constants.js'
 
+/** Slide fixture — the counter/scroll guards only need minimal rows. */
 const SLIDES = [
   { src: 'a.webp', size: [800, 450], label: 'One', canExpand: true },
   { src: 'b.webp', size: [800, 450], label: 'Two', isVideo: true },
 ]
 
+/** DOMRect factory — the scroll math only reads the box fields. */
 const rect = (w = 300, h = 200) => ({ left: 0, top: 0, width: w, height: h, right: w, bottom: h })
 
 afterEach(() => {

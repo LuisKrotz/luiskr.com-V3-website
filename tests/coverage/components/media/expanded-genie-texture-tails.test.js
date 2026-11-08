@@ -47,6 +47,7 @@ const mock2D = (canvas, props = {}) => {
   )
 }
 
+/** Converts {x,y,w,h} fixture rects into the DOMRect shape the code reads. */
 const rectOf = (r) => ({
   left: r.x,
   top: r.y,
@@ -59,6 +60,7 @@ const rectOf = (r) => ({
   toJSON: () => ({}),
 })
 
+/** Modal-content rect — the genie texture samples this box as its frame. */
 const CONTENT_RECT = { x: 0, y: 0, w: 800, h: 600 }
 
 /** A modal-content stub — content root with a real rect, children added per test. */
@@ -71,6 +73,7 @@ const makeContent = () => {
   return c
 }
 
+/** Appends a figure + media item to the content stub with stubbed rects. */
 const addFigure = (content, { item = 'img', itemDims = true } = {}) => {
   const fig = document.createElement(HTML_TAGS.FIGURE)
 

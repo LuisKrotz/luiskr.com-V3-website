@@ -9,6 +9,7 @@ import {
 } from '@website/components/carousel/custom-carousel/sizing.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 
+/** Slide fixtures spanning the aspect-ratio arms measureFit guards on. */
 const SLIDE = { src: 'a.webp', size: [800, 450], label: 'One' }
 const _WIDE = { src: 'b.webp', size: [1600, 900], label: 'Wide', class: STATE_STRINGS.LANDSCAPE }
 const _TALL = { src: 'c.webp', size: [400, 2400], label: 'Tall' }
@@ -25,9 +26,11 @@ const stubEl = (items = [SLIDE, SLIDE]) => ({
   _setHeightVar: jest.fn(),
 })
 
+/** Original innerWidth/innerHeight descriptors — restored after each test. */
 const savedWidth = Object.getOwnPropertyDescriptor(window, 'innerWidth')
 const savedHeight = Object.getOwnPropertyDescriptor(window, 'innerHeight')
 
+/** Viewport stub — redefines innerWidth/Height so fit math sees a real size. */
 const setViewport = (w, h) => {
   Object.defineProperty(window, 'innerWidth', { configurable: true, value: w })
   Object.defineProperty(window, 'innerHeight', { configurable: true, value: h })

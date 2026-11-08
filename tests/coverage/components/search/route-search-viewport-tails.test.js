@@ -11,8 +11,10 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { ROUTE_SEARCH_CLASSES } from '@core/tokens/classes/route-search.js'
 import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
+/** Mounts a <route-search> element and waits out its first render pass. */
 const mountSearch = async () => {
   const el = document.createElement(COMPONENT_TAGS.ROUTE_SEARCH)
 

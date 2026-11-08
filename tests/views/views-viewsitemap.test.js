@@ -29,9 +29,13 @@ import router from '@core/router/router.js'
 import { mount } from '@tests/fixtures/test-constants.js'
 
 // ─── Controllable backend replies ───────────────────────────────────────────
+/** Error the db mock throws — set to exercise the rejection arm. */
 let dbThrow = null
+/** Path→payload fn the db mock consults — tests reassign per fixture set. */
 let dbReplies = () => undefined
+/** Flag — the fetch mock throws when true (CDN-fail arm). */
 let fetchThrow = false
+/** URL→body map the fetch mock serves — CDN manifest replies. */
 let fetchReplies = {}
 
 jest.unstable_mockModule('@core/utils/data/db.js', () => ({
@@ -57,10 +61,13 @@ beforeAll(async () => {
   ViewSitemap = mod.ViewSitemap
 })
 
+/** Timer flush — drains the view's SWR/db queues between actions. */
 const flush = () => new Promise((r) => setTimeout(r, 20))
 
+/** Real fetch saved before mocks install — restored in afterAll. */
 const realFetch = globalThis.fetch
 
+/** Project fixture — nested section media rows the sitemap renders. */
 const PROJECT = {
   title: 'Sage',
   folder: 'sage/',
@@ -77,9 +84,11 @@ const PROJECT = {
   ],
 }
 
+/** Page-level RTDB fixtures — title/intro + per-experiment shareCapture copy. */
 const SITEMAP_PAGE = { title: 'Index', intro: 'Every link.' }
 const EARTH_PAGE = { shareCapture: 'Earth render' }
 const STAR_PAGE = { shareCapture: 'Star render' }
+/** CDN manifest fixture — the sitemap lists these as share links. */
 const EARTH_MANIFEST = {
   images: [`${CDN_URLS.CDN_BASE}experiments/earth-playground/share/e1.png`],
   videos: [`${CDN_URLS.CDN_BASE}experiments/earth-playground/share/clip.mp4`],
@@ -98,6 +107,7 @@ const fullReplies = (path) => {
   return undefined
 }
 
+/** Shadow-DOM query shorthands — assertions run inside the view's shadow root. */
 const q = (el, sel) => el.shadowRoot.querySelector(sel)
 const qa = (el, sel) => el.shadowRoot.querySelectorAll(sel)
 

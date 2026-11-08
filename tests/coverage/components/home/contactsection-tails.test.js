@@ -10,6 +10,7 @@ import '@website/views/not-found/NotFound.js'
 import { LANG_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('ContactSection tails', () => {

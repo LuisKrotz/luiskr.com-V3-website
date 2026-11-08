@@ -21,6 +21,7 @@ import { VIEW_TAGS } from '@core/tokens/elements/views.js'
 import { onHomeStoreUpdate } from '@website/views/home/data.js'
 import store from '@core/store.js'
 
+/** Generous flush — view render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('Home route tails', () => {

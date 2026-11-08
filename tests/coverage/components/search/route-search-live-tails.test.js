@@ -12,6 +12,8 @@ import { KEYS } from '@core/tokens/primitives.js'
 import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 
+/** Mutable fixture state — the db/worker mocks read these per-call so
+ *  tests swap rows and flip the reject arm between cases. */
 const state = {
   searchNode: { search: { label: 'L', hint: 'H' } },
   indexRows: [],
@@ -38,6 +40,7 @@ globalThis.fetch = async (url) => {
 
 await import('@website/components/search/RouteSearch.js')
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 /**
@@ -60,6 +63,7 @@ const waitCopy = async (el) => {
   process.stderr.write(`waitCopy calls=${calls} strings=${JSON.stringify(el._strings?.label)}\n`)
 }
 
+/** Mounts a <route-search> element and waits for its copy strings to land. */
 const mount = async () => {
   const el = document.createElement(COMPONENT_TAGS.ROUTE_SEARCH)
 
@@ -69,6 +73,7 @@ const mount = async () => {
   return el
 }
 
+/** Shadow-DOM lookup for the search text input. */
 const input = (el) => el.shadowRoot.querySelector(`.${ROUTE_SEARCH_CLASSES.ROUTE_SEARCH_INPUT}`)
 
 describe('route-search live arms', () => {

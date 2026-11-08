@@ -9,6 +9,8 @@
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals'
 import { DRAW_TEXT_CLASSES } from '@core/tokens/classes/draw-text.js'
 
+/** Mutable mock-state flags — the module mocks below read these per-call,
+ *  so tests flip them to steer GPU-present/mount-result/bitmap/device/ctx branches. */
 let mockGpu = false
 let mountResult = null
 let bitmapResult = { width: 8 }
@@ -62,6 +64,7 @@ jest.unstable_mockModule('@core/utils/gpu/webgpu-widget.js', () => ({
   warmWidgetArtifacts: () => undefined,
 }))
 
+/** Timer flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 40) => new Promise((r) => setTimeout(r, ms))
 
 /**
@@ -85,10 +88,13 @@ const until = async (pred, ms = 3000) => {
 
 /** Settled = the mount was kept (_gpuHandle) or disarmed (destroy). */
 const mounted = (host) => host._gpuHandle === mountResult
+/** Settled = the mounted handle's destroy() was invoked (disarm path). */
 const destroyed = () => mountResult?.destroy?.mock?.calls.length > 0
 
+/** Fixed getBoundingClientRect stub — the overlay math needs a real rect. */
 const RECT = { left: 10, top: 20, right: 110, bottom: 44, width: 100, height: 24 }
 
+/** Flag — tests set it so the 2d ctx's getImageData throws (probe-fail arm). */
 let imgDataThrows = false
 
 /** A measuring 2D ctx — glyphs report a real ascent so fillText lands. */
@@ -289,7 +295,9 @@ describe('draw-text gpu reveal', () => {
 
     tryGpuDraw(host, 100)
 
-    await until(() => host._gpuPending === false && host.shadowRoot.querySelector('canvas') === null)
+    await until(
+      () => host._gpuPending === false && host.shadowRoot.querySelector('canvas') === null
+    )
 
     expect(host._gpuPending).toBe(false)
     expect(host._gpuHandle).toBeNull()

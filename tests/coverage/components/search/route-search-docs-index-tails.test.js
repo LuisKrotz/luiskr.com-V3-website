@@ -15,11 +15,14 @@ import { loadCatalog } from '@website/components/search/route-search/data.js'
 /** Per-test docs-index reply — swapped before every loadCatalog call. */
 const state = { docs: async () => ({ ok: true, json: async () => [] }) }
 
+/** Minimal row the locale catalog returns — only the shape fields matter. */
 const localeRows = [{ p: '/x', t: 'X', d: '', k: ['x'], c: ROUTE_SEARCH_KINDS.PAGE }]
 
+/** Counts fetch calls against the docs index — the '-docs' URL marks them. */
 const docsCalls = () =>
   globalThis.fetch.mock.calls.filter(([u]) => String(u).includes('-docs')).length
 
+/** Promise-wraps the callback-style loadCatalog so tests can await it. */
 const catalog = () => new Promise((r) => loadCatalog(LOCALES.EN, r))
 
 describe('route-search docs index arms', () => {

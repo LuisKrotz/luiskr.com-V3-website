@@ -15,10 +15,13 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { COOKIE_CSS_PROPS } from '@core/tokens/css/cookies.js'
 import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
+/** Reads the banner-height CSS custom property the banner writes to :root. */
 const rootProp = () => document.documentElement.style.getPropertyValue(COOKIE_CSS_PROPS.BANNER_H)
 
+/** Mounts a <cookie-banner>, optionally injecting translations first. */
 const mountBanner = async (withTranslations = true) => {
   const el = document.createElement(COMPONENT_TAGS.COOKIE_BANNER)
 

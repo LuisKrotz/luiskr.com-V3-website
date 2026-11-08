@@ -26,9 +26,12 @@ import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 
+/** ESM __dirname — needed to resolve the repo-relative sass path. */
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+/** Absolute path to the shared component stylesheets under test. */
 const sassDir = path.join(__dirname, '..', '..', '..', '..', 'core', 'sass', 'components')
 
+/** Reads a component .scss file as text for the assertions. */
 function readSass(filename) {
   return readSassDeep(path.join(sassDir, filename))
 }

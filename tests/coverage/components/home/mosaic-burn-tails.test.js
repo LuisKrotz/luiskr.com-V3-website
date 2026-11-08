@@ -27,6 +27,7 @@ import { UI_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { INPUT_STRINGS } from '@core/tokens/strings/input.js'
 import { createMock2D } from '@tests/fixtures/mock-webgl.js'
 
+/** Class-name bundle the raw burn helpers expect — mirrors the production map. */
 const BURN_CLASSES = {
   ITEM_BURNING: HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING,
   TITLE_OVERLAY: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_OVERLAY,
@@ -39,20 +40,24 @@ const BURN_CLASSES = {
   DETAILS: HOME_MOSAIC_CLASSES.HOME_MOSAIC_DETAILS,
 }
 
+/** Partial-applied wrappers — bind the class/selector bundles so tests call with just (host, index). */
 const armCardBurn = (host, i, item) =>
   rawArmCardBurn(host, i, item, BURN_CLASSES, MOSAIC_SELECTORS.HOME_MOSAIC_ITEM)
 const disarmCardBurn = (host, i) =>
   rawDisarmCardBurn(host, i, BURN_CLASSES, MOSAIC_SELECTORS.HOME_MOSAIC_ITEM)
 
+/** Selector constants for the burn-overlay DOM the assertions query. */
 const BURN_SEL = `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURN}`
 const SLOT_SEL = `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_SLOT}`
 const TITLE_SEL = `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE}`
 const OVERLAY_SEL = `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_OVERLAY}`
 
+/** Single-card fixture — the burn helpers only need one item to act on. */
 const ITEMS = [
   { label: 'Burn Card', link: 'burn-card', image: 'ia', description: 'Desc A', featured: false },
 ]
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('mosaic burn tails', () => {

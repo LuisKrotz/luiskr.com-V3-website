@@ -6,6 +6,8 @@
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import drawTextStyles from '@core/sass/components/media/draw-text.scss?inline'
 
+/** Lazily-built shared stylesheet — all draw-text instances adopt the one
+ *  compiled sheet instead of re-parsing the SCSS per mount. */
 let sharedSheet: CSSStyleSheet | null = null
 
 /**

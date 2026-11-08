@@ -22,6 +22,7 @@ import { SCSS, mount } from '@tests/fixtures/test-constants.js'
 import * as ANIM_DEMO_MOUNTS from '@website/components/media/anim-demo/mounts.js'
 import store from '@core/store.js'
 
+/** Class-name alias — the demo-surface selectors below stay readable. */
 const C = ANIM_DEMO_CLASSES
 
 /**

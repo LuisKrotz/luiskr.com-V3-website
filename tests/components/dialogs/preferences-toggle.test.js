@@ -8,6 +8,7 @@
 import store from '@core/store.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 
+/** Forces both preference flags off — keeps toggled state from leaking across tests. */
 const resetToggles = () => {
   if (store.state.showStatsForNerds) store.commit(PREF_MUTATIONS.TOGGLE_STATS_FOR_NERDS)
   if (store.state.showGrid) store.commit(PREF_MUTATIONS.TOGGLE_SHOW_GRID)

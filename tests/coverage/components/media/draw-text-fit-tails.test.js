@@ -24,6 +24,7 @@ import { DRAW_TEXT_SELECTORS } from '@core/tokens/selectors/draw-text.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 
+/** Original browser globals — tests replace then restore them per case. */
 const ORIG_GCS = globalThis.getComputedStyle
 const ORIG_RO = globalThis.ResizeObserver
 const ORIG_FONTS = document.fonts

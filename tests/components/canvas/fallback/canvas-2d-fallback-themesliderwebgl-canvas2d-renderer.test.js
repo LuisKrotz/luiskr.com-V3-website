@@ -10,7 +10,9 @@ import { THEME } from '@core/constants.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 
+/** Bare canvas — the 2d renderer only needs the element handle here. */
 const makeCanvas = () => document.createElement(HTML_TAGS.CANVAS)
+/** Frame-tick flush — widget rAF steps need real timers past microtasks. */
 const _flushFrames = (ms = 80) => new Promise((resolve) => setTimeout(resolve, ms))
 
 beforeEach(() => {

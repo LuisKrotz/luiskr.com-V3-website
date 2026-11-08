@@ -41,8 +41,10 @@ jest.unstable_mockModule('@core/utils/gpu/webgpu-widget.js', () => ({
   warmWidgetArtifacts: () => undefined,
 }))
 
+/** Selector for the burn-overlay element the assertions query. */
 const BURN_SEL = `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURN}`
 
+/** Class-name bundle the raw burn helpers expect — mirrors the production map. */
 const BURN_CLASSES = {
   ITEM_BURNING: HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING,
   TITLE_OVERLAY: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_OVERLAY,
@@ -55,10 +57,12 @@ const BURN_CLASSES = {
   DETAILS: HOME_MOSAIC_CLASSES.HOME_MOSAIC_DETAILS,
 }
 
+/** Single-card fixture — the burn helpers only need one item to act on. */
 const ITEMS = [
   { label: 'Burn Card', link: 'burn-card', image: 'ia', description: 'Desc A', featured: false },
 ]
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('mosaic burn wasm tails', () => {

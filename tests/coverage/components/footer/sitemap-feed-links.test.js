@@ -33,6 +33,7 @@ import { LANG_SLUGS } from '@core/i18n.js'
 import '@website/components/home/AwardsMentions.js'
 import '@website/components/legal/Footer.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('shared footer link helpers', () => {

@@ -16,6 +16,7 @@ import '@website/views/home/Home.js'
 import '@website/views/legal/Legal.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('PreferencesModal tails', () => {

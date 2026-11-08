@@ -22,12 +22,14 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MOUSE_EVENTS, POINTER_EVENTS } from '@core/tokens/events/dom.js'
 import { framePool } from '@core/utils/motion/frame.js'
 
+/** Three-slide fixture — expandable, video, and no-size entries cover the delegate arms. */
 const SLIDES = [
   { src: 'a.webp', size: [800, 450], label: 'One', canExpand: true },
   { src: 'b.webp', size: [800, 450], label: 'Two', isVideo: true },
   { src: 'c.webp', label: 'Three' },
 ]
 
+/** DOMRect factory — the scroll/spring math only reads left/top/width/height/right/bottom. */
 const rect = (l = 0, w = 600, h = 400) => ({
   left: l,
   top: 0,
@@ -81,6 +83,7 @@ const mockRaf = () => {
   }
 }
 
+/** Mounts a <custom-carousel> with stubbed track rects so scroll math runs. */
 const makeCarousel = () => {
   const el = document.createElement(COMPONENT_TAGS.CUSTOM_CAROUSEL)
 
@@ -101,6 +104,7 @@ const makeCarousel = () => {
   return { el, track }
 }
 
+/** Mounts an <awards-carousel> with the shared SLIDES fixture. */
 const makeAwards = () => {
   const el = document.createElement(COMPONENT_TAGS.AWARDS_CAROUSEL)
 
@@ -110,6 +114,7 @@ const makeAwards = () => {
   return el
 }
 
+/** Detaches a mounted element — afterEach cleanup for stray mounts. */
 const cleanup = (el) => el?.remove()
 
 afterEach(() => {

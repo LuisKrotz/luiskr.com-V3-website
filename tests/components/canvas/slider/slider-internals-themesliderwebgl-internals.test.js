@@ -8,6 +8,7 @@ import { attachHybridGL, attachNoGL } from '@tests/fixtures/mock-webgl.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 
+/** Canvas with a stubbed getBoundingClientRect — widget sizing reads real boxes. */
 const makeCanvas = () => {
   const canvas = document.createElement(HTML_TAGS.CANVAS)
 
@@ -23,6 +24,7 @@ const makeCanvas = () => {
   return canvas
 }
 
+/** Frame-tick flush — widget rAF steps need real timers past microtasks. */
 const flushFrames = (ms = 60) => new Promise((r) => setTimeout(r, ms))
 
 // ─── ThemeSliderWebGL ────────────────────────────────────────────────────────

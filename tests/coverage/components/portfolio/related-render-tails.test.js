@@ -12,6 +12,7 @@ import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { TEST_PROJECTS, TEST_TEXT, TEST_URLS } from '@tests/fixtures/test-constants.js'
 
+/** Ctrl+click event — delegated link handlers bail out on modifier clicks. */
 const ctrlClick = () =>
   new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true, ctrlKey: true })
 

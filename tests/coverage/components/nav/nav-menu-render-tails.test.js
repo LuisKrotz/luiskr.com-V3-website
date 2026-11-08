@@ -35,6 +35,7 @@ import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { WEBGL_STRINGS } from '@core/tokens/strings/webgl.js'
 import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 
+/** Minimal nav-store surface components read — overridable per test. */
 const navStub = (over = {}) => ({
   translations: null,
   currentRoute: { name: ROUTE_NAMES.HOME },
@@ -62,6 +63,7 @@ const navStub = (over = {}) => ({
   ...over,
 })
 
+/** Ctrl+click event — the nav handlers bail out on modifier clicks. */
 const ctrlClick = () =>
   new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true, ctrlKey: true })
 

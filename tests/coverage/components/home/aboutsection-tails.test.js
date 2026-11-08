@@ -16,9 +16,12 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { cycleHud, disarmHud, hudLines, syncHud } from '@website/components/home/about/hud.js'
 import store from '@core/store.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
+/** Fixture portrait URL — the section renders this as the profile image. */
 const TEST_PIC = 'https://www.gravatar.com/avatar/test?d=mp'
+/** Location fixtures — cover both altituded and altitude-less rows. */
 const TEST_LOCS = [
   { name: 'Place One', latitude: '10° S', longitude: '20° W', altitude: '100 m' },
   { name: 'Place Two', latitude: '30° S', longitude: '40° W' },

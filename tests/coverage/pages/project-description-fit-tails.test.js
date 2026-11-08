@@ -17,10 +17,12 @@ import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 
+/** Originals captured for restore — ResizeObserver/getComputedStyle/fonts are stubbed per test. */
 const ORIG_RO = globalThis.ResizeObserver
 const ORIG_GCS = globalThis.getComputedStyle
 const ORIG_FONTS = document.fonts
 
+/** Class-name aliases for the description block's size-tier classes. */
 const DESC = INTERNAL_CLASSES.INTERNAL_DESCRIPTION
 const TEXT = INTERNAL_CLASSES.INTERNAL_DESCRIPTION_TEXT
 const XL = INTERNAL_CLASSES.INTERNAL_DESCRIPTION_XL

@@ -18,8 +18,10 @@ import { UI_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { INPUT_STRINGS } from '@core/tokens/strings/input.js'
 import { KEYBOARD_EVENTS } from '@core/tokens/events/dom.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
+/** Card fixtures — keyboard nav exercises focus/jump arms over these. */
 const ITEMS = [
   { label: 'Card A', link: TEST_PROJECTS.SLUG_MINIMELISSA, image: 'a' },
   { label: 'Card B', link: TEST_PROJECTS.SLUG_MINIMELISSA, image: 'b' },
@@ -33,12 +35,14 @@ const GRID_CARDS = [
   { card: { top: '120px', left: '0px', width: '100px', height: '100px' } },
 ]
 
+/** Synthetic keyboard event — only key/target/preventDefault are read. */
 const keyEvent = (key, target) => ({
   key,
   target,
   preventDefault: jest.fn(),
 })
 
+/** Fake event target that closest()s to a card item carrying `idx`. */
 const cardTarget = (idx) => {
   const itemEl = { getAttribute: () => String(idx) }
 

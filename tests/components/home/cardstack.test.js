@@ -70,8 +70,10 @@ const item = (n, featured = true) => ({
   featured,
 })
 
+/** Four-card fixture — enough for stacked/fan tier assertions. */
 const ITEMS = [item(0), item(1), item(2), item(3)]
 
+/** Selector bundle for the card/active/dot/thumb elements under assertion. */
 const SELS = {
   CARD: `.${C.CARD_STACK_CARD}`,
   ACTIVE: `.${C.CARD_STACK_CARD_ACTIVE}`,
@@ -86,6 +88,8 @@ const FAN_TIER = CARD_STACK_TIERS.find((t) => !t.STACKED)
 
 const STACK_TIER = CARD_STACK_TIERS[CARD_STACK_TIERS.length - 1]
 
+/** Synthetic pointer-event factory — pointerId/button/coords/timestamp
+ *  with per-test overrides and an optional target for delegation tests. */
 const pointerEvt = (over = {}, target = null) => ({
   pointerId: 1,
   button: 0,
@@ -96,6 +100,7 @@ const pointerEvt = (over = {}, target = null) => ({
   ...over,
 })
 
+/** Mounts a CardStack preloaded with ITEMS and waits for the cards to render. */
 const mountDeck = async () => {
   const el = new CardStack()
   const cleanup = mount(el)
@@ -104,6 +109,7 @@ const mountDeck = async () => {
   return { el, cleanup }
 }
 
+/** Shadow-DOM lookup for the deck container element. */
 const deckEl = (el) => el.shadowRoot.querySelector(SEL.CARD_STACK_DECK)
 
 // ─────────────────────────────────────────────────────────────────────────────

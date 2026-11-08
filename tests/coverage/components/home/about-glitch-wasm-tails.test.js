@@ -13,6 +13,8 @@ import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { ABOUT_CLASSES } from '@core/tokens/classes/about.js'
 import { TEST_URLS } from '@tests/fixtures/test-constants.js'
 
+/** Mutable mock-state flags — the module mocks below read these per-call,
+ *  so tests flip them to steer GPU-present/mount-result/decode branches. */
 let mockGpu = false
 let mountResult = null
 let mountDelay = 0
@@ -34,6 +36,7 @@ jest.unstable_mockModule('@core/utils/wasm/wasm-image-decoder.js', () => ({
   },
 }))
 
+/** Timer flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 30) => new Promise((r) => setTimeout(r, ms))
 
 /** Builds a minimal live session + host pair. */

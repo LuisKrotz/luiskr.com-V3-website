@@ -18,6 +18,7 @@ import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 
+/** Creates a bare draw-text element carrying `text` for the order asserts. */
 const makeEl = (text = TEST_TEXT.HELLO) => {
   const el = document.createElement(COMPONENT_TAGS.DRAW_TEXT)
   el.setAttribute(FORM_ATTRS.TEXT, text)

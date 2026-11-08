@@ -34,6 +34,7 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { THEME_CSS_PROPS } from '@core/tokens/css/theme.js'
 import { ASSET_PATHS } from '@core/tokens/routes/paths.js'
 
+/** ESM __dirname — needed to resolve repo-relative asset paths. */
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 describe('Accessibility — WCAG 2.1 AA Compliance', () => {

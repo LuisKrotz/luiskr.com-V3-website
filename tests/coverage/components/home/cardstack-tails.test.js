@@ -52,6 +52,7 @@ import { resetViewportCache } from '@core/utils/dom.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 
+/** Card-item factory — unique link/image/label per index, overrides merge in. */
 const item = (n, over = {}) => ({
   link: `p-${n}`,
   image: `img-${n}`,
@@ -61,6 +62,7 @@ const item = (n, over = {}) => ({
   ...over,
 })
 
+/** Selector bundle for the card/dot/highlight elements under assertion. */
 const SELS = {
   CARD: `.${C.CARD_STACK_CARD}`,
   DOT: `.${C.CARD_STACK_DOT}`,
@@ -74,6 +76,8 @@ const FAN_TIER = CARD_STACK_TIERS.find((t) => !t.STACKED)
 
 const STACK_TIER = CARD_STACK_TIERS[CARD_STACK_TIERS.length - 1]
 
+/** Synthetic pointer-event factory — pointerId/button/coords/timestamp
+ *  with per-test overrides and an optional target for delegation tests. */
 const evt = (over = {}, target = null) => ({
   pointerId: 1,
   button: 0,
@@ -84,11 +88,13 @@ const evt = (over = {}, target = null) => ({
   ...over,
 })
 
+/** Teardown registry — mounts push cleanup fns; afterEach drains them. */
 const cleanups = []
 afterEach(() => {
   while (cleanups.length) cleanups.pop()()
 })
 
+/** Mounts a CardStack preloaded with `items` and waits for the cards to render. */
 const mountItems = async (items) => {
   const el = new CardStack()
   cleanups.push(mount(el))
@@ -97,6 +103,7 @@ const mountItems = async (items) => {
   return el
 }
 
+/** Shadow-DOM lookup for the deck container element. */
 const deckEl = (el) => el.shadowRoot.querySelector(SEL.CARD_STACK_DECK)
 
 // ─── Facade delegates + non-mounted setter arms ───────────────────────────────

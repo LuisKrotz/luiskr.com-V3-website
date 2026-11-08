@@ -46,8 +46,10 @@ afterEach(() => {
   document.documentElement.classList.remove(STATE_CLASSES.DARK_MODE)
 })
 
+/** Bare canvas — the layer-sync helpers only need the element handle. */
 const _makeCanvas = () => document.createElement(HTML_TAGS.CANVAS)
 
+/** Frame-tick flush — widget rAF steps need real timers past microtasks. */
 const _flushFrames = (ms = 80) => new Promise((resolve) => setTimeout(resolve, ms))
 
 // ─── syncSkeletonLayer / destroySkeletonLayer helpers ────────────────────────

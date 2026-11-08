@@ -18,6 +18,7 @@ import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { WEBGL_STRINGS } from '@core/tokens/strings/webgl.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 
+/** Canvas with a stubbed getBoundingClientRect — widget sizing reads real boxes. */
 const makeCanvas = () => {
   const canvas = document.createElement(HTML_TAGS.CANVAS)
 
@@ -33,6 +34,7 @@ const makeCanvas = () => {
   return canvas
 }
 
+/** Frame-tick flush — widget rAF steps need real timers past microtasks. */
 const flushFrames = (ms = 60) => new Promise((r) => setTimeout(r, ms))
 
 // ─── SwitchWebGL ─────────────────────────────────────────────────────────────

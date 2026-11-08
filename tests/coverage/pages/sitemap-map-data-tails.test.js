@@ -21,6 +21,7 @@ import store from '@core/store.js'
 import { TEST_PROJECTS } from '@tests/fixtures/test-constants.js'
 import { buildSitemapTree } from '@website/views/sitemap/map-data.js'
 
+/** Slash char alias — path literals below stay readable without escapes. */
 const S = CHAR_STRINGS.SLASH
 
 /** Portfolio URL builder — `/portfolio/<slug>` under EN, `/<loc>/…` else. */
@@ -49,6 +50,7 @@ const EN_PROJECT = {
   ],
 }
 
+/** Portuguese project fixture — media rows cover the unlabeled/video arms. */
 const BR_PROJECT = {
   title: 'Sage',
   folder: 'sage/',
@@ -66,6 +68,7 @@ const BR_PROJECT = {
   ],
 }
 
+/** Per-locale project maps — the sitemap builder iterates locales over these. */
 const projectsByLocale = {
   [LOCALES.EN]: { [TEST_PROJECTS.SAGE]: EN_PROJECT },
   [LOCALES.BR]: { [TEST_PROJECTS.SAGE]: BR_PROJECT },

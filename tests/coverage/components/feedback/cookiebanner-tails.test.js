@@ -8,6 +8,7 @@ import '@website/views/not-found/NotFound.js'
 import { PREF_STORAGE_KEYS } from '@core/tokens/data/storage.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('CookieBanner tails', () => {

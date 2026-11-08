@@ -10,6 +10,7 @@ import { renderAppNav } from '@website/components/nav/render.js'
 import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { NAV_CLASSES } from '@core/tokens/classes/nav.js'
 
+/** Minimal nav-store surface components read — overridable per test. */
 const navStub = (over = {}) => ({
   translations: null,
   currentRoute: { name: ROUTE_NAMES.NOT_FOUND },

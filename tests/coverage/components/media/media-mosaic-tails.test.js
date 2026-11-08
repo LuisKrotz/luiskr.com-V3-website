@@ -27,6 +27,7 @@ import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { FORM_EVENTS } from '@core/tokens/events/dom.js'
 
+/** Wall-item fixtures — sized vs unsized rows cover the layout arms. */
 const WALL_ITEMS = [
   { src: 'a.webp', size: [1800, 900], label: 'Alpha', class: 'landscape', canExpand: true },
   { src: 'b.webp', size: [900, 1800] },

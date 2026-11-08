@@ -10,6 +10,7 @@ import { onMounted, onDestroy } from '@website/components/carousel/custom-carous
 import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { TEST_URLS } from '@tests/fixtures/test-constants.js'
 
+/** Fake `this` for the lifecycle fns — jest fns record every internal call. */
 const host = () => ({
   items: [{ src: TEST_URLS.IMG }],
   _updateDom: jest.fn(),

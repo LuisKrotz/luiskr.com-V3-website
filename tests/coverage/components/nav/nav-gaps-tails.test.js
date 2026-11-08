@@ -17,6 +17,7 @@ import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 import store from '@core/store.js'
 
+/** Generous flush — nav render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 /** Minimal aura host — strip + two tiles in a shadow root. */

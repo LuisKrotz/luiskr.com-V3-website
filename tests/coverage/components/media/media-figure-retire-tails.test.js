@@ -16,6 +16,7 @@ import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { ANIMATION_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 
+/** Wait past the retire duration — +50ms margin absorbs timer slack. */
 const retireWindow = ANIMATION_DURATIONS.MEDIA_LAYER_RETIRE + 50
 
 describe('media-figure retire tails', () => {

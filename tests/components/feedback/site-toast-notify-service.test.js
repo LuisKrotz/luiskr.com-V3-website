@@ -14,6 +14,7 @@ import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { LOG_LEVELS } from '@core/tokens/data/log.js'
 
+/** Zero-ms flush — toast queue drains within one macrotask. */
 const flush = () => new Promise((resolve) => setTimeout(resolve, 0))
 
 /** Fresh notify module (fresh _seen/_toastEl/_globalBound state) per call. */
@@ -32,6 +33,7 @@ const mountToast = () => {
   return el
 }
 
+/** Lists the toast item elements inside the component's shadow root. */
 const _items = (el) =>
   Array.from(el.shadowRoot.querySelectorAll(`.${TOAST_CLASSES.SITE_TOAST_ITEM}`))
 

@@ -22,6 +22,7 @@ import { UI_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { INPUT_STRINGS } from '@core/tokens/strings/input.js'
 import { CANVAS_STRINGS } from '@core/tokens/strings/canvas.js'
 
+/** Class-name bundle the raw burn helpers expect — mirrors the production map. */
 const BURN_CLASSES = {
   ITEM_BURNING: HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING,
   TITLE_OVERLAY: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_OVERLAY,
@@ -34,16 +35,20 @@ const BURN_CLASSES = {
   DETAILS: HOME_MOSAIC_CLASSES.HOME_MOSAIC_DETAILS,
 }
 
+/** Partial-applied wrapper — binds the class/selector bundles so tests call with just (host, index). */
 const armCardBurn = (host, i, item) =>
   rawArmCardBurn(host, i, item, BURN_CLASSES, MOSAIC_SELECTORS.HOME_MOSAIC_ITEM)
 
+/** Expected fillStyle values the recording 2D ctx snapshots — title ink vs cleared pixels. */
 const TITLE_COLOR = 'rgb(12, 34, 56)'
 const CLEAR_COLOR = 'rgba(0, 0, 0, 0)'
 
+/** Single-card fixture — the burn helpers only need one item to act on. */
 const ITEMS = [
   { label: 'Burn Card', link: 'burn-card', image: 'ia', description: 'Desc A', featured: false },
 ]
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 /**

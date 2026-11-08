@@ -16,6 +16,7 @@ import store from '@core/store.js'
 import { SearchModal } from '@website/components/dialogs/SearchModal.js'
 import { RouteSearch } from '@website/components/search/RouteSearch.js'
 
+/** Shadow-DOM selector bundle for the search-modal element surface. */
 const S = {
   BACKDROP: `.${SEARCH_MODAL_CLASSES.SEARCH_MODAL_BACKDROP}`,
   PANEL: `.${SEARCH_MODAL_CLASSES.SEARCH_MODAL_PANEL}`,

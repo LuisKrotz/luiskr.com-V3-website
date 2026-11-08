@@ -18,6 +18,7 @@ import '@cms/footer/CmsFooterEditor.js'
 import '@cms/playground-editor/CmsPlaygroundEditor.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 100) => new Promise((r) => setTimeout(r, ms))
 
 describe('HomeMosaic tails 2', () => {

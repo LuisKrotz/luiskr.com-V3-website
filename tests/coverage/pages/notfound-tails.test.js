@@ -10,6 +10,7 @@ import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { NOT_FOUND_CLASSES } from '@core/tokens/classes/legal.js'
 import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 
+/** Generous flush — view render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
 describe('NotFound tails', () => {

@@ -27,6 +27,7 @@ jest.unstable_mockModule('@core/firebase.js', () => ({
   getDbInstance: jest.fn(async () => ({})),
 }))
 
+/** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 60) => new Promise((r) => setTimeout(r, ms))
 
 describe('CookieBanner tails', () => {

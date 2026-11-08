@@ -33,6 +33,8 @@ export interface MeshSession {
   size: () => void
 }
 
+/** Lattice tunables — picture-wrapper selector, dot rows, radial spoke
+ *  count, and the dotted guide-line angles (radians) the mesh draws over. */
 const _SEL = `.${ABOUT_CLASSES.ABOUT_PROFILE_PICTURE}`
 const _ROW_COUNT = 11
 const _SPOKES = 260

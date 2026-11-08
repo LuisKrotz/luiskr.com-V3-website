@@ -50,6 +50,7 @@ const mock2D = (canvas) => {
   )
 }
 
+/** Canvas with real pixel extents — the genie texture paint needs a size. */
 const makeCanvas = () => {
   const c = document.createElement(HTML_TAGS.CANVAS)
 
@@ -77,8 +78,10 @@ const fakeSheet = ({ media = null, back = null, texCanvas = null, texCtx = null 
   }
 }
 
+/** From/to rects the genie transition interpolates between. */
 const FROM = { x: 20, y: 400, w: 120, h: 60 }
 const TO = { x: 200, y: 60, w: 480, h: 270 }
+/** Bare host element — the genie canvas mounts inside it. */
 const host = document.createElement(HTML_TAGS.DIV)
 
 /** The adaptive band count drawStrips derives from a sheet height. */
