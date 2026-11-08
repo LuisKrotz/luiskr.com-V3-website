@@ -8,7 +8,7 @@
   <description>Salut, je suis Luis, ingénieur logiciel axé sur l’UX. Je travaille actuellement chez Dell sur le Dell Design System .</description>
   <language>fr</language>
   <copyright>© 2026 Luis Krötz</copyright>
-  <lastBuildDate>Sun, 08 Nov 2026 17:53:57 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 08 Nov 2026 18:47:28 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/fr/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
@@ -271,12 +271,12 @@
     <category>cecerele</category>
     <category>cecerelê: created in 2019 by historian joana schossler para produzir jogos, cont</category>
     <category>cecerelê: accueil with products updated on dec. 2021</category>
-    <category>cecerelê: about us page</category>
-    <category>cecerelê: product page</category>
-    <category>cecerelê: kit para colorir adulto edição limitada, product page</category>
-    <category>cecerelê: memorêlas jogo de memória das mulheres brasileiras, product page</category>
-    <category>cecerelê: minha praia, livro de colorir, product page</category>
-    <category>cecerelê, quebra cabeça revolucionárias: product page</category>
+    <category>cecerelê: page à propos</category>
+    <category>cecerelê: page produit</category>
+    <category>cecerelê: kit para colorir adulto edição limitada, page produit</category>
+    <category>cecerelê: memorêlas jogo de memória das mulheres brasileiras, page produit</category>
+    <category>cecerelê: minha praia, livro de colorir, page produit</category>
+    <category>cecerelê, quebra cabeça revolucionárias: page produit</category>
     <category>cecerelê: cart contenu</category>
     <category>cecerelê: login</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
@@ -310,7 +310,7 @@
     <description>Le site de Coza a été développé chez Transa de 2017 à 2019.</description>
     <category>coza</category>
     <category>coza: accueil full tour</category>
-    <category>coza: mobile full tour</category>
+    <category>coza: tour mobile complet</category>
     <category>coza: page complète capture</category>
     <category>coza: english accueil</category>
     <category>coza: article, organização com as dicas da maysa.</category>
@@ -400,7 +400,7 @@
     <category>mor: boutique tour</category>
     <category>mor: boutique tour mobile</category>
     <category>mor: boutique, category page capture</category>
-    <category>mor: boutique, product page capture</category>
+    <category>mor: boutique, capture de la page produit</category>
     <category>mor: où trouver tour</category>
     <category>mor: où trouver tour mobile</category>
     <category>le site de mor a été développé chez transa.</category>
@@ -455,15 +455,15 @@
     <dc:creator>Luis Krötz</dc:creator>
     <description>Le site de Transa a été développé avec Vue, CSS (Sass) et PHP (Laravel) en 2021.</description>
     <category>transa</category>
-    <category>transa: feed short tour</category>
+    <category>transa: tour rapide du feed</category>
     <category>transa: vidéo of brazilian leather's cas inside transa's site.</category>
     <category>transa: vidéo of metcha's cas inside transa's site.</category>
     <category>transa: vidéo of mor's cas inside transa's site.</category>
     <category>transa: vidéo of melissa's cas inside transa's site.</category>
     <category>transa: vidéo of mini melissa's cas inside transa's site.</category>
     <category>transa: vidéo of coza's cas inside transa's site.</category>
-    <category>transa: feed tour</category>
-    <category>transa: feed tour mobile</category>
+    <category>transa: tour du feed</category>
+    <category>transa: tour du feed mobile</category>
     <category>transa: category, brazilian leather, tour</category>
     <category>transa: category, coza, tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg"/>
@@ -480,7 +480,7 @@
     <category>vibra: a empresa mais inovadora do segmento no brasil /tour mobile</category>
     <category>vibra: a empresa mais inovadora do segmento no brasil/ production and distributi</category>
     <category>vibra: a empresa mais inovadora do segmento no brasil /our brands page complète</category>
-    <category>vibra: a empresa mais inovadora do segmento no brasil, more than five decades of</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, plus de cinq décennies d'expérience et de tradition en aviculture, page à propos complète</category>
     <category>vibra était un site développé chez transa en 2016 et resté en ligne jusqu’en 202</category>
     <category>vibra agilize</category>
     <category>brand portal</category>

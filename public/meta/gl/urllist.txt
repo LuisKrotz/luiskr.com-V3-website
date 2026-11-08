@@ -8774,6 +8774,7 @@ https://luiskr.com/docs/shared/scripts/i18n/patch-search-page-themes.js
 https://luiskr.com/docs/shared/scripts/i18n/patch-sitemap-page.js
 https://luiskr.com/docs/shared/scripts/i18n/patch-star-field-share-themes.js
 https://luiskr.com/docs/shared/scripts/i18n/patch-ui-gaps-and-cyrillic.js
+https://luiskr.com/docs/shared/scripts/i18n/push-untranslated-fixes.js
 https://luiskr.com/docs/shared/scripts/i18n/restore-and-patch-translations.py
 https://luiskr.com/docs/shared/scripts/i18n/seed-translations.js
 https://luiskr.com/docs/shared/scripts/i18n/translation-patch.json
@@ -10133,9 +10134,9 @@ https://luiskr.com/gl/portfolio/transa/transa-category-melissa-tour
 https://luiskr.com/gl/portfolio/transa/transa-category-metcha-tour
 https://luiskr.com/gl/portfolio/transa/transa-category-mini-melissa-tour
 https://luiskr.com/gl/portfolio/transa/transa-category-mor-tour
-https://luiskr.com/gl/portfolio/transa/transa-feed-tour
-https://luiskr.com/gl/portfolio/transa/transa-feed-tour-mobil
 https://luiskr.com/gl/portfolio/transa/transa-join-us-paxina-short-tour
+https://luiskr.com/gl/portfolio/transa/transa-tour-do-feed
+https://luiskr.com/gl/portfolio/transa/transa-tour-do-feed-mobil
 https://luiskr.com/gl/portfolio/transa/transa-video-of-brazilian-leather-s-caso-inside-transa-s-sitio-web
 https://luiskr.com/gl/portfolio/transa/transa-video-of-coza-s-caso-inside-transa-s-sitio-web
 https://luiskr.com/gl/portfolio/transa/transa-video-of-melissa-s-caso-inside-transa-s-sitio-web

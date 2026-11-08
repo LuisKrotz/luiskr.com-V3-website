@@ -8774,6 +8774,7 @@ https://luiskr.com/docs/shared/scripts/i18n/patch-search-page-themes.js
 https://luiskr.com/docs/shared/scripts/i18n/patch-sitemap-page.js
 https://luiskr.com/docs/shared/scripts/i18n/patch-star-field-share-themes.js
 https://luiskr.com/docs/shared/scripts/i18n/patch-ui-gaps-and-cyrillic.js
+https://luiskr.com/docs/shared/scripts/i18n/push-untranslated-fixes.js
 https://luiskr.com/docs/shared/scripts/i18n/restore-and-patch-translations.py
 https://luiskr.com/docs/shared/scripts/i18n/seed-translations.js
 https://luiskr.com/docs/shared/scripts/i18n/translation-patch.json
@@ -9971,8 +9972,8 @@ https://luiskr.com/gn/portfolio/metcha/metcha-cms-generador-newsletter-movil
 https://luiskr.com/gn/portfolio/metcha/metcha-cms-herramienta-edicion-post
 https://luiskr.com/gn/portfolio/metcha/metcha-cms-integracion-contenido-instagram-metcha-pe
 https://luiskr.com/gn/portfolio/metcha/metcha-cms-interfaz-sistema-gestion-contenido-2-0-creacion-articulo
+https://luiskr.com/gn/portfolio/metcha/metcha-cms-jehechapy
 https://luiskr.com/gn/portfolio/metcha/metcha-cms-rediseno-sistema-gestion-contenido
-https://luiskr.com/gn/portfolio/metcha/metcha-cms-tour
 https://luiskr.com/gn/portfolio/metcha/metcha-forward-informe-2021-2022-pagina-tuichava
 https://luiskr.com/gn/portfolio/metcha/metcha-forward-informe-2021-2022-tour
 https://luiskr.com/gn/portfolio/metcha/metcha-giphy-4-6-millon-vista-jasy-yme-giphy-pe

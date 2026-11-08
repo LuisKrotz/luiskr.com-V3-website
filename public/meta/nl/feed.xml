@@ -8,7 +8,7 @@
   <description>Hoi, ik ben Luis, een software engineer met focus op UX. Momenteel werk ik bij Dell aan het Dell Design System .</description>
   <language>nl</language>
   <copyright>© 2026 Luis Krötz</copyright>
-  <lastBuildDate>Sun, 08 Nov 2026 17:53:57 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 08 Nov 2026 18:47:28 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/nl/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
@@ -248,7 +248,7 @@
     <description>Het portfolio van Marco werd in 2021 als freelanceproject ontwikkeld.</description>
     <category>marco almeida</category>
     <category>aboutmarco</category>
-    <category>aboutmarco.com, homepage full tour</category>
+    <category>aboutmarco.com, volledige tour van de homepage</category>
     <category>aboutmarco.com, mobiele tour</category>
     <category>aboutmarco.com, homepage</category>
     <category>aboutmarco.com, melissa insider</category>
@@ -270,7 +270,7 @@
     <category>cecerelê</category>
     <category>cecerele</category>
     <category>cecerelê: created in 2019 by historian joana schossler para produzir jogos, cont</category>
-    <category>cecerelê: homepage with products updated on dec. 2021</category>
+    <category>cecerelê: homepage met producten bijgewerkt op dec. 2021</category>
     <category>cecerelê: about us pagina</category>
     <category>cecerelê: product pagina</category>
     <category>cecerelê: kit para colorir adulto edição limitada, product pagina</category>
@@ -310,9 +310,9 @@
     <description>De website van Coza werd bij Transa van 2017 tot 2019 ontwikkeld.</description>
     <category>coza</category>
     <category>coza: homepage full tour</category>
-    <category>coza: mobiel full tour</category>
+    <category>coza: volledige mobiele tour</category>
     <category>coza: volledige pagina screenshot</category>
-    <category>coza: english homepage</category>
+    <category>coza: Engelse homepage</category>
     <category>coza: artikel, organização com as dicas da maysa.</category>
     <category>coza: image galerij, a cada instante da rotina. mais coza + pantone.</category>
     <category>coza: artikel, seu banheiro cheio de beleza.</category>
@@ -438,13 +438,13 @@
     <category>sage</category>
     <category>sageweb: shortcuts screenshot</category>
     <category>sageweb: 'cadastros' screenshot</category>
-    <category>sageweb: color picker screenshot</category>
-    <category>sageweb: filters screenshot</category>
-    <category>sageweb: intro screenshot</category>
-    <category>sageweb: 'mapa sageweb' screenshot</category>
+    <category>sageweb: screenshot van de kleurkiezer</category>
+    <category>sageweb: screenshot van de filters</category>
+    <category>sageweb: screenshot van de intro</category>
+    <category>sageweb: screenshot van 'mapa sageweb'</category>
     <category>sageweb: 'módulo nfe' screenshot</category>
-    <category>sageweb: shortcuts ordering screenshot</category>
-    <category>sageweb: personalization screenshot</category>
+    <category>sageweb: screenshot van het ordenen van snelkoppelingen</category>
+    <category>sageweb: screenshot van personalisatie</category>
     <category>sageweb: 'relatórios gerenciais' screenshot</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-atalhos-mozjpg-uncompressed.jpg" medium="image"/>
   </item>
@@ -455,14 +455,14 @@
     <dc:creator>Luis Krötz</dc:creator>
     <description>De website van Transa werd in 2021 ontwikkeld met Vue, CSS (Sass) en PHP (Laravel).</description>
     <category>transa</category>
-    <category>transa: feed short tour</category>
+    <category>transa: korte tour van de feed</category>
     <category>transa: video of brazilian leather's case inside transa's website.</category>
     <category>transa: video of metcha's case inside transa's website.</category>
     <category>transa: video of mor's case inside transa's website.</category>
     <category>transa: video of melissa's case inside transa's website.</category>
     <category>transa: video of mini melissa's case inside transa's website.</category>
     <category>transa: video of coza's case inside transa's website.</category>
-    <category>transa: feed tour</category>
+    <category>transa: tour van de feed</category>
     <category>transa: feed mobiele tour</category>
     <category>transa: category, brazilian leather, tour</category>
     <category>transa: category, coza, tour</category>

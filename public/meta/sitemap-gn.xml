@@ -35183,6 +35183,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/shared/scripts/i18n/push-untranslated-fixes.js</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/shared/scripts/i18n/restore-and-patch-translations.py</loc>
     <priority>0.7</priority>
   </url>
@@ -52376,8 +52380,8 @@
     </image:image>
     <video:video>
       <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/metcha/cms/metcha.com-cms.mp4.jpg-thumb.jpg</video:thumbnail_loc>
-      <video:title>METCHA CMS: tour</video:title>
-      <video:description>METCHA — METCHA CMS: tour</video:description>
+      <video:title>METCHA CMS: jehechapy</video:title>
+      <video:description>METCHA — METCHA CMS: jehechapy</video:description>
       <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/metcha/cms/metcha.com-cms.mp4</video:content_loc>
       <video:family_friendly>yes</video:family_friendly>
       <video:requires_subscription>no</video:requires_subscription>
@@ -54633,13 +54637,13 @@
     </video:video>
   </url>
   <url>
-    <loc>https://luiskr.com/gn/portfolio/metcha/metcha-cms-rediseno-sistema-gestion-contenido</loc>
+    <loc>https://luiskr.com/gn/portfolio/metcha/metcha-cms-jehechapy</loc>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/metcha/cms/cms.metcha.com-metcha's-content-management-system-redesign.mp4.jpg-thumb.jpg</video:thumbnail_loc>
-      <video:title>METCHA CMS: rediseño sistema gestión contenido</video:title>
-      <video:description>METCHA — METCHA CMS: rediseño sistema gestión contenido</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/metcha/cms/cms.metcha.com-metcha's-content-management-system-redesign.mp4</video:content_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/metcha/cms/metcha.com-cms.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:title>METCHA CMS: jehechapy</video:title>
+      <video:description>METCHA — METCHA CMS: jehechapy</video:description>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/metcha/cms/metcha.com-cms.mp4</video:content_loc>
       <video:family_friendly>yes</video:family_friendly>
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
@@ -54678,13 +54682,13 @@
     </video:video>
   </url>
   <url>
-    <loc>https://luiskr.com/gn/portfolio/metcha/metcha-cms-tour</loc>
+    <loc>https://luiskr.com/gn/portfolio/metcha/metcha-cms-rediseno-sistema-gestion-contenido</loc>
     <priority>0.6</priority>
     <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/metcha/cms/metcha.com-cms.mp4.jpg-thumb.jpg</video:thumbnail_loc>
-      <video:title>METCHA CMS: tour</video:title>
-      <video:description>METCHA — METCHA CMS: tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/metcha/cms/metcha.com-cms.mp4</video:content_loc>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/metcha/cms/cms.metcha.com-metcha's-content-management-system-redesign.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:title>METCHA CMS: rediseño sistema gestión contenido</video:title>
+      <video:description>METCHA — METCHA CMS: rediseño sistema gestión contenido</video:description>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/metcha/cms/cms.metcha.com-metcha's-content-management-system-redesign.mp4</video:content_loc>
       <video:family_friendly>yes</video:family_friendly>
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
@@ -61157,14 +61161,14 @@
     <priority>0.7</priority>
     <video:video>
       <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
-      <video:title>Vibra: A empresa mais inovadora do segmento no brasil, tour</video:title>
-      <video:description>Vibra — Vibra: A empresa mais inovadora do segmento no brasil, tour</video:description>
+      <video:title>Vibra: A empresa mais inovadora do segmento no brasil, jehechapy</video:title>
+      <video:description>Vibra — Vibra: A empresa mais inovadora do segmento no brasil, jehechapy</video:description>
       <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4</video:content_loc>
       <video:family_friendly>yes</video:family_friendly>
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>vibra</video:tag>
-      <video:tag>vibra: a empresa mais inovadora do segmento no brasil, tour</video:tag>
+      <video:tag>vibra: a empresa mais inovadora do segmento no brasil, jehechapy</video:tag>
       <video:tag>vibra: a empresa mais inovadora do segmento no brasil, tour móvil</video:tag>
       <video:tag>vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis</video:tag>
       <video:tag>vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página</video:tag>
@@ -61194,7 +61198,7 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>vibra</video:tag>
-      <video:tag>vibra: a empresa mais inovadora do segmento no brasil, tour</video:tag>
+      <video:tag>vibra: a empresa mais inovadora do segmento no brasil, jehechapy</video:tag>
       <video:tag>vibra: a empresa mais inovadora do segmento no brasil, tour móvil</video:tag>
       <video:tag>vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis</video:tag>
       <video:tag>vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página</video:tag>
@@ -61219,19 +61223,19 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-production-and-distributuon-business-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Vibra: A empresa mais inovadora do segmento no brasil, negocio producción ha distribución, página t…</image:title>
       <image:license>https://luiskr.com/gn/licencia</image:license>
-      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, tour — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand portal —…</image:caption>
+      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, jehechapy — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand port…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-our-brands-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Vibra: A empresa mais inovadora do segmento no brasil, ore marca rehegua, página tuicháva</image:title>
       <image:license>https://luiskr.com/gn/licencia</image:license>
-      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, tour — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand portal —…</image:caption>
+      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, jehechapy — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand port…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-more-than-five-decades-of-experience-and-tradition-in-aviculture-about-us-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Vibra: A empresa mais inovadora do segmento no brasil, más de cinco década experiencia ha tradición…</image:title>
       <image:license>https://luiskr.com/gn/licencia</image:license>
-      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, tour — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand portal —…</image:caption>
+      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, jehechapy — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand port…</image:caption>
     </image:image>
   </url>
   <url>
@@ -61241,7 +61245,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-more-than-five-decades-of-experience-and-tradition-in-aviculture-about-us-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Vibra: A empresa mais inovadora do segmento no brasil, más de cinco década experiencia ha tradición…</image:title>
       <image:license>https://luiskr.com/gn/licencia</image:license>
-      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, tour — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand portal —…</image:caption>
+      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, jehechapy — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand port…</image:caption>
     </image:image>
   </url>
   <url>
@@ -61251,7 +61255,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-production-and-distributuon-business-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Vibra: A empresa mais inovadora do segmento no brasil, negocio producción ha distribución, página t…</image:title>
       <image:license>https://luiskr.com/gn/licencia</image:license>
-      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, tour — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand portal —…</image:caption>
+      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, jehechapy — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand port…</image:caption>
     </image:image>
   </url>
   <url>
@@ -61261,7 +61265,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-our-brands-full-page-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Vibra: A empresa mais inovadora do segmento no brasil, ore marca rehegua, página tuicháva</image:title>
       <image:license>https://luiskr.com/gn/licencia</image:license>
-      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, tour — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand portal —…</image:caption>
+      <image:caption>vibra — vibra: a empresa mais inovadora do segmento no brasil, jehechapy — vibra: a empresa mais inovadora do segmento no brasil, tour móvil — vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis — vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página — vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper — vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve. — vibra agilize — brand port…</image:caption>
     </image:image>
   </url>
   <url>
@@ -61276,7 +61280,7 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>vibra</video:tag>
-      <video:tag>vibra: a empresa mais inovadora do segmento no brasil, tour</video:tag>
+      <video:tag>vibra: a empresa mais inovadora do segmento no brasil, jehechapy</video:tag>
       <video:tag>vibra: a empresa mais inovadora do segmento no brasil, tour móvil</video:tag>
       <video:tag>vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis</video:tag>
       <video:tag>vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página</video:tag>

@@ -35183,6 +35183,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/shared/scripts/i18n/push-untranslated-fixes.js</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/shared/scripts/i18n/restore-and-patch-translations.py</loc>
     <priority>0.7</priority>
   </url>
@@ -59104,22 +59108,22 @@
     <priority>0.7</priority>
     <video:video>
       <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg</video:thumbnail_loc>
-      <video:title>Transa: feed short tour</video:title>
-      <video:description>Transa — Transa: feed short tour</video:description>
+      <video:title>Transa: tour curto do feed</video:title>
+      <video:description>Transa — Transa: tour curto do feed</video:description>
       <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4</video:content_loc>
       <video:family_friendly>yes</video:family_friendly>
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59152,15 +59156,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59193,15 +59197,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59234,15 +59238,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59275,15 +59279,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59316,15 +59320,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59357,15 +59361,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59391,22 +59395,22 @@
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
-      <video:title>Transa: feed tour</video:title>
-      <video:description>Transa — Transa: feed tour</video:description>
+      <video:title>Transa: tour do feed</video:title>
+      <video:description>Transa — Transa: tour do feed</video:description>
       <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-tour.mp4</video:content_loc>
       <video:family_friendly>yes</video:family_friendly>
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59432,22 +59436,22 @@
     </video:video>
     <video:video>
       <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
-      <video:title>Transa: feed tour móbil</video:title>
-      <video:description>Transa — Transa: feed tour móbil</video:description>
+      <video:title>Transa: tour do feed móbil</video:title>
+      <video:description>Transa — Transa: tour do feed móbil</video:description>
       <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-mobile-mobile.mp4</video:content_loc>
       <video:family_friendly>yes</video:family_friendly>
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59480,15 +59484,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59521,15 +59525,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59562,15 +59566,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59603,15 +59607,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59644,15 +59648,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59685,15 +59689,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59726,15 +59730,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59767,15 +59771,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59808,15 +59812,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59849,15 +59853,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59890,15 +59894,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -59926,181 +59930,181 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--134-minutos-com-vitorino-campos-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ 134-minutos-com-vitorino-campos-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--a-chat-with-the-sneakerhead-beija-marie-velez-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ a-chat-with-the-sneakerhead-beija-marie-velez, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--a-imperatriz-do-couro-patricia-vieira-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ a-imperatriz-do-couro-patricia-vieira, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--anitta-fala-sobre-a-sua-relacao-com-a-nossa-collab-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ anitta-fala-sobre-a-sua-relacao-com-a-nossa-collab, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--bem-vindos-a-venus-brasileira-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ bem-vindos-a-venus-brasileira, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--coza-construindo-amor-com-elen-maurmann-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ coza-construindo-amor-com-elen-maurmann-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--coza-pantone-collab-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ coza-pantone-collab-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--design-na-pele-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ deseño-na-pele-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--editorial-especial-canvas-2021-06-03-14-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ editorial-especial-canvas-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--eiichi-katsukawa-incorporates-visionary-concepts-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ eiichi-katsukawa-incorporates-visionary-concepts-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--em-parceria-com-a-arquitetura-nacional-painel-de-408m2-faz-pulsar-o-centro-de-sao-paulo-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ em-parceria-com-a-arquitetura-nacional-painel-de-408m2-faz-pulsar-o-centro-de-sao-p…</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--exclusive-chat-with-dominic-the-shoe-surgeon-ciambrone-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ exclusive-chat-with-dominic-the-shoe-surgeon-ciambrone, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--fabrica-de-presentes-coza-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ fabrica-de-presentes-coza, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--jeremy-scott-at-galeria-melissa-uk-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ jeremy-scott-at-galeria-melissa-uk, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--melissa-papete-platform-rider-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ melissa-papete-platform-rider, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--melissa-portraits-sarune-paulauskaite-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ melissa-portraits-sarune-paulauskaite, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--melissa-viktor-rolf-direct-from-paris-fashion-week-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ melissa-viktor-rolf-direct-from-paris-fashion-week, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--meu-pote-coza-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ meu-pote-coza, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--mini-melissa-hello-kitty-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ mini-melissa-hello-kitty, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--nova-colecao-coza-pantone-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ nova-colecao-coza-pantone, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--novas-ideias-sempre-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ novas-ideias-sempre-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--o-brazilian-leather-convidou-patricia-a-assinar-um-ensaio-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ o-brazilian-leather-convidou-patricia-a-assinar-um-ensaio, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--o-que-e-familia-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ o-que-e-familia, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--quem-brilha-mais-o-cha-o-ou-o-mop-mor-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ quem-brilha-mais-o-cha-o-ou-o-mop-mor, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--ruohan-wang-s-on-human-expression-and-nature-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ ruohan-wang-s-on-human-expression-and-nature, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--sheron-barber-roots-and-passion-into-custom-pieces-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ sheron-barber-roots-and-passion-into-custom-pieces, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--stefan-sagmeister-opens-up-about-his-new-project-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ stefan-sagmeister-opens-up-about-his-novo-project, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--the-story-behind-the-metcha-x-tss-aj-xi-prototype-collab-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ the-story-behind-the-metcha-x-tss-aj-xi-prototype-collab, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--to-celebrate-mickey-s-birthday-a-collab-full-of-classics-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ to-celebrate-mickey-s-birthday-a-collab-full-of-classics, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--todo-brasileiro-tem-um-pouco-do-sertao-ronaldo-fraga-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ todo-brasileiro-tem-um-pouco-do-sertao-ronaldo-fraga, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
     <video:video>
       <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/join-us/transainc.com-join-us-short-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
@@ -60111,15 +60115,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -60151,7 +60155,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--134-minutos-com-vitorino-campos-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ 134-minutos-com-vitorino-campos-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60161,7 +60165,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--a-chat-with-the-sneakerhead-beija-marie-velez-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ a-chat-with-the-sneakerhead-beija-marie-velez, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60171,7 +60175,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--a-imperatriz-do-couro-patricia-vieira-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ a-imperatriz-do-couro-patricia-vieira, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60181,7 +60185,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--anitta-fala-sobre-a-sua-relacao-com-a-nossa-collab-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ anitta-fala-sobre-a-sua-relacao-com-a-nossa-collab, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60191,7 +60195,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--bem-vindos-a-venus-brasileira-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ bem-vindos-a-venus-brasileira, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60206,15 +60210,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -60246,7 +60250,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--coza-construindo-amor-com-elen-maurmann-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ coza-construindo-amor-com-elen-maurmann-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60256,7 +60260,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--coza-pantone-collab-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ coza-pantone-collab-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60266,7 +60270,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--design-na-pele-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ deseño-na-pele-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60281,15 +60285,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -60321,7 +60325,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--editorial-especial-canvas-2021-06-03-14-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ editorial-especial-canvas-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60331,7 +60335,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--eiichi-katsukawa-incorporates-visionary-concepts-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ eiichi-katsukawa-incorporates-visionary-concepts-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60341,7 +60345,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--em-parceria-com-a-arquitetura-nacional-painel-de-408m2-faz-pulsar-o-centro-de-sao-paulo-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ em-parceria-com-a-arquitetura-nacional-painel-de-408m2-faz-pulsar-o-centro-de-sao-p…</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60351,7 +60355,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--exclusive-chat-with-dominic-the-shoe-surgeon-ciambrone-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ exclusive-chat-with-dominic-the-shoe-surgeon-ciambrone, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60361,7 +60365,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--fabrica-de-presentes-coza-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ fabrica-de-presentes-coza, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60371,7 +60375,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--jeremy-scott-at-galeria-melissa-uk-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ jeremy-scott-at-galeria-melissa-uk, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60381,7 +60385,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--melissa-papete-platform-rider-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ melissa-papete-platform-rider, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60391,7 +60395,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--melissa-portraits-sarune-paulauskaite-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ melissa-portraits-sarune-paulauskaite, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60401,7 +60405,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--melissa-viktor-rolf-direct-from-paris-fashion-week-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ melissa-viktor-rolf-direct-from-paris-fashion-week, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60411,7 +60415,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--meu-pote-coza-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ meu-pote-coza, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60421,7 +60425,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--mini-melissa-hello-kitty-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ mini-melissa-hello-kitty, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60431,7 +60435,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--nova-colecao-coza-pantone-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ nova-colecao-coza-pantone, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60441,7 +60445,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--novas-ideias-sempre-2021-06-03-15-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ novas-ideias-sempre-20, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60451,7 +60455,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--o-brazilian-leather-convidou-patricia-a-assinar-um-ensaio-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ o-brazilian-leather-convidou-patricia-a-assinar-um-ensaio, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60466,15 +60470,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -60506,7 +60510,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--o-que-e-familia-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ o-que-e-familia, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60521,15 +60525,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -60561,7 +60565,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--quem-brilha-mais-o-cha-o-ou-o-mop-mor-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ quem-brilha-mais-o-cha-o-ou-o-mop-mor, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60571,7 +60575,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--ruohan-wang-s-on-human-expression-and-nature-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ ruohan-wang-s-on-human-expression-and-nature, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60581,7 +60585,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--sheron-barber-roots-and-passion-into-custom-pieces-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ sheron-barber-roots-and-passion-into-custom-pieces, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60591,7 +60595,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--stefan-sagmeister-opens-up-about-his-new-project-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ stefan-sagmeister-opens-up-about-his-novo-project, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60606,15 +60610,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -60646,7 +60650,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--the-story-behind-the-metcha-x-tss-aj-xi-prototype-collab-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ the-story-behind-the-metcha-x-tss-aj-xi-prototype-collab, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60656,7 +60660,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--to-celebrate-mickey-s-birthday-a-collab-full-of-classics-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ to-celebrate-mickey-s-birthday-a-collab-full-of-classics, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60666,7 +60670,7 @@
       <image:loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/articles/transainc.com-article--todo-brasileiro-tem-um-pouco-do-sertao-ronaldo-fraga-2021-06-03-mozjpg-uncompressed.jpg</image:loc>
       <image:title>Transa: artigo/ todo-brasileiro-tem-um-pouco-do-sertao-ronaldo-fraga, captura de pantalla</image:title>
       <image:license>https://luiskr.com/gl/licenza</image:license>
-      <image:caption>transa — transa: feed short tour — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: feed tour — transa: feed tour móbil — transa: category, brazilian leather, tour — t…</image:caption>
+      <image:caption>transa — transa: tour curto do feed — transa: vídeo of brazilian leather's caso inside transa's sitio web. — transa: vídeo of metcha's caso inside transa's sitio web. — transa: vídeo of mor's caso inside transa's sitio web. — transa: vídeo of melissa's caso inside transa's sitio web. — transa: vídeo of mini melissa's caso inside transa's sitio web. — transa: vídeo of coza's caso inside transa's sitio web. — transa: tour do feed — transa: tour do feed móbil — transa: category, brazilian leather,…</image:caption>
     </image:image>
   </url>
   <url>
@@ -60681,15 +60685,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -60726,15 +60730,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -60771,15 +60775,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -60816,15 +60820,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -60861,15 +60865,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -60906,105 +60910,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
-      <video:tag>transa: category, brazilian leather, tour</video:tag>
-      <video:tag>transa: category, coza, tour</video:tag>
-      <video:tag>transa: category, melissa, tour</video:tag>
-      <video:tag>transa: category, metcha, tour</video:tag>
-      <video:tag>transa: category, mini melissa, tour</video:tag>
-      <video:tag>transa: category, mor, tour</video:tag>
-      <video:tag>o sitio web de transa foi desenvolvido con vue, css (sass) e php (laravel) en 20</video:tag>
-      <video:tag>transa inc</video:tag>
-      <video:tag>agency</video:tag>
-      <video:tag>infinite scroll</video:tag>
-      <video:tag>custom cms</video:tag>
-      <video:tag>proxecto web</video:tag>
-      <video:tag>estudo de caso</video:tag>
-      <video:tag>deseño web</video:tag>
-      <video:tag>desenvolvemento de sitio web</video:tag>
-      <video:tag>proxecto front-end</video:tag>
-      <video:tag>luis krötz</video:tag>
-      <video:tag>luis krotz</video:tag>
-      <video:tag>luiskr.com</video:tag>
-      <video:tag>portafolio</video:tag>
-      <video:tag>portafolio de luis krötz</video:tag>
-      <video:tag>desenvolvedor front-end</video:tag>
-    </video:video>
-  </url>
-  <url>
-    <loc>https://luiskr.com/gl/portfolio/transa/transa-feed-tour</loc>
-    <priority>0.6</priority>
-    <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
-      <video:title>Transa: feed tour</video:title>
-      <video:description>Transa — Transa: feed tour</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-tour.mp4</video:content_loc>
-      <video:family_friendly>yes</video:family_friendly>
-      <video:requires_subscription>no</video:requires_subscription>
-      <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
-      <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
-      <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
-      <video:tag>transa: category, brazilian leather, tour</video:tag>
-      <video:tag>transa: category, coza, tour</video:tag>
-      <video:tag>transa: category, melissa, tour</video:tag>
-      <video:tag>transa: category, metcha, tour</video:tag>
-      <video:tag>transa: category, mini melissa, tour</video:tag>
-      <video:tag>transa: category, mor, tour</video:tag>
-      <video:tag>o sitio web de transa foi desenvolvido con vue, css (sass) e php (laravel) en 20</video:tag>
-      <video:tag>transa inc</video:tag>
-      <video:tag>agency</video:tag>
-      <video:tag>infinite scroll</video:tag>
-      <video:tag>custom cms</video:tag>
-      <video:tag>proxecto web</video:tag>
-      <video:tag>estudo de caso</video:tag>
-      <video:tag>deseño web</video:tag>
-      <video:tag>desenvolvemento de sitio web</video:tag>
-      <video:tag>proxecto front-end</video:tag>
-      <video:tag>luis krötz</video:tag>
-      <video:tag>luis krotz</video:tag>
-      <video:tag>luiskr.com</video:tag>
-      <video:tag>portafolio</video:tag>
-      <video:tag>portafolio de luis krötz</video:tag>
-      <video:tag>desenvolvedor front-end</video:tag>
-    </video:video>
-  </url>
-  <url>
-    <loc>https://luiskr.com/gl/portfolio/transa/transa-feed-tour-mobil</loc>
-    <priority>0.6</priority>
-    <video:video>
-      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
-      <video:title>Transa: feed tour móbil</video:title>
-      <video:description>Transa — Transa: feed tour móbil</video:description>
-      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-mobile-mobile.mp4</video:content_loc>
-      <video:family_friendly>yes</video:family_friendly>
-      <video:requires_subscription>no</video:requires_subscription>
-      <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
-      <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
-      <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -61041,15 +60955,105 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
+      <video:tag>transa: category, brazilian leather, tour</video:tag>
+      <video:tag>transa: category, coza, tour</video:tag>
+      <video:tag>transa: category, melissa, tour</video:tag>
+      <video:tag>transa: category, metcha, tour</video:tag>
+      <video:tag>transa: category, mini melissa, tour</video:tag>
+      <video:tag>transa: category, mor, tour</video:tag>
+      <video:tag>o sitio web de transa foi desenvolvido con vue, css (sass) e php (laravel) en 20</video:tag>
+      <video:tag>transa inc</video:tag>
+      <video:tag>agency</video:tag>
+      <video:tag>infinite scroll</video:tag>
+      <video:tag>custom cms</video:tag>
+      <video:tag>proxecto web</video:tag>
+      <video:tag>estudo de caso</video:tag>
+      <video:tag>deseño web</video:tag>
+      <video:tag>desenvolvemento de sitio web</video:tag>
+      <video:tag>proxecto front-end</video:tag>
+      <video:tag>luis krötz</video:tag>
+      <video:tag>luis krotz</video:tag>
+      <video:tag>luiskr.com</video:tag>
+      <video:tag>portafolio</video:tag>
+      <video:tag>portafolio de luis krötz</video:tag>
+      <video:tag>desenvolvedor front-end</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://luiskr.com/gl/portfolio/transa/transa-tour-do-feed</loc>
+    <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-tour.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:title>Transa: tour do feed</video:title>
+      <video:description>Transa — Transa: tour do feed</video:description>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-tour.mp4</video:content_loc>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:requires_subscription>no</video:requires_subscription>
+      <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
+      <video:tag>transa</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
+      <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
+      <video:tag>transa: category, brazilian leather, tour</video:tag>
+      <video:tag>transa: category, coza, tour</video:tag>
+      <video:tag>transa: category, melissa, tour</video:tag>
+      <video:tag>transa: category, metcha, tour</video:tag>
+      <video:tag>transa: category, mini melissa, tour</video:tag>
+      <video:tag>transa: category, mor, tour</video:tag>
+      <video:tag>o sitio web de transa foi desenvolvido con vue, css (sass) e php (laravel) en 20</video:tag>
+      <video:tag>transa inc</video:tag>
+      <video:tag>agency</video:tag>
+      <video:tag>infinite scroll</video:tag>
+      <video:tag>custom cms</video:tag>
+      <video:tag>proxecto web</video:tag>
+      <video:tag>estudo de caso</video:tag>
+      <video:tag>deseño web</video:tag>
+      <video:tag>desenvolvemento de sitio web</video:tag>
+      <video:tag>proxecto front-end</video:tag>
+      <video:tag>luis krötz</video:tag>
+      <video:tag>luis krotz</video:tag>
+      <video:tag>luiskr.com</video:tag>
+      <video:tag>portafolio</video:tag>
+      <video:tag>portafolio de luis krötz</video:tag>
+      <video:tag>desenvolvedor front-end</video:tag>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://luiskr.com/gl/portfolio/transa/transa-tour-do-feed-mobil</loc>
+    <priority>0.6</priority>
+    <video:video>
+      <video:thumbnail_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-mobile-mobile.mp4.jpg-thumb.jpg</video:thumbnail_loc>
+      <video:title>Transa: tour do feed móbil</video:title>
+      <video:description>Transa — Transa: tour do feed móbil</video:description>
+      <video:content_loc>https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2021/transainc.com-mobile-mobile.mp4</video:content_loc>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:requires_subscription>no</video:requires_subscription>
+      <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
+      <video:tag>transa</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
+      <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -61086,15 +61090,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -61131,15 +61135,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -61176,15 +61180,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -61221,15 +61225,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -61266,15 +61270,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>
@@ -61311,15 +61315,15 @@
       <video:requires_subscription>no</video:requires_subscription>
       <video:uploader info="https://luiskr.com">Luis Krötz</video:uploader>
       <video:tag>transa</video:tag>
-      <video:tag>transa: feed short tour</video:tag>
+      <video:tag>transa: tour curto do feed</video:tag>
       <video:tag>transa: vídeo of brazilian leather's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of metcha's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mor's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of mini melissa's caso inside transa's sitio web.</video:tag>
       <video:tag>transa: vídeo of coza's caso inside transa's sitio web.</video:tag>
-      <video:tag>transa: feed tour</video:tag>
-      <video:tag>transa: feed tour móbil</video:tag>
+      <video:tag>transa: tour do feed</video:tag>
+      <video:tag>transa: tour do feed móbil</video:tag>
       <video:tag>transa: category, brazilian leather, tour</video:tag>
       <video:tag>transa: category, coza, tour</video:tag>
       <video:tag>transa: category, melissa, tour</video:tag>

@@ -8,7 +8,7 @@
   <description>Ola, son Luis, un enxeñeiro de software centrado en UX. Actualmente traballo en Dell no Dell Design System .</description>
   <language>gl</language>
   <copyright>© 2026 Luis Krötz</copyright>
-  <lastBuildDate>Sun, 08 Nov 2026 17:53:57 GMT</lastBuildDate>
+  <lastBuildDate>Sun, 08 Nov 2026 18:47:28 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/gl/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
@@ -455,15 +455,15 @@
     <dc:creator>Luis Krötz</dc:creator>
     <description>O sitio web de Transa foi desenvolvido con Vue, CSS (Sass) e PHP (Laravel) en 2021.</description>
     <category>transa</category>
-    <category>transa: feed short tour</category>
+    <category>transa: tour curto do feed</category>
     <category>transa: vídeo of brazilian leather's caso inside transa's sitio web.</category>
     <category>transa: vídeo of metcha's caso inside transa's sitio web.</category>
     <category>transa: vídeo of mor's caso inside transa's sitio web.</category>
     <category>transa: vídeo of melissa's caso inside transa's sitio web.</category>
     <category>transa: vídeo of mini melissa's caso inside transa's sitio web.</category>
     <category>transa: vídeo of coza's caso inside transa's sitio web.</category>
-    <category>transa: feed tour</category>
-    <category>transa: feed tour móbil</category>
+    <category>transa: tour do feed</category>
+    <category>transa: tour do feed móbil</category>
     <category>transa: category, brazilian leather, tour</category>
     <category>transa: category, coza, tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg"/>

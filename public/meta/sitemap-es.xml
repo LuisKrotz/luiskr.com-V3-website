@@ -35183,6 +35183,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/shared/scripts/i18n/push-untranslated-fixes.js</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/shared/scripts/i18n/restore-and-patch-translations.py</loc>
     <priority>0.7</priority>
   </url>
