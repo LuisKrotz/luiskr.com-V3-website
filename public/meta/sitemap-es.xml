@@ -1303,6 +1303,14 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/core/tokens/canvas</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/core/tokens/canvas/paint.ts</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/core/tokens/classes</loc>
     <priority>0.7</priority>
   </url>
@@ -2224,6 +2232,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/core/utils/canvas/gl-program.ts</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/core/utils/canvas/glsl.ts</loc>
     <priority>0.7</priority>
   </url>
   <url>

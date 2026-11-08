@@ -3064,6 +3064,8 @@ https://luiskr.com/docs/core/tokens/attrs/svg.ts
 https://luiskr.com/docs/core/tokens/attrs/values.ts
 https://luiskr.com/docs/core/tokens/base.js
 https://luiskr.com/docs/core/tokens/base.ts
+https://luiskr.com/docs/core/tokens/canvas
+https://luiskr.com/docs/core/tokens/canvas/paint.ts
 https://luiskr.com/docs/core/tokens/classes
 https://luiskr.com/docs/core/tokens/classes.ts
 https://luiskr.com/docs/core/tokens/classes/a11y.ts
@@ -3295,6 +3297,7 @@ https://luiskr.com/docs/core/utils/canvas/css-color.ts
 https://luiskr.com/docs/core/utils/canvas/dom-font.ts
 https://luiskr.com/docs/core/utils/canvas/gl-lifecycle.ts
 https://luiskr.com/docs/core/utils/canvas/gl-program.ts
+https://luiskr.com/docs/core/utils/canvas/glsl.ts
 https://luiskr.com/docs/core/utils/canvas/loaders
 https://luiskr.com/docs/core/utils/canvas/loaders/intro-loader.ts
 https://luiskr.com/docs/core/utils/canvas/loaders/menu-background
