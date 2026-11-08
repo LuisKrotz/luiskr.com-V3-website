@@ -3711,6 +3711,7 @@ https://luiskr.com/docs/coverage-core/core/tokens/jsx/props.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/jsx/svg.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/layout
 https://luiskr.com/docs/coverage-core/core/tokens/layout/breakpoints.ts.html
+https://luiskr.com/docs/coverage-core/core/tokens/layout/css-classes.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/layout/grid.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/layout/index.html
 https://luiskr.com/docs/coverage-core/core/tokens/layout/masonry.ts.html
@@ -3974,6 +3975,7 @@ https://luiskr.com/docs/coverage-core/core/utils/perf/stats/network.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/print
 https://luiskr.com/docs/coverage-core/core/utils/print/index.html
 https://luiskr.com/docs/coverage-core/core/utils/print/print.ts.html
+https://luiskr.com/docs/coverage-core/core/utils/responsive-css.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/schema.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/service-worker.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/share-gallery.ts.html

@@ -3891,6 +3891,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/tokens/layout/css-classes.ts.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/coverage-core/core/tokens/layout/grid.ts.html</loc>
     <priority>0.7</priority>
   </url>
@@ -4940,6 +4944,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/coverage-core/core/utils/print/print.ts.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/utils/responsive-css.ts.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
