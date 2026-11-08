@@ -35079,6 +35079,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/shared/scripts/build/minify-wasm-glue.mjs</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/shared/scripts/build/playground-share.mjs</loc>
     <priority>0.7</priority>
   </url>

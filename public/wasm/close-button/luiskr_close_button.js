@@ -1,861 +1,642 @@
 /* @ts-self-types="./luiskr_close_button.d.ts" */
-
-/**
- * Public wasm surface — one button canvas per instance.
- */
 export class CloseButton {
   __destroy_into_raw() {
-    const ptr = this.__wbg_ptr
-    this.__wbg_ptr = 0
-    CloseButtonFinalization.unregister(this)
-    return ptr
+    const t = this.__wbg_ptr
+    return ((this.__wbg_ptr = 0), i.unregister(this), t)
   }
   free() {
-    const ptr = this.__destroy_into_raw()
-    wasm.__wbg_closebutton_free(ptr, 0)
+    const t = this.__destroy_into_raw()
+    L.__wbg_closebutton_free(t, 0)
   }
-  /**
-   * `click` — registers a click for the shockwave ring: the bridge
-   * passes the frame clock's current seconds (the shader computes
-   * `time - click_time` for ring expansion/fade).
-   *
-   * @param time The frame clock's current seconds.
-   * @param {number} time
-   */
-  click(time) {
-    wasm.closebutton_click(this.__wbg_ptr, time)
+  click(t) {
+    L.closebutton_click(this.__wbg_ptr, t)
   }
-  /**
-   * `frame` — one animation tick: pack, write, draw.
-   *
-   * @param dt Seconds since the previous call.
-   * @param {number} dt
-   */
-  frame(dt) {
-    wasm.closebutton_frame(this.__wbg_ptr, dt)
+  frame(t) {
+    L.closebutton_frame(this.__wbg_ptr, t)
   }
-  /**
-   * `init` — device + pipeline. Rejection → JS keeps the WebGL
-   * button; mounting can never regress the page.
-   *
-   * @param canvas The widget's dedicated canvas.
-   * @param device The shared GPUDevice (one per page, from the JS bridge).
-   * @returns Ok on a live surface, Err(JsValue) on failure.
-   * @param {HTMLCanvasElement} canvas
-   * @param {GPUDevice} device
-   */
-  init(canvas, device) {
+  init(t, n) {
     try {
-      const retptr = wasm.__wbindgen_add_to_stack_pointer(-16)
-      wasm.closebutton_init(retptr, this.__wbg_ptr, addHeapObject(canvas), addHeapObject(device))
-      var r0 = getDataViewMemory0().getInt32(retptr + 4 * 0, true)
-      var r1 = getDataViewMemory0().getInt32(retptr + 4 * 1, true)
-      if (r1) {
-        throw takeObject(r0)
-      }
+      const r = L.__wbindgen_add_to_stack_pointer(-16)
+      L.closebutton_init(r, this.__wbg_ptr, u(t), u(n))
+      var e = g().getInt32(r + 0, !0)
+      if (g().getInt32(r + 4, !0)) throw v(e)
     } finally {
-      wasm.__wbindgen_add_to_stack_pointer(16)
+      L.__wbindgen_add_to_stack_pointer(16)
     }
   }
-  /**
-   * `CloseButton::new` — un-initialized widget; `init` must follow.
-   */
   constructor() {
-    const ret = wasm.closebutton_new()
-    this.__wbg_ptr = ret
-    CloseButtonFinalization.register(this, this.__wbg_ptr, this)
-    return this
+    const t = L.closebutton_new()
+    return ((this.__wbg_ptr = t), i.register(this, this.__wbg_ptr, this), this)
   }
-  /**
-   * `resize` — canvas-bitmap change → surface re-configure.
-   *
-   * @param _w Device-pixel width (element-side).
-   * @param _h Device-pixel height.
-   * @param {number} w
-   * @param {number} h
-   */
-  resize(w, h) {
-    wasm.closebutton_resize(this.__wbg_ptr, w, h)
+  resize(t, n) {
+    L.closebutton_resize(this.__wbg_ptr, t, n)
   }
-  /**
-   * `set_size` — the canvas's CSS-pixel size (res + rect).
-   *
-   * @param w Canvas width in CSS pixels.
-   * @param h Canvas height in CSS pixels.
-   * @param {number} w
-   * @param {number} h
-   */
-  set_size(w, h) {
-    wasm.closebutton_set_size(this.__wbg_ptr, w, h)
+  set_size(t, n) {
+    L.closebutton_set_size(this.__wbg_ptr, t, n)
   }
-  /**
-   * `set_state` — bundled scalar update: liquid fill, X stroke
-   * progress, X rotation. All eased JS-side; the shader just draws.
-   *
-   * @param liquid 0..1 fill height.
-   * @param draw 0..1 X stroke progress.
-   * @param rot X rotation in radians.
-   * @param {number} liquid
-   * @param {number} draw
-   * @param {number} rot
-   */
-  set_state(liquid, draw, rot) {
-    wasm.closebutton_set_state(this.__wbg_ptr, liquid, draw, rot)
+  set_state(t, n, e) {
+    L.closebutton_set_state(this.__wbg_ptr, t, n, e)
   }
 }
-if (Symbol.dispose) CloseButton.prototype[Symbol.dispose] = CloseButton.prototype.free
-function __wbg_get_imports() {
-  const import0 = {
+function t() {
+  const t = {
     __proto__: null,
-    __wbg___wbindgen_debug_string_4687d8d8c2017d52: function (arg0, arg1) {
-      const ret = debugString(getObject(arg1))
-      const ptr1 = passStringToWasm0(ret, wasm.__wbindgen_export, wasm.__wbindgen_export2)
-      const len1 = WASM_VECTOR_LEN
-      getDataViewMemory0().setInt32(arg0 + 4 * 1, len1, true)
-      getDataViewMemory0().setInt32(arg0 + 4 * 0, ptr1, true)
+    __wbg___wbindgen_debug_string_4687d8d8c2017d52: function (t, n) {
+      const e = (function (t, n, e) {
+          if (void 0 === e) {
+            const e = S.encode(t),
+              r = n(e.length, 1) >>> 0
+            return (
+              w()
+                .subarray(r, r + e.length)
+                .set(e),
+              (P = e.length),
+              r
+            )
+          }
+          let r = t.length,
+            o = n(r, 1) >>> 0
+          const _ = w()
+          let c = 0
+          for (; c < r; c++) {
+            const n = t.charCodeAt(c)
+            if (n > 127) break
+            _[o + c] = n
+          }
+          if (c !== r) {
+            ;(0 !== c && (t = t.slice(c)), (o = e(o, r, (r = c + 3 * t.length), 1) >>> 0))
+            const n = w().subarray(o + c, o + r)
+            ;((c += S.encodeInto(t, n).written), (o = e(o, r, c, 1) >>> 0))
+          }
+          return ((P = c), o)
+        })(a(m(n)), L.__wbindgen_export, L.__wbindgen_export2),
+        r = P
+      ;(g().setInt32(t + 4, r, !0), g().setInt32(t + 0, e, !0))
     },
-    __wbg___wbindgen_is_null_e343b7d08827ba72: function (arg0) {
-      const ret = getObject(arg0) === null
-      return ret
+    __wbg___wbindgen_is_null_e343b7d08827ba72: function (t) {
+      return null === m(t)
     },
-    __wbg___wbindgen_is_undefined_8865fb403f8fe9d8: function (arg0) {
-      const ret = getObject(arg0) === undefined
-      return ret
+    __wbg___wbindgen_is_undefined_8865fb403f8fe9d8: function (t) {
+      return void 0 === m(t)
     },
-    __wbg___wbindgen_throw_41e9ee4f547fc59a: function (arg0, arg1) {
-      throw new Error(getStringFromWasm0(arg0, arg1))
+    __wbg___wbindgen_throw_41e9ee4f547fc59a: function (t, n) {
+      throw new Error(d(t, n))
     },
     __wbg_beginRenderPass_46bc75d13eaf7381: function () {
-      return handleError(function (arg0, arg1) {
-        const ret = getObject(arg0).beginRenderPass(getObject(arg1))
-        return addHeapObject(ret)
+      return p(function (t, n) {
+        return u(m(t).beginRenderPass(m(n)))
       }, arguments)
     },
     __wbg_configure_a4e26031ba2da6a2: function () {
-      return handleError(function (arg0, arg1) {
-        getObject(arg0).configure(getObject(arg1))
+      return p(function (t, n) {
+        m(t).configure(m(n))
       }, arguments)
     },
     __wbg_createBindGroupLayout_dd6a685e68699be9: function () {
-      return handleError(function (arg0, arg1) {
-        const ret = getObject(arg0).createBindGroupLayout(getObject(arg1))
-        return addHeapObject(ret)
+      return p(function (t, n) {
+        return u(m(t).createBindGroupLayout(m(n)))
       }, arguments)
     },
-    __wbg_createBindGroup_297f726263493b7a: function (arg0, arg1) {
-      const ret = getObject(arg0).createBindGroup(getObject(arg1))
-      return addHeapObject(ret)
+    __wbg_createBindGroup_297f726263493b7a: function (t, n) {
+      return u(m(t).createBindGroup(m(n)))
     },
     __wbg_createBuffer_7d58b37b7042f31f: function () {
-      return handleError(function (arg0, arg1) {
-        const ret = getObject(arg0).createBuffer(getObject(arg1))
-        return addHeapObject(ret)
+      return p(function (t, n) {
+        return u(m(t).createBuffer(m(n)))
       }, arguments)
     },
-    __wbg_createCommandEncoder_d26cb1fdb68219f7: function (arg0, arg1) {
-      const ret = getObject(arg0).createCommandEncoder(getObject(arg1))
-      return addHeapObject(ret)
+    __wbg_createCommandEncoder_d26cb1fdb68219f7: function (t, n) {
+      return u(m(t).createCommandEncoder(m(n)))
     },
-    __wbg_createPipelineLayout_39a9a7f694e28389: function (arg0, arg1) {
-      const ret = getObject(arg0).createPipelineLayout(getObject(arg1))
-      return addHeapObject(ret)
+    __wbg_createPipelineLayout_39a9a7f694e28389: function (t, n) {
+      return u(m(t).createPipelineLayout(m(n)))
     },
     __wbg_createRenderPipeline_e7c57f75917917e4: function () {
-      return handleError(function (arg0, arg1) {
-        const ret = getObject(arg0).createRenderPipeline(getObject(arg1))
-        return addHeapObject(ret)
+      return p(function (t, n) {
+        return u(m(t).createRenderPipeline(m(n)))
       }, arguments)
     },
-    __wbg_createShaderModule_274373c4cacce3a0: function (arg0, arg1) {
-      const ret = getObject(arg0).createShaderModule(getObject(arg1))
-      return addHeapObject(ret)
+    __wbg_createShaderModule_274373c4cacce3a0: function (t, n) {
+      return u(m(t).createShaderModule(m(n)))
     },
     __wbg_createView_7520397d720e9d7d: function () {
-      return handleError(function (arg0) {
-        const ret = getObject(arg0).createView()
-        return addHeapObject(ret)
+      return p(function (t) {
+        return u(m(t).createView())
       }, arguments)
     },
-    __wbg_draw_b3ff1fa9ff891153: function (arg0, arg1) {
-      getObject(arg0).draw(arg1 >>> 0)
+    __wbg_draw_b3ff1fa9ff891153: function (t, n) {
+      m(t).draw(n >>> 0)
     },
-    __wbg_end_a97f51ac1f092bfe: function (arg0) {
-      getObject(arg0).end()
+    __wbg_end_a97f51ac1f092bfe: function (t) {
+      m(t).end()
     },
-    __wbg_finish_489db1750712613c: function (arg0) {
-      const ret = getObject(arg0).finish()
-      return addHeapObject(ret)
+    __wbg_finish_489db1750712613c: function (t) {
+      return u(m(t).finish())
     },
     __wbg_getContext_635e36719cad2623: function () {
-      return handleError(function (arg0, arg1, arg2) {
-        const ret = getObject(arg0).getContext(getStringFromWasm0(arg1, arg2))
-        return isLikeNone(ret) ? 0 : addHeapObject(ret)
+      return p(function (t, n, e) {
+        const r = m(t).getContext(d(n, e))
+        return x(r) ? 0 : u(r)
       }, arguments)
     },
     __wbg_getCurrentTexture_f9b3ddbfb8575837: function () {
-      return handleError(function (arg0) {
-        const ret = getObject(arg0).getCurrentTexture()
-        return addHeapObject(ret)
+      return p(function (t) {
+        return u(m(t).getCurrentTexture())
       }, arguments)
     },
-    __wbg_getPreferredCanvasFormat_4d28b652aa67cc74: function (arg0) {
-      const ret = getObject(arg0).getPreferredCanvasFormat()
-      return (__wbindgen_enum_GpuTextureFormat.indexOf(ret) + 1 || 102) - 1
+    __wbg_getPreferredCanvasFormat_4d28b652aa67cc74: function (t) {
+      const n = m(t).getPreferredCanvasFormat()
+      return (s.indexOf(n) + 1 || 102) - 1
     },
     __wbg_get_31af05bd4842a84f: function () {
-      return handleError(function (arg0, arg1) {
-        const ret = Reflect.get(getObject(arg0), getObject(arg1))
-        return addHeapObject(ret)
+      return p(function (t, n) {
+        return u(Reflect.get(m(t), m(n)))
       }, arguments)
     },
     __wbg_new_617a8cdb8bb1130e: function () {
-      const ret = new Object()
-      return addHeapObject(ret)
+      return u(new Object())
     },
-    __wbg_queue_17ba8833afbd540b: function (arg0) {
-      const ret = getObject(arg0).queue
-      return addHeapObject(ret)
+    __wbg_queue_17ba8833afbd540b: function (t) {
+      return u(m(t).queue)
     },
-    __wbg_setBindGroup_4af09961dd6fd6d4: function (arg0, arg1, arg2) {
-      getObject(arg0).setBindGroup(arg1 >>> 0, getObject(arg2))
+    __wbg_setBindGroup_4af09961dd6fd6d4: function (t, n, e) {
+      m(t).setBindGroup(n >>> 0, m(e))
     },
-    __wbg_setPipeline_9870f87d9e0a49ab: function (arg0, arg1) {
-      getObject(arg0).setPipeline(getObject(arg1))
+    __wbg_setPipeline_9870f87d9e0a49ab: function (t, n) {
+      m(t).setPipeline(m(n))
     },
-    __wbg_setScissorRect_78603d18fd6477a3: function (arg0, arg1, arg2, arg3, arg4) {
-      getObject(arg0).setScissorRect(arg1 >>> 0, arg2 >>> 0, arg3 >>> 0, arg4 >>> 0)
+    __wbg_setScissorRect_78603d18fd6477a3: function (t, n, e, r, o) {
+      m(t).setScissorRect(n >>> 0, e >>> 0, r >>> 0, o >>> 0)
     },
-    __wbg_set_a_d2dae9a62946ba86: function (arg0, arg1) {
-      getObject(arg0).a = arg1
+    __wbg_set_a_d2dae9a62946ba86: function (t, n) {
+      m(t).a = n
     },
-    __wbg_set_alpha_b14827cf8b4ac26a: function (arg0, arg1) {
-      getObject(arg0).alpha = getObject(arg1)
+    __wbg_set_alpha_b14827cf8b4ac26a: function (t, n) {
+      m(t).alpha = m(n)
     },
-    __wbg_set_alpha_mode_16c3966c224ad4a9: function (arg0, arg1) {
-      getObject(arg0).alphaMode = __wbindgen_enum_GpuCanvasAlphaMode[arg1]
+    __wbg_set_alpha_mode_16c3966c224ad4a9: function (t, n) {
+      m(t).alphaMode = o[n]
     },
-    __wbg_set_b_670dfc0631dcb9c1: function (arg0, arg1) {
-      getObject(arg0).b = arg1
+    __wbg_set_b_670dfc0631dcb9c1: function (t, n) {
+      m(t).b = n
     },
-    __wbg_set_bind_group_layouts_60a4869809302d79: function (arg0, arg1, arg2) {
-      getObject(arg0).bindGroupLayouts = getArrayJsValueViewFromWasm0(arg1, arg2)
+    __wbg_set_bind_group_layouts_60a4869809302d79: function (t, n, e) {
+      m(t).bindGroupLayouts = b(n, e)
     },
-    __wbg_set_binding_1d51e1a2d1c0cdaf: function (arg0, arg1) {
-      getObject(arg0).binding = arg1 >>> 0
+    __wbg_set_binding_1d51e1a2d1c0cdaf: function (t, n) {
+      m(t).binding = n >>> 0
     },
-    __wbg_set_binding_348f002e688081ac: function (arg0, arg1) {
-      getObject(arg0).binding = arg1 >>> 0
+    __wbg_set_binding_348f002e688081ac: function (t, n) {
+      m(t).binding = n >>> 0
     },
-    __wbg_set_blend_3f83603fc878c51d: function (arg0, arg1) {
-      getObject(arg0).blend = getObject(arg1)
+    __wbg_set_blend_3f83603fc878c51d: function (t, n) {
+      m(t).blend = m(n)
     },
-    __wbg_set_buffer_22331adbf81699d2: function (arg0, arg1) {
-      getObject(arg0).buffer = getObject(arg1)
+    __wbg_set_buffer_22331adbf81699d2: function (t, n) {
+      m(t).buffer = m(n)
     },
-    __wbg_set_buffer_b8d40a54af365605: function (arg0, arg1) {
-      getObject(arg0).buffer = getObject(arg1)
+    __wbg_set_buffer_b8d40a54af365605: function (t, n) {
+      m(t).buffer = m(n)
     },
-    __wbg_set_clear_value_gpu_color_dict_c17321221601e286: function (arg0, arg1) {
-      getObject(arg0).clearValue = getObject(arg1)
+    __wbg_set_clear_value_gpu_color_dict_c17321221601e286: function (t, n) {
+      m(t).clearValue = m(n)
     },
-    __wbg_set_code_4510e93549b3066e: function (arg0, arg1, arg2) {
-      getObject(arg0).code = getStringFromWasm0(arg1, arg2)
+    __wbg_set_code_4510e93549b3066e: function (t, n, e) {
+      m(t).code = d(n, e)
     },
-    __wbg_set_color_14d2fdcfc7117305: function (arg0, arg1) {
-      getObject(arg0).color = getObject(arg1)
+    __wbg_set_color_14d2fdcfc7117305: function (t, n) {
+      m(t).color = m(n)
     },
-    __wbg_set_color_attachments_367a5baf85bca057: function (arg0, arg1, arg2) {
-      getObject(arg0).colorAttachments = getArrayJsValueViewFromWasm0(arg1, arg2)
+    __wbg_set_color_attachments_367a5baf85bca057: function (t, n, e) {
+      m(t).colorAttachments = b(n, e)
     },
-    __wbg_set_device_53f6c9076263d322: function (arg0, arg1) {
-      getObject(arg0).device = getObject(arg1)
+    __wbg_set_device_53f6c9076263d322: function (t, n) {
+      m(t).device = m(n)
     },
-    __wbg_set_dst_factor_cfb1cd4ae3e673d9: function (arg0, arg1) {
-      getObject(arg0).dstFactor = __wbindgen_enum_GpuBlendFactor[arg1]
+    __wbg_set_dst_factor_cfb1cd4ae3e673d9: function (t, e) {
+      m(t).dstFactor = n[e]
     },
-    __wbg_set_entries_7c51a3643c761ecf: function (arg0, arg1, arg2) {
-      getObject(arg0).entries = getArrayJsValueViewFromWasm0(arg1, arg2)
+    __wbg_set_entries_7c51a3643c761ecf: function (t, n, e) {
+      m(t).entries = b(n, e)
     },
-    __wbg_set_entries_cc80db0de96ea4ff: function (arg0, arg1, arg2) {
-      getObject(arg0).entries = getArrayJsValueViewFromWasm0(arg1, arg2)
+    __wbg_set_entries_cc80db0de96ea4ff: function (t, n, e) {
+      m(t).entries = b(n, e)
     },
-    __wbg_set_entry_point_a7593f073d0352f7: function (arg0, arg1, arg2) {
-      getObject(arg0).entryPoint = getStringFromWasm0(arg1, arg2)
+    __wbg_set_entry_point_a7593f073d0352f7: function (t, n, e) {
+      m(t).entryPoint = d(n, e)
     },
-    __wbg_set_entry_point_edfb9dd004493bc8: function (arg0, arg1, arg2) {
-      getObject(arg0).entryPoint = getStringFromWasm0(arg1, arg2)
+    __wbg_set_entry_point_edfb9dd004493bc8: function (t, n, e) {
+      m(t).entryPoint = d(n, e)
     },
-    __wbg_set_format_036434fd3db220e7: function (arg0, arg1) {
-      getObject(arg0).format = __wbindgen_enum_GpuTextureFormat[arg1]
+    __wbg_set_format_036434fd3db220e7: function (t, n) {
+      m(t).format = s[n]
     },
-    __wbg_set_format_d4c8ef73b087dab0: function (arg0, arg1) {
-      getObject(arg0).format = __wbindgen_enum_GpuTextureFormat[arg1]
+    __wbg_set_format_d4c8ef73b087dab0: function (t, n) {
+      m(t).format = s[n]
     },
-    __wbg_set_fragment_9bc5cc98c7c59fef: function (arg0, arg1) {
-      getObject(arg0).fragment = getObject(arg1)
+    __wbg_set_fragment_9bc5cc98c7c59fef: function (t, n) {
+      m(t).fragment = m(n)
     },
-    __wbg_set_g_ac69babc4a0b2338: function (arg0, arg1) {
-      getObject(arg0).g = arg1
+    __wbg_set_g_ac69babc4a0b2338: function (t, n) {
+      m(t).g = n
     },
-    __wbg_set_has_dynamic_offset_e2a0bd85eaf36f34: function (arg0, arg1) {
-      getObject(arg0).hasDynamicOffset = arg1 !== 0
+    __wbg_set_has_dynamic_offset_e2a0bd85eaf36f34: function (t, n) {
+      m(t).hasDynamicOffset = 0 !== n
     },
-    __wbg_set_layout_4e86f7c1671a06d0: function (arg0, arg1) {
-      getObject(arg0).layout = getObject(arg1)
+    __wbg_set_layout_4e86f7c1671a06d0: function (t, n) {
+      m(t).layout = m(n)
     },
-    __wbg_set_layout_f2b50454b73e9111: function (arg0, arg1) {
-      getObject(arg0).layout = getObject(arg1)
+    __wbg_set_layout_f2b50454b73e9111: function (t, n) {
+      m(t).layout = m(n)
     },
-    __wbg_set_load_op_18ff54287ff40151: function (arg0, arg1) {
-      getObject(arg0).loadOp = __wbindgen_enum_GpuLoadOp[arg1]
+    __wbg_set_load_op_18ff54287ff40151: function (t, n) {
+      m(t).loadOp = _[n]
     },
-    __wbg_set_module_168054323d22d57d: function (arg0, arg1) {
-      getObject(arg0).module = getObject(arg1)
+    __wbg_set_module_168054323d22d57d: function (t, n) {
+      m(t).module = m(n)
     },
-    __wbg_set_module_1ad4e7343951303d: function (arg0, arg1) {
-      getObject(arg0).module = getObject(arg1)
+    __wbg_set_module_1ad4e7343951303d: function (t, n) {
+      m(t).module = m(n)
     },
-    __wbg_set_operation_d8894b0f9aa3db27: function (arg0, arg1) {
-      getObject(arg0).operation = __wbindgen_enum_GpuBlendOperation[arg1]
+    __wbg_set_operation_d8894b0f9aa3db27: function (t, n) {
+      m(t).operation = e[n]
     },
-    __wbg_set_r_ccf9fe3e4d993555: function (arg0, arg1) {
-      getObject(arg0).r = arg1
+    __wbg_set_r_ccf9fe3e4d993555: function (t, n) {
+      m(t).r = n
     },
-    __wbg_set_resource_gpu_buffer_binding_c689b0dc9379a99b: function (arg0, arg1) {
-      getObject(arg0).resource = getObject(arg1)
+    __wbg_set_resource_gpu_buffer_binding_c689b0dc9379a99b: function (t, n) {
+      m(t).resource = m(n)
     },
-    __wbg_set_size_4716cf40ee7a64be: function (arg0, arg1) {
-      getObject(arg0).size = arg1 >>> 0
+    __wbg_set_size_4716cf40ee7a64be: function (t, n) {
+      m(t).size = n >>> 0
     },
-    __wbg_set_src_factor_b29ea819b1b5d6f6: function (arg0, arg1) {
-      getObject(arg0).srcFactor = __wbindgen_enum_GpuBlendFactor[arg1]
+    __wbg_set_src_factor_b29ea819b1b5d6f6: function (t, e) {
+      m(t).srcFactor = n[e]
     },
-    __wbg_set_store_op_6d2fb6cc3e66341e: function (arg0, arg1) {
-      getObject(arg0).storeOp = __wbindgen_enum_GpuStoreOp[arg1]
+    __wbg_set_store_op_6d2fb6cc3e66341e: function (t, n) {
+      m(t).storeOp = c[n]
     },
-    __wbg_set_targets_0328c60fcfc0f564: function (arg0, arg1, arg2) {
-      getObject(arg0).targets = getArrayJsValueViewFromWasm0(arg1, arg2)
+    __wbg_set_targets_0328c60fcfc0f564: function (t, n, e) {
+      m(t).targets = b(n, e)
     },
-    __wbg_set_type_ff9e8f3110ad0cbf: function (arg0, arg1) {
-      getObject(arg0).type = __wbindgen_enum_GpuBufferBindingType[arg1]
+    __wbg_set_type_ff9e8f3110ad0cbf: function (t, n) {
+      m(t).type = r[n]
     },
-    __wbg_set_usage_7177d2b5a0cb7ed1: function (arg0, arg1) {
-      getObject(arg0).usage = arg1 >>> 0
+    __wbg_set_usage_7177d2b5a0cb7ed1: function (t, n) {
+      m(t).usage = n >>> 0
     },
-    __wbg_set_usage_e842e619c53799e7: function (arg0, arg1) {
-      getObject(arg0).usage = arg1 >>> 0
+    __wbg_set_usage_e842e619c53799e7: function (t, n) {
+      m(t).usage = n >>> 0
     },
-    __wbg_set_vertex_5b13839ffaff5f37: function (arg0, arg1) {
-      getObject(arg0).vertex = getObject(arg1)
+    __wbg_set_vertex_5b13839ffaff5f37: function (t, n) {
+      m(t).vertex = m(n)
     },
-    __wbg_set_view_gpu_texture_view_9f7613e516713508: function (arg0, arg1) {
-      getObject(arg0).view = getObject(arg1)
+    __wbg_set_view_gpu_texture_view_9f7613e516713508: function (t, n) {
+      m(t).view = m(n)
     },
-    __wbg_set_visibility_78cfb96740c9deb5: function (arg0, arg1) {
-      getObject(arg0).visibility = arg1 >>> 0
+    __wbg_set_visibility_78cfb96740c9deb5: function (t, n) {
+      m(t).visibility = n >>> 0
     },
     __wbg_static_accessor_GLOBAL_266715b9d96ba635: function () {
-      const ret = typeof global === 'undefined' ? null : global
-      return isLikeNone(ret) ? 0 : addHeapObject(ret)
+      const t = 'undefined' == typeof global ? null : global
+      return x(t) ? 0 : u(t)
     },
     __wbg_static_accessor_GLOBAL_THIS_10fb7dc1ae063179: function () {
-      const ret = typeof globalThis === 'undefined' ? null : globalThis
-      return isLikeNone(ret) ? 0 : addHeapObject(ret)
+      const t = 'undefined' == typeof globalThis ? null : globalThis
+      return x(t) ? 0 : u(t)
     },
     __wbg_static_accessor_SELF_0b583911f537483a: function () {
-      const ret = typeof self === 'undefined' ? null : self
-      return isLikeNone(ret) ? 0 : addHeapObject(ret)
+      const t = 'undefined' == typeof self ? null : self
+      return x(t) ? 0 : u(t)
     },
     __wbg_static_accessor_WINDOW_d7f903d1508cbdc4: function () {
-      const ret = typeof window === 'undefined' ? null : window
-      return isLikeNone(ret) ? 0 : addHeapObject(ret)
+      const t = 'undefined' == typeof window ? null : window
+      return x(t) ? 0 : u(t)
     },
-    __wbg_submit_46ecaa46ea244579: function (arg0, arg1, arg2) {
-      getObject(arg0).submit(getArrayJsValueViewFromWasm0(arg1, arg2))
+    __wbg_submit_46ecaa46ea244579: function (t, n, e) {
+      m(t).submit(b(n, e))
     },
     __wbg_writeBuffer_2c02702ce0fa25c3: function () {
-      return handleError(function (arg0, arg1, arg2, arg3, arg4) {
-        getObject(arg0).writeBuffer(getObject(arg1), arg2 >>> 0, getArrayU8FromWasm0(arg3, arg4))
+      return p(function (t, n, e, r, o) {
+        var _, c
+        m(t).writeBuffer(
+          m(n),
+          e >>> 0,
+          ((_ = r), (c = o), (_ >>>= 0), w().subarray(_ / 1, _ / 1 + c))
+        )
       }, arguments)
     },
-    __wbindgen_generic_0000000000000001: function (arg0, arg1) {
-      // Cast intrinsic for `Ref(String) -> Externref`.
-      const ret = getStringFromWasm0(arg0, arg1)
-      return addHeapObject(ret)
+    __wbindgen_generic_0000000000000001: function (t, n) {
+      return u(d(t, n))
     },
-    __wbindgen_object_clone_ref: function (arg0) {
-      const ret = getObject(arg0)
-      return addHeapObject(ret)
+    __wbindgen_object_clone_ref: function (t) {
+      return u(m(t))
     },
-    __wbindgen_object_drop_ref: function (arg0) {
-      takeObject(arg0)
+    __wbindgen_object_drop_ref: function (t) {
+      v(t)
     },
   }
-  return {
-    __proto__: null,
-    './luiskr_close_button_bg.js': import0,
-  }
+  return { __proto__: null, './luiskr_close_button_bg.js': t }
 }
-
-const __wbindgen_enum_GpuBlendFactor = [
-  'zero',
-  'one',
-  'src',
-  'one-minus-src',
-  'src-alpha',
-  'one-minus-src-alpha',
-  'dst',
-  'one-minus-dst',
-  'dst-alpha',
-  'one-minus-dst-alpha',
-  'src-alpha-saturated',
-  'constant',
-  'one-minus-constant',
-  'src1',
-  'one-minus-src1',
-  'src1-alpha',
-  'one-minus-src1-alpha',
-]
-
-const __wbindgen_enum_GpuBlendOperation = ['add', 'subtract', 'reverse-subtract', 'min', 'max']
-
-const __wbindgen_enum_GpuBufferBindingType = ['uniform', 'storage', 'read-only-storage']
-
-const __wbindgen_enum_GpuCanvasAlphaMode = ['opaque', 'premultiplied']
-
-const __wbindgen_enum_GpuLoadOp = ['load', 'clear']
-
-const __wbindgen_enum_GpuStoreOp = ['store', 'discard']
-
-const __wbindgen_enum_GpuTextureFormat = [
-  'r8unorm',
-  'r8snorm',
-  'r8uint',
-  'r8sint',
-  'r16unorm',
-  'r16snorm',
-  'r16uint',
-  'r16sint',
-  'r16float',
-  'rg8unorm',
-  'rg8snorm',
-  'rg8uint',
-  'rg8sint',
-  'r32uint',
-  'r32sint',
-  'r32float',
-  'rg16unorm',
-  'rg16snorm',
-  'rg16uint',
-  'rg16sint',
-  'rg16float',
-  'rgba8unorm',
-  'rgba8unorm-srgb',
-  'rgba8snorm',
-  'rgba8uint',
-  'rgba8sint',
-  'bgra8unorm',
-  'bgra8unorm-srgb',
-  'rgb9e5ufloat',
-  'rgb10a2uint',
-  'rgb10a2unorm',
-  'rg11b10ufloat',
-  'rg32uint',
-  'rg32sint',
-  'rg32float',
-  'rgba16unorm',
-  'rgba16snorm',
-  'rgba16uint',
-  'rgba16sint',
-  'rgba16float',
-  'rgba32uint',
-  'rgba32sint',
-  'rgba32float',
-  'stencil8',
-  'depth16unorm',
-  'depth24plus',
-  'depth24plus-stencil8',
-  'depth32float',
-  'depth32float-stencil8',
-  'bc1-rgba-unorm',
-  'bc1-rgba-unorm-srgb',
-  'bc2-rgba-unorm',
-  'bc2-rgba-unorm-srgb',
-  'bc3-rgba-unorm',
-  'bc3-rgba-unorm-srgb',
-  'bc4-r-unorm',
-  'bc4-r-snorm',
-  'bc5-rg-unorm',
-  'bc5-rg-snorm',
-  'bc6h-rgb-ufloat',
-  'bc6h-rgb-float',
-  'bc7-rgba-unorm',
-  'bc7-rgba-unorm-srgb',
-  'etc2-rgb8unorm',
-  'etc2-rgb8unorm-srgb',
-  'etc2-rgb8a1unorm',
-  'etc2-rgb8a1unorm-srgb',
-  'etc2-rgba8unorm',
-  'etc2-rgba8unorm-srgb',
-  'eac-r11unorm',
-  'eac-r11snorm',
-  'eac-rg11unorm',
-  'eac-rg11snorm',
-  'astc-4x4-unorm',
-  'astc-4x4-unorm-srgb',
-  'astc-5x4-unorm',
-  'astc-5x4-unorm-srgb',
-  'astc-5x5-unorm',
-  'astc-5x5-unorm-srgb',
-  'astc-6x5-unorm',
-  'astc-6x5-unorm-srgb',
-  'astc-6x6-unorm',
-  'astc-6x6-unorm-srgb',
-  'astc-8x5-unorm',
-  'astc-8x5-unorm-srgb',
-  'astc-8x6-unorm',
-  'astc-8x6-unorm-srgb',
-  'astc-8x8-unorm',
-  'astc-8x8-unorm-srgb',
-  'astc-10x5-unorm',
-  'astc-10x5-unorm-srgb',
-  'astc-10x6-unorm',
-  'astc-10x6-unorm-srgb',
-  'astc-10x8-unorm',
-  'astc-10x8-unorm-srgb',
-  'astc-10x10-unorm',
-  'astc-10x10-unorm-srgb',
-  'astc-12x10-unorm',
-  'astc-12x10-unorm-srgb',
-  'astc-12x12-unorm',
-  'astc-12x12-unorm-srgb',
-]
-const CloseButtonFinalization =
-  typeof FinalizationRegistry === 'undefined'
-    ? { register: () => {}, unregister: () => {} }
-    : new FinalizationRegistry((ptr) => wasm.__wbg_closebutton_free(ptr, 1))
-
-function addHeapObject(obj) {
-  if (heap_next === heap.length) heap.push(heap.length + 1)
-  const idx = heap_next
-  heap_next = heap[idx]
-
-  heap[idx] = obj
-  return idx
+Symbol.dispose && (CloseButton.prototype[Symbol.dispose] = CloseButton.prototype.free)
+const n = [
+    'zero',
+    'one',
+    'src',
+    'one-minus-src',
+    'src-alpha',
+    'one-minus-src-alpha',
+    'dst',
+    'one-minus-dst',
+    'dst-alpha',
+    'one-minus-dst-alpha',
+    'src-alpha-saturated',
+    'constant',
+    'one-minus-constant',
+    'src1',
+    'one-minus-src1',
+    'src1-alpha',
+    'one-minus-src1-alpha',
+  ],
+  e = ['add', 'subtract', 'reverse-subtract', 'min', 'max'],
+  r = ['uniform', 'storage', 'read-only-storage'],
+  o = ['opaque', 'premultiplied'],
+  _ = ['load', 'clear'],
+  c = ['store', 'discard'],
+  s = [
+    'r8unorm',
+    'r8snorm',
+    'r8uint',
+    'r8sint',
+    'r16unorm',
+    'r16snorm',
+    'r16uint',
+    'r16sint',
+    'r16float',
+    'rg8unorm',
+    'rg8snorm',
+    'rg8uint',
+    'rg8sint',
+    'r32uint',
+    'r32sint',
+    'r32float',
+    'rg16unorm',
+    'rg16snorm',
+    'rg16uint',
+    'rg16sint',
+    'rg16float',
+    'rgba8unorm',
+    'rgba8unorm-srgb',
+    'rgba8snorm',
+    'rgba8uint',
+    'rgba8sint',
+    'bgra8unorm',
+    'bgra8unorm-srgb',
+    'rgb9e5ufloat',
+    'rgb10a2uint',
+    'rgb10a2unorm',
+    'rg11b10ufloat',
+    'rg32uint',
+    'rg32sint',
+    'rg32float',
+    'rgba16unorm',
+    'rgba16snorm',
+    'rgba16uint',
+    'rgba16sint',
+    'rgba16float',
+    'rgba32uint',
+    'rgba32sint',
+    'rgba32float',
+    'stencil8',
+    'depth16unorm',
+    'depth24plus',
+    'depth24plus-stencil8',
+    'depth32float',
+    'depth32float-stencil8',
+    'bc1-rgba-unorm',
+    'bc1-rgba-unorm-srgb',
+    'bc2-rgba-unorm',
+    'bc2-rgba-unorm-srgb',
+    'bc3-rgba-unorm',
+    'bc3-rgba-unorm-srgb',
+    'bc4-r-unorm',
+    'bc4-r-snorm',
+    'bc5-rg-unorm',
+    'bc5-rg-snorm',
+    'bc6h-rgb-ufloat',
+    'bc6h-rgb-float',
+    'bc7-rgba-unorm',
+    'bc7-rgba-unorm-srgb',
+    'etc2-rgb8unorm',
+    'etc2-rgb8unorm-srgb',
+    'etc2-rgb8a1unorm',
+    'etc2-rgb8a1unorm-srgb',
+    'etc2-rgba8unorm',
+    'etc2-rgba8unorm-srgb',
+    'eac-r11unorm',
+    'eac-r11snorm',
+    'eac-rg11unorm',
+    'eac-rg11snorm',
+    'astc-4x4-unorm',
+    'astc-4x4-unorm-srgb',
+    'astc-5x4-unorm',
+    'astc-5x4-unorm-srgb',
+    'astc-5x5-unorm',
+    'astc-5x5-unorm-srgb',
+    'astc-6x5-unorm',
+    'astc-6x5-unorm-srgb',
+    'astc-6x6-unorm',
+    'astc-6x6-unorm-srgb',
+    'astc-8x5-unorm',
+    'astc-8x5-unorm-srgb',
+    'astc-8x6-unorm',
+    'astc-8x6-unorm-srgb',
+    'astc-8x8-unorm',
+    'astc-8x8-unorm-srgb',
+    'astc-10x5-unorm',
+    'astc-10x5-unorm-srgb',
+    'astc-10x6-unorm',
+    'astc-10x6-unorm-srgb',
+    'astc-10x8-unorm',
+    'astc-10x8-unorm-srgb',
+    'astc-10x10-unorm',
+    'astc-10x10-unorm-srgb',
+    'astc-12x10-unorm',
+    'astc-12x10-unorm-srgb',
+    'astc-12x12-unorm',
+    'astc-12x12-unorm-srgb',
+  ],
+  i =
+    'undefined' == typeof FinalizationRegistry
+      ? { register: () => {}, unregister: () => {} }
+      : new FinalizationRegistry((t) => L.__wbg_closebutton_free(t, 1))
+function u(t) {
+  h === y.length && y.push(y.length + 1)
+  const n = h
+  return ((h = y[n]), (y[n] = t), n)
 }
-
-function debugString(val) {
-  // primitive types
-  const type = typeof val
-  if (type == 'number' || type == 'boolean' || val == null) {
-    return `${val}`
+function a(t) {
+  const n = typeof t
+  if ('number' == n || 'boolean' == n || null == t) return `${t}`
+  if ('string' == n) return `"${t}"`
+  if ('symbol' == n) {
+    const n = t.description
+    return null == n ? 'Symbol' : `Symbol(${n})`
   }
-  if (type == 'string') {
-    return `"${val}"`
+  if ('function' == n) {
+    const n = t.name
+    return 'string' == typeof n && n.length > 0 ? `Function(${n})` : 'Function'
   }
-  if (type == 'symbol') {
-    const description = val.description
-    if (description == null) {
-      return 'Symbol'
-    } else {
-      return `Symbol(${description})`
-    }
+  if (Array.isArray(t)) {
+    const n = t.length
+    let e = '['
+    n > 0 && (e += a(t[0]))
+    for (let r = 1; r < n; r++) e += ', ' + a(t[r])
+    return ((e += ']'), e)
   }
-  if (type == 'function') {
-    const name = val.name
-    if (typeof name == 'string' && name.length > 0) {
-      return `Function(${name})`
-    } else {
-      return 'Function'
-    }
-  }
-  // objects
-  if (Array.isArray(val)) {
-    const length = val.length
-    let debug = '['
-    if (length > 0) {
-      debug += debugString(val[0])
-    }
-    for (let i = 1; i < length; i++) {
-      debug += ', ' + debugString(val[i])
-    }
-    debug += ']'
-    return debug
-  }
-  // Test for built-in
-  const builtInMatches = /\[object ([^\]]+)\]/.exec(toString.call(val))
-  let className
-  if (builtInMatches && builtInMatches.length > 1) {
-    className = builtInMatches[1]
-  } else {
-    // Failed to match the standard '[object ClassName]'
-    return toString.call(val)
-  }
-  if (className == 'Object') {
-    // we're a user defined class or Object
-    // JSON.stringify avoids problems with cycles, and is generally much
-    // easier than looping through ownProperties of `val`.
+  const e = /\[object ([^\]]+)\]/.exec(toString.call(t))
+  let r
+  if (!(e && e.length > 1)) return toString.call(t)
+  if (((r = e[1]), 'Object' == r))
     try {
-      return 'Object(' + JSON.stringify(val) + ')'
-    } catch (_) {
+      return 'Object(' + JSON.stringify(t) + ')'
+    } catch (t) {
       return 'Object'
     }
-  }
-  // errors
-  if (val instanceof Error) {
-    return `${val.name}: ${val.message}\n${val.stack}`
-  }
-  // TODO we could test for more things here, like `Set`s and `Map`s.
-  return className
+  return t instanceof Error ? `${t.name}: ${t.message}\n${t.stack}` : r
 }
-
-function dropObject(idx) {
-  if (idx < 1028) return
-  heap[idx] = heap_next
-  heap_next = idx
+function b(t, n) {
+  t >>>= 0
+  const e = g(),
+    r = []
+  for (let o = t; o < t + 4 * n; o += 4) r.push(m(e.getUint32(o, !0)))
+  return r
 }
-
-function getArrayJsValueViewFromWasm0(ptr, len) {
-  ptr = ptr >>> 0
-  const mem = getDataViewMemory0()
-  const result = []
-  for (let i = ptr; i < ptr + 4 * len; i += 4) {
-    result.push(getObject(mem.getUint32(i, true)))
-  }
-  return result
+let f = null
+function g() {
+  return (
+    (null === f ||
+      !0 === f.buffer.detached ||
+      (void 0 === f.buffer.detached && f.buffer !== L.memory.buffer)) &&
+      (f = new DataView(L.memory.buffer)),
+    f
+  )
 }
-
-function getArrayU8FromWasm0(ptr, len) {
-  ptr = ptr >>> 0
-  return getUint8ArrayMemory0().subarray(ptr / 1, ptr / 1 + len)
+function d(t, n) {
+  return (function (t, n) {
+    return (
+      (B += n),
+      B >= A && ((O = new TextDecoder('utf-8', { ignoreBOM: !0, fatal: !0 })), O.decode(), (B = n)),
+      O.decode(w().subarray(t, t + n))
+    )
+  })(t >>> 0, n)
 }
-
-let cachedDataViewMemory0 = null
-function getDataViewMemory0() {
-  if (
-    cachedDataViewMemory0 === null ||
-    cachedDataViewMemory0.buffer.detached === true ||
-    (cachedDataViewMemory0.buffer.detached === undefined &&
-      cachedDataViewMemory0.buffer !== wasm.memory.buffer)
-  ) {
-    cachedDataViewMemory0 = new DataView(wasm.memory.buffer)
-  }
-  return cachedDataViewMemory0
+let l = null
+function w() {
+  return ((null !== l && 0 !== l.byteLength) || (l = new Uint8Array(L.memory.buffer)), l)
 }
-
-function getStringFromWasm0(ptr, len) {
-  return decodeText(ptr >>> 0, len)
+function m(t) {
+  return y[t]
 }
-
-let cachedUint8ArrayMemory0 = null
-function getUint8ArrayMemory0() {
-  if (cachedUint8ArrayMemory0 === null || cachedUint8ArrayMemory0.byteLength === 0) {
-    cachedUint8ArrayMemory0 = new Uint8Array(wasm.memory.buffer)
-  }
-  return cachedUint8ArrayMemory0
-}
-
-function getObject(idx) {
-  return heap[idx]
-}
-
-function handleError(f, args) {
+function p(t, n) {
   try {
-    return f.apply(this, args)
-  } catch (e) {
-    wasm.__wbindgen_export3(addHeapObject(e))
+    return t.apply(this, n)
+  } catch (t) {
+    L.__wbindgen_export3(u(t))
   }
 }
-
-let heap = new Array(1024).fill(undefined)
-heap.push(undefined, null, true, false)
-
-let heap_next = heap.length
-
-function isLikeNone(x) {
-  return x === undefined || x === null
+let y = new Array(1024).fill(void 0)
+y.push(void 0, null, !0, !1)
+let h = y.length
+function x(t) {
+  return null == t
 }
-
-function passStringToWasm0(arg, malloc, realloc) {
-  if (realloc === undefined) {
-    const buf = cachedTextEncoder.encode(arg)
-    const ptr = malloc(buf.length, 1) >>> 0
-    getUint8ArrayMemory0()
-      .subarray(ptr, ptr + buf.length)
-      .set(buf)
-    WASM_VECTOR_LEN = buf.length
-    return ptr
-  }
-
-  let len = arg.length
-  let ptr = malloc(len, 1) >>> 0
-
-  const mem = getUint8ArrayMemory0()
-
-  let offset = 0
-
-  for (; offset < len; offset++) {
-    const code = arg.charCodeAt(offset)
-    if (code > 0x7f) break
-    mem[ptr + offset] = code
-  }
-  if (offset !== len) {
-    if (offset !== 0) {
-      arg = arg.slice(offset)
-    }
-    ptr = realloc(ptr, len, (len = offset + arg.length * 3), 1) >>> 0
-    const view = getUint8ArrayMemory0().subarray(ptr + offset, ptr + len)
-    const ret = cachedTextEncoder.encodeInto(arg, view)
-
-    offset += ret.written
-    ptr = realloc(ptr, len, offset, 1) >>> 0
-  }
-
-  WASM_VECTOR_LEN = offset
-  return ptr
+function v(t) {
+  const n = m(t)
+  return (
+    (function (t) {
+      t < 1028 || ((y[t] = h), (h = t))
+    })(t),
+    n
+  )
 }
-
-function takeObject(idx) {
-  const ret = getObject(idx)
-  dropObject(idx)
-  return ret
+let O = new TextDecoder('utf-8', { ignoreBOM: !0, fatal: !0 })
+O.decode()
+const A = 2146435072
+let B = 0
+const S = new TextEncoder()
+'encodeInto' in S ||
+  (S.encodeInto = function (t, n) {
+    const e = S.encode(t)
+    return (n.set(e), { read: t.length, written: e.length })
+  })
+let R,
+  j,
+  L,
+  P = 0
+function W(t, n) {
+  return ((j = t), (L = t.exports), (R = n), (f = null), (l = null), L)
 }
-
-let cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true })
-cachedTextDecoder.decode()
-const MAX_SAFARI_DECODE_BYTES = 2146435072
-let numBytesDecoded = 0
-function decodeText(ptr, len) {
-  numBytesDecoded += len
-  if (numBytesDecoded >= MAX_SAFARI_DECODE_BYTES) {
-    cachedTextDecoder = new TextDecoder('utf-8', { ignoreBOM: true, fatal: true })
-    cachedTextDecoder.decode()
-    numBytesDecoded = len
-  }
-  return cachedTextDecoder.decode(getUint8ArrayMemory0().subarray(ptr, ptr + len))
+function C(n) {
+  if (void 0 !== L) return L
+  void 0 !== n &&
+    (Object.getPrototypeOf(n) === Object.prototype
+      ? ({ module: n } = n)
+      : console.warn('using deprecated parameters for `initSync()`; pass a single object instead'))
+  const e = t()
+  return (
+    n instanceof WebAssembly.Module || (n = new WebAssembly.Module(n)),
+    W(new WebAssembly.Instance(n, e), n)
+  )
 }
-
-const cachedTextEncoder = new TextEncoder()
-
-if (!('encodeInto' in cachedTextEncoder)) {
-  cachedTextEncoder.encodeInto = function (arg, view) {
-    const buf = cachedTextEncoder.encode(arg)
-    view.set(buf)
-    return {
-      read: arg.length,
-      written: buf.length,
-    }
-  }
-}
-
-let WASM_VECTOR_LEN = 0
-
-let wasmModule, wasmInstance, wasm
-function __wbg_finalize_init(instance, module) {
-  wasmInstance = instance
-  wasm = instance.exports
-  wasmModule = module
-  cachedDataViewMemory0 = null
-  cachedUint8ArrayMemory0 = null
-  return wasm
-}
-
-async function __wbg_load(module, imports) {
-  if (typeof Response === 'function' && module instanceof Response) {
-    if (!module.ok) {
-      throw new Error(
-        `failed to fetch Wasm: ${module.status} ${module.statusText} fetching '${module.url}'`
-      )
-    }
-
-    if (typeof WebAssembly.instantiateStreaming === 'function') {
-      try {
-        return await WebAssembly.instantiateStreaming(module, imports)
-      } catch (e) {
-        const validResponse = expectedResponseType(module.type)
-
-        if (validResponse && module.headers.get('Content-Type') !== 'application/wasm') {
+async function I(n) {
+  if (void 0 !== L) return L
+  ;(void 0 !== n &&
+    (Object.getPrototypeOf(n) === Object.prototype
+      ? ({ module_or_path: n } = n)
+      : console.warn(
+          'using deprecated parameters for the initialization function; pass a single object instead'
+        )),
+    void 0 === n && (n = new URL('luiskr_close_button_bg.wasm', import.meta.url)))
+  const e = t()
+  ;('string' == typeof n ||
+    ('function' == typeof Request && n instanceof Request) ||
+    ('function' == typeof URL && n instanceof URL)) &&
+    (n = fetch(n))
+  const { instance: r, module: o } = await (async function (t, n) {
+    if ('function' == typeof Response && t instanceof Response) {
+      if (!t.ok)
+        throw new Error(`failed to fetch Wasm: ${t.status} ${t.statusText} fetching '${t.url}'`)
+      if ('function' == typeof WebAssembly.instantiateStreaming)
+        try {
+          return await WebAssembly.instantiateStreaming(t, n)
+        } catch (n) {
+          if (
+            !(function (t) {
+              switch (t) {
+                case 'basic':
+                case 'cors':
+                case 'default':
+                  return !0
+              }
+              return !1
+            })(t.type) ||
+            'application/wasm' === t.headers.get('Content-Type')
+          )
+            throw n
           console.warn(
             '`WebAssembly.instantiateStreaming` failed because your server does not serve Wasm with `application/wasm` MIME type. Falling back to `WebAssembly.instantiate` which is slower. Original error:\n',
-            e
+            n
           )
-        } else {
-          throw e
         }
-      }
+      const e = await t.arrayBuffer()
+      return await WebAssembly.instantiate(e, n)
     }
-
-    const bytes = await module.arrayBuffer()
-    return await WebAssembly.instantiate(bytes, imports)
-  } else {
-    const instance = await WebAssembly.instantiate(module, imports)
-
-    if (instance instanceof WebAssembly.Instance) {
-      return { instance, module }
-    } else {
-      return instance
+    {
+      const e = await WebAssembly.instantiate(t, n)
+      return e instanceof WebAssembly.Instance ? { instance: e, module: t } : e
     }
-  }
-
-  function expectedResponseType(type) {
-    switch (type) {
-      case 'basic':
-      case 'cors':
-      case 'default':
-        return true
-    }
-    return false
-  }
+  })(await n, e)
+  return W(r, o)
 }
-
-function initSync(module) {
-  if (wasm !== undefined) return wasm
-
-  if (module !== undefined) {
-    if (Object.getPrototypeOf(module) === Object.prototype) {
-      ;({ module } = module)
-    } else {
-      console.warn('using deprecated parameters for `initSync()`; pass a single object instead')
-    }
-  }
-
-  const imports = __wbg_get_imports()
-  if (!(module instanceof WebAssembly.Module)) {
-    module = new WebAssembly.Module(module)
-  }
-  const instance = new WebAssembly.Instance(module, imports)
-  return __wbg_finalize_init(instance, module)
-}
-
-async function __wbg_init(module_or_path) {
-  if (wasm !== undefined) return wasm
-
-  if (module_or_path !== undefined) {
-    if (Object.getPrototypeOf(module_or_path) === Object.prototype) {
-      ;({ module_or_path } = module_or_path)
-    } else {
-      console.warn(
-        'using deprecated parameters for the initialization function; pass a single object instead'
-      )
-    }
-  }
-
-  if (module_or_path === undefined) {
-    module_or_path = new URL('luiskr_close_button_bg.wasm', import.meta.url)
-  }
-  const imports = __wbg_get_imports()
-
-  if (
-    typeof module_or_path === 'string' ||
-    (typeof Request === 'function' && module_or_path instanceof Request) ||
-    (typeof URL === 'function' && module_or_path instanceof URL)
-  ) {
-    module_or_path = fetch(module_or_path)
-  }
-
-  const { instance, module } = await __wbg_load(await module_or_path, imports)
-
-  return __wbg_finalize_init(instance, module)
-}
-
-export { initSync, __wbg_init as default }
+export { C as initSync, I as default }

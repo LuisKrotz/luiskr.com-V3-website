@@ -8748,6 +8748,7 @@ https://luiskr.com/docs/shared/scripts/build/generate-llm-pages.mjs
 https://luiskr.com/docs/shared/scripts/build/generate-search-index.mjs
 https://luiskr.com/docs/shared/scripts/build/generate-sitemap.js
 https://luiskr.com/docs/shared/scripts/build/media-manifest.mjs
+https://luiskr.com/docs/shared/scripts/build/minify-wasm-glue.mjs
 https://luiskr.com/docs/shared/scripts/build/playground-share.mjs
 https://luiskr.com/docs/shared/scripts/build/predeploy.mjs
 https://luiskr.com/docs/shared/scripts/build/route-media.mjs
