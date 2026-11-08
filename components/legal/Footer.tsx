@@ -37,10 +37,11 @@ import { isPlainClick } from '@core/utils/dom.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
-import internalStyles from '@core/sass/components/internals/internals.scss?inline'
+import internalStyles from '@core/sass/components/internals/internals.scss?tiers'
 
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import { mountDividerSheen } from '@core/utils/gpu/divider-sheen.js'
+import { watchOrphanSeps } from '@core/utils/dom/orphan-seps.js'
 import {
   animationsHrefFor,
   feedGlyph,
@@ -69,6 +70,8 @@ interface FooterSocial {
  */
 export class LegalFooter extends BaseComponent {
   private _unsubRouter: (() => void) | null = null
+
+  private _sepsTeardown: (() => void) | null = null // live orphan-sep watcher (re-bound per render)
 
   private _dividerTeardowns: (() => void)[] = [] // live divider-sheen mounts (re-bound per render)
 
@@ -148,12 +151,32 @@ export class LegalFooter extends BaseComponent {
         mountDividerSheen(hr as HTMLElement, INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER_CANVAS)
       )
     }
+
+    // The legal nav is recreated on every render — rebind the orphan-sep
+    // watcher so a wrapped line never opens on a dangling dot.
+    this._sepsTeardown?.()
+
+    this._sepsTeardown = null
+
+    const legalNav = this.$(`nav.${INTERNAL_CLASSES.INTERNAL_FOOTER_LEGAL}`)
+
+    if (legalNav) {
+      this._sepsTeardown = watchOrphanSeps(
+        legalNav,
+        INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_PAIR,
+        INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_PAIR_LEAD
+      )
+    }
   }
 
   override onDestroy() {
     this._dividerTeardowns.forEach((teardown) => teardown())
 
     this._dividerTeardowns = []
+
+    this._sepsTeardown?.()
+
+    this._sepsTeardown = null
 
     if (typeof this._unsubRouter === TYPE_STRINGS.FUNCTION) {
       this._unsubRouter?.()
@@ -343,11 +366,11 @@ export class LegalFooter extends BaseComponent {
                     href={feedHrefFor(locale)}
                     type={NET_STRINGS.MIME_RSS}
                   >
+                    {appText(SECTION_UI_KEYS.RSS_FEED)}
                     {feedGlyph(
                       INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_FEED_ICON,
                       INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_FEED_WAVE
                     )}
-                    {appText(SECTION_UI_KEYS.RSS_FEED)}
                   </a>
                 </span>
               </span>

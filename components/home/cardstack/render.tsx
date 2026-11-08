@@ -200,12 +200,20 @@ function renderCard(host: CardStack, item: CardStackItem, i: number) {
 
           {item.description && (
             <p className={C.CARD_STACK_CARD_INFO_DESC}>
-              {item.description.split(/<br\s*\/?>/i).map((seg, j) => (
-                <Fragment key={j}>
-                  {j > 0 && <br />}
-                  {seg}
-                </Fragment>
-              ))}
+              {/* Every card keeps its own writer — writeInfo() arms the
+                  front card's text on each nav so the description
+                  typewrites on stacked tiers exactly like the desktop
+                  info column; behind cards stay empty (their info is
+                  hidden, so no writer burns frames off-front). The
+                  viewport trigger holds the reveal until the card is
+                  actually on screen — the auto trigger would spend the
+                  stagger at mount while the section is still below the
+                  fold, leaving the desc pre-typed on first sight. */}
+              <draw-text
+                text={CHAR_STRINGS.EMPTY}
+                delay={CHAR_STRINGS.DELAY_15}
+                trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
+              />
             </p>
           )}
 
@@ -256,7 +264,14 @@ function renderInfo(host: CardStack, t: CardStackTranslations) {
       </h2>
 
       <div className={C.CARD_STACK_INFO_DESC} hidden={!info.body}>
-        <draw-text text={info.body} delay={CHAR_STRINGS.DELAY_15} />
+        {/* Viewport trigger — the mount-time arm must not spend the
+            stagger while the section is still below the fold; the
+            writer replays on every nav via writeInfo() either way. */}
+        <draw-text
+          text={info.body}
+          delay={CHAR_STRINGS.DELAY_15}
+          trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
+        />
       </div>
 
       <a className={C.CARD_STACK_INFO_CTA} href={info.href} hidden={!info.href}>
@@ -463,7 +478,10 @@ export function renderCardStack(host: CardStack) {
 
           <nav className={C.CARD_STACK_NAV} aria-label={t.featured}>
             <button className={C.CARD_STACK_PREV} type={FORM_ATTRS.BUTTON}>
-              <span aria-hidden={ATTR_VALUES.TRUE}>{CHAR_STRINGS.ARROW_LEFT}</span> {prevText}
+              <span className={C.CARD_STACK_ARROW} aria-hidden={ATTR_VALUES.TRUE}>
+                {CHAR_STRINGS.ARROW_LEFT}
+              </span>{' '}
+              {prevText}
             </button>
 
             <div className={C.CARD_STACK_DOTS}>
@@ -501,7 +519,10 @@ export function renderCardStack(host: CardStack) {
             </button>
 
             <button className={C.CARD_STACK_NEXT} type={FORM_ATTRS.BUTTON}>
-              {nextText} <span aria-hidden={ATTR_VALUES.TRUE}>{CHAR_STRINGS.ARROW_RIGHT}</span>
+              {nextText}{' '}
+              <span className={C.CARD_STACK_ARROW} aria-hidden={ATTR_VALUES.TRUE}>
+                {CHAR_STRINGS.ARROW_RIGHT}
+              </span>
             </button>
           </nav>
         </div>

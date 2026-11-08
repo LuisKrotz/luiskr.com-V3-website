@@ -42,7 +42,7 @@ import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import type { RingSheenSession } from '@core/utils/gpu/ring-sheen.js'
 import { MOSAIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
-import homeMosaicStyles from '@core/sass/components/home/home-mosaic.scss?inline'
+import homeMosaicStyles from '@core/sass/components/home/home-mosaic.scss?tiers'
 
 interface MosaicTranslations {
   featured?: string

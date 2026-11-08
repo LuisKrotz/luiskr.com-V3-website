@@ -16,7 +16,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { SVG_STRINGS } from '@core/tokens/strings/svg.js'
 import { BaseComponent } from '@core/Component.js'
 import { h } from '@core/jsx.js'
-import iconStyles from '@core/sass/components/nav/nav-icons.scss?inline'
+import iconStyles from '@core/sass/components/nav/nav-icons.scss?tiers'
 import { NAV_GLYPH } from '@core/tokens/data/nav-glyph.js'
 import { mountNavGlyph, type NavGlyphSession } from '@core/utils/wasm/nav-glyph.js'
 

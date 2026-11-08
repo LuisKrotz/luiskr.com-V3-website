@@ -21,6 +21,7 @@ import {
 } from '@core/utils/media/manifest.js'
 import { coverLadderStep } from '@core/utils/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
@@ -199,7 +200,14 @@ const renderCard = (
           <h3 className={RELATED_CLASSES.RELATED_LIST_TITLE}>{project.page}</h3>
           {project.description ? (
             <div className={RELATED_CLASSES.RELATED_LIST_DESC}>
-              <draw-text text={project.description} delay={ATTR_VALUES.DELAY_25} />
+              {/* The strip lives at the bottom of every project page —
+                  viewport trigger holds each row's reveal until it
+                  scrolls in (auto would spend the stagger at mount). */}
+              <draw-text
+                text={project.description}
+                delay={ATTR_VALUES.DELAY_25}
+                trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
+              />
             </div>
           ) : null}
         </div>
@@ -241,6 +249,22 @@ export function renderRelated(host: PortfolioRelated) {
     (currentPath.endsWith(`${ROUTE_PATHS.ROOT}${project.link}`) ||
       currentPath.endsWith(`${ROUTE_PATHS.ROOT}${project.page}`))
 
+  // Window membership: the current project's row is display:none — it
+  // never occupies a conveyor slot, so the open count only advances over
+  // rendered rows. Without the split, a top-3 current row left the
+  // window at two cards, and the conveyor's open-scan read the hidden
+  // row as unfoldable. The current row also gets --closed so both scans
+  // skip it by the same contract every folded row uses.
+  let openSlot = 0
+
+  const closedFlags = projects.map((project) => {
+    const closed = isCurrent(project) || (cycling && openSlot >= RELATED_LAYOUT.VISIBLE_COUNT)
+
+    if (!isCurrent(project)) openSlot += 1
+
+    return closed
+  })
+
   return (
     <section className={INTERNAL_CLASSES.INTERNAL_FOOTER}>
       <h2
@@ -250,6 +274,7 @@ export function renderRelated(host: PortfolioRelated) {
         {host.translations?.title ? (
           <draw-text
             text={host.translations.title}
+            trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
             dangerouslySetInnerHTML={{ __html: host.translations.title }}
           />
         ) : (
@@ -263,12 +288,7 @@ export function renderRelated(host: PortfolioRelated) {
             <div className={RELATED_CLASSES.RELATED_LIST}>
               {projects.map((project, projectkey) => (
                 <Fragment key={projectkey}>
-                  {renderCard(
-                    host,
-                    project,
-                    isCurrent(project),
-                    cycling && projectkey >= RELATED_LAYOUT.VISIBLE_COUNT
-                  )}
+                  {renderCard(host, project, isCurrent(project), closedFlags[projectkey])}
                 </Fragment>
               ))}
               {/* Prev/next step buttons glued to the list's top-right

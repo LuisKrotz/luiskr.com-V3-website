@@ -43,7 +43,7 @@ import type { AboutLocation } from './about/hud.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import '@website/components/media/DrawText.js'
-import aboutStyles from '@core/sass/components/home/about.scss?inline'
+import aboutStyles from '@core/sass/components/home/about.scss?tiers'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
 interface AboutTranslations {

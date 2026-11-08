@@ -51,7 +51,7 @@ import type {
   SitemapProjectsByLocale,
   SitemapShares,
 } from './map-data.js'
-import sitemapStyles from './sitemap.scss?inline'
+import sitemapStyles from './sitemap.scss?tiers'
 import '@website/components/media/MediaFigure.js'
 import '@website/components/legal/Footer.js'
 

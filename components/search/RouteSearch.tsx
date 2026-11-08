@@ -59,7 +59,7 @@ import {
 } from './route-search/data.js'
 import { renderItems, renderShell } from './route-search/render.js'
 import type { RouteEntry, SearchStrings } from './route-search/data.js'
-import routeSearchStyles from '@core/sass/components/search/route-search.scss?inline'
+import routeSearchStyles from '@core/sass/components/search/route-search.scss?tiers'
 
 /** Debounce window per keystroke — one scoring dispatch per pause. */
 const QUERY_DEBOUNCE_MS = 150
@@ -215,9 +215,7 @@ export class RouteSearch extends BaseComponent {
     const url = new URL(window.location.href)
 
     if (q) {
-      const lang = store.getters.getLang() as { locale?: string } | undefined
-
-      const locale = lang?.locale || LOCALES.EN
+      const locale = store.getters.getLang() || LOCALES.EN
 
       const prefix = locale === LOCALES.EN ? CHAR_STRINGS.EMPTY : `${ROUTE_PATHS.ROOT}${locale}`
 
@@ -532,7 +530,10 @@ export class RouteSearch extends BaseComponent {
       (next + 1) * ROUTE_SEARCH_LIMITS.MAX_HITS
     )
 
-    this._setActive(this._hits.length ? (toEnd ? this._hits.length - 1 : 0) : -1)
+    // `next <= _lastPage()` bounds the slice to at least one ranked row, so
+    // `_hits` is never empty here — forward seeds the first row, backward
+    // the last.
+    this._setActive(toEnd ? this._hits.length - 1 : 0)
 
     const list = this.listEl
 

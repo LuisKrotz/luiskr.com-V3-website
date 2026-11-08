@@ -9,6 +9,7 @@
 
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
+import { SPACE } from '@core/tokens/layout/space.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
@@ -38,6 +39,10 @@ export function startFitObserver(c: CustomCarousel) {
 
     requestAnimationFrame(() => {
       c._measureFit(width)
+
+      // Fresh task — lets the unsized-fallback branch of setHeightVar
+      // republish once the RO has delivered a real host width.
+      c._setHeightVar()
     })
   })
 
@@ -62,12 +67,25 @@ export function startFitObserver(c: CustomCarousel) {
  * @param observedWidth Fresh RO width when known — avoids a layout read.
  */
 export function measureFit(c: CustomCarousel, observedWidth?: number) {
-  if (c._forceActive) return
+  const vw = typeof window !== TYPE_STRINGS.UNDEFINED ? window.innerWidth : 0
+
+  // _forceActive pins the track below the ultrawide fit gate — carousels
+  // are configured force-active for >2 items or landscape groups, but at
+  // ≥3840 a set that honestly fits the host has no use for controls, so
+  // the projection still runs there even for forced groups.
+  if (c._forceActive && vw < CAROUSEL_LAYOUT.MULTI_FIT_MIN_VW) return
 
   if (c.items.length < 2) return
 
-  // Groups with more than 2 items always need the scroll track + controls.
-  if (c.items.length > 2) {
+  // Groups with more than 2 items normally need the scroll track +
+  // controls. The ≥3840 ultrawide exception: a handful of slides can't
+  // fill the track — "fewer items than the viewport" — so the set falls
+  // through to the shared fit projection below and, when every slide
+  // projects inside the host, settles into the centered side-by-side
+  // row with no carousel chrome at all.
+  const multiFit = c.items.length > 2
+
+  if (multiFit && vw < CAROUSEL_LAYOUT.MULTI_FIT_MIN_VW) {
     if (c._isSideBySide) {
       c._isSideBySide = false
 
@@ -78,8 +96,6 @@ export function measureFit(c: CustomCarousel, observedWidth?: number) {
 
     return
   }
-
-  const vw = typeof window !== TYPE_STRINGS.UNDEFINED ? window.innerWidth : 0
 
   if (vw < CAROUSEL_LAYOUT.SIDE_BY_SIDE_BREAKPOINT) {
     if (c._isSideBySide) {
@@ -128,12 +144,20 @@ export function measureFit(c: CustomCarousel, observedWidth?: number) {
     const h = item.size?.[1] || GENERIC_DIMENSIONS.ITEM_FALLBACK_HEIGHT
 
     // CSS contract: the slide box is stripH × the source's intrinsic
-    // ratio (height: var(--mf-h), width: auto — no max-width cap in
-    // carousel context, so a wide source simply makes a wider slide).
-    // The only bound is min-width: min(MEDIA_MIN_WIDTH, --mf-natural-w),
-    // resolved after auto-width so the floor wins ties — a file narrower
-    // than the floor keeps its natural width, never upscaled.
-    const mediaW = Math.max(stripH * (w / h), Math.min(CAROUSEL_LAYOUT.MEDIA_MIN_WIDTH, w))
+    // ratio (height: var(--mf-h), width: auto). The only bound is
+    // min-width: min(MEDIA_MIN_WIDTH, --mf-natural-w), resolved after
+    // auto-width so the floor wins ties — a file narrower than the
+    // floor keeps its natural width, never upscaled. On the ≥3840
+    // multi-fit path the real --mf-w cap (--space-8xl) and the
+    // --mf-natural-w cap DO bind inside the placeholder sheet for
+    // portrait items, so they are mirrored here — over-projecting a
+    // wide slide would reject a row that genuinely fits. Landscape
+    // items render uncapped at full aspect width (the uniform-height
+    // contract — a capped landscape box used to squash into a centre
+    // sliver), so their honest projection is aspectW itself.
+    const aspectW = Math.max(stripH * (w / h), Math.min(CAROUSEL_LAYOUT.MEDIA_MIN_WIDTH, w))
+
+    const mediaW = multiFit && !isLandscapeItem(item) ? Math.min(aspectW, SPACE['8XL'], w) : aspectW
 
     totalW += mediaW + itemPad + itemMargin + CAROUSEL_LAYOUT.ITEM_GAP_PX
   }
@@ -340,15 +364,26 @@ export function setHeightVar(c: CustomCarousel) {
 
   const anySized = c.items?.some((item) => item?.size?.[0] && item?.size?.[1])
 
-  // Data-only gate — decided before any layout read so mounts with no
-  // computable height never touch clientWidth/innerWidth (forced-reflow
-  // gate). When nothing can produce a height, publish nothing: the old
-  // fallback measured the first slide's box, but pre-dims that box is
-  // just the ~70dvh --mf-h placeholder — publishing it locked every
-  // slide at the placeholder height until real sizes arrived (the
-  // visible wrong→right-height jump on prod). Unsized carousels instead
-  // keep sizing from their own content/--mf-natural-* vars.
-  if (minPortraitRatio === null && landscapeMultiplier === null && !anySized) return
+  const unsizedFallback = minPortraitRatio === null && landscapeMultiplier === null && !anySized
+
+  // Unsized sets still need ONE strip height — publishing nothing leaves
+  // every slide at `height:auto` (natural aspect), the ragged-heights bug
+  // on strips mixing e.g. a video thumb and images. The fallback uses the
+  // RO-cached host width ONLY: no clientWidth/innerWidth/innerHeight read
+  // — this path runs inside dirty render tasks where any layout read is a
+  // forced-reflow violation. CSS already clamps the slide box to the
+  // 70dvh - pad ceiling via max-height, so the JS value needs no viewport
+  // cap; before the first RO delivery the ~70dvh --mf-h placeholder keeps
+  // the row uniform and the RO pass republishes once a width exists.
+  if (unsizedFallback) {
+    const cachedW = c._lastObservedWidth || 0
+
+    if (cachedW <= 0) return
+
+    publishStripHeight(c, Math.round(cachedW / CAROUSEL_LAYOUT.RATIO_16_9))
+
+    return
+  }
 
   const hostW =
     c.clientWidth ||
@@ -361,25 +396,54 @@ export function setHeightVar(c: CustomCarousel) {
       ? Math.round((window.innerHeight * CAROUSEL_LAYOUT.MAX_HEIGHT_VH) / 100)
       : GENERIC_DIMENSIONS.ITEM_FALLBACK_HEIGHT
 
+  const vw = typeof window !== TYPE_STRINGS.UNDEFINED ? window.innerWidth : 0
+
+  // ≤1024 bands never render a slide past HALF the source's own pixels
+  // (the "forced to 100%" bug fix): the placeholder sheet caps every
+  // figure at natural/2 there, so the projection mirrors it by fitting
+  // each item's halved box. The published strip stays reachable by the
+  // biggest item — uniform where sources allow, never upscaled.
+  const halfBound = vw > 0 && vw <= CAROUSEL_LAYOUT.HALF_NATURAL_MAX_VW
+
+  const fitScale = halfBound ? CAROUSEL_LAYOUT.HALF_NATURAL_SCALE : 1
+
   // Uniform strip = the tallest rendered item. calcMediaBox mirrors the
   // CSS contract (fit hostW × maxH, never upscale), so the max over the
   // sized items is the tallest box the strip can honestly reach; shorter
   // sources keep their own --mf-natural-h cap and center inside it.
+  const fitMax = c.items.reduce((tallest, item) => {
+    const w = item?.size?.[0] || 0
+
+    const h = item?.size?.[1] || 0
+
+    return w && h
+      ? Math.max(tallest, calcMediaBox(w * fitScale, h * fitScale, hostW, maxH).height)
+      : tallest
+  }, 0)
+
   const projected =
     minPortraitRatio !== null
       ? hostW * minPortraitRatio
       : landscapeMultiplier !== null
         ? hostW / landscapeMultiplier
-        : c.items.reduce((tallest, item) => {
-            const w = item?.size?.[0] || 0
+        : fitMax
 
-            const h = item?.size?.[1] || 0
+  // A vw-anchored target can't exceed what the biggest item can honestly
+  // render under the half-natural cap — clamp to the tallest half-fit
+  // (skipped when no item carries sizes: fitMax would pin the strip to 0).
+  const bounded = halfBound && fitMax > 0 ? Math.min(projected, fitMax) : projected
 
-            return w && h ? Math.max(tallest, calcMediaBox(w, h, hostW, maxH).height) : tallest
-          }, 0)
+  publishStripHeight(c, Math.min(Math.round(bounded), maxH))
+}
 
-  const finalH = Math.min(Math.round(projected), maxH)
-
+/**
+ * Publishes the uniform strip height on the host (--carousel-media-height)
+ * and the enclosing section (--carousel-item-height), skipping no-op
+ * writes so repeat calls never touch the style declaration twice.
+ * @param c The CustomCarousel element.
+ * @param finalH Strip height in px.
+ */
+function publishStripHeight(c: CustomCarousel, finalH: number) {
   const finalHPx = `${finalH}${COMMON_ATTRS.PX}`
 
   const currentMediaH = c.style.getPropertyValue(CAROUSEL_CSS_PROPS.CAROUSEL_MEDIA_HEIGHT)

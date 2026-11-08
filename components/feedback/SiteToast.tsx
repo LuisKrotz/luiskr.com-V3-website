@@ -30,7 +30,7 @@ import { BaseComponent } from '@core/Component.js'
 import { appText } from '@core/locale/ui-text.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
-import toastStyles from '@core/sass/components/feedback/site-toast.scss?inline'
+import toastStyles from '@core/sass/components/feedback/site-toast.scss?tiers'
 
 interface ToastItem {
   id: number

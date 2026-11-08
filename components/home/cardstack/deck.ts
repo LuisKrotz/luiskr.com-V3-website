@@ -367,6 +367,12 @@ export function measure(host: CardStack): void {
       // band measured mid-overflow locks the cap to the wrong figure.
       host._stageH = Math.max(0, vh - chromeH)
 
+      // Whether the section is content-sized (the ≥3840 rung drops the
+      // 100dvh floor → min-height computes to 0/auto, both parse falsy):
+      // the deck row then has no 1fr allotment and fitDeckToFront must
+      // publish the fan's band itself instead of riding the row's.
+      host._autoStage = !(parseFloat(style.minHeight) > 0)
+
       deckH = Math.min(deckH, host._stageH)
     }
   }
@@ -381,7 +387,13 @@ export function measure(host: CardStack): void {
   // shrink. There the bound is the stage budget itself (the viewport
   // allotment after fixed chrome): the pile may grow into the
   // space-evenly slack until the band hits the cap.
-  const heightRoom = tier.STACKED ? host._stageH || deckH : deckH
+  // Every tier reads the stage BUDGET (viewport minus fixed chrome), not
+  // the deck row's live measurement: under the ≥3840 content-height
+  // section the deck row IS the published card band, so measuring it
+  // would feed the last card size back as a shrink-only ratchet. With
+  // min-height:100dvh the 1fr row resolves to the same number anyway —
+  // this only decouples the cap from the layout mode.
+  const heightRoom = host._stageH || deckH
 
   const byHeight = heightRoom ? (heightRoom * tier.HEIGHT_SHARE) / tier.CARD_H_RATIO : byWidth
 
@@ -685,7 +697,18 @@ export function fitDeckToFront(host: CardStack): void {
     host._frontExtra = 0
 
     if (deck) {
-      deck.style.minHeight = ATTR_VALUES.EMPTY
+      // Fan tiers ride the 1fr row's allotment under min-height:100dvh —
+      // the absolute cards contribute no flow height, so a content-sized
+      // section (the ≥3840 rung) would collapse the row to ~0. There the
+      // band is authored: the scaled front card's extent plus its
+      // negative FAN_LIFT clearance (cards park -40px above centre).
+      if (host._autoStage && host._cardH) {
+        deck.style.minHeight = `${
+          host._cardH * CARD_STACK_LAYOUT.FRONT_SCALE - CARD_STACK_LAYOUT.FAN_LIFT * 2
+        }${COMMON_ATTRS.PX}`
+      } else {
+        deck.style.minHeight = ATTR_VALUES.EMPTY
+      }
     }
 
     return
@@ -694,6 +717,29 @@ export function fitDeckToFront(host: CardStack): void {
   const front = host._cardEls[host.activeIdx] as HTMLElement | undefined
 
   if (!front) return
+
+  // Image-only stacked tiers (the 1024–1279 landscape pile) have no
+  // copy that can grow — every card keeps the ratio box, so the live
+  // measure is skipped entirely. getBoundingClientRect includes the
+  // running transform/scale, and a mid-transition read feeds back into
+  // pileH via _frontExtra: the whole pile would visibly compress and
+  // re-expand on every nav. _frontExtra pins at 0 and the deck band is
+  // the fixed ratio height + pad — identical geometry on every card.
+  if (!host._tier.IN_CARD_INFO) {
+    if (host._fitRO) {
+      host._fitRO.disconnect()
+
+      host._fitFront = null
+    }
+
+    host._frontExtra = 0
+
+    if (deck) {
+      deck.style.minHeight = `${host._cardH + host._cardH * CARD_STACK_LAYOUT.STACKED_DECK_PAD}${COMMON_ATTRS.PX}`
+    }
+
+    return
+  }
 
   if (host._fitFront !== front) {
     host._fitRO?.disconnect()

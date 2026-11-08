@@ -61,6 +61,37 @@ export function projectHref(item: CardStackItem): string {
 }
 
 /**
+ * The first-sentence cut for the in-card summary — a sentence ender
+ * (`.`, `!`, `?`) followed by whitespace/markup/end-of-string, or a
+ * `<br>`/newline break. CMS descriptions lead with a one-line project
+ * brief, so the first sentence IS the mobile summary.
+ */
+const SUMMARY_CUT = /[.!?](?=\s|<)|<br\s*\/?>|\n/
+
+/**
+ * The stacked-card summary of a CMS description — the text up to the
+ * first sentence ender (the ender kept) or the first markup break.
+ * The full description stays mounted in the desktop text column on
+ * every tier (visually hidden on stacked layouts but present in the
+ * DOM), so search engines index the long-form copy as the canonical
+ * description while the card copy reads as its summary — same content
+ * at two lengths, both valid. A description with no sentence break
+ * passes through whole (the ≤4-line CSS clamp bounds the visual box).
+ * @param body The full CMS description (may carry `<br>` markup).
+ * @returns The leading-sentence summary, or the input unchanged when
+ *   no cut point exists.
+ */
+function mobileSummary(body: string): string {
+  const cut = body.search(SUMMARY_CUT)
+
+  if (cut < 0) return body
+
+  const char = body[cut]
+
+  return body.slice(0, char === '<' || char === '\n' ? cut : cut + 1)
+}
+
+/**
  * Everything the text column shows for one item.
  * @param item The portfolio item (undefined before data lands).
  * @returns The column copy — all-empty for a missing item.
@@ -70,6 +101,7 @@ export function cardInfo(item: CardStackItem | undefined): CardStackInfo {
     return {
       title: ATTR_VALUES.EMPTY,
       body: ATTR_VALUES.EMPTY,
+      summary: ATTR_VALUES.EMPTY,
       href: ATTR_VALUES.EMPTY,
     }
   }
@@ -77,6 +109,7 @@ export function cardInfo(item: CardStackItem | undefined): CardStackInfo {
   return {
     title: item.label || item.title || ATTR_VALUES.EMPTY,
     body: item.description || ATTR_VALUES.EMPTY,
+    summary: item.description ? mobileSummary(item.description) : ATTR_VALUES.EMPTY,
     href: projectHref(item),
   }
 }
@@ -396,6 +429,25 @@ export function writeInfo(host: CardStack): void {
   burnTitle(host, item, info.title)
 
   setSlotText(host, CARD_STACK_SELECTORS.CARD_STACK_INFO_DESC, info.body)
+
+  // Stacked tiers that show in-card copy carry the description inside
+  // the ACTIVE card — each card keeps its own <draw-text> writer,
+  // re-armed on the front change the same way the column slot replays.
+  // Behind cards stay blank so no off-front writer burns frames (their
+  // info column is hidden anyway); clearing the previous front is what
+  // re-arms it on a re-visit — draw-text ignores an unchanged `text`,
+  // so the swap-through-empty is what replays the typewriter. Fan tiers
+  // and the image-only stacked bands hide the in-card copy entirely —
+  // arming writers there would just park unused observers.
+  if (host._tier?.STACKED && host._tier?.IN_CARD_INFO) {
+    for (const [i, cardEl] of host._cardEls.entries()) {
+      cardEl
+        .querySelector(
+          `${CARD_STACK_SELECTORS.CARD_STACK_CARD_INFO_DESC} ${COMPONENT_TAGS.DRAW_TEXT}`
+        )
+        ?.setAttribute(FORM_ATTRS.TEXT, i === host.activeIdx ? info.summary : ATTR_VALUES.EMPTY)
+    }
+  }
 
   const cta = host.$(CARD_STACK_SELECTORS.CARD_STACK_INFO_CTA)
 

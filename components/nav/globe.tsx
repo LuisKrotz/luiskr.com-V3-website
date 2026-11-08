@@ -16,7 +16,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { SVG_STRINGS } from '@core/tokens/strings/svg.js'
 import { BaseComponent } from '@core/Component.js'
 import { h } from '@core/jsx.js'
-import iconStyles from '@core/sass/components/nav/nav-icons.scss?inline'
+import iconStyles from '@core/sass/components/nav/nav-icons.scss?tiers'
 
 // ── Globe geometry (48×48 viewBox units) ─────────────────────────────
 const GLOBE_CX = 24

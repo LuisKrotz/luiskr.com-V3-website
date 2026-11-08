@@ -64,7 +64,14 @@ export const renderAppNav = (nav: AppNav) => {
 
   const aboutActive = nav.isHomePage && nav.activeSection === SECTIONS.ABOUT && !nav.onBottom
 
-  const actionActive = nav.onBottom || (nav.isHomePage && nav.activeSection === SECTIONS.CONTACT)
+  // Playground pages are full-screen canvases whose document height can
+  // equal the viewport, so the scroll tracker reports "on bottom" even
+  // though there is no contact band to return from — the scroll-up
+  // morph is suppressed there and the CTA stays a real Contact link.
+  const effectiveOnBottom = nav.onBottom && !nav.isPlaygroundPage
+
+  const actionActive =
+    effectiveOnBottom || (nav.isHomePage && nav.activeSection === SECTIONS.CONTACT)
 
   const itemClass = (active: boolean) =>
     `${NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM}${active ? ` ${NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM_ACTIVE}` : CHAR_STRINGS.EMPTY}`
@@ -134,16 +141,14 @@ export const renderAppNav = (nav: AppNav) => {
   const selectedWorkLabel = String(t?.featured || appText(NAV_UI_KEYS.SELECTED_WORK))
   const scrollUpLabel = String(t?.scrollUp || appText(NAV_UI_KEYS.SCROLL_UP))
   const contactLabel = String(t?.contact || appText(CMS_KEYS.CONTACT))
-  const contactText = nav.onBottom ? scrollUpLabel : contactLabel
+  const contactText = effectiveOnBottom ? scrollUpLabel : contactLabel
   const playgroundLabel = String(t?.earthPlayground || appText(CMS_KEYS.EARTH_PLAYGROUND))
   const starFieldLabel = String(t?.starField || appText(CMS_KEYS.STAR_FIELD))
   const prefLabel = String(t?.preferences || appText(NAV_UI_KEYS.PREFERENCES))
 
   const searchLabel = String(t?.search || appText(SECTION_UI_KEYS.SEARCH))
 
-  const setLangLabel = String(
-    t?.setLanguage || appText(NAV_UI_KEYS.SET_LANGUAGE) || CHAR_STRINGS.EMPTY
-  )
+  const setLangLabel = String(t?.setLanguage || appText(NAV_UI_KEYS.SET_LANGUAGE))
   const experimentsLabel = String(t?.experiments || appText(NAV_UI_KEYS.EXPERIMENTS))
 
   const items: Array<{
@@ -201,11 +206,26 @@ export const renderAppNav = (nav: AppNav) => {
   {
     // Contact — or "scroll up" when the contact band is already showing:
     // the CTA at page bottom morphs into a return-to-top affordance.
+    // Playground pages never morph — the item stays a real link to the
+    // localized contact route.
     items.push({
       label: contactText,
-      cls: `${NAV_CLASSES.NAV_ACTION_BTN}${nav.onBottom ? ` ${NAV_CLASSES.NAV_SCROLL_DOWN}` : CHAR_STRINGS.EMPTY}`,
-      href: nav.onBottom ? localePath('', nav.locale) : localePath(CMS_KEYS.CONTACT, nav.locale),
+      cls: `${NAV_CLASSES.NAV_ACTION_BTN}${effectiveOnBottom ? ` ${NAV_CLASSES.NAV_SCROLL_DOWN}` : CHAR_STRINGS.EMPTY}`,
+      href: effectiveOnBottom
+        ? localePath('', nav.locale)
+        : localePath(CMS_KEYS.CONTACT, nav.locale),
       onClick: (e: Event) => {
+        if (nav.isPlaygroundPage) {
+          if (!isPlainClick(e)) return
+
+          e.preventDefault()
+          nav._closeMenu()
+
+          router.push(localePath(CMS_KEYS.CONTACT, nav.locale))
+
+          return
+        }
+
         nav._closeMenu()
 
         nav.handleAction(e)

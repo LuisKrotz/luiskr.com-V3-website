@@ -21,8 +21,9 @@ import router from '@core/router/router.js'
 import { ensureAwardsData, legalLinks } from './awards/data.js'
 import { renderAwards } from './awards/render.js'
 import { mountDividerSheen } from '@core/utils/gpu/divider-sheen.js'
+import { watchOrphanSeps } from '@core/utils/dom/orphan-seps.js'
 import type { LegalLink } from './awards/data.js'
-import awardsFooterStyles from '@core/sass/components/home/awards-footer.scss?inline'
+import awardsFooterStyles from '@core/sass/components/home/awards-footer.scss?tiers'
 
 /**
  * The AwardsMentions — legal footer band class.
@@ -30,6 +31,7 @@ import awardsFooterStyles from '@core/sass/components/home/awards-footer.scss?in
 export class AwardsMentions extends BaseComponent {
   _lastLocale: string | null = null // locale the legal links were loaded for
   _dividerTeardowns: (() => void)[] = [] // live divider-sheen mounts (re-bound per render)
+  _sepsTeardown: (() => void) | null = null // live orphan-sep watcher (re-bound per render)
 
   constructor() {
     super(awardsFooterStyles)
@@ -69,6 +71,22 @@ export class AwardsMentions extends BaseComponent {
 
   override onUpdated() {
     this._mountDividerSheen()
+
+    // The legal nav is recreated on every render — rebind the
+    // orphan-sep watcher so a wrapped line never opens on a dot.
+    this._sepsTeardown?.()
+
+    this._sepsTeardown = null
+
+    const legalNav = this.$(`nav.${AWARDS_CLASSES.AWARDS_FOOTER_LINKS}`)
+
+    if (legalNav) {
+      this._sepsTeardown = watchOrphanSeps(
+        legalNav,
+        AWARDS_CLASSES.AWARDS_FOOTER_PAIR,
+        AWARDS_CLASSES.AWARDS_FOOTER_PAIR_LEAD
+      )
+    }
   }
 
   /**
@@ -95,6 +113,10 @@ export class AwardsMentions extends BaseComponent {
     this._dividerTeardowns.forEach((teardown) => teardown())
 
     this._dividerTeardowns = []
+
+    this._sepsTeardown?.()
+
+    this._sepsTeardown = null
   }
 
   /** Wires internal links through the SPA router. */

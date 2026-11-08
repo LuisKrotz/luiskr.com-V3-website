@@ -253,6 +253,58 @@ describe('ViewProject tails', () => {
     el.remove()
   })
 
+  test('loadData upgrades og:type to video when the deep link resolves a clip', async () => {
+    document.head.insertAdjacentHTML('beforeend', '<meta property="og:type" content="x">')
+
+    const el = makeView()
+
+    const origFetch = globalThis.fetch
+
+    globalThis.fetch = async () => ({
+      ok: true,
+      status: 200,
+      headers: { get: () => null },
+      json: async () => ({
+        title: TEST_TEXT.HEADING,
+        folder: TEST_PROJECTS.CICB,
+        sections: [[[{ label: 'clip-title', src: 'clip.mp4', isVideo: true, size: [800, 450] }]]],
+      }),
+      text: async () => CHAR_STRINGS.EMPTY,
+      blob: async () => new Blob([]),
+      arrayBuffer: async () => new ArrayBuffer(0),
+      clone() {
+        return { ...this }
+      },
+    })
+
+    const lang = store.state.lang
+    const prevDb = lang.database
+    const prevRoute = router.currentRoute
+
+    // params.slug names a video media item — the og:type upgrade arm.
+    router.currentRoute = { params: { slug: 'clip-title' } }
+    lang.database = 'zzcov-og/'
+
+    try {
+      el.projectSlug = TEST_PROJECTS.SAGE
+      el.loadData()
+
+      await waitFor(() => el.translations?.title === TEST_TEXT.HEADING)
+
+      expect(document.head.querySelector(QUERY_STRINGS.META_OG_TYPE)?.content).toBe(
+        SCHEMA_STRINGS.SCHEMA_OG_VIDEO
+      )
+    } finally {
+      globalThis.fetch = origFetch
+      lang.database = prevDb
+      router.currentRoute = prevRoute
+    }
+
+    document.head.querySelector(QUERY_STRINGS.META_OG_TYPE)?.remove()
+
+    el.remove()
+  })
+
   test('loadData resolves to a missing snapshot as a no-op', async () => {
     const el = makeView()
 

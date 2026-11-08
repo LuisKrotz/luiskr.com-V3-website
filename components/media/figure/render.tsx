@@ -67,9 +67,16 @@ export function renderMediaFigure(c: MediaFigure) {
 
   const posterSrc = c.isVideo ? c.poster[scaledVideo ? 1 : 0] || c.poster[0] : ATTR_VALUES.EMPTY
 
-  // Keep offscreen posters out of the scroll decode path; the viewport
-  // observer attaches them after scroll settles, while the hero stays eager.
-  const initialPoster = isHeroItem ? posterSrc : ATTR_VALUES.EMPTY
+  // Hero + carousel videos get their poster in the initial markup — a
+  // poster is a ~15KB jpg the browser only fetches for laid-out videos,
+  // while the deferred attach path left carousel frames blank until
+  // IO + scroll-stop + idle all passed (the "no thumb while loading"
+  // bug). Long media lists keep the deferred path; the heavy half of
+  // the pipeline — the video SOURCE — stays deferred everywhere.
+  const initialPoster =
+    isHeroItem || c.classes.includes(INTERNAL_CLASSES.INTERNAL_EXTRA_ITEM)
+      ? posterSrc
+      : ATTR_VALUES.EMPTY
 
   return (
     <figure

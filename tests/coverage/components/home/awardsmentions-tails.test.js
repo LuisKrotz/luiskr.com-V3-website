@@ -8,6 +8,7 @@ import { LANG_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
+import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
 
 import '@website/components/home/AwardsMentions.js'
 
@@ -66,6 +67,20 @@ describe('AwardsMentions tails', () => {
     el.onStoreUpdate()
 
     expect(spy).not.toHaveBeenCalled()
+
+    el.remove()
+  })
+
+  test('onUpdated skips the sep watcher when the legal nav is absent', async () => {
+    const el = document.createElement(COMPONENT_TAGS.AWARDS_MENTIONS)
+
+    document.body.appendChild(el)
+    await flush()
+
+    el.shadowRoot.querySelector(`nav.${AWARDS_CLASSES.AWARDS_FOOTER_LINKS}`)?.remove()
+
+    expect(() => el.onUpdated()).not.toThrow()
+    expect(el._sepsTeardown).toBeNull()
 
     el.remove()
   })

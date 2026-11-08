@@ -18,6 +18,8 @@ import '@website/components/carousel/AwardsCarousel.js'
 import '@website/views/home/Home.js'
 import '@website/views/legal/Legal.js'
 import { VIEW_TAGS } from '@core/tokens/elements/views.js'
+import { onHomeStoreUpdate } from '@website/views/home/data.js'
+import store from '@core/store.js'
 
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
 
@@ -41,5 +43,15 @@ describe('Home route tails', () => {
     el.onStoreUpdate?.()
 
     el.remove()
+  })
+
+  test('onHomeStoreUpdate falls back to English when the lang locale is unset', () => {
+    const prev = store.state.lang.locale
+
+    store.state.lang.locale = null
+
+    expect(() => onHomeStoreUpdate({ _lastLocale: null, loadData: jest.fn() })).not.toThrow()
+
+    store.state.lang.locale = prev
   })
 })

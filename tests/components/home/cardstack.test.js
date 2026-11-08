@@ -299,9 +299,25 @@ describe('CardStack — mount + data contract', () => {
     // stacked layouts show (fan tiers hide it via CSS).
     const cardTitle = cards[0].querySelector(`.${C.CARD_STACK_CARD_INFO_TITLE}`)
     expect(cardTitle.textContent).toBe('Project 0')
-    const cardDesc = cards[0].querySelector(`.${C.CARD_STACK_CARD_INFO_DESC}`)
-    expect(cardDesc.textContent).toContain('Desc 0 line one')
-    expect(cardDesc.textContent).toContain('line two')
+    // Every card owns a <draw-text> writer; on copy-carrying stacked
+    // tiers writeInfo() arms only the front card's `text` so the
+    // description typewrites — behind cards stay disarmed (empty
+    // text). The happy-dom viewport lands on the image-only band, so
+    // the arming contract is exercised against the phone tier directly.
+    // The in-card writer carries the first-sentence SUMMARY (the card
+    // copy is clamped to four lines) while the text column below keeps
+    // the full body — same content at two lengths, both indexable.
+    el._tier = STACK_TIER
+    writeInfo(el)
+    const frontWriter = cards[0].querySelector(
+      `.${C.CARD_STACK_CARD_INFO_DESC} ${COMPONENT_TAGS.DRAW_TEXT}`
+    )
+    expect(frontWriter.getAttribute(FORM_ATTRS.TEXT)).toBe('Desc 0 line one')
+    expect(
+      cards[1]
+        .querySelector(`.${C.CARD_STACK_CARD_INFO_DESC} ${COMPONENT_TAGS.DRAW_TEXT}`)
+        .getAttribute(FORM_ATTRS.TEXT)
+    ).toBe(ATTR_VALUES.EMPTY)
     expect(cards[0].querySelector(`.${C.CARD_STACK_CARD_INFO_CTA}`)).not.toBeNull()
     // The text column — a plain-text title (the burn owns it) + the
     // Jost description writer + the project link.
@@ -497,14 +513,20 @@ describe('cardstack/info — the text column', () => {
     const info = cardInfo(ITEMS[0])
     expect(info.title).toBe('Project 0')
     expect(info.body).toBe('Desc 0 line one<br>line two')
+    expect(info.summary).toBe('Desc 0 line one')
     expect(info.href).toBe(`${ROUTE_PATHS.PORTFOLIO}p-0`)
 
     // Missing item → the all-empty shape.
     expect(cardInfo(undefined)).toEqual({
       title: ATTR_VALUES.EMPTY,
       body: ATTR_VALUES.EMPTY,
+      summary: ATTR_VALUES.EMPTY,
       href: ATTR_VALUES.EMPTY,
     })
+
+    // A description with no cut point passes through whole — the CSS
+    // four-line clamp bounds the visual box.
+    expect(cardInfo({ description: 'No ender anywhere' }).summary).toBe('No ender anywhere')
 
     // No description → an empty body; label then title back up the name.
     expect(cardInfo({ label: 'Named' }).body).toBe(ATTR_VALUES.EMPTY)

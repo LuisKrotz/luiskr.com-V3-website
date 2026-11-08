@@ -13,6 +13,13 @@ import {
   setHeightVar,
 } from '@website/components/carousel/custom-carousel/sizing.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
+import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
+
+/** hostW stub feeds every unsized fallback projection below. */
+const STUB_HOST_W = 320
+
+/** Expected uniform fallback height: hostW projected through 16:9, rounded. */
+const FALLBACK_PX = `${Math.round(STUB_HOST_W / CAROUSEL_LAYOUT.RATIO_16_9)}px`
 
 const savedWidth = Object.getOwnPropertyDescriptor(window, 'innerWidth')
 const savedHeight = Object.getOwnPropertyDescriptor(window, 'innerHeight')
@@ -35,7 +42,8 @@ const stubEl = ({
   isMobile,
   isMixed,
   landscapeRatio,
-  clientWidth: 320,
+  clientWidth: STUB_HOST_W,
+  _lastObservedWidth: STUB_HOST_W,
   style: { getPropertyValue: jest.fn(() => ''), setProperty: jest.fn() },
   closest: jest.fn(() => null),
 })
@@ -67,7 +75,7 @@ describe('custom-carousel sizing ratio + setHeightVar tails', () => {
     expect(el.style.setProperty).toHaveBeenCalled()
   })
 
-  test('setHeightVar mobile+mixed with no item sizes publishes nothing', () => {
+  test('setHeightVar mobile+mixed with no item sizes publishes the uniform fallback', () => {
     const el = stubEl({
       isMobile: true,
       isMixed: true,
@@ -77,12 +85,12 @@ describe('custom-carousel sizing ratio + setHeightVar tails', () => {
 
     setHeightVar(el)
 
-    // No fallback to measuring the slide box — that captured the ~70dvh
-    // placeholder height and locked it in until real dims arrived.
-    expect(el.style.setProperty).not.toHaveBeenCalled()
+    // No data anywhere → the neutral hostW×16:9 projection pins one shared
+    // strip height; leaving slides unpinned is the ragged-heights bug.
+    expect(el.style.setProperty).toHaveBeenCalledWith('--carousel-media-height', FALLBACK_PX)
   })
 
-  test('setHeightVar mobile+mixed sizeless second call stays unpublished', () => {
+  test('setHeightVar mobile+mixed sizeless second call republishes the same fallback', () => {
     const el = stubEl({
       isMobile: true,
       isMixed: true,
@@ -92,7 +100,7 @@ describe('custom-carousel sizing ratio + setHeightVar tails', () => {
 
     setHeightVar(el)
 
-    expect(el.style.setProperty).not.toHaveBeenCalled()
+    expect(el.style.setProperty).toHaveBeenCalledWith('--carousel-media-height', FALLBACK_PX)
   })
 
   test('setHeightVar mobile non-mixed without landscapeRatio uses firstItem size', () => {
@@ -106,7 +114,7 @@ describe('custom-carousel sizing ratio + setHeightVar tails', () => {
     expect(el.style.setProperty).toHaveBeenCalled()
   })
 
-  test('setHeightVar mobile non-mixed without landscapeRatio or size publishes nothing', () => {
+  test('setHeightVar mobile non-mixed without landscapeRatio or size publishes the uniform fallback', () => {
     const el = stubEl({
       isMobile: true,
       items: [{ src: 'a.webp' }],
@@ -115,23 +123,33 @@ describe('custom-carousel sizing ratio + setHeightVar tails', () => {
 
     setHeightVar(el)
 
-    expect(el.style.setProperty).not.toHaveBeenCalled()
+    expect(el.style.setProperty).toHaveBeenCalledWith('--carousel-media-height', FALLBACK_PX)
   })
 
-  test('setHeightVar without items publishes nothing', () => {
+  test('setHeightVar without items publishes the uniform fallback', () => {
     const el = stubEl({ items: undefined, slideH: 350 })
 
     setHeightVar(el)
 
-    expect(el.style.setProperty).not.toHaveBeenCalled()
+    expect(el.style.setProperty).toHaveBeenCalledWith('--carousel-media-height', FALLBACK_PX)
   })
 
-  test('setHeightVar mobile non-mixed desktop-shape sizeless item stays unpublished', () => {
+  test('setHeightVar mobile non-mixed desktop-shape sizeless item publishes the uniform fallback', () => {
     const el = stubEl({
       isMobile: true,
       items: [{ src: 'a.webp' }],
       slideH: 0,
     })
+
+    setHeightVar(el)
+
+    expect(el.style.setProperty).toHaveBeenCalledWith('--carousel-media-height', FALLBACK_PX)
+  })
+
+  test('setHeightVar unsized set with no RO-measured width publishes nothing', () => {
+    const el = stubEl({ items: [{ src: 'a.webp' }] })
+
+    el._lastObservedWidth = 0
 
     setHeightVar(el)
 

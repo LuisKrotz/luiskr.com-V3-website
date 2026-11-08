@@ -50,7 +50,7 @@ import {
   openNavMenu,
   toggleNavMenu,
 } from './menu.js'
-import appStyles from '@core/sass/components/shell/app/nav-shell.scss?inline'
+import appStyles from '@core/sass/components/shell/app/nav-shell.scss?tiers'
 
 /**
  * Pre-computed set of every locale's localized earth-playground slug —

@@ -32,7 +32,7 @@ import { h } from '@core/jsx.js'
 import { stageContent } from './anim-demo/stages.js'
 import { ANIM_DEMO_DRIVERS } from './anim-demo/registry.js'
 import type { DemoContext } from './anim-demo/types.js'
-import animDemoStyles from '@core/sass/components/media/anim-demo.scss?inline'
+import animDemoStyles from '@core/sass/components/media/anim-demo.scss?tiers'
 
 /**
  * The <anim-demo> host element — one live preview stage per record.

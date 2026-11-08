@@ -52,9 +52,10 @@ import {
   startFitObserver,
 } from './custom-carousel/sizing.js'
 
-import carouselStyles from '@core/sass/components/carousel/carousel.scss?inline'
-import carouselHostStyles from '@core/sass/components/carousel/carousel-host.scss?inline'
-import internalStyles from '@core/sass/components/internals/internals.scss?inline'
+import { mergeTiered } from '@core/utils/responsive-css.js'
+import carouselStyles from '@core/sass/components/carousel/carousel.scss?tiers'
+import carouselHostStyles from '@core/sass/components/carousel/carousel-host.scss?tiers'
+import internalStyles from '@core/sass/components/internals/internals.scss?tiers'
 import '@website/components/media/MediaFigure.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
 
@@ -146,7 +147,7 @@ export class CustomCarousel extends BaseComponent {
   _isMixed = false
 
   constructor() {
-    super(`${carouselStyles}\n${internalStyles}\n${carouselHostStyles}`)
+    super(mergeTiered(carouselStyles, internalStyles, carouselHostStyles))
 
     this.forceActive = false
   }
@@ -246,9 +247,14 @@ export class CustomCarousel extends BaseComponent {
   /** Whether the carousel is currently auto-advancing. */
 
   get isActive() {
-    if (this._forceActive) return this.items.length > 1
+    // A measured side-by-side fit wins over _forceActive: at ≥3840 the
+    // ultrawide projection in measureFit may clear even a forced
+    // group's chrome when every slide fits inside the host. Below the
+    // gate, forced groups never reach the projection so _isSideBySide
+    // stays false and this collapses to the original contract.
+    if (this._isSideBySide) return false
 
-    return this.items.length > 1 && !this._isSideBySide
+    return this.items.length > 1
   }
 
   override onMounted() {

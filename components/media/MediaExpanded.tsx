@@ -21,7 +21,7 @@ import { cancelGenie } from './expanded/genie.js'
 import { renderMediaExpanded } from './expanded/render.js'
 import type { GenieSession } from './expanded/genie.js'
 import type { GenieSheet } from './expanded/genie-texture.js'
-import modalStyles from '@core/sass/components/internals/modal.scss?inline'
+import modalStyles from '@core/sass/components/internals/modal.scss?tiers'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
 /**

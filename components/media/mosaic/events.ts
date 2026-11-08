@@ -2,7 +2,7 @@
  * @file media/mosaic/events.ts
  * @description Scoped listener bindings for <media-mosaic> — the
  * matchMedia breakpoint that swaps the masonry wall for the regular
- * carousel at ≤640px, and the host ResizeObserver that repacks the wall
+ * carousel at ≤1024px, and the host ResizeObserver that repacks the wall
  * when its width moves between grid steps.
  */
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
@@ -14,7 +14,7 @@ import { scheduleLayout } from './layout.js'
 import type { MediaMosaic } from '../MediaMosaic.js'
 
 /**
- * Binds the mosaic's runtime listeners: (1) the ≤640px media query whose
+ * Binds the mosaic's runtime listeners: (1) the ≤1024px media query whose
  * flips re-render between the carousel and the packed wall (repack forced
  * on re-entry so a changed width can't reuse stale tile geometry), and
  * (2) a ResizeObserver on the host that repacks on real width changes —

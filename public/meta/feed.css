@@ -163,6 +163,12 @@ rss {
     letter-spacing: 1.313rem;
   }
 }
+@media (min-width: 3839px) {
+  .ttl-xl {
+    font-size: 9rem;
+    letter-spacing: 2.125rem;
+  }
+}
 .ttl-lg {
   font-weight: calc(200 + var(--fw-lift));
   font-size: 1.125rem;
@@ -187,6 +193,11 @@ rss {
     font-size: 3.438rem;
   }
 }
+@media (min-width: 3839px) {
+  .ttl-lg {
+    font-size: 5.563rem;
+  }
+}
 .ttl-md {
   font-weight: calc(200 + var(--fw-lift));
   font-size: 1.313rem;
@@ -195,6 +206,11 @@ rss {
 @media (min-width: 767px) {
   .ttl-md {
     font-size: 2.125rem;
+  }
+}
+@media (min-width: 3839px) {
+  .ttl-md {
+    font-size: 3.438rem;
   }
 }
 .ttl-sm {
@@ -214,6 +230,12 @@ rss {
     letter-spacing: 0.313rem;
   }
 }
+@media (min-width: 3839px) {
+  .ttl-sm {
+    font-size: 3.438rem;
+    letter-spacing: 0.5rem;
+  }
+}
 .ttl-xs {
   font-weight: calc(200 + var(--fw-lift));
   font-size: 0.813rem;
@@ -221,6 +243,11 @@ rss {
 @media (min-width: 2559px) {
   .ttl-xs {
     font-size: 1.313rem;
+  }
+}
+@media (min-width: 3839px) {
+  .ttl-xs {
+    font-size: 2.125rem;
   }
 }
 .ttl-xxs {
@@ -231,6 +258,11 @@ rss {
 @media (min-width: 2559px) {
   .ttl-xxs {
     font-size: 0.813rem;
+  }
+}
+@media (min-width: 3839px) {
+  .ttl-xxs {
+    font-size: 1.313rem;
   }
 }
 .ttl-special {
@@ -251,6 +283,16 @@ rss {
     font-size: 2.125rem;
   }
 }
+@media (min-width: 2559px) {
+  .txt-lg {
+    font-size: 3.438rem;
+  }
+}
+@media (min-width: 3839px) {
+  .txt-lg {
+    font-size: 5.563rem;
+  }
+}
 .txt-md {
   font-weight: calc(100 + var(--fw-lift));
   font-size: 0.813rem;
@@ -268,6 +310,12 @@ rss {
     line-height: 3.438rem;
   }
 }
+@media (min-width: 3839px) {
+  .txt-md {
+    font-size: 3.438rem;
+    line-height: 5.563rem;
+  }
+}
 .txt-sm {
   font-weight: calc(100 + var(--fw-lift));
   font-size: 0.813rem;
@@ -279,6 +327,12 @@ rss {
     line-height: 2.125rem;
   }
 }
+@media (min-width: 3839px) {
+  .txt-sm {
+    font-size: 2.125rem;
+    line-height: 3.438rem;
+  }
+}
 .txt-xs {
   font-weight: calc(100 + var(--fw-lift));
   font-size: 0.5rem;
@@ -288,6 +342,12 @@ rss {
   .txt-xs {
     font-size: 0.813rem;
     line-height: 1.313rem;
+  }
+}
+@media (min-width: 3839px) {
+  .txt-xs {
+    font-size: 1.313rem;
+    line-height: 2.125rem;
   }
 }
 :root {

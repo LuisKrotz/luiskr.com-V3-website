@@ -185,6 +185,21 @@ export class DrawText extends HTMLElement {
 
         this._isVisible = false
 
+        this._effectiveOffset = null
+
+        // A stale done-timer from the previous text must not survive the
+        // re-arm — it would fire mid-replay and collapse the new chars to
+        // --done while their stagger is still running (the dead-animation
+        // bug on card-stack description swaps). Same for the GPU overlay:
+        // its canvas owns the last reveal's glyphs.
+        if (this._animTimer) {
+          clearTimeout(this._animTimer)
+
+          this._animTimer = null
+        }
+
+        teardownGpuDraw(this)
+
         this._updateDom()
 
         this._setupTrigger()

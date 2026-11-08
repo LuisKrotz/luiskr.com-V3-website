@@ -14,8 +14,9 @@ import { VIEW_TAGS } from '@core/tokens/elements/views.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
 import type { RouteDescriptor } from '@core/router/router.js'
-import internalStyles from '@core/sass/components/internals/internals.scss?inline'
-import modalStyles from '@core/sass/components/internals/modal.scss?inline'
+import { mergeTiered } from '@core/utils/responsive-css.js'
+import internalStyles from '@core/sass/components/internals/internals.scss?tiers'
+import modalStyles from '@core/sass/components/internals/modal.scss?tiers'
 import { bindProjectCarousels } from './carousels.js'
 import { initProject, loadData, onRouteParamChange, updateRobotsMeta } from './data.js'
 import {
@@ -59,7 +60,7 @@ export class ViewProject extends BaseComponent {
   _descFontsWired = false // fonts.ready refit armed once — font metrics can flip the verdict
 
   constructor() {
-    super(`${internalStyles}\n${modalStyles}`)
+    super(mergeTiered(internalStyles, modalStyles))
   }
 
   /** The store's modal descriptor. */

@@ -38,7 +38,7 @@ import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import '@website/components/media/DrawText.js'
 import '@website/components/media/AnimDemo.js'
 import '@website/components/media/MediaFigure.js'
-import animationsStyles from './animations.scss?inline'
+import animationsStyles from './animations.scss?tiers'
 import '@website/components/legal/Footer.js'
 import { devError } from '@core/devlog.js'
 

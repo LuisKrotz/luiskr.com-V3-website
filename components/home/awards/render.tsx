@@ -85,77 +85,105 @@ export function renderAwards(el: AwardsMentions) {
                   {link.page}
                 </h3>
               ) : null}
-              <a
-                className={AWARDS_CLASSES.AWARDS_FOOTER_ITEM}
-                href={link.link}
-                onClick={(e: Event) => {
-                  if (!isPlainClick(e)) return
+              {/* Every item arrives glued to its own LEADING dot in a
+                  nowrap pair — a wrap can only break before the pair,
+                  so a separator never dangles at a line's end. */}
+              {i === 0 ? (
+                <a
+                  className={AWARDS_CLASSES.AWARDS_FOOTER_ITEM}
+                  href={link.link}
+                  onClick={(e: Event) => {
+                    if (!isPlainClick(e)) return
 
-                  e.preventDefault()
+                    e.preventDefault()
 
-                  router.push(link.link)
-                }}
-              >
-                {link.page}
-              </a>
-              {i < links.length - 1 && (
-                <span className={AWARDS_CLASSES.AWARDS_FOOTER_SEP}>&bull;</span>
+                    router.push(link.link)
+                  }}
+                >
+                  {link.page}
+                </a>
+              ) : (
+                <span className={AWARDS_CLASSES.AWARDS_FOOTER_PAIR}>
+                  <span className={AWARDS_CLASSES.AWARDS_FOOTER_SEP}>&bull;</span>
+                  <a
+                    className={AWARDS_CLASSES.AWARDS_FOOTER_ITEM}
+                    href={link.link}
+                    onClick={(e: Event) => {
+                      if (!isPlainClick(e)) return
+
+                      e.preventDefault()
+
+                      router.push(link.link)
+                    }}
+                  >
+                    {link.page}
+                  </a>
+                </span>
               )}
             </Fragment>
           ))}
-          {/* Animations reference — SPA-routed like the legal items. */}
-          <span className={AWARDS_CLASSES.AWARDS_FOOTER_SEP}>&bull;</span>
+          {/* Animations reference — SPA-routed like the legal items,
+              glued to its own leading sep. */}
           <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
             {appText(CMS_KEYS.ANIMATIONS)}
           </h3>
-          <a
-            className={AWARDS_CLASSES.AWARDS_FOOTER_ITEM}
-            href={animationsHref}
-            onClick={(e: Event) => {
-              if (!isPlainClick(e)) return
+          <span className={AWARDS_CLASSES.AWARDS_FOOTER_PAIR}>
+            <span className={AWARDS_CLASSES.AWARDS_FOOTER_SEP}>&bull;</span>
+            <a
+              className={AWARDS_CLASSES.AWARDS_FOOTER_ITEM}
+              href={animationsHref}
+              onClick={(e: Event) => {
+                if (!isPlainClick(e)) return
 
-              e.preventDefault()
+                e.preventDefault()
 
-              router.push(animationsHref)
-            }}
-          >
-            {appText(CMS_KEYS.ANIMATIONS)}
-          </a>
-          {/* Localized sitemap page — SPA-routed like the legal items. */}
-          <span className={AWARDS_CLASSES.AWARDS_FOOTER_SEP}>&bull;</span>
+                router.push(animationsHref)
+              }}
+            >
+              {appText(CMS_KEYS.ANIMATIONS)}
+            </a>
+          </span>
+          {/* Localized sitemap page — SPA-routed like the legal items,
+              glued to its own leading sep. */}
           <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
             {appText(SECTION_UI_KEYS.SITEMAP)}
           </h3>
-          <a
-            className={AWARDS_CLASSES.AWARDS_FOOTER_ITEM}
-            href={sitemapHref}
-            onClick={(e: Event) => {
-              if (!isPlainClick(e)) return
+          <span className={AWARDS_CLASSES.AWARDS_FOOTER_PAIR}>
+            <span className={AWARDS_CLASSES.AWARDS_FOOTER_SEP}>&bull;</span>
+            <a
+              className={AWARDS_CLASSES.AWARDS_FOOTER_ITEM}
+              href={sitemapHref}
+              onClick={(e: Event) => {
+                if (!isPlainClick(e)) return
 
-              e.preventDefault()
+                e.preventDefault()
 
-              router.push(sitemapHref)
-            }}
-          >
-            {appText(SECTION_UI_KEYS.SITEMAP)}
-          </a>
-          {/* Locale RSS feed — last nav item; the delegated click handler
-              skips the feed class so the browser fetches the XML file. */}
-          <span className={AWARDS_CLASSES.AWARDS_FOOTER_SEP}>&bull;</span>
+                router.push(sitemapHref)
+              }}
+            >
+              {appText(SECTION_UI_KEYS.SITEMAP)}
+            </a>
+          </span>
+          {/* Locale RSS feed — last nav item, glued to its own leading
+              sep; the delegated click handler skips the feed class so
+              the browser fetches the XML file. */}
           <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
             {appText(SECTION_UI_KEYS.RSS_FEED)}
           </h3>
-          <a
-            className={`${AWARDS_CLASSES.AWARDS_FOOTER_ITEM} ${AWARDS_CLASSES.AWARDS_FOOTER_FEED}`}
-            href={feedHrefFor(locale)}
-            type={NET_STRINGS.MIME_RSS}
-          >
-            {feedGlyph(
-              AWARDS_CLASSES.AWARDS_FOOTER_FEED_ICON,
-              AWARDS_CLASSES.AWARDS_FOOTER_FEED_WAVE
-            )}
-            {appText(SECTION_UI_KEYS.RSS_FEED)}
-          </a>
+          <span className={AWARDS_CLASSES.AWARDS_FOOTER_PAIR}>
+            <span className={AWARDS_CLASSES.AWARDS_FOOTER_SEP}>&bull;</span>
+            <a
+              className={`${AWARDS_CLASSES.AWARDS_FOOTER_ITEM} ${AWARDS_CLASSES.AWARDS_FOOTER_FEED}`}
+              href={feedHrefFor(locale)}
+              type={NET_STRINGS.MIME_RSS}
+            >
+              {feedGlyph(
+                AWARDS_CLASSES.AWARDS_FOOTER_FEED_ICON,
+                AWARDS_CLASSES.AWARDS_FOOTER_FEED_WAVE
+              )}
+              {appText(SECTION_UI_KEYS.RSS_FEED)}
+            </a>
+          </span>
         </nav>
 
         <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>

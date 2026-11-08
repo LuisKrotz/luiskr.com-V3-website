@@ -7,6 +7,7 @@
  */
 
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { CONTACT_CLASSES } from '@core/tokens/classes/contact.js'
@@ -28,7 +29,7 @@ import { appText, componentText } from '@core/locale/ui-text.js'
 import { h, Fragment } from '@core/jsx.js'
 import '@website/components/media/DrawText.js'
 import '@website/components/carousel/MentionsDeck.js'
-import contactStyles from '@core/sass/components/home/contact.scss?inline'
+import contactStyles from '@core/sass/components/home/contact.scss?tiers'
 
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import { SECTION_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
@@ -197,8 +198,12 @@ export class ContactSection extends BaseComponent {
         </h2>
         <h3 className={CONTACT_CLASSES.CONTACT_TITLE}>
           {/* Light-DOM text mirrors `text` — tests/no-upgrade paths read it;
-              unslotted children never paint. */}
-          <draw-text text={String(title)}>{String(title)}</draw-text>
+              unslotted children never paint. Contact sits below the fold,
+              so the viewport trigger holds the reveal until the section
+              scrolls in (auto would spend the stagger at mount). */}
+          <draw-text text={String(title)} trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}>
+            {String(title)}
+          </draw-text>
         </h3>
         {subtitle ? <p className={CONTACT_CLASSES.CONTACT_SUBTITLE}>{String(subtitle)}</p> : null}
 
@@ -223,6 +228,12 @@ export class ContactSection extends BaseComponent {
                 <span className={CONTACT_CLASSES.CONTACT_MAIL_LABEL}>{mailItem.description}</span>
                 <span className={CONTACT_CLASSES.CONTACT_MAIL_ADDR}>
                   {mailItem.link.replace(NET_STRINGS.SCHEME_MAILTO, CHAR_STRINGS.EMPTY)}
+                  <span
+                    className={CONTACT_CLASSES.CONTACT_LINKS_ARROW}
+                    {...{ [ARIA_ATTRS.ARIA_HIDDEN]: ATTR_VALUES.TRUE }}
+                  >
+                    {CHAR_STRINGS.ARROW_RIGHT}
+                  </span>
                 </span>
               </a>
             </Fragment>

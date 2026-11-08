@@ -17,7 +17,7 @@ import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
-import awardsCarouselStyles from '@core/sass/components/carousel/awards-carousel.scss?inline'
+import awardsCarouselStyles from '@core/sass/components/carousel/awards-carousel.scss?tiers'
 import { startAutoplay, stopAutoplay, tickAutoplay } from './awards-carousel/autoplay.js'
 import { bindEvents } from './awards-carousel/events.js'
 import {

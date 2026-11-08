@@ -12,7 +12,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { ROUTE_SEARCH_CLASSES } from '@core/tokens/classes/route-search.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
-import searchStyles from './search.scss?inline'
+import searchStyles from './search.scss?tiers'
 import '@website/components/search/RouteSearch.js'
 import '@website/components/legal/Footer.js'
 

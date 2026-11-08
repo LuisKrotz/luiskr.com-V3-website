@@ -9,10 +9,14 @@
 
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { ANIMATION_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 import { IMAGE_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
+import { CACHE_CONFIG } from '@core/tokens/media/cache.js'
+import { HTML_TAGS } from '@core/tokens/elements/html.js'
+import { WEBGL_STRINGS } from '@core/tokens/strings/webgl.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
 import {
@@ -132,6 +136,21 @@ export function warmFirstRung(fig: MediaFigure): void {
 }
 
 /**
+ * Releases every display-sized object URL a figure still holds — called
+ * from onDestroy so the blob store can't grow across route changes. An
+ * img that already consumed its blob keeps the decoded bitmap (revocation
+ * only blocks new fetches), so painted layers are unaffected.
+ * @param fig The figure being torn down.
+ */
+export function releaseDomBlobs(fig: MediaFigure): void {
+  if (!fig._domBlobs || typeof URL.revokeObjectURL !== TYPE_STRINGS.FUNCTION) return
+
+  fig._domBlobs.forEach((url) => URL.revokeObjectURL(url))
+
+  fig._domBlobs.clear()
+}
+
+/**
  * The figure's rendered box width for stem/ladder picks — read once and
  * memoized. clientWidth is a synchronous layout query: with ~100 figures
  * on a media page, one read per warm AND per climb re-entrant during the
@@ -226,6 +245,92 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
   let best: HTMLImageElement | null = null
 
   /**
+   * Display-bound DOM bitmap — the CDN rungs are quality-compressed but
+   * FULL-dimensioned, so a 1920×5654 page capture painted into a ~365px
+   * slide still decodes ~11MP per mounted layer and keeps that raster
+   * live for the strip's life (the tall-image scroll freeze). The probe
+   * already fetched the bytes, so the HTTP-cached blob re-decodes once
+   * into a box-covering bitmap through createImageBitmap's decode-time
+   * resize, re-encodes to a small jpeg, and the img mounts the object
+   * URL — the same rendered pixels at a fraction of the decoded memory.
+   * Every failure arm returns the CDN URL so the mount degrades to the
+   * plain full-dimension path unchanged.
+   * @param url Confirmed rung URL whose probe supplies the source dims.
+   * @param srcW The rung's intrinsic width (its probe's naturalWidth).
+   * @param srcH The rung's intrinsic height.
+   * @returns An object URL bounded to the rendered box, or `url`.
+   */
+  const domSizedSrc = async (url: string, srcW: number, srcH: number): Promise<string> => {
+    const dpr = typeof window !== TYPE_STRINGS.UNDEFINED ? window.devicePixelRatio || 1 : 1
+
+    const boxW = fig.clientWidth * dpr
+
+    const boxH = fig.clientHeight * dpr
+
+    if (!boxW || !boxH) return url
+
+    // object-fit:cover needs the bitmap ≥ box on both axes, so the binding
+    // scale is the larger ratio; an already-smaller source keeps the CDN
+    // URL — an upscaled re-encode would only cost decode for softness.
+    const scale = Math.min(1, Math.max(boxW / srcW, boxH / srcH))
+
+    if (scale >= 1) return url
+
+    try {
+      const res = await fetch(url, { cache: CACHE_CONFIG.FORCE_CACHE as RequestCache })
+
+      if (!res.ok) return url
+
+      const blob = await res.blob()
+
+      const bitmap = await createImageBitmap(blob, {
+        resizeWidth: Math.max(1, Math.round(srcW * scale)),
+        resizeHeight: Math.max(1, Math.round(srcH * scale)),
+        resizeQuality: MEDIA_ATTRS.FETCH_PRIORITY_HIGH as ImageBitmapOptions['resizeQuality'],
+      })
+
+      const canvas = document.createElement(HTML_TAGS.CANVAS) as HTMLCanvasElement
+
+      canvas.width = bitmap.width
+
+      canvas.height = bitmap.height
+
+      const ctx = canvas.getContext(WEBGL_STRINGS.CONTEXT_2D)
+
+      if (!ctx) {
+        bitmap.close()
+
+        return url
+      }
+
+      ctx.drawImage(bitmap, 0, 0)
+
+      bitmap.close()
+
+      const out = await new Promise<Blob | null>((resolve) =>
+        canvas.toBlob(resolve, MEDIA_ATTRS.IMAGE_JPEG)
+      )
+
+      if (!out) return url
+
+      const obj = URL.createObjectURL(out)
+
+      // Superseded blobs keep their decoded bitmaps in already-painted
+      // imgs (revocation blocks only new fetches); an in-flight
+      // predecessor's fetch fails into its error arm and that layer
+      // self-removes — so all but the newest release immediately.
+      fig._domBlobs.forEach((prev) => URL.revokeObjectURL(prev))
+
+      fig._domBlobs.clear()
+      fig._domBlobs.add(obj)
+
+      return obj
+    } catch {
+      return url
+    }
+  }
+
+  /**
    * Publishes a confirmed tier into the visible high layer — the probe
    * already holds the bytes. The tier mounts as a NEW img stacked over
    * the painted one (reassigning the live img.src would blank the box
@@ -311,9 +416,39 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
 
       highEl.after(successor)
 
-      successor.src = url
+      // The mounted layer paints a display-sized object URL when the
+      // confirmed source over-resolves the box — the full-dimension URL
+      // stays on fig.highResSrc for rebuilds/SEO while the DOM decode
+      // drops to the box's device pixels. The fade-in class waits for the
+      // src so the transition still starts on a resolved bitmap. Environments
+      // without the bitmap pipeline (or a probeless confirm) keep the
+      // historic synchronous assign — identical behavior, no async gap.
+      const srcW = best?.naturalWidth || 0
 
-      successor.classList.add(MEDIA_CLASSES.RENDER_MEDIA_LOADED)
+      const srcH = best?.naturalHeight || 0
+
+      const bitmapPath =
+        typeof createImageBitmap === TYPE_STRINGS.FUNCTION &&
+        typeof URL.createObjectURL === TYPE_STRINGS.FUNCTION &&
+        srcW > 0 &&
+        srcH > 0
+
+      if (!bitmapPath) {
+        successor.src = url
+
+        successor.classList.add(MEDIA_CLASSES.RENDER_MEDIA_LOADED)
+      } else {
+        void domSizedSrc(url, srcW, srcH).then((src) => {
+          // A wholesale _updateDom between mount and bitmap-ready leaves
+          // the successor detached — the rebuilt DOM emits fig.highResSrc
+          // instead, so a detached layer exits without a src.
+          if (!successor.isConnected) return
+
+          successor.src = src
+
+          successor.classList.add(MEDIA_CLASSES.RENDER_MEDIA_LOADED)
+        })
+      }
     } else if (fig._isMounted) {
       fig._updateDom()
     }
@@ -326,12 +461,36 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
    * decoding off the gesture path; only the visible layer swap waits for
    * scroll-idle, and the painted thumb already owns the box so nothing
    * blanks. onScrollStop fires immediately when the window isn't
-   * scrolling, so a static viewport sees no added latency. Parked calls
-   * fire in registration order — the climb confirms rungs serially, so
-   * the LAST publish is always the highest proven tier.
+   * scrolling, so a static viewport sees no added latency.
+   *
+   * Parked calls COALESCE to the latest confirmed rung: without it a
+   * 3-rung climb taken mid-scroll queues three clone+insert+fade+retire
+   * cycles that all detonate in one task at scroll-stop (the post-fling
+   * freeze) — and every early tier paints pixels its successor replaces
+   * a frame later. One queued callback per climb mounts only the highest
+   * proven tier; rungs confirming after it drains re-queue normally, so
+   * the idle-path progressive upgrade is unchanged.
    * @param url Confirmed rung URL ready to paint.
    */
-  const publish = (url: string): void => onScrollStop(() => publishDom(url))
+  let pendingUrl: string = ATTR_VALUES.EMPTY
+
+  let publishQueued = false
+
+  const publish = (url: string): void => {
+    pendingUrl = url
+
+    if (publishQueued) return
+
+    publishQueued = true
+
+    // Queued implies pendingUrl was just assigned — the drain always
+    // mounts the latest confirmed rung.
+    onScrollStop(() => {
+      publishQueued = false
+
+      publishDom(pendingUrl)
+    })
+  }
 
   const ImageClass: typeof Image | null =
     typeof window !== TYPE_STRINGS.UNDEFINED && window.Image

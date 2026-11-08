@@ -32,7 +32,7 @@ import { calcDrawTextDelay, calcDrawTextOrderedOffset } from '@core/utils/wasm/w
 import { DRAW_TIMINGS } from '@core/tokens/media/dimensions.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import '@website/components/media/DrawText.js'
-import legalStyles from './legal.scss?inline'
+import legalStyles from './legal.scss?tiers'
 import '@website/components/legal/Footer.js'
 import { devError } from '@core/devlog.js'
 

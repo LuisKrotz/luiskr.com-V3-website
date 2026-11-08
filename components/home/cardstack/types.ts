@@ -64,6 +64,9 @@ export interface CardStackInfo {
   title: string
   /** Full CMS description (`<br>` markup kept for <draw-text>). */
   body: string
+  /** First-sentence summary of `body` — the stacked cards' ≤4-line
+   *  mobile description (the desktop column keeps the full text). */
+  summary: string
   /** Localized project route ('' without a slug). */
   href: string
 }

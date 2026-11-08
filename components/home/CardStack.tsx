@@ -57,7 +57,7 @@ import { holdBurns } from './cardstack/info.js'
 import { renderCardStack } from './cardstack/render.js'
 import type { CardStackItem, CardStackTranslations } from './cardstack/types.js'
 import '@website/components/media/DrawText.js'
-import cardStackStyles from '@core/sass/components/home/card-stack.scss?inline'
+import cardStackStyles from '@core/sass/components/home/card-stack.scss?tiers'
 
 /**
  * The CardStack — stacked featured-project deck.
@@ -90,6 +90,7 @@ export class CardStack extends BaseComponent {
   _deckW = 0 // last measured deck box — the pose math's fit input
   _deckH = 0
   _stageH = 0 // the section's viewport allotment (vh minus header/foot chrome) — measure()'s height bound for card sizing; 0 until the section rect is measurable. Copy-carrying cards never cap to it — content sizes them and the page absorbs the overflow
+  _autoStage = false // content-sized section (the ≥3840 rung): min-height computed to 0 — the fan's 1fr deck row has no allotment, so fitDeckToFront publishes the card band itself
   _deckRO: ResizeObserver | null = null // re-measures when the grid resizes the deck stage
   _fitRO: ResizeObserver | null = null // re-fits the deck when the front card's copy height changes
   _fitFront: Element | null = null // the card node _fitRO currently watches

@@ -61,6 +61,20 @@ describe('Legal tails 2', () => {
     el.remove()
   })
 
+  test('onStoreUpdate falls back to English when the lang locale is unset', () => {
+    const el = document.createElement(VIEW_TAGS.VIEW_LEGAL)
+
+    document.body.appendChild(el)
+
+    const prev = store.state.lang.locale
+
+    store.state.lang.locale = null
+    el.onStoreUpdate()
+
+    store.state.lang.locale = prev
+    el.remove()
+  })
+
   test('render guards: sections without title/content and aria fallback', async () => {
     const el = document.createElement(VIEW_TAGS.VIEW_LEGAL)
 

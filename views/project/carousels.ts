@@ -75,7 +75,8 @@ export function bindProjectCarousels(view: ViewProject): void {
     // Desktop carousel items render oversized — downscale intrinsic
     // sizes through the ladder (÷2 → ÷1.5 → ÷1.75) so the display box
     // stays denser than the source. Carousel path only: the mosaic wall
-    // runs its own divisor ladder, and ≤640px keeps natural sizes.
+    // runs its own divisor ladder, and ≤CAROUSEL_MAX_W keeps natural
+    // sizes (the mobile/tablet carousel contract).
     const scaleItems =
       viewportWidth() > INTERNAL_MOSAIC.CAROUSEL_MAX_W && !view.isMosaicGroup(items)
 

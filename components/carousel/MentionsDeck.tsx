@@ -27,7 +27,7 @@ import store from '@core/store.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
-import mentionsDeckStyles from '@core/sass/components/carousel/mentions-deck.scss?inline'
+import mentionsDeckStyles from '@core/sass/components/carousel/mentions-deck.scss?tiers'
 import {
   startAutoplay,
   stopAutoplay,

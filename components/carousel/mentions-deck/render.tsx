@@ -6,6 +6,7 @@
  */
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
@@ -143,8 +144,12 @@ export function renderMentionsDeck(host: MentionsDeck) {
     <section className={C.MENTIONS_DECK} aria-label={host.title}>
       <h3 className={C.MENTIONS_DECK_TITLE}>
         {/* Light-DOM text mirrors `text` — tests/no-upgrade paths read it;
-            unslotted children never paint. */}
-        <draw-text text={host.title}>{host.title}</draw-text>
+            unslotted children never paint. The deck sits below the fold,
+            so the viewport trigger holds the reveal until the section
+            actually scrolls in (auto would spend the stagger at mount). */}
+        <draw-text text={host.title} trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}>
+          {host.title}
+        </draw-text>
       </h3>
 
       {items.length ? (

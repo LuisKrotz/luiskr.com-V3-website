@@ -26,7 +26,7 @@ import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { genieEnter, genieLeave, type GenieClasses } from '@core/utils/motion/genie.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
-import modalStyles from '@core/sass/components/dialogs/search-modal.scss?inline'
+import modalStyles from '@core/sass/components/dialogs/search-modal.scss?tiers'
 import '@website/components/search/RouteSearch.js'
 
 /**

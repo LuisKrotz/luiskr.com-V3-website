@@ -83,7 +83,9 @@ describe('ContactSection', () => {
     expect(mail.getAttribute(LINK_ATTRS.REL)).toBe(DOM_STRINGS.NOOPENER)
 
     const addr = mail.querySelector(`.${CONTACT_CLASSES.CONTACT_MAIL_ADDR}`)
-    expect(addr.textContent).toBe('test@example.com')
+    expect(addr.textContent).toContain('test@example.com')
+    // The mail block carries the same arrow glyph the channel links use.
+    expect(addr.querySelector(`.${CONTACT_CLASSES.CONTACT_LINKS_ARROW}`)).not.toBeNull()
 
     const links = contactEl.shadowRoot.querySelectorAll(`a.${CONTACT_CLASSES.CONTACT_LINKS_LINK}`)
     expect(links.length).toBe(1)

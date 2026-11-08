@@ -10,7 +10,12 @@
 import { mountMediaFigure } from './figure/mount.js'
 import { openMediaModal } from './figure/modal.js'
 import { renderMediaFigure } from './figure/render.js'
-import { loadHighRes, mediaPlaceholder, resolveMediaSources } from './figure/load.js'
+import {
+  loadHighRes,
+  mediaPlaceholder,
+  releaseDomBlobs,
+  resolveMediaSources,
+} from './figure/load.js'
 import { ensureVideoSource, pauseVideo, playVideo, syncVideoPlayback } from './figure/video.js'
 import type { SharedObserverHandle } from '@core/utils/dom/shared-observer.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
@@ -22,9 +27,10 @@ import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
 import { slugify } from '@core/utils'
 import { calcAspectScaled } from '@core/utils/wasm/wasm-layout.js'
-import mediaFigureStyles from '@core/sass/components/media/media-figure.scss?inline'
-import internalStyles from '@core/sass/components/internals/internals.scss?inline'
-import modalStyles from '@core/sass/components/internals/modal.scss?inline'
+import { mergeTiered } from '@core/utils/responsive-css.js'
+import mediaFigureStyles from '@core/sass/components/media/media-figure.scss?tiers'
+import internalStyles from '@core/sass/components/internals/internals.scss?tiers'
+import modalStyles from '@core/sass/components/internals/modal.scss?tiers'
 import { COVER_DIMENSIONS, GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 
 /**
@@ -56,11 +62,12 @@ export class MediaFigure extends BaseComponent {
   warmed = false // first-rung CDN/HTTP-cache warm already dispatched
   _scaledVideo: boolean | undefined = undefined // memoized poster/source tier pick — render must not re-query clientWidth per pass
   _ladderBox = -1 // memoized figure box width (px) for ladder/stem picks — one layout read per figure
+  _domBlobs: Set<string> = new Set() // display-sized object URLs mounted into high layers — revoked when superseded or on destroy
   _expandBrackets: (() => void) | null = null // teardown for the open-1 corner-brackets WebGPU widget
   isIntersecting = false // last observed viewport state
 
   constructor() {
-    super(`${mediaFigureStyles}\n${internalStyles}\n${modalStyles}`)
+    super(mergeTiered(mediaFigureStyles, internalStyles, modalStyles))
   }
 
   /** Whether the figure may open the expand modal. */
@@ -236,6 +243,8 @@ export class MediaFigure extends BaseComponent {
 
       this._expandBrackets = null
     }
+
+    releaseDomBlobs(this)
   }
 
   override onStoreUpdate() {

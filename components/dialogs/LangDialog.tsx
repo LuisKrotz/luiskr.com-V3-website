@@ -26,7 +26,7 @@ import { applyLang } from './lang-dialog/locale.js'
 import { renderLangDialog } from './lang-dialog/render.js'
 import { syncOpenState } from './lang-dialog/sync.js'
 import { destroyWebGLControls, mountWebGLControls } from './lang-dialog/webgl.js'
-import preferencesStyles from '@core/sass/components/dialogs/preferences.scss?inline'
+import preferencesStyles from '@core/sass/components/dialogs/preferences.scss?tiers'
 
 /**
  * The LangDialog — dialog class.

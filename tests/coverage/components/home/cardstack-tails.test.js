@@ -236,11 +236,15 @@ describe('deck tails', () => {
   test('measure caps the card box by the deck height share', async () => {
     // The byHeight cap is a FAN-tier rule — the stacked tiers size by
     // width alone (their front card auto-grows instead). Pin a ≥1280
-    // viewport so pickTier lands on a fan band.
+    // viewport so pickTier lands on a fan band. The height budget reads
+    // the viewport-derived _stageH (the measured deck row only serves
+    // as the pre-paint fallback — reading it every pass ratchets the
+    // auto-height band), so a 300px-tall viewport is what bounds the
+    // card, not the stubbed deck rect.
     const wOrig = Object.getOwnPropertyDescriptor(window, 'innerWidth')
     const hOrig = Object.getOwnPropertyDescriptor(window, 'innerHeight')
     Object.defineProperty(window, 'innerWidth', { value: 1600, configurable: true })
-    Object.defineProperty(window, 'innerHeight', { value: 900, configurable: true })
+    Object.defineProperty(window, 'innerHeight', { value: 300, configurable: true })
     resetViewportCache()
 
     try {
@@ -278,6 +282,24 @@ describe('deck tails', () => {
     expect(front.classList.contains(C.CARD_STACK_CARD_ACTIVE)).toBe(true)
     expect(front.style.visibility).toBe(ATTR_VALUES.VISIBLE)
     expect(front.style.transform).toContain('translate3d')
+  })
+
+  test('fitDeckToFront returns early when section or front measurements are absent', async () => {
+    const el = await mountItems([item(0), item(1)])
+    const origQuery = el.$.bind(el)
+
+    el.$ = () => null
+    fitDeckToFront(el)
+    el.$ = origQuery
+
+    const section = el.$(SEL.CARD_STACK)
+
+    if (section) {
+      const origClosest = section.closest?.bind(section)
+      section.closest = () => null
+      fitDeckToFront(el)
+      section.closest = origClosest
+    }
   })
 
   test('_observeDeck reconnects, re-measures on resize, and degrades', async () => {
@@ -327,13 +349,26 @@ describe('deck tails', () => {
     }
   })
 
-  test('fitDeckToFront grows the band with the front card — copy never caps', async () => {
+  test('fitDeckToFront pins a fixed band on image-only tiers, grows with copy on copy tiers', async () => {
     const el = await mountItems([item(0), item(1)])
     const deck = deckEl(el)
 
-    // The front card's live height drives the band outright — a copy
-    // card taller than the ratio box grows the deck (the page absorbs
-    // the overflow; nothing scrolls inside the card).
+    if (el._tier.STACKED && !el._tier.IN_CARD_INFO) {
+      // Image-only stacked tier — nothing can grow, so the live measure
+      // is skipped outright: a mid-transition rect read used to feed back
+      // into pileH and visibly compress/re-expand the pile on every nav.
+      fitDeckToFront(el)
+      expect(el._frontExtra).toBe(0)
+      expect(deck.style.minHeight).toBe(
+        `${el._cardH + el._cardH * CARD_STACK_LAYOUT.STACKED_DECK_PAD}${COMMON_ATTRS.PX}`
+      )
+    }
+
+    // Copy tier — the front card's live height drives the band outright:
+    // a copy card taller than the ratio box grows the deck (the page
+    // absorbs the overflow; nothing scrolls inside the card).
+    el._tier = { ...el._tier, STACKED: true, IN_CARD_INFO: true }
+
     const front = el._cardEls[0]
 
     front.getBoundingClientRect = () => ({ height: 500 })

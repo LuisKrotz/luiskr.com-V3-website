@@ -13,6 +13,7 @@ import {
   armCardBurn as rawArmCardBurn,
   disarmCardBurn as rawDisarmCardBurn,
 } from '@core/utils/burn/burn.js'
+import { frame } from '@core/utils/burn/loop.js'
 import store from '@core/store.js'
 import { mount } from '@tests/fixtures/test-constants.js'
 import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
@@ -591,5 +592,185 @@ describe('mosaic burn tails', () => {
     await flush(60)
 
     expect(cardEl()._burn).toBeNull()
+  })
+
+  test('reduced motion on a relocating host moves the title via ITEM_BURNED', () => {
+    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, true)
+    mountMosaic()
+
+    const onBurned = jest.fn()
+    const armed = rawArmCardBurn(
+      el,
+      0,
+      ITEMS[0],
+      { ...BURN_CLASSES, ITEM_BURNED: HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING },
+      MOSAIC_SELECTORS.HOME_MOSAIC_ITEM,
+      1,
+      onBurned
+    )
+
+    expect(armed).toBe(true)
+    expect(onBurned).toHaveBeenCalledTimes(1)
+    expect(cardEl().classList.contains(HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING)).toBe(true)
+  })
+
+  test('the consume beat flips a relocating session into rebuild in one frame', () => {
+    mountMosaic()
+
+    const onBurned = jest.fn()
+
+    rawArmCardBurn(
+      el,
+      0,
+      ITEMS[0],
+      { ...BURN_CLASSES, ITEM_BURNED: HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING },
+      MOSAIC_SELECTORS.HOME_MOSAIC_ITEM,
+      1,
+      onBurned
+    )
+
+    const card = cardEl()
+    const s = card._burn
+
+    // Land the forward clock exactly on the consume edge — the beat must
+    // fire once: onBurned consumed + self-cleared, ITEM_BURNED applied,
+    // direction flipped, rebuild progress re-derived from prog.
+    s.t = s.dur / 1000
+    frame(s)
+
+    expect(onBurned).toHaveBeenCalledTimes(1)
+    expect(s.onBurned).toBeNull()
+    expect(s.dir).toBe(-1)
+    expect(s.prog).toBe(1)
+    expect(card.classList.contains(HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING)).toBe(true)
+  })
+
+  test('a knit frame re-rasterizes when the computed font signature moved', async () => {
+    mountMosaic()
+    armCardBurn(el, 0, ITEMS[0])
+
+    const s = cardEl()._burn
+
+    await flush(30)
+    expect(s.lastBox).toBeTruthy()
+
+    // The rebuild pass reads a settled font — mutate the signature terms
+    // so syncPaper's guard falls through to the re-raster + timing copy.
+    const orig = globalThis.getComputedStyle
+
+    globalThis.getComputedStyle = (node) => {
+      const st = orig.call(globalThis, node)
+
+      return new Proxy(st, {
+        get: (t, prop) => {
+          const v = prop === 'fontSize' ? '99px' : t[prop]
+
+          return typeof v === 'function' ? v.bind(t) : v
+        },
+      })
+    }
+
+    disarmCardBurn(el, 0)
+    frame(s)
+
+    globalThis.getComputedStyle = orig
+
+    // The re-raster ran: fresh lastBox + lastFont under the new signature.
+    expect(s.lastBox).not.toBe(ATTR_VALUES.EMPTY)
+    expect(s.lastFont).toContain('99px')
+  })
+
+  test('disarm on a clean card strips the ITEM_BURNED class', () => {
+    mountMosaic()
+
+    // No session + a relocating class map — the instant restore path
+    // must still clear the relocated-title marker.
+    rawDisarmCardBurn(
+      el,
+      0,
+      { ...BURN_CLASSES, ITEM_BURNED: HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING },
+      MOSAIC_SELECTORS.HOME_MOSAIC_ITEM
+    )
+
+    expect(cardEl()._burn).toBeUndefined()
+  })
+
+  test('a second disarm landing mid-rebuild keeps the counted-down progress', async () => {
+    mountMosaic()
+    armCardBurn(el, 0, ITEMS[0])
+
+    const s = cardEl()._burn
+
+    disarmCardBurn(el, 0)
+    expect(s.dir).toBe(-1)
+
+    const prog = s.prog
+
+    // Second disarm while the rebuild runs — dir is already −1 so the
+    // forward-rebase guard must NOT recompute prog.
+    disarmCardBurn(el, 0)
+
+    expect(s.prog).toBe(prog)
+  })
+
+  test('a knit re-raster with extra letters leaves the new timings authored', async () => {
+    mountMosaic()
+    armCardBurn(el, 0, ITEMS[0])
+
+    const s = cardEl()._burn
+
+    await flush(30)
+    expect(s.lastBox).toBeTruthy()
+    expect(s.letters.length).toBe(1)
+
+    // The re-raster must find MORE letter clusters than the arm-time
+    // pass so the timing copy hits its no-prev arm — swap the paper
+    // canvas's ctx for one painting two ink runs.
+    const twoRuns = {
+      measureText: (t) => ({ width: String(t).length * 10 }),
+      getImageData: (_x, _y, w, h) => {
+        const data = new Uint8ClampedArray(w * h * 4)
+
+        for (let y = 0; y < h; y++) {
+          for (let x = 0; x < w; x++) {
+            if ((x >= 5 && x <= 15) || (x >= 30 && x <= 45)) data[(y * w + x) * 4 + 3] = 255
+          }
+        }
+
+        return { data }
+      },
+    }
+    const ctx2 = new Proxy(twoRuns, {
+      get: (t, prop) => (prop in t ? t[prop] : () => undefined),
+      set: (t, prop, v) => {
+        t[prop] = v
+        return true
+      },
+    })
+
+    CanvasProto().getContext = (type) => (String(type) === '2d' ? ctx2 : null)
+
+    const orig = globalThis.getComputedStyle
+
+    globalThis.getComputedStyle = (node) => {
+      const st = orig.call(globalThis, node)
+
+      return new Proxy(st, {
+        get: (t, prop) => {
+          const v = prop === 'fontSize' ? '99px' : t[prop]
+
+          return typeof v === 'function' ? v.bind(t) : v
+        },
+      })
+    }
+
+    disarmCardBurn(el, 0)
+    frame(s)
+
+    globalThis.getComputedStyle = orig
+
+    // Two ink runs rasterized to two letters; index 1 had no prev.
+    expect(s.letters.length).toBe(2)
+    expect(s.lastFont).toContain('99px')
   })
 })

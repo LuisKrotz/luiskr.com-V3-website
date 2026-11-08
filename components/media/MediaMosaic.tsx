@@ -4,8 +4,8 @@
  * packs a project section's media into a true skyline masonry (each tile
  * keeps its own natural size — intrinsic/3, /4 when still too wide for the
  * wall, /2 or undivided when too small for the expand trigger) instead of
- * flattening wildly different heights into a carousel strip. At ≤640px it
- * swaps to the regular <custom-carousel>, configured exactly like the
+ * flattening wildly different heights into a carousel strip. At ≤1024px
+ * it swaps to the regular <custom-carousel>, configured exactly like the
  * project binder's own. Behavior lives in mosaic/{types,pack,layout,
  * events,render} — this facade keeps the state + configure() contract.
  */
@@ -19,14 +19,14 @@ import { bindMediaMosaicEvents } from './mosaic/events.js'
 import { relayout, scheduleLayout } from './mosaic/layout.js'
 import { renderMediaMosaic } from './mosaic/render.js'
 import type { CarouselLikeElement, MediaMosaicItem, MosaicTileStyle } from './mosaic/types.js'
-import mediaMosaicStyles from '@core/sass/components/media/media-mosaic.scss?inline'
+import mediaMosaicStyles from '@core/sass/components/media/media-mosaic.scss?tiers'
 import '@website/components/carousel/CustomCarousel.js'
 
 /**
  * <media-mosaic> element — packs project-section media at natural sizes.
  * Exposes the same configure({items, folder, forceActive}) contract as
  * <custom-carousel> so the project binder treats both tags identically;
- * forceActive only forwards to the embedded carousel on the ≤640px path.
+ * forceActive only forwards to the embedded carousel on the ≤1024px path.
  */
 export class MediaMosaic extends BaseComponent {
   /** Media rows pushed by the view (intrinsic `size` drives the pack). */
@@ -35,13 +35,13 @@ export class MediaMosaic extends BaseComponent {
   _folder: string = ATTR_VALUES.EMPTY
   /** Passthrough for the embedded carousel's forced-active flag. */
   _forceActive = false
-  /** ≤640px viewport flag — swaps the wall for <custom-carousel>. */
+  /** ≤1024px viewport flag — swaps the wall for <custom-carousel>. */
   _isCompact = false
   /** Width the current tiles were packed at — repack trigger on change. */
   _packedW = 0
   /** Last host width the ResizeObserver reported (sub-pixel dedup). */
   _lastObservedW = 0
-  /** The ≤640px media query — null where matchMedia is unavailable. */
+  /** The ≤1024px media query — null where matchMedia is unavailable. */
   _mq: MediaQueryList | null = null
   /** Host ResizeObserver driving repacks on width changes. */
   _ro: ResizeObserver | null = null
@@ -69,7 +69,7 @@ export class MediaMosaic extends BaseComponent {
    * @param {object} o
    * @param {Array} o.items Media descriptors (intrinsic `size` drives the pack).
    * @param {string} o.folder CDN folder prefix.
-   * @param {boolean} o.forceActive Forwarded to the ≤640px carousel only.
+   * @param {boolean} o.forceActive Forwarded to the ≤1024px carousel only.
    */
   configure({
     items,

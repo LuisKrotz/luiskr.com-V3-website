@@ -30,7 +30,7 @@ import { renderPreferences } from './preferences/render.js'
 import { mountWebGLControls, destroyWebGLControls } from './preferences/webgl.js'
 import { syncOpenState, updateSwitchesUI, updateThemeUI } from './preferences/sync.js'
 import { PREF_DEFAULTS, type PrefNode } from './preferences/types.js'
-import preferencesStyles from '@core/sass/components/dialogs/preferences.scss?inline'
+import preferencesStyles from '@core/sass/components/dialogs/preferences.scss?tiers'
 
 /**
  * The PreferencesModal — modal class.

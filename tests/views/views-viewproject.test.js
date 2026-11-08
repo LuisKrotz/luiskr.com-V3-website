@@ -388,12 +388,19 @@ describe('ViewProject', () => {
     expect(SCSS.internals).toMatch(/&-main\s*\{[\s\S]*?background-color:\s*var\(--bg-secondary\)/)
   })
 
-  test('internals.scss defines dynamic carousel item min-height', () => {
-    expect(SCSS.internals).toMatch(/min-height:\s*var\(--carousel-item-height,\s*auto\)/)
+  test('internals.scss does not pin description blocks to the carousel strip height', () => {
+    // The --carousel-item-height min-height on &-description used to stretch
+    // paragraph blocks to ~70dvh — text now sizes to its own copy.
+    const desc = SCSS.internals.match(/&-description\s*\{[\s\S]*?\n\s*\}/)
+
+    expect(desc).not.toBeNull()
+    expect(desc[0]).not.toMatch(/min-height/)
   })
 
   test('internals.scss progressive image styles define blur on thumb and opacity transition on high-res', () => {
-    expect(SCSS.internals).toMatch(/--thumb[\s\S]*?filter:\s*blur\(12px\)/)
+    // The thumb blur compiles to 12px via to-rem($space-lg - $space-3xs) —
+    // assert the token mechanism, never the literal px (zero-hardcoding).
+    expect(SCSS.internals).toMatch(/--thumb[\s\S]*?filter:\s*blur\(to-rem\(/)
     expect(SCSS.internals).toMatch(/--high[\s\S]*?opacity:\s*0/)
     expect(SCSS.internals).toMatch(/render-media--loaded[\s\S]*?opacity:\s*1/)
   })

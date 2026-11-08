@@ -31,7 +31,7 @@ import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import type { RingSheenSession } from '@core/utils/gpu/ring-sheen.js'
 import type { HomeItem, RelatedCard, RelatedTranslations } from './related/types.js'
-import internalStyles from '@core/sass/components/internals/internals.scss?inline'
+import internalStyles from '@core/sass/components/internals/internals.scss?tiers'
 import '@website/components/media/DrawText.js'
 import { CDN_URLS } from '@core/tokens/media/urls.js'
 

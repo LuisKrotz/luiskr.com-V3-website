@@ -10,7 +10,6 @@ import { DRAW_TEXT_CLASSES } from '@core/tokens/classes/draw-text.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import drawTextStyles from '@core/sass/components/media/draw-text.scss?inline'
 import { stripHtml } from '@core/utils/string.js'
-import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import type { DrawText } from '../DrawText.js'
 import { renderContent, RENDER_MODES } from './render.js'
 import { getSharedSheet } from './sheet.js'
@@ -80,16 +79,14 @@ export function updateDom(host: DrawText): void {
   host._contentEl.className =
     `${DRAW_TEXT_CLASSES.DRAW_TEXT} ${visibleClass} ${doneClass} ${pendingClass}`.trim()
 
-  // Render mode: chars only while the reveal runs; 'words' for `fit`
-  // hosts (fitText measures .draw-text__word boxes — a fit element that
-  // rendered plain could overflow unscaled until its trigger fires);
-  // 'plain' everywhere else — a paragraph collapses into per-run spans
-  // instead of holding ~2 nodes per word for its whole lifetime.
-  const mode = host._needsCharSpans
-    ? RENDER_MODES.CHARS
-    : host.hasAttribute(COMMON_ATTRS.FIT)
-      ? RENDER_MODES.WORDS
-      : RENDER_MODES.PLAIN
+  // Render mode: chars only while the reveal runs; 'words' in every
+  // resting state. 'plain' used to collapse pending/done into per-run
+  // text spans, but a real text run breaks after hyphens/dashes/slashes
+  // (UAX#14) while a nowrap word span cannot — any copy containing a
+  // punctuated token wrapped differently between pending → animating →
+  // done, which is the visible end-of-draw jump. Word spans are the same
+  // nowrap boxes in all three states: zero reflow, one node per word.
+  const mode = host._needsCharSpans ? RENDER_MODES.CHARS : RENDER_MODES.WORDS
 
   host._contentEl.innerHTML = renderContent(host.text, host.delay, host.offset, mode)
 }

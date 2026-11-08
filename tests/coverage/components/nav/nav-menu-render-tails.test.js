@@ -606,6 +606,19 @@ describe('nav menu + render tails', () => {
 
     expect(homeNav.classList.contains(NAV_CLASSES.NAV_ON_DARK)).toBe(true)
 
+    // Not at the bottom but the contact section is active — the ||
+    // right arm still inverts under dark mode.
+    const contactNav = renderAppNav(
+      navStub({
+        isHomePage: true,
+        onBottom: false,
+        _menuOpen: false,
+        activeSection: SECTIONS.CONTACT,
+      })
+    )
+
+    expect(contactNav.classList.contains(NAV_CLASSES.NAV_ON_DARK)).toBe(true)
+
     document.documentElement.classList.remove(dark)
   })
 
