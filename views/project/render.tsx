@@ -13,6 +13,7 @@ import { MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { INTERNAL_CLASSES, PROJECT_CLASSES } from '@core/tokens/classes/project.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
+import { MOSAIC_CSS_PROPS } from '@core/tokens/css/mosaic.js'
 import { A11Y_UI_KEYS, MEDIA_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
@@ -23,6 +24,7 @@ import type { ProjectMediaItem, SectionChild } from './types.js'
 import type { ViewProject } from './Project.js'
 import { COVER_DIMENSIONS, GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
+import { TITLE_MARQUEE } from '@core/tokens/motion/marquee.js'
 
 /**
  * Lead text naming one media carousel — the first item's label; '' lets
@@ -68,16 +70,29 @@ export function renderProject(c: ViewProject) {
     <article>
       <div id="main" className={`${PROJECT_CLASSES.PROJECT} ${MODAL_CLASSES.MODAL_BELOW}`}>
         <h1
-          className={INTERNAL_CLASSES.INTERNAL_TITLE}
+          className={`${INTERNAL_CLASSES.INTERNAL_TITLE} ${INTERNAL_CLASSES.INTERNAL_TITLE_MARQUEE_MOD}`}
           aria-label={t?.title ? stripHtml(t.title) : undefined}
           aria-hidden={t?.title ? undefined : ATTR_VALUES.TRUE}
         >
           {t?.title ? (
-            <draw-text
-              text={t.title}
-              trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
-              fit={ATTR_VALUES.EMPTY}
-            />
+            // Uppercase marquee ticker: two identical halves, each repeating
+            // "TITLE |" enough times to span the viewport, loop seamlessly
+            // on translateX(-50%); aria-hidden because the h1's aria-label
+            // already names the heading for AT.
+            <span className={INTERNAL_CLASSES.INTERNAL_TITLE_STRIP} aria-hidden={ATTR_VALUES.TRUE}>
+              {Array.from({ length: TITLE_MARQUEE.COPIES }, (_, i) => (
+                <span key={i} className={INTERNAL_CLASSES.INTERNAL_TITLE_COPY}>
+                  {Array.from({ length: c._titleRepeat }, (_, j) => (
+                    <span key={j} className={INTERNAL_CLASSES.INTERNAL_TITLE_UNIT}>
+                      {stripHtml(t.title as string)}
+                      <span className={INTERNAL_CLASSES.INTERNAL_TITLE_SEP}>
+                        {CHAR_STRINGS.PIPE_SEP}
+                      </span>
+                    </span>
+                  ))}
+                </span>
+              ))}
+            </span>
           ) : (
             <span className={SKELETON_CLASSES.SKELETON_TITLE_MD} />
           )}
@@ -103,7 +118,10 @@ export function renderProject(c: ViewProject) {
                 src={svgPlaceholder(COVER_DIMENSIONS.COVER_WIDTH, COVER_DIMENSIONS.COVER_HEIGHT)}
                 width={COVER_DIMENSIONS.COVER_WIDTH}
                 height={COVER_DIMENSIONS.COVER_HEIGHT}
-                alt={ATTR_VALUES.EMPTY}
+                // Skeleton paint — no project copy is loaded yet, so the
+                // route slug stands in as the crawler-visible alt (the
+                // layer is aria-hidden; AT never hears it).
+                alt={c.projectSlug}
                 aria-hidden={ATTR_VALUES.TRUE}
               />
               <div
@@ -118,7 +136,10 @@ export function renderProject(c: ViewProject) {
             {t.sections.map((section, parentKey) => (
               <div
                 key={parentKey}
-                style={{ [CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT]: c.sectionItemHeight(section) }}
+                style={{
+                  [CAROUSEL_CSS_PROPS.CAROUSEL_ITEM_HEIGHT]: c.sectionItemHeight(section),
+                  [MOSAIC_CSS_PROPS.MEDIA_MOSAIC_HEIGHT]: c.sectionMosaicHeight(section),
+                }}
               >
                 {/* Navigation heading (h2) per section — named after the
                     section's own lead text; the numbered template is the
@@ -168,12 +189,24 @@ export function renderProject(c: ViewProject) {
                                 carouselNums[parentKey][childKey]
                               )}
                         </h3>
-                        <custom-carousel
-                          {...{
-                            [DATA_ATTRS.DATA_SEC_IDX]: parentKey,
-                            [DATA_ATTRS.DATA_CAROUSEL_IDX]: childKey,
-                          }}
-                        />
+                        {c.isMosaicGroup(mediaItems) ? (
+                          // Irregular-height groups render the natural-size
+                          // masonry wall on desktop; <media-mosaic> swaps to
+                          // the carousel itself at ≤640px.
+                          <media-mosaic
+                            {...{
+                              [DATA_ATTRS.DATA_SEC_IDX]: parentKey,
+                              [DATA_ATTRS.DATA_CAROUSEL_IDX]: childKey,
+                            }}
+                          />
+                        ) : (
+                          <custom-carousel
+                            {...{
+                              [DATA_ATTRS.DATA_SEC_IDX]: parentKey,
+                              [DATA_ATTRS.DATA_CAROUSEL_IDX]: childKey,
+                            }}
+                          />
+                        )}
                       </Fragment>
                     )
                   }
@@ -229,7 +262,7 @@ export function renderProject(c: ViewProject) {
                           )}
                           width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
                           height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
-                          alt={ATTR_VALUES.EMPTY}
+                          alt={c.projectSlug}
                           aria-hidden={ATTR_VALUES.TRUE}
                         />
                         <div
@@ -248,7 +281,7 @@ export function renderProject(c: ViewProject) {
                           )}
                           width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
                           height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
-                          alt={ATTR_VALUES.EMPTY}
+                          alt={c.projectSlug}
                           aria-hidden={ATTR_VALUES.TRUE}
                         />
                         <div
@@ -264,6 +297,11 @@ export function renderProject(c: ViewProject) {
         )}
 
         <portfolio-related />
+
+        {/* Shared site footer — the same <legal-footer> the legal and
+            animations views mount; it owns the nav/socials/docs/note/
+            credit chrome the related strip used to render inline. */}
+        <legal-footer />
       </div>
 
       {/* Modal above: native dialog populated imperatively by _updateModalDOM() */}

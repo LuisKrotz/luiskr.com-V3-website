@@ -332,47 +332,22 @@ describe('AppNav interactions', () => {
     el.remove()
   })
 
-  test('onStoreUpdate re-renders and forwards reduced-motion to flags', async () => {
+  test('onStoreUpdate re-renders only when a consumed store input moved', async () => {
     const el = mount()
 
     await flush()
 
-    const flag = { setReducedMotion: jest.fn() }
+    const domSpy = jest.spyOn(el, '_updateDom')
 
-    el._navFlags = new Set([flag])
+    el._navStoreSig = null
     el.onStoreUpdate()
 
-    expect(flag.setReducedMotion).toHaveBeenCalled()
+    expect(domSpy).toHaveBeenCalledTimes(1)
 
-    el._navFlags = new Set()
-    el.remove()
-  })
+    el.onStoreUpdate()
 
-  test('nav flag mounts on a connected canvas and destroys cleanly', async () => {
-    const el = mount()
+    expect(domSpy).toHaveBeenCalledTimes(1)
 
-    await flush()
-
-    const canvas = document.createElement(HTML_TAGS.CANVAS)
-
-    el.shadowRoot.appendChild(canvas)
-    el._menuFlagCanvasEl = canvas
-    el._menuFlagLang = el.currentLang
-    el._mountNavFlag()
-
-    // Second mount with a live flag on the same canvas is a no-op.
-    el._mountNavFlag()
-
-    const destroy = jest.fn()
-
-    el._navFlags = [{ canvas, destroy }]
-    el._destroyNavFlag()
-
-    expect(destroy).toHaveBeenCalled()
-    expect(el._navFlags).toEqual([])
-    expect(el._menuFlagCanvasEl).toBeNull()
-
-    canvas.remove()
     el.remove()
   })
 
@@ -395,13 +370,12 @@ describe('AppNav interactions', () => {
     el.remove()
   })
 
-  test('router subscription refreshes DOM and remounts flags', async () => {
+  test('router subscription refreshes DOM', async () => {
     const el = mount()
 
     await flush()
 
     const domSpy = jest.spyOn(el, '_updateDom')
-    const flagSpy = jest.spyOn(el, '_mountNavFlag')
 
     el.subscribeRouter()
     router.push('/nonexistent-coverage-route')
@@ -413,7 +387,6 @@ describe('AppNav interactions', () => {
     await flush(120)
 
     expect(domSpy).toHaveBeenCalled()
-    expect(flagSpy).toHaveBeenCalled()
 
     el.remove()
   })

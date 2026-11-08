@@ -4,6 +4,7 @@
  */
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals'
 import { PortfolioRelated } from '@website/components/portfolio/Related.js'
+import { LegalFooter } from '@website/components/legal/Footer.js'
 import { LOCALES } from '@core/constants.js'
 import { mount, TEST_PROJECTS, TEST_TEXT } from '@tests/fixtures/test-constants.js'
 import store from '@core/store.js'
@@ -15,11 +16,16 @@ import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { LINK_ATTRS } from '@core/tokens/attrs/link.js'
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
+import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
-import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { ROUTER_CLASSES } from '@core/tokens/classes/router.js'
+import { KEYBOARD_EVENTS } from '@core/tokens/events/dom.js'
+import { KEYS } from '@core/tokens/primitives.js'
+import { RELATED_LAYOUT, RELATED_TIMING } from '@core/tokens/motion/related.js'
+import { LANG_MUTATIONS } from '@core/tokens/events/mutations.js'
 
 // ─── Local selector helpers (derived from TAGS/CLASSES) ───────────────────────
 const _S = {
@@ -78,7 +84,7 @@ describe('PortfolioRelated', () => {
     }
     relatedEl._updateDom()
     expect(relatedEl.shadowRoot.textContent).toContain('More Projects')
-    const mosaic = relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_MOSAIC}`)
+    const mosaic = relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_LIST}`)
     const links = mosaic.querySelectorAll(HTML_TAGS.A)
     expect(links.length).toBe(2)
   })
@@ -116,7 +122,7 @@ describe('PortfolioRelated', () => {
       configurable: true,
       get: () => [
         {
-          link: 'ghost',
+          link: CHAR_STRINGS.EMPTY,
           page: 'Ghost',
           fullPath: CHAR_STRINGS.EMPTY,
           imageSrc: CHAR_STRINGS.EMPTY,
@@ -139,19 +145,20 @@ describe('PortfolioRelated', () => {
   })
 
   test('footer home link routes back to the localized home path', () => {
+    // The home link lives in the shared <legal-footer> socials row now —
+    // the related strip no longer renders footer chrome.
+    const footerEl = new LegalFooter()
+    const footerCleanup = mount(footerEl)
+
+    footerEl._updateDom()
+
     let routed = null
     const origPush = router.push
     router.push = (path) => {
       routed = path
     }
 
-    relatedEl.translations = {
-      title: 'More Projects',
-      socials: [{ network: 'gh', link: 'https://x.example' }],
-    }
-    relatedEl._updateDom()
-
-    const home = relatedEl.shadowRoot.querySelector(
+    const home = footerEl.shadowRoot.querySelector(
       `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME}`
     )
 
@@ -161,6 +168,7 @@ describe('PortfolioRelated', () => {
     expect(routed).toBe(home.getAttribute(LINK_ATTRS.HREF))
 
     router.push = origPush
+    footerCleanup()
   })
 
   test('projectsList covers object maps, fallbacks and all match strategies', () => {
@@ -227,7 +235,7 @@ describe('PortfolioRelated', () => {
     store.state.portfoliolist = prevList
   })
 
-  test('non-EN locale, relative basePath, storage fallback and socials render', () => {
+  test('non-EN locale, relative basePath and storage fallback', () => {
     const prevLocale = store.state.lang.locale
     const prevStorage = store.state.storage
     const prevList = store.state.portfoliolist
@@ -239,8 +247,6 @@ describe('PortfolioRelated', () => {
     relatedEl.translations = {
       title: 'More',
       path: ROUTE_PATHS.PORTFOLIO_SEGMENT,
-      note: 'note-html',
-      socials: [{ network: 'gh', link: 'https://x.example' }],
       projects: [{ link: '/portfolio/p1', page: 'p1' }],
     }
 
@@ -251,77 +257,75 @@ describe('PortfolioRelated', () => {
 
     relatedEl._updateDom()
 
-    const socials = relatedEl.shadowRoot.querySelectorAll(
-      `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`
-    )
-
-    expect(socials.length).toBeGreaterThan(0)
-
-    // socials present but no note → the `note || EMPTY` arm
-    relatedEl.translations = {
-      title: 'More',
-      projects: [],
-      socials: [{ network: 'gh', link: 'https://x.example' }],
-    }
-    relatedEl._updateDom()
-
     store.state.lang.locale = prevLocale
     store.state.storage = prevStorage
     store.state.portfoliolist = prevList
   })
 
   test('keyed-object socials from Firebase normalize instead of crashing render', () => {
-    relatedEl.translations = {
-      title: 'More',
-      note: 'note-html',
-      socials: {
-        first: { network: 'gh', link: 'https://x.example' },
-        second: { network: 'mail', link: 'mailto:x@example.com' },
+    // The socials row renders inside the shared <legal-footer> now —
+    // its components/related dictionary carries the same keyed-object
+    // shape Firebase writes.
+    const prev = store.getters.getlang()?.components
+    const payload = {
+      related: {
+        note: TEST_TEXT.LONG_NOTE,
+        socials: {
+          first: { network: 'gh', link: 'https://x.example' },
+          second: { network: 'mail', link: 'mailto:x@example.com' },
+        },
       },
-      projects: [{ link: '/portfolio/p1', page: 'p1' }],
     }
 
-    expect(() => relatedEl._updateDom()).not.toThrow()
+    store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, payload)
 
-    const links = relatedEl.shadowRoot.querySelectorAll(
-      `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`
+    const footerEl = new LegalFooter()
+    const footerCleanup = mount(footerEl)
+
+    store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, payload)
+
+    expect(() => footerEl._updateDom()).not.toThrow()
+
+    const links = footerEl.shadowRoot.querySelectorAll(
+      `.${INTERNAL_CLASSES.INTERNAL_FOOTER_SOCIALS} .${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`
     )
 
     // home link + the two keyed socials
     expect(links.length).toBe(3)
     expect(links[0].classList.contains(INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME)).toBe(true)
+
+    store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, prev)
+    footerCleanup()
   })
 
-  test('disclaimer note renders as a clamped toggle button and expands on click', () => {
-    relatedEl.translations = {
-      title: 'More',
-      note: TEST_TEXT.LONG_NOTE,
-      socials: [{ network: 'gh', link: 'https://x.example' }],
-    }
-    relatedEl._updateDom()
+  test('disclaimer note renders its full text — no clamp, no show-more', () => {
+    // The disclaimer lives in the shared <legal-footer>: always a plain
+    // paragraph carrying the whole note, never a toggle.
+    const prev = store.getters.getlang()?.components
+    const payload = { related: { note: TEST_TEXT.LONG_NOTE } }
 
-    const note = relatedEl.shadowRoot.querySelector(
+    store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, payload)
+
+    const footerEl = new LegalFooter()
+    const footerCleanup = mount(footerEl)
+
+    store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, payload)
+    footerEl._updateDom()
+
+    const note = footerEl.shadowRoot.querySelector(
       `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE}`
+    )
+    const noteText = footerEl.shadowRoot.querySelector(
+      `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE_TEXT}`
     )
 
     expect(note).not.toBeNull()
-    expect(note.tagName).toBe(HTML_TAGS.BUTTON.toUpperCase())
-    expect(note.getAttribute(ARIA_ATTRS.ARIA_EXPANDED)).toBe('false')
-    expect(note.classList.contains(STATE_CLASSES.IS_OPEN)).toBe(false)
+    expect(note.tagName).toBe(HTML_TAGS.P.toUpperCase())
+    expect(note.getAttribute(ARIA_ATTRS.ARIA_EXPANDED)).toBeNull()
+    expect(noteText.innerHTML).toBe(TEST_TEXT.LONG_NOTE)
 
-    note.click()
-
-    const openNote = relatedEl.shadowRoot.querySelector(
-      `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE}`
-    )
-
-    expect(relatedEl._noteOpen).toBe(true)
-    expect(openNote.getAttribute(ARIA_ATTRS.ARIA_EXPANDED)).toBe('true')
-    expect(openNote.classList.contains(STATE_CLASSES.IS_OPEN)).toBe(true)
-
-    openNote.click()
-
-    expect(relatedEl._noteOpen).toBe(false)
+    store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, prev)
+    footerCleanup()
   })
 
   test('isCurrent arms: link match, page match and non-match', () => {
@@ -423,5 +427,290 @@ describe('PortfolioRelated', () => {
     jest.resetModules()
 
     await import('@website/components/portfolio/Related.js')
+  })
+
+  // ─── Accordion conveyor ────────────────────────────────────────────────────
+
+  const fiveProjects = () => ({
+    title: 'More',
+    path: ROUTE_PATHS.PORTFOLIO,
+    projects: [1, 2, 3, 4, 5].map((n) => ({
+      link: `/portfolio/p${n}`,
+      page: `P${n}`,
+      description: `Desc ${n}`,
+    })),
+  })
+
+  const listItems = () => [
+    ...relatedEl.shadowRoot.querySelectorAll(`.${RELATED_CLASSES.RELATED_LIST_ITEM}`),
+  ]
+
+  test('renders the window open and folds the tail into inert closed slots', () => {
+    relatedEl.translations = fiveProjects()
+    relatedEl._updateDom()
+
+    const items = listItems()
+    const closed = items.filter((el) =>
+      el.classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)
+    )
+
+    expect(items.length).toBe(5)
+    expect(closed.length).toBe(5 - RELATED_LAYOUT.VISIBLE_COUNT)
+
+    closed.forEach((el) => {
+      expect(el.hasAttribute(COMMON_ATTRS.INERT)).toBe(true)
+      expect(el.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(ATTR_VALUES.TRUE)
+    })
+
+    // open rows carry media + title + always-visible description
+    const first = items[0]
+
+    expect(first.querySelector(`.${RELATED_CLASSES.RELATED_LIST_MEDIA}`)).not.toBeNull()
+    expect(first.querySelector(`.${RELATED_CLASSES.RELATED_LIST_TITLE}`)).not.toBeNull()
+    expect(first.querySelector(`.${RELATED_CLASSES.RELATED_LIST_DESC}`)).not.toBeNull()
+  })
+
+  test('reduced motion pins every row open — no closed slots', () => {
+    const rmSpy = jest.spyOn(store.getters, 'getReducedMotion').mockReturnValue(true)
+
+    relatedEl.translations = fiveProjects()
+    relatedEl._updateDom()
+
+    expect(
+      relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED}`)
+    ).toBeNull()
+
+    rmSpy.mockRestore()
+  })
+
+  test('a forward step folds the top row, unfolds the next, and wraps back to the first', () => {
+    jest.useFakeTimers()
+
+    relatedEl.translations = fiveProjects()
+    relatedEl._updateDom()
+
+    const list = relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_LIST}`)
+    const first = listItems()[0]
+
+    relatedEl._stepList(1)
+
+    expect(first.classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)).toBe(true)
+    expect(first.hasAttribute(COMMON_ATTRS.INERT)).toBe(true)
+    expect(
+      list.children[RELATED_LAYOUT.VISIBLE_COUNT].classList.contains(
+        RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED
+      )
+    ).toBe(false)
+
+    // the folded node joins the tail only after the collapse watchdog
+    jest.advanceTimersByTime(RELATED_TIMING.REORDER_DELAY)
+    expect(list.children[list.children.length - 1]).toBe(first)
+
+    // keep stepping — the wrap returns the first item through the same
+    // expand-from-collapsed motion
+    for (let i = 0; i < 4; i++) {
+      relatedEl._advanceList()
+
+      jest.advanceTimersByTime(RELATED_TIMING.REORDER_DELAY)
+    }
+
+    expect(first.classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)).toBe(false)
+
+    jest.useRealTimers()
+  })
+
+  test('advance guards: missing list, all-open window, all-closed rows', () => {
+    // skeleton list (no projects): rows exist but none are closed → no
+    // folded slot after the window → the entering guard returns
+    relatedEl.translations = {}
+    relatedEl._updateDom()
+    relatedEl._advanceList()
+
+    relatedEl.translations = fiveProjects()
+    relatedEl._updateDom()
+
+    const list = relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_LIST}`)
+    const items = listItems()
+
+    // a non-item node right after the window (anim-desc sr-only, the
+    // ring-sheen canvas) is skipped — the folded row after it unfolds
+    const stray = document.createElement(HTML_TAGS.DIV)
+
+    list.insertBefore(stray, items[RELATED_LAYOUT.VISIBLE_COUNT])
+    relatedEl._advanceList()
+
+    expect(relatedEl._listReorderNode).not.toBeNull()
+
+    stray.remove()
+    relatedEl._flushListReorder()
+
+    // every row closed → firstOpen < 0 arm
+    items.forEach((el) => el.classList.add(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED))
+    relatedEl._advanceList()
+
+    // remove the list node → the missing-list arm (+ _syncList's !list arm)
+    list.remove()
+    relatedEl._advanceList()
+    relatedEl._syncList()
+
+    expect(relatedEl._listEl).toBeNull()
+  })
+
+  test('reorder flush arms: early flush on second schedule and detached skip', () => {
+    jest.useFakeTimers()
+
+    relatedEl.translations = fiveProjects()
+    relatedEl._updateDom()
+
+    const list = relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_LIST}`)
+
+    relatedEl._advanceList()
+
+    // a second step lands before the watchdog → the pending move flushes now
+    relatedEl._advanceList()
+    const kids = [...list.children].filter((el) =>
+      el.classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM)
+    )
+
+    expect(kids[kids.length - 1].classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)).toBe(
+      true
+    )
+
+    // detached skip: re-render replaces the list before the watchdog fires
+    relatedEl._advanceList()
+    relatedEl._updateDom()
+    jest.advanceTimersByTime(RELATED_TIMING.REORDER_DELAY)
+
+    expect(relatedEl._listReorderNode).toBeNull()
+
+    jest.useRealTimers()
+  })
+
+  test('_syncList arms: same-node early return + no keydown on a fits-window list', () => {
+    relatedEl.translations = fiveProjects()
+    relatedEl._updateDom()
+
+    // same-node early return — the listener is bound once per list node
+    relatedEl._syncList()
+
+    // a list that fits its window gets no key handler — arrows pass through
+    const three = fiveProjects()
+    three.projects = three.projects.slice(0, RELATED_LAYOUT.VISIBLE_COUNT)
+    relatedEl.translations = three
+    relatedEl._updateDom()
+
+    const fitted = relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_LIST}`)
+    const kd = new KeyboardEvent(KEYBOARD_EVENTS.KEYDOWN, {
+      key: KEYS.ARROW_DOWN,
+      cancelable: true,
+    })
+
+    fitted.dispatchEvent(kd)
+    expect(kd.defaultPrevented).toBe(false)
+  })
+
+  test('manual steps: prev/next buttons and arrow keys fold the bellows', () => {
+    jest.useFakeTimers()
+
+    relatedEl.translations = fiveProjects()
+    relatedEl._updateDom()
+
+    const list = relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_LIST}`)
+
+    // step buttons render only while the conveyor can fold
+    const prev = relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_LIST_BTN_PREV}`)
+    const next = relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_LIST_BTN_NEXT}`)
+
+    expect(prev).not.toBeNull()
+    expect(next).not.toBeNull()
+
+    const first = listItems()[0]
+
+    // next → forward fold
+    next.click()
+    expect(first.classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)).toBe(true)
+
+    // prev → the tail's folded row returns to the top slot
+    prev.click()
+    expect(first.classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)).toBe(false)
+    expect(listItems()[0]).toBe(first)
+
+    // step forward again, let the fold land, then prev rewinds it back
+    next.click()
+    jest.advanceTimersByTime(RELATED_TIMING.REORDER_DELAY)
+
+    const top = listItems()[0]
+
+    prev.click()
+    expect(listItems()[0]).not.toBe(top)
+    expect(listItems()[0]).toBe(first)
+
+    // arrow keys drive the same step path (and consume the key)
+    const kd = new KeyboardEvent(KEYBOARD_EVENTS.KEYDOWN, {
+      key: KEYS.ARROW_DOWN,
+      cancelable: true,
+    })
+    list.dispatchEvent(kd)
+    expect(kd.defaultPrevented).toBe(true)
+
+    const ku = new KeyboardEvent(KEYBOARD_EVENTS.KEYDOWN, { key: KEYS.ARROW_UP, cancelable: true })
+    list.dispatchEvent(ku)
+    expect(ku.defaultPrevented).toBe(true)
+
+    // unrelated keys are ignored
+    const ki = new KeyboardEvent(KEYBOARD_EVENTS.KEYDOWN, { key: KEYS.ENTER, cancelable: true })
+    list.dispatchEvent(ki)
+    expect(ki.defaultPrevented).toBe(false)
+
+    jest.useRealTimers()
+  })
+
+  test('retreat guards: no folded tail and no open rows', () => {
+    // skeleton list: nothing folded → the !tailEnd arm returns
+    relatedEl.translations = {}
+    relatedEl._updateDom()
+    relatedEl._retreatList()
+
+    relatedEl.translations = fiveProjects()
+    relatedEl._updateDom()
+
+    const list = relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_LIST}`)
+
+    // missing list arm
+    list.remove()
+    relatedEl._retreatList()
+
+    relatedEl._updateDom()
+
+    // every row folded → lastOpen < 0 arm
+    listItems().forEach((el) => el.classList.add(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED))
+    relatedEl._retreatList()
+  })
+
+  test('step buttons are absent for a list that fits its window', () => {
+    const three = fiveProjects()
+    three.projects = three.projects.slice(0, RELATED_LAYOUT.VISIBLE_COUNT)
+    relatedEl.translations = three
+    relatedEl._updateDom()
+
+    expect(
+      relatedEl.shadowRoot.querySelector(`.${RELATED_CLASSES.RELATED_LIST_CONTROLS}`)
+    ).toBeNull()
+  })
+
+  test('onDestroy drains the conveyor state', () => {
+    jest.useFakeTimers()
+
+    relatedEl.translations = fiveProjects()
+    relatedEl._updateDom()
+
+    relatedEl._advanceList()
+
+    relatedEl.onDestroy()
+
+    expect(relatedEl._listEl).toBeNull()
+    expect(relatedEl._listReorderNode).toBeNull()
+
+    jest.useRealTimers()
   })
 })

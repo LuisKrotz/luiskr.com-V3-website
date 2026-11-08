@@ -1,7 +1,7 @@
 /**
  * @file Home.js
- * @description <view-home> — the home page route: hero carousel, about
- * section, mosaic project grid and contact footer. Loads the home page
+ * @description <view-home> — the home page route: the selected-work
+ * card-stack deck, about section and contact footer. Loads the home page
  * node + projects list via SWR, keeps JSON-LD (WebSite + ItemList) in
  * sync, and passes data down to its child sections. Behavior lives in
  * home/{types,data,children,scroll,render} — this facade keeps the
@@ -19,7 +19,7 @@ import { onHomeRouteChange, scrollOnMount } from './scroll.js'
 import { renderHome } from './render.js'
 import type { AboutNode, HomeTranslations, PortfolioItem } from './types.js'
 import homeStyles from './home.scss?inline'
-import '@website/components/home/HomeMosaic.js'
+import '@website/components/home/CardStack.js'
 import '@website/components/home/AboutSection.js'
 import '@website/components/home/ContactSection.js'
 import '@website/components/home/AwardsMentions.js'

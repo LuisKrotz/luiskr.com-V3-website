@@ -11,7 +11,7 @@
 
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals'
 import { HomeMosaic } from '@website/components/home/HomeMosaic.js'
-import { armCardBurn } from '@website/components/home/mosaic/burn.js'
+import { armCardBurn as rawArmCardBurn } from '@core/utils/burn/burn.js'
 import store from '@core/store.js'
 import { mount } from '@tests/fixtures/test-constants.js'
 import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
@@ -21,6 +21,21 @@ import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { UI_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { INPUT_STRINGS } from '@core/tokens/strings/input.js'
 import { CANVAS_STRINGS } from '@core/tokens/strings/canvas.js'
+
+const BURN_CLASSES = {
+  ITEM_BURNING: HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING,
+  TITLE_OVERLAY: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_OVERLAY,
+  TITLE: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE,
+  TITLE_BURNING: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING,
+  TITLE_BURN: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURN,
+  TITLE_SLOT: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_SLOT,
+  TITLE_DUP: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_DUP,
+  TITLE_REWRITE: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_REWRITE,
+  DETAILS: HOME_MOSAIC_CLASSES.HOME_MOSAIC_DETAILS,
+}
+
+const armCardBurn = (host, i, item) =>
+  rawArmCardBurn(host, i, item, BURN_CLASSES, MOSAIC_SELECTORS.HOME_MOSAIC_ITEM)
 
 const TITLE_COLOR = 'rgb(12, 34, 56)'
 const CLEAR_COLOR = 'rgba(0, 0, 0, 0)'
@@ -386,9 +401,7 @@ describe('mosaic burn letters', () => {
     armCardBurn(el, 0, ITEMS[0])
 
     expect(cardEl()._burn).toBeUndefined()
-    expect(
-      cardEl().querySelector(`.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURN}`)
-    ).toBeNull()
+    expect(cardEl().querySelector(`.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURN}`)).toBeNull()
   })
 
   test('a finished letter column-clears while the burn still runs, then the canvas wipes at settle', async () => {

@@ -71,7 +71,7 @@ describe('AboutSection', () => {
     expect(section.classList.contains(ABOUT_CLASSES.ABOUT)).toBe(true)
   })
 
-  test('calculates aboutDrawData charDelay and offsets correctly', () => {
+  test('calculates aboutDrawData charDelay, intro and offsets correctly', () => {
     aboutEl.aboutTranslations = {
       title: NAV_TEXT.ABOUT_ME,
       col1: [TEST_TEXT.HELLO_WORLD, 'Second line'],
@@ -79,11 +79,38 @@ describe('AboutSection', () => {
     }
     const data = aboutEl.aboutDrawData
     expect(data.charDelay).toBeGreaterThan(0)
-    expect(data.col1.length).toBe(2)
-    expect(data.col2.length).toBe(1)
-    expect(data.col1[0].text).toBe(TEST_TEXT.HELLO_WORLD)
-    expect(data.col1[0].offset).toBe(0)
-    expect(data.col1[1].offset).toBeGreaterThan(0)
+    expect(data.intro.text).toBe(TEST_TEXT.HELLO_WORLD)
+    expect(data.intro.offset).toBe(0)
+    expect(data.items.length).toBe(2)
+    expect(data.items[0].text).toBe('Second line')
+    expect(data.items[0].offset).toBeGreaterThan(0)
+    expect(data.items[1].text).toBe('Third line in col2')
+  })
+
+  test('prefers the frame node over col1 lead for the intro', () => {
+    aboutEl.aboutTranslations = {
+      title: NAV_TEXT.ABOUT_ME,
+      frame: 'Frame statement',
+      col1: ['First column lead', 'Second line'],
+      col2: [],
+    }
+    const data = aboutEl.aboutDrawData
+    expect(data.intro.text).toBe('Frame statement')
+    expect(data.items.length).toBe(2)
+    expect(data.items[0].text).toBe('First column lead')
+  })
+
+  test('dedupes the lead paragraph when frame mirrors col1[0]', () => {
+    aboutEl.aboutTranslations = {
+      title: NAV_TEXT.ABOUT_ME,
+      frame: TEST_TEXT.HELLO_WORLD,
+      col1: [TEST_TEXT.HELLO_WORLD, 'Second line'],
+      col2: [],
+    }
+    const data = aboutEl.aboutDrawData
+    expect(data.intro.text).toBe(TEST_TEXT.HELLO_WORLD)
+    expect(data.items.length).toBe(1)
+    expect(data.items[0].text).toBe('Second line')
   })
 
   test('strips HTML when calculating offsets in aboutDrawData', () => {
@@ -93,8 +120,9 @@ describe('AboutSection', () => {
       col2: [],
     }
     const data = aboutEl.aboutDrawData
-    expect(data.col1.length).toBe(2)
-    expect(data.col1[1].offset).toBeGreaterThan(0)
+    expect(data.intro.text).toBe('<b>Bold</b> text')
+    expect(data.items.length).toBe(1)
+    expect(data.items[0].offset).toBeGreaterThan(0)
   })
 
   test('renders draw-text elements for title and paragraphs when data is present', () => {
@@ -127,6 +155,52 @@ describe('AboutSection', () => {
     expect(
       aboutEl.shadowRoot.querySelector(`img.${ABOUT_CLASSES.ABOUT_PROFILE_PICTURE_IMG}`)
     ).not.toBeNull()
+  })
+
+  test('the light-field mesh session arms without throwing', () => {
+    aboutEl.aboutTranslations = { title: 'Biography', col1: ['Bio'], col2: [] }
+    aboutEl.profilePicture = 'https://www.gravatar.com/avatar/test?d=mp'
+    // jsdom has no 2D canvas — the session bails quietly or mounts the
+    // mesh canvas; either way nothing throws and the field is coherent.
+    expect(aboutEl._mesh === null || aboutEl._mesh.canvas.className).toBeTruthy()
+  })
+
+  test('renders the location HUD with the first location readouts', () => {
+    aboutEl.aboutTranslations = {
+      title: 'Biography',
+      col1: ['Bio'],
+      col2: [],
+      locations: [
+        { name: 'Place One', latitude: '10° S', longitude: '20° W', altitude: '100 m' },
+        { name: 'Place Two', latitude: '30° S', longitude: '40° W' },
+      ],
+    }
+    aboutEl.profilePicture = 'https://www.gravatar.com/avatar/test?d=mp'
+    const hud = aboutEl.shadowRoot.querySelector(`.${ABOUT_CLASSES.ABOUT_PROFILE_HUD}`)
+    expect(hud).not.toBeNull()
+    expect(hud.textContent).toContain('Place One')
+    expect(hud.textContent).toContain('10° S')
+    expect(hud.textContent).toContain('20° W')
+    expect(hud.textContent).toContain('100 m')
+  })
+
+  test('renders the subtitle tagline under the title when the CMS carries it', () => {
+    aboutEl.aboutTranslations = {
+      title: 'Biography',
+      subtitle: 'The person behind the pixels',
+      col1: ['Bio'],
+      col2: [],
+    }
+    const subtitle = aboutEl.shadowRoot.querySelector(`.${ABOUT_CLASSES.ABOUT_SUBTITLE}`)
+    expect(subtitle).not.toBeNull()
+    expect(subtitle.textContent).toBe('The person behind the pixels')
+  })
+
+  test('renders the author name under the portrait', () => {
+    aboutEl.aboutTranslations = { title: 'Biography', col1: ['Bio'], col2: [] }
+    const name = aboutEl.shadowRoot.querySelector(`.${ABOUT_CLASSES.ABOUT_PROFILE_NAME}`)
+    expect(name).not.toBeNull()
+    expect(name.textContent.trim().length).toBeGreaterThan(0)
   })
 
   test('about.scss defines layout and typography structures', () => {

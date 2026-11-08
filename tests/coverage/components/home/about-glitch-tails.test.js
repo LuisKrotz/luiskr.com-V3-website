@@ -32,7 +32,11 @@ describe('about glitch tails', () => {
   const mountSection = () => {
     el = new AboutSection()
     cleanup = mount(el)
-    el.aboutTranslations = { title: NAV_TEXT.ABOUT_ME, col1: [TEST_TEXT.BODY], col2: [TEST_TEXT.BODY] }
+    el.aboutTranslations = {
+      title: NAV_TEXT.ABOUT_ME,
+      col1: [TEST_TEXT.BODY],
+      col2: [TEST_TEXT.BODY],
+    }
     el.profilePicture = TEST_URLS.IMG
 
     return el
@@ -135,7 +139,11 @@ describe('about glitch tails', () => {
   test('armGlitch bails when no img exists in the wrapper', () => {
     el = new AboutSection()
     cleanup = mount(el)
-    el.aboutTranslations = { title: NAV_TEXT.ABOUT_ME, col1: [TEST_TEXT.BODY], col2: [TEST_TEXT.BODY] }
+    el.aboutTranslations = {
+      title: NAV_TEXT.ABOUT_ME,
+      col1: [TEST_TEXT.BODY],
+      col2: [TEST_TEXT.BODY],
+    }
     // No profilePicture → placeholder div instead of img.
     el.profilePicture = null
 
@@ -163,9 +171,9 @@ describe('about glitch tails', () => {
     mountSection()
     decodeImg()
 
-    el.shadowRoot.querySelector(`.${ABOUT_CLASSES.ABOUT}`).dispatchEvent(
-      new MouseEvent(MOUSE_EVENTS.MOUSEOVER, { bubbles: true })
-    )
+    el.shadowRoot
+      .querySelector(`.${ABOUT_CLASSES.ABOUT}`)
+      .dispatchEvent(new MouseEvent(MOUSE_EVENTS.MOUSEOVER, { bubbles: true }))
 
     expect(el._glitch).toBeNull()
   })
@@ -336,8 +344,10 @@ describe('about glitch tails', () => {
   test('tile builders degrade gracefully when their 2d ctx is unavailable', async () => {
     let calls = 0
 
+    // Calls 0-1 feed the mesh canvas + glitch main canvas; the tile
+    // builders' own contexts still fail — the degrade-under-test path.
     CanvasProto().getContext = (type) =>
-      String(type) === '2d' ? (calls++ === 0 ? createMock2D() : null) : null
+      String(type) === '2d' ? (calls++ <= 1 ? createMock2D() : null) : null
 
     mountSection()
     decodeImg()
@@ -510,9 +520,9 @@ describe('about glitch tails', () => {
     attachGlitch(el)
     armGlitch(el, wrap())
 
-    el.shadowRoot.querySelector(`.${ABOUT_CLASSES.ABOUT}`).dispatchEvent(
-      new MouseEvent(MOUSE_EVENTS.MOUSEOUT, { bubbles: true })
-    )
+    el.shadowRoot
+      .querySelector(`.${ABOUT_CLASSES.ABOUT}`)
+      .dispatchEvent(new MouseEvent(MOUSE_EVENTS.MOUSEOUT, { bubbles: true }))
 
     expect(el._glitch).not.toBeNull()
   })
@@ -574,11 +584,13 @@ describe('about glitch tails', () => {
     s.ctx = new Proxy(
       {},
       {
-        get: (_t, prop) => (...a) => {
-          if (prop === 'clearRect' || prop === 'drawImage') events.push(`${prop}:${op}`)
+        get:
+          (_t, prop) =>
+          (...a) => {
+            if (prop === 'clearRect' || prop === 'drawImage') events.push(`${prop}:${op}`)
 
-          return base[prop](...a)
-        },
+            return base[prop](...a)
+          },
         set: (_t, prop, v) => {
           if (prop === 'globalCompositeOperation') op = v
 

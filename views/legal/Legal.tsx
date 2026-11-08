@@ -102,7 +102,7 @@ export class ViewLegal extends BaseComponent {
   /** Reloads when the locale changes. */
 
   override onStoreUpdate() {
-    const currentLocale = store.getters.getLang()
+    const currentLocale = store.getters.getLang() || LOCALES.EN
     if (this._lastLocale && this._lastLocale !== currentLocale) {
       this._lastLocale = currentLocale
       this.loadData()

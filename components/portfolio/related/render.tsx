@@ -1,8 +1,15 @@
 /**
  * @file portfolio/related/render.tsx — shadow-DOM template for
- * <portfolio-related>: footer title (translated or skeleton), the
- * related-mosaic card strip (real cards or skeleton tiles), and the
- * socials/disclaimer row.
+ * <portfolio-related>: the related strip title (translated or skeleton)
+ * and the related-list conveyor (real rows or skeleton tiles). The site
+ * footer chrome that used to live here now belongs to <legal-footer>.
+ *
+ * The list is an accordion conveyor: the first RELATED_LAYOUT.VISIBLE_COUNT
+ * rows render unfolded; the rest carry --closed (zero-height grid slot +
+ * inert/aria-hidden) until a manual step in Related.tsx folds the top
+ * row and unfolds the next — the wrap back to the first item lands through
+ * the same expand-from-collapsed motion. Steps are user-driven only
+ * (prev/next buttons, ↑/↓ keys) — no autoplay.
  */
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
@@ -15,34 +22,35 @@ import {
 import { coverLadderStep } from '@core/utils/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
-import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
 import { ROUTER_CLASSES } from '@core/tokens/classes/router.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
-import { SOURCE_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
-import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
+import { RELATED_LAYOUT } from '@core/tokens/motion/related.js'
 import { h, Fragment } from '@core/jsx.js'
 import { isPlainClick, svgPlaceholder } from '@core/utils/dom.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
-import { componentText, rightsParts } from '@core/locale/ui-text.js'
-import { getFallbackLegalLinks } from '@core/utils/data/legal-links.js'
+import { IMAGE_SIZES } from '@core/tokens/media/sizes.js'
+import { appText } from '@core/locale/ui-text.js'
+import { CAROUSEL_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
-import type { RelatedCard, RelatedSocial } from './types.js'
+import type { RelatedCard } from './types.js'
 import type { PortfolioRelated } from '../Related.js'
 
-/** Skeleton-tile count matching the loaded mosaic's geometry. */
-const SKELETON_TILES = [1, 2, 3, 4, 5, 6]
+/** Skeleton-row count matching the loaded list's three-card window. */
+const SKELETON_TILES = [1, 2, 3]
 
-/** Skeleton social-link placeholder count. */
-const SKELETON_SOCIALS = 4
-
-/** One related-project card (link + cover + title/description). */
-const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boolean) => {
+/** One related-project row (link + media column + title/description). */
+const renderCard = (
+  host: PortfolioRelated,
+  project: RelatedCard,
+  isCurrent: boolean,
+  closed: boolean
+) => {
   const activeClass = isCurrent ? ROUTER_CLASSES.ROUTER_LINK_ACTIVE : ATTR_VALUES.EMPTY
 
   // Manifest-gated progressive matrix — the kodak LQIP (mobile tier +
@@ -53,7 +61,7 @@ const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boo
   const covers = coverVariants(project.imageSrc)
 
   // The loaded class rides on the markup when the cover already upgraded
-  // — _updateDom rebuilds every card node, so without the registry the
+  // — _updateDom rebuilds every row node, so without the registry the
   // fade would replay from opacity 0 on each re-render. The registry
   // holds the highest confirmed tier, so a rebuilt card re-emits that
   // rung directly and the ladder resumes from there.
@@ -61,10 +69,17 @@ const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boo
 
   const alreadyLoaded = covers.rungs.length > 0 && Boolean(reached)
 
+  // The placeholder + high layers are aria-hidden duplicates of the
+  // thumb, so they share its alt: screen readers skip them, and audit
+  // crawlers counting alt="" as missing still see text on every <img>.
+  const altText = project.description || project.link || ATTR_VALUES.EMPTY
+
   return (
     <a
       href={project.fullPath}
-      className={`${RELATED_CLASSES.RELATED_MOSAIC_ITEM} ${project.featured ? RELATED_CLASSES.RELATED_MOSAIC_ITEM_FEATURED : CHAR_STRINGS.EMPTY} ${activeClass}`}
+      className={`${RELATED_CLASSES.RELATED_LIST_ITEM} ${closed ? RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED : CHAR_STRINGS.EMPTY} ${activeClass}`}
+      aria-hidden={closed ? ATTR_VALUES.TRUE : undefined}
+      inert={closed}
       onClick={(e: Event) => {
         // Modified/middle clicks keep native anchor semantics (new tab).
         if (!isPlainClick(e)) return
@@ -74,258 +89,135 @@ const renderCard = (host: PortfolioRelated, project: RelatedCard, isCurrent: boo
         if (project.fullPath) router.push(project.fullPath)
       }}
     >
-      <div className={RELATED_CLASSES.RELATED_MOSAIC_MEDIA}>
-        {project.imageSrc ? (
-          <Fragment>
-            <img
-              className={`${RELATED_CLASSES.RELATED_MOSAIC_IMG} ${RELATED_CLASSES.RELATED_MOSAIC_IMG_PLACEHOLDER}`}
-              src={svgPlaceholder(
-                project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH,
-                project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT
-              )}
-              alt={ATTR_VALUES.EMPTY}
-              aria-hidden={ATTR_VALUES.TRUE}
-              width={project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH}
-              height={project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
-            />
-
-            <picture>
-              {(covers.mobileWebp || covers.mobileJpg) && (
-                <source
-                  media={MEDIA_QUERIES.MAX_WIDTH_768}
-                  srcset={covers.mobileWebp || covers.mobileJpg}
-                  type={covers.mobileWebp ? MEDIA_ATTRS.IMAGE_WEBP : undefined}
-                />
-              )}
-
-              {covers.webp && <source srcset={covers.webp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
-
-              {/* The manifest is boot-idle-deferred: until it settles the
-                  real URL stays off the wire — the LQIP placeholder owns
-                  the box, so a never-proven original can't drag a ~300KB
-                  jpg into the LCP/first-payload budget. On arrival the
-                  manifest listener re-renders with proven thumbs/webp. */}
+      <div className={RELATED_CLASSES.RELATED_LIST_INNER}>
+        <div className={RELATED_CLASSES.RELATED_LIST_MEDIA}>
+          {project.imageSrc ? (
+            <Fragment>
               <img
-                src={
-                  mediaManifestReady() || mediaManifestFailed()
-                    ? covers.src
-                    : svgPlaceholder(
-                        project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH,
-                        project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT
-                      )
-                }
-                alt={project.description || ATTR_VALUES.EMPTY}
-                className={`${RELATED_CLASSES.RELATED_MOSAIC_IMG} ${RELATED_CLASSES.RELATED_MOSAIC_IMG_THUMB}`}
-                loading={MEDIA_ATTRS.LOADING_LAZY}
-                decoding={MEDIA_ATTRS.DECODING_ASYNC}
+                className={`${RELATED_CLASSES.RELATED_LIST_IMG} ${RELATED_CLASSES.RELATED_LIST_IMG_PLACEHOLDER}`}
+                src={svgPlaceholder(
+                  project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH,
+                  project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT
+                )}
+                alt={altText}
+                aria-hidden={ATTR_VALUES.TRUE}
                 width={project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH}
                 height={project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
               />
-            </picture>
 
-            {/* Degenerate ladders (the original is the ONLY proven rung)
-                can't pay a full-res fetch a card box resolves — the entry
-                img then rides the already-warm kodak thumb URL (a cache
-                hit, zero new bytes) and its original-webp <source> stays
-                out of the DOM. Real ladders still enter at their lightest
-                rung. */}
-            {covers.rungs.length > 0 && (
               <picture>
-                {/* Mobile-stem entry rung for ≤768px viewports — the
-                    climb continues on covers.mobileRungs once it paints. */}
-                {!reached && covers.mobileRungs.length > 0 && (
+                {(covers.mobileWebp || covers.mobileJpg) && (
                   <source
                     media={MEDIA_QUERIES.MAX_WIDTH_768}
-                    srcset={covers.mobileRungs[0].webp || covers.mobileRungs[0].jpg}
-                    type={covers.mobileRungs[0].webp ? MEDIA_ATTRS.IMAGE_WEBP : undefined}
+                    srcset={covers.mobileWebp || covers.mobileJpg}
+                    type={covers.mobileWebp ? MEDIA_ATTRS.IMAGE_WEBP : undefined}
                   />
                 )}
 
-                {!reached && covers.rungs[0].jpg !== project.imageSrc && covers.rungs[0].webp && (
-                  <source srcset={covers.rungs[0].webp} type={MEDIA_ATTRS.IMAGE_WEBP} />
-                )}
+                {covers.webp && <source srcset={covers.webp} type={MEDIA_ATTRS.IMAGE_WEBP} />}
 
+                {/* The manifest is boot-idle-deferred: until it settles the
+                    real URL stays off the wire — the LQIP placeholder owns
+                    the box, so a never-proven original can't drag a ~300KB
+                    jpg into the LCP/first-payload budget. On arrival the
+                    manifest listener re-renders with proven thumbs/webp. */}
                 <img
                   src={
-                    reached ||
-                    (covers.rungs[0].jpg === project.imageSrc ? covers.src : covers.rungs[0].jpg)
+                    mediaManifestReady() || mediaManifestFailed()
+                      ? covers.src
+                      : svgPlaceholder(
+                          project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH,
+                          project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT
+                        )
                   }
-                  alt={ATTR_VALUES.EMPTY}
-                  aria-hidden={ATTR_VALUES.TRUE}
-                  className={`${RELATED_CLASSES.RELATED_MOSAIC_IMG} ${RELATED_CLASSES.RELATED_MOSAIC_IMG_HIGH} ${alreadyLoaded ? RELATED_CLASSES.RELATED_MOSAIC_IMG_LOADED : ATTR_VALUES.EMPTY}`}
+                  alt={altText}
+                  className={`${RELATED_CLASSES.RELATED_LIST_IMG} ${RELATED_CLASSES.RELATED_LIST_IMG_THUMB}`}
                   loading={MEDIA_ATTRS.LOADING_LAZY}
                   decoding={MEDIA_ATTRS.DECODING_ASYNC}
                   width={project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH}
                   height={project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
-                  onLoad={(e: Event) =>
-                    coverLadderStep(
-                      host._loadedCovers,
-                      project.imageSrc,
-                      e.currentTarget as HTMLImageElement,
-                      covers.rungs,
-                      RELATED_CLASSES.RELATED_MOSAIC_IMG_LOADED,
-                      covers.mobileRungs
-                    )
-                  }
+                  sizes={IMAGE_SIZES.RELATED_LIST}
                 />
               </picture>
-            )}
-          </Fragment>
-        ) : (
-          <div className={SKELETON_CLASSES.SKELETON_MEDIA} />
-        )}
-        <div className={RELATED_CLASSES.RELATED_MOSAIC_OVERLAY} />
-      </div>
-      <div className={RELATED_CLASSES.RELATED_MOSAIC_INFO}>
-        {/* Project name is the card's heading — real <h3> under the
-            footer's h2, not a lookalike div (text_block_heading). */}
-        <h3 className={RELATED_CLASSES.RELATED_MOSAIC_TITLE}>{project.page}</h3>
-        {project.description ? (
-          <div className={RELATED_CLASSES.RELATED_MOSAIC_DESC}>
-            <draw-text text={project.description} delay={ATTR_VALUES.DELAY_25} />
-          </div>
-        ) : null}
+
+              {/* Degenerate ladders (the original is the ONLY proven rung)
+                  can't pay a full-res fetch a card box resolves — the entry
+                  img then rides the already-warm kodak thumb URL (a cache
+                  hit, zero new bytes) and its original-webp <source> stays
+                  out of the DOM. Real ladders still enter at their lightest
+                  rung. */}
+              {covers.rungs.length > 0 && (
+                <picture>
+                  {/* Mobile-stem entry rung for ≤768px viewports — the
+                      climb continues on covers.mobileRungs once it paints. */}
+                  {!reached && covers.mobileRungs.length > 0 && (
+                    <source
+                      media={MEDIA_QUERIES.MAX_WIDTH_768}
+                      srcset={covers.mobileRungs[0].webp || covers.mobileRungs[0].jpg}
+                      type={covers.mobileRungs[0].webp ? MEDIA_ATTRS.IMAGE_WEBP : undefined}
+                    />
+                  )}
+
+                  {!reached && covers.rungs[0].jpg !== project.imageSrc && covers.rungs[0].webp && (
+                    <source srcset={covers.rungs[0].webp} type={MEDIA_ATTRS.IMAGE_WEBP} />
+                  )}
+
+                  <img
+                    src={
+                      reached ||
+                      (covers.rungs[0].jpg === project.imageSrc ? covers.src : covers.rungs[0].jpg)
+                    }
+                    alt={altText}
+                    aria-hidden={ATTR_VALUES.TRUE}
+                    className={`${RELATED_CLASSES.RELATED_LIST_IMG} ${RELATED_CLASSES.RELATED_LIST_IMG_HIGH} ${alreadyLoaded ? RELATED_CLASSES.RELATED_LIST_IMG_LOADED : ATTR_VALUES.EMPTY}`}
+                    loading={MEDIA_ATTRS.LOADING_LAZY}
+                    decoding={MEDIA_ATTRS.DECODING_ASYNC}
+                    width={project.imageW || GENERIC_DIMENSIONS.DEFAULT_WIDTH}
+                    height={project.imageH || GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
+                    sizes={IMAGE_SIZES.RELATED_LIST}
+                    onLoad={(e: Event) =>
+                      coverLadderStep(
+                        host._loadedCovers,
+                        project.imageSrc,
+                        e.currentTarget as HTMLImageElement,
+                        covers.rungs,
+                        RELATED_CLASSES.RELATED_LIST_IMG_LOADED,
+                        covers.mobileRungs
+                      )
+                    }
+                  />
+                </picture>
+              )}
+            </Fragment>
+          ) : (
+            <div className={SKELETON_CLASSES.SKELETON_MEDIA} />
+          )}
+        </div>
+        <div className={RELATED_CLASSES.RELATED_LIST_INFO}>
+          {/* Project name is the card's heading — real <h3> under the
+              footer's h2, not a lookalike div (text_block_heading). */}
+          <h3 className={RELATED_CLASSES.RELATED_LIST_TITLE}>{project.page}</h3>
+          {project.description ? (
+            <div className={RELATED_CLASSES.RELATED_LIST_DESC}>
+              <draw-text text={project.description} delay={ATTR_VALUES.DELAY_25} />
+            </div>
+          ) : null}
+        </div>
       </div>
     </a>
   )
 }
 
-/** Skeleton mosaic — tiles 1 and 3-6 carry the featured modifier so the shimmer matches the loaded layout. */
-const renderSkeletonMosaic = () => (
-  <div className={RELATED_CLASSES.RELATED_MOSAIC}>
+/** Skeleton list — three shimmer rows matching the loaded window. */
+const renderSkeletonList = () => (
+  <div className={RELATED_CLASSES.RELATED_LIST}>
     {SKELETON_TILES.map((n) => (
-      <div
-        key={n}
-        className={`${RELATED_CLASSES.RELATED_MOSAIC_ITEM} ${SKELETON_CLASSES.SKELETON_SHIMMER} ${n === 1 || n >= 3 ? RELATED_CLASSES.RELATED_MOSAIC_ITEM_FEATURED : CHAR_STRINGS.EMPTY}`}
-      />
-    ))}
-  </div>
-)
-
-/** Back-home link — first item of the footer's link row (localized route +
-    label), resolved through the same live-then-fallback path <legal-footer>
-    uses. The -home modifier marks the link so tests can locate it. */
-const renderHomeLink = () => {
-  const home = getFallbackLegalLinks(store.getters.getLang())[0]
-
-  return (
-    <Fragment>
-      <a
-        className={`${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK} ${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME}`}
-        href={home.link}
-        onClick={(e: Event) => {
-          if (!isPlainClick(e)) return
-
-          e.preventDefault()
-
-          router.push(home.link)
-        }}
-      >
-        {home.page}
-      </a>
-      <span className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_SEP}>{CHAR_STRINGS.DOT_SEP}</span>
-    </Fragment>
-  )
-}
-
-/** Authorship block — animated hairline + self-made credit + copyright
-    with ©/year set in bold. */
-const renderCreditBlock = () => {
-  const r = rightsParts()
-
-  return (
-    <Fragment>
-      <hr
-        className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER}
-        aria-hidden={ATTR_VALUES.TRUE}
-      />
-      <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_CREDIT}>
-        {componentText(SOURCE_COMPONENT_KEYS.SOURCE_CREDIT)}
-      </p>
-      <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_RIGHTS}>
-        {r.pre}
-        <b>{r.copy}</b>
-        {r.mid}
-        <b>{r.year}</b>
-        {r.post}
-      </p>
-    </Fragment>
-  )
-}
-
-/** Social links + separator dots + the HTML disclaimer note. */
-const renderSocials = (host: PortfolioRelated, socials: RelatedSocial[]) => (
-  <div className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS}>
-    {renderHomeLink()}
-    {socials.map((social, socialkey) => (
-      <Fragment key={socialkey}>
-        <a
-          href={social.link}
-          target={DOM_STRINGS.BLANK}
-          rel={DOM_STRINGS.NOOPENER}
-          className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}
-        >
-          {social.network}
-        </a>
-        {socialkey < socials.length - 1 && (
-          <span className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_SEP}>{CHAR_STRINGS.DOT_SEP}</span>
-        )}
-      </Fragment>
-    ))}
-    {/* Animated hairline separating the socials row from the note below. */}
-    <hr className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER} aria-hidden={ATTR_VALUES.TRUE} />
-    {/*
-      Disclaimer: justified text clamped to its first line (CSS ellipsis)
-      inside -note-text; the trailing -note-more dots pulse while the note
-      is truncated and collapsed — the "show more" affordance. The whole
-      thing is a real <button> so Enter/Space expand it and screen readers
-      get aria-expanded; is-truncated is measured from the DOM because CSS
-      cannot detect whether line-clamp actually clipped.
-    */}
-    <button
-      type={FORM_ATTRS.TYPE_BUTTON}
-      className={`${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE} ${host._noteOpen ? STATE_CLASSES.IS_OPEN : CHAR_STRINGS.EMPTY} ${host._noteTruncated ? STATE_CLASSES.IS_TRUNCATED : CHAR_STRINGS.EMPTY}`}
-      aria-expanded={host._noteOpen ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE}
-      onClick={() => host._toggleNote()}
-    >
-      <span
-        className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE_TEXT}
-        dangerouslySetInnerHTML={{ __html: host.translations.note || CHAR_STRINGS.EMPTY }}
-      />
-      <span
-        className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE_MORE}
-        aria-hidden={ATTR_VALUES.TRUE}
-      >
-        {[0, 1, 2].map((i) => (
-          <i key={i} className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE_DOT} />
-        ))}
-      </span>
-    </button>
-    {renderCreditBlock()}
-  </div>
-)
-
-/** Skeleton socials row — placeholder link pills + note bars. */
-const renderSkeletonSocials = () => (
-  <div className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS} data-nosnippet>
-    {renderHomeLink()}
-    {Array.from({ length: SKELETON_SOCIALS }, (_, i) => (
-      <Fragment key={i}>
-        <span
-          className={`${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK} ${SKELETON_CLASSES.SKELETON_FOOTER_LINK}`}
+      <div key={n} className={RELATED_CLASSES.RELATED_LIST_ITEM}>
+        <div
+          className={`${RELATED_CLASSES.RELATED_LIST_INNER} ${SKELETON_CLASSES.SKELETON_SHIMMER}`}
         />
-        {i < SKELETON_SOCIALS - 1 && (
-          <span className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_SEP}>{CHAR_STRINGS.DOT_SEP}</span>
-        )}
-      </Fragment>
+      </div>
     ))}
-    <hr className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER} aria-hidden={ATTR_VALUES.TRUE} />
-    {[SKELETON_CLASSES.SKELETON_FOOTER_NOTE_1, SKELETON_CLASSES.SKELETON_FOOTER_NOTE_2].map(
-      (cls) => (
-        <p key={cls} className={`${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE} ${cls}`} />
-      )
-    )}
-    {renderCreditBlock()}
   </div>
 )
 
@@ -333,16 +225,11 @@ const renderSkeletonSocials = () => (
 export function renderRelated(host: PortfolioRelated) {
   const projects = host.projectsList
 
-  // Firebase may deliver list nodes as keyed objects (CMS writes) — the same
-  // normalization related/match.ts applies to `projects`; a raw object would
-  // throw on .map inside renderSocials and take the whole footer down.
-  const rawSocials = host.translations?.socials
-
-  const socials: RelatedSocial[] = Array.isArray(rawSocials)
-    ? rawSocials
-    : rawSocials
-      ? Object.values(rawSocials)
-      : []
+  // Stepping needs something to fold INTO — a list that fits its window
+  // (≤ VISIBLE_COUNT rows) renders fully open, and reduced-motion pins the
+  // same static layout (the conveyor is motion by definition).
+  const cycling =
+    !store.getters.getReducedMotion() && projects.length > RELATED_LAYOUT.VISIBLE_COUNT
 
   const currentPath =
     typeof window !== TYPE_STRINGS.UNDEFINED
@@ -355,7 +242,7 @@ export function renderRelated(host: PortfolioRelated) {
       currentPath.endsWith(`${ROUTE_PATHS.ROOT}${project.page}`))
 
   return (
-    <footer className={INTERNAL_CLASSES.INTERNAL_FOOTER}>
+    <section className={INTERNAL_CLASSES.INTERNAL_FOOTER}>
       <h2
         className={INTERNAL_CLASSES.INTERNAL_FOOTER_TITLE}
         aria-hidden={host.translations?.title ? undefined : ATTR_VALUES.TRUE}
@@ -372,17 +259,48 @@ export function renderRelated(host: PortfolioRelated) {
 
       <div className={INTERNAL_CLASSES.INTERNAL_FOOTER_RELATED}>
         {projects.length ? (
-          <div className={RELATED_CLASSES.RELATED_MOSAIC}>
-            {projects.map((project, projectkey) => (
-              <Fragment key={projectkey}>{renderCard(host, project, isCurrent(project))}</Fragment>
-            ))}
-          </div>
+          <Fragment>
+            <div className={RELATED_CLASSES.RELATED_LIST}>
+              {projects.map((project, projectkey) => (
+                <Fragment key={projectkey}>
+                  {renderCard(
+                    host,
+                    project,
+                    isCurrent(project),
+                    cycling && projectkey >= RELATED_LAYOUT.VISIBLE_COUNT
+                  )}
+                </Fragment>
+              ))}
+              {/* Prev/next step buttons glued to the list's top-right
+                  corner — only while the conveyor can rotate (a static
+                  list has nothing to step through). Absolute, so the
+                  children scans never see them as rows. */}
+              {cycling && (
+                <div className={RELATED_CLASSES.RELATED_LIST_CONTROLS}>
+                  <button
+                    type={FORM_ATTRS.TYPE_BUTTON}
+                    className={`${RELATED_CLASSES.RELATED_LIST_BTN} ${RELATED_CLASSES.RELATED_LIST_BTN_PREV}`}
+                    aria-label={`${appText(CAROUSEL_UI_KEYS.CAROUSEL_PREV)}`}
+                    onClick={() => host._stepList(-1)}
+                  >
+                    <span aria-hidden={ATTR_VALUES.TRUE}>{CHAR_STRINGS.ARROW_UP_CHAR}</span>
+                  </button>
+                  <button
+                    type={FORM_ATTRS.TYPE_BUTTON}
+                    className={`${RELATED_CLASSES.RELATED_LIST_BTN} ${RELATED_CLASSES.RELATED_LIST_BTN_NEXT}`}
+                    aria-label={`${appText(CAROUSEL_UI_KEYS.CAROUSEL_NEXT)}`}
+                    onClick={() => host._stepList(1)}
+                  >
+                    <span aria-hidden={ATTR_VALUES.TRUE}>{CHAR_STRINGS.ARROW_DOWN_CHAR}</span>
+                  </button>
+                </div>
+              )}
+            </div>
+          </Fragment>
         ) : (
-          renderSkeletonMosaic()
+          renderSkeletonList()
         )}
       </div>
-
-      {rawSocials ? renderSocials(host, socials) : renderSkeletonSocials()}
-    </footer>
+    </section>
   )
 }

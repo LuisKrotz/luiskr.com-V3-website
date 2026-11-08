@@ -1,0 +1,47 @@
+// ════════════════════════════════════════════════════════════════════════════
+//  search.scss — view-search scoped styles: the route-search surface
+//  centered on both axes inside the shared MAXAREA column. The column
+//  fills at least one viewport (the surface caps its own width) so the
+//  shared footer mounts below the fold — the page scrolls to it.
+// ════════════════════════════════════════════════════════════════════════════
+
+@import '../../../core/sass/base/variables';
+@import '../../../core/sass/base/mixins';
+@import '../../../core/sass/base/placeholders';
+
+.search-view {
+  @extend %MAXAREA;
+
+  position: relative;
+  width: 100%;
+  // A full first screen, never a clip — the opening results list and
+  // the footer below the fold both live in normal flow.
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // Mobile: the field rides just under the nav (top-anchored); tablet and
+  // desktop keep the centered-on-both-axes arrangement.
+  justify-content: flex-start;
+  padding: to-rem($space-5xl) to-rem($space-lg) to-rem($space-lg);
+
+  @include layout-768() {
+    padding: to-rem($space-lg);
+  }
+
+  route-search {
+    display: block;
+    width: 100%;
+    max-width: to-rem($space-9xl);
+    margin: 0;
+
+    @include layout-768() {
+      // Pin the field at a fixed offset (~viewport center for the
+      // collapsed block) — centering by margin:auto would let the
+      // opening list re-center the block and shift the field.
+      margin: calc(50dvh - #{to-rem($space-5xl)}) auto 0;
+    }
+  }
+}
+
+@include focus-ring-scope;

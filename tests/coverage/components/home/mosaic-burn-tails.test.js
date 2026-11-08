@@ -9,7 +9,10 @@
 
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals'
 import { HomeMosaic } from '@website/components/home/HomeMosaic.js'
-import { armCardBurn, disarmCardBurn } from '@website/components/home/mosaic/burn.js'
+import {
+  armCardBurn as rawArmCardBurn,
+  disarmCardBurn as rawDisarmCardBurn,
+} from '@core/utils/burn/burn.js'
 import store from '@core/store.js'
 import { mount } from '@tests/fixtures/test-constants.js'
 import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
@@ -22,6 +25,23 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { UI_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { INPUT_STRINGS } from '@core/tokens/strings/input.js'
 import { createMock2D } from '@tests/fixtures/mock-webgl.js'
+
+const BURN_CLASSES = {
+  ITEM_BURNING: HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING,
+  TITLE_OVERLAY: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_OVERLAY,
+  TITLE: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE,
+  TITLE_BURNING: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING,
+  TITLE_BURN: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURN,
+  TITLE_SLOT: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_SLOT,
+  TITLE_DUP: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_DUP,
+  TITLE_REWRITE: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_REWRITE,
+  DETAILS: HOME_MOSAIC_CLASSES.HOME_MOSAIC_DETAILS,
+}
+
+const armCardBurn = (host, i, item) =>
+  rawArmCardBurn(host, i, item, BURN_CLASSES, MOSAIC_SELECTORS.HOME_MOSAIC_ITEM)
+const disarmCardBurn = (host, i) =>
+  rawDisarmCardBurn(host, i, BURN_CLASSES, MOSAIC_SELECTORS.HOME_MOSAIC_ITEM)
 
 const BURN_SEL = `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURN}`
 const SLOT_SEL = `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_SLOT}`

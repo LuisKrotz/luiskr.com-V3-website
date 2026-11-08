@@ -108,6 +108,27 @@ export class MediaFigure extends BaseComponent {
     )
   }
 
+  /**
+   * Intrinsic file width for the expand modal — the untouched CMS size.
+   * Carousel figures carry `natural-width` when `width` was downscaled
+   * through the desktop ladder; everything else falls back to
+   * `mediaWidth`. The modal stamps this value — it never reduces.
+   */
+
+  get naturalWidth(): number {
+    return parseInt(this.getAttribute(MEDIA_ATTRS.NATURAL_WIDTH) || String(this.mediaWidth), 10)
+  }
+
+  /**
+   * Intrinsic file height for the expand modal — pairs with
+   * `naturalWidth`; falls back to `mediaHeight` when no ladder
+   * downscale was recorded.
+   */
+
+  get naturalHeight(): number {
+    return parseInt(this.getAttribute(MEDIA_ATTRS.NATURAL_HEIGHT) || String(this.mediaHeight), 10)
+  }
+
   /** Caption label. */
 
   get label(): string {

@@ -12,7 +12,10 @@
  *   imageH = itemW × aspect multiplier (FEAT_MULT or the cycling ratio)
  *   bottomH= measured details height when expanded, else 0 — the card
  *            GROWS the wall (masonry reflow) rather than overlaying
- *   left   = bestCol·(colW+gap); top = peak of the covered columns
+ *   left   = bestCol·(colW+gap) + centering offset; top = peak of the
+ *            covered columns
+ *   offset = half the width of trailing empty columns, so sparse walls
+ *            sit centered instead of hugging the left edge
  */
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { LAYOUT } from '@core/tokens/layout/masonry.js'
@@ -118,6 +121,23 @@ const lowestColumnPeak = (colH: number[], span: number): { col: number; top: num
 }
 
 /**
+ * Horizontal centering shift for a packed wall. When the tiles don't
+ * reach the last column(s) (few items / wide viewports) the trailing
+ * empty columns would leave dead space on the right; this returns half
+ * of that unused span so the wall sits centered in the content box.
+ *   usedCols = 1 + index of the rightmost column holding any tile
+ *   offset   = ⌊(N − usedCols)·(colW + gap) / 2⌋ — 0 when every column is used
+ * @param colH Per-column occupied heights after packing (0 = empty column).
+ * @param colW Pixel column width.
+ * @returns The px offset to add to every tile's left edge.
+ */
+const centerOffset = (colH: number[], colW: number): number => {
+  const usedCols = colH.reduce((used, h, c) => (h > 0 ? c + 1 : used), 0)
+
+  return Math.floor(((colH.length - usedCols) * (colW + GAP_PX)) / 2)
+}
+
+/**
  * Style objects for one placed tile — the card shell gets the absolute
  * box (top/left/width, height = image+bottom), the media region gets the
  * image height, and the bottom region reserves the expanded-details slot
@@ -183,7 +203,7 @@ export const computeMosaicLayout = (
 
   const colH: number[] = Array(N).fill(0)
 
-  const cards = items.map((item, i) => {
+  const placed = items.map((item, i) => {
     const bottomH = bottomHFor(i)
 
     const span = item.featured && N > 1 ? 2 : 1
@@ -193,12 +213,14 @@ export const computeMosaicLayout = (
 
     const { col: bestCol, top } = lowestColumnPeak(colH, span)
 
-    const left = bestCol * (colW + GAP_PX)
-
     for (let s = 0; s < span; s++) colH[bestCol + s] = top + imageH + bottomH + GAP_PX
 
-    return tileStyles(top, left, itemW, imageH, bottomH)
+    return { top, left: bestCol * (colW + GAP_PX), itemW, imageH, bottomH }
   })
+
+  const offset = centerOffset(colH, colW)
+
+  const cards = placed.map((p) => tileStyles(p.top, p.left + offset, p.itemW, p.imageH, p.bottomH))
 
   // Subtract the trailing gap so the container hugs the last tile.
   return { cards, height: Math.max(...colH) - GAP_PX }
@@ -236,6 +258,10 @@ export const packMosaicSkeleton = (vw: number): { boxes: SkeletonBox[]; height: 
 
     boxes.push({ top, left, w: itemW, h: imageH })
   }
+
+  const offset = centerOffset(colH, colW)
+
+  boxes.forEach((box) => (box.left += offset))
 
   return { boxes, height: Math.max(...colH) - GAP_PX }
 }

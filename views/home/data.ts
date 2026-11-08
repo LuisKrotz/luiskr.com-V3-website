@@ -174,7 +174,7 @@ export function loadHomeData(view: ViewHome): void {
 
 /** Store change → reload all data on locale switch. */
 export function onHomeStoreUpdate(view: ViewHome): void {
-  const currentLocale = store.getters.getLang()
+  const currentLocale = store.getters.getLang() || LOCALES.EN
 
   if (view._lastLocale && view._lastLocale !== currentLocale) {
     view._lastLocale = currentLocale

@@ -18,15 +18,15 @@ import { BurgerButtonWebGL } from '@core/utils/canvas/widgets/burger-button-webg
 import { webglContextDead } from '@core/utils/canvas/webgl-mode.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
-import type { NavFlagHost } from './flag.js'
 import { APP_IDS } from '@core/tokens/ids/app.js'
 import { NAV_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
+import { joustChip, joustClick, joustCollapseAll } from '@core/utils/dom/joust.js'
 import store from '@core/store.js'
 
 /** Host surface the menu helpers need (satisfied by AppNav). */
-export interface NavMenuHost extends NavFlagHost {
+export interface NavMenuHost {
   /** Menu overlay open flag. */
   _menuOpen: boolean
   /** performance.now() of the open transition — feeds the residual-input guard. */
@@ -101,13 +101,29 @@ export const navMenuCanvas = (host: NavMenuHost): HTMLCanvasElement => {
   return host._menuCanvasEl
 }
 
-/** Opens/closes the fullscreen menu overlay. */
-export const toggleNavMenu = (host: NavMenuHost): void => {
+/**
+ * Opens/closes the fullscreen menu overlay. The joust gate applies to the
+ * closed → open edge only: on hover-less input the first pointer tap on a
+ * collapsed chip pours the menu label out instead of opening the overlay,
+ * and the second tap opens it. While the menu is already open the close
+ * path stays single-tap — the gate is skipped entirely.
+ * @param host AppNav instance.
+ * @param e The click event from the fallback button or label span (absent
+ *   for programmatic toggles — those always fire).
+ * @param chip Explicit gate element for event-less callers — the burger
+ *   canvas widget's click callback passes its canvas so the wrap still
+ *   resolves through `closest`.
+ */
+export const toggleNavMenu = (host: NavMenuHost, e?: Event, chip?: Element | null): void => {
   if (host._menuOpen) {
     closeNavMenu(host)
-  } else {
-    openNavMenu(host)
+
+    return
   }
+
+  if (!(chip ? joustChip(chip, true) : joustClick(e))) return
+
+  openNavMenu(host)
 }
 
 /**
@@ -117,6 +133,10 @@ export const toggleNavMenu = (host: NavMenuHost): void => {
  */
 export const openNavMenu = (host: NavMenuHost): void => {
   if (host._menuOpen) return
+
+  // The overlay takes the whole screen — no chip label stays poured
+  // behind it.
+  joustCollapseAll()
 
   host._menuClosing = false
 
@@ -225,7 +245,9 @@ export const mountNavBurgerWebGL = (host: NavMenuHost): void => {
   if (!host._burgerBtn) {
     applyAnimationDesc(burgerCanvas, ANIMATION_IDS.BURGER_BUTTON)
 
-    host._burgerBtn = new BurgerButtonWebGL(burgerCanvas, () => toggleNavMenu(host))
+    host._burgerBtn = new BurgerButtonWebGL(burgerCanvas, () =>
+      toggleNavMenu(host, undefined, burgerCanvas)
+    )
 
     // Re-applies the open morph — a rebuilt widget starts at the closed
     // squares state even while the overlay is open.
@@ -281,10 +303,6 @@ export const closeNavMenu = (host: NavMenuHost): void => {
       host._menuCanvasEl = null
     }
 
-    // The flag widget is NOT torn down here — it moved out of the menu
-    // into the persistent nav strip (round flag button), so its GL
-    // context survives open/close like the burger's. It dies with the
-    // component (onDestroy → _destroyNavFlag).
     host._updateDom()
   }, ANIMATION_DURATIONS.MENU_CLOSE_DURATION)
 }

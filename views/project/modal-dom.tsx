@@ -17,6 +17,7 @@ import { h } from '@core/jsx.js'
 import store from '@core/store.js'
 import type { ViewProject } from './Project.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
+import { LOCALES } from '@core/tokens/locales.js'
 
 /** Store → DOM modal sync (open: showModal + mount media; close: release). */
 export function updateModalDOM(view: ViewProject): void {
@@ -65,7 +66,7 @@ export function updateModalDOM(view: ViewProject): void {
 
 /** Store change → reload on locale switch, otherwise sync modal DOM. */
 export function onProjectStoreUpdate(view: ViewProject): void {
-  const currentLocale = store.getters.getLang()
+  const currentLocale = store.getters.getLang() || LOCALES.EN
 
   if (view._lastLocale && view._lastLocale !== currentLocale) {
     view._lastLocale = currentLocale

@@ -1,174 +1,3245 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+<?xml-stylesheet type="text/css" href="/feed.css"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
 <channel>
   <title>Luis Krötz</title>
   <link>https://luiskr.com/ca/</link>
   <atom:link href="https://luiskr.com/ca/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Hola, sóc en Luis, un enginyer de programari centrat en UX. Actualment treballo a Dell en el Dell Design System .</description>
   <language>ca</language>
-  <lastBuildDate>Tue, 27 Oct 2026 17:54:21 GMT</lastBuildDate>
+  <copyright>© 2026 Luis Krötz</copyright>
+  <lastBuildDate>Sun, 08 Nov 2026 04:04:57 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/ca/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
     <link>https://luiskr.com/ca/</link>
-    <guid>https://luiskr.com/ca/</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Hola, sóc en Luis, un enginyer de programari centrat en UX. Actualment treballo a Dell en el Dell Design System .</description>
+    <category>dell design system</category>
+    <category>metcha</category>
+    <category>melissa</category>
+    <category>mini melissa</category>
+    <category>brazilian leather</category>
+    <category>mor</category>
+    <category>coza</category>
+    <category>marco almeida</category>
+    <category>nathalia bond</category>
+    <category>cecerelê</category>
+    <category>transa</category>
+    <category>vibra</category>
   </item>
   <item>
     <title>Quant a mi</title>
     <link>https://luiskr.com/ca/quant-a-mi</link>
-    <guid>https://luiskr.com/ca/quant-a-mi</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/quant-a-mi</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Hola, sóc en Luis, un enginyer de programari centrat en UX. Actualment treballo a Dell en el Dell Design System .</description>
+    <category>a la ufsm, entre els 40 millors treballs del 28è jai</category>
+    <category>premi cssda special kudos, atorgat a la primera versió de luiskr.com</category>
+    <category>premi cssda innovation design, atorgat a la primera versió de luiskr.com</category>
+    <category>premi cssda ux design, atorgat a la primera versió de luiskr.com</category>
+    <category>premi cssda ui design, atorgat a la primera versió de luiskr.com</category>
+    <category>destacat a tcg</category>
+    <category>cssw star</category>
+    <category>destacat a mindsparkle mag</category>
+    <category>treball publicat: desenvolvimento de um protótipo para gestão de conhecimento ut</category>
+    <category>sobre mi</category>
+    <category>sobre luis krötz</category>
+    <category>biografia</category>
   </item>
   <item>
     <title>Contacte</title>
     <link>https://luiskr.com/ca/contacte</link>
-    <guid>https://luiskr.com/ca/contacte</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/contacte</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Contacte</description>
+    <category>correu</category>
+    <category>telèfon</category>
+    <category>linkedin</category>
+    <category>github</category>
+    <category>política de privacitat</category>
+    <category>gdpr</category>
+    <category>termes d’ús</category>
+    <category>contacte</category>
+    <category>contacte luis krötz</category>
+    <category>contractar desenvolupador front-end</category>
+    <category>correu electrònic</category>
+    <category>desenvolupador freelance</category>
   </item>
   <item>
     <title>Política de privacitat</title>
     <link>https://luiskr.com/ca/politica-de-privacitat</link>
-    <guid>https://luiskr.com/ca/politica-de-privacitat</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/politica-de-privacitat</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>A luiskr , accessible des de https://luiskr.com , una de les meves principals prioritats és la privacitat dels meus visitants. Aquest document de Política de privacitat conté els tipus d’informació que luiskr.com recull i registra, i com la faig servir.</description>
+    <category>el de sempre</category>
+    <category>consentiment</category>
+    <category>informació que recullo</category>
+    <category>com faig servir la teva informació</category>
+    <category>polítiques de privacitat de tercers</category>
+    <category>drets de privacitat ccpa (no vendre les meves dades personals)</category>
+    <category>informació de menors</category>
+    <category>política de privacitat</category>
+    <category>privacitat</category>
+    <category>protecció de dades</category>
+    <category>política de cookies</category>
+    <category>luis krötz</category>
   </item>
   <item>
     <title>GDPR</title>
     <link>https://luiskr.com/ca/rgpd</link>
-    <guid>https://luiskr.com/ca/rgpd</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/rgpd</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vull assegurar-me que coneixes plenament els teus drets de protecció de dades. Tot usuari té dret al següent:</description>
+    <category>drets de protecció de dades</category>
+    <category>rgpd</category>
+    <category>gdpr</category>
+    <category>reglament general de protecció de dades</category>
+    <category>dades personals</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+    <category>portafoli</category>
+    <category>portafoli de luis krötz</category>
+    <category>desenvolupador front-end</category>
+    <category>desenvolupador web</category>
   </item>
   <item>
     <title>Termes d’ús</title>
     <link>https://luiskr.com/ca/termes-d-us</link>
-    <guid>https://luiskr.com/ca/termes-d-us</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/termes-d-us</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>El lloc web luiskr.com situat a luiskr.com està sota LLICÈNCIA MIT. Luiskr.com està creat per Luis Krötz; certes funcions del Lloc poden estar subjectes a directrius, termes o regles addicionals, que es publicaran al Lloc en relació amb aquestes funcions.</description>
+    <category>versió 1.1</category>
+    <category>accés al lloc</category>
+    <category>enllaços de tercers; altres usuaris</category>
+    <category>exempcions de responsabilitat</category>
+    <category>limitació de responsabilitat</category>
+    <category>política de drets d’autor.</category>
+    <category>general</category>
+    <category>repositori</category>
+    <category>informació de contacte</category>
+    <category>condicions d'ús</category>
+    <category>condicions del servei</category>
+    <category>termes i condicions</category>
   </item>
   <item>
     <title>Llicència Pública Mozilla 2.0</title>
     <link>https://luiskr.com/ca/llicencia</link>
-    <guid>https://luiskr.com/ca/llicencia</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/llicencia</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Aquesta pàgina conté el text complet i oficial de la Mozilla Public License 2.0 (MPL 2.0), la llicència sota la qual es publica el codi font d'aquest lloc web. La llicència és una concessió mundial, lliure de royalties, vàlida a tots els països i territoris.</description>
+    <category>quant a aquest document</category>
+    <category>1. definicions</category>
+    <category>2. concessions i condicions de la llicència</category>
+    <category>3. responsabilitats</category>
+    <category>4. impossibilitat de compliment per llei o reglament</category>
+    <category>5. resolució</category>
+    <category>6. exempció de garantia</category>
+    <category>7. limitació de responsabilitat</category>
+    <category>8. litigis</category>
+    <category>9. disposicions diverses</category>
+    <category>10. versions de la llicència</category>
+    <category>annex a — avís de llicència de la forma de codi font</category>
   </item>
   <item>
     <title>Referència d'Animacions</title>
     <link>https://luiskr.com/ca/animacions</link>
-    <guid>https://luiskr.com/ca/animacions</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/animacions</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Totes les animacions del lloc, descrites — element, moviment, activador, tecnologia i propòsit — per a lectors, tecnologies d'assistència i agents d'IA.</description>
+    <category>barra de progrés de ruta que recorre la vora superior durant la navegació</category>
+    <category>botó del menú hamburguesa amb animació de morph líquid</category>
+    <category>fons animat a pantalla completa del menú amb camp de contorns fluid</category>
+    <category>ítems del menú de navegació amb entrada ascendent esglaonada</category>
+    <category>icona de bandera de l'idioma amb animació d'ona i entrada</category>
+    <category>interruptor de preferència amb lliscament líquid del polze</category>
+    <category>alternador de tema amb lliscament orbital dia/nit</category>
+    <category>botó de tancar amb ompliment líquid i x giratòria</category>
+    <category>esquelet de càrrega amb cel·les en morph i brillantor</category>
+    <category>loader d'introducció amb anells contrarrotatius i progrés</category>
+    <category>toast de notificació lliscant des de la cantonada</category>
+    <category>títol del tile de portafoli cremant-se en brases i rearmant-se</category>
   </item>
   <item>
     <title>Playground de la Terra</title>
     <link>https://luiskr.com/ca/playground-de-la-terra</link>
-    <guid>https://luiskr.com/ca/playground-de-la-terra</guid>
-    <description>Playground WebGL interactiu de la Terra — ajusta terreny, atmosfera, il·luminació i postprocessat en directe.</description>
+    <guid isPermaLink="true">https://luiskr.com/ca/playground-de-la-terra</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Simulació WebGL interactiva de la Terra — ajusta terreny, atmosfera, il·luminació i postprocessat en viu al navegador.</description>
+    <category>terra</category>
+    <category>imatges de la terra</category>
+    <category>planeta terra</category>
+    <category>terra 3d</category>
+    <category>render de la terra</category>
+    <category>terra webgl</category>
+    <category>playground de la terra</category>
+    <category>simulació interactiva de la terra</category>
+    <category>la terra des de l'espai</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
   </item>
   <item>
     <title>Camp Estel·lar</title>
     <link>https://luiskr.com/ca/experiment-camp-estelar</link>
-    <guid>https://luiskr.com/ca/experiment-camp-estelar</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vista General</description>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+    <category>portafoli</category>
+  </item>
+  <item>
+    <title>Cerca</title>
+    <link>https://luiskr.com/ca/cerca</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/cerca</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Cerca totes les pàgines, projectes i experiments de luiskr.com.</description>
+    <category>cerca</category>
+    <category>cerca al lloc</category>
+    <category>troba</category>
+    <category>cerca al portafoli</category>
+    <category>projectes</category>
+    <category>catàleg</category>
+    <category>luis krötz</category>
+    <category>luiskr.com</category>
+    <category>portafoli</category>
+    <category>experiments webgl</category>
+    <category>rutes coincidents</category>
+    <category>quant a mi</category>
   </item>
   <item>
     <title>Dell Design System</title>
     <link>https://luiskr.com/ca/portfolio/dell-design-system</link>
-    <guid>https://luiskr.com/ca/portfolio/dell-design-system</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/dell-design-system</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Incorporar-me a Dell el 6 de juny de 2022, poc després del tancament de Transainc, va marcar un punt d'inflexió decisiu en la meva carrera professional.</description>
+    <category>dell design system</category>
+    <category>dell design system, visió general del lloc web</category>
+    <category>dell design system: visió general de fonaments</category>
+    <category>dell design system: arquitectura de codi i directrius</category>
+    <category>dell design system: principis per començar</category>
+    <category>dell design system: visió general de la biblioteca de components</category>
+    <category>dell design system: visió general de patrons</category>
+    <category>dell design system: integració amb storybook i directrius de components</category>
+    <category>dell design system: visió general de la documentació de fonaments</category>
+    <category>dell design system: base de design tokens v1</category>
+    <category>dell design system: base de design tokens v2</category>
+    <category>dell design system: referència de tipus de design tokens</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
   </item>
   <item>
     <title>Marco Almeida</title>
     <link>https://luiskr.com/ca/portfolio/aboutmarco</link>
-    <guid>https://luiskr.com/ca/portfolio/aboutmarco</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/aboutmarco</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>El portafoli de Marco va ser desenvolupat com a projecte freelance el 2021.</description>
+    <category>marco almeida</category>
+    <category>aboutmarco</category>
+    <category>aboutmarco.com, pàgina principal full tour</category>
+    <category>aboutmarco.com, tour mòbil</category>
+    <category>aboutmarco.com, pàgina principal</category>
+    <category>aboutmarco.com, melissa insider</category>
+    <category>aboutmarco.com, melissa</category>
+    <category>aboutmarco.com, coza</category>
+    <category>aboutmarco.com, brazilian leather</category>
+    <category>aboutmarco.com, me</category>
+    <category>aboutmarco.com, archive</category>
+    <category>aboutmarco.com, admiretheweb</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Cecerelê</title>
     <link>https://luiskr.com/ca/portfolio/cecerele</link>
-    <guid>https://luiskr.com/ca/portfolio/cecerele</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/cecerele</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vaig conèixer la Joana de Cecerelê a través d’un amic comú, en Sagu, el novembre de 2020.</description>
+    <category>cecerelê</category>
+    <category>cecerele</category>
+    <category>cecerelê: created in 2019 by historian joana schossler para produzir jogos, cont</category>
+    <category>cecerelê: pàgina principal with products updated on dec. 2021</category>
+    <category>cecerelê: about us pàgina</category>
+    <category>cecerelê: product pàgina</category>
+    <category>cecerelê: kit para colorir adulto edição limitada, product pàgina</category>
+    <category>cecerelê: memorêlas jogo de memória das mulheres brasileiras, product pàgina</category>
+    <category>cecerelê: minha praia, livro de colorir, product pàgina</category>
+    <category>cecerelê, quebra cabeça revolucionárias: product pàgina</category>
+    <category>cecerelê: cart contingut</category>
+    <category>cecerelê: login</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Brazilian Leather</title>
     <link>https://luiskr.com/ca/portfolio/cicb</link>
-    <guid>https://luiskr.com/ca/portfolio/cicb</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/cicb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Brazilian Leather és un projecte desenvolupat a Transa, mitjançant una aliança entre CICB i Apex-Brasil.</description>
+    <category>brazilian leather</category>
+    <category>cicb</category>
+    <category>brazilian leather, pàgina principal full tour</category>
+    <category>brazilian leather, tour mòbil</category>
+    <category>brazilian leather, home</category>
+    <category>brazilian leather, about</category>
+    <category>brazilian leather, in mandarin chinese</category>
+    <category>cscb, home pàgina</category>
+    <category>fórum 2016, full tour</category>
+    <category>fórum 2016, pàgina completa</category>
+    <category>fórum 2016, tour mòbil</category>
+    <category>fórum 2017, full tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Coza</title>
     <link>https://luiskr.com/ca/portfolio/coza</link>
-    <guid>https://luiskr.com/ca/portfolio/coza</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/coza</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>El lloc web de Coza va ser desenvolupat a Transa del 2017 al 2019.</description>
+    <category>coza</category>
+    <category>coza: pàgina principal full tour</category>
+    <category>coza: mòbil full tour</category>
+    <category>coza: pàgina completa captura de pantalla</category>
+    <category>coza: english pàgina principal</category>
+    <category>coza: article, organização com as dicas da maysa.</category>
+    <category>coza: image galeria, a cada instante da rotina. mais coza + pantone.</category>
+    <category>coza: article, seu banheiro cheio de beleza.</category>
+    <category>coza: on trobar-la pàgina on escriptori</category>
+    <category>coza: on trobar-la pàgina on mòbil</category>
+    <category>el lloc web de coza va ser desenvolupat a transa del 2017 al 2019.</category>
+    <category>brinox</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Melissa</title>
     <link>https://luiskr.com/ca/portfolio/melissa</link>
-    <guid>https://luiskr.com/ca/portfolio/melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>El lloc web de Melissa va ser un projecte desenvolupat per TRANSA INC.</description>
+    <category>melissa</category>
+    <category>melissa, lloc web 2020 tour</category>
+    <category>melissa, feed mòbil 2020 tour</category>
+    <category>melissa, pàgina principal captura de pantalla</category>
+    <category>melissa, on trobar-la tour</category>
+    <category>melissa, on trobar-la tour mòbil</category>
+    <category>melissa, squad pàgina 2020 captura de pantalla</category>
+    <category>melissa, projects pàgina 2020 captura de pantalla</category>
+    <category>alerta de collab inedita melissa,</category>
+    <category>ebulicao de cores e ideias melissa,</category>
+    <category>reconexao urbana melissa,</category>
+    <category>melissa, galeria: galeria e lancamento squad</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>METCHA</title>
     <link>https://luiskr.com/ca/portfolio/metcha</link>
-    <guid>https://luiskr.com/ca/portfolio/metcha</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/metcha</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>METCHA: l’oracle del cuir, el disseny i la cultura.</description>
+    <category>metcha</category>
+    <category>metcha, feed 2022 tour</category>
+    <category>bill amberg studio moore giles col·lecció metcha</category>
+    <category>ceeze's sustainability rules metcha</category>
+    <category>check the bell bullitt helmet by larson upholstery up close metcha</category>
+    <category>eugene riconneaus high standard skate leather sneakers metcha</category>
+    <category>find out why tommaso spinzi's studio is historic and full of stories metcha</category>
+    <category>max poglia s bags are never alike metcha</category>
+    <category>mini type 10 is the nou conscious and custom high end car disseny metcha</category>
+    <category>mut disseny free thinking perspective metcha</category>
+    <category>okhtein's leather bags show two sisters creative directions metcha</category>
+    <category>see how studio reco transforms excess into original bags metcha</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4" medium="video"/>
   </item>
   <item>
     <title>Mini Melissa</title>
     <link>https://luiskr.com/ca/portfolio/mini-melissa</link>
-    <guid>https://luiskr.com/ca/portfolio/mini-melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/mini-melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Mini Melissa va ser un projecte desenvolupat a Transa per al Grup Grendene com a canal dedicat a la marca Mini Melissa.</description>
+    <category>mini melissa</category>
+    <category>mini melissa: pàgina principal full tour</category>
+    <category>mini melissa: tour mòbil</category>
+    <category>mini melissa: feed portada</category>
+    <category>mini melissa: feed captura de pantalla 2020</category>
+    <category>mini melissa: on trobar-la</category>
+    <category>mini melissa: on trobar-la, mòbil</category>
+    <category>mini melissa: color me</category>
+    <category>mini melissa: color me mòbil</category>
+    <category>mini melissa: dance machine</category>
+    <category>mini melissa: dance machine mòbil</category>
+    <category>mini melissa: dreamers</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>MOR</title>
     <link>https://luiskr.com/ca/portfolio/mor</link>
-    <guid>https://luiskr.com/ca/portfolio/mor</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/mor</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>El lloc web de MOR va ser desenvolupat a Transa.</description>
+    <category>mor</category>
+    <category>mor: pàgina principal full tour</category>
+    <category>mor: lloc web tour mòbil</category>
+    <category>mor explica como cuidar da sua piscina mor</category>
+    <category>cada doçura da linha baby mor</category>
+    <category>mor: botiga tour</category>
+    <category>mor: botiga tour mòbil</category>
+    <category>mor: botiga, category pàgina captura de pantalla</category>
+    <category>mor: botiga, product pàgina captura de pantalla</category>
+    <category>mor: on trobar-la tour</category>
+    <category>mor: on trobar-la tour mòbil</category>
+    <category>el lloc web de mor va ser desenvolupat a transa.</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>Nathalia Bond</title>
     <link>https://luiskr.com/ca/portfolio/nathalia-bond</link>
-    <guid>https://luiskr.com/ca/portfolio/nathalia-bond</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/nathalia-bond</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vaig conèixer la Nathalia de Nathalia Bond, Clínica de Desenvolvimento, a través d’un amic comú, en Marco Anuschek, l’octubre de 2021.</description>
+    <category>nathalia bond</category>
+    <category>nathalia bond, clínica de desenvolvimento: pàgina principal, tour</category>
+    <category>nathalia bond, clínica de desenvolvimento: pàgina principal escriptori</category>
+    <category>nathalia bond, clínica de desenvolvimento: pàgina principal mòbil</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades mòbil pàgina</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades escriptori pàgi</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, fonoaudiologia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicologia inf</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicomotria, e</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicopedagogia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, terapia ocupac</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossa equipe, escriptori 4k pàgina</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Genesysinf, Sageweb</title>
     <link>https://luiskr.com/ca/portfolio/sage</link>
-    <guid>https://luiskr.com/ca/portfolio/sage</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/sage</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Sage és un programari fiscal desenvolupat per Genesysinf, amb seu a Santana do Livramento, Brasil.</description>
+    <category>genesysinf, sageweb</category>
+    <category>sage</category>
+    <category>sageweb: shortcuts captura de pantalla</category>
+    <category>sageweb: 'cadastros' captura de pantalla</category>
+    <category>sageweb: color picker captura de pantalla</category>
+    <category>sageweb: filters captura de pantalla</category>
+    <category>sageweb: intro captura de pantalla</category>
+    <category>sageweb: 'mapa sageweb' captura de pantalla</category>
+    <category>sageweb: 'módulo nfe' captura de pantalla</category>
+    <category>sageweb: shortcuts ordering captura de pantalla</category>
+    <category>sageweb: personalization captura de pantalla</category>
+    <category>sageweb: 'relatórios gerenciais' captura de pantalla</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-atalhos-mozjpg-uncompressed.jpg" medium="image"/>
   </item>
   <item>
     <title>Transa</title>
     <link>https://luiskr.com/ca/portfolio/transa</link>
-    <guid>https://luiskr.com/ca/portfolio/transa</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/transa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>El lloc web de Transa va ser desenvolupat amb Vue, CSS (Sass) i PHP (Laravel) el 2021.</description>
+    <category>transa</category>
+    <category>transa: feed short tour</category>
+    <category>transa: vídeo of brazilian leather's cas inside transa's lloc web.</category>
+    <category>transa: vídeo of metcha's cas inside transa's lloc web.</category>
+    <category>transa: vídeo of mor's cas inside transa's lloc web.</category>
+    <category>transa: vídeo of melissa's cas inside transa's lloc web.</category>
+    <category>transa: vídeo of mini melissa's cas inside transa's lloc web.</category>
+    <category>transa: vídeo of coza's cas inside transa's lloc web.</category>
+    <category>transa: feed tour</category>
+    <category>transa: feed tour mòbil</category>
+    <category>transa: category, brazilian leather, tour</category>
+    <category>transa: category, coza, tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4" medium="video"/>
   </item>
   <item>
     <title>Vibra</title>
     <link>https://luiskr.com/ca/portfolio/vibra</link>
-    <guid>https://luiskr.com/ca/portfolio/vibra</guid>
+    <guid isPermaLink="true">https://luiskr.com/ca/portfolio/vibra</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vibra va ser un lloc web desenvolupat a Transa el 2016 i va romandre en línia fins al 2021.</description>
+    <category>vibra</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, tour</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil /tour mòbil</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil/ production and distributi</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil /our brands pàgina complet</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, more than five decades of</category>
+    <category>vibra va ser un lloc web desenvolupat a transa el 2016 i va romandre en línia fi</category>
+    <category>vibra agilize</category>
+    <category>brand portal</category>
+    <category>energy</category>
+    <category>projecte web</category>
+    <category>estudi de cas</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>47 Tucanae</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/47-tucanae</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/47-tucanae</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El segon cúmul globular més brillant del cel: un eixam de milions d'estrelles a l'aureola prop de la línia de visió del Petit Núvol de Magallanes.</description>
+    <category>47 Tucanae</category>
+    <category>cluster</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>51 Pegasi b</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/51-pegasi-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/51-pegasi-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Dimidium — el Júpiter calent original, el món que va reescriure la formació planetària.</description>
+    <category>51 Pegasi b</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>51 Pegasi</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/51-pegasi</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/51-pegasi</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La primera estrella semblant al Sol trobada per acollir un exoplaneta, el descobriment que va obrir un univers de mons.</description>
+    <category>51 Pegasi</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Aldebarán</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/aldebaran</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/aldebaran</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'ull ardent de Taure: un gegant taronja que ja podria albergar un planeta gegant.</description>
+    <category>Aldebarán</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Alfa del Centaure B</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/alpha-centauri-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/alpha-centauri-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Toliman — la companya taronja K1V que balla amb Rigil Kentaurus cada 79,9 anys.</description>
+    <category>Alfa del Centaure B</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Alfa Centauri</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/alpha-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/alpha-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El sistema estel·lar més proper: un binari semblant al Sol encerclat a distància per Pròxima.</description>
+    <category>Alfa Centauri</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/alpha-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Andròmeda I</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/andromeda-1</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/andromeda-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Una feble nana esferoïdal d'Andròmeda: un dels satèl·lits difusos que pobla l'halo exterior de M31.</description>
+    <category>Andròmeda I</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Andròmeda II</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/andromeda-2</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/andromeda-2</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Una nana esferoïdal d'Andròmeda d'una nota especial: les seves estrelles mostren signes d'una possible fusió més antiga de dues nanes encara més petites.</description>
+    <category>Andròmeda II</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Andròmeda III</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/andromeda-3</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/andromeda-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un feble membre esferoïdal M31 de l'eixam: vell, pobre en metall, dominat per la matèria fosca.</description>
+    <category>Andròmeda III</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galàxia d'Andròmeda</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/andromeda</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/andromeda</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El més llunyà que pots veure sense ajuda: a dos milions i mig d'anys de llum.</description>
+    <category>Galàxia d'Andròmeda</category>
+    <category>galaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/andromeda/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Antares B</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/antares-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/antares-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El company maragda — un nan blau-blanc en la lluentor del rival de Mart.</description>
+    <category>Antares B</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Antares</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/antares</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/antares</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El rival de Mart: una supergegant vermella inflada a prop de la seva supernova.</description>
+    <category>Antares</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nan Aquari</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/aquarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/aquarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 210: un dels membres més pobres en metalls del Grup Local, un núvol de gas gairebé fosc amb estrelles disperses.</description>
+    <category>Nan Aquari</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Arcturus</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/arcturus</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/arcturus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'estrella més brillant del cel del nord: un gegant taronja que corre per l'halo galàctic.</description>
+    <category>Arcturus</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Arrokoth</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/arrokoth</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/arrokoth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El ninot de neu — dos lòbuls planetesimals prístins fusionats a la vora del Sistema Solar.</description>
+    <category>Arrokoth</category>
+    <category>asteroid</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Cinturó d'Asteroides</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/asteroid-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/asteroid-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Milions de restes rocoses entre Mart i Júpiter, el planeta que mai es va formar.</description>
+    <category>Cinturó d'Asteroides</category>
+    <category>belt</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Barnard b</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/barnard-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/barnard-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un món de massa sub-terrestre abraçant l'estrella solitària més propera — un fantasma centenari finalment real.</description>
+    <category>Barnard b</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>L'estrella de Barnard</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/barnard-star</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/barnard-star</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'estrella que es mou més ràpidament al nostre cel: una nana vermella tènue a 6 anys llum de distància.</description>
+    <category>L'estrella de Barnard</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Bennu</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/bennu</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/bennu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'asteroide més acuradament rastrejat prop de la Terra, mostrat per OSIRIS-REx el 2020.</description>
+    <category>Bennu</category>
+    <category>asteroid</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Betelgeuse</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/betelgeuse</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/betelgeuse</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'espatlla vermella d'Orió: un supergegant que viu del temps prestat.</description>
+    <category>Betelgeuse</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/betelgeuse/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Boötes I Nan</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/bootes-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/bootes-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El "campió tènue": un satèl·lit ultra feble de la Via Làctia a 197.000 anys llum, descobert a les dades SDSS el 2006.</description>
+    <category>Boötes I Nan</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Cal·listo</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/callisto</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/callisto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El cos amb més cràters conegut: una superfície antiga i morta sense canvis durant quatre mil milions d'anys.</description>
+    <category>Cal·listo</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Canopus</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/canopus</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/canopus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La segona estrella més brillant del cel nocturn: un far del sud que s'utilitzava per dirigir les naus espacials.</description>
+    <category>Canopus</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Capella Ab</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/capella-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/capella-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El bessó — el segon gegant daurat del parell de Capella, valsant cada 104 dies.</description>
+    <category>Capella Ab</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Capella</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/capella</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/capella</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un sistema daurat quàdruple: dues estrelles gegants que orbiten tan a prop que gairebé es toquen.</description>
+    <category>Capella</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nana Carina</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/carina-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/carina-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satèl·lit de la Via Làctia a 330.000 anys llum la història del qual de formació estel·lar es produeix en esclats separats al llarg del temps còsmic.</description>
+    <category>Nana Carina</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa de la Quina</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/carina</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/carina</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La gran fàbrica d'estrelles del cel austral: llar de la hipergegant condemnada Eta Carinae.</description>
+    <category>Nebulosa de la Quina</category>
+    <category>nebula</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ceres</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/ceres</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/ceres</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El primer asteroide trobat mai: un planeta nan que conté un terç de la massa del cinturó.</description>
+    <category>Ceres</category>
+    <category>dwarfPlanet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/ceres/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Nan Cetus</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/cetus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/cetus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un grup local aïllat esferoïdal: més enllà dels dos halos gegants, va evolucionar gairebé sense tocar.</description>
+    <category>Nan Cetus</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmul de coma</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/coma-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/coma-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El supercúmul ric més proper: dos cúmuls gegants en un filament comú, a uns 321 milions d'anys llum.</description>
+    <category>Supercúmul de coma</category>
+    <category>structure</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa del Cranc</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/crab-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/crab-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Les restes d'una estrella vista explotar el 1054, encara en expansió.</description>
+    <category>Nebulosa del Cranc</category>
+    <category>nebula</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Deimos</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/deimos</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/deimos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La lluna exterior més petita de Mart: un romanent cobert de pols que orbita a la vora de l'altitud sincrònica.</description>
+    <category>Deimos</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/deimos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Deneb</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/deneb</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/deneb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La cua del cigne, una de les estrelles a ull nu més llunyanes, brilla al llarg de 2.600 anys llum.</description>
+    <category>Deneb</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Dione</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/dione</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/dione</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La lluna de gel de Saturn: brillants penya-segats fracturats que travessen una antiga cara de cràters.</description>
+    <category>Dione</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Draco nan</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/draco-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/draco-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satèl·lit de la Via Làctia molt pobre en metalls a 260.000 anys llum, una de les galàxies més dominades per la matèria fosca conegudes.</description>
+    <category>Draco nan</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa de l'Àliga</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/eagle-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/eagle-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Llar dels Pilars de la Creació: torres de gas on s'encenen les estrelles.</description>
+    <category>Nebulosa de l'Àliga</category>
+    <category>nebula</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/eagle-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Terra</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/earth</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/earth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'únic món conegut que alberga vida: un planeta oceànic a la zona habitable.</description>
+    <category>Terra</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Encèlad</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/enceladus</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/enceladus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un petit món de gel amb un oceà subterrània que ruixa aigua a l'espai a través dels guèisers del pol sud.</description>
+    <category>Encèlad</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Epsilon Eridani b</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/eps-eridani-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/eps-eridani-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ègir — l'anàleg de Júpiter conegut més proper, creuant el cinturó de residus d'un bessó taronja jove.</description>
+    <category>Epsilon Eridani b</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Epsilon Eridani</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/epsilon-eridani</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/epsilon-eridani</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'estrella semblant al Sol més propera amb un disc de deixalles: un sistema solar jove en desenvolupament.</description>
+    <category>Epsilon Eridani</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Eris</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/eris</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/eris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La Discòrdia — el planeta nan el descobriment del qual va degradar Plutó.</description>
+    <category>Eris</category>
+    <category>dwarfPlanet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Eros</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/eros</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/eros</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El cacauet proper a la Terra — primer asteroide orbitat i aterrat per una sonda.</description>
+    <category>Eros</category>
+    <category>asteroid</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Europa</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/europa</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/europa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un món oceànic amb escorça de gel, probablement el millor lloc més enllà de la Terra per buscar vida.</description>
+    <category>Europa</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nan Fornax</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/fornax-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/fornax-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un esferoide satèl·lit de la Via Làctia a 455.000 anys llum, l'única nana clàssica que encara formava estrelles fins fa poc.</description>
+    <category>Nan Fornax</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ganímedes</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/ganymede</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/ganymede</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La lluna més gran del Sistema Solar, més gran que Mercuri, amb el seu propi camp magnètic.</description>
+    <category>Ganímedes</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Cometa Halley</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/halley</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/halley</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El cometa més famós de la història — el primer del qual es va predir el retorn, de volta cada ~75 anys.</description>
+    <category>Cometa Halley</category>
+    <category>comet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Haumea</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/haumea</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/haumea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El cigarro giratori — un planeta nan estirat per la rotació més ràpida del cinturó de Kuiper.</description>
+    <category>Haumea</category>
+    <category>dwarfPlanet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa de l'Hèlix</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/helix-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/helix-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'ull de Déu: el sudari de la mort d'una estrella semblant al Sol i la vista prèvia de la nostra pròpia estrella.</description>
+    <category>Nebulosa de l'Hèlix</category>
+    <category>nebula</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/helix-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Supercúmul Horologi-Reticle</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/horologium-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/horologium-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El gran supercúmul del cel austral: una concentració de massa de 700 Mly de profunditat només per darrere de Shapley.</description>
+    <category>Supercúmul Horologi-Reticle</category>
+    <category>structure</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa del Cap de Cavall</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/horsehead</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/horsehead</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El cavall fosc d'Orió: una silueta de pols freda contra l'hidrogen brillant.</description>
+    <category>Nebulosa del Cap de Cavall</category>
+    <category>nebula</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmul Hydra-Centaurus</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/hydra-centaurus-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/hydra-centaurus-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El supercúmul adjacent a Virgo: una reunió de doble lòbul que inclou la regió del Gran Atractor.</description>
+    <category>Supercúmul Hydra-Centaurus</category>
+    <category>structure</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Higea</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/hygiea</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/hygiea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El gegant fosc de carboni — quart asteroide més gran i gairebé un planeta nan.</description>
+    <category>Higea</category>
+    <category>asteroid</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Jàpet</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/iapetus</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/iapetus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La lluna de dues cares de Saturn: un hemisferi brillant com la neu i l'altre fosc com el carbó.</description>
+    <category>Jàpet</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>IC 10</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/ic-10</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/ic-10</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La nana estrellada del Grup Local, l'única que encara està en erupció amb formació estel·lar a prop d'Andròmeda.</description>
+    <category>IC 10</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>IC 1613</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/ic-1613</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/ic-1613</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un grup local irregular les estrelles variables cefeides del qual van ajudar a establir l'escala de distància extragalàctica.</description>
+    <category>IC 1613</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Veïnat Interestel·lar</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/interstellar-neighborhood</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/interstellar-neighborhood</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La bombolla local del Sol i els seus companys estel·lars, tot a uns 2.000 anys llum.</description>
+    <category>Veïnat Interestel·lar</category>
+    <category>structure</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Io</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/io</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/io</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La lluna volcànica de Júpiter, el cos geològicament més actiu del Sistema Solar.</description>
+    <category>Io</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>ISS</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/iss</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/iss</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'Estació Espacial Internacional — l'objecte tripulat més gran que mai ha volat en òrbita terrestre baixa.</description>
+    <category>ISS</category>
+    <category>satellite</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Juno</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/juno</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/juno</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Una relíquia de pedra i ferro en una de les òrbites més excèntriques del cinturó.</description>
+    <category>Juno</category>
+    <category>asteroid</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Júpiter</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/jupiter</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/jupiter</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El gegant, més massiu que tots els altres planetes junts.</description>
+    <category>Júpiter</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Kepler-452b</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/kepler-452-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/kepler-452-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El cosí de la Terra — el primer món de mida terrestre en una zona habitable de bessó solar.</description>
+    <category>Kepler-452b</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Kepler-452</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/kepler-452</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/kepler-452</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>"Terra 2.0": una estrella semblant al Sol que allotja un planeta rocós a la seva zona habitable.</description>
+    <category>Kepler-452</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Cinturó de Kuiper</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/kuiper-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/kuiper-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un anell congelat de mons gelats més enllà de Neptú: l'arxiu de congelació profunda del sistema solar.</description>
+    <category>Cinturó de Kuiper</category>
+    <category>belt</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa de la Llacuna</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/lagoon</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/lagoon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un viver estel·lar que l'ull nu pot veure: el gran estany de formació estel·lar de Sagitari.</description>
+    <category>Nebulosa de la Llacuna</category>
+    <category>nebula</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmul de Laniakea</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/laniakea</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/laniakea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El nostre supercúmul domèstic: una conca de 520 milions d'aproximadament 100.000 galàxies que convergeixen al Gran Atractor.</description>
+    <category>Supercúmul de Laniakea</category>
+    <category>structure</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Lleó I Nan</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/leo-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/leo-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satèl·lit de la Via Làctia a 820.000 anys llum, tan llunyà que va ser el primer nan trobat purament en plaques fotogràfiques.</description>
+    <category>Lleó I Nan</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Lleó II Nan</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/leo-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/leo-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un esferoide llunyà de la Via Làctia a 690.000 anys llum, també catalogat com a Leo B, emparellat amb Leo I a l'extrem de l'aureola.</description>
+    <category>Lleó II Nan</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Leo A</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/leo-a</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/leo-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un irregular aïllat a la vora del grup local, que encara forma estrelles després de milers de milions d'anys.</description>
+    <category>Leo A</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>LGS 3</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/lgs-3</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/lgs-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El nan Peixos: un membre de transició del Grup Local a mig camí entre un esferoïdal i un irregular.</description>
+    <category>LGS 3</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Gran Núvol de Magallanes</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/lmc</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/lmc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La galàxia satèl·lit més gran de la Via Làctia: una companya d'esclat estel·lar a 160.000 anys llum de distància.</description>
+    <category>Gran Núvol de Magallanes</category>
+    <category>galaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Grup Local</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/local-group</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/local-group</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El cúmul de ~80 galàxies que la Via Làctia anomena casa: un volum d'uns 10 milions d'anys llum d'amplada lligat per la gravetat compartida.</description>
+    <category>Grup Local</category>
+    <category>structure</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Messier 110</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/m110</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/m110</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El segon satèl·lit brillant d'Andròmeda: una el·líptica nana amb estructures polsegoses tènues i cúmuls globulars propis.</description>
+    <category>Messier 110</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Gran Cúmul d'Hèrcules</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/m13-hercules</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/m13-hercules</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>M13: el cúmul globular més fi del cel del nord, ~300.000 estrelles en una bola de 145 anys llum d'amplada.</description>
+    <category>Gran Cúmul d'Hèrcules</category>
+    <category>cluster</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Messier 32</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/m32</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/m32</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El satèl·lit el·líptic compacte d'Andròmeda: una galàxia despullada al seu nucli dens per repetides passades tancades.</description>
+    <category>Messier 32</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Makemake</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/makemake</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/makemake</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El món del creador de Rapa Nui — un nan gelat de metà a la vora freda del cinturó de Kuiper.</description>
+    <category>Makemake</category>
+    <category>dwarfPlanet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Mart</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/mars</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/mars</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El planeta vermell: llar del volcà més alt i el canó més profund conegut.</description>
+    <category>Mart</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mars/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Mercuri</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/mercury</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/mercury</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El planeta més petit i el més proper al Sol: un món amb cràters d'extrems.</description>
+    <category>Mercuri</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mercury/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Via Làctia</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/milky-way</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/milky-way</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La nostra galàxia d'origen: una espiral barrada de centenars de milers de milions d'estrelles.</description>
+    <category>Via Làctia</category>
+    <category>galaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Mimas</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/mimas</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/mimas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Lluna "Estrella de la mort" de Saturn: una bola de gel malmesa dominada pel gegant cràter Herschel.</description>
+    <category>Mimas</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Lluna</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/moon</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/moon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'únic satèl·lit natural de la Terra: el primer món visitat per éssers humans.</description>
+    <category>Lluna</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/moon/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Satèl·lits Propers a la Terra</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/near-earth-satellites</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/near-earth-satellites</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La closca artificial — milers de naus actives i fragments de deixalles brulicant per l'òrbita terrestre baixa.</description>
+    <category>Satèl·lits Propers a la Terra</category>
+    <category>satellite</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Neptú</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/neptune</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/neptune</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El món més ventós: un gegant de gel trobat per les matemàtiques abans dels telescopis.</description>
+    <category>Neptú</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/neptune/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>NGC 147</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/ngc-147</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/ngc-147</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Una nana esferoïdal d'Andròmeda amb una sortida de 2,53 Mly: estrelles velles, gas silenciós, orbitant a la presa gravitatòria de M31.</description>
+    <category>NGC 147</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>NGC 185</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/ngc-185</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/ngc-185</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El germà de NGC 147: una nana esferoïdal d'Andròmeda destacada per la pols i les estrelles joves rares a la seva classe.</description>
+    <category>NGC 185</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>La galàxia de Barnard</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/ngc-6822</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/ngc-6822</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un grup local irregular en Sagitari: 1,63 Mly fora, un nan que sembla un petit núvol de Magallanes.</description>
+    <category>La galàxia de Barnard</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Univers Observable</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/observable-universe</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/observable-universe</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'horitzó causal: tot el que la llum ha tingut temps d'arribar-nos en 13.800 milions d'anys.</description>
+    <category>Univers Observable</category>
+    <category>structure</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Omega Centauri</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/omega-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/omega-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El cúmul globular més gran de la Via Làctia, possiblement el nucli despullat d'una galàxia devorada.</description>
+    <category>Omega Centauri</category>
+    <category>cluster</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa d'Orió</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/orion-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/orion-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El viver estel·lar més proper: nous sols neixen a la vista.</description>
+    <category>Nebulosa d'Orió</category>
+    <category>nebula</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/orion-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Pal·les</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/pallas</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/pallas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El gegant inclinat del cinturó — un protoplaneta basàltic que es submergeix al pla planetari.</description>
+    <category>Pal·les</category>
+    <category>asteroid</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Pegàs Nan Irregular</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/pegasus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/pegasus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 216: un grup local ric en gasos irregular, de combustió lenta i químicament primitiu.</description>
+    <category>Pegàs Nan Irregular</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmul de Perseu-Peixos</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/perseus-pisces-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/perseus-pisces-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un supercúmul filamentari important: una cresta de 250 Mly de grups de galàxies a través del cel de tardor del nord.</description>
+    <category>Supercúmul de Perseu-Peixos</category>
+    <category>structure</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Fobos</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/phobos</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/phobos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La més gran de les dues llunes de Mart: un munt de runes que s'enfila lentament cap al seu planeta.</description>
+    <category>Fobos</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/phobos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Nan Fènix</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/phoenix-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/phoenix-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Una nana del Grup Local de transició: una part esferoïdal, una part irregular, encara formant un degoteig d'estrelles.</description>
+    <category>Nan Fènix</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Plèiades</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/pleiades</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/pleiades</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>The Seven Sisters: una caixa de joies de joves estrelles blaves embolcallades en una nebulositat de reflex.</description>
+    <category>Plèiades</category>
+    <category>cluster</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Plutó</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/pluto</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/pluto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'estimat nan: el rei del cinturó de Kuiper i un món de glaceres de nitrogen.</description>
+    <category>Plutó</category>
+    <category>dwarfPlanet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Polaris Ab</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/polaris-ab</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/polaris-ab</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El company resolt per Hubble — un nan solar travessant la lluentor de la Cefèida.</description>
+    <category>Polaris Ab</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Polaris</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/polaris</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/polaris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'estrella polar: una balisa cefeida gairebé directament sobre l'eix de la Terra.</description>
+    <category>Polaris</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Proxima b</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/proxima-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/proxima-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'exoplaneta més proper a la Terra — un món de massa terrestre a la zona habitable de Proxima.</description>
+    <category>Proxima b</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Proxima c</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/proxima-c</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/proxima-c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Una super-Terra candidata disputada molt fora de la zona habitable — el germà fred i lent de Proxima.</description>
+    <category>Proxima c</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Pròxima Centauri</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/proxima-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/proxima-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'estrella més propera al Sol: una estrella de bengala amb un planeta de la mida de la Terra al costat.</description>
+    <category>Pròxima Centauri</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/proxima-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Proxima d</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/proxima-d</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/proxima-d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El món més intern de Proxima — una sub-Terra que voreja l'estrella cada cinc dies.</description>
+    <category>Proxima d</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Rea</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/rhea</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/rhea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La segona lluna més gran de Saturn: un món de gel brillant i trencat a la vora del pla de l'anell.</description>
+    <category>Rea</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Rigel</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/rigel</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/rigel</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El peu blau-blanc d'Orió: una supergegant entre les estrelles més lluminoses conegudes.</description>
+    <category>Rigel</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa de l'Anell</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/ring-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/ring-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'anell de fum d'un Sol moribund: la nebulosa planetària que tots els telescopis coneixen.</description>
+    <category>Nebulosa de l'Anell</category>
+    <category>nebula</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ryugu</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/ryugu</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/ryugu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un asteroide carboni giratori, mostrat per Hayabusa2 i tornat a la Terra.</description>
+    <category>Ryugu</category>
+    <category>asteroid</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>SagDIG</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/sagdig</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/sagdig</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Sagittarius Dwarf Irregular: la galàxia més pobre en gasos del Grup Local, 3,45 Mly fora.</description>
+    <category>SagDIG</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sagitari A*</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/sagittarius-a</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/sagittarius-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El forat negre supermassiu central de la Via Làctia: un motor de 4,3 milions de massa solar que ancoraja tota la galàxia.</description>
+    <category>Sagitari A*</category>
+    <category>blackHole</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galàxia nana Sagitari</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/sagittarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/sagittarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El satèl·lit conegut més proper de la Via Làctia: un esferoide que ja s'està trencant en corrents d'estrelles quan cau a través del disc.</description>
+    <category>Galàxia nana Sagitari</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Saturn</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/saturn</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/saturn</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El gegant anellat: el seu halo de gel abasta 280.000 km però té metres de prim.</description>
+    <category>Saturn</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Escultor Nan</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/sculptor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/sculptor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un esferoide de la Via Làctia pobre en metalls a 290.000 anys llum, dominada per la matèria fosca, amb més de 10.000 milions d'anys.</description>
+    <category>Escultor Nan</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans A</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/sextans-a</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/sextans-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un grup local brillant irregular: 4,4 Mly fora, encara formant estrelles vigorosament en els seus nusos més densos.</description>
+    <category>Sextans A</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans B</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/sextans-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/sextans-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un grup local irregular a la vora exterior del grup: una de les galàxies nanes més llunyanes lligades al nostre barri.</description>
+    <category>Sextans B</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans Nan Esferoïdal</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/sextans-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/sextans-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satèl·lit molt feble de la Via Làctia a 290.000 anys llum, un dels esferoïdals nans menys lluminosos de l'halo.</description>
+    <category>Sextans Nan Esferoïdal</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmul de Shapley</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/shapley-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/shapley-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La concentració de Shapley: el supercúmul proper més pesat, ~650 Mly, que conté ~8.000 galàxies.</description>
+    <category>Supercúmul de Shapley</category>
+    <category>structure</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sirius B</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/sirius-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/sirius-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El Pup — la primera nana blanca reconeguda, orbitant l'estrella més brillant del cel.</description>
+    <category>Sirius B</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sírius</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/sirius</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/sirius</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>The Dog Star: l'estrella més brillant del cel nocturn de la Terra, que amaga un company mort.</description>
+    <category>Sírius</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sirius/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Petit Núvol de Magallanes</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/smc</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/smc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El segon satèl·lit de la Via Làctia: una galàxia nana pobre en metalls que s'està trencant lentament.</description>
+    <category>Petit Núvol de Magallanes</category>
+    <category>galaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sol</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/sun</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/sun</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'estrella de seqüència principal de tipus G que conté el 99,86% de la massa del Sistema Solar.</description>
+    <category>Sol</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sun/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Nebulosa de la Taràntula</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/tarantula</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/tarantula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La regió de formació estel·lar més violenta del Grup Local, en una galàxia satèl·lit a 160.000 metres de distància.</description>
+    <category>Nebulosa de la Taràntula</category>
+    <category>nebula</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti e</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/tau-ceti-e</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/tau-ceti-e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Una super-Terra a la zona habitable de l'estrella única més propera — al costat més càlid de l'esperança.</description>
+    <category>Tau Ceti e</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti f</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/tau-ceti-f</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/tau-ceti-f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El candidat fred extern — una super-Terra pesada a la vora gelada de la zona habitable.</description>
+    <category>Tau Ceti f</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/tau-ceti</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/tau-ceti</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Una estrella tranquil·la semblant al Sol a 12 anys llum de distància amb un sistema interior ple de gent.</description>
+    <category>Tau Ceti</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tità</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/titan</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/titan</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'única lluna amb una atmosfera espessa: rius metà, llacs i pluja en un món d'aigua gelada.</description>
+    <category>Tità</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPIST-1</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/trappist-1</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/trappist-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Set mons de la mida de la Terra al voltant d'una estrella amb prou feines més gran que Júpiter.</description>
+    <category>TRAPIST-1</category>
+    <category>system</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/trappist-1/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>TRAPPIST-1b</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/trappist-1b</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/trappist-1b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La més interna dels set mons ressonants — una roca cremada de mida terrestre.</description>
+    <category>TRAPPIST-1b</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1c</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/trappist-1c</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/trappist-1c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Germà de massa venusiana orbitant en la calor interna de la cadena ressonant.</description>
+    <category>TRAPPIST-1c</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1d</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/trappist-1d</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/trappist-1d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El més lleuger dels set — un món sub-terrestre a la vora de la calor.</description>
+    <category>TRAPPIST-1d</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1e</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/trappist-1e</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/trappist-1e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'anàleg terrestre més dens dels set — la millor opció del sistema per a aigua líquida.</description>
+    <category>TRAPPIST-1e</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1f</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/trappist-1f</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/trappist-1f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un món ric en aigua a la vora interna de la zona habitable.</description>
+    <category>TRAPPIST-1f</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1g</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/trappist-1g</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/trappist-1g</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El més gran dels set — una super-Terra fresca a l'àncora externa de la cadena.</description>
+    <category>TRAPPIST-1g</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1h</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/trappist-1h</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/trappist-1h</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La vora freda externa — l'últim món del sistema, cobert de gel.</description>
+    <category>TRAPPIST-1h</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galàxia del Triangle</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/triangulum</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/triangulum</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La tercera espiral tranquil·la: el membre tímid del Grup Local, ric en guarderies estrella.</description>
+    <category>Galàxia del Triangle</category>
+    <category>galaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/triangulum/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Tritó</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/triton</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/triton</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La lluna capturada per Neptú: un món del cinturó de Kuiper amb guèisers de nitrogen, orbitant cap enrere.</description>
+    <category>Tritó</category>
+    <category>moon</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nana Tucana</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/tucana-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/tucana-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'esferoïdal més aïllat del Grup Local: 2,9 Mly fora, mai influenciat per una galàxia important.</description>
+    <category>Nana Tucana</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Óssa Major I Nana</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/uma-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/uma-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satèl·lit ultra feble de la Via Làctia trobat per SDSS: un aparador de dominació de la matèria fosca a la vora de la formació de galàxies.</description>
+    <category>Óssa Major I Nana</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Òssa Major II Nana</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/uma-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/uma-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Una de les galàxies més febles que es coneixen: un satèl·lit ultra-débil de la Via Làctia a només uns 105.000 anys llum.</description>
+    <category>Òssa Major II Nana</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Urà</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/uranus</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/uranus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El planeta de costat: un gegant de gel que roda al voltant del Sol al seu costat.</description>
+    <category>Urà</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/uranus/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Óssa Menor Nana</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/ursa-minor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/ursa-minor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un esferoide de la Via Làctia a 225.000 anys llum: matèria antiga, tènue i gairebé tota fosca.</description>
+    <category>Óssa Menor Nana</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Vega</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/vega</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/vega</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'antiga i futura estrella polar: el punt zero de brillantor de l'astronomia.</description>
+    <category>Vega</category>
+    <category>star</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/vega/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Venus</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/venus</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/venus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>De mida bessó de la Terra, embolicat en un hivernacle de CO₂ aixafador: el planeta més calent.</description>
+    <category>Venus</category>
+    <category>planet</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Vesta</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/vesta</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/vesta</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El món més brillant del cinturó d'asteroides: un protoplaneta que va sobreviure a l'alba del Sistema Solar.</description>
+    <category>Vesta</category>
+    <category>asteroid</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmul de la Verge</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/virgo-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/virgo-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>El Supercúmul local: un núvol aplanat de ~100 grups de galàxies centrats al Cúmul de Verge a ~54 Mly de distància.</description>
+    <category>Supercúmul de la Verge</category>
+    <category>structure</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galàxia WLM</title>
+    <link>https://luiskr.com/ca/experiment-camp-estelar/wlm</link>
+    <guid isPermaLink="true">https://luiskr.com/ca/experiment-camp-estelar/wlm</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Wolf–Lundmark–Melotte: un irregular aïllat amb el seu propi cúmul globular, a 3 Mly de casa.</description>
+    <category>Galàxia WLM</category>
+    <category>dwarfGalaxy</category>
+    <category>camp estel·lar</category>
+    <category>imatges d'estrelles</category>
+    <category>galàxia 3d</category>
+    <category>mapa estel·lar</category>
+    <category>cel nocturn</category>
+    <category>estrelles des de l'espai</category>
+    <category>catàleg d'exoplanetes</category>
+    <category>experiment camp estel·lar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
   </item>
 </channel>
 </rss>

@@ -1,7 +1,7 @@
 /**
  * @file custom-carousel-aspect-ratio-patterns.test.js
  * @description Unit tests for CustomCarousel aspect ratio determination (16:9, 21:9, 32:9)
- * and mixed carousel repetition pattern helpers.
+ * and mixed carousel landscape strip-fill slides.
  */
 
 import '@website/components/carousel/CustomCarousel.js'
@@ -17,7 +17,6 @@ import {
 import {
   renderCarousel,
   renderCarouselSlide,
-  resolveThumbUrl,
 } from '@website/components/carousel/custom-carousel/render.js'
 import { CAROUSEL_CLASSES } from '@core/tokens/classes/carousel.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
@@ -26,9 +25,7 @@ import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
-import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
-import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { TEST_URLS } from '@tests/fixtures/test-constants.js'
 
 afterEach(() => {
@@ -137,45 +134,29 @@ describe('CustomCarousel orientation & ratio helpers', () => {
   })
 })
 
-describe('resolveThumbUrl and renderCarouselSlide with pattern', () => {
-  test('resolveThumbUrl handles images, videos, and null items', () => {
-    expect(resolveThumbUrl(null, TEST_URLS.IMG)).toBe(ATTR_VALUES.EMPTY)
-
-    const imgItem = { src: 'pic' }
-
-    const imgUrl = resolveThumbUrl(imgItem, 'folder/')
-
-    expect(imgUrl).toContain(MEDIA.MOZ)
-
-    expect(imgUrl).toContain(MEDIA.EXT)
-
-    const vidItem = { src: 'clip', isVideo: true }
-
-    const vidUrl = resolveThumbUrl(vidItem, 'folder/')
-
-    expect(vidUrl).toContain(MEDIA.VIDEO_THUMB_EXT)
-  })
-
-  test('renderCarouselSlide renders normal and mixed-pattern slides', () => {
+describe('renderCarouselSlide strip fill', () => {
+  test('renders every slide as the same strip-fill item — no mixed-landscape class, no pattern node', () => {
     expect(renderCarouselSlide(null, 'folder/')).toBeNull()
 
     const normalItem = { src: 'a', size: [800, 600] }
 
-    const normalNode = renderCarouselSlide(normalItem, 'folder/', false)
+    const normalNode = renderCarouselSlide(normalItem, 'folder/')
 
     expect(normalNode).toBeDefined()
 
-    const mixedLandscapeItem = {
+    const landscapeItem = {
       src: 'b',
       size: [1920, 1080],
       class: STATE_STRINGS.LANDSCAPE,
     }
 
-    const patternNode = renderCarouselSlide(mixedLandscapeItem, 'folder/', true)
+    const fillNode = renderCarouselSlide(landscapeItem, 'folder/')
 
-    expect(patternNode).toBeDefined()
+    expect(fillNode).toBeDefined()
 
-    expect(patternNode.className).toContain(CAROUSEL_CLASSES.CAROUSEL_SLIDE_MIXED_LANDSCAPE)
+    // Strip-fill contract — every figure cover-fills the shared strip;
+    // no landscape-only class or repetition-pattern backdrop remains.
+    expect(fillNode.querySelector('picture')).toBeNull()
   })
 })
 

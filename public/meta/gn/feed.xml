@@ -1,174 +1,3245 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+<?xml-stylesheet type="text/css" href="/feed.css"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
 <channel>
   <title>Luis Krötz</title>
   <link>https://luiskr.com/gn/</link>
   <atom:link href="https://luiskr.com/gn/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Mba'éichapa, che ha'e Luis, peteĩ Ingeniero de Software oñeñamindu'úva UX-pe. Kóva aha'ỹ Dell-pe Dell Design System -pe.</description>
   <language>gn</language>
-  <lastBuildDate>Tue, 27 Oct 2026 17:54:21 GMT</lastBuildDate>
+  <copyright>© 2026 Luis Krötz</copyright>
+  <lastBuildDate>Sun, 08 Nov 2026 04:04:57 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/gn/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
     <link>https://luiskr.com/gn/</link>
-    <guid>https://luiskr.com/gn/</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Mba'éichapa, che ha'e Luis, peteĩ Ingeniero de Software oñeñamindu'úva UX-pe. Kóva aha'ỹ Dell-pe Dell Design System -pe.</description>
+    <category>dell design system</category>
+    <category>metcha</category>
+    <category>melissa</category>
+    <category>mini melissa</category>
+    <category>brazilian leather</category>
+    <category>mor</category>
+    <category>coza</category>
+    <category>marco almeida</category>
+    <category>nathalia bond</category>
+    <category>cecerelê</category>
+    <category>transa</category>
+    <category>vibra</category>
   </item>
   <item>
     <title>Cherehe</title>
     <link>https://luiskr.com/gn/che-rehegua</link>
-    <guid>https://luiskr.com/gn/che-rehegua</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/che-rehegua</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Mba'éichapa, che ha'e Luis, peteĩ Ingeniero de Software oñeñamindu'úva UX-pe. Kóva aha'ỹ Dell-pe Dell Design System -pe.</description>
+    <category>ufsm-pe, 40 mba'e porãvéva apytépe 28º jai rehegua</category>
+    <category>premio especial kudos cssda, ome'ẽmava primer versión luiskr.com-pe</category>
+    <category>premio diseño innovación cssda, ome'ẽmava primer versión luiskr.com-pe</category>
+    <category>premio diseño ux cssda, ome'ẽmava primer versión luiskr.com-pe</category>
+    <category>premio diseño ui cssda, ome'ẽmava primer versión luiskr.com-pe</category>
+    <category>ojehechauka tcg-pe</category>
+    <category>mbyja cssw</category>
+    <category>ojehechauka mindsparkle mag-pe</category>
+    <category>tembi'u publicado: desenvolvimento de um protótipo para gestão de conhecimento u</category>
+    <category>luis krötz rehegua</category>
+    <category>tembiasakue</category>
+    <category>mba'apohaguasúi</category>
   </item>
   <item>
     <title>Ñe'ẽme'ẽ</title>
     <link>https://luiskr.com/gn/kontakt</link>
-    <guid>https://luiskr.com/gn/kontakt</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/kontakt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Ñe'ẽme'ẽ</description>
+    <category>correo</category>
+    <category>pumbyry</category>
+    <category>linkedin</category>
+    <category>github</category>
+    <category>ñemigua política</category>
+    <category>gdpr</category>
+    <category>jeporu py'apy</category>
+    <category>ñe'ẽveve</category>
+    <category>luis krötz ñe'ẽveve</category>
+    <category>mba'apohaguasúi jepikuaau</category>
+    <category>e-mail</category>
+    <category>luis krötz</category>
   </item>
   <item>
     <title>Ñemigua Política</title>
     <link>https://luiskr.com/gn/marandu-nangarekoha</link>
-    <guid>https://luiskr.com/gn/marandu-nangarekoha</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/marandu-nangarekoha</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Pe luiskr -pe, ojeikekuaáva https://luiskr.com -gui, peteĩ che principal prioridad ha'e ñemigua che visitante rehegua. Ko documento Política de Ñemigua oguereko mba'eichagua información oñembyatýva ha oñeregistráva luiskr.com rupive ha mba'éichapa aiporu.</description>
+    <category>upe ipypy</category>
+    <category>emoneĩ</category>
+    <category>información ambyatýva</category>
+    <category>mba'éichapa aiporu ne información</category>
+    <category>política ñemigua tercero rehegua</category>
+    <category>derexo ñemigua ccpa (nde'ejogua che información nemba'etegua)</category>
+    <category>información mitã rehegua</category>
+    <category>tekorã porarã</category>
+    <category>privacidad</category>
+    <category>kuaarã ñemoĩporã</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
   </item>
   <item>
     <title>GDPR</title>
     <link>https://luiskr.com/gn/lgpd-gdpr</link>
-    <guid>https://luiskr.com/gn/lgpd-gdpr</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/lgpd-gdpr</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Aha'ỹ eikuaa porã ne derexo datos ñemoñe'ẽ rehegua. Opa usuario oguereko derexo kóva rehegua:</description>
+    <category>derexo datos ñemoñe'ẽ rehegua</category>
+    <category>gdpr</category>
+    <category>kuaarã ñemoĩporã</category>
+    <category>kuaarã nemba'éva</category>
+    <category>privacidad</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+    <category>luis krötz rembiapokue</category>
+    <category>portafolio</category>
+    <category>mba'apohaguasúi front-end</category>
+    <category>javascript</category>
   </item>
   <item>
     <title>Jeporu Py'apy</title>
     <link>https://luiskr.com/gn/oipuruva-nemoarandu</link>
-    <guid>https://luiskr.com/gn/oipuruva-nemoarandu</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/oipuruva-nemoarandu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Sitio web luiskr.com ojuhúva luiskr.com -pe oĩ LICENCIA MIT pegua. Luiskr.com ojapo Luis Krötz; haimete característica Sitio rehegua ikatu oĩ directriz, término térã regla adicional rehegua, oñemoherakuãtava Sitio-pe koichagua característica rehegua.</description>
+    <category>versión 1.1</category>
+    <category>jeike sitio-pe</category>
+    <category>enlace tercero rehegua; ambue usuario</category>
+    <category>descargo</category>
+    <category>limitación responsabilidad rehegua</category>
+    <category>política derexo autor rehegua.</category>
+    <category>opaite</category>
+    <category>repositorio</category>
+    <category>información ñe'ẽme'ẽ rehegua</category>
+    <category>jeporu jejoko</category>
+    <category>jeporu rehegua</category>
+    <category>luis krötz</category>
   </item>
   <item>
     <title>Licencia Pública Mozilla 2.0</title>
     <link>https://luiskr.com/gn/licencia</link>
-    <guid>https://luiskr.com/gn/licencia</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/licencia</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Ko kuatiarogue oguereko pe Mozilla Public License 2.0 (MPL 2.0) ñe'ẽ tee ha teeite, pe licencia ogueru hague ko sitio web código fuente. Pe licencia ha'e peteĩ ñemee'ẽ arapy tuichakue, patentee rehegua, oikóva opaite tetã ha territorio-pe.</description>
+    <category>ko kuatiarogué rehegua</category>
+    <category>1. ñe'ẽ ñemombe'u (definiciones)</category>
+    <category>2. licencia ñeme'ẽ ha ñemoĩporã</category>
+    <category>3. responsabilidades</category>
+    <category>4. ndikatuháicha ñemoĩporã léi térã reglamento rehegua</category>
+    <category>5. ñemohu'ã</category>
+    <category>6. garantía ñemomarandu'ỹ</category>
+    <category>7. responsabilidad ñemomichĩ</category>
+    <category>8. litigios</category>
+    <category>9. ambue mba'e</category>
+    <category>10. licencia versiones</category>
+    <category>anexo a — código fuente forma licencia ñemomarandu</category>
   </item>
   <item>
     <title>Jeguama Momarandu</title>
     <link>https://luiskr.com/gn/jeguama</link>
-    <guid>https://luiskr.com/gn/jeguama</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/jeguama</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Opaite jeguama ko ñanduti roguépe, ojehai opavave — mba'e, jeguama, mo'ãha, tembiporu ha porupaha.</description>
+    <category>tape rape progresso barra ojegueraháva yvate gotyo navegasión aja</category>
+    <category>hamburger poravorã votõ liquid morph ñemongue'e</category>
+    <category>poravorã rugua mba'e'o'a oñemongue'e contorno campo iñemyasãiva</category>
+    <category>navegación poravorã ítemgua oikekuaa escalonada yvategua</category>
+    <category>ñe'ẽ poyvi ikonogua oñemongue'e ha oike ñemongue'e rehegua</category>
+    <category>preferencia interrutor pollice licada liquida rehegua</category>
+    <category>tema alternador licada orbital ára/pytũ rehegua</category>
+    <category>jejoko votõ relleno liquido ha x oñemongu'e rehegua</category>
+    <category>carga esqueleto cela morph ha tesa'ỹi rehegua</category>
+    <category>intro loader anillo oñemongu'e opaite ha progreso rehegua</category>
+    <category>notificación toast oñemosẽ esquina guive</category>
+    <category>portfolio tile título oka'y tatápe ha ojapo jey</category>
   </item>
   <item>
     <title>Yvy Ñembosarái</title>
     <link>https://luiskr.com/gn/yvy-nembosarai</link>
-    <guid>https://luiskr.com/gn/yvy-nembosarai</guid>
-    <description>WebGL interactivo Yvy rehegua — terreno, atmósfera, mbarendy ha postprocesado emoĩporã vivo.</description>
+    <guid isPermaLink="true">https://luiskr.com/gn/yvy-nembosarai</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Simulación WebGL interactiva Yvy rehegua — terreno, atmósfera, mbarendy ha postprocesado emoĩporã vivo.</description>
+    <category>yvy</category>
+    <category>yvy ra'angakuéra</category>
+    <category>planeta yvy</category>
+    <category>yvy 3d</category>
+    <category>yvy webgl</category>
+    <category>yvy ñembosarái</category>
+    <category>tierra</category>
+    <category>imágenes de la tierra</category>
+    <category>planeta tierra</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
   </item>
   <item>
     <title>Mbyja Ñembosarái</title>
     <link>https://luiskr.com/gn/mbyja-nembosarai</link>
-    <guid>https://luiskr.com/gn/mbyja-nembosarai</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Ñe'ẽnguemi</description>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+  </item>
+  <item>
+    <title>Jeheka</title>
+    <link>https://luiskr.com/gn/jeheka</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/jeheka</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eheka opaite kuatiarogue, apopyre ha jepy’apy luiskr.com-pe.</description>
+    <category>jepáva</category>
+    <category>búsqueda en el sitio</category>
+    <category>hójua</category>
+    <category>búsqueda en el portafolio</category>
+    <category>proyectos</category>
+    <category>catálogo</category>
+    <category>luis krötz</category>
+    <category>luiskr.com</category>
+    <category>portafolio</category>
+    <category>webgl tembiporu</category>
+    <category>jeheka</category>
+    <category>tape ojokupytýva</category>
   </item>
   <item>
     <title>Dell Design System</title>
     <link>https://luiskr.com/gn/portfolio/dell-design-system</link>
-    <guid>https://luiskr.com/gn/portfolio/dell-design-system</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/dell-design-system</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Che jeike Dell-pe 6 jasypoteĩ 2022-pe, Transainc omboty riremi hokẽ, ha'e akue peteĩ tenda tuicháva che rembiapo profesional-pe.</description>
+    <category>dell design system</category>
+    <category>dell design system, ñanduti renda jehechapa</category>
+    <category>dell design system: pyendakuéra techakuaa</category>
+    <category>dell design system: código arquitectura ha tekome'ẽ</category>
+    <category>dell design system: ñepyrũmby pyendakuéra</category>
+    <category>dell design system: componentes biblioteca techakuaa</category>
+    <category>dell design system: patrones techakuaa</category>
+    <category>dell design system: storybook joaju ha componentes tekome'ẽ</category>
+    <category>dell design system: pyendakuéra kuatiahaipyre techakuaa</category>
+    <category>dell design system: design tokens pyenda v1</category>
+    <category>dell design system: design tokens pyenda v2</category>
+    <category>dell design system: design token tipos techakuaaha</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
   </item>
   <item>
     <title>Marco Almeida</title>
     <link>https://luiskr.com/gn/portfolio/aboutmarco</link>
-    <guid>https://luiskr.com/gn/portfolio/aboutmarco</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/aboutmarco</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Portafolio Marco rehegua oñemboguata proyecto freelance-ramo 2021-pe.</description>
+    <category>marco almeida</category>
+    <category>aboutmarco</category>
+    <category>aboutmarco.com, tour tuicháva página principal</category>
+    <category>aboutmarco.com, tour móvil</category>
+    <category>aboutmarco.com, página principal</category>
+    <category>aboutmarco.com, melissa insider</category>
+    <category>aboutmarco.com, melissa</category>
+    <category>aboutmarco.com, coza</category>
+    <category>aboutmarco.com, brazilian leather</category>
+    <category>aboutmarco.com, cherehe</category>
+    <category>aboutmarco.com, archivo</category>
+    <category>aboutmarco.com, admiretheweb</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Cecerelê</title>
     <link>https://luiskr.com/gn/portfolio/cecerele</link>
-    <guid>https://luiskr.com/gn/portfolio/cecerele</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/cecerele</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Ajuhu Joana Cecerelê rehegua amigo común Sagu rupive, Jasypateĩ 2020-pe.</description>
+    <category>cecerelê</category>
+    <category>cecerele</category>
+    <category>cecerelê: oñejapo 2019-pe historiadora joana schossler rupive ojapo hag̃ua jugue</category>
+    <category>cecerelê: página principal producto oñeactualizáva jasypakũi 2021</category>
+    <category>cecerelê: página orerehe</category>
+    <category>cecerelê: página producto</category>
+    <category>cecerelê: kit para colorir adulto edição limitada, página producto</category>
+    <category>cecerelê: memorêlas jogo de memória das mulheres brasileiras, página producto</category>
+    <category>cecerelê: minha praia, livro de colorir, página producto</category>
+    <category>cecerelê, quebra cabeça revolucionárias: página producto</category>
+    <category>cecerelê: contenido carrito</category>
+    <category>cecerelê: login</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Brazilian Leather</title>
     <link>https://luiskr.com/gn/portfolio/cicb</link>
-    <guid>https://luiskr.com/gn/portfolio/cicb</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/cicb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Brazilian Leather ha'e proyecto oñemboguatáva Transa-pe, sociedad CICB ha Apex-Brasil apytépe.</description>
+    <category>brazilian leather</category>
+    <category>cicb</category>
+    <category>brazilian leather, tour tuicháva página principal</category>
+    <category>brazilian leather, tour móvil</category>
+    <category>brazilian leather, página principal</category>
+    <category>brazilian leather, orerehe</category>
+    <category>brazilian leather, mandarín-pe</category>
+    <category>cscb, página principal</category>
+    <category>foro 2016, tour tuicháva</category>
+    <category>foro 2016, página tuicháva</category>
+    <category>foro 2016, tour móvil</category>
+    <category>foro 2017, tour tuicháva</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Coza</title>
     <link>https://luiskr.com/gn/portfolio/coza</link>
-    <guid>https://luiskr.com/gn/portfolio/coza</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/coza</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Sitio web Coza oñemboguata Transa-pe 2017 guive 2019 meve.</description>
+    <category>coza</category>
+    <category>coza: tour tuicháva página principal</category>
+    <category>coza: tour móvil tuicháva</category>
+    <category>coza: captura de pantalla página tuicháva</category>
+    <category>coza: página principal inglés-pe</category>
+    <category>coza: artículo, organização com as dicas da maysa.</category>
+    <category>coza: galería imagen, a cada instante da rotina. mais coza + pantone.</category>
+    <category>coza: artículo, seu banheiro cheio de beleza.</category>
+    <category>coza: página 'moõpa ajuhukuaa' escritorio-pe</category>
+    <category>coza: página 'moõpa ajuhukuaa' móvil-pe</category>
+    <category>sitio web coza oñemboguata transa-pe 2017 guive 2019 meve.</category>
+    <category>brinox</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Melissa</title>
     <link>https://luiskr.com/gn/portfolio/melissa</link>
-    <guid>https://luiskr.com/gn/portfolio/melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Sitio web Melissa ha'e proyecto oñemboguatáva TRANSA INC.-pe.</description>
+    <category>melissa</category>
+    <category>melissa, tour sitio web 2020</category>
+    <category>melissa, tour feed móvil 2020</category>
+    <category>melissa, captura de pantalla página principal</category>
+    <category>melissa, tour 'moõpa ajuhukuaa'</category>
+    <category>melissa, tour móvil 'moõpa ajuhukuaa'</category>
+    <category>melissa, captura de pantalla página squad 2020</category>
+    <category>melissa, captura de pantalla página proyecto 2020</category>
+    <category>melissa, artículo: alerta de collab inedita</category>
+    <category>melissa, artículo: ebulicao de cores e ideias</category>
+    <category>melissa, artículo: reconexao urbana</category>
+    <category>melissa, galería: galeria e lancamento squad</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>METCHA</title>
     <link>https://luiskr.com/gn/portfolio/metcha</link>
-    <guid>https://luiskr.com/gn/portfolio/metcha</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/metcha</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>METCHA: oráculo cuero, diseño ha cultura rehegua.</description>
+    <category>metcha</category>
+    <category>metcha, tour feed 2022</category>
+    <category>metcha artículo: colección moore giles bill amberg studio rehegua</category>
+    <category>metcha artículo: regla sostenibilidad ceeze rehegua</category>
+    <category>metcha artículo: ehecha bell bullitt helmet larson upholstery rupive</category>
+    <category>metcha artículo: sapatu deportivo cuero estándar tuicháva eugene riconneaus</category>
+    <category>metcha artículo: ejuhu mba'ére studio tommaso spinzi ha'e histórico ha tembiasak</category>
+    <category>metcha artículo: bolso max pogla ndopéichai araka'e</category>
+    <category>metcha artículo: mini type 10 ha'e diseño auto consciente ha personalizado pyahu</category>
+    <category>metcha artículo: perspectiva pensamiento libre mut design rehegua</category>
+    <category>metcha artículo: bolso cuero okhtein ohechauka dirección creativa mokõi hermana</category>
+    <category>metcha artículo: ehecha mba'éichapa studio reco omoambue exceso bolso original-p</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4" medium="video"/>
   </item>
   <item>
     <title>Mini Melissa</title>
     <link>https://luiskr.com/gn/portfolio/mini-melissa</link>
-    <guid>https://luiskr.com/gn/portfolio/mini-melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/mini-melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Mini Melissa ha'e proyecto oñemboguatáva Transa-pe Grendene Group rehegua canal dedicado marca Mini Melissa rehegua-ramo.</description>
+    <category>mini melissa</category>
+    <category>mini melissa: tour tuicháva página principal</category>
+    <category>mini melissa: tour móvil</category>
+    <category>mini melissa: portada feed</category>
+    <category>mini melissa: captura de pantalla feed 2020</category>
+    <category>mini melissa: moõpa ajuhukuaa</category>
+    <category>mini melissa: moõpa ajuhukuaa, móvil</category>
+    <category>mini melissa: color me</category>
+    <category>mini melissa: color me móvil</category>
+    <category>mini melissa: dance machine</category>
+    <category>mini melissa: dance machine móvil</category>
+    <category>mini melissa: dreamers</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>MOR</title>
     <link>https://luiskr.com/gn/portfolio/mor</link>
-    <guid>https://luiskr.com/gn/portfolio/mor</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/mor</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Sitio web MOR oñemboguata Transa-pe.</description>
+    <category>mor</category>
+    <category>mor: tour tuicháva página principal</category>
+    <category>mor: tour móvil sitio web</category>
+    <category>artículo mor: mor explica como cuidar da sua piscina</category>
+    <category>artículo mor: cada doçura da linha baby</category>
+    <category>mor: tour tienda</category>
+    <category>mor: tour móvil tienda</category>
+    <category>mor: captura de pantalla página categoría tienda</category>
+    <category>mor: captura de pantalla página producto tienda</category>
+    <category>mor: tour 'moõpa ajuhukuaa'</category>
+    <category>mor: tour móvil 'moõpa ajuhukuaa'</category>
+    <category>sitio web mor oñemboguata transa-pe.</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>Nathalia Bond</title>
     <link>https://luiskr.com/gn/portfolio/nathalia-bond</link>
-    <guid>https://luiskr.com/gn/portfolio/nathalia-bond</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/nathalia-bond</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Ajuhu Nathalia Nathalia Bond, Clínica de Desenvolvimento rehegua, amigo común Marco Anuschek rupive, Jasypa 2021-pe.</description>
+    <category>nathalia bond</category>
+    <category>nathalia bond, clínica de desenvolvimento: página principal, tour</category>
+    <category>nathalia bond, clínica de desenvolvimento: página principal escritorio</category>
+    <category>nathalia bond, clínica de desenvolvimento: página principal móvil</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, página móvil</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, página escrito</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, fonoaudiologia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicologia inf</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicomotria, p</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicopedagogia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, terapia ocupac</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossa equipe, página escritorio 4k</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Genesysinf, Sageweb</title>
     <link>https://luiskr.com/gn/portfolio/sage</link>
-    <guid>https://luiskr.com/gn/portfolio/sage</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/sage</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Sage ha'e software fiscal oñemboguatáva Genesysinf rupive, ojuhúva Santana do Livramento-pe, Brasil.</description>
+    <category>genesysinf, sageweb</category>
+    <category>sage</category>
+    <category>sageweb: captura de pantalla atajo rehegua</category>
+    <category>sageweb: captura de pantalla 'cadastros'</category>
+    <category>sageweb: captura de pantalla selector color</category>
+    <category>sageweb: captura de pantalla filtro</category>
+    <category>sageweb: captura de pantalla intro</category>
+    <category>sageweb: captura de pantalla 'mapa sageweb'</category>
+    <category>sageweb: captura de pantalla 'módulo nfe'</category>
+    <category>sageweb: captura de pantalla ordenación atajo</category>
+    <category>sageweb: captura de pantalla personalización</category>
+    <category>sageweb: captura de pantalla relatórios gerenciais</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-atalhos-mozjpg-uncompressed.jpg" medium="image"/>
   </item>
   <item>
     <title>Transa</title>
     <link>https://luiskr.com/gn/portfolio/transa</link>
-    <guid>https://luiskr.com/gn/portfolio/transa</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/transa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Sitio web Transa oñemboguata Vue, CSS (Sass) ha PHP (Laravel) ndive 2021-pe.</description>
+    <category>transa</category>
+    <category>transa: tour michĩ feed rehegua</category>
+    <category>transa: video caso brazilian leather adentro sitio transa rehegua.</category>
+    <category>transa: video caso metcha adentro sitio transa rehegua.</category>
+    <category>transa: video caso mor adentro sitio transa rehegua.</category>
+    <category>transa: video caso melissa adentro sitio transa rehegua.</category>
+    <category>transa: video caso mini melissa adentro sitio transa rehegua.</category>
+    <category>transa: video caso coza adentro sitio transa rehegua.</category>
+    <category>transa: tour feed</category>
+    <category>transa: tour móvil feed</category>
+    <category>transa: categoría brazilian leather, tour</category>
+    <category>transa: categoría coza, tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4" medium="video"/>
   </item>
   <item>
     <title>Vibra</title>
     <link>https://luiskr.com/gn/portfolio/vibra</link>
-    <guid>https://luiskr.com/gn/portfolio/vibra</guid>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/vibra</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vibra ha'e sitio web oñemboguatáva Transa-pe 2016-pe ha oiko online 2021 meve.</description>
+    <category>vibra</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, tour</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, tour móvil</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, negocio producción ha dis</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, ore marca rehegua, página</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, más de cinco década exper</category>
+    <category>vibra ha'e sitio web oñemboguatáva transa-pe 2016-pe ha oiko online 2021 meve.</category>
+    <category>vibra agilize</category>
+    <category>brand portal</category>
+    <category>energy</category>
+    <category>web apopyrã</category>
+    <category>web mohãngahu</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>47 Tucanae rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/47-tucanae</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/47-tucanae</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Yvága mokõiha aty globular omimbivéva — peteĩ enjambre millones de estrellas oĩva halo-pe hi'aguĩva pe Nube Magallanica Michĩ línea de visión-gui.</description>
+    <category>47 Tucanae rehegua</category>
+    <category>cluster</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>51 Pegasi b</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/51-pegasi-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/51-pegasi-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Dimidium — pe Júpiter haku peteĩha, pe yvy onohẽva planeta ñemoheñói marandu pyahu.</description>
+    <category>51 Pegasi b</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>51 Pegasi rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/51-pegasi</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/51-pegasi</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩha mbyjajere ojoguáva Kuarahy-pe ojejuhúva oguereko hag̃ua peteĩ exoplaneta — pe jejuhu oipe'áva peteĩ universo mundo-kuéra rehegua.</description>
+    <category>51 Pegasi rehegua</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Aldebarán rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/aldebaran</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/aldebaran</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Tauro resa tatatĩ — peteĩ gigante naranja ikatúva omotenondéma peteĩ planeta gigante.</description>
+    <category>Aldebarán rehegua</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Alfa Centauri B</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/alpha-centauri-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/alpha-centauri-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Toliman — peteĩ mbyjajere sa'y pytã K1V oporopopyháva Rigil Kentaurípe ára 79,9 pukukue.</description>
+    <category>Alfa Centauri B</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Alfa Centauri rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/alpha-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/alpha-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe sistema mbyjajere hi'aguĩvéva — peteĩ binario ojoguáva Kuarahy-pe ojeréva mombyry Proxima rupive.</description>
+    <category>Alfa Centauri rehegua</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/alpha-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Andrómeda I. Ñe’ẽpoty ha purahéi</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/andromeda-1</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/andromeda-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ esferoidal enano Andrómeda kangýva — peteĩva umi satélite difuso ombohysýiva M31 halo okapegua.</description>
+    <category>Andrómeda I. Ñe’ẽpoty ha purahéi</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Andrómeda II rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/andromeda-2</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/andromeda-2</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ esferoidal enano Andrómeda de nota especial — mbyjakuéra ohechauka señales peteĩ posible fusión itujavéva mokõi enano michĩvéva gueteri.</description>
+    <category>Andrómeda II rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Andrómeda III rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/andromeda-3</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/andromeda-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ miembro esferoidal M31 kangy pe enjambre-pegua — tuja, metal-mboriahu, materia iñypytũva odomínava.</description>
+    <category>Andrómeda III rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Andrómeda Galaxia</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/andromeda</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/andromeda</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe mba’e mombyryvéva ikatúva rehecha pytyvõ’ỹre — mokõi millón y medio año tesape mombyry.</description>
+    <category>Andrómeda Galaxia</category>
+    <category>galaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/andromeda/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Antares B</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/antares-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/antares-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe irũ hovyĩva — mbyja michĩ hovy-morotĩ pe mbyja pytã Marte rival hesakã mbyty.</description>
+    <category>Antares B</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Antares rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/antares</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/antares</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Marte rival — peteĩ supergigante pytã hinchado hi'aguĩva isúpernova rehe.</description>
+    <category>Antares rehegua</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Enano Acuario rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/aquarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/aquarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 210 — peteĩva umi miembro imboriahuvéva Grupo Local-pe, peteĩ arai gas haimete iñypytũva orekóva mbyjakuéra escasa.</description>
+    <category>Enano Acuario rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Arcturus rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/arcturus</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/arcturus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Mbyjajere omimbivéva yvága yvate gotyo — peteĩ gigante naranja ohóva carrera halo galáctico rupive.</description>
+    <category>Arcturus rehegua</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Arrokoth</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/arrokoth</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/arrokoth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe yvytĩ-va'ekue — mokõi planetesimal lóbulo oñembojoavy'ỹva Sistema Solar mbarete.</description>
+    <category>Arrokoth</category>
+    <category>asteroid</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Asteroid Ku'asã</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/asteroid-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/asteroid-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Millones de sobras itaju Marte ha Júpiter mbytépe — pe planeta araka'eve noñeformaiva'ekue.</description>
+    <category>Asteroid Ku'asã</category>
+    <category>belt</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Barnard b</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/barnard-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/barnard-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Yvy michĩ Yvýgui pe mbyja ha'ño hi'aguĩvéva — peteĩ angirũ ary pahápe oĩ porãmava.</description>
+    <category>Barnard b</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Barnard Mbyjajere</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/barnard-star</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/barnard-star</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Mbyjajere oñemongu’e pya’eveva ñande yvága ári — peteĩ enano pytã hũ’ỹva 6 ary tesape mombyry.</description>
+    <category>Barnard Mbyjajere</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Bennu rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/bennu</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/bennu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe asteroide ojesareko porãvéva Yvy ypýpe — ojejapo muestreo OSIRIS-REx rupive ary 2020-pe.</description>
+    <category>Bennu rehegua</category>
+    <category>asteroid</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Betelgeuse rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/betelgeuse</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/betelgeuse</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Orión hombro pytã — peteĩ supergigante oikóva tiempo prestado rehe.</description>
+    <category>Betelgeuse rehegua</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/betelgeuse/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Boötes I Enano</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/bootes-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/bootes-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe ‘campeón tenudo’ — peteĩ satélite Vía Láctea ultra-débil 197.000 año tesape osẽva, ojejuhúva umi dato SDSS-pe ary 2006-pe.</description>
+    <category>Boötes I Enano</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Kalisto</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/callisto</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/callisto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe tete oguerekóva cráter tuichavéva ojekuaáva — peteĩ superficie omanóva, yma guare noñemoambuéiva irundy mil millones ary pukukue.</description>
+    <category>Kalisto</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Canopus rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/canopus</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/canopus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Mbyjajere mokõiha omimbivéva yvága pyhare — peteĩ faro sur gotyo ojeporúva omboguata hag̃ua mba'yruveve.</description>
+    <category>Canopus rehegua</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Capella Ab</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/capella-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/capella-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe kyerẽi — pe mokõiha mbyja guasu sa'yju Capella apopyguágui, opurahéi opa 104 árape.</description>
+    <category>Capella Ab</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Capella rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/capella</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/capella</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ sistema de oro cuadruple — mokõi mbyjajere guasu ojeréva hi'aguĩeterei haimete opoko hikuái.</description>
+    <category>Capella rehegua</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Carina Enana rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/carina-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/carina-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteî satélite Vía Láctea 330.000 ary tesape oúva hembiasakue formación mbyja oúva estallido separado tiempo cósmico pukukue.</description>
+    <category>Carina Enana rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Carina Nebulosa</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/carina</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/carina</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Yvága sur gotyo tuicha fábrica mbyja rehegua — hogar hipergigante condenado Eta Carinae.</description>
+    <category>Carina Nebulosa</category>
+    <category>nebula</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Ceres</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/ceres</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/ceres</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩha asteroide ojejuhúva — peteĩ planeta enano oguerekóva peteĩ tercio pe cinturón masa-gui.</description>
+    <category>Ceres</category>
+    <category>dwarfPlanet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/ceres/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Enano Ceto rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/cetus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/cetus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ Grupo Local aislado esferoidal — ohasávo mokõive halo gigante, oevoluciona haimete ndojepokói hese.</description>
+    <category>Enano Ceto rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Coma Supercluster rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/coma-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/coma-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe superclúster rico hi'aguĩvéva — mokõi clúster gigante peteĩ filamento común rehe, ~321 millones de años tesapes osẽva.</description>
+    <category>Coma Supercluster rehegua</category>
+    <category>structure</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Japeusa Nebulosa</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/crab-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/crab-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ mbyja rembyre ojehecháva ojepovyvy ary 1054-pe — oñembotuichave gueteri.</description>
+    <category>Japeusa Nebulosa</category>
+    <category>nebula</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Deimos rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/deimos</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/deimos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Márte jasy michĩvéva, okápe — peteĩ remanente yvyku'ígui oñembojeguáva ojeréva altitud síncrona rembe'ýpe.</description>
+    <category>Deimos rehegua</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/deimos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Deneb</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/deneb</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/deneb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Cisne jyva — peteĩva umi mbyjajere hesa’ỹi mombyryvéva, hendýva 2.600 ary tesape pukukue.</description>
+    <category>Deneb</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Dione</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/dione</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/dione</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Saturno jasy hielo wispy — acantilado fracturado omimbipáva hapykuéri peteĩ hova cráter yma guare ári.</description>
+    <category>Dione</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Draco Enano rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/draco-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/draco-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ satélite Vía Láctea imboriahuetereíva metal-gui 260.000 ary tesape osẽva — peteĩva umi galaxia ojekuaáva oguerekóva materia iñypytũvéva.</description>
+    <category>Draco Enano rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Taguato Nebulosa</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/eagle-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/eagle-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Umi Pilares de la Creación róga — torres de gas mbyjakuéra omyendyhápe.</description>
+    <category>Taguato Nebulosa</category>
+    <category>nebula</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/eagle-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Yvy</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/earth</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/earth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩha mundo ojekuaáva oguerekoha tekove — peteĩ planeta océano-pegua oĩva zona habitable-pe.</description>
+    <category>Yvy</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Enkelado</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/enceladus</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/enceladus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ mundo de hielo michĩmi orekóva peteĩ océano subsuperficial o’aspergi y espacio-pe umi géiser polo sur-pegua rupive.</description>
+    <category>Enkelado</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Epsilon Eridani b</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/eps-eridani-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/eps-eridani-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ægir — pe Júpiter jogua hi'aguĩvéva, opa'ãvo pe mbyja narã mbyte omembýva aty pýpe.</description>
+    <category>Epsilon Eridani b</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Epsilon Eridani rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/epsilon-eridani</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/epsilon-eridani</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Mbyjajere Kuarahy-ichagua hi'aguĩvéva orekóva peteĩ disco escombro — peteĩ sistema solar imitãva ojejapóva.</description>
+    <category>Epsilon Eridani rehegua</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Eris</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/eris</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/eris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe Discordia — planeta enano ijuhúva omboguejy Plutón.</description>
+    <category>Eris</category>
+    <category>dwarfPlanet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Eros</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/eros</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/eros</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe maní Yvy ojeróiva — peteĩha asteroide órbita ha sonda ogueraha'ỹva.</description>
+    <category>Eros</category>
+    <category>asteroid</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Európa</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/europa</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/europa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ mundo océano hielo-cortezado — discutiblemente pe tenda iporãvéva Yvy rapykuéri ojeheka haĝua tekove.</description>
+    <category>Európa</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Fornax Enano rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/fornax-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/fornax-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ esferoide satélite Vía Láctea 455.000 ary tesape osẽva — peteĩha enano clásico omoheñóiva gueteri mbyjakuéra nda'areiete peve.</description>
+    <category>Fornax Enano rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Ganimédes</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/ganymede</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/ganymede</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Jasy tuichavéva Sistema Solar-pe — tuichavéva Mercurio-gui, oguerekóva campo magnético imba'éva.</description>
+    <category>Ganimédes</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Halley Juruviápe</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/halley</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/halley</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Kometa ojekuaavéva tapykuérape — peteĩha jejujehe oje'eikuaapyre, ou jey peteĩteĩ ~75 ary.</description>
+    <category>Halley Juruviápe</category>
+    <category>comet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Haumea</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/haumea</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/haumea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe puro opuereíva — planeta enano osasáva Kuiper cinturón rotación ipya'évagui.</description>
+    <category>Haumea</category>
+    <category>dwarfPlanet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Helix Nebulosa</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/helix-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/helix-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ñandejára Resa — peteĩ mbyjajere Kuarahy-ichagua ñemano sudario, ha ñande mbyja tee jehechauka.</description>
+    <category>Helix Nebulosa</category>
+    <category>nebula</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/helix-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Horologium–Retículo Supercluster rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/horologium-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/horologium-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Yvága sur gotyogua superclúster tuicháva — peteĩ concentración masa 700-Mly ipypukúva mokõiha Shapley rire.</description>
+    <category>Horologium–Retículo Supercluster rehegua</category>
+    <category>structure</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Kavaju Akã Nebulosa</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/horsehead</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/horsehead</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe kavaju iñypytũva Orión — peteĩ silueta yvytimbo ro’ysã hidrógeno omimbipáva rehe.</description>
+    <category>Kavaju Akã Nebulosa</category>
+    <category>nebula</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Supercluster Hidra–Centaurus rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/hydra-centaurus-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/hydra-centaurus-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe supercluster ojoajúva Virgo rehe — peteĩ aty doble lóbulo oikehápe región Gran Atractor.</description>
+    <category>Supercluster Hidra–Centaurus rehegua</category>
+    <category>structure</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Hygiea</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/hygiea</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/hygiea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe carbono ipytũ tuvicha — irundy asteroide tuichavéva ha oiméne planeta enano.</description>
+    <category>Hygiea</category>
+    <category>asteroid</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Jápeto</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/iapetus</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/iapetus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Saturno jasy hova mokõi — peteĩ hemisferio omimbi nieveicha, ambue iñypytũ carbónicha.</description>
+    <category>Jápeto</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>IC 10 rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/ic-10</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/ic-10</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Grupo Local enano mbyjajere — peteĩnte osẽva gueteri mbyjajere formación reheve Andrómeda ypýpe.</description>
+    <category>IC 10 rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>IC 1613 rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/ic-1613</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/ic-1613</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ Grupo Local irregular orekóva mbyjakuéra variable Cepheid oipytyvõva omohenda haguã escala distancia extragaláctica.</description>
+    <category>IC 1613 rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Mbyja Aty Ypyguáva</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/interstellar-neighborhood</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/interstellar-neighborhood</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Kuarahy burbuja local ha iñirũnguéra estelar — opa mba'e ~2.000 ary tesape ryepýpe.</description>
+    <category>Mbyja Aty Ypyguáva</category>
+    <category>structure</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Io</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/io</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/io</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Jasy volcánico Júpiter — tete omba'apovéva geológicamente Sistema Solar-pe.</description>
+    <category>Io</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>ISS</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/iss</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/iss</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe Estación Espacial Internacional — pe tembiporu'i tapichakuéra oguerekóva tuichavéva órbita yvy mimbýpe.</description>
+    <category>ISS</category>
+    <category>satellite</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Juno</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/juno</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/juno</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ ita ha hierro oñeñongatupyry peteĩva pe cinturón órbita ikãmbyryvévagui.</description>
+    <category>Juno</category>
+    <category>asteroid</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Húpiter</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/jupiter</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/jupiter</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe gigante — tuichavéva opa ambue planeta oñembojoajúvagui.</description>
+    <category>Húpiter</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Kepler-452b</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/kepler-452-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/kepler-452-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe Yvy rakãha — pe yvy peteĩha Yvýndicha peteĩ mbyja kuarahyguáicha rekokuaarekópe.</description>
+    <category>Kepler-452b</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Kepler-452 rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/kepler-452</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/kepler-452</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>'Yvy 2.0' — peteĩ mbyjajere ojoguáva Kuarahy-pe oguerekóva peteĩ planeta itaju zona habitable-pe.</description>
+    <category>Kepler-452 rehegua</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Kuiper Ku'asã</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/kuiper-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/kuiper-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ anillo congelado mundos helados ohasáva Neptuno — sistema solar archivo congelación pypuku.</description>
+    <category>Kuiper Ku'asã</category>
+    <category>belt</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Ypa'ũ Nebulosa</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/lagoon</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/lagoon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ vivero estelar hesa’ỹi ikatu ohecha — pe estanque tuicháva omoheñóiva mbyja Sagitario-pe.</description>
+    <category>Ypa'ũ Nebulosa</category>
+    <category>nebula</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Laniakea Supercluster rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/laniakea</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/laniakea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ñande róga supercluster — peteĩ cuenca 520-Mly ~100.000 galaxia oñembyatýva Gran Atractor rehe.</description>
+    <category>Laniakea Supercluster rehegua</category>
+    <category>structure</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Leo I Enano</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/leo-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/leo-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ satélite Vía Láctea 820.000 ary tesape osẽva — mombyryiterei ha'e peteĩha enano ojejuhúva puramente umi chapa de levantamiento fotográfico-pe.</description>
+    <category>Leo I Enano</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Leo II Enano rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/leo-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/leo-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ esferoide Vía Láctea mombyry 690.000 ary tesape osẽva, avei oñecatalogáva Leo B ramo — oñembojoajúva Leo I ndive pe halo ykére mombyry.</description>
+    <category>Leo II Enano rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Leo A</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/leo-a</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/leo-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ irregular aislado Grupo Local rembe’ýpe — omoheñóiva gueteri mbyja miles de millones de años rire ha’eño.</description>
+    <category>Leo A</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>LGS 3 rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/lgs-3</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/lgs-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe enano Piscis — peteĩ miembro Grupo Local transitorio mbytépe peteĩ esferoidal ha peteĩ irregular apytépe.</description>
+    <category>LGS 3 rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Magallanes Araí Guasu</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/lmc</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/lmc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Vía Láctea galaxia satélite tuichavéva — peteĩ mbyjajere ryrýi irũ 160.000 ary tesape mombyry.</description>
+    <category>Magallanes Araí Guasu</category>
+    <category>galaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Aty Guasu</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/local-group</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/local-group</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe ~80 galaxia aty Vía Láctea ohenóiva hóga — peteĩ volumen ~10 millones ary tesape ipukukue ojoajúva gravedad compartida rupive.</description>
+    <category>Aty Guasu</category>
+    <category>structure</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Messier rehegua 110</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/m110</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/m110</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Andrómeda mokõiha satélite omimbipáva — peteĩ elíptico enano oguerekóva estructuras polvorientas débil ha racimo globular imba'éva.</description>
+    <category>Messier rehegua 110</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Tuicha Cluster Hércules rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/m13-hercules</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/m13-hercules</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>M13 — yvága yvategua aty guasu globular iporãvéva, ~300.000 mbyjajere peteĩ pelota 145 ary tesape ipekue.</description>
+    <category>Tuicha Cluster Hércules rehegua</category>
+    <category>cluster</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Messier rehegua 32</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/m32</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/m32</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Andrómeda satélite elíptico compacto — peteĩ galaxia ojedesnudava'ekue ipypuku denso peve umi pasaje cercano jey jey rupive.</description>
+    <category>Messier rehegua 32</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Makemake</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/makemake</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/makemake</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Rapa Nui ñamoĩha mundo — metano ryguá enano Kuiper cinturón ro'y mbarete.</description>
+    <category>Makemake</category>
+    <category>dwarfPlanet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Marte</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/mars</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/mars</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe planeta pytã — oikoha pe volcán ijyvatevéva ha pe cañón ipypukuvéva ojekuaáva.</description>
+    <category>Marte</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mars/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Merkúrio</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/mercury</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/mercury</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe planeta michĩvéva ha hi'aguĩvéva Kuarahygui — peteĩ mundo cráterizado extremo-kuéra rehegua.</description>
+    <category>Merkúrio</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mercury/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Mborevi Rape</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/milky-way</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/milky-way</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ñande galaxia hogar — peteĩ espiral barrado orekóva cientos de miles de millones de mbyjakuéra.</description>
+    <category>Mborevi Rape</category>
+    <category>galaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Mimas rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/mimas</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/mimas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Saturno jasy ‘Estrella de la Muerte’ — peteĩ pelota de hielo ojegolpeáva odomínava cráter Herschel gigante.</description>
+    <category>Mimas rehegua</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Jasy</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/moon</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/moon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Yvy satélite natural añoite — peteĩha yvy yvypóra ovisita va'ekue.</description>
+    <category>Jasy</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/moon/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Yvy Ojeróiva Satélitekuéra</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/near-earth-satellites</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/near-earth-satellites</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe artificial guémbe — hetaiterei satélite oku'óva ha detrito fragmento Yvy órbita michĩme oku'epýva.</description>
+    <category>Yvy Ojeróiva Satélitekuéra</category>
+    <category>satellite</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Netúno</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/neptune</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/neptune</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe mundo yvytu hatãvéva — peteĩ gigante hielo rehegua ojuhúva matemática telescopio mboyve.</description>
+    <category>Netúno</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/neptune/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>NGC rehegua 147</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/ngc-147</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/ngc-147</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ enano Andrómeda esferoidal 2,53 Mly osẽ — mbyja tuja, gas kirirĩ, ojeréva M31 agarre gravitacional-pe.</description>
+    <category>NGC rehegua 147</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>NGC rehegua 185</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/ngc-185</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/ngc-185</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>NGC 147 ryvy — peteĩ Andromeda enano esferoidal ojehechakuaáva yvytimbo ha mbyjakuéra imitãva ndahetái iclase-pe.</description>
+    <category>NGC rehegua 185</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Barnard Galaxia rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/ngc-6822</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/ngc-6822</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ Grupo Local irregular Sagitario-pe — 1,63 Mly osẽ, peteĩ enano ojoguáva peteĩ Nube Magallanica michĩvape.</description>
+    <category>Barnard Galaxia rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Arapy Ojehecháva</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/observable-universe</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/observable-universe</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe horizonte causal — opa mba’e tesape oguereko tiempo og̃uahẽ haĝua ñandéve guive 13.800 millones de años-pe.</description>
+    <category>Arapy Ojehecháva</category>
+    <category>structure</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Omega Centauri rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/omega-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/omega-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe aty guasu globular tuichavéva Vía Láctea-pe — ikatu ha'e pe núcleo despojado peteĩ galaxia oje'úvagui.</description>
+    <category>Omega Centauri rehegua</category>
+    <category>cluster</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Orión Nebulosa</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/orion-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/orion-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe guardería estelar hi’aguĩvéva — kuarahy pyahu heñóiva ojehecha porãhápe.</description>
+    <category>Orión Nebulosa</category>
+    <category>nebula</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/orion-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Pallas</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/pallas</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/pallas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe cinturón imochĩmbytuíva tuvicha — peteĩ protoplaneta basáltica osapukáiva planeta mbyaty ha'e pype.</description>
+    <category>Pallas</category>
+    <category>asteroid</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Pegasus Enano Irregular rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/pegasus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/pegasus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 216 — peteĩ Grupo Local rico gas-gui, irregular, okáiva mbeguekatu ha químicamente primitivo.</description>
+    <category>Pegasus Enano Irregular rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Perseo–Piscis Supercluster rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/perseus-pisces-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/perseus-pisces-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ superclúster filamentario tuichavéva — peteĩ 250-Mly jyva galaxia atykuéra ohasáva yvága otoño yvate gotyo.</description>
+    <category>Perseo–Piscis Supercluster rehegua</category>
+    <category>structure</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Phobos</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/phobos</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/phobos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe tuichavéva mokõi jasy Marte-pegua — peteĩ escombro-montaje mbeguekatúpe ojere iplaneta gotyo.</description>
+    <category>Phobos</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/phobos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Enano Fénix rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/phoenix-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/phoenix-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ enano Grupo Local transitorio — peteĩ parte esferoidal, peteĩ parte irregular, omoheñói gueteri peteĩ trickle mbyjakuéra rehegua.</description>
+    <category>Enano Fénix rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Pléyades</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/pleiades</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/pleiades</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Umi Siete Hermanas — peteĩ joya-caja mbyja hovy imitãva oñembojeguáva nebulosidad reflexión-pe.</description>
+    <category>Pléyades</category>
+    <category>cluster</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Plutõ</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/pluto</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/pluto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe enano ojehayhúva — mburuvicha guasu Cinturón Kuiper ha peteĩ mundo glaciar nitrógeno rehegua.</description>
+    <category>Plutõ</category>
+    <category>dwarfPlanet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Polaris Ab</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/polaris-ab</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/polaris-ab</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe irũ ojejuhu Hubble ndive — mbyja kuarahyguáicha pe Ceféida hesakã mbyte oikóva.</description>
+    <category>Polaris Ab</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Polaris</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/polaris</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/polaris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Mbyjajere Yvategua — peteĩ faro Cepheid haimete directamente Yvy eje ári.</description>
+    <category>Polaris</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Proxima b</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/proxima-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/proxima-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Yvaga'okã hi'aguĩvéva Yvýgui — peteĩ yvy mba'ereko Yvýndicha Proxima mba'e rekokuaarekópe.</description>
+    <category>Proxima b</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Proxima c</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/proxima-c</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/proxima-c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ super-Yvy e'ỹmeñóva ho'ãsóva rekokuaareko'iágui — Proxima ro'ysã ha imbegue peẽ.</description>
+    <category>Proxima c</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Proxima Centauri rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/proxima-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/proxima-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Mbyjajere hi'aguĩvéva Kuarahygui — peteĩ mbyjajere llamarada orekóva peteĩ planeta Yvy tuichakue ijykére.</description>
+    <category>Proxima Centauri rehegua</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/proxima-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Proxima d</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/proxima-d</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/proxima-d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Yvýpe itĩmbovéva Proxima — peteĩ sub-Yvy opopukáva mbyjajere ára po pukukue.</description>
+    <category>Proxima d</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Réa</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/rhea</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/rhea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Saturno jasy tuichavéva mokõiha — peteĩ mundo hielo omimbipáva ha oñembyaíva pe plano anillo rembe'ýpe.</description>
+    <category>Réa</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Rigel rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/rigel</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/rigel</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Orión py hovy-morotĩ — peteĩ supergigante umi mbyjajere omimbivéva ojekuaáva apytépe.</description>
+    <category>Rigel rehegua</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Ku'asã Nebulosa</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/ring-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/ring-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ Kuarahy tatatĩ anillo omanóva — pe nebulosa planetaria opa telescopio oikuaáva.</description>
+    <category>Ku'asã Nebulosa</category>
+    <category>nebula</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Ryugu</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/ryugu</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/ryugu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ asteroide carbonoso giratorio-top — ojejapo muestreo Hayabusa2 ha ojevy Yvýpe.</description>
+    <category>Ryugu</category>
+    <category>asteroid</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>SagDIG rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/sagdig</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/sagdig</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Sagitario Enano Irregular — Grupo Local galaxia gas-pegua imboriahuvéva metal-gui, 3,45 Mly osẽ.</description>
+    <category>SagDIG rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Sagitario A* .</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/sagittarius-a</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/sagittarius-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Vía Láctea agujero negro supermasivo central — peteĩ motor 4,3 millones de masa solar oanclava galaxia tuichakue.</description>
+    <category>Sagitario A* .</category>
+    <category>blackHole</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Sagitario Galaxia Enano rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/sagittarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/sagittarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Vía Láctea satélite ojekuaáva hi'aguĩvéva — peteĩ esferoide oñemboja'ómava mbyja ysyrykuérape ho'ávo disco rupive.</description>
+    <category>Sagitario Galaxia Enano rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Satúno</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/saturn</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/saturn</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe gigante anillo — ihalo hielo rehegua oguereko 280.000 km jepémo upéicha ipire hũ metro.</description>
+    <category>Satúno</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Escultor Enano rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/sculptor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/sculptor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ esferoide Vía Láctea mboriahu metal rehegua 290.000 ary tesape osẽva — materia iñypytũva oñemomba'e, 10.000 millones ary ári.</description>
+    <category>Escultor Enano rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Sextanos rehegua A</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/sextans-a</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/sextans-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ Grupo Local omimbipáva irregular — 4,4 Mly osẽ, mbarete gueteri omoheñói mbyjakuéra umi nudo densovévape.</description>
+    <category>Sextanos rehegua A</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Sextánes rehegua B</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/sextans-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/sextans-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ Grupo Local irregular pe grupo llanta okápe — peteĩva umi galaxia enana mombyryvéva ojoajúva ñande barrio rehe.</description>
+    <category>Sextánes rehegua B</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Sextans Enano Esferoidal rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/sextans-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/sextans-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ satélite Vía Láctea ikangyetereíva 290.000 ary tesape osẽva — peteĩva umi esferoidal enano sa'ive omimbipáva halo-pe.</description>
+    <category>Sextans Enano Esferoidal rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Shapley Supercluster rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/shapley-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/shapley-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe Concentración Shapley — pe superclúster ipohýiveva hi'aguĩva, ~650 Mly osẽ, oguerekóva ~8.000 galaxia.</description>
+    <category>Shapley Supercluster rehegua</category>
+    <category>structure</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Sirius B</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/sirius-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/sirius-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe Pup — pe mbyja morotĩ michĩ peteĩha ojejuhúva, ojerere pe mbyja hesakãvéva yvagape.</description>
+    <category>Sirius B</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Sirius</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/sirius</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/sirius</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Mbyja Jagua — mbyjajere omimbivéva Yvy yvága pyhare, omokañýva peteĩ iñirũ omanóva.</description>
+    <category>Sirius</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sirius/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Magallanes Araí Michĩ</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/smc</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/smc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Vía Láctea satélite mokõiha — peteĩ galaxia enana imboriahúva metal-gui oñemboja'óva mbeguekatúpe.</description>
+    <category>Magallanes Araí Michĩ</category>
+    <category>galaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Kuarahy</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/sun</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/sun</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ko mbyjajere secuencia principal tipo G oguerekóva 99,86% masa Sistema Solar rehegua.</description>
+    <category>Kuarahy</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sun/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Ñandu Guasu Nebulosa</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/tarantula</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/tarantula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe región mbyjajere omoheñóiva ivioléntovéva Grupo Local-pe — peteĩ galaxia satélite-pe 160.000 ly mombyry.</description>
+    <category>Ñandu Guasu Nebulosa</category>
+    <category>nebula</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Tau Ceti e</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/tau-ceti-e</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/tau-ceti-e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Yvy guasúicha pe mbyja ha'ño hi'aguĩvéva rekokuaarekópe — pe haku rembipýpe jehaipy.</description>
+    <category>Tau Ceti e</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Tau Ceti f</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/tau-ceti-f</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/tau-ceti-f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe ipyaháva ro'y okápe — yvy guasu heteetere pe rekokuaareko rembipýpe ýndi rehe.</description>
+    <category>Tau Ceti f</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Tau Ceti rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/tau-ceti</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/tau-ceti</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ mbyja kirirĩháme ojoguáva Kuarahy-pe 12 áño tesape mombyry ha peteĩ sistema interior henyhẽva.</description>
+    <category>Tau Ceti rehegua</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Titã</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/titan</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/titan</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Jasy peteĩnte oguerekóva peteĩ atmósfera hũ — ysyry metano, lago ha ama peteĩ mundo y-hielo congelado-pe.</description>
+    <category>Titã</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/trappist-1</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/trappist-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Siete mundo Yvy tuichakue peteĩ mbyjajere apenas tuichavéva Júpiter-gui jerére.</description>
+    <category>TRAPPIST-1</category>
+    <category>system</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/trappist-1/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>TRAPPIST-1b</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/trappist-1b</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/trappist-1b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe pypeguavéva umi pokõi yvy ndepyta — ita ojehúcha Yvýndichagua.</description>
+    <category>TRAPPIST-1b</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1c</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/trappist-1c</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/trappist-1c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Venus reteetereguáicha — ojerere pe kuã'i haku pe cadena ndepyta ryepýpe.</description>
+    <category>TRAPPIST-1c</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1d</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/trappist-1d</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/trappist-1d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe vevéva umi pokõi apytépe — yvy michĩvéva pe haku rembipýpe.</description>
+    <category>TRAPPIST-1d</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1e</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/trappist-1e</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/trappist-1e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe Yvýichaite umi pokõi apytépe — pe jehecha porãvéva y rekópe.</description>
+    <category>TRAPPIST-1e</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1f</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/trappist-1f</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/trappist-1f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Yvy henyhẽ y rehe — pe rekokuaareko rembipýpe pypeguápe.</description>
+    <category>TRAPPIST-1f</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1g</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/trappist-1g</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/trappist-1g</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe tuichavéva umi pokõi apytépe — yvy guasu ro'y pe cadena rembipýpe okápe.</description>
+    <category>TRAPPIST-1g</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1h</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/trappist-1h</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/trappist-1h</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe okapegua ro'y — pe yvy paháva pe apopyguápe, ojoguáva ýndi rehe.</description>
+    <category>TRAPPIST-1h</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Triangulum Galaxia</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/triangulum</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/triangulum</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe tercera espiral kirirĩháme — pe Grupo Local miembro tímido, rico umi vivero mbyja rehegua.</description>
+    <category>Triangulum Galaxia</category>
+    <category>galaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/triangulum/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Tritõ</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/triton</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/triton</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Neptuno jasy ojejapyhýva — peteĩ mundo Kuiper-cinturón orekóva géiser nitrógeno, ojeréva tapykue gotyo.</description>
+    <category>Tritõ</category>
+    <category>moon</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Enano Tucana rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/tucana-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/tucana-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe Grupo Local esferoidal aisladovéva — 2,9 Mly osẽ, araka'eve noñeinfluíriva peteĩ galaxia tuichavéva rehe.</description>
+    <category>Enano Tucana rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Ursa Mayor I Enano</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/uma-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/uma-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ satélite Vía Láctea ultra-débil ojuhúva SDSS — peteĩ escaparate dominación materia iñypytũva rehegua galaxia formación rembe'ýpe.</description>
+    <category>Ursa Mayor I Enano</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Ursa Mayor II Enano rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/uma-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/uma-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩva umi galaxia ikangyvéva ojekuaáva — peteĩ satélite Vía Láctea ultra débil ~105.000 ary tesape añónte osẽva.</description>
+    <category>Ursa Mayor II Enano rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Uráno</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/uranus</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/uranus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe planeta lado gotyo — peteĩ gigante hielo rehegua ojeréva Kuarahy jerére ijykére.</description>
+    <category>Uráno</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/uranus/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Enano Menor Ursa rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/ursa-minor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/ursa-minor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Peteĩ esferoide Vía Láctea 225.000 ary tesape osẽva — yma guare, ikangy ha haimete opaite materia iñypytũva.</description>
+    <category>Enano Menor Ursa rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Vega rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/vega</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/vega</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe Mbyja Yvate yma ha oútava — mbyjakuaa cero-punto hesakãva.</description>
+    <category>Vega rehegua</category>
+    <category>star</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/vega/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Vénus</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/venus</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/venus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Yvy gemelo tuichaháicha, ojejokua peteĩ invernadero CO2 aplastante-pe — pe planeta hakuvéva.</description>
+    <category>Vénus</category>
+    <category>planet</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Vesta</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/vesta</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/vesta</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Pe asteroide cinturón mundo omimbivéva — peteĩ protoplaneta oikovéva Sistema Solar ko'ẽmbotávo.</description>
+    <category>Vesta</category>
+    <category>asteroid</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Virgo Supercluster</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/virgo-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/virgo-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Supercluster Local — peteĩ arai aplanado ~100 galaxia aty oñecentráva Cluster Virgo ~54 Mly mombyry.</description>
+    <category>Virgo Supercluster</category>
+    <category>structure</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>WLM Galaxia rehegua</title>
+    <link>https://luiskr.com/gn/mbyja-nembosarai/wlm</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/mbyja-nembosarai/wlm</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Wolf–Lundmark–Melotte — peteĩ irregular aislado orekóva clúster globular imba'éva, 3 Mly hógagui.</description>
+    <category>WLM Galaxia rehegua</category>
+    <category>dwarfGalaxy</category>
+    <category>mbyja</category>
+    <category>mbyja ra'angakuéra</category>
+    <category>galaxia 3d</category>
+    <category>mapa mbyja</category>
+    <category>pyhare</category>
+    <category>mbyja yvaga'ape</category>
+    <category>mbyja tembiporu</category>
+    <category>campo estelar</category>
+    <category>imágenes de estrellas</category>
+    <category>luis krötz</category>
   </item>
 </channel>
 </rss>

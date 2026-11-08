@@ -14,6 +14,8 @@
 export interface ProjectMediaItem {
   src: string
   size: number[]
+  /** Original CMS `size` — set only when `size` was downscaled through the desktop ladder (the expand modal reads this; it never reduces). */
+  naturalSize?: number[]
   label?: string
   class?: string
   isVideo?: boolean

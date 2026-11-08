@@ -50,6 +50,45 @@ describe('awards render + delegated click tails', () => {
 
     expect(pushSpy).not.toHaveBeenCalled()
 
+    // Plain clicks route through router.push and preventDefault.
+    const plainItemEv = new MouseEvent(MOUSE_EVENTS.CLICK, {
+      bubbles: true,
+      cancelable: true,
+    })
+
+    itemLink.dispatchEvent(plainItemEv)
+
+    expect(plainItemEv.defaultPrevented).toBe(true)
+    expect(pushSpy).toHaveBeenCalled()
+
+    const plainDocsEv = new MouseEvent(MOUSE_EVENTS.CLICK, {
+      bubbles: true,
+      cancelable: true,
+    })
+
+    docsLink.dispatchEvent(plainDocsEv)
+
+    expect(plainDocsEv.defaultPrevented).toBe(true)
+
+    // Delegated click edge cases: non-Element target (Text node) and
+    // anchor without href attribute.
+    const textNode = itemLink.firstChild
+
+    if (textNode) {
+      textNode.dispatchEvent(
+        new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true })
+      )
+    }
+
+    const bareAnchor = document.createElement('a')
+
+    bareAnchor.className = AWARDS_CLASSES.AWARDS_FOOTER_ITEM
+    el.shadowRoot.appendChild(bareAnchor)
+    bareAnchor.dispatchEvent(
+      new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true })
+    )
+    bareAnchor.remove()
+
     pushSpy.mockRestore()
     el.remove()
   })
@@ -67,7 +106,10 @@ describe('awards render + delegated click tails', () => {
     })
     const linksNav = tree.querySelector(`nav.${AWARDS_CLASSES.AWARDS_FOOTER_LINKS}`)
 
-    expect(linksNav.querySelectorAll('h3').length).toBe(1)
-    expect(linksNav.querySelectorAll(`.${AWARDS_CLASSES.AWARDS_FOOTER_ITEM}`).length).toBe(2)
+    // One fixture h3 (the copy-less row stays heading-free) + one per
+    // static entry — animations ref, sitemap, feed.
+    expect(linksNav.querySelectorAll('h3').length).toBe(4)
+    // The two fixture items + the same three statics as anchors.
+    expect(linksNav.querySelectorAll(`.${AWARDS_CLASSES.AWARDS_FOOTER_ITEM}`).length).toBe(5)
   })
 })

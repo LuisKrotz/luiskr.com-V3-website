@@ -28,7 +28,6 @@ import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { mountCornerBracketsAll } from '@core/utils/gpu/corner-brackets.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
-import { calcMediaBox } from '@core/utils/wasm/wasm-layout.js'
 import { startGenieOpen } from './genie.js'
 import type { MediaExpanded } from '../MediaExpanded.js'
 import { GENERIC_DIMENSIONS, VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
@@ -196,63 +195,32 @@ export function mountMediaExpanded(el: MediaExpanded): void {
   // missing surfaces) the legacy CSS zoom covers the entrance instead.
   const content = el.$(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_CONTENT}`)
 
-  // Media-box allocation — the displayed box is computed through the
-  // WASM layout path (calcMediaBox; JS-identical fallback when the
-  // engine is unavailable) and stamped as explicit px on the item, so
-  // the box is decided in one layout pass instead of CSS negotiating
-  // max-width/scale-down against the intrinsic attrs. Images get an
-  // unbounded height on purpose: a "huge length" capture keeps its
-  // full fitted width and overflows into the dialog's own scroll —
-  // constraining by height would squash it (the reported regression).
-  // Videos keep the flex contract since their chrome must fit the
-  // viewport. The genie measure below reads the same layout pass.
-  const fitMediaItem = () => {
-    if (!mediaItem || !content || el.isVideo) return
+  // Media-box allocation — the modal is the no-reduction surface: the
+  // declared natural dims are stamped as explicit px on the item, so the
+  // box is pinned to the file's real pixels from the first frame and the
+  // thumb → full-res swap can never resize it. No bound check applies
+  // here — reductions belong to the page grids/strips; inside the modal
+  // an oversized file simply overflows into the dialog's own scroll on
+  // both axes. Videos stamp the same way — their controls ride the
+  // element, so scroll keeps them reachable like any oversized image.
+  // The genie measure below reads the same layout pass.
+  const stampMediaBox = () => {
+    if (!mediaItem) return
 
-    const style = getComputedStyle(content)
-    const boundW =
-      content.clientWidth -
-      (parseFloat(style.paddingLeft) || 0) -
-      (parseFloat(style.paddingRight) || 0)
+    const w = el.mediaWidth || GENERIC_DIMENSIONS.DEFAULT_WIDTH
 
-    // A non-laid-out content (or a NaN padding parse) would produce a
-    // zero/negative box — leave the intrinsic attrs in place instead.
-    if (!(boundW > 0)) return
+    const h = el.mediaHeight || GENERIC_DIMENSIONS.DEFAULT_HEIGHT
 
-    const box = calcMediaBox(
-      el.mediaWidth || GENERIC_DIMENSIONS.DEFAULT_WIDTH,
-      el.mediaHeight || GENERIC_DIMENSIONS.DEFAULT_HEIGHT,
-      boundW,
-      Number.POSITIVE_INFINITY
-    )
+    // Width + aspect-ratio (not a fixed px height): the CSS max-width cap
+    // can shrink the width on narrow viewports, and aspect-ratio keeps
+    // the box's height proportional — a fixed stamped height would distort
+    // the box the moment the cap binds.
+    mediaItem.style.width = `${w}${CHAR_STRINGS.PX}`
 
-    mediaItem.style.width = `${box.width}${CHAR_STRINGS.PX}`
-
-    mediaItem.style.height = `${box.height}${CHAR_STRINGS.PX}`
+    mediaItem.style.aspectRatio = `${w} / ${h}`
   }
 
-  fitMediaItem()
-
-  // Refit on viewport changes while the modal is open — rAF-coalesced
-  // so a resize burst costs one layout pass.
-  let fitQueued = false
-
-  el.addScopedListener(
-    window,
-    WINDOW_EVENTS.RESIZE,
-    () => {
-      if (fitQueued) return
-
-      fitQueued = true
-
-      requestAnimationFrame(() => {
-        fitQueued = false
-
-        fitMediaItem()
-      })
-    },
-    { passive: true }
-  )
+  stampMediaBox()
 
   if (content) {
     if (!startGenieOpen(el, () => undefined)) {

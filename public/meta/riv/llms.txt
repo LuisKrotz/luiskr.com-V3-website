@@ -52,6 +52,11 @@
 - [RSS feed](https://luiskr.com/feed.xml): RSS 2.0 + Media RSS channel — every content page and all 13 portfolio projects with cover media attached; localized twins at `/<locale>/feed.xml` (`/rss.xml` aliases the English feed).
 - Usage preferences: `Content-Signal: ai-train=yes, search=yes, ai-input=yes` on every response (and stamped into deployed `robots.txt` files); `Link` response headers advertise these resources on every page.
 
+## Site Search
+
+- [Search](https://luiskr.com/search): full-site route search — every page, project, media deep link and experiment entry is indexed. Localized in all 16 languages (`/br/busca`, `/es/busqueda`, `/de/suche`, …). Query deep links use `?q=` (`/search?q=privacy`); the WebSite JSON-LD carries a schema.org `SearchAction` (`target: /search?q={search_term_string}`).
+- [search-index-en.json](https://luiskr.com/meta/search-index-en.json): machine-readable search catalog — `{p, t, d, k}` (path, title, description, keywords) for every indexed route; per-locale twins at `/meta/search-index-<locale>.json` (e.g. `/meta/search-index-br.json`).
+
 ## Experiment Data Endpoints (`/experiments/`)
 
 The canvas-rendered experiments ship their complete datasets as static JSON/binary so agents can read every object without executing WebGL:

@@ -4,6 +4,7 @@
  */
 
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
+import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 import { APP_EVENTS } from '@core/tokens/events/app.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { COMMON_SELECTORS } from '@core/tokens/selectors/common.js'
@@ -12,6 +13,7 @@ import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { localePath } from '@core/i18n.js'
 import { isPlainClick } from '@core/utils/dom.js'
+import { joustClick } from '@core/utils/dom/joust.js'
 import type { AppNav } from './AppNav.js'
 
 /**
@@ -111,6 +113,10 @@ export function handleAction(host: AppNav, e?: Event): void {
 export function handlePreferences(host: AppNav, e?: Event): void {
   swallow(e)
 
+  // Joust gate — a hover-less first tap pours the chip's label instead
+  // of opening the modal; the second tap reaches the store commit below.
+  if (!joustClick(e)) return
+
   host._captureOrigin(e)
 
   store.commit(MODAL_MUTATIONS.TOGGLE_PREFERENCES_MODAL, true)
@@ -120,9 +126,48 @@ export function handlePreferences(host: AppNav, e?: Event): void {
   }
 }
 
+/**
+ * Opens the search modal — the menu closes first, then the dialog mounts
+ * its <route-search> surface. Plain clicks only; modifier clicks fall
+ * through to the /search href (real navigation for SEO/new-tab).
+ */
+export function handleSearch(host: AppNav, e?: Event): void {
+  if (e && !isPlainClick(e)) return
+
+  if (e) swallow(e)
+
+  // Joust gate — same first-tap-reveal contract as the other chips.
+  if (!joustClick(e)) return
+
+  host._captureOrigin(e)
+
+  const open = () => {
+    store.commit(MODAL_MUTATIONS.TOGGLE_SEARCH_MODAL, true)
+
+    if (typeof window !== TYPE_STRINGS.UNDEFINED) {
+      window.dispatchEvent(new CustomEvent(APP_EVENTS.OPEN_SEARCH_MODAL))
+    }
+  }
+
+  // Menu→search handoff: let the overlay dissolve fully before the modal
+  // mounts — a same-frame swap reads as a teleport, not a transition.
+  if (host._menuOpen) {
+    host._closeMenu()
+
+    setTimeout(open, ANIMATION_DURATIONS.MENU_CLOSE_DURATION)
+  } else {
+    host._closeMenu()
+
+    open()
+  }
+}
+
 /** Opens the language dialog (fires open-lang-dialog after capturing origin). */
 export function handleLang(host: AppNav, e?: Event): void {
   swallow(e)
+
+  // Joust gate — same first-tap-reveal contract as the other chips.
+  if (!joustClick(e)) return
 
   host._captureOrigin(e)
 

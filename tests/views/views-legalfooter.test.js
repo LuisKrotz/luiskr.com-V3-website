@@ -76,15 +76,31 @@ describe('LegalFooter', () => {
   test('renders fallback links when store has no legal links', () => {
     store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, {})
     footerEl._updateDom()
-    const links = footerEl.shadowRoot.querySelectorAll(
-      `.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`
+
+    // The unified footer: filtered legal pages + animations ref +
+    // sitemap + RSS feed in the left nav (7 anchors); the bare-root
+    // home link leads the right socials row instead.
+    const navLinks = footerEl.shadowRoot.querySelectorAll(
+      `.${INTERNAL_CLASSES.INTERNAL_FOOTER_LEGAL} .${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`
     )
-    expect(links.length).toBe(5)
-    // The docs-portal entry lives on the home footer — legal pages have
-    // no docs row anymore.
+
+    expect(navLinks.length).toBe(7)
+
+    const socials = footerEl.shadowRoot.querySelectorAll(
+      `.${INTERNAL_CLASSES.INTERNAL_FOOTER_SOCIALS} .${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`
+    )
+
+    expect(socials.length).toBeGreaterThan(0)
+    expect(socials[0].classList.contains(INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME)).toBe(true)
+
+    // The unified footer carries the docs-portal entry + the clamped
+    // disclaimer note on every page it mounts.
     expect(
       footerEl.shadowRoot.querySelector(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_DOCS_LINK}`)
-    ).toBeNull()
+    ).not.toBeNull()
+    expect(
+      footerEl.shadowRoot.querySelector(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE}`)
+    ).not.toBeNull()
   })
 
   test('clicking link calls router.push with link href', () => {

@@ -20,12 +20,29 @@ import { WASM_STRINGS } from '@core/tokens/strings/wasm.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { npuPredict } from '@core/utils/gpu/npu-predict.js'
-import { armCardBurn, disarmCardBurn } from './burn.js'
+import { armCardBurn, disarmCardBurn } from '@core/utils/burn/burn.js'
+import type { BurnClasses } from '@core/utils/burn/burn.js'
 import type { MosaicItem } from './pack.js'
 import type { HomeMosaic } from '../HomeMosaic.js'
 
 /** Details-panel floor matching mosaic-layout's provisional height. */
 const PROVISIONAL_BOTTOM_H = 130
+
+/** The mosaic's class map under the burn's portable contract. */
+const BURN_CLASSES: BurnClasses = {
+  ITEM_BURNING: HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING,
+  TITLE_OVERLAY: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_OVERLAY,
+  TITLE: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE,
+  TITLE_BURNING: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING,
+  TITLE_BURN: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURN,
+  TITLE_SLOT: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_SLOT,
+  TITLE_DUP: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_DUP,
+  TITLE_REWRITE: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_REWRITE,
+  DETAILS: HOME_MOSAIC_CLASSES.HOME_MOSAIC_DETAILS,
+}
+
+/** Card lookup selector — matches the host's `$()` query contract. */
+const CARD_SEL = MOSAIC_SELECTORS.HOME_MOSAIC_ITEM
 
 /** Measured-height padding beyond the panel's scrollHeight. */
 const DETAIL_H_PAD = 24
@@ -97,7 +114,7 @@ export function onHover(host: HomeMosaic, i: number): void {
     }
 
     // Combust the overlay title top→bottom + rewrite it above the desc.
-    armCardBurn(host, i, item)
+    armCardBurn(host, i, item, BURN_CLASSES, CARD_SEL)
   }
 
   requestAnimationFrame(() => {
@@ -125,7 +142,7 @@ export function onLeave(host: HomeMosaic): void {
 
   if (prevIdx !== null) {
     removeDesc(host, prevIdx)
-    disarmCardBurn(host, prevIdx)
+    disarmCardBurn(host, prevIdx, BURN_CLASSES, CARD_SEL)
 
     // Drop the measured height with the hover — keeping it would re-inflate
     // the column by a stale (possibly taller) value on the next pass.
@@ -178,7 +195,7 @@ export function onClick(host: HomeMosaic, item: MosaicItem, i: number, e?: Event
 
     if (prevIdx !== null && prevIdx !== i) {
       removeDesc(host, prevIdx)
-      disarmCardBurn(host, prevIdx)
+      disarmCardBurn(host, prevIdx, BURN_CLASSES, CARD_SEL)
 
       delete host.bottomHMap[prevIdx]
     }
@@ -195,7 +212,7 @@ export function onClick(host: HomeMosaic, item: MosaicItem, i: number, e?: Event
 
         // Post-render arm — _updateDom wipes per-card overlays, so the
         // burn must mount against the fresh nodes.
-        armCardBurn(host, i, item)
+        armCardBurn(host, i, item, BURN_CLASSES, CARD_SEL)
       }
 
       host.layout()

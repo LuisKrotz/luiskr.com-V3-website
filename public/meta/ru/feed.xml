@@ -1,174 +1,3245 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+<?xml-stylesheet type="text/css" href="/feed.css"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
 <channel>
   <title>Luis Krötz</title>
   <link>https://luiskr.com/ru/</link>
   <atom:link href="https://luiskr.com/ru/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Привет, я Луис, инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
   <language>ru</language>
-  <lastBuildDate>Tue, 27 Oct 2026 17:54:21 GMT</lastBuildDate>
+  <copyright>© 2026 Luis Krötz</copyright>
+  <lastBuildDate>Sun, 08 Nov 2026 04:04:57 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/ru/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
     <link>https://luiskr.com/ru/</link>
-    <guid>https://luiskr.com/ru/</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Привет, я Луис, инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
+    <category>делл дизайн систем</category>
+    <category>метча</category>
+    <category>мелисса</category>
+    <category>мини мелисса</category>
+    <category>бразилиан лезер</category>
+    <category>мор</category>
+    <category>коза</category>
+    <category>марко алмейда</category>
+    <category>наталия бонд</category>
+    <category>сесереле</category>
+    <category>транса</category>
+    <category>вибра</category>
   </item>
   <item>
     <title>Обо мне</title>
     <link>https://luiskr.com/ru/obo-mne</link>
-    <guid>https://luiskr.com/ru/obo-mne</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/obo-mne</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Привет, я Луис, инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
+    <category>в ufsm работа вошла в число 40 лучших на 28-й jai</category>
+    <category>cssda special kudos award, присуждена первой версии luiskr.com</category>
+    <category>cssda innovation design award, присуждена первой версии luiskr.com</category>
+    <category>cssda ux design award, присуждена первой версии luiskr.com</category>
+    <category>cssda ui design award, присуждена первой версии luiskr.com</category>
+    <category>публикация на tcg</category>
+    <category>cssw star</category>
+    <category>публикация в mindsparkle mag</category>
+    <category>опубликованная работа: desenvolvimento de um protótipo para gestão de conhecimen</category>
+    <category>обо мне</category>
+    <category>о луисе крётце</category>
+    <category>биография</category>
   </item>
   <item>
     <title>Контакты</title>
     <link>https://luiskr.com/ru/kontakty</link>
-    <guid>https://luiskr.com/ru/kontakty</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/kontakty</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Контакты</description>
+    <category>почта</category>
+    <category>телефон</category>
+    <category>linkedin</category>
+    <category>github</category>
+    <category>политика конфиденциальности</category>
+    <category>gdpr</category>
+    <category>условия использования</category>
+    <category>контакты</category>
+    <category>связаться с луисом крётцем</category>
+    <category>нанять фронтенд-разработчика</category>
+    <category>электронная почта</category>
+    <category>разработчик фриланс</category>
   </item>
   <item>
     <title>Политика конфиденциальности</title>
     <link>https://luiskr.com/ru/politika-konfidentsialnosti</link>
-    <guid>https://luiskr.com/ru/politika-konfidentsialnosti</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/politika-konfidentsialnosti</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>На сайте luiskr , доступном по адресу https://luiskr.com , одним из моих главных приоритетов является конфиденциальность посетителей. Этот документ Политики конфиденциальности содержит типы информации, которая собирается и регистрируется сайтом luiskr.com , и то, как я её использую.</description>
+    <category>обычные положения</category>
+    <category>согласие</category>
+    <category>информация, которую я собираю</category>
+    <category>как я использую вашу информацию</category>
+    <category>политики конфиденциальности третьих сторон</category>
+    <category>права на конфиденциальность по ccpa (не продавайте мои персональные данные)</category>
+    <category>информация о детях</category>
+    <category>политика конфиденциальности</category>
+    <category>конфиденциальность</category>
+    <category>защита данных</category>
+    <category>политика cookie</category>
+    <category>луис крётц</category>
   </item>
   <item>
     <title>GDPR</title>
     <link>https://luiskr.com/ru/gdpr</link>
-    <guid>https://luiskr.com/ru/gdpr</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/gdpr</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Я хочу быть уверен, что вы полностью осведомлены о своих правах на защиту данных. Каждый пользователь имеет право на следующее:</description>
+    <category>ваши права на защиту данных</category>
+    <category>gdpr</category>
+    <category>общий регламент защиты данных</category>
+    <category>персональные данные</category>
+    <category>защита данных</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+    <category>портфолио</category>
+    <category>портфолио луиса крётца</category>
+    <category>фронтенд-разработчик</category>
   </item>
   <item>
     <title>Условия использования</title>
     <link>https://luiskr.com/ru/usloviya-ispolzovaniya</link>
-    <guid>https://luiskr.com/ru/usloviya-ispolzovaniya</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/usloviya-ispolzovaniya</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Сайт luiskr.com, расположенный по адресу luiskr.com , распространяется по лицензии MIT. Luiskr.com создан Луисом Крётцем; на отдельные функции Сайта могут распространяться дополнительные руководства, условия или правила, которые будут опубликованы на Сайте в связи с такими функциями.</description>
+    <category>версия 1.1</category>
+    <category>доступ к сайту</category>
+    <category>ссылки на третьих лиц; другие пользователи</category>
+    <category>отказ от гарантий</category>
+    <category>ограничение ответственности</category>
+    <category>политика в области авторских прав.</category>
+    <category>общие положения</category>
+    <category>репозиторий</category>
+    <category>контактная информация</category>
+    <category>условия использования</category>
+    <category>условия обслуживания</category>
+    <category>правовые условия</category>
   </item>
   <item>
     <title>Mozilla Public License 2.0</title>
     <link>https://luiskr.com/ru/litsenziya</link>
-    <guid>https://luiskr.com/ru/litsenziya</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/litsenziya</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Эта страница содержит полный официальный текст Mozilla Public License 2.0 (MPL 2.0) — лицензии, под которой распространяется исходный код этого сайта. Лицензия представляет собой всемирную безвозмездную концессию, действующую во всех странах и на всех территориях.</description>
+    <category>об этом документе</category>
+    <category>1. определения</category>
+    <category>2. предоставление лицензий и условия</category>
+    <category>3. обязанности</category>
+    <category>4. невозможность соблюдения вследствие закона или постановления</category>
+    <category>5. прекращение</category>
+    <category>6. отказ от гарантий</category>
+    <category>7. ограничение ответственности</category>
+    <category>8. судебные разбирательства</category>
+    <category>9. разное</category>
+    <category>10. версии лицензии</category>
+    <category>приложение a — уведомление о лицензии формы исходного кода</category>
   </item>
   <item>
     <title>Справочник анимаций</title>
     <link>https://luiskr.com/ru/animatsii</link>
-    <guid>https://luiskr.com/ru/animatsii</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/animatsii</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Все анимации сайта, описанные — элемент, движение, триггер, технология и назначение — для читателей, вспомогательных технологий и ИИ-агентов.</description>
+    <category>индикатор загрузки маршрута, ползущий по верхнему краю во время навигации</category>
+    <category>кнопка меню-гамбургер с жидкой морф-анимацией</category>
+    <category>анимированный полноэкранный фон меню с текучим контурным полем</category>
+    <category>пункты навигационного меню с поэтапным подъёмом</category>
+    <category>иконка флага языка с волной и анимацией появления</category>
+    <category>переключатель настроек с жидким скольжением бегунка</category>
+    <category>переключатель темы с орбитальным скольжением день/ночь</category>
+    <category>кнопка закрытия с жидким заполнением и вращающимся крестом</category>
+    <category>скелет загрузки с морфящимися ячейками и бликом</category>
+    <category>вступительный загрузчик с встречно вращающимися кольцами и прогрессом</category>
+    <category>уведомление-тост, выскальзывающее из угла</category>
+    <category>заголовок плитки портфолио сгорает в углях и собирается заново</category>
   </item>
   <item>
     <title>Земная песочница</title>
     <link>https://luiskr.com/ru/zemnaya-pesochnitsa</link>
-    <guid>https://luiskr.com/ru/zemnaya-pesochnitsa</guid>
-    <description>Интерактивная WebGL-Земля — настраивайте рельеф, атмосферу, освещение и постобработку в реальном времени.</description>
+    <guid isPermaLink="true">https://luiskr.com/ru/zemnaya-pesochnitsa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Интерактивная WebGL-симуляция Земли — настраивайте рельеф, атмосферу, освещение и постобработку в реальном времени в браузере.</description>
+    <category>земля</category>
+    <category>изображения земли</category>
+    <category>планета земля</category>
+    <category>земля 3d</category>
+    <category>рендер земли</category>
+    <category>земля webgl</category>
+    <category>земная песочница</category>
+    <category>интерактивная симуляция земли</category>
+    <category>земля из космоса</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
   </item>
   <item>
     <title>Звёздное поле</title>
     <link>https://luiskr.com/ru/zvezdnoe-pole</link>
-    <guid>https://luiskr.com/ru/zvezdnoe-pole</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Обзор</description>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+  </item>
+  <item>
+    <title>Поиск</title>
+    <link>https://luiskr.com/ru/poisk</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/poisk</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Поиск по всем страницам, проектам и экспериментам luiskr.com.</description>
+    <category>поиск</category>
+    <category>поиск по сайту</category>
+    <category>найти</category>
+    <category>поиск по портфолио</category>
+    <category>проекты</category>
+    <category>каталог</category>
+    <category>луис крётц</category>
+    <category>luiskr.com</category>
+    <category>портфолио</category>
+    <category>webgl-эксперименты</category>
+    <category>подходящие страницы</category>
+    <category>обо мне</category>
   </item>
   <item>
     <title>Делл Дизайн Систем</title>
     <link>https://luiskr.com/ru/portfolio/dell-design-system</link>
-    <guid>https://luiskr.com/ru/portfolio/dell-design-system</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/dell-design-system</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Приход в Dell 6 июня 2022 года, вскоре после закрытия Transainc, стал ключевым поворотным моментом в моей профессиональной карьере.</description>
+    <category>делл дизайн систем</category>
+    <category>dell design system</category>
+    <category>dell design system, обзор веб-сайта</category>
+    <category>dell design system: обзор фундаментальных основ</category>
+    <category>dell design system: архитектура кода и рекомендации</category>
+    <category>dell design system: принципы начала работы</category>
+    <category>dell design system: обзор библиотеки компонентов</category>
+    <category>dell design system: обзор паттернов</category>
+    <category>dell design system: интеграция со storybook и рекомендации по компонентам</category>
+    <category>dell design system: обзор документации по основам</category>
+    <category>dell design system: база дизайн-токенов v1</category>
+    <category>dell design system: база дизайн-токенов v2</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
   </item>
   <item>
     <title>Марко Алмейда</title>
     <link>https://luiskr.com/ru/portfolio/aboutmarco</link>
-    <guid>https://luiskr.com/ru/portfolio/aboutmarco</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/aboutmarco</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Портфолио Марко было разработано как фриланс-проект в 2021 году.</description>
+    <category>марко алмейда</category>
+    <category>aboutmarco</category>
+    <category>aboutmarco.com, полный обзор главной страницы</category>
+    <category>aboutmarco.com, мобильный обзор</category>
+    <category>aboutmarco.com, главная страница</category>
+    <category>aboutmarco.com, мелисса инсайдер</category>
+    <category>aboutmarco.com, мелисса</category>
+    <category>aboutmarco.com, коза</category>
+    <category>aboutmarco.com, бразилиан лезер</category>
+    <category>aboutmarco.com, ме</category>
+    <category>aboutmarco.com, архив</category>
+    <category>aboutmarco.com, адмайрзевеб</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Сесереле</title>
     <link>https://luiskr.com/ru/portfolio/cecerele</link>
-    <guid>https://luiskr.com/ru/portfolio/cecerele</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/cecerele</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Я познакомился с Жоаной из Cecerelê через общего друга, Сагу, в ноябре 2020 года.</description>
+    <category>сесереле</category>
+    <category>cecerele</category>
+    <category>cecerelê: создан в 2019 году историком жоаной шосслер для производства игрушек;</category>
+    <category>cecerelê: главная страница с товарами, обновлено в декабре 2021</category>
+    <category>cecerelê: страница 'о нас'</category>
+    <category>cecerelê: страница товара</category>
+    <category>cecerelê: kit para colorir adulto edição limitada, страница товара</category>
+    <category>cecerelê: memorêlas jogo de memória das mulheres brasileiras, страница товара</category>
+    <category>cecerelê: minha praia, livro de colorir, страница товара</category>
+    <category>cecerelê, quebra cabeça revolucionárias: страница товара</category>
+    <category>cecerelê: содержимое корзины</category>
+    <category>cecerelê: вход</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Бразилиан Лезер</title>
     <link>https://luiskr.com/ru/portfolio/cicb</link>
-    <guid>https://luiskr.com/ru/portfolio/cicb</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/cicb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Brazilian Leather это проект, разработанный в Transa в партнёрстве между CICB и Apex-Brasil.</description>
+    <category>бразилиан лезер</category>
+    <category>cicb</category>
+    <category>brazilian leather, полный обзор главной страницы</category>
+    <category>brazilian leather, мобильный обзор</category>
+    <category>brazilian leather, главная</category>
+    <category>brazilian leather, о нас</category>
+    <category>brazilian leather, на мандаринском китайском</category>
+    <category>cscb, главная страница</category>
+    <category>fórum 2016, полный обзор</category>
+    <category>fórum 2016, вся страница</category>
+    <category>fórum 2016, мобильный обзор</category>
+    <category>fórum 2017, полный обзор</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Коза</title>
     <link>https://luiskr.com/ru/portfolio/coza</link>
-    <guid>https://luiskr.com/ru/portfolio/coza</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/coza</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Сайт Coza был разработан в Transa с 2017 по 2019 год.</description>
+    <category>коза</category>
+    <category>coza</category>
+    <category>coza: полный обзор главной страницы</category>
+    <category>coza: полный мобильный обзор</category>
+    <category>coza: скриншот всей страницы</category>
+    <category>coza: английская главная страница</category>
+    <category>coza: статья, organização com as dicas da maysa.</category>
+    <category>coza: фотогалерея, a cada instante da rotina. mais coza + pantone.</category>
+    <category>coza: статья, seu banheiro cheio de beleza.</category>
+    <category>coza: страница 'где найти' на десктопе</category>
+    <category>coza: страница 'где найти' на мобильном</category>
+    <category>сайт coza был разработан в transa с 2017 по 2019 год.</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Мелисса</title>
     <link>https://luiskr.com/ru/portfolio/melissa</link>
-    <guid>https://luiskr.com/ru/portfolio/melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Сайт Melissa был проектом, разработанным в TRANSA INC.</description>
+    <category>мелисса</category>
+    <category>melissa</category>
+    <category>melissa, обзор сайта 2020</category>
+    <category>melissa, обзор мобильной ленты 2020</category>
+    <category>melissa, скриншот главной страницы</category>
+    <category>melissa, обзор страницы 'где найти'</category>
+    <category>melissa, обзор мобильной страницы 'где найти'</category>
+    <category>melissa, скриншот страницы squad 2020</category>
+    <category>melissa, скриншот страницы проектов 2020</category>
+    <category>melissa, статья: alerta de collab inedita</category>
+    <category>melissa, статья: ebulicao de cores e ideias</category>
+    <category>melissa, статья: reconexao urbana</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>МЕТЧА</title>
     <link>https://luiskr.com/ru/portfolio/metcha</link>
-    <guid>https://luiskr.com/ru/portfolio/metcha</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/metcha</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>METCHA: оракул кожи, дизайна и культуры.</description>
+    <category>метча</category>
+    <category>metcha</category>
+    <category>metcha, обзор ленты 2022</category>
+    <category>metcha, статья: коллекция moore giles студии bill amberg</category>
+    <category>metcha, статья: правила устойчивого развития от ceeze</category>
+    <category>metcha, статья: шлем bell bullitt от larson upholstery крупным планом</category>
+    <category>metcha, статья: кожаные скейт-кеды высокого стандарта eugene riconneaus</category>
+    <category>metcha, статья: почему студия томмазо спинци историческая и полна историй</category>
+    <category>metcha, статья: сумки макса полья никогда не бывают одинаковыми</category>
+    <category>metcha, статья: mini type 10, новый осознанный и кастомный дизайн автомобиля кла</category>
+    <category>metcha, статья: свободомыслящий взгляд mut design</category>
+    <category>metcha, статья: кожаные сумки okhtein показывают творческие направления двух сес</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4" medium="video"/>
   </item>
   <item>
     <title>Мини Мелисса</title>
     <link>https://luiskr.com/ru/portfolio/mini-melissa</link>
-    <guid>https://luiskr.com/ru/portfolio/mini-melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/mini-melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Mini Melissa был проектом, разработанным в Transa для группы Grendene как отдельный канал для бренда Mini Melissa.</description>
+    <category>мини мелисса</category>
+    <category>mini melissa</category>
+    <category>mini melissa: полный обзор главной страницы</category>
+    <category>mini melissa: мобильный обзор</category>
+    <category>mini melissa: обложка ленты</category>
+    <category>mini melissa: скриншот ленты 2020</category>
+    <category>mini melissa: где найти</category>
+    <category>mini melissa: где найти, мобильная версия</category>
+    <category>mini melissa: color me</category>
+    <category>mini melissa: color me, мобильная версия</category>
+    <category>мини мелисса: данс машин</category>
+    <category>mini melissa: dance machine, мобильная версия</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>МОР</title>
     <link>https://luiskr.com/ru/portfolio/mor</link>
-    <guid>https://luiskr.com/ru/portfolio/mor</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/mor</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Сайт MOR был разработан в Transa.</description>
+    <category>мор</category>
+    <category>mor</category>
+    <category>mor: полный обзор главной страницы</category>
+    <category>mor: мобильный обзор сайта</category>
+    <category>статья mor: mor explica como cuidar da sua piscina</category>
+    <category>статья mor: cada doçura da linha baby</category>
+    <category>mor: обзор магазина</category>
+    <category>mor: мобильный обзор магазина</category>
+    <category>mor: скриншот страницы категории магазина</category>
+    <category>mor: скриншот страницы товара магазина</category>
+    <category>mor: обзор страницы 'где найти'</category>
+    <category>mor: мобильный обзор страницы 'где найти'</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>Наталия Бонд</title>
     <link>https://luiskr.com/ru/portfolio/nathalia-bond</link>
-    <guid>https://luiskr.com/ru/portfolio/nathalia-bond</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/nathalia-bond</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Я познакомился с Натальей из Nathalia Bond, Clínica de Desenvolvimento, через общего друга, Марко Анушека, в октябре 2021 года.</description>
+    <category>наталия бонд</category>
+    <category>nathalia bond</category>
+    <category>nathalia bond, clínica de desenvolvimento: главная страница, обзор</category>
+    <category>nathalia bond, clínica de desenvolvimento: главная страница, десктоп</category>
+    <category>nathalia bond, clínica de desenvolvimento: главная страница, мобильная версия</category>
+    <category>nathalia bond, clínica de desenvolvimento: страница nossas especialidades, мобил</category>
+    <category>nathalia bond, clínica de desenvolvimento: страница nossas especialidades, дескт</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, fonoaudiologia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicologia inf</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicomotria, д</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicopedagogia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, terapia ocupac</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Дженесисинф, Сейджвеб</title>
     <link>https://luiskr.com/ru/portfolio/sage</link>
-    <guid>https://luiskr.com/ru/portfolio/sage</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/sage</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Sage это фискальное программное обеспечение, разработанное Genesysinf, компанией из Сантана-ду-Ливраменту, Бразилия.</description>
+    <category>дженесисинф, сейджвеб</category>
+    <category>sage</category>
+    <category>sageweb: скриншот ярлыков</category>
+    <category>sageweb: скриншот 'cadastros'</category>
+    <category>sageweb: скриншот выбора цвета</category>
+    <category>sageweb: скриншот фильтров</category>
+    <category>sageweb: скриншот вступления</category>
+    <category>sageweb: скриншот 'mapa sageweb'</category>
+    <category>sageweb: скриншот 'módulo nfe'</category>
+    <category>sageweb: скриншот сортировки ярлыков</category>
+    <category>sageweb: скриншот персонализации</category>
+    <category>sageweb: скриншот relatórios gerenciais</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-atalhos-mozjpg-uncompressed.jpg" medium="image"/>
   </item>
   <item>
     <title>Транса</title>
     <link>https://luiskr.com/ru/portfolio/transa</link>
-    <guid>https://luiskr.com/ru/portfolio/transa</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/transa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Сайт Transa был разработан на Vue, CSS (Sass) и PHP (Laravel) в 2021 году.</description>
+    <category>транса</category>
+    <category>transa</category>
+    <category>transa: краткий обзор ленты</category>
+    <category>transa: видео кейса brazilian leather на сайте transa.</category>
+    <category>transa: видео кейса metcha на сайте transa.</category>
+    <category>transa: видео кейса mor на сайте transa.</category>
+    <category>transa: видео кейса melissa на сайте transa.</category>
+    <category>transa: видео кейса mini melissa на сайте transa.</category>
+    <category>transa: видео кейса coza на сайте transa.</category>
+    <category>transa: обзор ленты</category>
+    <category>transa: мобильный обзор ленты</category>
+    <category>transa: категория brazilian leather, обзор</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4" medium="video"/>
   </item>
   <item>
     <title>Вибра</title>
     <link>https://luiskr.com/ru/portfolio/vibra</link>
-    <guid>https://luiskr.com/ru/portfolio/vibra</guid>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/vibra</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vibra был сайтом, разработанным в Transa в 2016 году и остававшимся онлайн до 2021 года.</description>
+    <category>вибра</category>
+    <category>vibra</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, обзор</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, мобильный обзор</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, производство и дистрибуци</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, наши бренды, вся страница</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, более пяти десятилетий оп</category>
+    <category>vibra был сайтом, разработанным в transa в 2016 году и остававшимся онлайн до 20</category>
+    <category>vibra agilize</category>
+    <category>brand portal</category>
+    <category>energy</category>
+    <category>веб-проект</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>47 Туканаэ</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/47-tucanae</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/47-tucanae</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Второе по яркости шаровое скопление на небе — рой из миллиона звезд в гало рядом с лучом зрения Малого Магелланова Облака.</description>
+    <category>47 Туканаэ</category>
+    <category>cluster</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>51 Пегаса b</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/51-pegasi-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/51-pegasi-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Димидий — первый горячий юпитер, мир, переписавший теорию планетообразования.</description>
+    <category>51 Пегаса b</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>51 Пегас</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/51-pegasi</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/51-pegasi</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>У первой звезды, похожей на Солнце, обнаружена экзопланета — открытие, открывшее вселенную миров.</description>
+    <category>51 Пегас</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Альдебаран</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/aldebaran</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/aldebaran</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Огненный глаз Тельца — оранжевого гиганта, в котором, возможно, уже находится гигантская планета.</description>
+    <category>Альдебаран</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Альфа Центавра B</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/alpha-centauri-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/alpha-centauri-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Толиман — оранжевый спутник K1V, который кружится с Ригель Кентаврусом каждые 79,9 года.</description>
+    <category>Альфа Центавра B</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Альфа Центавра</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/alpha-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/alpha-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ближайшая звездная система — подобная Солнцу двойная система, окруженная на расстоянии Проксимой.</description>
+    <category>Альфа Центавра</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/alpha-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Андромеда I</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/andromeda-1</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/andromeda-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Слабый сфероидальный карлик Андромеды — один из рассеянных спутников, населяющих внешнее гало М31.</description>
+    <category>Андромеда I</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Андромеда II</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/andromeda-2</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/andromeda-2</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Особого внимания заслуживает сфероидальный карлик Андромеды — его звезды демонстрируют признаки возможного более древнего слияния двух еще меньших карликов.</description>
+    <category>Андромеда II</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Андромеда III</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/andromeda-3</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/andromeda-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Слабый сфероидальный член роя M31 — старый, бедный металлами, в котором преобладает темная материя.</description>
+    <category>Андромеда III</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Галактика Андромеды</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/andromeda</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/andromeda</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самая далекая вещь, которую можно увидеть без посторонней помощи, — на расстоянии двух с половиной миллионов световых лет.</description>
+    <category>Галактика Андромеды</category>
+    <category>galaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/andromeda/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Антарес B</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/antares-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/antares-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Изумрудный спутник — голубой карлик в сиянии соперника Марса.</description>
+    <category>Антарес B</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Антарес</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/antares</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/antares</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Соперник Марса — раздутый красный сверхгигант, приближающийся к своей сверхновой.</description>
+    <category>Антарес</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Водолей Карлик</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/aquarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/aquarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 210 — один из самых бедных металлами членов Местной группы, почти темное газовое облако с редкими звездами.</description>
+    <category>Водолей Карлик</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Арктур</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/arcturus</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/arcturus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самая яркая звезда северного неба — оранжевый гигант, мчащийся сквозь галактическое гало.</description>
+    <category>Арктур</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Аррокот</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/arrokoth</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/arrokoth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Снеговик — два нетронутых планетезимальных лепестка, слитых на краю Солнечной системы.</description>
+    <category>Аррокот</category>
+    <category>asteroid</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Пояс астероидов</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/asteroid-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/asteroid-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Миллионы каменистых остатков между Марсом и Юпитером — планетой, которая так и не сформировалась.</description>
+    <category>Пояс астероидов</category>
+    <category>belt</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Барнард b</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/barnard-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/barnard-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Мир с массой меньше земной у ближайшей одиночной звезды — вековой призрак наконец подтверждён.</description>
+    <category>Барнард b</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Звезда Барнарда</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/barnard-star</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/barnard-star</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самая быстро движущаяся звезда по нашему небу — тусклый красный карлик в 6 световых годах от нас.</description>
+    <category>Звезда Барнарда</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Бенну</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/bennu</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/bennu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самый тщательно отслеживаемый астероид вблизи Земли, образцы которого были отобраны OSIRIS-REx в 2020 году.</description>
+    <category>Бенну</category>
+    <category>asteroid</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Бетельгейзе</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/betelgeuse</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/betelgeuse</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Красное плечо Ориона — сверхгигант, живущий в свое время.</description>
+    <category>Бетельгейзе</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/betelgeuse/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Боётес I Карлик</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/bootes-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/bootes-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>«Тусклый чемпион» — ультратусклый спутник Млечного Пути на расстоянии 197 000 световых лет, обнаруженный в данных SDSS в 2006 году.</description>
+    <category>Боётес I Карлик</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Каллисто</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/callisto</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/callisto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самое крупное известное тело с кратерами — мертвая древняя поверхность, не изменившаяся в течение четырех миллиардов лет.</description>
+    <category>Каллисто</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Канопус</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/canopus</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/canopus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Вторая по яркости звезда ночного неба — южный маяк, используемый для управления космическими кораблями.</description>
+    <category>Канопус</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Капелла Ab</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/capella-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/capella-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Близнец — второй золотой гигант пары Капеллы, вальсирующий каждые 104 дня.</description>
+    <category>Капелла Ab</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Капелла</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/capella</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/capella</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Четверная золотая система — две гигантские звезды, вращающиеся так близко, что почти соприкасаются.</description>
+    <category>Капелла</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Карина Гном</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/carina-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/carina-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Спутник Млечного Пути на расстоянии 330 000 световых лет от Земли, история звездообразования которого происходит отдельными вспышками в космическом времени.</description>
+    <category>Карина Гном</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Туманность Киля</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/carina</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/carina</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Великая звездная фабрика южного неба — дом обреченного гипергиганта Эта Киля.</description>
+    <category>Туманность Киля</category>
+    <category>nebula</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Церера</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/ceres</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/ceres</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Первый когда-либо обнаруженный астероид — карликовая планета, удерживающая треть массы пояса.</description>
+    <category>Церера</category>
+    <category>dwarfPlanet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/ceres/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Цетус Карлик</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/cetus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/cetus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Изолированная сфероидальная Местная группа — за пределами обоих гигантских ореолов, она эволюционировала почти нетронутой.</description>
+    <category>Цетус Карлик</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Сверхскопление Комы</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/coma-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/coma-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ближайшее богатое сверхскопление — два гигантских скопления на общей нити на расстоянии ~321 миллиона световых лет.</description>
+    <category>Сверхскопление Комы</category>
+    <category>structure</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Крабовидная туманность</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/crab-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/crab-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Обломки звезды, взорвавшейся в 1054 году, продолжают расширяться.</description>
+    <category>Крабовидная туманность</category>
+    <category>nebula</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Деймос</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/deimos</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/deimos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Меньшая внешняя луна Марса — покрытый пылью остаток, вращающийся на границе синхронной высоты.</description>
+    <category>Деймос</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/deimos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Денеб</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/deneb</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/deneb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Хвост Лебедя — одна из самых далеких звезд, видимых невооруженным глазом, сверкающая на расстоянии 2600 световых лет.</description>
+    <category>Денеб</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Диона</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/dione</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/dione</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Тонкая ледяная луна Сатурна — яркие изломанные скалы, тянущиеся по древнему, покрытому кратерами лицу.</description>
+    <category>Диона</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Драко Гном</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/draco-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/draco-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Спутник Млечного Пути с очень низким содержанием металлов, расположенный на расстоянии 260 000 световых лет — одна из известных галактик с наибольшим преобладанием темной материи.</description>
+    <category>Драко Гном</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Туманность Орёл</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/eagle-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/eagle-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Дом Столпов Творения — газовых башен, где зажигаются звезды.</description>
+    <category>Туманность Орёл</category>
+    <category>nebula</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/eagle-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Земля</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/earth</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/earth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Единственный известный мир, где есть жизнь — океанская планета в обитаемой зоне.</description>
+    <category>Земля</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Энцелад</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/enceladus</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/enceladus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Крошечный ледяной мир с подземным океаном, который распыляет воду в космос через гейзеры на южном полюсе.</description>
+    <category>Энцелад</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Эпсилон Эридана b</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/eps-eridani-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/eps-eridani-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Эгир — ближайший известный аналог Юпитера, качающийся сквозь пылевой пояс молодого оранжевого двойника Солнца.</description>
+    <category>Эпсилон Эридана b</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Эпсилон Эридана</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/epsilon-eridani</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/epsilon-eridani</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ближайшая звезда, похожая на Солнце, с диском обломков — молодая Солнечная система в стадии становления.</description>
+    <category>Эпсилон Эридана</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Эрида</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/eris</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/eris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Раздор — карликовая планета, чьё открытие понизило статус Плутона.</description>
+    <category>Эрида</category>
+    <category>dwarfPlanet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Эрос</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/eros</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/eros</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Околоземный арахис — первый астероид, выведенный на орбиту и достигнутый зондом.</description>
+    <category>Эрос</category>
+    <category>asteroid</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Европа</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/europa</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/europa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Океанский мир, покрытый ледяной коркой — возможно, лучшее место за пределами Земли для поиска жизни.</description>
+    <category>Европа</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Форнакс Гном</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/fornax-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/fornax-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Спутниковый сфероид Млечного Пути на расстоянии 455 000 световых лет — единственный классический карлик, который до недавнего времени все еще формировал звезды.</description>
+    <category>Форнакс Гном</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Ганимед</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/ganymede</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/ganymede</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самая большая луна Солнечной системы — больше Меркурия, с собственным магнитным полем.</description>
+    <category>Ганимед</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Комета Галлея</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/halley</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/halley</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самая знаменитая комета в истории — первая, чьё возвращение было предсказано, возвращается каждые ~75 лет.</description>
+    <category>Комета Галлея</category>
+    <category>comet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Хаумеа</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/haumea</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/haumea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Вращающаяся сигара — карликовая планета, вытянутая самым быстрым вращением пояса Койпера.</description>
+    <category>Хаумеа</category>
+    <category>dwarfPlanet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Туманность Улитка</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/helix-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/helix-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Око Бога — посмертный покров звезды, подобной Солнцу, и предварительный просмотр нашей собственной звезды.</description>
+    <category>Туманность Улитка</category>
+    <category>nebula</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/helix-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Сверхскопление Часологий-Ретикулум</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/horologium-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/horologium-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Огромное сверхскопление южного неба — концентрация массы глубиной 700 миллионов лет, уступающая только Шепли.</description>
+    <category>Сверхскопление Часологий-Ретикулум</category>
+    <category>structure</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Туманность Конская Голова</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/horsehead</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/horsehead</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Темная лошадка Ориона — силуэт холодной пыли на фоне светящегося водорода.</description>
+    <category>Туманность Конская Голова</category>
+    <category>nebula</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Сверхскопление Гидра-Центавра</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/hydra-centaurus-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/hydra-centaurus-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Сверхскопление, прилегающее к Деве, — двухдольное скопление, включающее область Великого Аттрактора.</description>
+    <category>Сверхскопление Гидра-Центавра</category>
+    <category>structure</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Гигея</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/hygiea</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/hygiea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Тёмный углеродный гигант — четвёртый по величине астероид и почти карликовая планета.</description>
+    <category>Гигея</category>
+    <category>asteroid</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Япет</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/iapetus</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/iapetus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Двуликий спутник Сатурна — одно полушарие яркое, как снег, другое темное, как уголь.</description>
+    <category>Япет</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>ИК 10</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/ic-10</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/ic-10</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Звездообразующий карлик Местной группы — единственный, у которого все еще происходит звездообразование вблизи Андромеды.</description>
+    <category>ИК 10</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>ИК 1613</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/ic-1613</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/ic-1613</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Местная группа неправильной формы, чьи переменные звезды-цефеиды помогли установить шкалу внегалактических расстояний.</description>
+    <category>ИК 1613</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Межзвёздное соседство</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/interstellar-neighborhood</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/interstellar-neighborhood</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Местный пузырь Солнца и его звездные спутники — все в пределах ~2000 световых лет.</description>
+    <category>Межзвёздное соседство</category>
+    <category>structure</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Ио</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/io</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/io</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Вулканический спутник Юпитера — самое геологически активное тело Солнечной системы.</description>
+    <category>Ио</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>МКС</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/iss</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/iss</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Международная космическая станция — крупнейший пилотируемый объект, когда-либо летавший на низкой околоземной орбите.</description>
+    <category>МКС</category>
+    <category>satellite</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Юнона</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/juno</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/juno</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Каменно-железный реликт на одной из самых эксцентричных орбит пояса.</description>
+    <category>Юнона</category>
+    <category>asteroid</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Юпитер</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/jupiter</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/jupiter</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Гигант — более массивный, чем все остальные планеты вместе взятые.</description>
+    <category>Юпитер</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Кеплер-452b</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/kepler-452-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/kepler-452-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Двоюродный брат Земли — первый мир земного размера в обитаемой зоне двойника Солнца.</description>
+    <category>Кеплер-452b</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Кеплер-452</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/kepler-452</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/kepler-452</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>«Земля 2.0» — звезда, подобная Солнцу, в обитаемой зоне которой находится каменистая планета.</description>
+    <category>Кеплер-452</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Пояс Койпера</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/kuiper-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/kuiper-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Замороженное кольцо ледяных миров за пределами Нептуна — архив глубокой заморозки Солнечной системы.</description>
+    <category>Пояс Койпера</category>
+    <category>belt</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Туманность Лагуна</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/lagoon</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/lagoon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Звездный питомник, который можно увидеть невооруженным глазом — огромный бассейн звездообразования в Стрельце.</description>
+    <category>Туманность Лагуна</category>
+    <category>nebula</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Сверхскопление Ланиакея</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/laniakea</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/laniakea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Наше домашнее сверхскопление — бассейн размером 520 млн лет, состоящий из примерно 100 000 галактик, сходящихся к Великому Аттрактору.</description>
+    <category>Сверхскопление Ланиакея</category>
+    <category>structure</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Лев I Карлик</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/leo-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/leo-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Спутник Млечного Пути на расстоянии 820 000 световых лет — настолько далекий, что это был первый карлик, обнаруженный исключительно на фотографических обзорных пластинках.</description>
+    <category>Лев I Карлик</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Лев II Карлик</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/leo-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/leo-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Далекий сфероид Млечного Пути на расстоянии 690 000 световых лет от нас, также внесенный в каталог как Лев B — в паре со Львом I на дальней стороне гало.</description>
+    <category>Лев II Карлик</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Лео А</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/leo-a</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/leo-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Изолированная нерегулярная галактика на краю Местной группы, которая все еще формирует звезды спустя миллиарды лет.</description>
+    <category>Лео А</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>ЛГС 3</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/lgs-3</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/lgs-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Карлик в Рыбах — переходный член Местной группы, промежуточный между сфероидальным и неправильным.</description>
+    <category>ЛГС 3</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Большое Магелланово Облако</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/lmc</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/lmc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Крупнейшая галактика-спутник Млечного Пути — спутник вспыхнувшей звезды на расстоянии 160 000 световых лет от нас.</description>
+    <category>Большое Магелланово Облако</category>
+    <category>galaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Местная группа</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/local-group</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/local-group</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Скопление из ~80 галактик, которое Млечный Путь называет своим домом, — объём шириной около 10 миллионов световых лет, связанный общей гравитацией.</description>
+    <category>Местная группа</category>
+    <category>structure</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Мессье 110</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/m110</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/m110</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Второй яркий спутник Андромеды — карлик эллиптический, содержащий слабые пылевые структуры и собственные шаровые скопления.</description>
+    <category>Мессье 110</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Скопление Великого Геркулеса</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/m13-hercules</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/m13-hercules</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>M13 — самое мелкое шаровое скопление на северном небе, около 300 000 звезд в шаре шириной 145 световых лет.</description>
+    <category>Скопление Великого Геркулеса</category>
+    <category>cluster</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Мессье 32</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/m32</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/m32</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Компактный эллиптический спутник Андромеды — галактика, лишенная плотного ядра в результате повторяющихся близких пролетов.</description>
+    <category>Мессье 32</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Макемаке</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/makemake</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/makemake</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Мир творца Рапа-Нуи — метановый карлик на холодном краю пояса Койпера.</description>
+    <category>Макемаке</category>
+    <category>dwarfPlanet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Марс</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/mars</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/mars</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Красная планета — дом самого высокого вулкана и самого глубокого каньона из известных.</description>
+    <category>Марс</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mars/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Меркурий</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/mercury</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/mercury</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самая маленькая планета и самая близкая к Солнцу — кратерный мир крайностей.</description>
+    <category>Меркурий</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mercury/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Млечный Путь</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/milky-way</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/milky-way</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Наша родная галактика — спираль с перемычкой из сотен миллиардов звезд.</description>
+    <category>Млечный Путь</category>
+    <category>galaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Мимас</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/mimas</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/mimas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Спутник Сатурна «Звезда Смерти» — разбитый ледяной шар, над которым возвышается гигантский кратер Гершель.</description>
+    <category>Мимас</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Луна</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/moon</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/moon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Единственный естественный спутник Земли — первый мир, который посетили люди.</description>
+    <category>Луна</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/moon/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Околоземные спутники</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/near-earth-satellites</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/near-earth-satellites</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Искусственная оболочка — тысячи действующих аппаратов и фрагментов мусора, роившихся на низкой околоземной орбите.</description>
+    <category>Околоземные спутники</category>
+    <category>satellite</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Нептун</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/neptune</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/neptune</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самый ветреный мир — ледяной гигант, найденный математиками еще до телескопов.</description>
+    <category>Нептун</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/neptune/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>НГК 147</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/ngc-147</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/ngc-147</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Карликовая сфероидальная галактика Андромеды с радиусом 2,53 Mly — старые звезды, тихий газ, вращающиеся по орбите в гравитационном захвате М31.</description>
+    <category>НГК 147</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>НГК 185</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/ngc-185</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/ngc-185</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Родной брат NGC 147 — сфероидальная карликовая галактика Андромеды, отличающаяся пылью и молодыми звездами, редкими в своем классе.</description>
+    <category>НГК 185</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Галактика Барнарда</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/ngc-6822</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/ngc-6822</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Местная группа нерегулярной формы в Стрельце — на расстоянии 1,63 млн. миль, карлик, похожий на небольшое Магелланово Облако.</description>
+    <category>Галактика Барнарда</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Наблюдаемая Вселенная</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/observable-universe</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/observable-universe</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Причинный горизонт — все, откуда свет успел дойти до нас за 13,8 миллиардов лет.</description>
+    <category>Наблюдаемая Вселенная</category>
+    <category>structure</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Омега Центавра</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/omega-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/omega-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самое большое шаровое скопление в Млечном Пути — возможно, лишенное ядра поглощённой галактики.</description>
+    <category>Омега Центавра</category>
+    <category>cluster</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Туманность Ориона</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/orion-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/orion-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ближайшие звездные ясли — новые солнца рождаются на виду.</description>
+    <category>Туманность Ориона</category>
+    <category>nebula</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/orion-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Паллада</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/pallas</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/pallas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Наклонённый гигант пояса — базальтовая протопланета, ныряющая сквозь планетарную плоскость.</description>
+    <category>Паллада</category>
+    <category>asteroid</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Пегас Карлик Необычной формы</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/pegasus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/pegasus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 216 — богатая газом Местная группа неправильной формы, трудногорючая и химически примитивная.</description>
+    <category>Пегас Карлик Необычной формы</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Сверхскопление Персей-Рыбы</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/perseus-pisces-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/perseus-pisces-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Главное нитевидное сверхскопление — хребет групп галактик размером 250 млн лет, пересекающий северное осеннее небо.</description>
+    <category>Сверхскопление Персей-Рыбы</category>
+    <category>structure</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Фобос</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/phobos</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/phobos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самый крупный из двух спутников Марса — груда обломков, медленно движущаяся по спирали к планете.</description>
+    <category>Фобос</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/phobos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Феникс Гном</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/phoenix-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/phoenix-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Переходный карлик Местной группы — частично сфероидальный, частично неправильный, все еще образующий струйку звезд.</description>
+    <category>Феникс Гном</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Плеяды</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/pleiades</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/pleiades</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>«Семь сестер» — шкатулка с драгоценностями молодых голубых звезд, окутанных отражательной туманностью.</description>
+    <category>Плеяды</category>
+    <category>cluster</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Плутон</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/pluto</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/pluto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Любимый карлик — король пояса Койпера и мира азотных ледников.</description>
+    <category>Плутон</category>
+    <category>dwarfPlanet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Полярная Ab</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/polaris-ab</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/polaris-ab</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Спутник, разрешённый Хабблом — солнечный карлик сквозь сияние цефеиды.</description>
+    <category>Полярная Ab</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Полярная звезда</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/polaris</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/polaris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Полярная звезда — маяк цефеид почти прямо над земной осью.</description>
+    <category>Полярная звезда</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Проксима b</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/proxima-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/proxima-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ближайшая к Земле экзопланета — мир земной массы в обитаемой зоне Проксимы.</description>
+    <category>Проксима b</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Проксима c</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/proxima-c</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/proxima-c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Спорный кандидат в супер-Земли далеко за пределами обитаемой зоны — холодный, медленный сосед Проксимы.</description>
+    <category>Проксима c</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Проксима Центавра</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/proxima-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/proxima-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ближайшая к Солнцу звезда — вспыхивающая звезда, рядом с которой находится планета размером с Землю.</description>
+    <category>Проксима Центавра</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/proxima-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Проксима d</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/proxima-d</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/proxima-d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самый внутренний мир Проксимы — суб-Земля, пролетающая мимо звезды каждые пять дней.</description>
+    <category>Проксима d</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Рея</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/rhea</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/rhea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Второй по величине спутник Сатурна — яркий, побитый ледяной мир на краю плоскости колец.</description>
+    <category>Рея</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Ригель</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/rigel</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/rigel</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Бело-голубая ножка Ориона — сверхгиганта среди самых ярких известных звезд.</description>
+    <category>Ригель</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Туманность Кольцо</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/ring-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/ring-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Дымовое кольцо умирающего Солнца — планетарная туманность, известная каждому телескопу.</description>
+    <category>Туманность Кольцо</category>
+    <category>nebula</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Рюгу</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/ryugu</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/ryugu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Углеродистый астероид с вращающейся вершиной, отобранный Хаябусой-2 и возвращенный на Землю.</description>
+    <category>Рюгу</category>
+    <category>asteroid</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>СагДИГ</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/sagdig</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/sagdig</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Карликовая неправильная форма Стрельца — самая бедная металлами и богатая газом галактика Местной группы, удаленная от нас на 3,45 Mly.</description>
+    <category>СагДИГ</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Стрелец A*</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/sagittarius-a</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/sagittarius-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Центральная сверхмассивная черная дыра Млечного Пути — двигатель массой 4,3 миллиона солнечных, удерживающий на якоре всю галактику.</description>
+    <category>Стрелец A*</category>
+    <category>blackHole</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Карликовая галактика Стрельца</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/sagittarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/sagittarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ближайший известный спутник Млечного Пути — сфероид, который уже разрывается на звездные потоки, проходя сквозь диск.</description>
+    <category>Карликовая галактика Стрельца</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Сатурн</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/saturn</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/saturn</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Кольчатый гигант — его ледяной ореол простирается на 280 000 км, но имеет толщину несколько метров.</description>
+    <category>Сатурн</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Скульптор Гном</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/sculptor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/sculptor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Бедный металлами сфероид Млечного Пути, расположенный на расстоянии 290 000 световых лет, с преобладанием темной материи, возрастом более 10 миллиардов лет.</description>
+    <category>Скульптор Гном</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Секстанс А</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/sextans-a</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/sextans-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Яркая Местная группа неправильной формы — 4,4 млн лет назад, в самых плотных узлах которой все еще активно образуются звезды.</description>
+    <category>Секстанс А</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Секстанс Б</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/sextans-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/sextans-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Местная группа неправильной формы на внешнем краю группы — одна из самых далеких карликовых галактик, связанных с нашим окружением.</description>
+    <category>Секстанс Б</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Секстанс Карликовый Сфероидальный</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/sextans-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/sextans-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Очень слабый спутник Млечного Пути на расстоянии 290 000 световых лет — один из наименее ярких карликовых сфероидов в гало.</description>
+    <category>Секстанс Карликовый Сфероидальный</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Сверхскопление Шепли</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/shapley-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/shapley-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Концентрация Шепли — самое тяжелое близлежащее сверхскопление, удаленное на ~650 Mly, содержащее ~8000 галактик.</description>
+    <category>Сверхскопление Шепли</category>
+    <category>structure</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Сириус B</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/sirius-b</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/sirius-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Щенок — первый из распознанных белых карликов, обращающийся вокруг ярчайшей звезды неба.</description>
+    <category>Сириус B</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Сириус</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/sirius</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/sirius</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Собачья звезда — ярчайшая звезда ночного неба Земли, скрывающая мертвого спутника.</description>
+    <category>Сириус</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sirius/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Малое Магелланово Облако</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/smc</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/smc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Второй спутник Млечного Пути — бедная металлами карликовая галактика, медленно разрывающаяся на части.</description>
+    <category>Малое Магелланово Облако</category>
+    <category>galaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Солнце</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/sun</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/sun</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Звезда главной последовательности G-типа, на которую приходится 99,86% массы Солнечной системы.</description>
+    <category>Солнце</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sun/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Туманность Тарантул</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/tarantula</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/tarantula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самая бурная область звездообразования в Местной группе — в галактике-спутнике на расстоянии 160 000 лет назад.</description>
+    <category>Туманность Тарантул</category>
+    <category>nebula</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Тау Кита e</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/tau-ceti-e</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/tau-ceti-e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Суперземля в обитаемой зоне ближайшей одиночной звезды — на тёплой стороне надежды.</description>
+    <category>Тау Кита e</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Тау Кита f</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/tau-ceti-f</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/tau-ceti-f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Холодный внешний кандидат — тяжёлая суперземля на ледяной грани обитаемой зоны.</description>
+    <category>Тау Кита f</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Тау Кита</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/tau-ceti</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/tau-ceti</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Тихая звезда, похожая на Солнце, расположенная в 12 световых годах от нас, с многолюдной внутренней системой.</description>
+    <category>Тау Кита</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Титан</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/titan</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/titan</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Единственная луна с плотной атмосферой — метановые реки, озера и дожди на замерзшем водно-ледяном мире.</description>
+    <category>Титан</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>ТРАППИСТ-1</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/trappist-1</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/trappist-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Семь миров размером с Землю вокруг звезды, едва превышающей Юпитер.</description>
+    <category>ТРАППИСТ-1</category>
+    <category>system</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/trappist-1/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>TRAPPIST-1b</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/trappist-1b</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/trappist-1b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самая внутренняя из семи резонансных миров — опалённый камень размером с Землю.</description>
+    <category>TRAPPIST-1b</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1c</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/trappist-1c</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/trappist-1c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Сестра массы Венеры, кружащая во внутреннем жаре резонансной цепи.</description>
+    <category>TRAPPIST-1c</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1d</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/trappist-1d</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/trappist-1d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самый лёгкий из семёрки — мир с массой меньше земной на грани тепла.</description>
+    <category>TRAPPIST-1d</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1e</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/trappist-1e</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/trappist-1e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самый близкий аналог Земли из семёрки — лучший шанс системы на жидкую воду.</description>
+    <category>TRAPPIST-1e</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1f</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/trappist-1f</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/trappist-1f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Богатый водой мир на внутренней кромке обитаемой зоны.</description>
+    <category>TRAPPIST-1f</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1g</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/trappist-1g</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/trappist-1g</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самая большая из семёрки — холодная суперземля у внешнего якоря цепи.</description>
+    <category>TRAPPIST-1g</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1h</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/trappist-1h</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/trappist-1h</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Холодная внешняя кромка — последний мир системы, покрытый льдом.</description>
+    <category>TRAPPIST-1h</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Галактика Треугольника</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/triangulum</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/triangulum</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Тихая третья спираль — застенчивый участник Местной группы, богатый звездными питомниками.</description>
+    <category>Галактика Треугольника</category>
+    <category>galaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/triangulum/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Тритон</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/triton</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/triton</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Захваченный спутник Нептуна — мир пояса Койпера с азотными гейзерами, вращающимися в обратном направлении.</description>
+    <category>Тритон</category>
+    <category>moon</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Тукана Карлик</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/tucana-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/tucana-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самая изолированная сфероидальная форма Местной группы — 2,9 Mly, никогда не подвергавшаяся влиянию какой-либо крупной галактики.</description>
+    <category>Тукана Карлик</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Большая Медведица I Карлик</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/uma-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/uma-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Сверхтусклый спутник Млечного Пути, обнаруженный SDSS, — образец доминирования темной материи на краю формирования галактики.</description>
+    <category>Большая Медведица I Карлик</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Карлик Большой Медведицы II</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/uma-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/uma-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Одна из самых тусклых известных галактик — ультратусклый спутник Млечного Пути всего в 105 000 световых годах от нас.</description>
+    <category>Карлик Большой Медведицы II</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Уран</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/uranus</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/uranus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Боковая планета — ледяной гигант, вращающийся вокруг Солнца на боку.</description>
+    <category>Уран</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/uranus/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Карлик Малой Медведицы</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/ursa-minor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/ursa-minor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Сфероид Млечного Пути на расстоянии 225 000 световых лет — древняя, слабая и почти полностью состоящая из темной материи.</description>
+    <category>Карлик Малой Медведицы</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Вега</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/vega</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/vega</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Бывшая и будущая Полярная звезда — нулевая точка яркости астрономии.</description>
+    <category>Вега</category>
+    <category>star</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/vega/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Венера</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/venus</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/venus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Двойник Земли по размеру, окруженный сокрушительной теплицей CO₂ — самая жаркая планета.</description>
+    <category>Венера</category>
+    <category>planet</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Веста</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/vesta</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/vesta</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Самый яркий мир пояса астероидов — протопланета, пережившая рассвет Солнечной системы.</description>
+    <category>Веста</category>
+    <category>asteroid</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>Сверхскопление Девы</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/virgo-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/virgo-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Местное сверхскопление — сплюснутое облако из примерно 100 групп галактик с центром в скоплении Девы на расстоянии примерно 54 миль от нас.</description>
+    <category>Сверхскопление Девы</category>
+    <category>structure</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
+  </item>
+  <item>
+    <title>ВЛМ Галактика</title>
+    <link>https://luiskr.com/ru/zvezdnoe-pole/wlm</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/zvezdnoe-pole/wlm</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Вольф-Лундмарк-Мелотт — изолированное неправильное скопление с собственным шаровым скоплением в 3 милях от дома.</description>
+    <category>ВЛМ Галактика</category>
+    <category>dwarfGalaxy</category>
+    <category>звёздное поле</category>
+    <category>изображения звёзд</category>
+    <category>галактика 3d</category>
+    <category>карта звёздного неба</category>
+    <category>ночное небо</category>
+    <category>звёзды из космоса</category>
+    <category>каталог экзопланет</category>
+    <category>эксперимент звёздное поле</category>
+    <category>луис крётц</category>
+    <category>luis krötz</category>
   </item>
 </channel>
 </rss>

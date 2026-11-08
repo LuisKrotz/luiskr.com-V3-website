@@ -1,0 +1,423 @@
+// ════════════════════════════════════════════════════════════════════════════
+//  sitemap.scss — the <view-sitemap> page chrome: title + intro and
+//  the DOM link index (section groups → page links → locale chips).
+//  All values ride the shared
+//  spacing/color custom properties — component sheets never consume raw
+//  SCSS tokens (rule 8).
+// ════════════════════════════════════════════════════════════════════════════
+
+@import '../../../core/sass/base/variables';
+@import '../../../core/sass/base/mixins';
+@import '../../../core/sass/base/fonts';
+@import '../../../core/sass/base/placeholders';
+@import '../../../core/sass/base/structure';
+
+$_B: 'sitemap';
+
+// Shadow host — the page column over the primary surface.
+:host {
+  display: block;
+  width: 100%;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+// ── Page column ─────────────────────────────────────────────────────────────
+.#{$_B} {
+  @extend %MAXAREA;
+
+  display: flex;
+  flex-direction: column;
+  padding-top: to-rem($space-4xl);
+  padding-bottom: to-rem($space-2xl);
+
+  &-title {
+    @extend %TTL_BASE;
+
+    font-size: to-rem($space-3xl);
+    font-weight: calc(300 + var(--fw-lift));
+    margin: 0 0 to-rem($space-md);
+  }
+
+  &-intro {
+    @extend %TTL_BASE;
+
+    max-width: to-rem($space-9xl);
+    margin: 0 0 to-rem($space-2xl);
+    font-size: to-rem($space-xl);
+    font-weight: calc(300 + var(--fw-lift));
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+
+  // ── Locale legend — the "Legend" fieldset decoding the uppercase
+  //    chip abbreviations into their language names ("EN — English");
+  //    sits under the intro in the same Jost face the chips use. ────
+  &-langs {
+    // The classic fieldset frame — a hairline box whose top border the
+    // <legend> interrupts (native fieldset/legend placement); without
+    // the border the element is invisible chrome.
+    margin: 0 0 to-rem($space-2xl);
+    padding: to-rem($space-md) to-rem($space-lg) to-rem($space-lg);
+    // The fieldset's odd min-content sizing quirk collapses the flex
+    // list inside; min-width:0 restores normal block width.
+    min-width: 0;
+    border: to-rem($space-hairline) solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-desc);
+    font-size: to-rem($space-lg);
+  }
+
+  // The <legend> caption — rides the fieldset's top border (its inline
+  // padding widens the border gap around the label), styled like the
+  // muted index chrome rather than browser fieldset chrome.
+  &-langs-title {
+    margin: 0;
+    padding: 0 to-rem($space-sm);
+    font-size: to-rem($space-md);
+    font-weight: calc(500 + var(--fw-lift));
+    text-transform: uppercase;
+    letter-spacing: to-rem($space-2xs);
+    color: var(--text-muted);
+  }
+
+  // The item grid — equal-width tracks (auto-fill collapses to fewer
+  // columns on narrow screens) so wrapped rows keep their column
+  // alignment instead of ragged flex packing.
+  &-langs-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(to-rem($space-5xl), 1fr));
+    gap: to-rem($space-xs) to-rem($space-lg);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  // One legend item — "CODE — Name", kept on a single line inside its
+  // track. Plain block layout, NOT flex: as a flex item the em-dash
+  // text node becomes an anonymous box whose edge whitespace collapses
+  // ("EN —English"); inline flow keeps the dash's own spaces intact.
+  &-lang {
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  // The code column — inline-block so the fixed width applies (covers
+  // the widest codes, HRK/TLN); every item's em-dash + name then starts
+  // on the same axis.
+  &-lang-code {
+    display: inline-block;
+    min-width: to-rem($space-2xl);
+    font-weight: calc(500 + var(--fw-lift));
+    color: var(--color-accent);
+  }
+
+  &-lang-name {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  // ── DOM link index — the page's link surface. ───────────────────────
+  &-index {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: to-rem($space-2xl);
+    margin-bottom: to-rem($space-3xl);
+
+    @include layout-768() {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include layout-1024() {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  &-group {
+    display: flex;
+    flex-direction: column;
+    gap: to-rem($space-md);
+
+    // Mosaic branch — media groups span the full index grid and render
+    // the skyline-packed card wall instead of the stacked page list:
+    // one block child (the wall), cards absolutely positioned inside.
+    &--mosaic {
+      display: block;
+      grid-column: 1 / -1;
+
+      > .#{$_B}-group-title {
+        margin-bottom: to-rem($space-xl);
+      }
+    }
+
+    // Wide branch — a long flat group (portfolio) spans the full index
+    // grid and lays its page rows into a multi-column track that steps
+    // with the index's own breakpoints, so the list stops reading as
+    // one tall single column. The group title spans every track.
+    &--wide {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-column: 1 / -1;
+      column-gap: to-rem($space-2xl);
+
+      > .#{$_B}-group-title {
+        grid-column: 1 / -1;
+      }
+
+      @include layout-768() {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @include layout-1024() {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  }
+
+  // Disclosure toggle inside a collapsible group's heading — button
+  // chrome removed so it reads as the title row it replaces; the
+  // chevron chip sits at the far right and rotates through the
+  // button's own aria-expanded state.
+  &-group-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: to-rem($space-sm);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: inherit;
+    text-align: left;
+    background: none;
+    border: 0;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      .#{$_B}-group-chevron {
+        color: var(--color-accent);
+      }
+    }
+  }
+
+  // Disclosure chevron — bare stroke SVG at the row's right edge (no
+  // chip chrome), drawn right-pointing: 0° resting, 90° open via the
+  // button's own aria-expanded. The view re-renders fresh nodes on
+  // toggle so the transform can't transition — the --spin-* modifiers
+  // replay the sweep as a one-shot mount animation instead.
+  &-group-chevron {
+    flex-shrink: 0;
+    width: to-rem($space-2xl);
+    height: to-rem($space-2xl);
+    color: var(--text-muted);
+    fill: none;
+    stroke: currentColor;
+    stroke-width: var(--space-2xs);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: color 0.3s ease;
+
+    [aria-expanded='true'] > & {
+      transform: rotate(90deg);
+    }
+
+    // Spring easing with the cubic-bezier fallback first — where
+    // linear() parses the second declaration wins, the same upgrade
+    // contract the related-fold carries.
+    &--spin-open {
+      animation: sitemap-chevron-spin-open 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      animation: sitemap-chevron-spin-open 0.45s $ease-spring;
+    }
+
+    &--spin-close {
+      animation: sitemap-chevron-spin-close 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      animation: sitemap-chevron-spin-close 0.45s $ease-spring;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+      animation: none;
+    }
+
+    // Shadow DOM — the media query above doesn't observe the
+    // store-driven html.reduced-motion flag from inside the sheet.
+    :host-context(html.reduced-motion) & {
+      transition: none;
+      animation: none;
+    }
+  }
+
+  // ── Packed media-card wall ────────────────────────────────────────
+  // Geometry (tile position/size, wall height) is all inline — the
+  // skyline packer owns layout numbers; this sheet owns surfaces,
+  // radii and the caption overlays.
+  &-wall {
+    position: relative;
+    width: 100%;
+  }
+
+  // One packed media card — a fixed tile box the media fills; the
+  // title link and locale chips sit on solid --bg-dark bars over it.
+  &-card {
+    background: var(--bg-secondary);
+    border: to-rem($space-hairline) solid var(--border-color);
+    border-radius: var(--radius-sm);
+  }
+
+  // Title link — DOM-first, pinned to the card's top edge as a solid
+  // caption bar (gradients over bright media washed the text out —
+  // --bg-dark is the always-dark surface token, readable in both
+  // themes). Labels run long: the visible text clamps at two lines and
+  // the full caption rides the title tooltip.
+  &-card-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    padding: to-rem($space-sm) to-rem($space-md);
+    font-family: var(--font-desc);
+    font-size: to-rem($space-lg);
+    font-weight: calc(400 + var(--fw-lift));
+    color: var(--color-white-raw);
+    text-decoration: none;
+    background: var(--bg-dark);
+  }
+
+  // Locale-chip row — pinned to the card's bottom edge as the matching
+  // caption bar; the chips take the on-dark palette over it.
+  &-card-locales {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: to-rem($space-xs) to-rem($space-sm);
+    padding: to-rem($space-sm) to-rem($space-md);
+    font-family: var(--font-desc);
+    background: var(--bg-dark);
+
+    .#{$_B}-locale {
+      color: var(--text-muted-on-dark);
+      border-color: var(--border-color-on-dark);
+    }
+  }
+
+  // Progressive media layer — <media-figure> fills the tile at its
+  // natural aspect (the pack already sizes tiles to the source ratio;
+  // card overflow clips any residual).
+  &-card-figure {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  // Plain capture image — playground share screenshots have no mozjpeg
+  // ladder, so the absolute file URL paints directly, cover + top.
+  &-card-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  &-group-title {
+    @extend %TTL_BASE;
+
+    margin: 0;
+    padding-bottom: to-rem($space-xs);
+    font-size: to-rem($space-2xl);
+    font-weight: calc(400 + var(--fw-lift));
+    text-transform: uppercase;
+    letter-spacing: to-rem($space-2xs);
+    border-bottom: to-rem($space-hairline) solid var(--border-color);
+  }
+
+  &-page {
+    display: flex;
+    flex-direction: column;
+    gap: to-rem($space-2xs);
+  }
+
+  // Page/category name — plain text link, no hover chrome (the hover
+  // affordance lives on the locale/media chips only); the anchor hugs
+  // its label so the hit target never spans the row.
+  &-page-link {
+    @extend %LK_LINK;
+
+    align-self: flex-start;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: to-rem($space-xl);
+    font-weight: calc(400 + var(--fw-lift));
+    border-bottom-color: transparent;
+  }
+
+  &-locales {
+    display: flex;
+    flex-wrap: wrap;
+    gap: to-rem($space-xs) to-rem($space-sm);
+    // Jost (--font-desc) is the footer-chrome/index-caption face —
+    // locale + media chips render in it per the design contract.
+    font-family: var(--font-desc);
+  }
+
+  // Locale/media chip — pill affordance only: no underline, hover fills
+  // the border and lifts the label colour, all transitioned (the
+  // LK_LINK underline mechanic is intentionally not used here).
+  &-locale {
+    cursor: pointer;
+    padding: to-rem($space-2xs) to-rem($space-sm);
+    // Jost (--font-desc) — the chip face, declared on the rule itself
+    // so the chip keeps it inside either caption-bar parent.
+    font-family: var(--font-desc);
+    font-size: to-rem($space-lg);
+    font-weight: calc(300 + var(--fw-lift));
+    color: var(--text-muted);
+    text-decoration: none;
+    border: to-rem($space-hairline) solid var(--border-color);
+    border-radius: var(--radius-round);
+    transition:
+      border-color 0.3s ease,
+      color 0.3s ease;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+}
+
+// One-shot chevron mount spins — the `from` keyframe carries the
+// PREVIOUS resting angle while the omitted end resolves to the node's
+// own transform (the aria-expanded rule), so a newborn node sweeps to
+// its true state. transform-only: composited, no paint.
+@keyframes sitemap-chevron-spin-open {
+  from {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes sitemap-chevron-spin-close {
+  from {
+    transform: rotate(90deg);
+  }
+}

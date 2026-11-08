@@ -46,12 +46,14 @@ describe('legal Footer tails', () => {
     await flush()
 
     // Heading ladder: one sr-only h2 "Footer" landmark heading + one h3
-    // per footer link — the AT heading-jump contract on internals/legal.
+    // per -items-link anchor (legal, feed, home, socials), plus the
+    // source-pill label and the docs-title jump targets — the AT
+    // heading-jump contract on internals/legal.
     const links = el.shadowRoot.querySelectorAll(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`)
 
     expect(el.shadowRoot.querySelectorAll(`h2.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(1)
     expect(el.shadowRoot.querySelectorAll(`h3.${A11Y_CLASSES.SR_ONLY}`)).toHaveLength(
-      links.length
+      links.length + 2
     )
 
     el.remove()
@@ -109,10 +111,17 @@ describe('legal Footer tails', () => {
     store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, prev)
   })
 
-  test('linkless item renders by index key and its click is a no-op', async () => {
+  test('linkless and bare-root rows are filtered out of the legal nav', async () => {
     const prev = store.getters.getlang()?.components
-    const pushSpy = jest.spyOn(router, 'push').mockImplementation(() => {})
-    const payload = { [CMS_KEYS.LEGAL_FOOTER]: { links: [{ page: TEST_TEXT.HELLO }] } }
+    const payload = {
+      [CMS_KEYS.LEGAL_FOOTER]: {
+        links: [
+          { page: TEST_TEXT.HELLO },
+          { page: TEST_TEXT.HELLO, link: ROUTE_PATHS.ROOT },
+          { page: TEST_TEXT.SECOND, link: `${ROUTE_PATHS.ROOT}${ROUTE_STRINGS.PRIVACY_POLICY}` },
+        ],
+      },
+    }
 
     store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, payload)
 
@@ -125,15 +134,16 @@ describe('legal Footer tails', () => {
     store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, payload)
     el._updateDom()
 
-    const anchor = el.shadowRoot.querySelector(HTML_TAGS.A)
+    // Only the real legal page survives the filter — the linkless and
+    // bare-root rows never reach the nav; the three static entries
+    // (animations, sitemap, RSS feed) always follow it.
+    const navLinks = el.shadowRoot.querySelectorAll(
+      `.${INTERNAL_CLASSES.INTERNAL_FOOTER_LEGAL} .${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`
+    )
 
-    expect(anchor).not.toBeNull()
+    expect(navLinks).toHaveLength(4)
+    expect(navLinks[0].textContent).toBe(TEST_TEXT.SECOND)
 
-    anchor.dispatchEvent(new Event(MOUSE_EVENTS.CLICK, { bubbles: true }))
-
-    expect(pushSpy).not.toHaveBeenCalled()
-
-    pushSpy.mockRestore()
     store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, prev)
     el.remove()
   })

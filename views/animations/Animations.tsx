@@ -16,21 +16,28 @@ import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
 import { SECTION_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
+import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { VIEW_TAGS } from '@core/tokens/elements/views.js'
 import { LOCALES } from '@core/tokens/locales.js'
+import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
+import { ANIMATION_DOCS, ANIMATION_DOCS_FALLBACK } from '@core/tokens/data/animation-ids.js'
+import { DOCS_STRINGS } from '@core/tokens/strings/docs.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { appText, componentText } from '@core/locale/ui-text.js'
+import { isPlainClick } from '@core/utils/dom.js'
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import type { DbSnapshot } from '@core/utils/data/db.js'
 import { stripHtml, toMetaDescription } from '@core/utils/index.js'
 import { setMetaDescription } from '@core/router/navigate.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import '@website/components/media/DrawText.js'
+import '@website/components/media/AnimDemo.js'
+import '@website/components/media/MediaFigure.js'
 import animationsStyles from './animations.scss?inline'
 import '@website/components/legal/Footer.js'
 import { devError } from '@core/devlog.js'
@@ -73,7 +80,7 @@ export class ViewAnimations extends BaseComponent {
   /** Reloads when the locale changes. */
 
   override onStoreUpdate() {
-    const currentLocale = store.getters.getLang()
+    const currentLocale = store.getters.getLang() || LOCALES.EN
     if (this._lastLocale && this._lastLocale !== currentLocale) {
       this._lastLocale = currentLocale
       this.loadData()
@@ -124,11 +131,26 @@ export class ViewAnimations extends BaseComponent {
   override render() {
     const t = this.translations
     const LegalFooter = COMPONENT_TAGS.LEGAL_FOOTER
+    const AnimDemo = COMPONENT_TAGS.ANIM_DEMO
 
     const records = componentText(CMS_KEYS.ANIMATIONS) as
       Record<string, AnimationsRecord> | undefined
 
     const entries = Object.entries(records || {})
+
+    const linkClick = (e: Event): void => {
+      if (!isPlainClick(e)) return
+
+      const a = (e.target as Element | null)?.closest?.(HTML_TAGS.A) as Element | null
+
+      const href = a?.getAttribute('href')
+
+      if (!href || !href.startsWith(CHAR_STRINGS.SLASH)) return
+
+      e.preventDefault()
+
+      router.push(href)
+    }
 
     return (
       <article>
@@ -168,15 +190,33 @@ export class ViewAnimations extends BaseComponent {
             />
           )}
 
+          {/* Plain list markup — h2/p pairs. The earlier dl/dt/dd
+              nested the terms inside .animations-text, which is NOT a
+              legal dl>div group (term+desc must sit directly in a div
+              child of dl), and the docs anchor beside them broke the
+              group further — axe definition-list + dlitem violations.
+              Headings also give AT a jump target per record, which
+              bare dt never did. */}
           {entries.length ? (
-            <dl className={ANIMATIONS_CLASSES.ANIMATIONS_LIST}>
+            <div className={ANIMATIONS_CLASSES.ANIMATIONS_LIST} onClick={linkClick}>
               {entries.map(([id, record]) => (
                 <div key={id} id={id} className={ANIMATIONS_CLASSES.ANIMATIONS_RECORD}>
-                  <dt className={ANIMATIONS_CLASSES.ANIMATIONS_TERM}>{record.alt || id}</dt>
-                  <dd className={ANIMATIONS_CLASSES.ANIMATIONS_DESC}>{record.longdesc || ''}</dd>
+                  <div className={ANIMATIONS_CLASSES.ANIMATIONS_TEXT}>
+                    <h2 className={ANIMATIONS_CLASSES.ANIMATIONS_TERM}>{record.alt || id}</h2>
+                    <p className={ANIMATIONS_CLASSES.ANIMATIONS_DESC}>
+                      {stripHtml(record.longdesc || CHAR_STRINGS.EMPTY)}
+                    </p>
+                    <a
+                      className={ANIMATIONS_CLASSES.ANIMATIONS_DOCS}
+                      href={`${ROUTE_PATHS.DOCS}${CHAR_STRINGS.SLASH}${ANIMATION_DOCS[id] || ANIMATION_DOCS_FALLBACK}`}
+                    >
+                      {DOCS_STRINGS.TITLE}
+                    </a>
+                  </div>
+                  <AnimDemo {...{ [COMMON_ATTRS.ANIMATION]: id }} />
                 </div>
               ))}
-            </dl>
+            </div>
           ) : (
             <div key="data-load">
               {[1, 2, 3].map((n) => (

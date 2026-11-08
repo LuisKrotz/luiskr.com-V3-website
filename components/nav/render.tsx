@@ -17,16 +17,20 @@ import { SECTIONS } from '@core/tokens/base.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { NAV_BURGER_CLASSES, NAV_CLASSES, NAV_MENU_CLASSES } from '@core/tokens/classes/nav.js'
+import { JOUST_CLASSES } from '@core/tokens/classes/joust.js'
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
 import { NAV_UI_KEYS, SECTION_UI_KEYS } from '@core/tokens/data/ui-keys.js'
-import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { APP_IDS } from '@core/tokens/ids/app.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MENU_CSS_PROPS } from '@core/tokens/css/menu.js'
 import { LOCALE_TAGS } from '@core/tokens/locales.js'
 import { h, Fragment } from '@core/jsx.js'
-import { renderNavGear } from './gear.js'
+import './search.js'
+import './brush.js'
+import './globe.js'
+import './grid.js'
+import { ROUTE_NAMES } from '@core/tokens/routes/names.js'
 import { isPlainClick } from '@core/utils/dom.js'
 import '@website/components/media/DrawText.js'
 import store from '@core/store.js'
@@ -55,8 +59,6 @@ export const renderAppNav = (nav: AppNav) => {
   const title = t?.title || BASE_TITLE
 
   const aboutDesc = t?.about?.description || appText(SECTION_UI_KEYS.ABOUT_DESCRIPTION)
-
-  const isNotFound = nav.currentRoute?.name === ROUTE_NAMES.NOT_FOUND
 
   const logoClasses = `${NAV_CLASSES.NAV_LINK} ${!nav.isHomePage ? NAV_CLASSES.NAV_BACK : CHAR_STRINGS.EMPTY} ${nav.isHomePage && nav.activeSection === SECTIONS.HOME ? NAV_CLASSES.NAV_ACTIVE : CHAR_STRINGS.EMPTY} ${NAV_CLASSES.NAV_LOGO_BTN}`
 
@@ -136,7 +138,12 @@ export const renderAppNav = (nav: AppNav) => {
   const playgroundLabel = String(t?.earthPlayground || appText(CMS_KEYS.EARTH_PLAYGROUND))
   const starFieldLabel = String(t?.starField || appText(CMS_KEYS.STAR_FIELD))
   const prefLabel = String(t?.preferences || appText(NAV_UI_KEYS.PREFERENCES))
-  const langLabel = String(nav.currentLangLabel)
+
+  const searchLabel = String(t?.search || appText(SECTION_UI_KEYS.SEARCH))
+
+  const setLangLabel = String(
+    t?.setLanguage || appText(NAV_UI_KEYS.SET_LANGUAGE) || CHAR_STRINGS.EMPTY
+  )
   const experimentsLabel = String(t?.experiments || appText(NAV_UI_KEYS.EXPERIMENTS))
 
   const items: Array<{
@@ -154,7 +161,7 @@ export const renderAppNav = (nav: AppNav) => {
     group?: string
   }> = []
 
-  if (!isNotFound) {
+  {
     // Selected work — scrolls to the mosaic on home; on other routes it
     // navigates home. Already over the section → just closes the menu.
     items.push({
@@ -178,7 +185,7 @@ export const renderAppNav = (nav: AppNav) => {
     })
   }
 
-  if (!isNotFound) {
+  {
     items.push({
       label: aboutLabel,
       cls: NAV_CLASSES.NAV_ABOUT_BTN,
@@ -191,7 +198,7 @@ export const renderAppNav = (nav: AppNav) => {
     })
   }
 
-  if (!isNotFound) {
+  {
     // Contact — or "scroll up" when the contact band is already showing:
     // the CTA at page bottom morphs into a return-to-top affordance.
     items.push({
@@ -257,66 +264,107 @@ export const renderAppNav = (nav: AppNav) => {
         </DrawText>
       </a>
 
-      {!isNotFound && (
-        <div className={NAV_CLASSES.NAV_MOBILE_STRIP}>
-          <div className={NAV_BURGER_CLASSES.NAV_BURGER_WRAP}>
-            {nav._burgerCanvas(burgerLabel)}
-            <button
-              className={NAV_BURGER_CLASSES.NAV_BURGER_FALLBACK}
-              type={FORM_ATTRS.TYPE_BUTTON}
-              aria-label={burgerLabel}
-              aria-expanded={nav._menuOpen ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE}
-              aria-controls={APP_IDS.NAV_MENU_PANEL}
-              onClick={() => nav._toggleMenu()}
-            >
-              <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
-              <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
-              <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
-              <span className={NAV_BURGER_CLASSES.NAV_BURGER_SQUARE} />
-            </button>
-          </div>
+      {/* The strip also renders on the 404 — the burger is the only way
+          to reach the search modal from a dead route. */}
+      <div className={NAV_CLASSES.NAV_MOBILE_STRIP}>
+        {/* The wrap is the joust root: on hover-less input the first tap
+            pins joust--open and pours the menu label out, the second tap
+            toggles (toggleNavMenu bypasses the gate while the menu is
+            open so the close morph stays single-tap). */}
+        <div className={`${NAV_BURGER_CLASSES.NAV_BURGER_WRAP} ${JOUST_CLASSES.JOUST}`}>
+          {nav._burgerCanvas(burgerLabel)}
+          <button
+            className={NAV_BURGER_CLASSES.NAV_BURGER_FALLBACK}
+            type={FORM_ATTRS.TYPE_BUTTON}
+            aria-label={burgerLabel}
+            aria-expanded={nav._menuOpen ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE}
+            aria-controls={APP_IDS.NAV_MENU_PANEL}
+            onClick={(e: Event) => nav._toggleMenu(e)}
+          >
+            <nav-grid-icon />
+          </button>
+          <span
+            className={`${NAV_CLASSES.NAV_MENU_LABEL} ${JOUST_CLASSES.JOUST_LABEL}`}
+            aria-hidden={ATTR_VALUES.TRUE}
+            onClick={(e: Event) => nav._toggleMenu(e)}
+          >
+            {nav._menuOpen ? closeLabel : burgerLabel}
+          </span>
+        </div>
 
-          {/* Round flag button — language switcher moved out of the menu
+        {/* Round flag button — language switcher moved out of the menu
               modal: the disc holds the locale flag; on hover/focus the
               strip expands horizontally on the water curve (a
               critically damped settle — smooth, zero overshoot) to
-              reveal the language name at hairline weight. Click/Enter
-              opens the language dialog. Hidden on the English-only
-              docs portal — no switcher exists there. */}
-          {(nav.currentRoute === null ||
-            nav.currentRoute === undefined ||
-            nav.currentRoute.meta === null ||
-            nav.currentRoute.meta === undefined ||
-            nav.currentRoute.meta.docsRoute !== true) && (
-            <button
-              className={NAV_CLASSES.NAV_FLAG_BTN}
-              type={FORM_ATTRS.TYPE_BUTTON}
-              lang={LOCALE_TAGS[nav.locale]?.bcp ?? nav.locale}
-              aria-label={langLabel}
-              title={langLabel}
-              onClick={(e: Event) => nav.handleLang(e)}
+              reveal the language name at hairline weight. On hover-less
+              input the joust gate pours the label on the first tap and
+              opens the language dialog on the second. Hidden on the
+              English-only docs portal — no switcher exists there. */}
+        {(nav.currentRoute === null ||
+          nav.currentRoute === undefined ||
+          nav.currentRoute.meta === null ||
+          nav.currentRoute.meta === undefined ||
+          nav.currentRoute.meta.docsRoute !== true) && (
+          <button
+            className={`${NAV_CLASSES.NAV_FLAG_BTN} ${JOUST_CLASSES.JOUST}`}
+            type={FORM_ATTRS.TYPE_BUTTON}
+            lang={LOCALE_TAGS[nav.locale]?.bcp ?? nav.locale}
+            aria-label={setLangLabel}
+            title={setLangLabel}
+            onClick={(e: Event) => nav.handleLang(e)}
+          >
+            <nav-globe-icon />
+            <span
+              className={`${NAV_CLASSES.NAV_FLAG_LABEL} ${JOUST_CLASSES.JOUST_LABEL}`}
+              aria-hidden={ATTR_VALUES.TRUE}
             >
-              {nav.renderLocaleFlag()}
-              <span className={NAV_CLASSES.NAV_FLAG_LABEL} aria-hidden={ATTR_VALUES.TRUE}>
-                {nav.currentLangLabel}
+              {setLangLabel}
+            </span>
+          </button>
+        )}
+
+        {/* Round search button — opens the search modal; the disc
+              carries the orbiting-spark magnifier and reveals the
+              "Search" label on hover/focus like the flag chip. Hidden
+              on /search + the 404 — the surface is already there. */}
+        {nav.currentRoute?.name !== ROUTE_NAMES.SEARCH &&
+          nav.currentRoute?.name !== ROUTE_NAMES.NOT_FOUND && (
+            <button
+              className={`${NAV_CLASSES.NAV_SEARCH_BTN} ${JOUST_CLASSES.JOUST}`}
+              type={FORM_ATTRS.TYPE_BUTTON}
+              aria-label={searchLabel}
+              title={searchLabel}
+              onClick={(e: Event) => nav.handleSearch(e)}
+            >
+              <nav-search-icon />
+              <span
+                className={`${NAV_CLASSES.NAV_SEARCH_LABEL} ${JOUST_CLASSES.JOUST_LABEL}`}
+                aria-hidden={ATTR_VALUES.TRUE}
+              >
+                {searchLabel}
               </span>
             </button>
           )}
 
-          {/* Round gear button — preferences moved out of the menu
+        {/* Round gear button — preferences moved out of the menu
               modal: a machined-steel gear on a slow perpetual spin that
               opens the preferences dialog on click/Enter. */}
-          <button
-            className={NAV_CLASSES.NAV_GEAR_BTN}
-            type={FORM_ATTRS.TYPE_BUTTON}
-            aria-label={prefLabel}
-            title={prefLabel}
-            onClick={(e: Event) => nav.handlePreferences(e)}
+        <button
+          className={`${NAV_CLASSES.NAV_GEAR_BTN} ${JOUST_CLASSES.JOUST}`}
+          type={FORM_ATTRS.TYPE_BUTTON}
+          aria-label={prefLabel}
+          title={prefLabel}
+          onClick={(e: Event) => nav.handlePreferences(e)}
+        >
+          <nav-brush-icon />
+          <span
+            className={`${NAV_CLASSES.NAV_GEAR_LABEL} ${JOUST_CLASSES.JOUST_LABEL}`}
+            aria-hidden={ATTR_VALUES.TRUE}
           >
-            {renderNavGear()}
-          </button>
-        </div>
-      )}
+            {prefLabel}
+          </span>
+        </button>
+      </div>
 
       {/* Menu index — the persistent copy of the items below: an
           sr-only landmark list of real anchors + action buttons kept in

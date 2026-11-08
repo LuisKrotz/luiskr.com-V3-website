@@ -1,0 +1,346 @@
+// ════════════════════════════════════════════════════════════════════════════
+//  feed.scss — the standalone RSS-feed document sheet.
+//  Every generated feed (/feed.xml + /<loc>/feed.xml) carries a
+//  `<?xml-stylesheet type="text/css" href="/feed.css"?>` processing
+//  instruction, so browsers style the raw XML document directly — the
+//  `rss`/`channel`/`item` elements ARE the page. generate-sitemap.js
+//  compiles this file to website/public/meta/feed.css (firebase rewrites
+//  /feed.css onto it); the feeds are static public payloads, so this
+//  sheet never joins a JS bundle.
+//
+//  This replaces the retired feed.xsl transform: client-side XSLT is
+//  deprecated and being removed from browsers, while CSS PIs on XML
+//  remain supported (Chrome keeps `type="text/css"` stylesheets). The
+//  CSS-only page cannot create elements, links, or run scripts — items
+//  therefore show their URL as selectable text instead of an anchor,
+//  and theme/contrast follow the OS media queries rather than the app's
+//  stored classes.
+//
+//  The base import stack publishes the REAL token matrix — :root light
+//  theme lands on the document's root element (`rss` IS :root here), and
+//  the mixin-extracted dark/high-contrast overrides re-emit at the bottom
+//  under prefers-color-scheme / prefers-contrast — so the feed reads as
+//  the site itself.
+// ════════════════════════════════════════════════════════════════════════════
+
+// Webfonts — the app pages carry these as <link> tags; an XML document
+// cannot host link elements, so the same Google Fonts set comes in as a
+// CSS @import (style-src already allows fonts.googleapis.com). Must stay
+// the first statement: @import precedes every other rule in the sheet.
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Jost:wght@100..900&family=Oswald:wght@200..700&family=Poiret+One&display=swap');
+
+// Namespaced feed elements — the sheet must address the atom/dc/media
+// prefixes to lay out the self-link, creators and media enclosures.
+// @namespace rules must follow @import and precede all style rules.
+@namespace atom url('http://www.w3.org/2005/Atom');
+@namespace dc url('http://purl.org/dc/elements/1.1/');
+@namespace media url('http://search.yahoo.com/mrss/');
+
+@import '../../core/sass/base/variables';
+@import '../../core/sass/base/mixins';
+@import '../../core/sass/base/fonts';
+@import '../../core/sass/base/placeholders';
+@import '../../core/sass/base/structure';
+
+// Document root — <rss> is the page. %MAXAREA gives the same responsive
+// gutters as the app; the tokenized glow wash sits over --bg-primary like
+// the app's fixed backdrop layer, minus the animation (no JS hook, and
+// XML documents should stay cheap for feed clients that render it).
+rss {
+  @extend %MAXAREA;
+  display: block;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: var(--space-4xl);
+  padding-bottom: var(--space-5xl);
+  // Both schemes are supported — the media queries at the bottom pick
+  // the token set. Declaring only `light` would make the UA treat the
+  // document as light-scheme regardless of the OS preference.
+  color-scheme: light dark;
+  background:
+    var(--bg-glow) fixed,
+    var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-desc);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // Masthead — the RSS badge. An XML document cannot gain a header
+  // element, so the chrome line is generated content on the root.
+  &::before {
+    content: 'RSS feed';
+    display: inline-block;
+    margin-bottom: var(--space-xl);
+    font-family: var(--font-mono);
+    font-size: var(--space-lg);
+    color: var(--color-accent-contrast);
+    border: var(--space-hairline) solid var(--color-accent-contrast);
+    border-radius: var(--radius-round);
+    padding: var(--space-3xs) var(--space-sm);
+    white-space: nowrap;
+  }
+}
+
+// Channel — flex column so the machine-order children can be presented
+// in page order: the note + self-link surface first, items flow in
+// document order, and <copyright> (which RSS requires in the head)
+// re-orders to the bottom as the colophon.
+channel {
+  display: flex;
+  flex-direction: column;
+  max-width: 75ch;
+  margin: 0 auto;
+
+  // Subscribe explainer — generated content stands in for the section
+  // the XSLT version rendered; \A breaks keep the paragraphs readable.
+  // Site-toast callout convention: accent-left bar + shadow, no full
+  // hairline ring (a border+border-left double-frame reads wrong).
+  &::before {
+    content: 'This is a web feed — a machine-readable channel of every page and portfolio entry on this site, not a regular web page.\A\APaste the feed URL into a feed reader to subscribe; new entries surface there as they publish.';
+    display: block;
+    order: -2;
+    white-space: pre-wrap;
+    border-left: var(--space-2xs) solid var(--color-accent-contrast);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    background: var(--bg-secondary);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-md);
+    color: var(--text-secondary);
+    font-size: calc(var(--space-lg) + var(--space-sm));
+    line-height: 1.6;
+  }
+
+  // Feed URL — the atom self-link, surfaced as selectable mono text
+  // right under the explainer (attr() reads the href since empty XML
+  // elements carry no text).
+  > atom|link[rel='self'] {
+    display: block;
+    order: -1;
+    margin-bottom: var(--space-2xl);
+    font-family: var(--font-mono);
+    font-size: calc(var(--space-lg) + var(--space-2xs));
+    color: var(--color-accent-contrast);
+    overflow-wrap: anywhere;
+
+    &::before {
+      content: 'Feed URL — ';
+      color: var(--text-muted);
+    }
+
+    &::after {
+      content: attr(href);
+    }
+  }
+
+  // Channel head — title as the page H1, the site URL as a muted mono
+  // line, the bio as the lead, then the machine meta on its own lines.
+  > title {
+    display: block;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-primary);
+    font-size: var(--space-3xl);
+    font-weight: calc(400 + var(--fw-lift));
+    line-height: 1.1;
+    color: var(--text-primary);
+  }
+
+  > link {
+    display: block;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: var(--space-lg);
+    color: var(--text-muted);
+    overflow-wrap: anywhere;
+
+    &::before {
+      content: 'Site — ';
+    }
+  }
+
+  > description {
+    display: block;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-desc);
+    font-size: var(--space-xl);
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  > language,
+  > lastBuildDate {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--space-lg);
+    color: var(--text-muted);
+  }
+
+  > language {
+    margin-bottom: var(--space-2xs);
+
+    &::before {
+      content: 'Language — ';
+    }
+  }
+
+  > lastBuildDate {
+    margin-bottom: var(--space-3xl);
+
+    &::before {
+      content: 'Updated — ';
+    }
+  }
+
+  // Channel <image> is reader metadata — its url/title/link triple adds
+  // nothing to the human page.
+  > image {
+    display: none;
+  }
+
+  // Colophon — pushed past the items by `order`; the hairline rule +
+  // copyright line mirror the old transform's footer.
+  > copyright {
+    display: block;
+    order: 1;
+    border-top: var(--space-hairline) solid var(--border-color);
+    margin-top: var(--space-4xl);
+    padding-top: var(--space-xl);
+    font-family: var(--font-mono);
+    font-size: var(--space-lg);
+    color: var(--text-muted);
+  }
+
+  // Item — one shadowed card per feed entry; the same surface, lift and
+  // radius tokens the old card list used. The hairline ring defines the
+  // card on light surfaces (glass is near-white on white) and survives
+  // forced-colors, where box-shadow collapses.
+  > item {
+    display: block;
+    background: var(--glass-bg);
+    border: var(--space-hairline) solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-xl);
+    transition:
+      box-shadow 0.3s ease,
+      border-color 0.3s ease,
+      transform 0.3s ease;
+
+    &:hover {
+      box-shadow: var(--shadow-card-hover);
+      border-color: var(--color-accent);
+      transform: translateY(calc(-1 * var(--space-3xs)));
+    }
+
+    > title {
+      display: block;
+      margin-bottom: var(--space-2xs);
+      font-family: var(--font-primary);
+      font-size: var(--space-2xl);
+      font-weight: calc(400 + var(--fw-lift));
+      line-height: 1.2;
+      color: var(--text-primary);
+
+      // The arrow suggests "open the URL below" — CSS cannot wrap the
+      // title in an anchor, so the link renders as the next line.
+      &::after {
+        content: ' →';
+        color: var(--color-accent-contrast);
+      }
+    }
+
+    > link {
+      display: block;
+      margin-bottom: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: calc(var(--space-lg) + var(--space-2xs));
+      color: var(--color-accent-contrast);
+      overflow-wrap: anywhere;
+    }
+
+    > description {
+      display: block;
+      margin-bottom: var(--space-sm);
+      font-family: var(--font-desc);
+      font-size: calc(var(--space-lg) + var(--space-sm));
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    // searchTheme chips — the same faceting vocabulary crawlers get.
+    > category {
+      display: inline-block;
+      margin-top: var(--space-sm);
+      margin-right: var(--space-2xs);
+      font-family: var(--font-mono);
+      font-size: var(--space-lg);
+      color: var(--text-muted);
+      border: var(--space-hairline) solid var(--border-color);
+      border-radius: var(--radius-round);
+      padding: var(--space-3xs) var(--space-xs);
+      white-space: nowrap;
+    }
+
+    // Media enclosures can't render as <img>/<video> — attribute URLs
+    // surface as a labeled mono line so the attachment stays reachable.
+    > media|content {
+      display: block;
+      margin-top: var(--space-md);
+      font-family: var(--font-mono);
+      font-size: var(--space-lg);
+      color: var(--text-muted);
+      overflow-wrap: anywhere;
+
+      &::before {
+        content: 'Attachment (' attr(medium) ') — ';
+      }
+
+      &::after {
+        content: attr(url);
+      }
+    }
+
+    // <guid> duplicates <link>; the single-author <dc:creator> is the
+    // same on every item; the video poster URL adds noise beside the
+    // enclosure line.
+    > guid,
+    > dc|creator,
+    > media|thumbnail {
+      display: none;
+    }
+  }
+}
+
+// Theme + contrast — an XML document carries no JS and cannot receive
+// the app's html classes, so the OS preferences drive the identical
+// mixin-emitted token sets on the root (light HC wins over base, dark HC
+// over both — the same stack order as html.dark-mode + .high-contrast).
+@media (prefers-color-scheme: dark) {
+  rss {
+    @include dark-mode-tokens;
+  }
+}
+
+@media (prefers-contrast: more) {
+  rss {
+    @include high-contrast-light-tokens;
+  }
+}
+
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  rss {
+    @include high-contrast-dark-tokens;
+  }
+}
+
+// Reduced motion — the card lift is the only motion on this surface.
+@media (prefers-reduced-motion: reduce) {
+  channel > item {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

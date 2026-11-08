@@ -489,7 +489,7 @@ export class CustomCarousel extends BaseComponent {
    * expand/video/label flags. Returns null for placeholder entries.
    */
   renderSlide(item: CarouselItem | null) {
-    return renderCarouselSlide(item, this.folder || ATTR_VALUES.EMPTY, this._isMixed)
+    return renderCarouselSlide(item, this.folder || ATTR_VALUES.EMPTY)
   }
 
   /**

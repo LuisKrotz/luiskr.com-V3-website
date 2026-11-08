@@ -1,174 +1,3245 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+<?xml-stylesheet type="text/css" href="/feed.css"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
 <channel>
   <title>Luis Krötz</title>
   <link>https://luiskr.com/de/</link>
   <atom:link href="https://luiskr.com/de/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Hallo, ich bin Luis, Software Engineer mit Fokus auf UX. Aktuell arbeite ich bei Dell am Dell Design System .</description>
   <language>de</language>
-  <lastBuildDate>Tue, 27 Oct 2026 17:54:21 GMT</lastBuildDate>
+  <copyright>© 2026 Luis Krötz</copyright>
+  <lastBuildDate>Sun, 08 Nov 2026 04:04:57 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/de/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
     <link>https://luiskr.com/de/</link>
-    <guid>https://luiskr.com/de/</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Hallo, ich bin Luis, Software Engineer mit Fokus auf UX. Aktuell arbeite ich bei Dell am Dell Design System .</description>
+    <category>dell design system</category>
+    <category>metcha</category>
+    <category>melissa</category>
+    <category>mini melissa</category>
+    <category>brazilian leather</category>
+    <category>mor</category>
+    <category>coza</category>
+    <category>marco almeida</category>
+    <category>nathalia bond</category>
+    <category>cecerelê</category>
+    <category>transa</category>
+    <category>vibra</category>
   </item>
   <item>
     <title>Über</title>
     <link>https://luiskr.com/de/ueber</link>
-    <guid>https://luiskr.com/de/ueber</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/ueber</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Hallo, ich bin Luis, Software Engineer mit Fokus auf UX. Aktuell arbeite ich bei Dell am Dell Design System .</description>
+    <category>an der ufsm unter den 40 besten arbeiten der 28. jai</category>
+    <category>cssda special kudos award, verliehen an die erste version von luiskr.com</category>
+    <category>cssda innovation design award, verliehen an die erste version von luiskr.com</category>
+    <category>cssda ux design award, verliehen an die erste version von luiskr.com</category>
+    <category>cssda ui design award, verliehen an die erste version von luiskr.com</category>
+    <category>featured auf tcg</category>
+    <category>cssw star</category>
+    <category>featured auf mindsparkle mag</category>
+    <category>veröffentlichte arbeit: desenvolvimento de um protótipo para gestão de conhecime</category>
+    <category>über mich</category>
+    <category>über luis krötz</category>
+    <category>biografie</category>
   </item>
   <item>
     <title>Kontakt</title>
     <link>https://luiskr.com/de/kontakt</link>
-    <guid>https://luiskr.com/de/kontakt</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/kontakt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Kontakt</description>
+    <category>e-mail</category>
+    <category>telefon</category>
+    <category>linkedin</category>
+    <category>github</category>
+    <category>datenschutzrichtlinie</category>
+    <category>gdpr</category>
+    <category>nutzungsbedingungen</category>
+    <category>kontakt</category>
+    <category>kontakt luis krötz</category>
+    <category>front-end-entwickler beauftragen</category>
+    <category>freiberuflicher entwickler</category>
+    <category>webentwickler beauftragen</category>
   </item>
   <item>
     <title>Datenschutzrichtlinie</title>
     <link>https://luiskr.com/de/datenschutzrichtlinie</link>
-    <guid>https://luiskr.com/de/datenschutzrichtlinie</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/datenschutzrichtlinie</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Bei luiskr , erreichbar unter https://luiskr.com , ist die Privatsphäre meiner Besucher eine meiner wichtigsten Prioritäten. Dieses Datenschutzdokument enthält die Arten von Informationen, die von luiskr.com gesammelt und aufgezeichnet werden, und wie ich sie nutze.</description>
+    <category>das übliche</category>
+    <category>einwilligung</category>
+    <category>informationen, die ich sammle</category>
+    <category>wie ich deine daten verwende</category>
+    <category>datenschutzrichtlinien dritter</category>
+    <category>ccpa-datenschutzrechte (meine persönlichen daten nicht verkaufen)</category>
+    <category>informationen von kindern</category>
+    <category>datenschutzerklärung</category>
+    <category>datenschutz</category>
+    <category>cookie-richtlinie</category>
+    <category>datenprivatsphäre</category>
+    <category>luis krötz</category>
   </item>
   <item>
     <title>GDPR</title>
     <link>https://luiskr.com/de/dsgvo</link>
-    <guid>https://luiskr.com/de/dsgvo</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/dsgvo</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Ich möchte sicherstellen, dass du deine Datenschutzrechte vollständig kennst. Jeder Nutzer hat Anspruch auf Folgendes:</description>
+    <category>datenschutzrechte</category>
+    <category>dsgvo</category>
+    <category>gdpr</category>
+    <category>datenschutz-grundverordnung</category>
+    <category>personenbezogene daten</category>
+    <category>datenschutz</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+    <category>portfolio</category>
+    <category>luis krötz portfolio</category>
+    <category>front-end-entwickler</category>
   </item>
   <item>
     <title>Nutzungsbedingungen</title>
     <link>https://luiskr.com/de/nutzungsbedingungen</link>
-    <guid>https://luiskr.com/de/nutzungsbedingungen</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/nutzungsbedingungen</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Die Website luiskr.com unter luiskr.com steht unter der MIT-LIZENZ. Luiskr.com wurde von Luis Krötz erstellt; bestimmte Funktionen der Seite können zusätzlichen Richtlinien, Bedingungen oder Regeln unterliegen, die auf der Seite im Zusammenhang mit diesen Funktionen veröffentlicht werden.</description>
+    <category>version 1.1</category>
+    <category>zugang zur seite</category>
+    <category>links dritter; andere nutzer</category>
+    <category>haftungsausschlüsse</category>
+    <category>haftungsbeschränkung</category>
+    <category>urheberrechtsrichtlinie.</category>
+    <category>allgemein</category>
+    <category>repository</category>
+    <category>kontaktinformationen</category>
+    <category>nutzungsbedingungen</category>
+    <category>allgemeine geschäftsbedingungen</category>
+    <category>rechtliche hinweise</category>
   </item>
   <item>
     <title>Mozilla Public License 2.0</title>
     <link>https://luiskr.com/de/lizenz</link>
-    <guid>https://luiskr.com/de/lizenz</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/lizenz</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Diese Seite enthält den vollständigen, offiziellen Text der Mozilla Public License 2.0 (MPL 2.0), der Lizenz, unter der der Quellcode dieser Website bereitgestellt wird. Die Lizenz ist eine weltweite, gebührenfreie Einräumung, die in allen Ländern und Territorien gilt.</description>
+    <category>über dieses dokument</category>
+    <category>1. definitionen</category>
+    <category>2. lizenzgewährungen und -bedingungen</category>
+    <category>3. verpflichtungen</category>
+    <category>4. unmöglichkeit der erfüllung aufgrund von gesetz oder verordnung</category>
+    <category>5. beendigung</category>
+    <category>6. gewährleistungsausschluss</category>
+    <category>7. haftungsbeschränkung</category>
+    <category>8. rechtsstreitigkeiten</category>
+    <category>9. verschiedenes</category>
+    <category>10. versionen der lizenz</category>
+    <category>anhang a — lizenzvermerk der quellcodeform</category>
   </item>
   <item>
     <title>Animationsreferenz</title>
     <link>https://luiskr.com/de/animationen</link>
-    <guid>https://luiskr.com/de/animationen</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/animationen</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Alle Animationen der Website, beschrieben — Element, Bewegung, Auslöser, Technologie und Zweck — für Leser, assistive Technologien und KI-Agenten.</description>
+    <category>routen-fortschrittsbalken, der während der navigation über den oberen rand kriec</category>
+    <category>hamburger-menü-button mit flüssiger morph-animation</category>
+    <category>animierter vollbild-menühintergrund mit fließendem konturfeld</category>
+    <category>navigationsmenü-einträge mit gestaffeltem aufstiegs-eingang</category>
+    <category>sprachflaggen-icon mit wellen- und einblend-animation</category>
+    <category>einstellungsschalter mit flüssigem daumen-gleiten</category>
+    <category>theme-umschalter mit orbitalem tag/nacht-gleiten</category>
+    <category>schließen-button mit flüssiger füllung und rotierendem x</category>
+    <category>lade-skelett mit morphenden zellen und schimmer</category>
+    <category>intro-loader mit gegenläufigen ringen und fortschritt</category>
+    <category>benachrichtigungs-toast, der aus der ecke gleitet</category>
+    <category>portfolio-kacheltitel, der in glut verbrennt und sich neu aufbaut</category>
   </item>
   <item>
     <title>Erde-Playground</title>
     <link>https://luiskr.com/de/erde-playground</link>
-    <guid>https://luiskr.com/de/erde-playground</guid>
-    <description>Interaktiver WebGL-Erde-Playground — passe Gelände, Atmosphäre, Beleuchtung und Nachbearbeitung live an.</description>
+    <guid isPermaLink="true">https://luiskr.com/de/erde-playground</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Interaktive WebGL-Erde-Simulation — passe Gelände, Atmosphäre, Beleuchtung und Nachbearbeitung live im Browser an.</description>
+    <category>erde</category>
+    <category>erde-bilder</category>
+    <category>planet erde</category>
+    <category>3d-erde</category>
+    <category>erde-rendering</category>
+    <category>webgl-erde</category>
+    <category>erde-playground</category>
+    <category>interaktive erde-simulation</category>
+    <category>erde aus dem weltall</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
   </item>
   <item>
     <title>Sternenfeld</title>
     <link>https://luiskr.com/de/sternenfeld-experiment</link>
-    <guid>https://luiskr.com/de/sternenfeld-experiment</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Übersicht</description>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+    <category>portfolio</category>
+  </item>
+  <item>
+    <title>Suche</title>
+    <link>https://luiskr.com/de/suche</link>
+    <guid isPermaLink="true">https://luiskr.com/de/suche</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Durchsuche alle Seiten, Projekte und Experimente auf luiskr.com.</description>
+    <category>suche</category>
+    <category>site-suche</category>
+    <category>finden</category>
+    <category>portfolio-suche</category>
+    <category>projekte</category>
+    <category>katalog</category>
+    <category>luis krötz</category>
+    <category>luiskr.com</category>
+    <category>portfolio</category>
+    <category>webgl-experimente</category>
+    <category>passende routen</category>
+    <category>über</category>
   </item>
   <item>
     <title>Dell Design System</title>
     <link>https://luiskr.com/de/portfolio/dell-design-system</link>
-    <guid>https://luiskr.com/de/portfolio/dell-design-system</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/dell-design-system</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Mein Eintritt bei Dell am 6. Juni 2022, kurz nachdem Transainc seine Türen schloss, markierte einen entscheidenden Wendepunkt in meiner beruflichen Laufbahn.</description>
+    <category>dell design system</category>
+    <category>dell design system, website-übersicht</category>
+    <category>dell design system: grundlagen-übersicht</category>
+    <category>dell design system: codearchitektur und richtlinien</category>
+    <category>dell design system: erste-schritte-prinzipien</category>
+    <category>dell design system: übersicht über die komponentenbibliothek</category>
+    <category>dell design system: muster-übersicht</category>
+    <category>dell design system: storybook-integration und komponenten-richtlinien</category>
+    <category>dell design system: übersicht über die grundlagen-dokumentation</category>
+    <category>dell design system: design tokens grundlagen v1</category>
+    <category>dell design system: design tokens grundlagen v2</category>
+    <category>dell design system: design token typen-referenz</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
   </item>
   <item>
     <title>Marco Almeida</title>
     <link>https://luiskr.com/de/portfolio/aboutmarco</link>
-    <guid>https://luiskr.com/de/portfolio/aboutmarco</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/aboutmarco</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Marcos Portfolio wurde 2021 als Freelance-Projekt entwickelt.</description>
+    <category>marco almeida</category>
+    <category>aboutmarco</category>
+    <category>aboutmarco.com, startseite full tour</category>
+    <category>aboutmarco.com, mobil tour</category>
+    <category>aboutmarco.com, startseite</category>
+    <category>aboutmarco.com, melissa insider</category>
+    <category>aboutmarco.com, melissa</category>
+    <category>aboutmarco.com, coza</category>
+    <category>aboutmarco.com, brazilian leather</category>
+    <category>aboutmarco.com, me</category>
+    <category>aboutmarco.com, archive</category>
+    <category>aboutmarco.com, admiretheweb</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Cecerelê</title>
     <link>https://luiskr.com/de/portfolio/cecerele</link>
-    <guid>https://luiskr.com/de/portfolio/cecerele</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/cecerele</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Ich habe Joana von Cecerelê im November 2020 über einen gemeinsamen Freund, Sagu, kennengelernt.</description>
+    <category>cecerelê</category>
+    <category>cecerele</category>
+    <category>cecerelê: created in 2019 by historian joana schossler para produzir jogos, cont</category>
+    <category>cecerelê: startseite with products updated on dec. 2021</category>
+    <category>cecerelê: about us seite</category>
+    <category>cecerelê: product seite</category>
+    <category>cecerelê: kit para colorir adulto edição limitada, product seite</category>
+    <category>cecerelê: memorêlas jogo de memória das mulheres brasileiras, product seite</category>
+    <category>cecerelê: minha praia, livro de colorir, product seite</category>
+    <category>cecerelê, quebra cabeça revolucionárias: product seite</category>
+    <category>cecerelê: cart inhalt</category>
+    <category>cecerelê: login</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Brazilian Leather</title>
     <link>https://luiskr.com/de/portfolio/cicb</link>
-    <guid>https://luiskr.com/de/portfolio/cicb</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/cicb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Brazilian Leather ist ein bei Transa entwickeltes Projekt, durch eine Partnerschaft zwischen CICB und Apex-Brasil.</description>
+    <category>brazilian leather</category>
+    <category>cicb</category>
+    <category>brazilian leather, startseite full tour</category>
+    <category>brazilian leather, mobil tour</category>
+    <category>brazilian leather, home</category>
+    <category>brazilian leather, about</category>
+    <category>brazilian leather, in mandarin chinese</category>
+    <category>cscb, home seite</category>
+    <category>fórum 2016, full tour</category>
+    <category>fórum 2016, ganze seite</category>
+    <category>fórum 2016, mobil tour</category>
+    <category>fórum 2017, full tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Coza</title>
     <link>https://luiskr.com/de/portfolio/coza</link>
-    <guid>https://luiskr.com/de/portfolio/coza</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/coza</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Cozas Website wurde bei Transa von 2017 bis 2019 entwickelt.</description>
+    <category>coza</category>
+    <category>coza: startseite full tour</category>
+    <category>coza: mobil full tour</category>
+    <category>coza: ganze seite screenshot</category>
+    <category>coza: english startseite</category>
+    <category>coza: artikel, organização com as dicas da maysa.</category>
+    <category>coza: image galerie, a cada instante da rotina. mais coza + pantone.</category>
+    <category>coza: artikel, seu banheiro cheio de beleza.</category>
+    <category>coza: wo zu finden seite on desktop</category>
+    <category>coza: wo zu finden seite on mobil</category>
+    <category>cozas website wurde bei transa von 2017 bis 2019 entwickelt.</category>
+    <category>brinox</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Melissa</title>
     <link>https://luiskr.com/de/portfolio/melissa</link>
-    <guid>https://luiskr.com/de/portfolio/melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Melissas Website war ein Projekt von TRANSA INC.</description>
+    <category>melissa</category>
+    <category>melissa, website 2020 tour</category>
+    <category>melissa, feed mobil 2020 tour</category>
+    <category>melissa, startseite screenshot</category>
+    <category>melissa, wo zu finden tour</category>
+    <category>melissa, wo zu finden mobil tour</category>
+    <category>melissa, squad seite 2020 screenshot</category>
+    <category>melissa, projects seite 2020 screenshot</category>
+    <category>melissa, artikel: alerta de collab inedita</category>
+    <category>melissa, artikel: ebulicao de cores e ideias</category>
+    <category>melissa, artikel: reconexao urbana</category>
+    <category>melissa, galerie: galeria e lancamento squad</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>METCHA</title>
     <link>https://luiskr.com/de/portfolio/metcha</link>
-    <guid>https://luiskr.com/de/portfolio/metcha</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/metcha</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>METCHA: das Orakel für Leder, Design und Kultur.</description>
+    <category>metcha</category>
+    <category>metcha, feed 2022 tour</category>
+    <category>metcha artikel: bill amberg studio moore giles kollektion</category>
+    <category>metcha artikel: ceeze's sustainability rules</category>
+    <category>metcha artikel: check the bell bullitt helmet by larson upholstery up close</category>
+    <category>metcha artikel: eugene riconneaus high standard skate leather sneakers</category>
+    <category>metcha artikel: find out why tommaso spinzi's studio is historic and full of sto</category>
+    <category>metcha artikel: max poglia s bags are never alike</category>
+    <category>metcha artikel: mini type 10 is the neu conscious and custom high end car design</category>
+    <category>metcha artikel: mut design free thinking perspective</category>
+    <category>metcha artikel: okhtein's leather bags show two sisters creative directions</category>
+    <category>metcha artikel: see how studio reco transforms excess into original bags</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4" medium="video"/>
   </item>
   <item>
     <title>Mini Melissa</title>
     <link>https://luiskr.com/de/portfolio/mini-melissa</link>
-    <guid>https://luiskr.com/de/portfolio/mini-melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/mini-melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Mini Melissa war ein bei Transa für die Grendene Group entwickeltes Projekt als eigener Kanal für die Marke Mini Melissa.</description>
+    <category>mini melissa</category>
+    <category>mini melissa: startseite full tour</category>
+    <category>mini melissa: mobil tour</category>
+    <category>mini melissa: feed cover</category>
+    <category>mini melissa: feed screenshot 2020</category>
+    <category>mini melissa: wo zu finden</category>
+    <category>mini melissa: wo zu finden, mobil</category>
+    <category>mini melissa: color me</category>
+    <category>mini melissa: color me mobil</category>
+    <category>mini melissa: dance machine</category>
+    <category>mini melissa: dance machine mobil</category>
+    <category>mini melissa: dreamers</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>MOR</title>
     <link>https://luiskr.com/de/portfolio/mor</link>
-    <guid>https://luiskr.com/de/portfolio/mor</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/mor</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>MORs Website wurde bei Transa entwickelt.</description>
+    <category>mor</category>
+    <category>mor: startseite full tour</category>
+    <category>mor: website mobil tour</category>
+    <category>mor artikel: mor explica como cuidar da sua piscina</category>
+    <category>mor artikel: cada doçura da linha baby</category>
+    <category>mor: shop tour</category>
+    <category>mor: shop mobil tour</category>
+    <category>mor: shop, category seite screenshot</category>
+    <category>mor: shop, product seite screenshot</category>
+    <category>mor: wo zu finden tour</category>
+    <category>mor: wo zu finden mobil tour</category>
+    <category>mors website wurde bei transa entwickelt.</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>Nathalia Bond</title>
     <link>https://luiskr.com/de/portfolio/nathalia-bond</link>
-    <guid>https://luiskr.com/de/portfolio/nathalia-bond</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/nathalia-bond</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Ich lernte Nathalia von Nathalia Bond, Clínica de Desenvolvimento, im Oktober 2021 über einen gemeinsamen Freund, Marco Anuschek, kennen.</description>
+    <category>nathalia bond</category>
+    <category>nathalia bond, clínica de desenvolvimento: startseite, tour</category>
+    <category>nathalia bond, clínica de desenvolvimento: desktop-startseite</category>
+    <category>nathalia bond, clínica de desenvolvimento: mobil startseite</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades mobil seite</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades desktop seite</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, fonoaudiologia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicologia inf</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicomotria, d</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicopedagogia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, terapia ocupac</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossa equipe, desktop 4k seite</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Genesysinf, Sageweb</title>
     <link>https://luiskr.com/de/portfolio/sage</link>
-    <guid>https://luiskr.com/de/portfolio/sage</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/sage</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Sage ist eine Fiskalsoftware, entwickelt von Genesysinf mit Sitz in Santana do Livramento, Brasilien.</description>
+    <category>genesysinf, sageweb</category>
+    <category>sage</category>
+    <category>sageweb: shortcuts screenshot</category>
+    <category>sageweb: 'cadastros' screenshot</category>
+    <category>sageweb: color picker screenshot</category>
+    <category>sageweb: filters screenshot</category>
+    <category>sageweb: intro screenshot</category>
+    <category>sageweb: 'mapa sageweb' screenshot</category>
+    <category>sageweb: 'módulo nfe' screenshot</category>
+    <category>sageweb: shortcuts ordering screenshot</category>
+    <category>sageweb: personalization screenshot</category>
+    <category>sageweb: 'relatórios gerenciais' screenshot</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-atalhos-mozjpg-uncompressed.jpg" medium="image"/>
   </item>
   <item>
     <title>Transa</title>
     <link>https://luiskr.com/de/portfolio/transa</link>
-    <guid>https://luiskr.com/de/portfolio/transa</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/transa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Transas Website wurde 2021 mit Vue, CSS (Sass) und PHP (Laravel) entwickelt.</description>
+    <category>transa</category>
+    <category>transa: feed short tour</category>
+    <category>transa: video of brazilian leather's case inside transa's website.</category>
+    <category>transa: video of metcha's case inside transa's website.</category>
+    <category>transa: video of mor's case inside transa's website.</category>
+    <category>transa: video of melissa's case inside transa's website.</category>
+    <category>transa: video of mini melissa's case inside transa's website.</category>
+    <category>transa: video of coza's case inside transa's website.</category>
+    <category>transa: feed tour</category>
+    <category>transa: feed mobil tour</category>
+    <category>transa: category, brazilian leather, tour</category>
+    <category>transa: category, coza, tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4" medium="video"/>
   </item>
   <item>
     <title>Vibra</title>
     <link>https://luiskr.com/de/portfolio/vibra</link>
-    <guid>https://luiskr.com/de/portfolio/vibra</guid>
+    <guid isPermaLink="true">https://luiskr.com/de/portfolio/vibra</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vibra war eine 2016 bei Transa entwickelte Website, die bis 2021 online blieb.</description>
+    <category>vibra</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, tour</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil /tour mobil</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil/ production and distributi</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil /our brands ganze seite</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, more than five decades of</category>
+    <category>vibra war eine 2016 bei transa entwickelte website, die bis 2021 online blieb.</category>
+    <category>vibra agilize</category>
+    <category>brand portal</category>
+    <category>energy</category>
+    <category>webprojekt</category>
+    <category>fallstudie</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>47 Tucanae</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/47-tucanae</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/47-tucanae</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der zweithellste Kugelsternhaufen am Himmel – ein Millionen-Sterne-Schwarm im Halo nahe der Sichtlinie der Kleinen Magellanschen Wolke.</description>
+    <category>47 Tucanae</category>
+    <category>cluster</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>51 Pegasi b</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/51-pegasi-b</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/51-pegasi-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Dimidium — der erste Heiße Jupiter, die Welt, die die Planetenlehre neu schrieb.</description>
+    <category>51 Pegasi b</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>51 Pegasi</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/51-pegasi</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/51-pegasi</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Es wurde festgestellt, dass der erste sonnenähnliche Stern einen Exoplaneten beherbergt – die Entdeckung, die ein Universum voller Welten eröffnete.</description>
+    <category>51 Pegasi</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Aldebaran</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/aldebaran</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/aldebaran</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Das feurige Auge des Stiers – eines orangefarbenen Riesen, der möglicherweise bereits einen Riesenplaneten beherbergt.</description>
+    <category>Aldebaran</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Alpha Centauri B</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/alpha-centauri-b</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/alpha-centauri-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Toliman — der orange K1V-Begleiter, der alle 79,9 Jahre mit Rigil Kentaurus tanzt.</description>
+    <category>Alpha Centauri B</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Alpha Centauri</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/alpha-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/alpha-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Das nächstgelegene Sternensystem – ein sonnenähnlicher Doppelstern, der in einiger Entfernung von Proxima umkreist wird.</description>
+    <category>Alpha Centauri</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/alpha-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Andromeda I</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/andromeda-1</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/andromeda-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein schwacher Andromeda-Zwergsphäroid – einer der diffusen Satelliten, die den äußeren Halo von M31 bevölkern.</description>
+    <category>Andromeda I</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Andromeda II</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/andromeda-2</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/andromeda-2</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein Andromeda-Zwergsphäroid von besonderer Bedeutung – seine Sterne weisen Anzeichen einer möglichen älteren Verschmelzung zweier noch kleinerer Zwerge auf.</description>
+    <category>Andromeda II</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Andromeda III</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/andromeda-3</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/andromeda-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein schwaches kugelförmiges M31-Mitglied des Schwarms – alt, metallarm, dominiert von dunkler Materie.</description>
+    <category>Andromeda III</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Andromedagalaxie</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/andromeda</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/andromeda</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Das weiteste, was man ohne Hilfe sehen kann – zweieinhalb Millionen Lichtjahre entfernt.</description>
+    <category>Andromedagalaxie</category>
+    <category>galaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/andromeda/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Antares B</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/antares-b</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/antares-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der smaragdene Begleiter — ein blauweißer Zwerg im Glühsaum des Rivalen des Mars.</description>
+    <category>Antares B</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Antares</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/antares</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/antares</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Rivale des Mars – ein aufgeblähter roter Überriese, der sich seiner Supernova nähert.</description>
+    <category>Antares</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Wassermann-Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/aquarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/aquarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 210 – eines der metallärmsten Mitglieder der Lokalen Gruppe, eine nahezu dunkle Gaswolke mit spärlichen Sternen.</description>
+    <category>Wassermann-Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Arcturus</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/arcturus</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/arcturus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der hellste Stern am Nordhimmel – ein orangefarbener Riese, der durch den galaktischen Halo rast.</description>
+    <category>Arcturus</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Arrokoth</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/arrokoth</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/arrokoth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Schneemann — zwei jungfräuliche Planetesimal-Lappen, am Rand des Sonnensystems verschmolzen.</description>
+    <category>Arrokoth</category>
+    <category>asteroid</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Asteroidengürtel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/asteroid-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/asteroid-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Millionen von Gesteinsresten zwischen Mars und Jupiter – dem Planeten, der nie entstanden ist.</description>
+    <category>Asteroidengürtel</category>
+    <category>belt</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Barnard b</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/barnard-b</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/barnard-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine Sub-Erdmasse-Welt, die den nächsten Einzelstern umschlingt — ein hundertjähriger Geist endlich greifbar.</description>
+    <category>Barnard b</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Barnards Stern</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/barnard-star</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/barnard-star</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der sich am schnellsten bewegende Stern an unserem Himmel – ein schwacher Roter Zwerg, 6 Lichtjahre entfernt.</description>
+    <category>Barnards Stern</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Bennu</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/bennu</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/bennu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der am sorgfältigsten verfolgte Asteroid in der Nähe der Erde – 2020 von OSIRIS-REx beprobt.</description>
+    <category>Bennu</category>
+    <category>asteroid</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Beteigeuze</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/betelgeuse</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/betelgeuse</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Orions rote Schulter – ein Überriese, der von geliehener Zeit lebt.</description>
+    <category>Beteigeuze</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/betelgeuse/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Bootes I Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/bootes-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/bootes-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der „dunkle Champion“ – ein ultraschwache Milchstraßensatellit in 197.000 Lichtjahren Entfernung, der 2006 in SDSS-Daten entdeckt wurde.</description>
+    <category>Bootes I Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Kallisto</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/callisto</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/callisto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der am stärksten von Kratern übersäte Körper, den es gibt – eine tote, uralte Oberfläche, die seit vier Milliarden Jahren unverändert ist.</description>
+    <category>Kallisto</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Canopus</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/canopus</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/canopus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der zweithellste Stern am Nachthimmel – ein südliches Leuchtfeuer, das zur Steuerung von Raumfahrzeugen verwendet wird.</description>
+    <category>Canopus</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Capella Ab</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/capella-b</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/capella-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Zwilling — der zweite goldene Riese des Capella-Paars im 104-Tage-Walzer.</description>
+    <category>Capella Ab</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Capella</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/capella</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/capella</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein vierfaches goldenes System – zwei riesige Sterne, die so nah umkreisen, dass sie sich fast berühren.</description>
+    <category>Capella</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Carina Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/carina-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/carina-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein 330.000 Lichtjahre entfernter Satellit der Milchstraße, dessen Sternentstehungsgeschichte in einzelnen Ausbrüchen über die kosmische Zeit hinweg verläuft.</description>
+    <category>Carina Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Carinanebel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/carina</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/carina</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die große Sternenfabrik des Südhimmels – Heimat des zum Scheitern verurteilten Hyperriesen Eta Carinae.</description>
+    <category>Carinanebel</category>
+    <category>nebula</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ceres</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/ceres</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/ceres</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der erste jemals gefundene Asteroid – ein Zwergplanet mit einem Drittel der Masse des Gürtels.</description>
+    <category>Ceres</category>
+    <category>dwarfPlanet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/ceres/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Cetus-Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/cetus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/cetus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine isolierte kugelförmige Lokalgruppe – jenseits der beiden riesigen Lichthöfe entwickelte sie sich nahezu unberührt.</description>
+    <category>Cetus-Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Coma-Superhaufen</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/coma-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/coma-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der nächste reiche Superhaufen – zwei Riesenhaufen auf einem gemeinsamen Filament, etwa 321 Millionen Lichtjahre entfernt.</description>
+    <category>Coma-Superhaufen</category>
+    <category>structure</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Krebsnebel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/crab-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/crab-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Das Wrack eines Sterns, der im Jahr 1054 explodierte und sich immer noch ausdehnt.</description>
+    <category>Krebsnebel</category>
+    <category>nebula</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Deimos</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/deimos</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/deimos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der kleinere äußere Mond des Mars – ein staubbedeckter Überrest, der am Rande der synchronen Höhe umkreist.</description>
+    <category>Deimos</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/deimos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Deneb</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/deneb</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/deneb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Schweif des Schwans – einer der mit bloßem Auge am weitesten entfernten Sterne, der über 2.600 Lichtjahre hinweg leuchtet.</description>
+    <category>Deneb</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Dione</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/dione</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/dione</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Saturns dünner Eismond – helle zerklüftete Klippen, die sich über eine uralte Kraterwand ziehen.</description>
+    <category>Dione</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Draco Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/draco-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/draco-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein sehr metallarmer Milchstraßensatellit in 260.000 Lichtjahren Entfernung – eine der am stärksten von Dunkler Materie dominierten Galaxien, die wir kennen.</description>
+    <category>Draco Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Adlernebel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/eagle-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/eagle-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Heimat der Säulen der Schöpfung – Türme aus Gas, in denen Sterne zünden.</description>
+    <category>Adlernebel</category>
+    <category>nebula</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/eagle-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Erde</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/earth</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/earth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die einzige bekannte Welt, die Leben beherbergt – ein Ozeanplanet in der bewohnbaren Zone.</description>
+    <category>Erde</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Enceladus</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/enceladus</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/enceladus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine winzige Eiswelt mit einem unterirdischen Ozean, der durch Geysire am Südpol Wasser in den Weltraum spritzt.</description>
+    <category>Enceladus</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Epsilon Eridani b</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/eps-eridani-b</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/eps-eridani-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ægir — das nächste bekannte Jupiter-Analog, durch den Trümmergürtel eines jungen Orangetwins schwingend.</description>
+    <category>Epsilon Eridani b</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Epsilon Eridani</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/epsilon-eridani</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/epsilon-eridani</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der nächste sonnenähnliche Stern mit einer Trümmerscheibe – ein junges Sonnensystem im Entstehen.</description>
+    <category>Epsilon Eridani</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Eris</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/eris</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/eris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die Zwietracht — der Zwergplanet, dessen Entdeckung Pluto degradierte.</description>
+    <category>Eris</category>
+    <category>dwarfPlanet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Eros</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/eros</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/eros</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die erdnahe Erdnuss — der erste Asteroid, der von einer Raumsonde umrundet und betreten wurde.</description>
+    <category>Eros</category>
+    <category>asteroid</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Europa</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/europa</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/europa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine eisverkrustete Meereswelt – wohl der beste Ort außerhalb der Erde, um nach Leben zu suchen.</description>
+    <category>Europa</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Fornax-Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/fornax-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/fornax-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein Satellitensphäroid der Milchstraße in einer Entfernung von 455.000 Lichtjahren – der einzige klassische Zwerg, der bis vor Kurzem noch Sterne bildete.</description>
+    <category>Fornax-Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ganymed</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/ganymede</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/ganymede</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der größte Mond im Sonnensystem – größer als Merkur, mit einem eigenen Magnetfeld.</description>
+    <category>Ganymed</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Halleyscher Komet</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/halley</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/halley</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der berühmteste Komet der Geschichte — der erste, dessen Rückkehr vorhergesagt wurde, alle ~75 Jahre wieder da.</description>
+    <category>Halleyscher Komet</category>
+    <category>comet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Haumea</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/haumea</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/haumea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die rotierende Zigarre — ein Zwergplanet, gestreckt durch die schnellste Rotation im Kuipergürtel.</description>
+    <category>Haumea</category>
+    <category>dwarfPlanet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Helixnebel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/helix-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/helix-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Das Auge Gottes – der Todesschleier eines sonnenähnlichen Sterns und die Vorschau auf unseren eigenen Stern.</description>
+    <category>Helixnebel</category>
+    <category>nebula</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/helix-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Horologium-Reticulum-Supercluster</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/horologium-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/horologium-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der große Superhaufen am Südhimmel – eine 700 Mly tiefe Massenkonzentration, die nur von Shapley übertroffen wird.</description>
+    <category>Horologium-Reticulum-Supercluster</category>
+    <category>structure</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Pferdekopfnebel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/horsehead</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/horsehead</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Das dunkle Pferd des Orion – eine kalte Staubsilhouette vor leuchtendem Wasserstoff.</description>
+    <category>Pferdekopfnebel</category>
+    <category>nebula</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Hydra-Centaurus-Superhaufen</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/hydra-centaurus-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/hydra-centaurus-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Superhaufen neben Virgo – eine doppellappige Ansammlung, die die Region des Großen Attraktors umfasst.</description>
+    <category>Hydra-Centaurus-Superhaufen</category>
+    <category>structure</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Hygiea</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/hygiea</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/hygiea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der dunkle Kohlenstoffriese — viertgrößter Asteroid und beinahe ein Zwergplanet.</description>
+    <category>Hygiea</category>
+    <category>asteroid</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Iapetus</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/iapetus</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/iapetus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Saturns zweiseitiger Mond – eine Hemisphäre hell wie Schnee, die andere dunkel wie Kohle.</description>
+    <category>Iapetus</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>IC 10</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/ic-10</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/ic-10</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Starburst-Zwerg der Lokalen Gruppe – der einzige, der in der Nähe von Andromeda noch mit Sternentstehung ausbricht.</description>
+    <category>IC 10</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>IC 1613</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/ic-1613</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/ic-1613</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine irreguläre lokale Gruppe, deren veränderliche Sterne der Cepheiden dabei halfen, die extragalaktische Entfernungsskala festzulegen.</description>
+    <category>IC 1613</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Interstellare Nachbarschaft</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/interstellar-neighborhood</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/interstellar-neighborhood</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die lokale Blase der Sonne und ihre Sternbegleiter – alles im Umkreis von etwa 2.000 Lichtjahren.</description>
+    <category>Interstellare Nachbarschaft</category>
+    <category>structure</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Io</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/io</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/io</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Jupiters Vulkanmond – der geologisch aktivste Körper im Sonnensystem.</description>
+    <category>Io</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>ISS</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/iss</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/iss</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die Internationale Raumstation — das größte bemannte Objekt, das je in einem erdnahen Orbit geflogen ist.</description>
+    <category>ISS</category>
+    <category>satellite</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Juno</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/juno</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/juno</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein stein-eisernes Relikt auf einer der exzentrischsten Bahnen des Gürtels.</description>
+    <category>Juno</category>
+    <category>asteroid</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Jupiter</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/jupiter</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/jupiter</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Riese – massereicher als jeder andere Planet zusammen.</description>
+    <category>Jupiter</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Kepler-452b</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/kepler-452-b</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/kepler-452-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Cousin der Erde — die erste erdgroße Welt in einer sonnenzwillingen habitablen Zone.</description>
+    <category>Kepler-452b</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Kepler-452</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/kepler-452</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/kepler-452</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>„Erde 2.0“ – ein sonnenähnlicher Stern, der in seiner bewohnbaren Zone einen Gesteinsplaneten beherbergt.</description>
+    <category>Kepler-452</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Kuipergürtel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/kuiper-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/kuiper-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein gefrorener Ring aus eisigen Welten jenseits von Neptun – das Tiefkühlarchiv des Sonnensystems.</description>
+    <category>Kuipergürtel</category>
+    <category>belt</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Lagunennebel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/lagoon</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/lagoon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine Sternentstehungsstätte, die das bloße Auge erkennen kann – der große Sternentstehungspool von Sagittarius.</description>
+    <category>Lagunennebel</category>
+    <category>nebula</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Laniakea-Superhaufen</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/laniakea</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/laniakea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unser Heimat-Superhaufen – ein 520-Mly-Becken mit etwa 100.000 Galaxien, die auf dem Großen Attraktor zusammenlaufen.</description>
+    <category>Laniakea-Superhaufen</category>
+    <category>structure</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Löwe I Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/leo-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/leo-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein 820.000 Lichtjahre entfernter Milchstraßensatellit – so weit entfernt, dass er der erste Zwerg war, der ausschließlich auf fotografischen Vermessungsplatten gefunden wurde.</description>
+    <category>Löwe I Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Leo II. Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/leo-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/leo-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein entfernter Sphäroid der Milchstraße in einer Entfernung von 690.000 Lichtjahren, auch als Leo B katalogisiert – gepaart mit Leo I auf der anderen Seite des Halos.</description>
+    <category>Leo II. Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Leo A</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/leo-a</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/leo-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein isolierter Irregulär am Rande der Lokalen Gruppe, der allein nach Milliarden von Jahren immer noch Sterne bildet.</description>
+    <category>Leo A</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>LGS 3</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/lgs-3</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/lgs-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Fische-Zwerg – ein Übergangsmitglied der Lokalen Gruppe auf halbem Weg zwischen einem kugelförmigen und einem unregelmäßigen.</description>
+    <category>LGS 3</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Große Magellansche Wolke</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/lmc</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/lmc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die größte Satellitengalaxie der Milchstraße – ein Starburst-Begleiter in 160.000 Lichtjahren Entfernung.</description>
+    <category>Große Magellansche Wolke</category>
+    <category>galaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Lokale Gruppe</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/local-group</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/local-group</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der ca. 80 Galaxienhaufen umfassende Galaxienhaufen, den unsere Milchstraße als Heimat bezeichnet – ein Volumen von ca. 10 Millionen Lichtjahren mit einer Breite, das durch die gemeinsame Schwerkraft gebunden ist.</description>
+    <category>Lokale Gruppe</category>
+    <category>structure</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Messier 110</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/m110</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/m110</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Andromedas zweiter heller Satellit – ein elliptischer Zwerg mit schwachen Staubstrukturen und eigenen Kugelsternhaufen.</description>
+    <category>Messier 110</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Großer Herkules-Cluster</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/m13-hercules</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/m13-hercules</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>M13 – der feinste Kugelsternhaufen am Nordhimmel, etwa 300.000 Sterne in einer 145 Lichtjahre breiten Kugel.</description>
+    <category>Großer Herkules-Cluster</category>
+    <category>cluster</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Messier 32</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/m32</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/m32</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Andromedas kompakter elliptischer Satellit – eine Galaxie, die durch wiederholte nahe Vorbeiflüge bis auf ihren dichten Kern zerlegt wurde.</description>
+    <category>Messier 32</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Makemake</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/makemake</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/makemake</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die Welt des Schöpfers von Rapa Nui — ein methanbereifter Zwerg am kalten Rand des Kuipergürtels.</description>
+    <category>Makemake</category>
+    <category>dwarfPlanet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Mars</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/mars</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/mars</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Rote Planet – Heimat des höchsten bekannten Vulkans und der tiefsten Schlucht.</description>
+    <category>Mars</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mars/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Merkur</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/mercury</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/mercury</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der kleinste Planet und der Sonne am nächsten – eine von Kratern übersäte Welt voller Extreme.</description>
+    <category>Merkur</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mercury/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Milchstraße</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/milky-way</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/milky-way</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unsere Heimatgalaxie – eine Balkenspirale aus Hunderten Milliarden Sternen.</description>
+    <category>Milchstraße</category>
+    <category>galaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Mimas</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/mimas</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/mimas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Saturns „Todesstern“-Mond – ein zerbeulter Eisball, der vom riesigen Herschel-Krater dominiert wird.</description>
+    <category>Mimas</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Mond</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/moon</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/moon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der einzige natürliche Satellit der Erde – die erste Welt, die von Menschen besucht wurde.</description>
+    <category>Mond</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/moon/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Erdnahe Satelliten</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/near-earth-satellites</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/near-earth-satellites</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die künstliche Hülle — tausende funktionierende Raumfahrzeuge und Trümmerfragmente in der erdnahen Umlaufbahn.</description>
+    <category>Erdnahe Satelliten</category>
+    <category>satellite</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Neptun</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/neptune</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/neptune</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die windigste Welt – ein Eisriese, den die Mathematik vor Teleskopen gefunden hat.</description>
+    <category>Neptun</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/neptune/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>NGC 147</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/ngc-147</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/ngc-147</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein kugelförmiger Andromeda-Zwerg mit einer Helligkeit von 2,53 Mly – alte Sterne, ruhiges Gas, kreisend im Gravitationsgriff von M31.</description>
+    <category>NGC 147</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>NGC 185</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/ngc-185</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/ngc-185</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Bruder von NGC 147 – ein kugelförmiger Andromeda-Zwerg, der sich durch Staub und junge Sterne auszeichnet, die in seiner Klasse selten sind.</description>
+    <category>NGC 185</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Barnards Galaxie</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/ngc-6822</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/ngc-6822</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine unregelmäßige lokale Gruppe im Sternbild Sagittarius – 1,63 Mly entfernt, ein Zwerg, der wie eine kleine Magellansche Wolke aussieht.</description>
+    <category>Barnards Galaxie</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Beobachtbares Universum</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/observable-universe</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/observable-universe</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der kausale Horizont – alles Licht hatte in 13,8 Milliarden Jahren Zeit, uns zu erreichen.</description>
+    <category>Beobachtbares Universum</category>
+    <category>structure</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Omega Centauri</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/omega-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/omega-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der größte Kugelsternhaufen in der Milchstraße – möglicherweise der abgetrennte Kern einer verschlungenen Galaxie.</description>
+    <category>Omega Centauri</category>
+    <category>cluster</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Orionnebel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/orion-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/orion-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die nächste Sternkinderstube – neue Sonnen werden in aller Deutlichkeit geboren.</description>
+    <category>Orionnebel</category>
+    <category>nebula</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/orion-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Pallas</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/pallas</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/pallas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der geneigte Riese des Gürtels — ein basaltischer Protoplanet, der durch die Planetenebene taucht.</description>
+    <category>Pallas</category>
+    <category>asteroid</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Pegasus-Zwerg unregelmäßig</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/pegasus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/pegasus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 216 – eine gasreiche lokale Gruppe, unregelmäßig, langsam brennend und chemisch primitiv.</description>
+    <category>Pegasus-Zwerg unregelmäßig</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Perseus-Fische-Superhaufen</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/perseus-pisces-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/perseus-pisces-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein großer filamentartiger Superhaufen – ein 250 Mly großer Kamm aus Galaxiengruppen über dem nördlichen Herbsthimmel.</description>
+    <category>Perseus-Fische-Superhaufen</category>
+    <category>structure</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Phobos</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/phobos</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/phobos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der größere der beiden Monde des Mars – ein Trümmerhaufen, der sich langsam spiralförmig auf seinen Planeten zubewegt.</description>
+    <category>Phobos</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/phobos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Phönix-Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/phoenix-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/phoenix-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein Übergangszwerg der Lokalen Gruppe – teils kugelförmig, teils unregelmäßig, der immer noch ein Rinnsal aus Sternen bildet.</description>
+    <category>Phönix-Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Plejaden</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/pleiades</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/pleiades</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die Sieben Schwestern – ein Juwelenkästchen voller junger blauer Sterne, eingehüllt in Reflexionsnebel.</description>
+    <category>Plejaden</category>
+    <category>cluster</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Pluto</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/pluto</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/pluto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der geliebte Zwerg – König des Kuipergürtels und einer Welt voller Stickstoffgletscher.</description>
+    <category>Pluto</category>
+    <category>dwarfPlanet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Polaris Ab</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/polaris-ab</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/polaris-ab</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Hubble-aufgelöste Begleiter — ein sonnennaher Zwerg durch die Cepheiden-Luft des Polarsterns.</description>
+    <category>Polaris Ab</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Polarstern</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/polaris</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/polaris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Nordstern – ein Cepheiden-Leuchtfeuer fast direkt über der Erdachse.</description>
+    <category>Polarstern</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Proxima b</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/proxima-b</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/proxima-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der erdnächste Exoplanet — eine Welt von Erdmasse in Proximas habitabler Zone.</description>
+    <category>Proxima b</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Proxima c</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/proxima-c</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/proxima-c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein umstrittener Super-Erde-Kandidat weit außerhalb der habitablen Zone — Proximas kaltes, langsames Geschwister.</description>
+    <category>Proxima c</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Proxima Centauri</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/proxima-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/proxima-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der der Sonne am nächsten gelegene Stern – ein Leuchtstern mit einem erdgroßen Planeten nebenan.</description>
+    <category>Proxima Centauri</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/proxima-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Proxima d</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/proxima-d</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/proxima-d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Proximas innerste Welt — eine Sub-Erde, die den Stern alle fünf Tage streift.</description>
+    <category>Proxima d</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Rhea</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/rhea</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/rhea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Saturns zweitgrößter Mond – eine helle, zerbeulte Eiswelt am Rande der Ringebene.</description>
+    <category>Rhea</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Rigel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/rigel</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/rigel</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der blauweiße Fuß des Orion – ein Überriese unter den leuchtendsten bekannten Sternen.</description>
+    <category>Rigel</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ringnebel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/ring-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/ring-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Rauchring einer sterbenden Sonne – der planetarische Nebel, den jedes Teleskop kennt.</description>
+    <category>Ringnebel</category>
+    <category>nebula</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ryugu</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/ryugu</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/ryugu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein kohlenstoffhaltiger Asteroid mit Kreisel – von Hayabusa2 beprobt und zur Erde zurückgebracht.</description>
+    <category>Ryugu</category>
+    <category>asteroid</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>SagDIG</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/sagdig</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/sagdig</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Sagittarius Dwarf Irregulär – die metallärmste gasreiche Galaxie der Lokalen Gruppe, 3,45 Mly groß.</description>
+    <category>SagDIG</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Schütze A*</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/sagittarius-a</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/sagittarius-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Das zentrale supermassive Schwarze Loch der Milchstraße – ein Motor mit 4,3 Millionen Sonnenmassen, der die gesamte Galaxie verankert.</description>
+    <category>Schütze A*</category>
+    <category>blackHole</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Schütze-Zwerggalaxie</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/sagittarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/sagittarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der nächste bekannte Satellit der Milchstraße – ein Sphäroid, das bereits in Sternenströme zerrissen wird, während es durch die Scheibe fällt.</description>
+    <category>Schütze-Zwerggalaxie</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Saturn</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/saturn</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/saturn</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der beringte Riese – sein Eishalo erstreckt sich über 280.000 km und ist dennoch meterdünn.</description>
+    <category>Saturn</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Bildhauer Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/sculptor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/sculptor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein metallarmer Sphäroid der Milchstraße in 290.000 Lichtjahren Entfernung – dominiert von Dunkler Materie, über 10 Milliarden Jahre alt.</description>
+    <category>Bildhauer Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans A</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/sextans-a</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/sextans-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine helle, unregelmäßige lokale Gruppe – 4,4 Mly groß, die in ihren dichtesten Knoten immer noch kräftig Sterne bildet.</description>
+    <category>Sextans A</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans B</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/sextans-b</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/sextans-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine unregelmäßige lokale Gruppe am äußeren Rand der Gruppe – eine der am weitesten entfernten Zwerggalaxien in unserer Nachbarschaft.</description>
+    <category>Sextans B</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans Zwergkugelförmig</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/sextans-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/sextans-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein sehr schwacher Milchstraßensatellit in 290.000 Lichtjahren Entfernung – einer der am wenigsten leuchtenden Zwergkugeln im Halo.</description>
+    <category>Sextans Zwergkugelförmig</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Shapley-Superhaufen</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/shapley-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/shapley-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die Shapley-Konzentration – der schwerste Superhaufen in der Nähe, ca. 650 Mio. Lichtjahre entfernt, mit ca. 8.000 Galaxien.</description>
+    <category>Shapley-Superhaufen</category>
+    <category>structure</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sirius B</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/sirius-b</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/sirius-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Pup — der erste je erkannte Weiße Zwerg im Orbit des hellsten Sterns des Himmels.</description>
+    <category>Sirius B</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sirius</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/sirius</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/sirius</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Hundestern – der hellste Stern am Nachthimmel der Erde, der einen toten Begleiter verbirgt.</description>
+    <category>Sirius</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sirius/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Kleine Magellansche Wolke</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/smc</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/smc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der zweite Satellit der Milchstraße – eine metallarme Zwerggalaxie, die langsam auseinandergerissen wird.</description>
+    <category>Kleine Magellansche Wolke</category>
+    <category>galaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sonne</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/sun</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/sun</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Hauptreihenstern vom Typ G besitzt 99,86 % der Masse des Sonnensystems.</description>
+    <category>Sonne</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sun/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Tarantelnebel</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/tarantula</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/tarantula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die heftigste Sternentstehungsregion in der Lokalen Gruppe – in einer 160.000 Lichtjahre entfernten Satellitengalaxie.</description>
+    <category>Tarantelnebel</category>
+    <category>nebula</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti e</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/tau-ceti-e</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/tau-ceti-e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine Supererde in der habitablen Zone des nächsten Einzelsterns — auf der wärmeren Seite der Hoffnung.</description>
+    <category>Tau Ceti e</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti f</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/tau-ceti-f</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/tau-ceti-f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der kalte Außenkandidat — eine schwere Supererde am frostigen Rand der habitablen Zone.</description>
+    <category>Tau Ceti f</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/tau-ceti</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/tau-ceti</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein ruhiger sonnenähnlicher Stern in 12 Lichtjahren Entfernung mit einem überfüllten inneren System.</description>
+    <category>Tau Ceti</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Titan</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/titan</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/titan</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der einzige Mond mit einer dichten Atmosphäre – Methanflüsse, Seen und Regen auf einer gefrorenen Wasser-Eis-Welt.</description>
+    <category>Titan</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/trappist-1</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/trappist-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Sieben erdgroße Welten um einen Stern, der kaum größer als Jupiter ist.</description>
+    <category>TRAPPIST-1</category>
+    <category>system</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/trappist-1/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>TRAPPIST-1b</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/trappist-1b</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/trappist-1b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die innerste der sieben Resonanzwelten — ein verbrannter Fels in Erdgröße.</description>
+    <category>TRAPPIST-1b</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1c</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/trappist-1c</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/trappist-1c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Venusmassiges Geschwister in der inneren Wärme der Resonanzkette.</description>
+    <category>TRAPPIST-1c</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1d</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/trappist-1d</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/trappist-1d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die leichteste der sieben — eine sub-erdmassige Welt am Rand der Wärme.</description>
+    <category>TRAPPIST-1d</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1e</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/trappist-1e</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/trappist-1e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der erdähnlichste der sieben — die beste Chance des Systems auf flüssiges Wasser.</description>
+    <category>TRAPPIST-1e</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1f</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/trappist-1f</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/trappist-1f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine wasserreiche Welt am Innenrand der habitablen Zone.</description>
+    <category>TRAPPIST-1f</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1g</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/trappist-1g</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/trappist-1g</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der größte der sieben — eine kühle Supererde am äußeren Anker der Kette.</description>
+    <category>TRAPPIST-1g</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1h</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/trappist-1h</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/trappist-1h</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die kalte Außenkante — die eisverhangene letzte Welt des Systems.</description>
+    <category>TRAPPIST-1h</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Dreiecksgalaxie</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/triangulum</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/triangulum</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die ruhige dritte Spirale – das schüchterne Mitglied der Lokalen Gruppe, reich an Sternenkindergärten.</description>
+    <category>Dreiecksgalaxie</category>
+    <category>galaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/triangulum/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Triton</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/triton</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/triton</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Neptuns eingefangener Mond – eine Welt im Kuipergürtel mit rückwärts kreisenden Stickstoffgeysiren.</description>
+    <category>Triton</category>
+    <category>moon</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tucana-Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/tucana-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/tucana-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die isolierteste kugelförmige Galaxie der Lokalen Gruppe – 2,9 Mio. Lichtjahre entfernt, nie von einer großen Galaxie beeinflusst.</description>
+    <category>Tucana-Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ursa Major I Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/uma-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/uma-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein ultralichtschwacher Milchstraßensatellit, der von SDSS gefunden wurde – ein Vorzeigemodell der Vorherrschaft der Dunklen Materie am Rande der Galaxienentstehung.</description>
+    <category>Ursa Major I Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ursa Major II Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/uma-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/uma-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Eine der schwächsten bekannten Galaxien – ein ultralichtschwacher Satellit der Milchstraße, nur etwa 105.000 Lichtjahre entfernt.</description>
+    <category>Ursa Major II Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Uranus</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/uranus</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/uranus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der Seitwärtsplanet – ein Eisriese, der auf der Seite um die Sonne rollt.</description>
+    <category>Uranus</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/uranus/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Ursa Minor Zwerg</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/ursa-minor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/ursa-minor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ein Sphäroid der Milchstraße in 225.000 Lichtjahren Entfernung – uralte, schwache und fast ausschließlich dunkle Materie.</description>
+    <category>Ursa Minor Zwerg</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Vega</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/vega</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/vega</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der ehemalige und zukünftige Nordstern – der Helligkeitsnullpunkt der Astronomie.</description>
+    <category>Vega</category>
+    <category>star</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/vega/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Venus</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/venus</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/venus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>So groß wie der Zwilling der Erde, eingehüllt in ein erdrückendes CO₂-Treibhaus – der heißeste Planet.</description>
+    <category>Venus</category>
+    <category>planet</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Vesta</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/vesta</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/vesta</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Die hellste Welt des Asteroidengürtels – ein Protoplanet, der die Entstehung des Sonnensystems überlebt hat.</description>
+    <category>Vesta</category>
+    <category>asteroid</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Virgo-Superhaufen</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/virgo-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/virgo-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Der lokale Superhaufen – eine abgeflachte Wolke aus etwa 100 Galaxiengruppen, die sich um den etwa 54 Mly entfernten Virgo-Haufen konzentriert.</description>
+    <category>Virgo-Superhaufen</category>
+    <category>structure</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>WLM-Galaxie</title>
+    <link>https://luiskr.com/de/sternenfeld-experiment/wlm</link>
+    <guid isPermaLink="true">https://luiskr.com/de/sternenfeld-experiment/wlm</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Wolf–Lundmark–Melotte – ein isolierter unregelmäßiger Stern mit eigenem Kugelsternhaufen, 3 Mly von der Heimat entfernt.</description>
+    <category>WLM-Galaxie</category>
+    <category>dwarfGalaxy</category>
+    <category>sternenfeld</category>
+    <category>sterne bilder</category>
+    <category>3d-galaxie</category>
+    <category>sternenkarte</category>
+    <category>nachthimmel</category>
+    <category>sterne aus dem weltall</category>
+    <category>exoplaneten-katalog</category>
+    <category>sternenfeld-experiment</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
   </item>
 </channel>
 </rss>

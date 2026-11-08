@@ -1,17 +1,23 @@
 /**
  * @file portfolio/Related.js
- * @description <portfolio-related> — "related projects" strip at the
- * bottom of project pages: a <custom-carousel> of sibling portfolio items
- * from the projects list.
+ * @description <portfolio-related> — "related projects" conveyor at the
+ * bottom of project pages: a vertical accordion list of sibling items
+ * (media + title + description) that keeps three rows unfolded and cycles
+ * the rest through a fold/unfold bellows — the infinite wrap returns to
+ * the first item through the same expand-from-collapsed motion.
  *
  * Facade — types/matcher/fetch/JSX live in ./related/.
  */
 
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
-import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { RELATED_CLASSES } from '@core/tokens/classes/related.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
-import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
+import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
+import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { KEYBOARD_EVENTS } from '@core/tokens/events/dom.js'
+import { KEYS } from '@core/tokens/primitives.js'
+import { RELATED_LAYOUT, RELATED_TIMING } from '@core/tokens/motion/related.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
@@ -20,7 +26,6 @@ import { buildProjectsList } from './related/match.js'
 import { fetchData, storedTranslations } from './related/data.js'
 import { renderRelated } from './related/render.js'
 import { onMediaManifest } from '@core/utils/media/manifest.js'
-import { mountDividerSheen } from '@core/utils/gpu/divider-sheen.js'
 import { mountRingSheen } from '@core/utils/gpu/ring-sheen.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
@@ -42,142 +47,39 @@ export class PortfolioRelated extends BaseComponent {
 
   _unsubManifest: (() => void) | null = null // media-manifest arrival — re-renders cards with proven webp rungs
 
-  _noteOpen = false // disclaimer expand state (clamped to its first line)
-
-  _noteTruncated = false // true while the clamped note overflows its line
-
-  _noteEl: Element | null = null // last note button the observer bound to
-
-  _noteSeen = false // gate — the footer note never measures before it nears the viewport
-
-  _noteIO: IntersectionObserver | null = null // first-approach observer that opens the measure gate
-
-  _noteRO: ResizeObserver | null = null
-
-  _measureRaf = 0 // pending rAF handle — debounces note truncation measures
-
-  _dividerTeardowns: (() => void)[] = [] // live divider-sheen mounts (re-bound per render)
-
   _ringSession: RingSheenSession | null = null // live ring-sheen overlay on the card strip
 
-  _ringEl: Element | null = null // the .related-mosaic node the ring session mounted on
+  _ringEl: Element | null = null // the .related-list node the ring session mounted on
 
   _loadedCovers = new Map<string, string>() // cover key → highest confirmed painted tier — re-renders re-emit it loaded
+
+  _listEl: Element | null = null // the .related-list node the keydown handler is bound to
+
+  _listReorderTimer: ReturnType<typeof setTimeout> | null = null // pending collapsed-node move watchdog
+
+  _listReorderNode: Element | null = null // folded row waiting to join the list tail
+
+  _listReorderContainer: Element | null = null // the list that owned _listReorderNode
 
   constructor() {
     super(internalStyles)
   }
 
-  /** Toggles the clamped footer disclaimer between one-line and full text. */
-
-  _toggleNote(): void {
-    this._noteOpen = !this._noteOpen
-    this._updateDom()
-  }
-
   /**
-   * Detects whether the clamped note actually overflows — CSS cannot
-   * detect line-clamp truncation, so scrollHeight vs clientHeight does
-   * it here. The flag drives the `is-truncated` class that reveals the
-   * pulsing "···" affordance; measured only while collapsed (open state
-   * is unclamped by definition, and the affordance hides anyway).
+   * Arrow-key steps while focus sits inside the conveyor — ↓ advances,
+   * ↑ rewinds. preventDefault stops the key from scrolling the page
+   * under the user's hand.
    */
-  _measureNote(): void {
-    const textEl = this.$(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE_TEXT}`)
+  _onListKeydown = (e: Event): void => {
+    const key = (e as KeyboardEvent).key
 
-    if (!textEl || this._noteOpen) return
-
-    // Skip transient zero-height reads (element hidden/not yet laid out)
-    // — they report as truncated and ping-pong the flag on the next render.
-    if (textEl.clientHeight === 0) return
-
-    const truncated = textEl.scrollHeight > textEl.clientHeight + 1
-
-    if (truncated !== this._noteTruncated) {
-      this._noteTruncated = truncated
-      this._updateDom()
+    if (key === KEYS.ARROW_DOWN) {
+      e.preventDefault()
+      this._stepList(1)
+    } else if (key === KEYS.ARROW_UP) {
+      e.preventDefault()
+      this._stepList(-1)
     }
-  }
-
-  /**
-   * Schedules a single truncation measure on the next animation frame.
-   * Reads inside rAF hit clean layout, so the scrollHeight query costs
-   * ~0; running it synchronously on every onUpdated/RO tick forced a
-   * whole-document layout per call (the scroll-jank source profiles
-   * flagged). Bursts (render → RO fire → render) collapse into one read.
-   */
-  _queueNoteMeasure(): void {
-    if (this._measureRaf || !this._noteSeen) return
-
-    this._measureRaf = requestAnimationFrame(() => {
-      this._measureRaf = 0
-      this._measureNote()
-    })
-  }
-
-  /**
-   * Binds a ResizeObserver to the note button so font loads, viewport
-   * resizes and locale swaps re-evaluate truncation. The element is
-   * recreated on every render, so the observer re-binds whenever the
-   * node identity changes instead of watching a detached element.
-   */
-  _watchNoteTruncation(): void {
-    const noteEl = this.$(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE}`)
-
-    if (!noteEl) {
-      this._noteEl = null
-      return
-    }
-
-    // The note sits at the page's footer — measuring it at mount costs a
-    // whole-document forced layout inside the boot window (the
-    // forced-reflow Lighthouse finding), so the first measure is gated
-    // behind viewport proximity: the IO opens the gate ~200px out, then
-    // the queued rAF read runs on a clean frame. Without IO support the
-    // gate opens immediately, preserving the eager-measure fallback.
-    // The strip's node is recreated on every render, so the observer
-    // rebinds on node identity the same way the RO does below.
-    const freshNode = this._noteEl !== noteEl
-
-    if (freshNode) {
-      this._noteEl = noteEl
-
-      if (!this._noteSeen) {
-        if (typeof IntersectionObserver === TYPE_STRINGS.UNDEFINED) {
-          this._noteSeen = true
-        } else {
-          this._noteIO?.disconnect()
-
-          this._noteIO = new IntersectionObserver(
-            (entries) => {
-              for (const entry of entries) {
-                if (!entry.isIntersecting) continue
-
-                this._noteSeen = true
-
-                this._noteIO?.disconnect()
-                this._noteIO = null
-
-                this._queueNoteMeasure()
-              }
-            },
-            { rootMargin: QUERY_STRINGS.ROOT_MARGIN_200 }
-          )
-
-          this._noteIO.observe(noteEl)
-        }
-      }
-    }
-
-    this._queueNoteMeasure()
-
-    if (typeof ResizeObserver === TYPE_STRINGS.UNDEFINED || !freshNode) return
-
-    this._noteRO?.disconnect()
-
-    this._noteRO = new ResizeObserver(() => this._queueNoteMeasure())
-
-    this._noteRO.observe(noteEl)
   }
 
   /** CDN base URL for project media. */
@@ -193,6 +95,188 @@ export class PortfolioRelated extends BaseComponent {
    */
   get projectsList(): RelatedCard[] {
     return buildProjectsList(this.translations, this.homePortfolio, this.storage)
+  }
+
+  /**
+   * One conveyor step: the first unfolded row folds (1fr→0fr + inert), the
+   * first folded row after the window unfolds. The DOM invariant is
+   * [unfolded window][folded tail…] — kept by appending each folded node
+   * to the tail once its collapse lands (zero height ⇒ invisible), so the
+   * wrap back to the first item lands through the same
+   * expand-from-collapsed accordion motion as every other step.
+   */
+  _advanceList(): void {
+    const list = this.$(`.${RELATED_CLASSES.RELATED_LIST}`)
+
+    if (!list) return
+
+    const items = list.children
+
+    let firstOpen = -1
+    let lastOpen = -1
+
+    for (let i = 0; i < items.length; i++) {
+      const el = items[i]
+
+      if (!el.classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM)) continue
+      if (el.classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)) continue
+
+      if (firstOpen < 0) firstOpen = i
+
+      lastOpen = i
+    }
+
+    if (firstOpen < 0) return
+
+    // The row to unfold is the first folded ITEM after the window —
+    // non-item children (anim-desc sr-only nodes, the ring-sheen canvas)
+    // float between rows and must be skipped, never stall the conveyor.
+    let entering: Element | null = null
+
+    for (let i = lastOpen + 1; i < items.length; i++) {
+      if (items[i].classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)) {
+        entering = items[i]
+
+        break
+      }
+    }
+
+    if (!entering) return
+
+    const leaving = items[firstOpen]
+
+    leaving.classList.add(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)
+    leaving.setAttribute(COMMON_ATTRS.INERT, ATTR_VALUES.EMPTY)
+    leaving.setAttribute(ARIA_ATTRS.ARIA_HIDDEN, ATTR_VALUES.TRUE)
+
+    entering.classList.remove(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)
+    entering.removeAttribute(COMMON_ATTRS.INERT)
+    entering.removeAttribute(ARIA_ATTRS.ARIA_HIDDEN)
+
+    this._scheduleListReorder(list, leaving)
+  }
+
+  /**
+   * Moves a just-folded node to the list tail once its 0fr collapse has
+   * finished (REORDER_DELAY is sized past the .6s fold). A second step
+   * landing before the watchdog — possible through back-to-back manual
+   * steps — flushes the pending move first, keeping the
+   * [open][closed…] invariant intact.
+   * @param container The .related-list node that owns the row.
+   * @param node The folded row to append to the tail.
+   */
+  _scheduleListReorder(container: Element, node: Element): void {
+    this._flushListReorder()
+
+    this._listReorderContainer = container
+    this._listReorderNode = node
+
+    this._listReorderTimer = setTimeout(
+      () => this._flushListReorder(),
+      RELATED_TIMING.REORDER_DELAY
+    )
+  }
+
+  /**
+   * One manual conveyor step: +1 runs _advanceList (top row folds, next
+   * unfolds); −1 runs _retreatList — the most recently folded row (the
+   * tail's end) moves to the top and unfolds while the window's bottom
+   * row folds in place — the bellows played backwards. A pending
+   * forward reorder flushes first so the [open][closed…] scan reads
+   * settled DOM. No tail-append is needed on rewind: the folding row
+   * already sits exactly where folded rows live (first slot after the
+   * window).
+   * @param dir 1 advances, −1 rewinds.
+   */
+  _stepList(dir: number): void {
+    if (dir > 0) {
+      this._advanceList()
+    } else {
+      this._retreatList()
+    }
+  }
+
+  /** The reverse fold — see _stepList. */
+  _retreatList(): void {
+    const list = this.$(`.${RELATED_CLASSES.RELATED_LIST}`)
+
+    if (!list) return
+
+    this._flushListReorder()
+
+    const items = list.children
+
+    let lastOpen = -1
+    let tailEnd: Element | null = null
+
+    for (let i = 0; i < items.length; i++) {
+      const el = items[i]
+
+      if (!el.classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM)) continue
+
+      if (el.classList.contains(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)) {
+        tailEnd = el
+      } else {
+        lastOpen = i
+      }
+    }
+
+    if (lastOpen < 0 || !tailEnd) return
+
+    const leaving = items[lastOpen]
+
+    leaving.classList.add(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)
+    leaving.setAttribute(COMMON_ATTRS.INERT, ATTR_VALUES.EMPTY)
+    leaving.setAttribute(ARIA_ATTRS.ARIA_HIDDEN, ATTR_VALUES.TRUE)
+
+    list.insertBefore(tailEnd, items[0])
+
+    tailEnd.classList.remove(RELATED_CLASSES.RELATED_LIST_ITEM_CLOSED)
+    tailEnd.removeAttribute(COMMON_ATTRS.INERT)
+    tailEnd.removeAttribute(ARIA_ATTRS.ARIA_HIDDEN)
+  }
+
+  /** Lands the pending collapsed-node move (watchdog or early flush). */
+  _flushListReorder(): void {
+    if (this._listReorderTimer) {
+      clearTimeout(this._listReorderTimer)
+
+      this._listReorderTimer = null
+    }
+
+    const node = this._listReorderNode
+    const container = this._listReorderContainer
+
+    this._listReorderNode = null
+    this._listReorderContainer = null
+
+    // A re-render may have detached the stale list — the move is skipped
+    // then (the fresh render re-emits the window from scratch anyway).
+    if (node && container && container.isConnected) {
+      container.appendChild(node)
+    }
+  }
+
+  /**
+   * Rebinds the conveyor key handler whenever a render recreates the
+   * list node — the plain bind dies with the detached node. A list that
+   * fits its window has no folded rows to step through, so no listener
+   * is bound there.
+   */
+  _syncList(): void {
+    const list = this.$(`.${RELATED_CLASSES.RELATED_LIST}`)
+
+    if (list === this._listEl) return
+
+    this._listEl = list
+
+    if (!list) return
+
+    const items = this.$$(`.${RELATED_CLASSES.RELATED_LIST_ITEM}`)
+
+    if (items.length <= RELATED_LAYOUT.VISIBLE_COUNT) return
+
+    list.addEventListener(KEYBOARD_EVENTS.KEYDOWN, this._onListKeydown)
   }
 
   /**
@@ -222,12 +306,8 @@ export class PortfolioRelated extends BaseComponent {
     this.fetchData()
   }
 
-  /** Lifecycle: removes the router subscription + the note observer. */
+  /** Lifecycle: removes the router subscription + conveyor state. */
   override onDestroy() {
-    this._dividerTeardowns.forEach((teardown) => teardown())
-
-    this._dividerTeardowns = []
-
     this._ringSession?.destroy()
 
     this._ringSession = null
@@ -245,23 +325,9 @@ export class PortfolioRelated extends BaseComponent {
       this._unsubManifest = null
     }
 
-    this._noteRO?.disconnect()
+    this._listEl = null
 
-    this._noteRO = null
-
-    this._noteIO?.disconnect()
-
-    this._noteIO = null
-
-    this._noteSeen = false
-
-    this._noteEl = null
-
-    if (this._measureRaf) {
-      cancelAnimationFrame(this._measureRaf)
-
-      this._measureRaf = 0
-    }
+    this._flushListReorder()
   }
 
   override onStoreUpdate() {
@@ -273,41 +339,34 @@ export class PortfolioRelated extends BaseComponent {
   }
 
   override onUpdated() {
-    this._watchNoteTruncation()
-
-    this._mountDividerSheen()
-
     this._syncRingSheen()
 
     this._syncAnimDescs()
+
+    this._syncList()
   }
 
   /**
    * Binds animation descriptions to the animated nodes the render just
-   * produced — every related tile's hover lift, and the disclaimer's
-   * pulsing note-dots. Must run post-render (never in the JSX): the
-   * desc node is injected per root, so applying on detached nodes
-   * would spawn duplicate `lk-anim-desc-*` ids — a WCAG failure.
-   * Re-rendered nodes are re-bound; idempotent on repeats.
+   * produced — every related row's hover lift. Must run post-render
+   * (never in the JSX): the desc node is injected per root, so applying
+   * on detached nodes would spawn duplicate `lk-anim-desc-*` ids — a
+   * WCAG failure. Re-rendered nodes are re-bound; idempotent on repeats.
    */
   _syncAnimDescs(): void {
-    for (const tile of this.$$(`.${RELATED_CLASSES.RELATED_MOSAIC_ITEM}`)) {
+    for (const tile of this.$$(`.${RELATED_CLASSES.RELATED_LIST_INNER}`)) {
       applyAnimationDesc(tile as Element, ANIMATION_IDS.RELATED_TILE)
-    }
-
-    for (const dots of this.$$(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE_MORE}`)) {
-      applyAnimationDesc(dots as Element, ANIMATION_IDS.NOTE_DOT)
     }
   }
 
   /**
    * Keeps the instanced ring-sheen overlay bound to the live
-   * `.related-mosaic` node — renders recreate the strip, so a session
+   * `.related-list` node — renders recreate the strip, so a session
    * mounted on a detached node is torn down and remounted. Without
    * WebGPU the mount is a no-op and the CSS pseudo rings stay.
    */
   _syncRingSheen(): void {
-    const el = this.$(`.${RELATED_CLASSES.RELATED_MOSAIC}`)
+    const el = this.$(`.${RELATED_CLASSES.RELATED_LIST}`)
 
     if (el === this._ringEl) {
       this._ringSession?.refresh()
@@ -324,28 +383,9 @@ export class PortfolioRelated extends BaseComponent {
       this._ringSession =
         mountRingSheen(
           el,
-          `.${RELATED_CLASSES.RELATED_MOSAIC_ITEM}`,
-          RELATED_CLASSES.RELATED_MOSAIC_RING_CANVAS
+          `.${RELATED_CLASSES.RELATED_LIST_INNER}`,
+          RELATED_CLASSES.RELATED_LIST_RING_CANVAS
         ) || null
-    }
-  }
-
-  /**
-   * Re-mounts the divider-sheen WebGPU widgets on the footer's `<hr>`
-   * dividers — the nodes are recreated on every render, so each update
-   * disposes the stale mounts first (canvas + IO + rAF + widget).
-   * Without `navigator.gpu` or under reduced-motion the mount helper
-   * is a no-op and the CSS `::after` sweep stays the render path.
-   */
-  _mountDividerSheen(): void {
-    this._dividerTeardowns.forEach((teardown) => teardown())
-
-    this._dividerTeardowns = []
-
-    for (const hr of this.$$(`hr.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER}`)) {
-      this._dividerTeardowns.push(
-        mountDividerSheen(hr as HTMLElement, INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER_CANVAS)
-      )
     }
   }
 

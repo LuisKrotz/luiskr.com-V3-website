@@ -41,8 +41,10 @@ const openModalForItem = (
       source,
       thumb,
       alt: item.label,
-      width: item.size[0],
-      height: item.size[1],
+      // Untouched CMS dims — the carousel's desktop-ladder downscale is
+      // a display contract only; the modal never reduces the file.
+      width: item.size?.[0],
+      height: item.size?.[1],
       isVideo,
     },
   })

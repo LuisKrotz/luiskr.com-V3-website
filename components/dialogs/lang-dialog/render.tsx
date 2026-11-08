@@ -67,14 +67,13 @@ function renderLangOption(host: LangDialog, l: LangOption, currentLocale: string
         {l.cc2 ? (
           <span className={FLAG_CLASSES.FLAG_SPLIT}>
             {flagImg(l, l.cc, l.label, FLAG_DIMENSIONS.FLAG_DIALOG_SPLIT_WIDTH)}
-            {flagImg(l, l.cc2, ATTR_VALUES.EMPTY, FLAG_DIMENSIONS.FLAG_DIALOG_SPLIT_WIDTH)}
+            {flagImg(l, l.cc2, l.label, FLAG_DIMENSIONS.FLAG_DIALOG_SPLIT_WIDTH)}
           </span>
         ) : (
           flagImg(l, l.cc, l.label, FLAG_DIMENSIONS.FLAG_DIALOG_WIDTH)
         )}
       </span>
-      <span className={PREF_CLASSES.PREF_OPTION_LABEL}>{l.short}</span>
-      <span className={PREF_CLASSES.PREF_OPTION_SUB}>{l.label}</span>
+      <span className={PREF_CLASSES.PREF_OPTION_LABEL}>{l.label}</span>
     </a>
   )
 }

@@ -18,7 +18,7 @@ import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.j
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { EXPAND_MODAL_CLASSES, MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
-import { KEYBOARD_EVENTS, MOUSE_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
+import { KEYBOARD_EVENTS, MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { APP_EVENTS } from '@core/tokens/events/app.js'
 import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
@@ -489,31 +489,22 @@ describe('MediaExpanded', () => {
     el.remove()
   })
 
-  test('mount stamps the WASM-fitted px box on the image item and refits on resize', async () => {
-    // happy-dom reports clientWidth 0 — stub a laid-out width so the
-    // boundW > 0 guard passes and the stamp path runs.
-    const cwSpy = jest.spyOn(HTMLElement.prototype, 'clientWidth', 'get').mockReturnValue(1200)
-
+  test('mount stamps the natural px box on the image item — no bound reduction', async () => {
     const el = mountExpanded({ [MEDIA_ATTRS.WIDTH]: '4000', [MEDIA_ATTRS.HEIGHT]: '5000' })
 
     await flush()
 
     const item = el.shadowRoot?.querySelector(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`)
 
-    // A "huge length" capture keeps its full fitted width; the height
-    // overflows into the dialog scroll rather than being squashed.
-    expect(item.style.width).toBe('1200px')
-    expect(item.style.height).toBe('1500px')
+    // The modal is the no-reduction surface: a "huge length" capture
+    // keeps its declared natural dims and overflows into the dialog
+    // scroll — no width/height bound squashes it and the stamp needs
+    // no layout pass (happy-dom reports clientWidth 0 throughout).
+    // Width + aspect-ratio stamp — the height follows the box so the
+    // max-width cap can't distort it.
+    expect(item.style.width).toBe('4000px')
+    expect(item.style.aspectRatio).toBe('4000 / 5000')
 
-    // Two resize events in one frame — the second hits the fitQueued arm.
-    window.dispatchEvent(new window.Event(WINDOW_EVENTS.RESIZE))
-    window.dispatchEvent(new window.Event(WINDOW_EVENTS.RESIZE))
-
-    await flush()
-
-    expect(item.style.width).toBe('1200px')
-
-    cwSpy.mockRestore()
     el.remove()
   })
 
@@ -554,7 +545,8 @@ describe('MediaExpanded', () => {
 
     el2.remove()
 
-    // boundW ≤ 0 arm — unlaid-out content leaves the intrinsic box alone.
+    // Unlaid-out content still stamps the declared box — the modal's
+    // no-reduction stamp never reads layout.
     const elUnlaid = mountExpanded()
 
     await flush()
@@ -563,18 +555,21 @@ describe('MediaExpanded', () => {
       `.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`
     )
 
-    expect(itemUnlaid.style.width).toBe('')
+    expect(itemUnlaid.style.width).toBe('800px')
+    expect(itemUnlaid.style.aspectRatio).toBe('800 / 450')
 
     elUnlaid.remove()
 
-    // isVideo arm — the video keeps the flex contract, never px-stamped.
+    // Videos stamp the same natural box — the modal never reduces media,
+    // player chrome included.
     const el3 = mountExpanded({ [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE })
 
     await flush()
 
     const vid = el3.shadowRoot?.querySelector(HTML_TAGS.VIDEO)
 
-    expect(vid?.style.width || ATTR_VALUES.EMPTY).toBe(ATTR_VALUES.EMPTY)
+    expect(vid?.style.width).toBe('800px')
+    expect(vid?.style.aspectRatio).toBe('800 / 450')
 
     el3.remove()
   })

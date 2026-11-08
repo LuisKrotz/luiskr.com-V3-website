@@ -43,6 +43,18 @@ jest.unstable_mockModule('@core/utils/gpu/webgpu-widget.js', () => ({
 
 const BURN_SEL = `.${HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURN}`
 
+const BURN_CLASSES = {
+  ITEM_BURNING: HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING,
+  TITLE_OVERLAY: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_OVERLAY,
+  TITLE: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE,
+  TITLE_BURNING: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURNING,
+  TITLE_BURN: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_BURN,
+  TITLE_SLOT: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_SLOT,
+  TITLE_DUP: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_DUP,
+  TITLE_REWRITE: HOME_MOSAIC_CLASSES.HOME_MOSAIC_TITLE_REWRITE,
+  DETAILS: HOME_MOSAIC_CLASSES.HOME_MOSAIC_DETAILS,
+}
+
 const ITEMS = [
   { label: 'Burn Card', link: 'burn-card', image: 'ia', description: 'Desc A', featured: false },
 ]
@@ -141,12 +153,14 @@ describe('mosaic burn wasm tails', () => {
     // Dynamic imports — the oxc transform does not hoist
     // unstable_mockModule, so the module graph must instantiate AFTER
     // the mock call above has executed.
-    const mod = await import('@website/components/home/mosaic/burn/wasm.js')
-    const burn = await import('@website/components/home/mosaic/burn.js')
+    const mod = await import('@core/utils/burn/wasm.js')
+    const burn = await import('@core/utils/burn/burn.js')
 
     HomeMosaic = (await import('@website/components/home/HomeMosaic.js')).HomeMosaic
-    armCardBurn = burn.armCardBurn
-    disarmCardBurn = burn.disarmCardBurn
+    armCardBurn = (host, i, item) =>
+      burn.armCardBurn(host, i, item, BURN_CLASSES, MOSAIC_SELECTORS.HOME_MOSAIC_ITEM)
+    disarmCardBurn = (host, i) =>
+      burn.disarmCardBurn(host, i, BURN_CLASSES, MOSAIC_SELECTORS.HOME_MOSAIC_ITEM)
 
     frameWasm = mod.frameBurnWasm
     liveWasm = mod.liveBurnParticles

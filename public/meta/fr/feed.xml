@@ -1,174 +1,3245 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+<?xml-stylesheet type="text/css" href="/feed.css"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
 <channel>
   <title>Luis Krötz</title>
   <link>https://luiskr.com/fr/</link>
   <atom:link href="https://luiskr.com/fr/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Salut, je suis Luis, ingénieur logiciel axé sur l’UX. Je travaille actuellement chez Dell sur le Dell Design System .</description>
   <language>fr</language>
-  <lastBuildDate>Tue, 27 Oct 2026 17:54:21 GMT</lastBuildDate>
+  <copyright>© 2026 Luis Krötz</copyright>
+  <lastBuildDate>Sun, 08 Nov 2026 04:04:57 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/fr/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
     <link>https://luiskr.com/fr/</link>
-    <guid>https://luiskr.com/fr/</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Salut, je suis Luis, ingénieur logiciel axé sur l’UX. Je travaille actuellement chez Dell sur le Dell Design System .</description>
+    <category>dell design system</category>
+    <category>metcha</category>
+    <category>melissa</category>
+    <category>mini melissa</category>
+    <category>brazilian leather</category>
+    <category>mor</category>
+    <category>coza</category>
+    <category>marco almeida</category>
+    <category>nathalia bond</category>
+    <category>cecerelê</category>
+    <category>transa</category>
+    <category>vibra</category>
   </item>
   <item>
     <title>À propos</title>
     <link>https://luiskr.com/fr/a-propos</link>
-    <guid>https://luiskr.com/fr/a-propos</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/a-propos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Salut, je suis Luis, ingénieur logiciel axé sur l’UX. Je travaille actuellement chez Dell sur le Dell Design System .</description>
+    <category>à l’ufsm, parmi les 40 meilleurs travaux de la 28e jai</category>
+    <category>prix cssda special kudos, décerné à la première version de luiskr.com</category>
+    <category>prix cssda innovation design, décerné à la première version de luiskr.com</category>
+    <category>prix cssda ux design, décerné à la première version de luiskr.com</category>
+    <category>prix cssda ui design, décerné à la première version de luiskr.com</category>
+    <category>présenté sur tcg</category>
+    <category>cssw star</category>
+    <category>présenté sur mindsparkle mag</category>
+    <category>travail publié : desenvolvimento de um protótipo para gestão de conhecimento uti</category>
+    <category>à propos</category>
+    <category>à propos de luis krötz</category>
+    <category>biographie</category>
   </item>
   <item>
     <title>Contact</title>
     <link>https://luiskr.com/fr/contact</link>
-    <guid>https://luiskr.com/fr/contact</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/contact</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Contact</description>
+    <category>e-mail</category>
+    <category>téléphone</category>
+    <category>linkedin</category>
+    <category>github</category>
+    <category>politique de confidentialité</category>
+    <category>gdpr</category>
+    <category>conditions d’utilisation</category>
+    <category>contact</category>
+    <category>contacter luis krötz</category>
+    <category>embaucher développeur front-end</category>
+    <category>développeur freelance</category>
+    <category>embaucher développeur web</category>
   </item>
   <item>
     <title>Politique de confidentialité</title>
     <link>https://luiskr.com/fr/politique-de-confidentialite</link>
-    <guid>https://luiskr.com/fr/politique-de-confidentialite</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/politique-de-confidentialite</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Chez luiskr , accessible depuis https://luiskr.com , l’une de mes principales priorités est la vie privée de mes visiteurs. Ce document de Politique de confidentialité contient les types d’informations collectées et enregistrées par luiskr.com et la façon dont je les utilise.</description>
+    <category>les choses habituelles</category>
+    <category>consentement</category>
+    <category>informations que je collecte</category>
+    <category>comment j’utilise tes informations</category>
+    <category>politiques de confidentialité de tiers</category>
+    <category>droits de confidentialité ccpa (ne pas vendre mes données personnelles)</category>
+    <category>informations des enfants</category>
+    <category>politique de confidentialité</category>
+    <category>confidentialité</category>
+    <category>protection des données</category>
+    <category>politique des cookies</category>
+    <category>luis krötz</category>
   </item>
   <item>
     <title>GDPR</title>
     <link>https://luiskr.com/fr/rgpd</link>
-    <guid>https://luiskr.com/fr/rgpd</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/rgpd</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Je veux m’assurer que tu connais pleinement tes droits en matière de protection des données. Chaque utilisateur a droit à ce qui suit :</description>
+    <category>droits de protection des données</category>
+    <category>rgpd</category>
+    <category>gdpr</category>
+    <category>règlement général sur la protection des données</category>
+    <category>données personnelles</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+    <category>portfolio</category>
+    <category>portfolio de luis krötz</category>
+    <category>développeur front-end</category>
+    <category>développeur web</category>
   </item>
   <item>
     <title>Conditions d’utilisation</title>
     <link>https://luiskr.com/fr/conditions-utilisation</link>
-    <guid>https://luiskr.com/fr/conditions-utilisation</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/conditions-utilisation</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Le site web luiskr.com situé à luiskr.com est sous LICENCE MIT. Luiskr.com est créé par Luis Krötz ; certaines fonctionnalités du Site peuvent être soumises à des lignes directrices, conditions ou règles supplémentaires, qui seront publiées sur le Site en relation avec ces fonctionnalités.</description>
+    <category>version 1.1</category>
+    <category>accès au site</category>
+    <category>liens tiers ; autres utilisateurs</category>
+    <category>exclusions de garantie</category>
+    <category>limitation de responsabilité</category>
+    <category>politique de droit d’auteur.</category>
+    <category>général</category>
+    <category>dépôt</category>
+    <category>coordonnées</category>
+    <category>conditions d'utilisation</category>
+    <category>conditions de service</category>
+    <category>termes et conditions</category>
   </item>
   <item>
     <title>Licence Publique Mozilla 2.0</title>
     <link>https://luiskr.com/fr/licence</link>
-    <guid>https://luiskr.com/fr/licence</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/licence</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Cette page contient le texte complet et officiel de la Mozilla Public License 2.0 (MPL 2.0), la licence sous laquelle le code source de ce site web est mis à disposition. La licence constitue une concession mondiale, libre de redevances, valable dans tous les pays et territoires.</description>
+    <category>à propos de ce document</category>
+    <category>1. définitions</category>
+    <category>2. concessions et conditions de licence</category>
+    <category>3. responsabilités</category>
+    <category>4. impossibilité de se conformer en raison d'une loi ou d'un règlement</category>
+    <category>5. résiliation</category>
+    <category>6. exclusion de garantie</category>
+    <category>7. limitation de responsabilité</category>
+    <category>8. litiges</category>
+    <category>9. divers</category>
+    <category>10. versions de la licence</category>
+    <category>annexe a — mention de licence de la forme de code source</category>
   </item>
   <item>
     <title>Référence des Animations</title>
     <link>https://luiskr.com/fr/animations</link>
-    <guid>https://luiskr.com/fr/animations</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/animations</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Toutes les animations du site, décrites — élément, mouvement, déclencheur, technologie et objectif — pour les lecteurs, les technologies d'assistance et les agents IA.</description>
+    <category>barre de progression de route défilant en haut pendant la navigation</category>
+    <category>bouton menu hamburger avec animation morph liquide</category>
+    <category>fond animé plein écran du menu avec champ de contours fluide</category>
+    <category>éléments du menu de navigation avec entrée ascendante échelonnée</category>
+    <category>icône de drapeau de langue avec animation vague et entrée</category>
+    <category>interrupteur de préférence avec glissement liquide du pouce</category>
+    <category>sélecteur de thème avec glissement orbital jour/nuit</category>
+    <category>bouton fermer avec remplissage liquide et x rotatif</category>
+    <category>squelette de chargement avec cellules en morph et shimmer</category>
+    <category>loader d'introduction avec anneaux contrarotatifs et progression</category>
+    <category>toast de notification glissant depuis le coin</category>
+    <category>titre de tuile portfolio brûlant en braises et se reformant</category>
   </item>
   <item>
     <title>Playground de la Terre</title>
     <link>https://luiskr.com/fr/playground-de-la-terre</link>
-    <guid>https://luiskr.com/fr/playground-de-la-terre</guid>
-    <description>Playground WebGL interactif de la Terre — ajustez terrain, atmosphère, éclairage et post-traitement en direct.</description>
+    <guid isPermaLink="true">https://luiskr.com/fr/playground-de-la-terre</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Simulation WebGL interactive de la Terre — ajustez terrain, atmosphère, éclairage et post-traitement en direct dans votre navigateur.</description>
+    <category>terre</category>
+    <category>images de la terre</category>
+    <category>planète terre</category>
+    <category>terre 3d</category>
+    <category>rendu de la terre</category>
+    <category>terre webgl</category>
+    <category>playground de la terre</category>
+    <category>simulation interactive de la terre</category>
+    <category>la terre depuis l'espace</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
   </item>
   <item>
     <title>Champ Stellaire</title>
     <link>https://luiskr.com/fr/experience-champ-etoile</link>
-    <guid>https://luiskr.com/fr/experience-champ-etoile</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vue d'Ensemble</description>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+    <category>portfolio</category>
+  </item>
+  <item>
+    <title>Recherche</title>
+    <link>https://luiskr.com/fr/recherche</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/recherche</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Recherchez toutes les pages, projets et expériences de luiskr.com.</description>
+    <category>recherche</category>
+    <category>recherche sur le site</category>
+    <category>trouver</category>
+    <category>recherche dans le portfolio</category>
+    <category>projets</category>
+    <category>catalogue</category>
+    <category>luis krötz</category>
+    <category>luiskr.com</category>
+    <category>portfolio</category>
+    <category>expériences webgl</category>
+    <category>routes correspondantes</category>
+    <category>à propos</category>
   </item>
   <item>
     <title>Dell Design System</title>
     <link>https://luiskr.com/fr/portfolio/dell-design-system</link>
-    <guid>https://luiskr.com/fr/portfolio/dell-design-system</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/dell-design-system</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Rejoindre Dell le 6 juin 2022, peu après la fermeture de Transainc, a marqué un tournant décisif dans ma carrière professionnelle.</description>
+    <category>dell design system</category>
+    <category>dell design system, aperçu du site web</category>
+    <category>dell design system: aperçu des fondations</category>
+    <category>dell design system: architecture de code et lignes directrices</category>
+    <category>dell design system: principes de démarrage</category>
+    <category>dell design system: aperçu de la bibliothèque de composants</category>
+    <category>dell design system: aperçu des modèles</category>
+    <category>dell design system: intégration storybook et lignes directrices des composants</category>
+    <category>dell design system: aperçu de la documentation des fondations</category>
+    <category>dell design system: fondation des design tokens v1</category>
+    <category>dell design system: fondation des design tokens v2</category>
+    <category>dell design system: référence des types de design tokens</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
   </item>
   <item>
     <title>Marco Almeida</title>
     <link>https://luiskr.com/fr/portfolio/aboutmarco</link>
-    <guid>https://luiskr.com/fr/portfolio/aboutmarco</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/aboutmarco</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Le portfolio de Marco a été développé comme projet freelance en 2021.</description>
+    <category>marco almeida</category>
+    <category>aboutmarco</category>
+    <category>aboutmarco.com, accueil full tour</category>
+    <category>aboutmarco.com, tour mobile</category>
+    <category>aboutmarco.com, accueil</category>
+    <category>aboutmarco.com, melissa insider</category>
+    <category>aboutmarco.com, melissa</category>
+    <category>aboutmarco.com, coza</category>
+    <category>aboutmarco.com, brazilian leather</category>
+    <category>aboutmarco.com, me</category>
+    <category>aboutmarco.com, archive</category>
+    <category>aboutmarco.com, admiretheweb</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Cecerelê</title>
     <link>https://luiskr.com/fr/portfolio/cecerele</link>
-    <guid>https://luiskr.com/fr/portfolio/cecerele</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/cecerele</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>J’ai rencontré Joana de Cecerelê par l’intermédiaire d’un ami commun, Sagu, en novembre 2020.</description>
+    <category>cecerelê</category>
+    <category>cecerele</category>
+    <category>cecerelê: created in 2019 by historian joana schossler para produzir jogos, cont</category>
+    <category>cecerelê: accueil with products updated on dec. 2021</category>
+    <category>cecerelê: about us page</category>
+    <category>cecerelê: product page</category>
+    <category>cecerelê: kit para colorir adulto edição limitada, product page</category>
+    <category>cecerelê: memorêlas jogo de memória das mulheres brasileiras, product page</category>
+    <category>cecerelê: minha praia, livro de colorir, product page</category>
+    <category>cecerelê, quebra cabeça revolucionárias: product page</category>
+    <category>cecerelê: cart contenu</category>
+    <category>cecerelê: login</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Brazilian Leather</title>
     <link>https://luiskr.com/fr/portfolio/cicb</link>
-    <guid>https://luiskr.com/fr/portfolio/cicb</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/cicb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Brazilian Leather est un projet développé chez Transa, dans le cadre d’un partenariat entre CICB et Apex-Brasil.</description>
+    <category>brazilian leather</category>
+    <category>cicb</category>
+    <category>brazilian leather, accueil full tour</category>
+    <category>brazilian leather, tour mobile</category>
+    <category>brazilian leather, home</category>
+    <category>brazilian leather, about</category>
+    <category>brazilian leather, in mandarin chinese</category>
+    <category>cscb, home page</category>
+    <category>fórum 2016, full tour</category>
+    <category>fórum 2016, page complète</category>
+    <category>fórum 2016, tour mobile</category>
+    <category>fórum 2017, full tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Coza</title>
     <link>https://luiskr.com/fr/portfolio/coza</link>
-    <guid>https://luiskr.com/fr/portfolio/coza</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/coza</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Le site de Coza a été développé chez Transa de 2017 à 2019.</description>
+    <category>coza</category>
+    <category>coza: accueil full tour</category>
+    <category>coza: mobile full tour</category>
+    <category>coza: page complète capture</category>
+    <category>coza: english accueil</category>
+    <category>coza: article, organização com as dicas da maysa.</category>
+    <category>coza: image galerie, a cada instante da rotina. mais coza + pantone.</category>
+    <category>coza: article, seu banheiro cheio de beleza.</category>
+    <category>coza: où trouver page on desktop</category>
+    <category>coza: où trouver page on mobile</category>
+    <category>le site de coza a été développé chez transa de 2017 à 2019.</category>
+    <category>brinox</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Melissa</title>
     <link>https://luiskr.com/fr/portfolio/melissa</link>
-    <guid>https://luiskr.com/fr/portfolio/melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Le site de Melissa était un projet développé par TRANSA INC.</description>
+    <category>melissa</category>
+    <category>melissa, site 2020 tour</category>
+    <category>melissa, feed mobile 2020 tour</category>
+    <category>melissa, accueil capture</category>
+    <category>melissa, où trouver tour</category>
+    <category>melissa, où trouver tour mobile</category>
+    <category>melissa, squad page 2020 capture</category>
+    <category>melissa, projects page 2020 capture</category>
+    <category>alerta de collab inedita melissa,</category>
+    <category>ebulicao de cores e ideias melissa,</category>
+    <category>reconexao urbana melissa,</category>
+    <category>melissa, galerie: galeria e lancamento squad</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>METCHA</title>
     <link>https://luiskr.com/fr/portfolio/metcha</link>
-    <guid>https://luiskr.com/fr/portfolio/metcha</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/metcha</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>METCHA : l’oracle du cuir, du design et de la culture.</description>
+    <category>metcha</category>
+    <category>metcha, feed 2022 tour</category>
+    <category>bill amberg studio moore giles collection metcha</category>
+    <category>ceeze's sustainability rules metcha</category>
+    <category>check the bell bullitt helmet by larson upholstery up close metcha</category>
+    <category>eugene riconneaus high standard skate leather sneakers metcha</category>
+    <category>find out why tommaso spinzi's studio is historic and full of stories metcha</category>
+    <category>max poglia s bags are never alike metcha</category>
+    <category>mini type 10 is the nouveau conscious and custom high end car design metcha</category>
+    <category>mut design free thinking perspective metcha</category>
+    <category>okhtein's leather bags show two sisters creative directions metcha</category>
+    <category>see how studio reco transforms excess into original bags metcha</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4" medium="video"/>
   </item>
   <item>
     <title>Mini Melissa</title>
     <link>https://luiskr.com/fr/portfolio/mini-melissa</link>
-    <guid>https://luiskr.com/fr/portfolio/mini-melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/mini-melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Mini Melissa était un projet développé chez Transa pour le groupe Grendene, comme canal dédié à la marque Mini Melissa.</description>
+    <category>mini melissa</category>
+    <category>mini melissa: accueil full tour</category>
+    <category>mini melissa: tour mobile</category>
+    <category>mini melissa: feed couverture</category>
+    <category>mini melissa: feed capture 2020</category>
+    <category>mini melissa: où trouver</category>
+    <category>mini melissa: où trouver, mobile</category>
+    <category>mini melissa: color me</category>
+    <category>mini melissa: color me mobile</category>
+    <category>mini melissa: dance machine</category>
+    <category>mini melissa: dance machine mobile</category>
+    <category>mini melissa: dreamers</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>MOR</title>
     <link>https://luiskr.com/fr/portfolio/mor</link>
-    <guid>https://luiskr.com/fr/portfolio/mor</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/mor</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Le site de MOR a été développé chez Transa.</description>
+    <category>mor</category>
+    <category>mor: accueil full tour</category>
+    <category>mor: site tour mobile</category>
+    <category>mor explica como cuidar da sua piscina mor</category>
+    <category>cada doçura da linha baby mor</category>
+    <category>mor: boutique tour</category>
+    <category>mor: boutique tour mobile</category>
+    <category>mor: boutique, category page capture</category>
+    <category>mor: boutique, product page capture</category>
+    <category>mor: où trouver tour</category>
+    <category>mor: où trouver tour mobile</category>
+    <category>le site de mor a été développé chez transa.</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>Nathalia Bond</title>
     <link>https://luiskr.com/fr/portfolio/nathalia-bond</link>
-    <guid>https://luiskr.com/fr/portfolio/nathalia-bond</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/nathalia-bond</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>J’ai rencontré Nathalia de Nathalia Bond, Clínica de Desenvolvimento, par l’intermédiaire d’un ami commun, Marco Anuschek, en octobre 2021.</description>
+    <category>nathalia bond</category>
+    <category>nathalia bond, clínica de desenvolvimento: accueil, tour</category>
+    <category>nathalia bond, clínica de desenvolvimento: accueil desktop</category>
+    <category>nathalia bond, clínica de desenvolvimento: accueil mobile</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades mobile page</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades desktop page</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, fonoaudiologia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicologia inf</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicomotria, d</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicopedagogia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, terapia ocupac</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossa equipe, desktop 4k page</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Genesysinf, Sageweb</title>
     <link>https://luiskr.com/fr/portfolio/sage</link>
-    <guid>https://luiskr.com/fr/portfolio/sage</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/sage</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Sage est un logiciel fiscal développé par Genesysinf, basée à Santana do Livramento, Brésil.</description>
+    <category>genesysinf, sageweb</category>
+    <category>sage</category>
+    <category>sageweb: shortcuts capture</category>
+    <category>sageweb: 'cadastros' capture</category>
+    <category>sageweb: color picker capture</category>
+    <category>sageweb: filters capture</category>
+    <category>sageweb: intro capture</category>
+    <category>sageweb: 'mapa sageweb' capture</category>
+    <category>sageweb: 'módulo nfe' capture</category>
+    <category>sageweb: shortcuts ordering capture</category>
+    <category>sageweb: personalization capture</category>
+    <category>sageweb: 'relatórios gerenciais' capture</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-atalhos-mozjpg-uncompressed.jpg" medium="image"/>
   </item>
   <item>
     <title>Transa</title>
     <link>https://luiskr.com/fr/portfolio/transa</link>
-    <guid>https://luiskr.com/fr/portfolio/transa</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/transa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Le site de Transa a été développé avec Vue, CSS (Sass) et PHP (Laravel) en 2021.</description>
+    <category>transa</category>
+    <category>transa: feed short tour</category>
+    <category>transa: vidéo of brazilian leather's cas inside transa's site.</category>
+    <category>transa: vidéo of metcha's cas inside transa's site.</category>
+    <category>transa: vidéo of mor's cas inside transa's site.</category>
+    <category>transa: vidéo of melissa's cas inside transa's site.</category>
+    <category>transa: vidéo of mini melissa's cas inside transa's site.</category>
+    <category>transa: vidéo of coza's cas inside transa's site.</category>
+    <category>transa: feed tour</category>
+    <category>transa: feed tour mobile</category>
+    <category>transa: category, brazilian leather, tour</category>
+    <category>transa: category, coza, tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4" medium="video"/>
   </item>
   <item>
     <title>Vibra</title>
     <link>https://luiskr.com/fr/portfolio/vibra</link>
-    <guid>https://luiskr.com/fr/portfolio/vibra</guid>
+    <guid isPermaLink="true">https://luiskr.com/fr/portfolio/vibra</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vibra était un site développé chez Transa en 2016 et resté en ligne jusqu’en 2021.</description>
+    <category>vibra</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, tour</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil /tour mobile</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil/ production and distributi</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil /our brands page complète</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, more than five decades of</category>
+    <category>vibra était un site développé chez transa en 2016 et resté en ligne jusqu’en 202</category>
+    <category>vibra agilize</category>
+    <category>brand portal</category>
+    <category>energy</category>
+    <category>projet web</category>
+    <category>étude de cas</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>47 Tucanés</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/47-tucanae</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/47-tucanae</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le deuxième amas globulaire le plus brillant du ciel : un essaim d'un million d'étoiles dans le halo près de la ligne de mire du Petit Nuage de Magellan.</description>
+    <category>47 Tucanés</category>
+    <category>cluster</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>51 Pegasi b</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/51-pegasi-b</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/51-pegasi-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Dimidium — le Jupiter chaud originel, le monde qui a réécrit la formation des planètes.</description>
+    <category>51 Pegasi b</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>51 Pégase</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/51-pegasi</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/51-pegasi</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La première étoile semblable au Soleil hébergeant une exoplanète – la découverte qui a ouvert un univers de mondes.</description>
+    <category>51 Pégase</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Aldébaran</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/aldebaran</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/aldebaran</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L’œil ardent du Taureau – une géante orange qui pourrait déjà héberger une planète géante.</description>
+    <category>Aldébaran</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Alpha du Centaure B</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/alpha-centauri-b</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/alpha-centauri-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Toliman — la compagne orange K1V qui valse avec Rigil Kentaurus tous les 79,9 ans.</description>
+    <category>Alpha du Centaure B</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Alpha Centaure</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/alpha-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/alpha-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le système stellaire le plus proche – un binaire semblable au Soleil encerclé à distance par Proxima.</description>
+    <category>Alpha Centaure</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/alpha-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Andromède Ier</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/andromeda-1</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/andromeda-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un faible sphéroïdal nain d'Andromède – l'un des satellites diffus peuplant le halo externe de M31.</description>
+    <category>Andromède Ier</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Andromède II</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/andromeda-2</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/andromeda-2</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Une naine sphéroïdale d'Andromède digne d'intérêt - ses étoiles montrent des signes d'une possible fusion plus ancienne de deux naines encore plus petites.</description>
+    <category>Andromède II</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Andromède III</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/andromeda-3</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/andromeda-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un faible membre sphéroïdal M31 de l’essaim – vieux, pauvre en métaux et dominé par la matière noire.</description>
+    <category>Andromède III</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galaxie d'Andromède</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/andromeda</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/andromeda</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La chose la plus éloignée que l’on puisse voir sans aide – à deux millions et demi d’années de lumière.</description>
+    <category>Galaxie d'Andromède</category>
+    <category>galaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/andromeda/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Antares B</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/antares-b</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/antares-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le compagnon émeraude — une naine bleu-blanc dans l'éclat du rival de Mars.</description>
+    <category>Antares B</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Antarès</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/antares</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/antares</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La rivale de Mars – une supergéante rouge gonflée s’approchant de sa supernova.</description>
+    <category>Antarès</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nain Verseau</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/aquarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/aquarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 210 — l'un des membres du groupe local les plus pauvres en métaux, un nuage de gaz presque sombre avec des étoiles clairsemées.</description>
+    <category>Nain Verseau</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Arcturus</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/arcturus</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/arcturus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'étoile la plus brillante du ciel nordique : une géante orange qui traverse le halo galactique.</description>
+    <category>Arcturus</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Arrokoth</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/arrokoth</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/arrokoth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le bonhomme de neige — deux lobes planétésimaux primitifs fusionnés au bord du Système solaire.</description>
+    <category>Arrokoth</category>
+    <category>asteroid</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ceinture d'astéroïdes</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/asteroid-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/asteroid-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Des millions de restes rocheux entre Mars et Jupiter – la planète qui ne s’est jamais formée.</description>
+    <category>Ceinture d'astéroïdes</category>
+    <category>belt</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Barnard b</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/barnard-b</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/barnard-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un monde de masse sous-terrestre serré contre l'étoile solitaire la plus proche — un fantôme centenaire enfin réel.</description>
+    <category>Barnard b</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>L'étoile de Barnard</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/barnard-star</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/barnard-star</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L’étoile la plus rapide dans notre ciel – une naine rouge pâle située à 6 années-lumière.</description>
+    <category>L'étoile de Barnard</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Bennu</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/bennu</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/bennu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'astéroïde le plus soigneusement suivi près de la Terre – échantillonné par OSIRIS-REx en 2020.</description>
+    <category>Bennu</category>
+    <category>asteroid</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Bételgeuse</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/betelgeuse</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/betelgeuse</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'épaule rouge d'Orion - une supergéante vivant en sursis.</description>
+    <category>Bételgeuse</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/betelgeuse/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Nain du Bouvier I</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/bootes-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/bootes-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le « champion des ténèbres » – un satellite ultra-faible de la Voie lactée situé à 197 000 années-lumière, découvert dans les données SDSS en 2006.</description>
+    <category>Nain du Bouvier I</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Callisto</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/callisto</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/callisto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le corps le plus cratérisé connu – une surface morte et ancienne inchangée depuis quatre milliards d’années.</description>
+    <category>Callisto</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Canopus</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/canopus</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/canopus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La deuxième étoile la plus brillante du ciel nocturne – une balise australe utilisée pour diriger les vaisseaux spatiaux.</description>
+    <category>Canopus</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Capella Ab</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/capella-b</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/capella-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le jumeau — le second géant doré du couple de Capella, valsant tous les 104 jours.</description>
+    <category>Capella Ab</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Capelle</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/capella</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/capella</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un système quadruple d’or – deux étoiles géantes en orbite si proches qu’elles se touchent presque.</description>
+    <category>Capelle</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Carina naine</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/carina-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/carina-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satellite de la Voie lactée situé à 330 000 années-lumière dont l'histoire de la formation des étoiles se déroule en rafales distinctes à travers le temps cosmique.</description>
+    <category>Carina naine</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nébuleuse de la Carène</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/carina</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/carina</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La grande fabrique d'étoiles du ciel du sud, qui abrite l'hypergéante condamnée Eta Carinae.</description>
+    <category>Nébuleuse de la Carène</category>
+    <category>nebula</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Cérès</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/ceres</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/ceres</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le premier astéroïde jamais découvert est une planète naine contenant un tiers de la masse de la ceinture.</description>
+    <category>Cérès</category>
+    <category>dwarfPlanet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/ceres/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Cetus nain</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/cetus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/cetus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un groupe local sphéroïdal isolé – au-delà des deux halos géants, il a évolué presque intact.</description>
+    <category>Cetus nain</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Superamas du Coma</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/coma-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/coma-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le superamas riche le plus proche – deux amas géants sur un filament commun, à environ 321 millions d’années-lumière.</description>
+    <category>Superamas du Coma</category>
+    <category>structure</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nébuleuse du Crabe</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/crab-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/crab-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'épave d'une étoile vue en train d'exploser en 1054 – toujours en expansion.</description>
+    <category>Nébuleuse du Crabe</category>
+    <category>nebula</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Déimos</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/deimos</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/deimos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La plus petite lune extérieure de Mars – un reste couvert de poussière en orbite au bord de l’altitude synchrone.</description>
+    <category>Déimos</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/deimos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Déneb</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/deneb</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/deneb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La queue du Cygne — l'une des étoiles à l'œil nu les plus éloignées, s'étendant sur 2 600 années-lumière.</description>
+    <category>Déneb</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Dioné</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/dione</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/dione</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La lune de glace vaporeuse de Saturne : des falaises fracturées et lumineuses traînant sur une ancienne face de cratère.</description>
+    <category>Dioné</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Drago nain</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/draco-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/draco-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satellite de la Voie lactée très pauvre en métaux, situé à 260 000 années-lumière – l'une des galaxies les plus dominées par la matière noire connue.</description>
+    <category>Drago nain</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nébuleuse de l'Aigle</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/eagle-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/eagle-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Accueil des piliers de la création – des tours de gaz où les étoiles s'enflamment.</description>
+    <category>Nébuleuse de l'Aigle</category>
+    <category>nebula</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/eagle-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Terre</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/earth</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/earth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le seul monde connu pour abriter la vie – une planète océanique dans la zone habitable.</description>
+    <category>Terre</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Encelade</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/enceladus</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/enceladus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un petit monde de glace avec un océan souterrain qui projette de l'eau dans l'espace à travers des geysers du pôle sud.</description>
+    <category>Encelade</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Epsilon Eridani b</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/eps-eridani-b</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/eps-eridani-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ægir — l'analogue de Jupiter connu le plus proche, traversant la ceinture de débris d'un jeune jumeau orange.</description>
+    <category>Epsilon Eridani b</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Epsilon Eridani</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/epsilon-eridani</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/epsilon-eridani</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L’étoile semblable au Soleil la plus proche avec un disque de débris – un jeune système solaire en devenir.</description>
+    <category>Epsilon Eridani</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Éris</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/eris</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/eris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La Discorde — la planète naine dont la découverte a dégradé Pluton.</description>
+    <category>Éris</category>
+    <category>dwarfPlanet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Éros</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/eros</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/eros</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La cacahuète proche de la Terre — premier astéroïde orbité et posé par une sonde.</description>
+    <category>Éros</category>
+    <category>asteroid</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Europe</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/europa</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/europa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un monde océanique recouvert de glace – sans doute le meilleur endroit au-delà de la Terre pour rechercher la vie.</description>
+    <category>Europe</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nain Fornax</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/fornax-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/fornax-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un sphéroïde satellite de la Voie lactée situé à 455 000 années-lumière – la seule naine classique encore à former des étoiles jusqu'à récemment.</description>
+    <category>Nain Fornax</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ganymède</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/ganymede</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/ganymede</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La plus grande lune du système solaire – plus grosse que Mercure, avec son propre champ magnétique.</description>
+    <category>Ganymède</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Comète de Halley</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/halley</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/halley</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La comète la plus célèbre de l'histoire — la première dont le retour fut prédit, de retour tous les ~75 ans.</description>
+    <category>Comète de Halley</category>
+    <category>comet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Hauméa</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/haumea</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/haumea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le cigare tournoyant — une planète naine étirée par la rotation la plus rapide de la ceinture de Kuiper.</description>
+    <category>Hauméa</category>
+    <category>dwarfPlanet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nébuleuse de l'Hélice</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/helix-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/helix-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'Œil de Dieu – le linceul mortel d'une étoile semblable au Soleil et un aperçu de notre propre étoile.</description>
+    <category>Nébuleuse de l'Hélice</category>
+    <category>nebula</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/helix-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Superamas Horologium-Réticulum</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/horologium-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/horologium-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le grand superamas du ciel austral – une concentration de masse de 700 millions d'altitude juste derrière Shapley.</description>
+    <category>Superamas Horologium-Réticulum</category>
+    <category>structure</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nébuleuse de la Tête de Cheval</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/horsehead</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/horsehead</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le cheval noir d'Orion - une silhouette de poussière froide sur fond d'hydrogène brillant.</description>
+    <category>Nébuleuse de la Tête de Cheval</category>
+    <category>nebula</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Superamas Hydra-Centaure</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/hydra-centaurus-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/hydra-centaurus-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le superamas adjacent à la Vierge – un rassemblement à double lobe qui comprend la région du Grand Attracteur.</description>
+    <category>Superamas Hydra-Centaure</category>
+    <category>structure</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Hygie</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/hygiea</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/hygiea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le géant sombre de carbone — quatrième astéroïde par la taille et presque une planète naine.</description>
+    <category>Hygie</category>
+    <category>asteroid</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Japet</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/iapetus</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/iapetus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La lune à deux faces de Saturne : un hémisphère brillant comme la neige, l'autre sombre comme du charbon.</description>
+    <category>Japet</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>CI 10</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/ic-10</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/ic-10</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La naine à explosion d'étoiles du groupe local - la seule encore en éruption avec formation d'étoiles près d'Andromède.</description>
+    <category>CI 10</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>IC1613</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/ic-1613</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/ic-1613</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un groupe local irrégulier dont les étoiles variables céphéides ont contribué à définir l'échelle de distance extragalactique.</description>
+    <category>IC1613</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Voisinage interstellaire</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/interstellar-neighborhood</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/interstellar-neighborhood</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La bulle locale du Soleil et ses compagnons stellaires – tout cela à environ 2 000 années-lumière.</description>
+    <category>Voisinage interstellaire</category>
+    <category>structure</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Io</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/io</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/io</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La lune volcanique de Jupiter — le corps géologiquement le plus actif du système solaire.</description>
+    <category>Io</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>ISS</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/iss</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/iss</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La Station spatiale internationale — le plus grand objet habité jamais lancé en orbite terrestre basse.</description>
+    <category>ISS</category>
+    <category>satellite</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Junon</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/juno</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/juno</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Une relique de pierre et de fer sur l'une des orbites les plus excentriques de la ceinture.</description>
+    <category>Junon</category>
+    <category>asteroid</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Jupiter</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/jupiter</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/jupiter</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le géant – plus massif que toutes les autres planètes réunies.</description>
+    <category>Jupiter</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Kepler-452b</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/kepler-452-b</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/kepler-452-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le cousin de la Terre — le premier monde de taille terrestre dans une zone habitable de jumeau solaire.</description>
+    <category>Kepler-452b</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Kepler-452</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/kepler-452</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/kepler-452</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>« Terre 2.0 » — une étoile semblable au Soleil hébergeant une planète rocheuse dans sa zone habitable.</description>
+    <category>Kepler-452</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ceinture de Kuiper</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/kuiper-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/kuiper-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un anneau gelé de mondes glacés au-delà de Neptune — l'archive congelée du système solaire.</description>
+    <category>Ceinture de Kuiper</category>
+    <category>belt</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nébuleuse de la Lagune</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/lagoon</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/lagoon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Une pépinière d'étoiles que l'œil nu peut voir – le grand bassin de formation d'étoiles du Sagittaire.</description>
+    <category>Nébuleuse de la Lagune</category>
+    <category>nebula</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Superamas de Laniakea</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/laniakea</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/laniakea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Notre superamas d'origine – un bassin de 520 millions d'altitude d'environ 100 000 galaxies convergeant vers le Grand Attracteur.</description>
+    <category>Superamas de Laniakea</category>
+    <category>structure</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Lion Ier Nain</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/leo-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/leo-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satellite de la Voie lactée situé à 820 000 années-lumière – si éloigné qu'il s'agit du premier nain découvert uniquement sur des plaques de relevé photographique.</description>
+    <category>Lion Ier Nain</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nain Léon II</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/leo-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/leo-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un sphéroïde lointain de la Voie lactée à 690 000 années-lumière, également catalogué sous le nom de Léon B – associé à Léon I sur la face cachée du halo.</description>
+    <category>Nain Léon II</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Léon A</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/leo-a</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/leo-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Une irrégularité isolée à la limite du groupe local – formant toujours des étoiles après des milliards d'années seulement.</description>
+    <category>Léon A</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>LGS3</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/lgs-3</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/lgs-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le nain Poissons – un membre transitoire du groupe local à mi-chemin entre un sphéroïdal et un irrégulier.</description>
+    <category>LGS3</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Grand Nuage de Magellan</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/lmc</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/lmc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La plus grande galaxie satellite de la Voie lactée – un compagnon d'étoile à 160 000 années-lumière.</description>
+    <category>Grand Nuage de Magellan</category>
+    <category>galaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Groupe local</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/local-group</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/local-group</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L’amas d’environ 80 galaxies que la Voie lactée abrite – un volume d’environ 10 millions d’années-lumière de large lié par une gravité partagée.</description>
+    <category>Groupe local</category>
+    <category>structure</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Messier110</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/m110</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/m110</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le deuxième satellite brillant d'Andromède – un nain elliptique contenant de faibles structures poussiéreuses et ses propres amas globulaires.</description>
+    <category>Messier110</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Grand amas d'Hercule</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/m13-hercules</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/m13-hercules</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>M13 — le plus bel amas globulaire du ciel nordique, environ 300 000 étoiles dans une boule de 145 années-lumière de large.</description>
+    <category>Grand amas d'Hercule</category>
+    <category>cluster</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Messier 32</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/m32</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/m32</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le satellite elliptique compact d'Andromeda - une galaxie dépouillée de son noyau dense par des passages rapprochés répétés.</description>
+    <category>Messier 32</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Makemake</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/makemake</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/makemake</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le monde du créateur de Rapa Nui — une naine givrée de méthane au bord froid de la ceinture de Kuiper.</description>
+    <category>Makemake</category>
+    <category>dwarfPlanet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Mars</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/mars</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/mars</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La planète rouge abrite le volcan le plus haut et le canyon le plus profond connu.</description>
+    <category>Mars</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mars/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Mercure</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/mercury</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/mercury</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La plus petite planète et la plus proche du Soleil – un monde de cratères extrêmes.</description>
+    <category>Mercure</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mercury/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Voie lactée</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/milky-way</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/milky-way</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Notre galaxie natale – une spirale barrée de centaines de milliards d’étoiles.</description>
+    <category>Voie lactée</category>
+    <category>galaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Mimas</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/mimas</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/mimas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La lune « Étoile de la mort » de Saturne : une boule de glace battue dominée par le cratère géant Herschel.</description>
+    <category>Mimas</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Lune</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/moon</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/moon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le seul satellite naturel de la Terre — le premier monde visité par des êtres humains.</description>
+    <category>Lune</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/moon/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Satellites Proches de la Terre</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/near-earth-satellites</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/near-earth-satellites</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'enveloppe artificielle — des milliers d'engins actifs et de fragments de débris essaimant l'orbite terrestre basse.</description>
+    <category>Satellites Proches de la Terre</category>
+    <category>satellite</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Neptune</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/neptune</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/neptune</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le monde le plus venteux — une géante de glace trouvée par les mathématiques avant les télescopes.</description>
+    <category>Neptune</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/neptune/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>NGC147</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/ngc-147</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/ngc-147</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Une naine sphéroïdale d'Andromède à 2,53 Mly - de vieilles étoiles, un gaz calme, en orbite dans l'emprise gravitationnelle de M31.</description>
+    <category>NGC147</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>NGC185</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/ngc-185</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/ngc-185</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le frère de NGC 147 - un sphéroïdal nain d'Andromède remarquable pour sa poussière et ses jeunes étoiles rares dans sa catégorie.</description>
+    <category>NGC185</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>La galaxie de Barnard</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/ngc-6822</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/ngc-6822</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un groupe local irrégulier en Sagittaire — 1,63 Mly, un nain qui ressemble à un petit nuage de Magellan.</description>
+    <category>La galaxie de Barnard</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Univers observable</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/observable-universe</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/observable-universe</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L’horizon causal – tout ce à partir duquel la lumière a eu le temps de nous parvenir en 13,8 milliards d’années.</description>
+    <category>Univers observable</category>
+    <category>structure</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Oméga Centaure</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/omega-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/omega-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le plus grand amas globulaire de la Voie Lactée – peut-être le noyau dénudé d’une galaxie dévorée.</description>
+    <category>Oméga Centaure</category>
+    <category>cluster</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nébuleuse d'Orion</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/orion-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/orion-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La pépinière stellaire la plus proche – de nouveaux soleils naissent à la vue de tous.</description>
+    <category>Nébuleuse d'Orion</category>
+    <category>nebula</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/orion-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Pallas</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/pallas</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/pallas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le géant incliné de la ceinture — une protoplanète basaltique qui plonge à travers le plan planétaire.</description>
+    <category>Pallas</category>
+    <category>asteroid</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Pegasus Nain Irrégulier</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/pegasus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/pegasus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 216 — un groupe local riche en gaz, irrégulier, à combustion lente et chimiquement primitif.</description>
+    <category>Pegasus Nain Irrégulier</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Superamas Persée-Poissons</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/perseus-pisces-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/perseus-pisces-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un superamas filamentaire majeur – une crête de 250 millions d'années de groupes de galaxies traversant le ciel d'automne du nord.</description>
+    <category>Superamas Persée-Poissons</category>
+    <category>structure</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Phobos</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/phobos</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/phobos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La plus grande des deux lunes de Mars – un tas de décombres qui tourne lentement en spirale vers sa planète.</description>
+    <category>Phobos</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/phobos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Nain Phénix</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/phoenix-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/phoenix-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un nain de groupe local de transition – en partie sphéroïdal, en partie irrégulier, formant toujours un filet d’étoiles.</description>
+    <category>Nain Phénix</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Pléiades</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/pleiades</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/pleiades</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Les Sept Sœurs – un écrin de jeunes étoiles bleues enveloppées dans une nébulosité par réflexion.</description>
+    <category>Pléiades</category>
+    <category>cluster</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Pluton</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/pluto</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/pluto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le nain bien-aimé – roi de la ceinture de Kuiper et d’un monde de glaciers d’azote.</description>
+    <category>Pluton</category>
+    <category>dwarfPlanet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Polaris Ab</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/polaris-ab</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/polaris-ab</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le compagnon résolu par Hubble — une naine solaire traversant l'éclat de la Céphéide.</description>
+    <category>Polaris Ab</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Étoile polaire</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/polaris</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/polaris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'étoile polaire — une balise céphéide presque directement au-dessus de l'axe de la Terre.</description>
+    <category>Étoile polaire</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Proxima b</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/proxima-b</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/proxima-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'exoplanète la plus proche de la Terre — un monde de masse terrestre dans la zone habitable de Proxima.</description>
+    <category>Proxima b</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Proxima c</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/proxima-c</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/proxima-c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Une super-Terre candidate contestée, bien au-delà de la zone habitable — la sœur froide et lente de Proxima.</description>
+    <category>Proxima c</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Proxima du Centaure</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/proxima-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/proxima-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L’étoile la plus proche du Soleil – une étoile flamboyante avec une planète de la taille de la Terre à côté.</description>
+    <category>Proxima du Centaure</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/proxima-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Proxima d</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/proxima-d</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/proxima-d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le monde le plus interne de Proxima — une sous-Terre qui frôle l'étoile tous les cinq jours.</description>
+    <category>Proxima d</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Rhéa</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/rhea</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/rhea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La deuxième plus grande lune de Saturne – un monde de glace brillant et battu au bord du plan des anneaux.</description>
+    <category>Rhéa</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Rigel</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/rigel</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/rigel</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le pied bleu-blanc d'Orion — une supergéante parmi les étoiles les plus lumineuses connues.</description>
+    <category>Rigel</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nébuleuse de l'Anneau</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/ring-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/ring-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'anneau de fumée d'un Soleil mourant – la nébuleuse planétaire que tous les télescopes connaissent.</description>
+    <category>Nébuleuse de l'Anneau</category>
+    <category>nebula</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ryugu</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/ryugu</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/ryugu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un astéroïde carboné à toupie — échantillonné par Hayabusa2 et revenu sur Terre.</description>
+    <category>Ryugu</category>
+    <category>asteroid</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>SagDIG</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/sagdig</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/sagdig</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Sagittaire Dwarf Irregular — la galaxie la plus pauvre en métaux et riche en gaz du groupe local, à 3,45 Mly.</description>
+    <category>SagDIG</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sagittaire A*</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/sagittarius-a</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/sagittarius-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le trou noir supermassif central de la Voie lactée – un moteur de 4,3 millions de masse solaire ancrant la galaxie entière.</description>
+    <category>Sagittaire A*</category>
+    <category>blackHole</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galaxie naine du Sagittaire</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/sagittarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/sagittarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le satellite connu le plus proche de la Voie lactée – un sphéroïde déjà déchiré en flux d'étoiles lorsqu'il traverse le disque.</description>
+    <category>Galaxie naine du Sagittaire</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Saturne</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/saturn</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/saturn</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le géant aux anneaux – son halo de glace s’étend sur 280 000 km mais mesure quelques mètres d’épaisseur.</description>
+    <category>Saturne</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Nain sculpteur</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/sculptor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/sculptor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un sphéroïde de la Voie lactée pauvre en métaux, situé à 290 000 années-lumière – dominé par la matière noire, vieux de plus de 10 milliards d’années.</description>
+    <category>Nain sculpteur</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans A</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/sextans-a</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/sextans-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un groupe local brillant et irrégulier — 4,4 Mly, formant toujours vigoureusement des étoiles dans ses nœuds les plus denses.</description>
+    <category>Sextans A</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans B</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/sextans-b</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/sextans-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un groupe local irrégulier sur le bord extérieur du groupe — l'une des galaxies naines les plus éloignées liées à notre voisinage.</description>
+    <category>Sextans B</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans nain sphéroïdal</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/sextans-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/sextans-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un très faible satellite de la Voie lactée situé à 290 000 années-lumière – l'un des sphéroïdaux nains les moins lumineux du halo.</description>
+    <category>Sextans nain sphéroïdal</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Superamas de Shapley</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/shapley-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/shapley-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La concentration de Shapley – le superamas le plus lourd à proximité, à environ 650 Mly, contenant environ 8 000 galaxies.</description>
+    <category>Superamas de Shapley</category>
+    <category>structure</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sirius B</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/sirius-b</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/sirius-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le Pup — la première naine blanche reconnue, en orbite autour de l'étoile la plus brillante du ciel.</description>
+    <category>Sirius B</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sirius</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/sirius</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/sirius</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>The Dog Star - l'étoile la plus brillante du ciel nocturne de la Terre, cachant un compagnon mort.</description>
+    <category>Sirius</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sirius/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Petit Nuage de Magellan</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/smc</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/smc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le deuxième satellite de la Voie lactée – une galaxie naine pauvre en métaux qui se déchire lentement.</description>
+    <category>Petit Nuage de Magellan</category>
+    <category>galaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Soleil</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/sun</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/sun</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'étoile de la séquence principale de type G détenant 99,86 % de la masse du système solaire.</description>
+    <category>Soleil</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sun/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Nébuleuse de la Tarentule</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/tarantula</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/tarantula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La région de formation d'étoiles la plus violente du groupe local – dans une galaxie satellite située à 160 000 al.</description>
+    <category>Nébuleuse de la Tarentule</category>
+    <category>nebula</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti e</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/tau-ceti-e</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/tau-ceti-e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Une super-Terre dans la zone habitable de l'étoile unique la plus proche — du côté le plus chaud de l'espoir.</description>
+    <category>Tau Ceti e</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti f</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/tau-ceti-f</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/tau-ceti-f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le candidat froid externe — une super-Terre lourde au bord givré de la zone habitable.</description>
+    <category>Tau Ceti f</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/tau-ceti</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/tau-ceti</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Une étoile silencieuse semblable au Soleil, située à 12 années-lumière, avec un système interne encombré.</description>
+    <category>Tau Ceti</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Titan</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/titan</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/titan</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La seule lune avec une atmosphère épaisse – des rivières de méthane, des lacs et de la pluie sur un monde d'eau et de glace gelée.</description>
+    <category>Titan</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPISTE-1</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/trappist-1</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/trappist-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Sept mondes de la taille de la Terre autour d’une étoile à peine plus grande que Jupiter.</description>
+    <category>TRAPPISTE-1</category>
+    <category>system</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/trappist-1/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>TRAPPIST-1b</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/trappist-1b</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/trappist-1b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La plus interne des sept mondes résonnants — un roc calciné de la taille de la Terre.</description>
+    <category>TRAPPIST-1b</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1c</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/trappist-1c</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/trappist-1c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Sœur de masse vénusienne orbitant dans la chaleur interne de la chaîne résonnante.</description>
+    <category>TRAPPIST-1c</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1d</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/trappist-1d</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/trappist-1d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La plus légère des sept — un monde sous-terrestre au bord de la chaleur.</description>
+    <category>TRAPPIST-1d</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1e</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/trappist-1e</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/trappist-1e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'analogue terrestre le plus dense des sept — la meilleure chance du système pour l'eau liquide.</description>
+    <category>TRAPPIST-1e</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1f</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/trappist-1f</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/trappist-1f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un monde riche en eau au bord interne de la zone habitable.</description>
+    <category>TRAPPIST-1f</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1g</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/trappist-1g</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/trappist-1g</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La plus grande des sept — une super-Terre fraîche à l'ancre externe de la chaîne.</description>
+    <category>TRAPPIST-1g</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1h</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/trappist-1h</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/trappist-1h</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le bord froid externe — le dernier monde du système, couvert de glace.</description>
+    <category>TRAPPIST-1h</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galaxie du Triangle</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/triangulum</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/triangulum</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La troisième spirale tranquille — le membre timide du Groupe Local, riche en pépinières vedettes.</description>
+    <category>Galaxie du Triangle</category>
+    <category>galaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/triangulum/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Triton</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/triton</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/triton</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La lune capturée par Neptune – un monde de la ceinture de Kuiper avec des geysers d'azote, en orbite vers l'arrière.</description>
+    <category>Triton</category>
+    <category>moon</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nain Tucana</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/tucana-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/tucana-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le sphéroïdal le plus isolé du groupe local — à 2,9 Mly, jamais influencé par une galaxie majeure.</description>
+    <category>Nain Tucana</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>La Grande Ourse I naine</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/uma-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/uma-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satellite ultra-faible de la Voie lactée découvert par le SDSS – une vitrine de la domination de la matière noire au bord de la formation des galaxies.</description>
+    <category>La Grande Ourse I naine</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>La Grande Ourse II naine</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/uma-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/uma-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L'une des galaxies les plus faibles connues – un satellite ultra-faible de la Voie lactée à seulement 105 000 années-lumière.</description>
+    <category>La Grande Ourse II naine</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Uranus</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/uranus</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/uranus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La planète latérale – une géante de glace roulant autour du Soleil sur le côté.</description>
+    <category>Uranus</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/uranus/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>La Petite Ourse naine</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/ursa-minor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/ursa-minor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un sphéroïde de la Voie lactée à 225 000 années-lumière – une matière ancienne, faible et presque entièrement noire.</description>
+    <category>La Petite Ourse naine</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Véga</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/vega</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/vega</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>L’ancienne et future étoile polaire – le point zéro de la luminosité de l’astronomie.</description>
+    <category>Véga</category>
+    <category>star</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/vega/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Vénus</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/venus</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/venus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>La taille jumelle de la Terre, enveloppée dans une serre écrasante de CO₂ – la planète la plus chaude.</description>
+    <category>Vénus</category>
+    <category>planet</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Vesta</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/vesta</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/vesta</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le monde le plus brillant de la ceinture d'astéroïdes : une protoplanète qui a survécu à l'aube du système solaire.</description>
+    <category>Vesta</category>
+    <category>asteroid</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Superamas de la Vierge</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/virgo-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/virgo-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Le superamas local — un nuage aplati d'environ 100 groupes de galaxies centré sur l'amas de la Vierge à environ 54 Mly.</description>
+    <category>Superamas de la Vierge</category>
+    <category>structure</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galaxie WLM</title>
+    <link>https://luiskr.com/fr/experience-champ-etoile/wlm</link>
+    <guid isPermaLink="true">https://luiskr.com/fr/experience-champ-etoile/wlm</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Wolf – Lundmark – Melotte - une irrégulière isolée avec son propre amas globulaire, à 3 Mly de chez nous.</description>
+    <category>Galaxie WLM</category>
+    <category>dwarfGalaxy</category>
+    <category>champ stellaire</category>
+    <category>images d'étoiles</category>
+    <category>galaxie 3d</category>
+    <category>carte stellaire</category>
+    <category>ciel nocturne</category>
+    <category>étoiles depuis l'espace</category>
+    <category>catalogue d'exoplanètes</category>
+    <category>expérience champ stellaire</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
   </item>
 </channel>
 </rss>

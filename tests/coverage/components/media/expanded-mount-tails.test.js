@@ -2,8 +2,8 @@
  * @file expanded-mount-tails.test.js
  * @description Coverage tails for components/media/expanded/mount.ts —
  * the CSS-zoom fallback when the genie cannot start (`!startGenieOpen`),
- * the media-width/height `|| GENERIC_DIMENSIONS` fallbacks inside
- * fitMediaItem, the shadowRoot-less deferred-mount else arm, the video
+ * the media-width/height `|| GENERIC_DIMENSIONS` fallbacks inside the
+ * natural-box stamp, the shadowRoot-less deferred-mount else arm, the video
  * markLoaded listeners, and the scroll snapback's `|| 0` parked-transform
  * fallback. The genie module is mocked so startGenieOpen deterministically
  * reports "cannot start" without touching the real warp machinery.
@@ -67,10 +67,8 @@ describe('expanded mount tails', () => {
     const el = makeEl()
     const content = el.$(CONTENT_SEL)
 
-    // boundW > 0 forces fitMediaItem past the guard with mediaWidth/
-    // mediaHeight = 0 → the GENERIC_DIMENSIONS fallbacks run.
-    Object.defineProperty(content, 'clientWidth', { value: 480, configurable: true })
-
+    // mediaWidth/mediaHeight = 0 → the GENERIC_DIMENSIONS fallbacks
+    // stamp the natural box.
     mountMediaExpanded(el)
 
     // startGenieOpen returns false (mock) → legacy CSS zoom arm.

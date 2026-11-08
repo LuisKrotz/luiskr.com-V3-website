@@ -13,7 +13,13 @@ import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { LOCALES } from '@core/tokens/locales.js'
 import { PROJECT_ALIASES } from '@core/tokens/routes/aliases.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
-import { generateProjectSchema, updateJsonLd, setRobotsMeta } from '@core/utils/index.js'
+import { SCHEMA_STRINGS } from '@core/tokens/strings/schema.js'
+import {
+  generateProjectSchema,
+  resolveProjectMedia,
+  updateJsonLd,
+  setRobotsMeta,
+} from '@core/utils/index.js'
 import { toMetaDescription } from '@core/utils/string.js'
 import { setMetaContent, setMetaDescription } from '@core/router/navigate.js'
 import store from '@core/store.js'
@@ -115,14 +121,23 @@ export function loadData(view: ViewProject, wait: number | false = false): void 
       // params.slug is the media deep-link segment — when present the
       // graph recenters on that asset (WebPage + media entity + crumb),
       // matching the static page emitted for the same URL.
-      const schemaGraph = generateProjectSchema(
-        data,
-        projectKey,
-        currentLocale,
-        router.currentRoute?.params?.slug
-      )
+      const mediaSlug = router.currentRoute?.params?.slug
+
+      const schemaGraph = generateProjectSchema(data, projectKey, currentLocale, mediaSlug)
 
       updateJsonLd(schemaGraph)
+
+      // Watch-page og:type — a resolved video deep link upgrades the card
+      // type to video.other (the emitted page declares it statically);
+      // anything else is the article card for the project.
+      const resolvedMedia = mediaSlug ? resolveProjectMedia(data, mediaSlug) : null
+
+      setMetaContent(
+        QUERY_STRINGS.META_OG_TYPE,
+        resolvedMedia?.urls.isVideo
+          ? SCHEMA_STRINGS.SCHEMA_OG_VIDEO
+          : SCHEMA_STRINGS.SCHEMA_OG_ARTICLE
+      )
 
       const reveal = () => {
         view.translations = data

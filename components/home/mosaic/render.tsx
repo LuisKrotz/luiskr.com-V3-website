@@ -71,6 +71,12 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
 
   const alreadyLoaded = covers.rungs.length > 0 && Boolean(reached)
 
+  // The placeholder + high layers are aria-hidden duplicates of the
+  // thumb, so they carry the same label alt: screen readers never reach
+  // them, but audit crawlers that report empty alt="" as missing see a
+  // real text on every painted <img>.
+  const altText = item.label || item.title || ATTR_VALUES.EMPTY
+
   return (
     <a
       key={item.link || i}
@@ -86,7 +92,7 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
         <img
           className={`${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG} ${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_PLACEHOLDER}`}
           src={svgPlaceholder(GENERIC_DIMENSIONS.DEFAULT_WIDTH, GENERIC_DIMENSIONS.DEFAULT_HEIGHT)}
-          alt={ATTR_VALUES.EMPTY}
+          alt={altText}
           aria-hidden={ATTR_VALUES.TRUE}
           width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
           height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
@@ -121,7 +127,7 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
                     GENERIC_DIMENSIONS.DEFAULT_HEIGHT
                   )
             }
-            alt={item.label || item.title || ATTR_VALUES.EMPTY}
+            alt={altText}
             width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
             height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
             sizes={IMAGE_SIZES.HOME_MOSAIC}
@@ -156,7 +162,7 @@ function renderCard(host: HomeMosaic, item: MosaicItem, i: number, exploreText?:
               fetchpriority={fetchpriority}
               className={`${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG} ${HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_HIGH} ${alreadyLoaded ? HOME_MOSAIC_CLASSES.HOME_MOSAIC_IMG_LOADED : ATTR_VALUES.EMPTY}`}
               src={reached || (covers.rungs[0].jpg === coverSrc ? covers.src : covers.rungs[0].jpg)}
-              alt={ATTR_VALUES.EMPTY}
+              alt={altText}
               aria-hidden={ATTR_VALUES.TRUE}
               width={GENERIC_DIMENSIONS.DEFAULT_WIDTH}
               height={GENERIC_DIMENSIONS.DEFAULT_HEIGHT}

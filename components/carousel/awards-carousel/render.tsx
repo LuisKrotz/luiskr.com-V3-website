@@ -49,7 +49,7 @@ export function renderItem(host: AwardsCarousel, item: CarouselSlide | undefined
             decoding={MEDIA_ATTRS.DECODING_ASYNC}
             className={AWC_CLASSES.AWC_AWARD_IMG}
             src={encodeMediaUrl(storage + item.media.path)}
-            alt={item.description || ATTR_VALUES.EMPTY}
+            alt={item.description || item.label || ATTR_VALUES.EMPTY}
             width={item.media.width || GENERIC_DIMENSIONS.AWARD_ICON_SIZE}
             height={item.media.height || GENERIC_DIMENSIONS.AWARD_ICON_SIZE}
           />

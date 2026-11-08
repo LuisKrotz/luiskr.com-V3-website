@@ -21,8 +21,8 @@ const _S = {
 // JS source structure assertions
 // ─────────────────────────────────────────────────────────────────────────────
 describe('Source file structure', () => {
-  test('Home view contains HOME_MOSAIC, ABOUT_SECTION, CONTACT_SECTION, AWARDS_MENTIONS', () => {
-    expect(SRC.Home).toContain('HOME_MOSAIC')
+  test('Home view contains CARD_STACK, ABOUT_SECTION, CONTACT_SECTION, AWARDS_MENTIONS', () => {
+    expect(SRC.Home).toContain('CARD_STACK')
     expect(SRC.Home).toContain('id="about"')
     expect(SRC.Home).toContain('ABOUT_SECTION')
     expect(SRC.Home).toContain('id="contact"')
@@ -49,10 +49,9 @@ describe('Source file structure', () => {
     expect(SRC.NotFound).toContain(NOT_FOUND_CLASSES.NOT_FOUND)
   })
 
-  test('PortfolioRelated contains RELATED_MOSAIC, RELATED_MOSAIC_ITEM, INTERNAL_FOOTER_ITEMS_NOTE', () => {
-    expect(SRC.PortfolioRelated).toContain('RELATED_MOSAIC')
-    expect(SRC.PortfolioRelated).toContain('RELATED_MOSAIC_ITEM')
-    expect(SRC.PortfolioRelated).toContain('INTERNAL_FOOTER_ITEMS_NOTE')
+  test('PortfolioRelated contains RELATED_LIST, RELATED_LIST_ITEM', () => {
+    expect(SRC.PortfolioRelated).toContain('RELATED_LIST')
+    expect(SRC.PortfolioRelated).toContain('RELATED_LIST_ITEM')
   })
 
   test('LegalFooter contains INTERNAL_FOOTER, INTERNAL_FOOTER_ITEMS_LINK, INTERNAL_FOOTER_ITEMS_SEP', () => {
@@ -60,5 +59,6 @@ describe('Source file structure', () => {
     expect(SRC.LegalFooter).toContain('INTERNAL_FOOTER_ITEMS_LINK')
     expect(SRC.LegalFooter).toContain('CONTACT_OTHER_LINK')
     expect(SRC.LegalFooter).toContain('INTERNAL_FOOTER_ITEMS_SEP')
+    expect(SRC.LegalFooter).toContain('INTERNAL_FOOTER_ITEMS_NOTE')
   })
 })

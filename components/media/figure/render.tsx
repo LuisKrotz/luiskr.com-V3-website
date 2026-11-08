@@ -91,7 +91,10 @@ export function renderMediaFigure(c: MediaFigure) {
         src={c.placeholder(mediaW, mediaH)}
         width={mediaW}
         height={mediaH}
-        alt={ATTR_VALUES.EMPTY}
+        // aria-hidden duplicate of the media layers below — the label
+        // alt is for audit crawlers that flag empty alt="" as missing;
+        // screen readers never reach the attribute.
+        alt={c.label}
         aria-hidden={ATTR_VALUES.TRUE}
       />
 

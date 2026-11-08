@@ -2,9 +2,9 @@
  * @file media-manifest-webp-source-tails.test.js
  * @description Coverage tail for the manifest-gated <source> emission —
  * with the bucket manifest loaded, surfaces that offer a webp variant
- * render the <source> (mosaic cover, related card, carousel pattern
- * thumb). The unmanifested/negative arms are covered by every other
- * component suite that renders these templates without a fetch mock.
+ * render the <source> (mosaic cover, related card). The unmanifested/
+ * negative arms are covered by every other component suite that renders
+ * these templates without a fetch mock.
  */
 import { jest } from '@jest/globals'
 import '@website/components/media/MediaFigure.js'
@@ -12,12 +12,10 @@ import { HomeMosaic } from '@website/components/home/HomeMosaic.js'
 import { renderMosaic } from '@website/components/home/mosaic/render.js'
 import { PortfolioRelated } from '@website/components/portfolio/Related.js'
 import { renderRelated } from '@website/components/portfolio/related/render.js'
-import { renderCarouselSlide } from '@website/components/carousel/custom-carousel/render.js'
 import { initMediaManifest } from '@core/utils/media/manifest.js'
 import { MediaExpanded } from '@website/components/media/MediaExpanded.js'
 import { CDN_URLS } from '@core/tokens/media/urls.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
-import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { mount } from '@tests/fixtures/test-constants.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
@@ -33,7 +31,6 @@ describe('media-manifest webp sources', () => {
   const COVER_KEY = 'covers/ia'
   const LADDER_KEY = 'covers/lad'
   const JPG_ONLY_KEY = 'covers/lad2'
-  const THUMB_KEY = `folder/b${MEDIA.MOZ}${MEDIA.THUMB_SUFFIX}`
 
   test('manifest-seeded renders emit webp <source>s', async () => {
     const realFetch = globalThis.fetch
@@ -42,7 +39,6 @@ describe('media-manifest webp sources', () => {
       ok: true,
       json: async () => [
         `${COVER_KEY}${MEDIA.WEBP_EXT}`,
-        `${THUMB_KEY}${MEDIA.WEBP_EXT}`,
         // fig/pic — figure ladder: q50 (jpg-only), q75 (+webp), q100; the
         // raw stem.jpg deliberately absent so the '' rung gates out.
         `fig/pic${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`,
@@ -112,21 +108,6 @@ describe('media-manifest webp sources', () => {
     )
 
     relatedCleanup()
-
-    // Carousel mixed-landscape pattern — two mirrored <picture>s get a
-    // webp <source> each when the thumb sibling exists in the manifest.
-    const slide = renderCarouselSlide(
-      { src: 'b', size: [1920, 1080], class: STATE_STRINGS.LANDSCAPE },
-      'folder/',
-      true
-    )
-
-    const patternSources = slide.querySelectorAll('source')
-
-    expect(patternSources.length).toBe(2)
-    expect(patternSources[0].getAttribute('srcset')).toBe(
-      `${CDN_URLS.CDN_BASE}${THUMB_KEY}${MEDIA.WEBP_EXT}`
-    )
 
     globalThis.fetch = realFetch
   })
@@ -429,7 +410,7 @@ describe('media-manifest webp sources', () => {
     related._updateDom()
 
     const highs = related.shadowRoot.querySelectorAll(
-      `img.${RELATED_CLASSES.RELATED_MOSAIC_IMG_HIGH}`
+      `img.${RELATED_CLASSES.RELATED_LIST_IMG_HIGH}`
     )
 
     expect(highs.length).toBe(3)
@@ -461,11 +442,11 @@ describe('media-manifest webp sources', () => {
       related._updateDom()
 
       const resumed = related.shadowRoot.querySelector(
-        `img.${RELATED_CLASSES.RELATED_MOSAIC_IMG_HIGH}`
+        `img.${RELATED_CLASSES.RELATED_LIST_IMG_HIGH}`
       )
 
       expect(resumed.getAttribute('src')).toBe(related._loadedCovers.get(imageSrc))
-      expect(resumed.classList.contains(RELATED_CLASSES.RELATED_MOSAIC_IMG_LOADED)).toBe(true)
+      expect(resumed.classList.contains(RELATED_CLASSES.RELATED_LIST_IMG_LOADED)).toBe(true)
       expect(resumed.parentElement.querySelector('source')).toBeNull()
     } finally {
       window.Image = origImage
@@ -495,11 +476,8 @@ describe('media-manifest webp sources', () => {
         },
       ],
       translations: { title: 'T', note: '', socials: [] },
-      _noteOpen: false,
-      _noteTruncated: false,
-      _toggleNote() {},
     })
 
-    expect(bare.querySelector(`img.${RELATED_CLASSES.RELATED_MOSAIC_IMG_HIGH}`)).not.toBeNull()
+    expect(bare.querySelector(`img.${RELATED_CLASSES.RELATED_LIST_IMG_HIGH}`)).not.toBeNull()
   })
 })

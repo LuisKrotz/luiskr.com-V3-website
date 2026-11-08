@@ -24,6 +24,7 @@ import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import { stripHtml } from '@core/utils/index.js'
 import notFoundStyles from './not-found.scss?inline'
 import '@website/components/media/DrawText.js'
+import '@website/components/search/RouteSearch.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import { devError } from '@core/devlog.js'
 
@@ -138,6 +139,7 @@ export class ViewNotFound extends BaseComponent {
                 />
               </span>
             </h1>
+            <route-search />
             <a className={NOT_FOUND_CLASSES.NOT_FOUND_LINK} href={this.homePath}>
               {this.translations.link ||
                 (FALLBACK_PAGES[TRANSLATION_KEYS.NOT_FOUND] as { link?: string } | undefined)?.link}

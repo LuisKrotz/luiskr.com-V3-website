@@ -7,13 +7,12 @@
  * SWR fetch that populates the components dictionary.
  */
 
-import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
 import { LANG_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { LOCALES } from '@core/tokens/locales.js'
 import { DB_PATHS } from '@core/tokens/routes/paths.js'
 import store from '@core/store.js'
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
-import { getFallbackLegalLinks } from '@core/utils/data/legal-links.js'
+import { legalLinks } from '@core/utils/data/legal-links.js'
 import type { AwardsMentions } from '../AwardsMentions.js'
 import { devError } from '@core/devlog.js'
 
@@ -25,44 +24,9 @@ export interface AwardLink {
   page?: string
 }
 
-/** A validated legal link — both fields proven present by the filter. */
-export interface LegalLink {
-  /** Destination path (e.g. '/en/legal/privacy'). */
-  link: string
-  /** Page key used for the localized label. */
-  page: string
-}
+export { legalLinks }
 
-/**
- * Bare locale-root matcher ('/', '/en/', '/pt/') — the CMS stores the home
- * link in the same list, but the footer must only show real legal pages.
- */
-const HAS_LINK = /^\/[a-z]{0,3}\/?$/
-
-/**
- * Legal-page links for the footer row — CMS `legal-footer` list preferred,
- * bundled per-locale fallback when empty. Both lists are filtered through
- * HAS_LINK so a bare locale-root row (the stored home link) never renders.
- * @returns Validated {link, page} rows.
- */
-export function legalLinks(): LegalLink[] {
-  const components = store.getters.getlang()?.components as
-    Record<string, { links?: AwardLink[] }> | undefined
-
-  const all = components?.[CMS_KEYS.LEGAL_FOOTER]?.links || []
-
-  const filtered = all.filter((l): l is LegalLink =>
-    Boolean(l.link && l.page && !l.link.match(HAS_LINK))
-  )
-
-  if (filtered.length) return filtered
-
-  const locale = store.getters.getLang()
-
-  return getFallbackLegalLinks(locale).filter((l): l is LegalLink =>
-    Boolean(l.link && l.page && !l.link.match(HAS_LINK))
-  )
-}
+export type { LegalLink } from '@core/utils/data/legal-links.js'
 
 /**
  * Loads the components dictionary node for the current locale when missing

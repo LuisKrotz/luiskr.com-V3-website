@@ -1,11 +1,11 @@
 /**
  * @file AppNav.js
  * @description <app-nav> — the persistent top navigation bar: logo, burger
- * button opening the fullscreen menu overlay, locale flag trigger for the
- * language dialog, and the preferences trigger. Hosts the WebGL burger,
- * menu-background and flag widgets, tracks scroll section state for the
- * --on-dark variant over the dark contact band, and owns the genie-open
- * origin for both dialogs.
+ * button opening the fullscreen menu overlay, and the strip chips (globe →
+ * language dialog, magnifier → search modal, brush → preferences). Hosts
+ * the WebGL burger and menu-background widgets plus the chips' ring-fill
+ * aura, tracks scroll section state for the --on-dark variant over the
+ * dark contact band, and owns the genie-open origin for the dialogs.
  */
 
 import { KEYS } from '@core/tokens/primitives.js'
@@ -21,14 +21,15 @@ import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
 import { armResidualInputGuard } from '@core/utils/dom.js'
+import { joustCollapseAll } from '@core/utils/dom/joust.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
-import { LANG_OPTIONS, LANG_SLUGS } from '@core/i18n.js'
+import { LANG_SLUGS } from '@core/i18n.js'
 import { predictiveLoader } from '@core/predictive-loader.js'
-import type { FlagWebGL } from '@core/utils/canvas/widgets/flag-webgl.js'
 import type { MenuBackgroundWebGL } from '@core/utils/canvas/loaders/menu-background-webgl.js'
 import type { BurgerButtonWebGL } from '@core/utils/canvas/widgets/burger-button-webgl.js'
-import { destroyNavFlag, mountNavFlag, navFlagCanvas, renderNavLocaleFlag } from './flag.js'
+import { destroyNavIconAura, mountNavIconAura } from './icon-aura.js'
+import type { RingFillSession } from '@core/utils/gpu/ring-fill.js'
 import { goToAbout, scrollToContact, scrollToTop } from './scroll.js'
 import {
   captureOrigin,
@@ -37,6 +38,7 @@ import {
   handleLang,
   handleLogo,
   handlePreferences,
+  handleSearch,
 } from './handlers.js'
 import { renderAppNav } from './render.js'
 import {
@@ -91,14 +93,16 @@ interface AppNavTranslations {
   preferences?: string
   experiments?: string
   scrollUp?: string
+  search?: string
+  setLanguage?: string
 }
 
 /**
- * <app-nav> — persistent top bar (logo, burger, locale flag, preferences
- * trigger) plus the fullscreen menu overlay. Owns four WebGL widgets
- * (burger, menu background, menu close, locale flag) on persistent
- * canvases that are never re-created by re-renders — one GL context per
- * widget for the element's lifetime.
+ * <app-nav> — persistent top bar (logo, burger, language/search/preferences
+ * chips) plus the fullscreen menu overlay. Owns the burger and menu
+ * background WebGL widgets on persistent canvases that are never
+ * re-created by re-renders — one GL context per widget for the element's
+ * lifetime.
  */
 export class AppNav extends BaseComponent {
   /** APP dictionary pushed by <app-root>; null until first fetch lands. */
@@ -109,8 +113,9 @@ export class AppNav extends BaseComponent {
   activeSection: string = SECTIONS.HOME
   /** Within 200px of document bottom — flips CTA to "selected work". */
   onBottom = false
-  /** Live FlagWebGL widgets (currently max one — the menu flag). */
-  _navFlags: FlagWebGL[] = []
+
+  /** Live ring-fill aura session on the strip chips (null without WebGPU). */
+  _navIconAura: RingFillSession | null = null
   /** True while the nav floats over a dark section — drives the --on-dark variant for contrast inversion. */
   _onDark = false
 
@@ -139,9 +144,6 @@ export class AppNav extends BaseComponent {
   _burgerCanvasEl: HTMLCanvasElement | null = null
   /** Fullscreen menu background canvas host. */
   _menuCanvasEl: HTMLCanvasElement | null = null
-  /** Menu flag canvas + the locale it was built for (rebuilt on change). */
-  _menuFlagCanvasEl: HTMLCanvasElement | null = null
-  _menuFlagLang: string | null = null
 
   /**
    * Snapshot of the store inputs the template actually consumes —
@@ -256,34 +258,6 @@ export class AppNav extends BaseComponent {
     return store.getters.getLang()
   }
 
-  /** The active LANG_OPTIONS entry (code + label + flag). */
-
-  get currentLang() {
-    return LANG_OPTIONS.find((l) => l.code === this.locale) ?? null
-  }
-
-  /** Display label for the active locale in the flag button. */
-
-  get currentLangLabel() {
-    return this.currentLang?.label ?? this.locale.toUpperCase()
-  }
-
-  /**
-   * Returns the persistent flag canvas for the current locale, rebuilding
-   * it only when the locale changed. The element survives re-renders so
-   * the WebGL context is created once per language, not per render.
-   * @returns {HTMLCanvasElement}
-   */
-  _flagCanvas(): HTMLCanvasElement {
-    return navFlagCanvas(this)
-  }
-
-  /** Mounts the FlagWebGL widget onto the nav flag button (theme + reduced-motion aware). */
-
-  renderLocaleFlag() {
-    return renderNavLocaleFlag(this)
-  }
-
   /** Lifecycle: wires store subscription, scroll/nav event listeners, router subscription and mounts the WebGL nav widgets. */
 
   override onMounted() {
@@ -295,11 +269,11 @@ export class AppNav extends BaseComponent {
 
     predictiveLoader.scanAndObserve(this.shadowRoot)
 
-    this._mountNavFlag()
-
     this._mountBurgerWebGL()
 
     this._mountMenuWebGL()
+
+    mountNavIconAura(this)
   }
 
   /** Lifecycle: after re-render, re-mounts WebGL widgets that the new DOM replaced. */
@@ -307,14 +281,14 @@ export class AppNav extends BaseComponent {
   override onUpdated() {
     predictiveLoader.scanAndObserve(this.shadowRoot)
 
-    this._mountNavFlag()
+    mountNavIconAura(this)
 
     this._mountBurgerWebGL()
 
     this._mountMenuWebGL()
   }
 
-  /** Lifecycle: destroys the burger/menu/flag GL widgets and unbinds listeners. */
+  /** Lifecycle: destroys the burger/menu GL widgets + chip aura and unbinds listeners. */
 
   override onDestroy() {
     // Dying mid-open/mid-close must not leave the page-wide pause flag
@@ -323,7 +297,11 @@ export class AppNav extends BaseComponent {
       store.commit(MODAL_MUTATIONS.SET_NAV_MENU, false)
     }
 
-    this._destroyNavFlag()
+    // Any chip label still joustered open detaches with the nav — collapse
+    // the pin set so the dead nodes never linger in the gate's registry.
+    joustCollapseAll()
+
+    this._destroyNavIconAura()
 
     if (this._menuSettleTimer) {
       clearTimeout(this._menuSettleTimer)
@@ -344,16 +322,10 @@ export class AppNav extends BaseComponent {
     }
   }
 
-  /** Creates the FlagWebGL instance on the flag button's canvas. */
+  /** Tears down the icon-aura session. */
 
-  _mountNavFlag() {
-    mountNavFlag(this)
-  }
-
-  /** Tears down the FlagWebGL instance. */
-
-  _destroyNavFlag() {
-    destroyNavFlag(this)
+  _destroyNavIconAura() {
+    destroyNavIconAura(this)
   }
 
   /** Subscribes to route changes so nav state/links refresh per page. */
@@ -361,8 +333,6 @@ export class AppNav extends BaseComponent {
   subscribeRouter() {
     router.subscribe(() => {
       this._updateDom()
-
-      this._mountNavFlag()
     })
   }
 
@@ -375,8 +345,6 @@ export class AppNav extends BaseComponent {
    * and other commits leave the DOM alone — critically, while the menu
    * is open behind a dialog this keeps every <draw-text> label mounted
    * and already-drawn instead of replaying the letter animation.
-   * Reduced-motion still reaches live flag widgets on every commit so
-   * they freeze without waiting for a rebuild.
    */
   override onStoreUpdate() {
     const lang = store.getters.getlang()
@@ -406,11 +374,7 @@ export class AppNav extends BaseComponent {
       }
 
       this._updateDom()
-
-      this._mountNavFlag()
     }
-
-    this._navFlags.forEach((f) => f.setReducedMotion(reduced))
   }
 
   /** Receives active-section + near-bottom flags from <app-root>'s scroll tracker and toggles the --on-dark variant. */
@@ -425,8 +389,6 @@ export class AppNav extends BaseComponent {
     this.onBottom = onBottom
 
     this._updateDom()
-
-    this._mountNavFlag()
   }
 
   /** Binds click/scroll/menu-toggle handlers inside the shadow root. */
@@ -507,6 +469,12 @@ export class AppNav extends BaseComponent {
     handleLang(this, e)
   }
 
+  /** Opens the search modal (fires open-search-modal; plain clicks only). */
+
+  handleSearch(e?: Event): void {
+    handleSearch(this, e)
+  }
+
   /**
    * JSX template: logo button, burger, and the fullscreen menu overlay —
    * the markup lives in nav-render.tsx; this delegates with `this`.
@@ -526,10 +494,10 @@ export class AppNav extends BaseComponent {
     return navMenuCanvas(this)
   }
 
-  /** Opens/closes the fullscreen menu overlay. */
+  /** Opens/closes the fullscreen menu overlay — passes the click event through so toggleNavMenu's joust gate can read currentTarget/detail. */
 
-  _toggleMenu() {
-    toggleNavMenu(this)
+  _toggleMenu(e?: Event) {
+    toggleNavMenu(this, e)
   }
 
   /** Opens the menu (see nav-menu.ts for the state machine). */

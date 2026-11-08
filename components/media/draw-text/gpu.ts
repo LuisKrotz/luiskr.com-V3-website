@@ -202,7 +202,7 @@ async function prepare(
     const offset = parseFloat(style.getPropertyValue('--offset')) || host.offset
     const cs = getComputedStyle(span)
     const fontEm = parseFloat(cs.fontSize) || em
-    // Contexts vary the keyframe length (related-mosaic draws at 0.5s,
+    // Contexts vary the keyframe length (related-list draws at 0.5s,
     // the default path at 0.8s) — read it off the live animation rather
     // than hardcoding the common one.
     const dur = parseFloat(cs.animationDuration) * 1000 || DRAW_TIMINGS.DRAW_ANIM_EXTRA_MS

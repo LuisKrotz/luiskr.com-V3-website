@@ -172,13 +172,17 @@ describe('AppNav', () => {
     window.removeEventListener(APP_EVENTS.OPEN_LANG_DIALOG, listener)
   })
 
-  test('not-found route omits the burger strip', () => {
+  test('not-found route keeps the burger strip but gates the search chip', () => {
     const prevRoute = router.currentRoute
 
     router.currentRoute = { name: ROUTE_NAMES.NOT_FOUND }
     navEl._updateDom()
 
-    expect(navEl.shadowRoot.querySelector(S.NAV_MOBILE_STRIP)).toBeNull()
+    // The strip stays mounted on the 404 — the burger is the only way to
+    // reach the search modal from a dead route — while the search chip
+    // itself is hidden by the route gate.
+    expect(navEl.shadowRoot.querySelector(S.NAV_MOBILE_STRIP)).not.toBeNull()
+    expect(navEl.shadowRoot.querySelector(`.${NAV_CLASSES.NAV_SEARCH_BTN}`)).toBeNull()
 
     router.currentRoute = prevRoute
     navEl._updateDom()

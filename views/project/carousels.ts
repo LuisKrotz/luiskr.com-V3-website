@@ -9,14 +9,59 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import type { ViewProject } from './Project.js'
 import type { CustomCarouselElement, ProjectMediaItem } from './types.js'
-import { CAROUSEL_LOADING } from '@core/tokens/motion/carousel.js'
+import { CAROUSEL_LAYOUT, CAROUSEL_LOADING } from '@core/tokens/motion/carousel.js'
+import { INTERNAL_MOSAIC } from '@core/tokens/layout/masonry.js'
+import { viewportWidth } from '@core/utils/dom.js'
+
+/**
+ * Desktop downscale for one carousel item — the division calc is for
+ * WIDTH, not height: each ladder step (÷2 → ÷1.5 → ÷1.75) compounds on
+ * the running width while the result still clears DESKTOP_SCALE_MIN_W;
+ * once the media falls under the width check (the next step would drop
+ * it below the floor), the accumulated divisor is applied to height —
+ * aspect preserved. A 1980px item lands ~377px wide, a 997px item
+ * ~332px; small items below the first step stay natural.
+ * `naturalSize` keeps the untouched CMS dims — the expand modal stamps
+ * those (the modal never reduces) while `size` stays the display
+ * contract for the carousel's dense-pixel render.
+ * @param item The media item (mutates a shallow copy's `size` only).
+ * @returns A copy with the scaled `size` + recorded `naturalSize`, or the item unchanged.
+ */
+export function scaleCarouselItem(item: ProjectMediaItem): ProjectMediaItem {
+  const size = item.size
+
+  if (!size || size[0] <= 0) return item
+
+  let divisor = 1
+
+  let w = size[0]
+
+  for (const d of CAROUSEL_LAYOUT.DESKTOP_SCALE_STEPS) {
+    const next = w / d
+
+    if (!(next > CAROUSEL_LAYOUT.DESKTOP_SCALE_MIN_W)) break
+
+    divisor *= d
+
+    w = next
+  }
+
+  if (divisor === 1) return item
+
+  return { ...item, size: [w, size[1] / divisor], naturalSize: size }
+}
 
 /**
  * Binds project carousels.
  * @param view — the view
  */
 export function bindProjectCarousels(view: ViewProject): void {
-  const carousels = view.$$<CustomCarouselElement>(COMPONENT_TAGS.CUSTOM_CAROUSEL)
+  // Both media renderers share the configure({items, folder, forceActive})
+  // contract — <media-mosaic> elements sit alongside <custom-carousel> in
+  // document order so the eager/deferred split stays viewport-accurate.
+  const carousels = view.$$<CustomCarouselElement>(
+    `${COMPONENT_TAGS.CUSTOM_CAROUSEL}, ${COMPONENT_TAGS.MEDIA_MOSAIC}`
+  )
 
   const configure = (c: CustomCarouselElement) => {
     const idx = parseInt(c.getAttribute(DATA_ATTRS.DATA_CAROUSEL_IDX) || '0', 10)
@@ -27,14 +72,15 @@ export function bindProjectCarousels(view: ViewProject): void {
 
     if (!items) return
 
-    // forceActive skips the fit projection entirely — reserve it for the
-    // cases the projection can't decide: >2 items (controls needed) and
-    // all-landscape groups (author intent — the CMS flag is the only hint
-    // when intrinsic sizes are missing). A mixed or mislabeled-landscape
-    // 2-item group still gets measured by measureFit, which mirrors the
-    // real CSS caps and centers the pair when it fits.
+    // Desktop carousel items render oversized — downscale intrinsic
+    // sizes through the ladder (÷2 → ÷1.5 → ÷1.75) so the display box
+    // stays denser than the source. Carousel path only: the mosaic wall
+    // runs its own divisor ladder, and ≤640px keeps natural sizes.
+    const scaleItems =
+      viewportWidth() > INTERNAL_MOSAIC.CAROUSEL_MAX_W && !view.isMosaicGroup(items)
+
     c.configure({
-      items,
+      items: scaleItems ? items.map(scaleCarouselItem) : items,
       folder: view.translations?.folder || ATTR_VALUES.EMPTY,
       forceActive: view.isLandscapeGroup(items) || items.length > 2,
     })

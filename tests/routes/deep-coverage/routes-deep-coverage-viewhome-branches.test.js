@@ -97,9 +97,9 @@ describe('ViewHome branches', () => {
     expect(el.translations).not.toBeNull()
 
     // Child elements exist in the render → _passDataToChildren ran.
-    const mosaic = el.shadowRoot.querySelector(COMPONENT_TAGS.HOME_MOSAIC)
+    const deck = el.shadowRoot.querySelector(COMPONENT_TAGS.CARD_STACK)
 
-    expect(mosaic).not.toBeNull()
+    expect(deck).not.toBeNull()
   })
 
   test('onStoreUpdate reloads when the locale changes', async () => {

@@ -278,13 +278,15 @@ describe('Accessibility — WCAG 2.1 AA Compliance', () => {
   describe('3. MediaFigure — Images & Videos', () => {
     const toHtml = (val) => (val?.outerHTML !== undefined ? val.outerHTML : String(val))
 
-    test('placeholder img has alt=""', () => {
+    // The placeholder layer is aria-hidden — the label alt only answers
+    // audit crawlers that report an empty alt="" as missing text.
+    test('placeholder img carries the label alt on its aria-hidden layer', () => {
       const el = document.createElement(COMPONENT_TAGS.MEDIA_FIGURE)
       el.setAttribute(FORM_ATTRS.LABEL, 'Product Photo')
       document.body.appendChild(el)
       const html = toHtml(el.render())
       const placeholderAlt = html.match(/render-placeholder[^>]*alt="([^"]*)"/)
-      expect(placeholderAlt?.[1]).toBe('')
+      expect(placeholderAlt?.[1]).toBe('Product Photo')
     })
 
     test('placeholder img has aria-hidden="true"', () => {

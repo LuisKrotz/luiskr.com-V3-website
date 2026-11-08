@@ -2,7 +2,7 @@
  * @file views-viewproject.test.js
  * @description Split from views.test.js — covers the "ViewProject" describe.
  */
-import { describe, test, expect, beforeEach, afterEach } from '@jest/globals'
+import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals'
 import { ViewProject } from '@website/views/project/Project.js'
 import { SCSS, mount } from '@tests/fixtures/test-constants.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
@@ -10,12 +10,14 @@ import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { LABEL_TEXT } from '@core/tokens/strings/text.js'
-import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { COVER_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
+import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
+import { TITLE_MARQUEE } from '@core/tokens/motion/marquee.js'
+import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 
 // ─── Local selector helpers (derived from TAGS/CLASSES) ───────────────────────
 const S = {
@@ -56,7 +58,7 @@ describe('ViewProject', () => {
     expect(projectEl.shadowRoot.textContent).not.toContain(LABEL_TEXT.LOADING)
   })
 
-  test('renders title and cover media when translations are provided', () => {
+  test('renders title marquee and cover media when translations are provided', () => {
     projectEl.translations = {
       title: 'Stellar Branding Project',
       folder: 'portfolio/stellar/',
@@ -65,14 +67,87 @@ describe('ViewProject', () => {
     }
     projectEl._updateDom()
 
-    const drawText = projectEl.shadowRoot.querySelector(S.DRAW_TEXT)
+    const title = projectEl.shadowRoot.querySelector(`.${INTERNAL_CLASSES.INTERNAL_TITLE}`)
+    const strip = projectEl.shadowRoot.querySelector(`.${INTERNAL_CLASSES.INTERNAL_TITLE_STRIP}`)
+    const copies = projectEl.shadowRoot.querySelectorAll(`.${INTERNAL_CLASSES.INTERNAL_TITLE_COPY}`)
     const mediaFigure = projectEl.shadowRoot.querySelector(S.MEDIA_FIGURE)
-    expect(drawText).not.toBeNull()
-    expect(drawText.getAttribute(FORM_ATTRS.TEXT)).toBe('Stellar Branding Project')
+    expect(title.classList.contains(INTERNAL_CLASSES.INTERNAL_TITLE_MARQUEE_MOD)).toBe(true)
+    expect(title.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toBe('Stellar Branding Project')
+    expect(strip).not.toBeNull()
+    expect(copies.length).toBe(TITLE_MARQUEE.COPIES)
+    expect(copies[0].children.length).toBe(TITLE_MARQUEE.MIN_REPEAT)
+    expect(copies[0].firstElementChild.textContent).toBe(
+      `Stellar Branding Project${CHAR_STRINGS.PIPE_SEP}`
+    )
     expect(mediaFigure).not.toBeNull()
     expect(mediaFigure.getAttribute(MEDIA_ATTRS.SRC)).toBe('portfolio/stellar/cover')
     expect(mediaFigure.getAttribute(MEDIA_ATTRS.WIDTH)).toBe(COVER_DIMENSIONS.FHD_WIDTH_STR)
     expect(mediaFigure.getAttribute(MEDIA_ATTRS.HEIGHT)).toBe('1080')
+  })
+
+  describe('title marquee fit', () => {
+    const setUnitWidth = (width) => {
+      const unit = projectEl.shadowRoot.querySelector(`.${INTERNAL_CLASSES.INTERNAL_TITLE_UNIT}`)
+
+      Object.defineProperty(unit, 'offsetWidth', { configurable: true, value: width })
+    }
+
+    const halves = () =>
+      projectEl.shadowRoot.querySelectorAll(`.${INTERNAL_CLASSES.INTERNAL_TITLE_COPY}`)
+
+    const strip = () =>
+      projectEl.shadowRoot.querySelector(`.${INTERNAL_CLASSES.INTERNAL_TITLE_STRIP}`)
+
+    beforeEach(() => {
+      projectEl.translations = { title: 'Metcha', sections: [] }
+
+      projectEl._updateDom()
+    })
+
+    test('repeats the title until each half spans the viewport', () => {
+      const unitW = 100
+
+      const expected = Math.ceil(window.innerWidth / unitW) + TITLE_MARQUEE.SAFETY_REPEAT
+
+      setUnitWidth(unitW)
+
+      projectEl._syncTitleMarquee()
+
+      halves().forEach((half) => expect(half.children.length).toBe(expected))
+      expect(projectEl._titleRepeat).toBe(expected)
+      expect(strip().style.animationDuration).toBe(
+        `${((expected * unitW) / TITLE_MARQUEE.SPEED_PX_S).toFixed(2)}s`
+      )
+    })
+
+    test('trims surplus repetitions down to the minimum for wide titles', () => {
+      setUnitWidth(1)
+
+      projectEl._syncTitleMarquee()
+
+      setUnitWidth(window.innerWidth * 10)
+
+      projectEl._syncTitleMarquee()
+
+      halves().forEach((half) => expect(half.children.length).toBe(TITLE_MARQUEE.MIN_REPEAT))
+    })
+
+    test('leaves the strip untouched while the unit has no width', () => {
+      projectEl._syncTitleMarquee()
+
+      halves().forEach((half) => expect(half.children.length).toBe(TITLE_MARQUEE.MIN_REPEAT))
+      expect(strip().style.animationDuration).toBe(CHAR_STRINGS.EMPTY)
+    })
+
+    test('re-fits on window resize', async () => {
+      const spy = jest.spyOn(projectEl, '_syncTitleMarquee')
+
+      window.dispatchEvent(new Event(WINDOW_EVENTS.RESIZE))
+
+      await new Promise((resolve) => requestAnimationFrame(resolve))
+
+      expect(spy).toHaveBeenCalled()
+    })
   })
 
   test('renders cover without folder as a root-relative src', () => {
@@ -162,6 +237,94 @@ describe('ViewProject', () => {
     const carousel = projectEl.shadowRoot.querySelector(COMPONENT_TAGS.CUSTOM_CAROUSEL)
     expect(carousel).not.toBeNull()
     expect(carousel.items.length).toBe(2)
+  })
+
+  test('renders media-mosaic elements for irregular-height sections', () => {
+    projectEl.translations = {
+      title: 'Mixed Gallery',
+      folder: 'gallery/',
+      cover: { src: 'cover', size: [1920, 1080] },
+      sections: [
+        [
+          [
+            { src: 'wide', size: [1920, 1080], label: 'Wide shot' },
+            { src: 'tall', size: [900, 1800], label: 'Tall shot' },
+          ],
+        ],
+      ],
+    }
+    projectEl._updateDom()
+    projectEl._bindCarousels()
+
+    const mosaic = projectEl.shadowRoot.querySelector(COMPONENT_TAGS.MEDIA_MOSAIC)
+    const carousel = projectEl.shadowRoot.querySelector(COMPONENT_TAGS.CUSTOM_CAROUSEL)
+    expect(mosaic).not.toBeNull()
+    expect(carousel).toBeNull()
+    expect(mosaic.items.length).toBe(2)
+  })
+
+  test('keeps custom-carousel for uniform-height sections', () => {
+    projectEl.translations = {
+      title: 'Uniform Gallery',
+      folder: 'gallery/',
+      cover: { src: 'cover', size: [1920, 1080] },
+      sections: [
+        [
+          [
+            { src: 'a', size: [1920, 1080], label: 'A' },
+            { src: 'b', size: [1600, 900], label: 'B' },
+            { src: 'c', size: [1280, 720], label: 'C' },
+          ],
+        ],
+      ],
+    }
+    projectEl._updateDom()
+
+    expect(projectEl.shadowRoot.querySelector(COMPONENT_TAGS.MEDIA_MOSAIC)).toBeNull()
+    expect(projectEl.shadowRoot.querySelector(COMPONENT_TAGS.CUSTOM_CAROUSEL)).not.toBeNull()
+  })
+
+  test('isMosaicGroup reports the irregular-heights decision', () => {
+    expect(
+      projectEl.isMosaicGroup([
+        { src: 'a', size: [1920, 1080] },
+        { src: 'b', size: [900, 1800] },
+      ])
+    ).toBe(true)
+    expect(
+      projectEl.isMosaicGroup([
+        { src: 'a', size: [1920, 1080] },
+        { src: 'b', size: [1600, 900] },
+      ])
+    ).toBe(false)
+    expect(projectEl.isMosaicGroup([{ src: 'a', size: [1920, 1080] }])).toBe(false)
+    expect(projectEl.isMosaicGroup(null)).toBe(false)
+    expect(projectEl.isMosaicGroup([{ src: 'a' }, { src: 'b' }])).toBe(false)
+    // A media taller than 2560px vetoes the mosaic wall so tall scrolls stay in carousel mode.
+    expect(
+      projectEl.isMosaicGroup([
+        { src: 'a', size: [1920, 5996] },
+        { src: 'b', size: [1920, 4318] },
+      ])
+    ).toBe(false)
+  })
+
+  test('sectionMosaicHeight reserves a packed estimate for mosaic sections', () => {
+    const mosaicSection = [
+      [
+        { src: 'wide', size: [2400, 1200] },
+        { src: 'tall', size: [900, 1800] },
+      ],
+    ]
+    const carouselSection = [
+      [
+        { src: 'a', size: [1920, 1080] },
+        { src: 'b', size: [1600, 900] },
+      ],
+    ]
+    expect(projectEl.sectionMosaicHeight(mosaicSection)).toMatch(/^\d+px$/)
+    expect(projectEl.sectionMosaicHeight(carouselSection)).toBe('')
+    expect(projectEl.sectionMosaicHeight([['text only']])).toBe('')
   })
 
   test('a11y headings derive from section text; carousels pair ordinal + lead label', () => {

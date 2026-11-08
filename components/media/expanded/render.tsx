@@ -76,7 +76,10 @@ export function renderMediaExpanded(el: MediaExpanded) {
               src={el.placeholder(mediaW, mediaH)}
               width={mediaW}
               height={mediaH}
-              alt={ATTR_VALUES.EMPTY}
+              // aria-hidden duplicate of the item below — the real alt
+              // answers audit crawlers that report empty alt=""; the a11y
+              // tree never sees it.
+              alt={el.alt}
               aria-hidden={ATTR_VALUES.TRUE}
               tabIndex={CHAR_STRINGS.MINUS_ONE}
               data-nosnippet

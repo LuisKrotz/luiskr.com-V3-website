@@ -7,7 +7,7 @@
  */
 
 import { describe, test, expect, afterEach } from '@jest/globals'
-import { rasterizeTitle } from '@website/components/home/mosaic/burn/paper.js'
+import { rasterizeTitle } from '@core/utils/burn/paper.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 
 const savedCreateRange = Object.getOwnPropertyDescriptor(document, 'createRange')

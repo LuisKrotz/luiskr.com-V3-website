@@ -1,8 +1,9 @@
 /**
  * @file ContactSection.js
  * @description <contact-section> — the home page's contact footer: heading,
- * email/social links and the CTA copy, rendered over the dark contact band
- * the nav's --on-dark variant keys off.
+ * subtitle, the primary mailto channel beside the secondary link list, and
+ * the embedded <mentions-deck> awards fan, rendered over the dark contact
+ * band the nav's --on-dark variant keys off.
  */
 
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
@@ -18,11 +19,15 @@ import { LOCALES } from '@core/tokens/locales.js'
 import { DB_PATHS } from '@core/tokens/routes/paths.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
+import { NET_STRINGS } from '@core/tokens/strings/net.js'
+import { NAV_TEXT } from '@core/tokens/strings/text.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
+import { FALLBACK_COMPONENTS } from '@core/locale/fallback.js'
 import { appText, componentText } from '@core/locale/ui-text.js'
 import { h, Fragment } from '@core/jsx.js'
 import '@website/components/media/DrawText.js'
+import '@website/components/carousel/MentionsDeck.js'
 import contactStyles from '@core/sass/components/home/contact.scss?inline'
 
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
@@ -32,21 +37,61 @@ import { devError } from '@core/devlog.js'
 interface ContactLink {
   link: string
   description?: string
+  caption?: string
 }
 
 interface ContactTranslation {
   title?: string
+  subtitle?: string
   line1?: ContactLink[]
+}
+
+interface MentionsDeckEl extends HTMLElement {
+  items?: unknown[] | null
+  title: string
+  translations?: unknown
 }
 
 type ComponentsMap = Record<string, ContactTranslation | undefined>
 
 /**
+ * Build-time map of canonical channel link to fallback caption so live
+ * Firebase RTDB payloads that predate the caption field still render
+ * the English fallback's caption under the secondary links.
+ */
+const FALLBACK_CAPTIONS = new Map<string, string>(
+  (FALLBACK_COMPONENTS.contact as Required<ContactTranslation>).line1
+    .filter((it) => Boolean(it.caption))
+    .map((it) => [it.link, it.caption as string])
+)
+
+/**
+ * Bundled post-redesign contact heading ("Contact / Get in Touch") used when
+ * live Firebase RTDB returns the pre-redesign single-word "Contact" title.
+ */
+const FALLBACK_CONTACT_TITLE = (FALLBACK_COMPONENTS.contact as Required<ContactTranslation>).title
+
+/**
  * contacts section.
  */
 export class ContactSection extends BaseComponent {
+  /** pages/HOME translations forwarded into <mentions-deck> (deckHint). */
+  _mentionsTranslations: unknown = null
+
   constructor() {
     super(contactStyles)
+  }
+
+  /** Setter/getter — the pages/HOME locale node the deck hint reads. */
+
+  set mentionsTranslations(val: unknown) {
+    this._mentionsTranslations = val
+
+    if (this._isMounted) this._syncMentionsDeck()
+  }
+
+  get mentionsTranslations(): unknown {
+    return this._mentionsTranslations
   }
 
   override onMounted() {
@@ -72,6 +117,30 @@ export class ContactSection extends BaseComponent {
 
   override onStoreUpdate() {
     this._updateDom()
+  }
+
+  /**
+   * Pushes the live mentions slice into the embedded <mentions-deck> —
+   * re-run after every render since the deck node is recreated per
+   * _updateDom (its setters guard identity so repeat pushes are cheap).
+   */
+  override onUpdated() {
+    this._syncMentionsDeck()
+  }
+
+  /** Forwards mentions title/items + deck translations to the child element. */
+  _syncMentionsDeck(): void {
+    const deck = this.$<MentionsDeckEl>(COMPONENT_TAGS.MENTIONS_DECK)
+
+    if (!deck) return
+
+    const mentions = store.getters.getMentions()
+
+    deck.title = mentions.title || CHAR_STRINGS.EMPTY
+
+    deck.items = (mentions.items as unknown[] | null) || []
+
+    deck.translations = this._mentionsTranslations
   }
 
   /** JSX template for the component's shadow DOM. */
@@ -108,6 +177,17 @@ export class ContactSection extends BaseComponent {
 
     const line1 = translations.line1 || []
 
+    const mailItem = line1.find((item) => item.link?.startsWith(NET_STRINGS.SCHEME_MAILTO))
+
+    const restItems = line1.filter((item) => item !== mailItem)
+
+    const subtitle = translations.subtitle || componentText(SECTION_COMPONENT_KEYS.CONTACT_SUBTITLE)
+
+    const title =
+      !translations.title || translations.title === NAV_TEXT.CONTACT
+        ? FALLBACK_CONTACT_TITLE
+        : translations.title
+
     return (
       <footer className={CONTACT_CLASSES.CONTACT}>
         {/* Landmark heading for AT navigation — sr-only + data-nosnippet:
@@ -118,38 +198,73 @@ export class ContactSection extends BaseComponent {
         <h3 className={CONTACT_CLASSES.CONTACT_TITLE}>
           {/* Light-DOM text mirrors `text` — tests/no-upgrade paths read it;
               unslotted children never paint. */}
-          <draw-text
-            text={String(translations.title || componentText(SECTION_COMPONENT_KEYS.CONTACT_TITLE))}
-          >
-            {String(translations.title || componentText(SECTION_COMPONENT_KEYS.CONTACT_TITLE))}
-          </draw-text>
+          <draw-text text={String(title)}>{String(title)}</draw-text>
         </h3>
-        <div className={CONTACT_CLASSES.CONTACT_SOCIAL}>
-          {line1.map((item, n) => (
-            <Fragment key={item.link}>
-              {/* Heading per social link — AT heading-jump lands on it,
+        {subtitle ? <p className={CONTACT_CLASSES.CONTACT_SUBTITLE}>{String(subtitle)}</p> : null}
+
+        <div className={CONTACT_CLASSES.CONTACT_ROW}>
+          {mailItem ? (
+            <Fragment>
+              {/* Heading for the mail channel — AT heading-jump lands on it,
                   Tab reaches the anchor next. sr-only, never indexed;
-                  skipped when the link has no copy (empty headings are
-                  an axe violation). */}
-              {item.description ? (
+                  skipped when the row has no copy (empty headings are an
+                  axe violation). */}
+              {mailItem.description ? (
                 <h4 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                  {item.description}
+                  {mailItem.description}
                 </h4>
               ) : null}
               <a
-                href={item.link}
+                href={mailItem.link}
                 target={DOM_STRINGS.BLANK}
                 rel={DOM_STRINGS.NOOPENER}
-                className={CONTACT_CLASSES.CONTACT_SOCIAL_LINK}
+                className={CONTACT_CLASSES.CONTACT_MAIL}
               >
-                {item.description}
+                <span className={CONTACT_CLASSES.CONTACT_MAIL_LABEL}>{mailItem.description}</span>
+                <span className={CONTACT_CLASSES.CONTACT_MAIL_ADDR}>
+                  {mailItem.link.replace(NET_STRINGS.SCHEME_MAILTO, CHAR_STRINGS.EMPTY)}
+                </span>
               </a>
-              {n < line1.length - 1 && (
-                <span className={CONTACT_CLASSES.CONTACT_SEPARATOR}>{CHAR_STRINGS.DOT_SEP}</span>
-              )}
             </Fragment>
-          ))}
+          ) : null}
+
+          <ul className={CONTACT_CLASSES.CONTACT_LINKS}>
+            {restItems.map((item) => {
+              const caption = item.caption || FALLBACK_CAPTIONS.get(item.link)
+
+              return (
+                <li key={item.link} className={CONTACT_CLASSES.CONTACT_LINKS_ITEM}>
+                  {/* Heading per channel link — same AT contract as the mail
+                      channel above. */}
+                  {item.description ? (
+                    <h4 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                      {item.description}
+                    </h4>
+                  ) : null}
+                  <a
+                    href={item.link}
+                    target={DOM_STRINGS.BLANK}
+                    rel={DOM_STRINGS.NOOPENER}
+                    className={CONTACT_CLASSES.CONTACT_LINKS_LINK}
+                  >
+                    {item.description}
+                    <span
+                      className={CONTACT_CLASSES.CONTACT_LINKS_ARROW}
+                      {...{ [ARIA_ATTRS.ARIA_HIDDEN]: ATTR_VALUES.TRUE }}
+                    >
+                      {CHAR_STRINGS.ARROW_RIGHT}
+                    </span>
+                  </a>
+                  {caption ? (
+                    <span className={CONTACT_CLASSES.CONTACT_LINKS_CAPTION}>{caption}</span>
+                  ) : null}
+                </li>
+              )
+            })}
+          </ul>
         </div>
+
+        <mentions-deck className={CONTACT_CLASSES.CONTACT_MENTIONS} />
       </footer>
     )
   }

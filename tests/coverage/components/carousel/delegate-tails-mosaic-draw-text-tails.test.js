@@ -42,6 +42,12 @@ describe('mosaic + draw-text tails', () => {
     expect(computeMosaicLayout(1, [{ featured: false }], () => 0)).toBeNull()
   })
 
+  test('computeMosaicLayout centers a sparse wall that leaves trailing columns empty', () => {
+    const res = computeMosaicLayout(1920, [{ featured: false }], () => 0)
+
+    expect(parseFloat(res.cards[0].card.left)).toBeGreaterThan(0)
+  })
+
   test('packMosaicSkeleton degenerates on an unusable grid', () => {
     const res = packMosaicSkeleton(1)
 

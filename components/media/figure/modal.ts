@@ -98,8 +98,11 @@ export function openMediaModal(c: MediaFigure): void {
         ? c.poster[0]
         : encodeMediaUrl(storage + c.mediaSrc + MEDIA.MOZ + MEDIA.THUMB_SUFFIX + MEDIA.EXT),
       alt: c.label,
-      width: c.mediaWidth,
-      height: c.mediaHeight,
+      // Untouched source dims — carousel `width`/`height` may be
+      // downscaled through the desktop ladder, but the modal is the
+      // no-reduction surface and always stamps the real file's pixels.
+      width: c.naturalWidth,
+      height: c.naturalHeight,
       isVideo: c.isVideo,
     },
   })

@@ -18,7 +18,16 @@ import internalStyles from '@core/sass/components/internals/internals.scss?inlin
 import modalStyles from '@core/sass/components/internals/modal.scss?inline'
 import { bindProjectCarousels } from './carousels.js'
 import { initProject, loadData, onRouteParamChange, updateRobotsMeta } from './data.js'
-import { isLandscapeGroup, sectionItemHeight, textDelay, textOffset } from './layout.js'
+import {
+  fitDescriptionSizes,
+  isLandscapeGroup,
+  isMosaicGroup,
+  sectionItemHeight,
+  sectionMosaicHeight,
+  syncTitleMarquee,
+  textDelay,
+  textOffset,
+} from './layout.js'
 import { checkAutoOpenModal } from './modal.js'
 import { onProjectStoreUpdate, updateModalDOM } from './modal-dom.js'
 import { renderProject } from './render.js'
@@ -27,8 +36,12 @@ import '@website/components/media/DrawText.js'
 import '@website/components/media/MediaFigure.js'
 import '@website/components/media/MediaExpanded.js'
 import '@website/components/carousel/CustomCarousel.js'
+import '@website/components/media/MediaMosaic.js'
 import '@website/components/portfolio/Related.js'
+import '@website/components/legal/Footer.js'
 import { SCROLL_TIMINGS } from '@core/tokens/media/dimensions.js'
+import { TITLE_MARQUEE } from '@core/tokens/motion/marquee.js'
+import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 
 /** View-local type re-exports — canonical definitions + docs live in ./types.js. */
 export type { CustomCarouselElement, ProjectMediaItem, SectionChild } from './types.js'
@@ -41,6 +54,9 @@ export class ViewProject extends BaseComponent {
   projectSlug: string = ATTR_VALUES.EMPTY // route param / URL-derived slug being displayed
   _lastLocale: string | null = null
   _bindIdle: number | null = null // pending idle-deferred carousel batch handle
+  _titleRepeat: number = TITLE_MARQUEE.MIN_REPEAT // title units per marquee half (viewport-sized)
+  _descFitObserver: ResizeObserver | null = null // refits description promotions on reveal/resize
+  _descFontsWired = false // fonts.ready refit armed once — font metrics can flip the verdict
 
   constructor() {
     super(`${internalStyles}\n${modalStyles}`)
@@ -57,6 +73,21 @@ export class ViewProject extends BaseComponent {
   override onMounted() {
     this.subscribe(store)
     this.initProject()
+
+    // Viewport width drives the marquee repetition count and the
+    // description line-count promotions — re-fit both on resize.
+    this.addScopedListener(
+      window,
+      WINDOW_EVENTS.RESIZE,
+      () =>
+        requestAnimationFrame(() => {
+          this._syncTitleMarquee()
+
+          this._fitDescriptionSizes()
+        }),
+      { passive: true }
+    )
+
     setTimeout(() => {
       window.scrollTo(0, 0)
     }, SCROLL_TIMINGS.SCROLL_INIT_DELAY)
@@ -66,6 +97,10 @@ export class ViewProject extends BaseComponent {
 
   override onDestroy() {
     this.updateRobotsMeta(false)
+
+    this._descFitObserver?.disconnect()
+
+    this._descFitObserver = null
   }
 
   /** Toggles the noindex meta for draft/hidden projects. */
@@ -144,6 +179,37 @@ export class ViewProject extends BaseComponent {
     return isLandscapeGroup(this, group)
   }
 
+  /** Whether a media group's height variation swaps it to the mosaic wall. */
+
+  isMosaicGroup(group: unknown): boolean {
+    return isMosaicGroup(this, group)
+  }
+
+  /**
+   * Mosaic-wall height estimate for a section — published on the section
+   * wrapper as --media-mosaic-height so a deferred <media-mosaic> reserves
+   * its final packed box (zero-CLS, same skyline math the component runs).
+   */
+  sectionMosaicHeight(section: SectionChild[]): string {
+    return sectionMosaicHeight(this, section)
+  }
+
+  /** Post-render/resize pass: fits the title repetitions to the viewport and sizes the marquee duration. */
+
+  _syncTitleMarquee(): void {
+    syncTitleMarquee(this)
+  }
+
+  /**
+   * Post-render/resize/reveal pass: stamps the single-paragraph
+   * description promotions (--xl one-liner / --md longer) from measured
+   * line counts. See project/layout.ts.
+   */
+
+  _fitDescriptionSizes(): void {
+    fitDescriptionSizes(this)
+  }
+
   /**
    * Deep-link opener: /portfolio/<project>/<media-slug> URLs (written by
    * MediaFigure.openModal) resolve the slug against every media item's
@@ -173,6 +239,10 @@ export class ViewProject extends BaseComponent {
       this._bindCarousels()
 
       this._updateModalDOM()
+
+      this._syncTitleMarquee()
+
+      this._fitDescriptionSizes()
     })
   }
 }

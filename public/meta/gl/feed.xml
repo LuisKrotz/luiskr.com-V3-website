@@ -1,174 +1,3245 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+<?xml-stylesheet type="text/css" href="/feed.css"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">
 <channel>
   <title>Luis Krötz</title>
   <link>https://luiskr.com/gl/</link>
   <atom:link href="https://luiskr.com/gl/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Ola, son Luis, un enxeñeiro de software centrado en UX. Actualmente traballo en Dell no Dell Design System .</description>
   <language>gl</language>
-  <lastBuildDate>Tue, 27 Oct 2026 17:54:21 GMT</lastBuildDate>
+  <copyright>© 2026 Luis Krötz</copyright>
+  <lastBuildDate>Sun, 08 Nov 2026 04:04:57 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/gl/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
     <link>https://luiskr.com/gl/</link>
-    <guid>https://luiskr.com/gl/</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Ola, son Luis, un enxeñeiro de software centrado en UX. Actualmente traballo en Dell no Dell Design System .</description>
+    <category>dell design system</category>
+    <category>metcha</category>
+    <category>melissa</category>
+    <category>mini melissa</category>
+    <category>brazilian leather</category>
+    <category>mor</category>
+    <category>coza</category>
+    <category>marco almeida</category>
+    <category>nathalia bond</category>
+    <category>cecerelê</category>
+    <category>transa</category>
+    <category>vibra</category>
   </item>
   <item>
     <title>Sobre min</title>
     <link>https://luiskr.com/gl/sobre-min</link>
-    <guid>https://luiskr.com/gl/sobre-min</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/sobre-min</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Ola, son Luis, un enxeñeiro de software centrado en UX. Actualmente traballo en Dell no Dell Design System .</description>
+    <category>na ufsm, entre os 40 mellores traballos do 28º jai</category>
+    <category>premio cssda special kudos, outorgado á primeira versión de luiskr.com</category>
+    <category>premio cssda innovation design, outorgado á primeira versión de luiskr.com</category>
+    <category>premio cssda ux design, outorgado á primeira versión de luiskr.com</category>
+    <category>premio cssda ui design, outorgado á primeira versión de luiskr.com</category>
+    <category>destacado en tcg</category>
+    <category>cssw star</category>
+    <category>destacado en mindsparkle mag</category>
+    <category>traballo publicado: desenvolvimento de um protótipo para gestão de conhecimento</category>
+    <category>sobre min</category>
+    <category>sobre luis krötz</category>
+    <category>biografía</category>
   </item>
   <item>
     <title>Contacto</title>
     <link>https://luiskr.com/gl/contacto</link>
-    <guid>https://luiskr.com/gl/contacto</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/contacto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Contacto</description>
+    <category>correo</category>
+    <category>teléfono</category>
+    <category>linkedin</category>
+    <category>github</category>
+    <category>política de privacidade</category>
+    <category>gdpr</category>
+    <category>termos de uso</category>
+    <category>contacto</category>
+    <category>contacto luis krötz</category>
+    <category>contratar desenvolvedor front-end</category>
+    <category>correo electrónico</category>
+    <category>desenvolvedor freelance</category>
   </item>
   <item>
     <title>Política de privacidade</title>
     <link>https://luiskr.com/gl/politica-de-privacidade</link>
-    <guid>https://luiskr.com/gl/politica-de-privacidade</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/politica-de-privacidade</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>En luiskr , accesible desde https://luiskr.com , unha das miñas principais prioridades é a privacidade dos meus visitantes. Este documento de Política de privacidade contén os tipos de información que luiskr.com recolle e rexistra, e como a uso.</description>
+    <category>o de sempre</category>
+    <category>consentimento</category>
+    <category>información que recollo</category>
+    <category>como uso a túa información</category>
+    <category>políticas de privacidade de terceiros</category>
+    <category>dereitos de privacidade ccpa (non vender os meus datos persoais)</category>
+    <category>información de menores</category>
+    <category>política de privacidade</category>
+    <category>privacidade</category>
+    <category>protección de datos</category>
+    <category>política de cookies</category>
+    <category>luis krötz</category>
   </item>
   <item>
     <title>GDPR</title>
     <link>https://luiskr.com/gl/rgpd</link>
-    <guid>https://luiskr.com/gl/rgpd</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/rgpd</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Quero asegurarme de que coñeces plenamente os teus dereitos de protección de datos. Todo usuario ten dereito ao seguinte:</description>
+    <category>dereitos de protección de datos</category>
+    <category>rgpd</category>
+    <category>gdpr</category>
+    <category>protección de datos</category>
+    <category>datos persoais</category>
+    <category>privacidade de datos</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+    <category>portafolio</category>
+    <category>portafolio de luis krötz</category>
+    <category>desenvolvedor front-end</category>
   </item>
   <item>
     <title>Termos de uso</title>
     <link>https://luiskr.com/gl/termos-de-uso</link>
-    <guid>https://luiskr.com/gl/termos-de-uso</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/termos-de-uso</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>O sitio web luiskr.com situado en luiskr.com está baixo LICENZA MIT. Luiskr.com foi creado por Luis Krötz; certas funcións do Sitio poden estar suxeitas a directrices, termos ou regras adicionais, que se publicarán no Sitio en relación con esas funcións.</description>
+    <category>versión 1.1</category>
+    <category>acceso ao sitio</category>
+    <category>ligazóns de terceiros; outros usuarios</category>
+    <category>exencións de responsabilidade</category>
+    <category>limitación de responsabilidade</category>
+    <category>política de dereitos de autoría.</category>
+    <category>xeral</category>
+    <category>repositorio</category>
+    <category>información de contacto</category>
+    <category>termos de uso</category>
+    <category>termos do servizo</category>
+    <category>termos e condicións</category>
   </item>
   <item>
     <title>Licenza Pública Mozilla 2.0</title>
     <link>https://luiskr.com/gl/licenza</link>
-    <guid>https://luiskr.com/gl/licenza</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/licenza</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Esta páxina contén o texto completo e oficial da Mozilla Public License 2.0 (MPL 2.0), a licenza coa que se publica o código fonte deste sitio web. A licenza é unha concesión mundial, libre de royalties, válida en todos os países e territorios.</description>
+    <category>sobre este documento</category>
+    <category>1. definicións</category>
+    <category>2. concesións e condicións da licenza</category>
+    <category>3. responsabilidades</category>
+    <category>4. imposibilidade de cumprimento por lei ou regulamento</category>
+    <category>5. resolución</category>
+    <category>6. renuncia de garantía</category>
+    <category>7. limitación de responsabilidade</category>
+    <category>8. litixios</category>
+    <category>9. disposicións diversas</category>
+    <category>10. versións da licenza</category>
+    <category>anexo a — aviso de licenza da forma de código fonte</category>
   </item>
   <item>
     <title>Referencia de Animacións</title>
     <link>https://luiskr.com/gl/animacions</link>
-    <guid>https://luiskr.com/gl/animacions</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/animacions</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Todas as animacións do sitio, descritas — elemento, movemento, activador, tecnoloxía e propósito — para lectores, tecnoloxías de asistencia e axentes de IA.</description>
+    <category>barra de progreso de ruta percorrendo o bordo superior durante a navegación</category>
+    <category>botón do menú hamburguesa con animación de morph líquido</category>
+    <category>fondo animado a pantalla completa do menú con campo de contornos fluído</category>
+    <category>ítems do menú de navegación con entrada ascendente escalonada</category>
+    <category>icona de bandeira do idioma con animación de onda e entrada</category>
+    <category>interruptor de preferencia con deslizamento líquido do polgar</category>
+    <category>alternador de tema con deslizamento orbital día/noite</category>
+    <category>botón de pechar con recheo líquido e x xiratoria</category>
+    <category>esqueleto de carga con celas en morph e brillo</category>
+    <category>loader de introdución con aneis contrarrotativos e progreso</category>
+    <category>toast de notificación deslizándose desde o canto</category>
+    <category>título do tile de portafolio queimándose en brasa e rearmándose</category>
   </item>
   <item>
     <title>Playground da Terra</title>
     <link>https://luiskr.com/gl/playground-da-terra</link>
-    <guid>https://luiskr.com/gl/playground-da-terra</guid>
-    <description>Playground WebGL interactivo da Terra — axusta terreo, atmosfera, iluminación e postprocesado en directo.</description>
+    <guid isPermaLink="true">https://luiskr.com/gl/playground-da-terra</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Simulación WebGL interactiva da Terra — axusta terreo, atmosfera, iluminación e posprocesado en vivo no navegador.</description>
+    <category>terra</category>
+    <category>imaxes da terra</category>
+    <category>planeta terra</category>
+    <category>terra 3d</category>
+    <category>render da terra</category>
+    <category>terra webgl</category>
+    <category>playground da terra</category>
+    <category>simulación interactiva da terra</category>
+    <category>a terra desde o espazo</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
   </item>
   <item>
     <title>Campo Estelar</title>
     <link>https://luiskr.com/gl/experimento-campo-estelar</link>
-    <guid>https://luiskr.com/gl/experimento-campo-estelar</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vista Xeral</description>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <category>luiskr.com</category>
+    <category>portafolio</category>
+  </item>
+  <item>
+    <title>Busca</title>
+    <link>https://luiskr.com/gl/busca</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/busca</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Busca todas as páxinas, proxectos e experimentos de luiskr.com.</description>
+    <category>busca</category>
+    <category>busca no sitio</category>
+    <category>atopar</category>
+    <category>busca no portafolio</category>
+    <category>proxectos</category>
+    <category>catálogo</category>
+    <category>luis krötz</category>
+    <category>luiskr.com</category>
+    <category>portafolio</category>
+    <category>experimentos webgl</category>
+    <category>rutas coincidentes</category>
+    <category>sobre min</category>
   </item>
   <item>
     <title>Dell Design System</title>
     <link>https://luiskr.com/gl/portfolio/dell-design-system</link>
-    <guid>https://luiskr.com/gl/portfolio/dell-design-system</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/dell-design-system</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Unirme a Dell o 6 de xuño de 2022, pouco despois do peche de Transainc, marcou un punto de inflexión decisivo na miña traxectoria profesional.</description>
+    <category>dell design system</category>
+    <category>dell design system, vista xeral do sitio web</category>
+    <category>dell design system: vista xeral de fundamentos</category>
+    <category>dell design system: arquitectura de código e directrices</category>
+    <category>dell design system: principios para comezar</category>
+    <category>dell design system: vista xeral da biblioteca de compoñentes</category>
+    <category>dell design system: vista xeral de patróns</category>
+    <category>dell design system: integración con storybook e directrices de compoñentes</category>
+    <category>dell design system: vista xeral da documentación de fundamentos</category>
+    <category>dell design system: base de design tokens v1</category>
+    <category>dell design system: base de design tokens v2</category>
+    <category>dell design system: referencia de tipos de design tokens</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
   </item>
   <item>
     <title>Marco Almeida</title>
     <link>https://luiskr.com/gl/portfolio/aboutmarco</link>
-    <guid>https://luiskr.com/gl/portfolio/aboutmarco</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/aboutmarco</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>O portafolio de Marco foi desenvolvido como proxecto freelance en 2021.</description>
+    <category>marco almeida</category>
+    <category>aboutmarco</category>
+    <category>aboutmarco.com, páxina principal full tour</category>
+    <category>aboutmarco.com, tour móbil</category>
+    <category>aboutmarco.com, páxina principal</category>
+    <category>aboutmarco.com, melissa insider</category>
+    <category>aboutmarco.com, melissa</category>
+    <category>aboutmarco.com, coza</category>
+    <category>aboutmarco.com, brazilian leather</category>
+    <category>aboutmarco.com, me</category>
+    <category>aboutmarco.com, archive</category>
+    <category>aboutmarco.com, admiretheweb</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/aboutmarco/home/aboutmarco.com-2020-full-page-home-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Cecerelê</title>
     <link>https://luiskr.com/gl/portfolio/cecerele</link>
-    <guid>https://luiskr.com/gl/portfolio/cecerele</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/cecerele</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Coñecín a Joana de Cecerelê a través dun amigo común, o Sagu, en novembro de 2020.</description>
+    <category>cecerelê</category>
+    <category>cecerele</category>
+    <category>cecerelê: created in 2019 by historian joana schossler para produzir jogos, cont</category>
+    <category>cecerelê: páxina principal with products updated on dec. 2021</category>
+    <category>cecerelê: about us páxina</category>
+    <category>cecerelê: product páxina</category>
+    <category>cecerelê: kit para colorir adulto edição limitada, product páxina</category>
+    <category>cecerelê: memorêlas jogo de memória das mulheres brasileiras, product páxina</category>
+    <category>cecerelê: minha praia, livro de colorir, product páxina</category>
+    <category>cecerelê, quebra cabeça revolucionárias: product páxina</category>
+    <category>cecerelê: cart contido</category>
+    <category>cecerelê: login</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/cecerele/cecerele-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Brazilian Leather</title>
     <link>https://luiskr.com/gl/portfolio/cicb</link>
-    <guid>https://luiskr.com/gl/portfolio/cicb</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/cicb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Brazilian Leather é un proxecto desenvolvido en Transa, mediante unha alianza entre CICB e Apex-Brasil.</description>
+    <category>brazilian leather</category>
+    <category>cicb</category>
+    <category>brazilian leather, páxina principal full tour</category>
+    <category>brazilian leather, tour móbil</category>
+    <category>brazilian leather, home</category>
+    <category>brazilian leather, about</category>
+    <category>brazilian leather, in mandarin chinese</category>
+    <category>cscb, home páxina</category>
+    <category>fórum 2016, full tour</category>
+    <category>fórum 2016, páxina completa</category>
+    <category>fórum 2016, tour móbil</category>
+    <category>fórum 2017, full tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/brazilian%20leather/portal/brazilian-leather-cicb-cscb-leather-law-portal-full-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Coza</title>
     <link>https://luiskr.com/gl/portfolio/coza</link>
-    <guid>https://luiskr.com/gl/portfolio/coza</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/coza</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>O sitio web de Coza foi desenvolvido en Transa de 2017 a 2019.</description>
+    <category>coza</category>
+    <category>coza: páxina principal full tour</category>
+    <category>coza: móbil full tour</category>
+    <category>coza: páxina completa captura de pantalla</category>
+    <category>coza: english páxina principal</category>
+    <category>coza: artigo, organização com as dicas da maysa.</category>
+    <category>coza: image galería, a cada instante da rotina. mais coza + pantone.</category>
+    <category>coza: artigo, seu banheiro cheio de beleza.</category>
+    <category>coza: onde atopala páxina on escritorio</category>
+    <category>coza: onde atopala páxina on móbil</category>
+    <category>o sitio web de coza foi desenvolvido en transa de 2017 a 2019.</category>
+    <category>brinox</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Melissa</title>
     <link>https://luiskr.com/gl/portfolio/melissa</link>
-    <guid>https://luiskr.com/gl/portfolio/melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>O sitio web de Melissa foi un proxecto desenvolvido por TRANSA INC.</description>
+    <category>melissa</category>
+    <category>melissa, sitio web 2020 tour</category>
+    <category>melissa, feed móbil 2020 tour</category>
+    <category>melissa, páxina principal captura de pantalla</category>
+    <category>melissa, onde atopala tour</category>
+    <category>melissa, onde atopala tour móbil</category>
+    <category>melissa, squad páxina 2020 captura de pantalla</category>
+    <category>melissa, projects páxina 2020 captura de pantalla</category>
+    <category>melissa, artigo: alerta de collab inedita</category>
+    <category>melissa, artigo: ebulicao de cores e ideias</category>
+    <category>melissa, artigo: reconexao urbana</category>
+    <category>melissa, galería: galeria e lancamento squad</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/melissa/website/tour/melissa-website-2020-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>METCHA</title>
     <link>https://luiskr.com/gl/portfolio/metcha</link>
-    <guid>https://luiskr.com/gl/portfolio/metcha</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/metcha</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>METCHA: o oráculo do coiro, o deseño e a cultura.</description>
+    <category>metcha</category>
+    <category>metcha, feed 2022 tour</category>
+    <category>metcha artigo: bill amberg studio moore giles colección</category>
+    <category>metcha artigo: ceeze's sustainability rules</category>
+    <category>metcha artigo: check the bell bullitt helmet by larson upholstery up close</category>
+    <category>metcha artigo: eugene riconneaus high standard skate leather sneakers</category>
+    <category>metcha artigo: find out why tommaso spinzi's studio is historic and full of stor</category>
+    <category>metcha artigo: max poglia s bags are never alike</category>
+    <category>metcha artigo: mini type 10 is the novo conscious and custom high end car deseño</category>
+    <category>metcha artigo: mut deseño free thinking perspective</category>
+    <category>metcha artigo: okhtein's leather bags show two sisters creative directions</category>
+    <category>metcha artigo: see how studio reco transforms excess into original bags</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/metcha/feed/metcha.com-feed-apr-14-2022.mp4" medium="video"/>
   </item>
   <item>
     <title>Mini Melissa</title>
     <link>https://luiskr.com/gl/portfolio/mini-melissa</link>
-    <guid>https://luiskr.com/gl/portfolio/mini-melissa</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/mini-melissa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Mini Melissa foi un proxecto desenvolvido en Transa para o Grupo Grendene como canle dedicada á marca Mini Melissa.</description>
+    <category>mini melissa</category>
+    <category>mini melissa: páxina principal full tour</category>
+    <category>mini melissa: tour móbil</category>
+    <category>mini melissa: feed portada</category>
+    <category>mini melissa: feed captura de pantalla 2020</category>
+    <category>mini melissa: onde atopala</category>
+    <category>mini melissa: onde atopala, móbil</category>
+    <category>mini melissa: color me</category>
+    <category>mini melissa: color me móbil</category>
+    <category>mini melissa: dance machine</category>
+    <category>mini melissa: dance machine móbil</category>
+    <category>mini melissa: dreamers</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/minimelissa/website/minimelissa.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>MOR</title>
     <link>https://luiskr.com/gl/portfolio/mor</link>
-    <guid>https://luiskr.com/gl/portfolio/mor</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/mor</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>O sitio web de MOR foi desenvolvido en Transa.</description>
+    <category>mor</category>
+    <category>mor: páxina principal full tour</category>
+    <category>mor: sitio web tour móbil</category>
+    <category>mor artigo: mor explica como cuidar da sua piscina</category>
+    <category>mor artigo: cada doçura da linha baby</category>
+    <category>mor: tenda tour</category>
+    <category>mor: tenda tour móbil</category>
+    <category>mor: tenda, category páxina captura de pantalla</category>
+    <category>mor: tenda, product páxina captura de pantalla</category>
+    <category>mor: onde atopala tour</category>
+    <category>mor: onde atopala tour móbil</category>
+    <category>o sitio web de mor foi desenvolvido en transa.</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/mor/site/mor.com.br-31-03-19.mp4" medium="video"/>
   </item>
   <item>
     <title>Nathalia Bond</title>
     <link>https://luiskr.com/gl/portfolio/nathalia-bond</link>
-    <guid>https://luiskr.com/gl/portfolio/nathalia-bond</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/nathalia-bond</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Coñecín a Nathalia de Nathalia Bond, Clínica de Desenvolvimento, a través dun amigo común, Marco Anuschek, en outubro de 2021.</description>
+    <category>nathalia bond</category>
+    <category>nathalia bond, clínica de desenvolvimento: páxina principal, tour</category>
+    <category>nathalia bond, clínica de desenvolvimento: páxina principal escritorio</category>
+    <category>nathalia bond, clínica de desenvolvimento: páxina principal móbil</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades móbil páxina</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades escritorio páxi</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, fonoaudiologia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicologia inf</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicomotria, e</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, psicopedagogia</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossas especialidades, terapia ocupac</category>
+    <category>nathalia bond, clínica de desenvolvimento: nossa equipe, escritorio 4k páxina</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/nathaliabond/home/nathaliabond.com.br-tour.mp4" medium="video"/>
   </item>
   <item>
     <title>Genesysinf, Sageweb</title>
     <link>https://luiskr.com/gl/portfolio/sage</link>
-    <guid>https://luiskr.com/gl/portfolio/sage</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/sage</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Sage é un software fiscal desenvolvido por Genesysinf, con sede en Santana do Livramento, Brasil.</description>
+    <category>genesysinf, sageweb</category>
+    <category>sage</category>
+    <category>sageweb: shortcuts captura de pantalla</category>
+    <category>sageweb: 'cadastros' captura de pantalla</category>
+    <category>sageweb: color picker captura de pantalla</category>
+    <category>sageweb: filters captura de pantalla</category>
+    <category>sageweb: intro captura de pantalla</category>
+    <category>sageweb: 'mapa sageweb' captura de pantalla</category>
+    <category>sageweb: 'módulo nfe' captura de pantalla</category>
+    <category>sageweb: shortcuts ordering captura de pantalla</category>
+    <category>sageweb: personalization captura de pantalla</category>
+    <category>sageweb: 'relatórios gerenciais' captura de pantalla</category>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/genesysinf/genesysinf-sageweb-2015-atalhos-mozjpg-uncompressed.jpg" medium="image"/>
   </item>
   <item>
     <title>Transa</title>
     <link>https://luiskr.com/gl/portfolio/transa</link>
-    <guid>https://luiskr.com/gl/portfolio/transa</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/transa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>O sitio web de Transa foi desenvolvido con Vue, CSS (Sass) e PHP (Laravel) en 2021.</description>
+    <category>transa</category>
+    <category>transa: feed short tour</category>
+    <category>transa: vídeo of brazilian leather's caso inside transa's sitio web.</category>
+    <category>transa: vídeo of metcha's caso inside transa's sitio web.</category>
+    <category>transa: vídeo of mor's caso inside transa's sitio web.</category>
+    <category>transa: vídeo of melissa's caso inside transa's sitio web.</category>
+    <category>transa: vídeo of mini melissa's caso inside transa's sitio web.</category>
+    <category>transa: vídeo of coza's caso inside transa's sitio web.</category>
+    <category>transa: feed tour</category>
+    <category>transa: feed tour móbil</category>
+    <category>transa: category, brazilian leather, tour</category>
+    <category>transa: category, coza, tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4" medium="video"/>
   </item>
   <item>
     <title>Vibra</title>
     <link>https://luiskr.com/gl/portfolio/vibra</link>
-    <guid>https://luiskr.com/gl/portfolio/vibra</guid>
+    <guid isPermaLink="true">https://luiskr.com/gl/portfolio/vibra</guid>
+    <dc:creator>Luis Krötz</dc:creator>
     <description>Vibra foi un sitio web desenvolvido en Transa en 2016 e permaneceu en liña ata 2021.</description>
+    <category>vibra</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, tour</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil /tour móbil</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil/ production and distributi</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil /our brands páxina complet</category>
+    <category>vibra: a empresa mais inovadora do segmento no brasil, more than five decades of</category>
+    <category>vibra foi un sitio web desenvolvido en transa en 2016 e permaneceu en liña ata 2</category>
+    <category>vibra agilize</category>
+    <category>brand portal</category>
+    <category>energy</category>
+    <category>proxecto web</category>
+    <category>estudo de caso</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4.jpg-thumb.jpg"/>
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/vibra/vibra.com.br-a-empresa-mais-inovadora-do-segmento-no-brasil-tour.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>47 Tucanae</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/47-tucanae</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/47-tucanae</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O segundo cúmulo globular máis brillante do ceo: un enxame dun millón de estrelas no halo preto da liña de visión da Pequena Nube de Magallanes.</description>
+    <category>47 Tucanae</category>
+    <category>cluster</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>51 Pegasi b</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/51-pegasi-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/51-pegasi-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Dimidium — o Xúpiter quente orixinal, o mundo que reescribiu a formación planetaria.</description>
+    <category>51 Pegasi b</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>51 Pegasi</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/51-pegasi</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/51-pegasi</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A primeira estrela parecida ao Sol que albergaba un exoplaneta, o descubrimento que abriu un universo de mundos.</description>
+    <category>51 Pegasi</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Aldebarán</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/aldebaran</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/aldebaran</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O ollo ardente de Touro: un xigante laranxa que xa pode albergar un planeta xigante.</description>
+    <category>Aldebarán</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Alfa Centauri B</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/alpha-centauri-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/alpha-centauri-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Toliman — a compañeira laranxa K1V que baila con Rigil Kentaurus cada 79,9 anos.</description>
+    <category>Alfa Centauri B</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Alfa Centauri</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/alpha-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/alpha-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O sistema estelar máis próximo: un binario semellante ao Sol rodeado a unha distancia por Próxima.</description>
+    <category>Alfa Centauri</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/alpha-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Andrómeda I</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/andromeda-1</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/andromeda-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unha débil anana esferoidal de Andrómeda: un dos satélites difusos que poboan o halo exterior de M31.</description>
+    <category>Andrómeda I</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Andrómeda II</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/andromeda-2</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/andromeda-2</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unha anana esferoidal de Andrómeda dunha nota especial: as súas estrelas mostran sinais dunha posible fusión máis antiga de dúas ananas aínda máis pequenas.</description>
+    <category>Andrómeda II</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Andrómeda III</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/andromeda-3</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/andromeda-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un membro esferoidal débil de M31 do enxame — vello, pobre en metais e dominado pola materia escura.</description>
+    <category>Andrómeda III</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galaxia de Andrómeda</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/andromeda</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/andromeda</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O obxecto máis afastado visible a simple vista — a dous millóns e medio de anos luz de distancia.</description>
+    <category>Galaxia de Andrómeda</category>
+    <category>galaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/andromeda/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Antares B</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/antares-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/antares-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O compañeiro esmeralda — un anano azul-branco no fulgor do rival de Marte.</description>
+    <category>Antares B</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Antares</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/antares</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/antares</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O rival de Marte: unha superxigante vermella inchada que se achega á súa supernova.</description>
+    <category>Antares</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Anano Acuario</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/aquarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/aquarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 210: un dos membros máis pobres en metais do Grupo Local, unha nube de gas case escura con estrelas escasas.</description>
+    <category>Anano Acuario</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Arcturus</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/arcturus</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/arcturus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A estrela máis brillante do ceo do norte: un xigante laranxa que corre polo halo galáctico.</description>
+    <category>Arcturus</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Arrokoth</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/arrokoth</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/arrokoth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O boneco de neve — dous lóbulos planetesimais prístinos fundidos no bordo do Sistema Solar.</description>
+    <category>Arrokoth</category>
+    <category>asteroid</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Cinto de Asteroides</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/asteroid-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/asteroid-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Millóns de restos rochosos entre Marte e Xúpiter, o planeta que nunca se formou.</description>
+    <category>Cinto de Asteroides</category>
+    <category>belt</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Barnard b</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/barnard-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/barnard-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un mundo de masa sub-terrestre abrazando a estrela solitaria máis próxima — unha pantasma centenaria por fin real.</description>
+    <category>Barnard b</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>A estrela de Barnard</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/barnard-star</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/barnard-star</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A estrela que se move máis rápido polo noso ceo: unha anana vermella tenue a 6 anos luz de distancia.</description>
+    <category>A estrela de Barnard</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Bennu</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/bennu</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/bennu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O asteroide máis coidadosamente seguido preto da Terra, mostrado por OSIRIS-REx en 2020.</description>
+    <category>Bennu</category>
+    <category>asteroid</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Betelgeuse</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/betelgeuse</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/betelgeuse</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O ombreiro vermello de Orión: un superxigante que vive no tempo prestado.</description>
+    <category>Betelgeuse</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/betelgeuse/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Boötes I Anano</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/bootes-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/bootes-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O 'campión tenue': un satélite ultra-débil da Vía Láctea a 197.000 anos luz, descuberto nos datos do SDSS en 2006.</description>
+    <category>Boötes I Anano</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Calisto</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/callisto</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/callisto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O corpo con máis cráteres coñecido: unha superficie antiga e morta sen cambios durante catro mil millóns de anos.</description>
+    <category>Calisto</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Canopus</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/canopus</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/canopus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A segunda estrela máis brillante do ceo nocturno: unha baliza do sur usada para dirixir as naves espaciais.</description>
+    <category>Canopus</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Capella Ab</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/capella-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/capella-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O xemelgo — o segundo xigante dourado do par de Capella, valsando cada 104 días.</description>
+    <category>Capella Ab</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Capela</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/capella</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/capella</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un sistema dourado cuádruple: dúas estrelas xigantes que orbitan tan preto que case se tocan.</description>
+    <category>Capela</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Anana Carina</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/carina-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/carina-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satélite da Vía Láctea a 330.000 anos luz cuxa historia de formación estelar transcorre en estalidos separados ao longo do tempo cósmico.</description>
+    <category>Anana Carina</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa de Carina</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/carina</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/carina</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A gran fábrica de estrelas do ceo austral: fogar da condenada hiperxigante Eta Carinae.</description>
+    <category>Nebulosa de Carina</category>
+    <category>nebula</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ceres</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/ceres</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/ceres</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O primeiro asteroide atopado: un planeta anano que contén un terzo da masa do cinto.</description>
+    <category>Ceres</category>
+    <category>dwarfPlanet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/ceres/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Anano Cetus</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/cetus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/cetus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un grupo local illado esferoidal: máis aló de ambos halos xigantes, evolucionou case intacto.</description>
+    <category>Anano Cetus</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmulo de coma</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/coma-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/coma-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O supercúmulo rico máis próximo: dous cúmulos xigantes nun filamento común, a ~321 millóns de anos luz.</description>
+    <category>Supercúmulo de coma</category>
+    <category>structure</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa do Cangrexo</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/crab-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/crab-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Os restos dunha estrela visto explotar en 1054, aínda en expansión.</description>
+    <category>Nebulosa do Cangrexo</category>
+    <category>nebula</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/crab-nebula/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Deimos</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/deimos</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/deimos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A lúa exterior máis pequena de Marte: un remanente cuberto de po que orbita ao bordo da altitude sincrónica.</description>
+    <category>Deimos</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/deimos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Deneb</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/deneb</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/deneb</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A cola do Cisne: unha das estrelas a simple vista máis afastadas, que brilla durante 2.600 anos luz.</description>
+    <category>Deneb</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Dione</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/dione</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/dione</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A lúa de xeo tenue de Saturno: brillantes acantilados fracturados que atravesan unha antiga cara de cráteres.</description>
+    <category>Dione</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Draco Anano</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/draco-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/draco-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satélite da Vía Láctea moi pobre en metal a 260.000 anos luz, unha das galaxias máis escuras que se coñecen.</description>
+    <category>Draco Anano</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa da Águia</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/eagle-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/eagle-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Fogar dos Pilares da Creación: torres de gas onde se acenden as estrelas.</description>
+    <category>Nebulosa da Águia</category>
+    <category>nebula</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/eagle-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Terra</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/earth</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/earth</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O único mundo coñecido que alberga vida: un planeta oceánico na zona habitable.</description>
+    <category>Terra</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/earth/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Encélado</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/enceladus</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/enceladus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un pequeno mundo de xeo cun océano subterráneo que pulveriza auga ao espazo a través dos géiseres do polo sur.</description>
+    <category>Encélado</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Epsilon Eridani b</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/eps-eridani-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/eps-eridani-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Ægir — o análogo de Xúpiter coñecido máis próximo, cruzando o cinto de detritos dun xove xemelgo laranxa.</description>
+    <category>Epsilon Eridani b</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Épsilon Eridani</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/epsilon-eridani</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/epsilon-eridani</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A estrela máis próxima, semellante ao Sol, cun disco de restos, un sistema solar novo en proceso.</description>
+    <category>Épsilon Eridani</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Eris</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/eris</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/eris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A Discordia — o planeta anano cuxo descubrimento degradou a Plutón.</description>
+    <category>Eris</category>
+    <category>dwarfPlanet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Eros</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/eros</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/eros</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O cacahuete próximo da Terra — primeiro asteroide orbitado e aterrado por unha sonda.</description>
+    <category>Eros</category>
+    <category>asteroid</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Europa</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/europa</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/europa</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un mundo oceánico con codia de xeo, sen dúbida o mellor lugar máis aló da Terra para buscar vida.</description>
+    <category>Europa</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Anano Fornax</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/fornax-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/fornax-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satélite esferoide da Vía Láctea a 455.000 anos luz, a única anana clásica que aínda formaba estrelas ata hai pouco.</description>
+    <category>Anano Fornax</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ganimedes</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/ganymede</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/ganymede</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A lúa máis grande do Sistema Solar, máis grande que Mercurio, cun campo magnético propio.</description>
+    <category>Ganimedes</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Cometa Halley</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/halley</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/halley</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O cometa máis famoso da historia — o primeiro co regreso predicho, de volta cada ~75 anos.</description>
+    <category>Cometa Halley</category>
+    <category>comet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Haumea</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/haumea</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/haumea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O puro xirante — un planeta anano estirado pola rotación máis rápida do cinto de Kuiper.</description>
+    <category>Haumea</category>
+    <category>dwarfPlanet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa da Hélice</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/helix-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/helix-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O ollo de Deus: o sudario da morte dunha estrela semellante ao Sol e a vista previa da nosa propia estrela.</description>
+    <category>Nebulosa da Hélice</category>
+    <category>nebula</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/helix-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Supercúmulo Retículo-Horologium</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/horologium-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/horologium-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O gran supercúmulo do ceo austral: unha concentración de masa de 700 Mly de profundidade só superada por Shapley.</description>
+    <category>Supercúmulo Retículo-Horologium</category>
+    <category>structure</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa Cabeza de Cabalo</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/horsehead</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/horsehead</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O cabalo escuro de Orión: unha silueta de po frío contra o hidróxeno brillante.</description>
+    <category>Nebulosa Cabeza de Cabalo</category>
+    <category>nebula</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmulo Hydra-Centaurus</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/hydra-centaurus-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/hydra-centaurus-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O supercúmulo adxacente a Virgo: unha reunión de dobre lóbulo que inclúe a rexión do Gran Atractor.</description>
+    <category>Supercúmulo Hydra-Centaurus</category>
+    <category>structure</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Hixea</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/hygiea</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/hygiea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O xigante escuro de carbono — cuarto asteroide máis grande e case un planeta anano.</description>
+    <category>Hixea</category>
+    <category>asteroid</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Jápeto</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/iapetus</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/iapetus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A lúa de dúas caras de Saturno: un hemisferio brillante coma a neve e o outro escuro coma o carbón.</description>
+    <category>Jápeto</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>IC 10</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/ic-10</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/ic-10</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A anana estelar do Grupo Local, a única que aínda está en erupción con formación estelar preto de Andrómeda.</description>
+    <category>IC 10</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>IC 1613</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/ic-1613</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/ic-1613</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un Grupo Local irregular cuxas estrelas variables Cefeidas axudaron a establecer a escala de distancia extragaláctica.</description>
+    <category>IC 1613</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Viciñanza Interestelar</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/interstellar-neighborhood</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/interstellar-neighborhood</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A burbulla local do Sol e os seus compañeiros estelares, todo a uns 2.000 anos luz.</description>
+    <category>Viciñanza Interestelar</category>
+    <category>structure</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Io</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/io</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/io</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A lúa volcánica de Xúpiter - o corpo xeoloxicamente máis activo do Sistema Solar.</description>
+    <category>Io</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>ISS</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/iss</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/iss</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A Estación Espacial Internacional — o maior obxecto tripulado que xamais voou en órbita terrestre baixa.</description>
+    <category>ISS</category>
+    <category>satellite</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Xuno</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/juno</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/juno</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unha reliquia de pedra e ferro nunha das órbitas máis excéntricas do cinto.</description>
+    <category>Xuno</category>
+    <category>asteroid</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Xúpiter</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/jupiter</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/jupiter</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O xigante - máis masivo que calquera outro planeta xuntos.</description>
+    <category>Xúpiter</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/jupiter/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Kepler-452b</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/kepler-452-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/kepler-452-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O curmán da Terra — o primeiro mundo de tamaño terrestre nunha zona habitable de xemelgo solar.</description>
+    <category>Kepler-452b</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Kepler-452</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/kepler-452</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/kepler-452</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>"Terra 2.0": unha estrela parecida ao Sol que alberga un planeta rochoso na súa zona habitable.</description>
+    <category>Kepler-452</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Cinto de Kuiper</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/kuiper-belt</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/kuiper-belt</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un anel conxelado de mundos xeados máis aló de Neptuno: o arquivo ultraconxelado do sistema solar.</description>
+    <category>Cinto de Kuiper</category>
+    <category>belt</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa da Lagoa</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/lagoon</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/lagoon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un viveiro estelar que pode ver a simple vista: o gran estanque de formación estelar de Saxitario.</description>
+    <category>Nebulosa da Lagoa</category>
+    <category>nebula</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmulo de Laniakea</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/laniakea</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/laniakea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O noso supercúmulo doméstico: unha conca de 520 Mly de ~100.000 galaxias que converxen no Gran Atractor.</description>
+    <category>Supercúmulo de Laniakea</category>
+    <category>structure</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>León I Anano</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/leo-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/leo-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satélite da Vía Láctea a 820.000 anos luz, tan distante que foi a primeira anana atopada exclusivamente en placas fotográficas.</description>
+    <category>León I Anano</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>León II Anano</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/leo-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/leo-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un distante esferoide da Vía Láctea a 690.000 anos luz, tamén catalogado como Leo B, emparejado con Leo I no lado máis afastado do halo.</description>
+    <category>León II Anano</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Leo A</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/leo-a</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/leo-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unha irregular illada no bordo do Grupo Local, aínda formando estrelas só despois de miles de millóns de anos.</description>
+    <category>Leo A</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>LGS 3</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/lgs-3</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/lgs-3</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O anano de Peixes - un membro de transición do Grupo Local a medio camiño entre un esferoidal e un irregular.</description>
+    <category>LGS 3</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Gran Nube de Magalláns</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/lmc</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/lmc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A galaxia satélite máis grande da Vía Láctea, unha compañeira de explosión estelar a 160.000 anos luz de distancia.</description>
+    <category>Gran Nube de Magalláns</category>
+    <category>galaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Grupo Local</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/local-group</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/local-group</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O cúmulo de ~80 galaxias que a Vía Láctea chama fogar, un volume de ~10 millóns de anos luz de ancho limitado pola gravidade compartida.</description>
+    <category>Grupo Local</category>
+    <category>structure</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Messier 110</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/m110</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/m110</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O segundo satélite brillante de Andrómeda: unha elíptica anana que ten estruturas poeirentas e cúmulos globulares propios.</description>
+    <category>Messier 110</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Gran cúmulo de Hércules</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/m13-hercules</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/m13-hercules</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>M13: o cúmulo globular máis fino do ceo setentrional, ~300.000 estrelas nunha bola de 145 anos luz de ancho.</description>
+    <category>Gran cúmulo de Hércules</category>
+    <category>cluster</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Messier 32</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/m32</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/m32</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O satélite elíptico compacto de Andrómeda: unha galaxia despexada ata o seu núcleo denso por pasadas repetidas.</description>
+    <category>Messier 32</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Makemake</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/makemake</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/makemake</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O mundo do creador de Rapa Nui — un anano xealado de metano no bordo frío do cinto de Kuiper.</description>
+    <category>Makemake</category>
+    <category>dwarfPlanet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Marte</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/mars</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/mars</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O planeta vermello: fogar do volcán máis alto e do canón máis profundo coñecido.</description>
+    <category>Marte</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mars/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Mercurio</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/mercury</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/mercury</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O planeta máis pequeno e o máis próximo ao Sol, un mundo de cráteres extremos.</description>
+    <category>Mercurio</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/mercury/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Vía Láctea</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/milky-way</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/milky-way</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A nosa galaxia natal: unha espiral barrada de centos de miles de millóns de estrelas.</description>
+    <category>Vía Láctea</category>
+    <category>galaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/milky-way/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Mimas</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/mimas</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/mimas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A lúa "Estrela da Morte" de Saturno: unha bola de xeo maltratada dominada polo xigante cráter Herschel.</description>
+    <category>Mimas</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Lúa</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/moon</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/moon</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O único satélite natural da Terra, o primeiro mundo visitado polos seres humanos.</description>
+    <category>Lúa</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/moon/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Satélites Próximos da Terra</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/near-earth-satellites</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/near-earth-satellites</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A casca artificial — milleiros de naves activas e fragmentos de detritos fervellando pola órbita terrestre baixa.</description>
+    <category>Satélites Próximos da Terra</category>
+    <category>satellite</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Neptuno</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/neptune</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/neptune</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O mundo máis ventoso: un xigante de xeo atopado polas matemáticas antes dos telescopios.</description>
+    <category>Neptuno</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/neptune/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>NGC 147</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/ngc-147</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/ngc-147</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unha anana esferoidal de Andrómeda a 2,53 Mly fóra: estrelas vellas, gas silencioso, orbitando no agarre gravitacional de M31.</description>
+    <category>NGC 147</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>NGC 185</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/ngc-185</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/ngc-185</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Irmán de NGC 147: unha anana esferoidal de Andrómeda que destaca polo po e as estrelas novas raras na súa clase.</description>
+    <category>NGC 185</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>A galaxia de Barnard</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/ngc-6822</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/ngc-6822</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un grupo local irregular en Saxitario: 1,63 Mly fóra, un anano que parece unha pequena nube de Magallanes.</description>
+    <category>A galaxia de Barnard</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Universo Observábel</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/observable-universe</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/observable-universe</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O horizonte causal: todo o que a luz tivo tempo de chegar a nós en 13.800 millóns de anos.</description>
+    <category>Universo Observábel</category>
+    <category>structure</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Omega Centauri</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/omega-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/omega-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O cúmulo globular máis grande da Vía Láctea, posiblemente o núcleo desposuído dunha galaxia devorada.</description>
+    <category>Omega Centauri</category>
+    <category>cluster</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa de Orión</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/orion-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/orion-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O viveiro estelar máis próximo: novos soles que nacen á vista.</description>
+    <category>Nebulosa de Orión</category>
+    <category>nebula</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/orion-nebula/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Palas</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/pallas</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/pallas</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O xigante inclinado do cinto — un protoplaneta basáltico que se mergulla no plano planetario.</description>
+    <category>Palas</category>
+    <category>asteroid</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Pegasus Anano Irregular</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/pegasus-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/pegasus-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>DDO 216: un grupo local rico en gas irregular, de combustión lenta e químicamente primitivo.</description>
+    <category>Pegasus Anano Irregular</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmulo de Perseo-Pisces</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/perseus-pisces-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/perseus-pisces-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un supercúmulo filamentoso importante: unha dorsal de 250 Mly de grupos de galaxias a través do ceo do outono do norte.</description>
+    <category>Supercúmulo de Perseo-Pisces</category>
+    <category>structure</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Fobos</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/phobos</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/phobos</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A máis grande das dúas lúas de Marte: unha pila de cascallos que avanza lentamente en espiral cara ao seu planeta.</description>
+    <category>Fobos</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/phobos/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Anano Fénix</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/phoenix-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/phoenix-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unha anana do Grupo Local de transición: parte esferoidal, parte irregular, aínda formando un reguero de estrelas.</description>
+    <category>Anano Fénix</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Pléiades</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/pleiades</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/pleiades</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>As sete irmás: unha caixa de xoias de estrelas azuis novas envoltas nunha nebulosidade reflexiva.</description>
+    <category>Pléiades</category>
+    <category>cluster</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Plutón</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/pluto</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/pluto</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O anano querido - o rei do cinto de Kuiper e un mundo de glaciares de nitróxeno.</description>
+    <category>Plutón</category>
+    <category>dwarfPlanet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/pluto/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Polaris Ab</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/polaris-ab</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/polaris-ab</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O compañeiro resolto polo Hubble — un anano solar atravesando o fulgor da Ceféida.</description>
+    <category>Polaris Ab</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Estrela Polar</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/polaris</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/polaris</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A estrela polar: unha baliza cefeida case directamente sobre o eixe terrestre.</description>
+    <category>Estrela Polar</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Proxima b</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/proxima-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/proxima-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O exoplaneta máis próximo á Terra — un mundo de masa terrestre na zona habitable de Proxima.</description>
+    <category>Proxima b</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Proxima c</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/proxima-c</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/proxima-c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unha super-Terra candidata disputada moi fóra da zona habitable — o irmán frío e lento de Proxima.</description>
+    <category>Proxima c</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Próxima Centauri</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/proxima-centauri</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/proxima-centauri</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A estrela máis próxima ao Sol: unha estrela bengala cun planeta do tamaño da Terra ao lado.</description>
+    <category>Próxima Centauri</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/proxima-centauri/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Proxima d</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/proxima-d</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/proxima-d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O mundo máis interno de Proxima — unha sub-Terra que roza a estrela cada cinco días.</description>
+    <category>Proxima d</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Rea</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/rhea</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/rhea</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A segunda lúa máis grande de Saturno: un mundo de xeo brillante e maltreito no bordo do plano do anel.</description>
+    <category>Rea</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Rigel</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/rigel</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/rigel</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O pé azul-branco de Orión: unha superxigante entre as estrelas máis luminosas coñecidas.</description>
+    <category>Rigel</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Nebulosa do Anel</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/ring-nebula</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/ring-nebula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O anel de fume dun Sol moribundo: a nebulosa planetaria que todos os telescopios coñecen.</description>
+    <category>Nebulosa do Anel</category>
+    <category>nebula</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Ryugu</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/ryugu</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/ryugu</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un asteroide carbonoso xiratorio, mostrado por Hayabusa2 e regresado á Terra.</description>
+    <category>Ryugu</category>
+    <category>asteroid</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>SagDIG</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/sagdig</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/sagdig</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Sagittarius Dwarf Irregular: a galaxia máis pobre en gas do Grupo Local, con 3,45 Mly fóra.</description>
+    <category>SagDIG</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Saxitario A*</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/sagittarius-a</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/sagittarius-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O buraco negro supermasivo central da Vía Láctea: un motor de 4,3 millóns de masa solar que ancoraa toda a galaxia.</description>
+    <category>Saxitario A*</category>
+    <category>blackHole</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galaxia anana Saxitario</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/sagittarius-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/sagittarius-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O satélite máis próximo coñecido da Vía Láctea: un esferoide que xa está sendo rasgado en correntes de estrelas mentres cae a través do disco.</description>
+    <category>Galaxia anana Saxitario</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Saturno</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/saturn</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/saturn</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O xigante anelado: o seu halo de xeo abarca 280.000 km aínda que ten metros de espesor.</description>
+    <category>Saturno</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/saturn/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Anano escultor</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/sculptor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/sculptor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un esferoide da Vía Láctea pobre en metal a 290.000 anos luz: dominaba a materia escura, con máis de 10.000 millóns de anos.</description>
+    <category>Anano escultor</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans A</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/sextans-a</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/sextans-a</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un Grupo Local brillante irregular: 4,4 Mly fóra, aínda formando estrelas vigorosamente nos seus nós máis densos.</description>
+    <category>Sextans A</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans B</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/sextans-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/sextans-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un grupo local irregular no bordo exterior do grupo: unha das galaxias ananas máis afastadas unidas ao noso barrio.</description>
+    <category>Sextans B</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sextans Anano Esferoidal</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/sextans-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/sextans-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satélite moi feble da Vía Láctea a 290.000 anos luz, un dos esferoidais ananos menos luminosos do halo.</description>
+    <category>Sextans Anano Esferoidal</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmulo de Shapley</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/shapley-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/shapley-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>The Shapley Concentration: o supercúmulo próximo máis pesado, ~650 Mly fóra, que contén ~8.000 galaxias.</description>
+    <category>Supercúmulo de Shapley</category>
+    <category>structure</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sirius B</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/sirius-b</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/sirius-b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O Pup — a primeira anana branca recoñecida, orbitando a estrela máis brillante do ceo.</description>
+    <category>Sirius B</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sirio</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/sirius</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/sirius</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>The Dog Star: a estrela máis brillante do ceo nocturno da Terra, que esconde un compañeiro morto.</description>
+    <category>Sirio</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sirius/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Pequena Nube de Magalláns</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/smc</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/smc</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O segundo satélite da Vía Láctea, unha galaxia anana pobre en metales que se vai destrozando lentamente.</description>
+    <category>Pequena Nube de Magalláns</category>
+    <category>galaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Sol</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/sun</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/sun</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A estrela de secuencia principal tipo G que ten o 99,86% da masa do Sistema Solar.</description>
+    <category>Sol</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/sun/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Nebulosa da Tarántula</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/tarantula</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/tarantula</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A rexión de formación estelar máis violenta do Grupo Local, nunha galaxia satélite a 160.000 de distancia.</description>
+    <category>Nebulosa da Tarántula</category>
+    <category>nebula</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti e</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/tau-ceti-e</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/tau-ceti-e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unha superterra na zona habitable da estrela única máis próxima — no lado máis quente da esperanza.</description>
+    <category>Tau Ceti e</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti f</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/tau-ceti-f</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/tau-ceti-f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O candidato frío externo — unha superterra pesada no bordo xeada da zona habitable.</description>
+    <category>Tau Ceti f</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Tau Ceti</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/tau-ceti</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/tau-ceti</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unha estrela tranquila semellante ao Sol a 12 anos luz de distancia cun sistema interior ateigado.</description>
+    <category>Tau Ceti</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Titán</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/titan</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/titan</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A única lúa cunha atmosfera espesa: ríos de metano, lagos e choiva nun mundo xeado de auga xeada.</description>
+    <category>Titán</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPISTA-1</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/trappist-1</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/trappist-1</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Sete mundos do tamaño da Terra arredor dunha estrela apenas máis grande que Xúpiter.</description>
+    <category>TRAPISTA-1</category>
+    <category>system</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/trappist-1/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>TRAPPIST-1b</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/trappist-1b</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/trappist-1b</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A máis interna dos sete mundos resonantes — unha rocha chamuscada do tamaño da Terra.</description>
+    <category>TRAPPIST-1b</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1c</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/trappist-1c</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/trappist-1c</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Irmá de masa venusiana orbitando na calor interna da cadea resonante.</description>
+    <category>TRAPPIST-1c</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1d</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/trappist-1d</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/trappist-1d</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A máis lixeira dos sete — un mundo sub-terrestre no bordo da calor.</description>
+    <category>TRAPPIST-1d</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1e</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/trappist-1e</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/trappist-1e</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O análogo terrestre máis denso dos sete — a mellor oportunidade do sistema para auga líquida.</description>
+    <category>TRAPPIST-1e</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1f</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/trappist-1f</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/trappist-1f</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un mundo rico en auga no bordo interno da zona habitable.</description>
+    <category>TRAPPIST-1f</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1g</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/trappist-1g</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/trappist-1g</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O maior dos sete — unha superterra fresca na áncora externa da cadea.</description>
+    <category>TRAPPIST-1g</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>TRAPPIST-1h</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/trappist-1h</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/trappist-1h</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O bordo frío externo — o último mundo do sistema, cuberto de xeo.</description>
+    <category>TRAPPIST-1h</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galaxia do Triángulo</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/triangulum</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/triangulum</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A tranquila terceira espiral: o membro tímido do Grupo Local, rico en viveiros estrelas.</description>
+    <category>Galaxia do Triángulo</category>
+    <category>galaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/triangulum/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Tritón</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/triton</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/triton</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A lúa capturada por Neptuno: un mundo do cinto de Kuiper con géiseres de nitróxeno, orbitando cara atrás.</description>
+    <category>Tritón</category>
+    <category>moon</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Anano Tucana</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/tucana-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/tucana-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O esferoidal máis illado do Grupo Local: 2,9 Mly fóra, nunca influenciado por unha galaxia importante.</description>
+    <category>Anano Tucana</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Osa Maior I Anana</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/uma-1-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/uma-1-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un satélite ultra-débil da Vía Láctea atopado polo SDSS, un escaparate de dominación da materia escura no bordo da formación de galaxias.</description>
+    <category>Osa Maior I Anana</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Osa Maior II Anano</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/uma-2-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/uma-2-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Unha das galaxias máis débiles coñecidas: un satélite ultra-débil da Vía Láctea a só 105.000 anos luz.</description>
+    <category>Osa Maior II Anano</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Urano</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/uranus</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/uranus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O planeta de lado: un xigante de xeo rodando arredor do Sol de lado.</description>
+    <category>Urano</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/uranus/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Osa Menor Anana</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/ursa-minor-dwarf</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/ursa-minor-dwarf</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Un esferoide da Vía Láctea a 225.000 anos luz: antigo, débil e case toda materia escura.</description>
+    <category>Osa Menor Anana</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Veiga</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/vega</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/vega</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>A antiga e futura estrela polar: o punto cero de brillo da astronomía.</description>
+    <category>Veiga</category>
+    <category>star</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/vega/img-1.jpg" medium="image"/>
+  </item>
+  <item>
+    <title>Venus</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/venus</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/venus</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>De tamaño xemelgo da Terra, envolto nun invernadoiro de CO₂ esmagador, o planeta máis quente.</description>
+    <category>Venus</category>
+    <category>planet</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/img-1.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/experiments/star-field/media/venus/video-1.mp4" medium="video"/>
+  </item>
+  <item>
+    <title>Vesta</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/vesta</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/vesta</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O mundo máis brillante do cinto de asteroides: un protoplaneta que sobreviviu aos albores do Sistema Solar.</description>
+    <category>Vesta</category>
+    <category>asteroid</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Supercúmulo de Virgo</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/virgo-supercluster</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/virgo-supercluster</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>O Supercúmulo Local: unha nube aplanada de ~100 grupos de galaxias centrada no Cúmulo Virgo a ~54 Mly de distancia.</description>
+    <category>Supercúmulo de Virgo</category>
+    <category>structure</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
+  </item>
+  <item>
+    <title>Galaxia WLM</title>
+    <link>https://luiskr.com/gl/experimento-campo-estelar/wlm</link>
+    <guid isPermaLink="true">https://luiskr.com/gl/experimento-campo-estelar/wlm</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <description>Wolf–Lundmark–Melotte: un irregular illado co seu propio cúmulo globular, a 3 Mly da casa.</description>
+    <category>Galaxia WLM</category>
+    <category>dwarfGalaxy</category>
+    <category>campo estelar</category>
+    <category>imaxes de estrelas</category>
+    <category>galaxia 3d</category>
+    <category>mapa estelar</category>
+    <category>ceo nocturno</category>
+    <category>estrelas desde o espazo</category>
+    <category>catálogo de exoplanetas</category>
+    <category>experimento campo estelar</category>
+    <category>luis krötz</category>
+    <category>luis krotz</category>
   </item>
 </channel>
 </rss>

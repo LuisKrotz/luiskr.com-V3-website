@@ -115,8 +115,22 @@ article {
   }
 }
 
+// Each record stacks the crawler-readable text (term + description)
+// above the live <anim-demo> preview stage — single column, the same
+// readable measure as the rest of the listing.
 .#{$_B_ANIM}-record {
+  display: block;
   padding-bottom: to-rem($space-2xl);
+
+  // The <anim-demo> host — block-level so it spans the record width.
+  anim-demo {
+    display: block;
+    margin-top: to-rem($space-md);
+  }
+}
+
+.#{$_B_ANIM}-text {
+  min-width: 0;
 }
 
 .#{$_B_ANIM}-term {
@@ -138,4 +152,19 @@ article {
   hyphens: none;
   margin: 0;
   color: var(--text-secondary);
+}
+
+// In-depth docs link — one per record, deep-linking into the docs
+// portal's api/source page for that animation's implementation.
+.#{$_B_ANIM}-docs {
+  @extend %LK_LINK;
+  @extend .txt-sm;
+
+  display: inline-block;
+  width: fit-content;
+  margin-top: to-rem($space-xs);
+  font-family: var(--font-primary);
+  font-weight: calc(300 + var(--fw-lift));
+  color: var(--color-accent);
+  text-decoration: none;
 }
