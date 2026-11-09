@@ -51,10 +51,9 @@ export function relayout(host: MediaMosaic): void {
   if (!(W > 0)) return
 
   if (W !== host._packedW || host.tiles.length !== host._items.length) {
-    const packed = packMediaMosaic(host._items, W)
-
-    /* istanbul ignore next -- unreachable: packMediaMosaic only returns null for empty items or a non-positive width, both guarded above */
-    if (!packed) return
+    // packMediaMosaic only returns null for empty items or a non-positive
+    // width — both are guarded above, so the result is always concrete.
+    const packed = packMediaMosaic(host._items, W)!
 
     host._packedW = W
 

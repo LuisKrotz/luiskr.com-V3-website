@@ -208,20 +208,14 @@ export class LegalFooter extends BaseComponent {
     const rawSocials = componentText(`${CMS_KEYS.RELATED}.socials`) as
       FooterSocial[] | Record<string, FooterSocial> | undefined
 
-    /* istanbul ignore next -- the bundled fallback snapshot always supplies
-       related.socials; the non-array/falsy normalization arms are defensive
-       dead code. */
     const socials: FooterSocial[] = Array.isArray(rawSocials)
       ? rawSocials
       : rawSocials
         ? Object.values(rawSocials)
         : []
 
-    /* istanbul ignore next -- fallback snapshot always supplies related.note */
     const note = String(componentText(`${CMS_KEYS.RELATED}.note`) || CHAR_STRINGS.EMPTY)
 
-    /* istanbul ignore next -- note resolves to the fallback snapshot's
-       disclaimer when the live node is absent; the null arm is unreachable. */
     const noteBlock = note ? (
       <Fragment>
         {/* Disclaimer: the full note always renders — no clamp,
@@ -294,14 +288,13 @@ export class LegalFooter extends BaseComponent {
                   </a>
                 )
 
-                /* istanbul ignore next -- legalLinks() filters pageless rows
-                   before render; the null arm is defensive (an empty h3
-                   would be an axe violation if it ever rendered). */
-                const heading = item.page ? (
+                // legalLinks() filters pageless rows before render — the
+                // heading can rely on item.page being a real label.
+                const heading = (
                   <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
                     {item.page}
                   </h3>
-                ) : null
+                )
 
                 return (
                   <Fragment key={item.link}>
@@ -492,8 +485,6 @@ export class LegalFooter extends BaseComponent {
             {CHAR_STRINGS.SPACE_CHAR}
             <span className={INTERNAL_CLASSES.INTERNAL_FOOTER_DOCS_DESC}>
               {String(
-                /* istanbul ignore next -- fallback snapshot always supplies
-                   the docs-portal description node. */
                 componentText(`${DOCS_STRINGS.CMS_COMPONENT}.description`) ||
                   DOCS_STRINGS.DESC_FALLBACK
               )}

@@ -493,10 +493,9 @@ export function setHeightVar(c: CustomCarousel) {
   // (skipped when no item carries sizes: fitMax would pin the strip to 0).
   const bounded = halfBound && fitMax > 0 ? Math.min(corrected, fitMax) : corrected
 
-  /* istanbul ignore next -- bounded is always finite here: unsized sets
-     (smallest=Infinity) exit through the unsizedFallback branch above,
-     so the Infinity arm is defensive dead code. */
-  publishStripHeight(c, Math.min(Math.round(bounded === Infinity ? fitMax : bounded), maxH))
+  // bounded is always finite here — unsized sets (smallest=Infinity)
+  // exit through the unsizedFallback branch above.
+  publishStripHeight(c, Math.min(Math.round(bounded), maxH))
 }
 
 /**
