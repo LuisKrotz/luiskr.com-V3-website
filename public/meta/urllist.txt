@@ -3114,6 +3114,7 @@ https://luiskr.com/docs/core/tokens/classes/toast.ts
 https://luiskr.com/docs/core/tokens/css
 https://luiskr.com/docs/core/tokens/css.ts
 https://luiskr.com/docs/core/tokens/css/about.ts
+https://luiskr.com/docs/core/tokens/css/aurora.ts
 https://luiskr.com/docs/core/tokens/css/card-stack.ts
 https://luiskr.com/docs/core/tokens/css/carousel.ts
 https://luiskr.com/docs/core/tokens/css/cookies.ts
@@ -3195,6 +3196,7 @@ https://luiskr.com/docs/core/tokens/motion/gpu.ts
 https://luiskr.com/docs/core/tokens/motion/marquee.ts
 https://luiskr.com/docs/core/tokens/motion/mentions-deck.ts
 https://luiskr.com/docs/core/tokens/motion/notify.ts
+https://luiskr.com/docs/core/tokens/motion/page-backdrop.ts
 https://luiskr.com/docs/core/tokens/motion/parallax.ts
 https://luiskr.com/docs/core/tokens/motion/prefetch.ts
 https://luiskr.com/docs/core/tokens/motion/related.ts

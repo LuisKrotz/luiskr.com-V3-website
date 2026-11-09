@@ -405,179 +405,167 @@ rss {
   --menu-ink-2: #362d8e;
   --menu-glow:
     radial-gradient(
-      ellipse 68% 46% at 14% 8%,
-      color-mix(in srgb, var(--aurora-green) 36%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-green) 18%, transparent) 30%,
-      color-mix(in srgb, var(--aurora-green) 8%, transparent) 50%,
-      color-mix(in srgb, var(--aurora-green) 3%, transparent) 62%,
-      transparent 74%
+      ellipse 105% 71% at 14% 8%,
+      color-mix(in srgb, var(--aurora-green) 32%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-green) 20%, transparent) 16%,
+      color-mix(in srgb, var(--aurora-green) 11%, transparent) 33%,
+      color-mix(in srgb, var(--aurora-green) 6%, transparent) 44%,
+      color-mix(in srgb, var(--aurora-green) 4%, transparent) 53%,
+      color-mix(in srgb, var(--aurora-green) 2%, transparent) 61%,
+      transparent 70%
     ),
     radial-gradient(
-      ellipse 54% 40% at 86% 12%,
-      color-mix(in srgb, var(--aurora-cyan) 28%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-cyan) 14%, transparent) 30%,
-      color-mix(in srgb, var(--aurora-cyan) 6%, transparent) 52%,
-      color-mix(in srgb, var(--aurora-cyan) 2%, transparent) 66%,
-      transparent 76%
+      ellipse 84% 62% at 86% 12%,
+      color-mix(in srgb, var(--aurora-cyan) 25%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-cyan) 16%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-cyan) 9%, transparent) 33%,
+      color-mix(in srgb, var(--aurora-cyan) 5%, transparent) 46%,
+      color-mix(in srgb, var(--aurora-cyan) 3%, transparent) 55%,
+      color-mix(in srgb, var(--aurora-cyan) 1%, transparent) 62%,
+      transparent 70%
     ),
     radial-gradient(
-      ellipse 60% 50% at 84% 90%,
-      color-mix(in srgb, var(--aurora-magenta) 24%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-magenta) 12%, transparent) 30%,
-      color-mix(in srgb, var(--aurora-magenta) 5%, transparent) 52%,
-      color-mix(in srgb, var(--aurora-magenta) 2%, transparent) 66%,
-      transparent 76%
+      ellipse 93% 78% at 84% 90%,
+      color-mix(in srgb, var(--aurora-magenta) 21%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-magenta) 13%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-magenta) 7%, transparent) 33%,
+      color-mix(in srgb, var(--aurora-magenta) 4%, transparent) 46%,
+      color-mix(in srgb, var(--aurora-magenta) 2%, transparent) 55%,
+      color-mix(in srgb, var(--aurora-magenta) 1%, transparent) 62%,
+      transparent 70%
     ),
     radial-gradient(
-      ellipse 46% 54% at 16% 88%,
-      color-mix(in srgb, var(--aurora-violet) 22%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-violet) 11%, transparent) 30%,
-      color-mix(in srgb, var(--aurora-violet) 5%, transparent) 50%,
-      color-mix(in srgb, var(--aurora-violet) 2%, transparent) 64%,
-      transparent 74%
+      ellipse 71% 84% at 16% 88%,
+      color-mix(in srgb, var(--aurora-violet) 19%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-violet) 12%, transparent) 16%,
+      color-mix(in srgb, var(--aurora-violet) 7%, transparent) 33%,
+      color-mix(in srgb, var(--aurora-violet) 4%, transparent) 44%,
+      color-mix(in srgb, var(--aurora-violet) 2%, transparent) 53%,
+      color-mix(in srgb, var(--aurora-violet) 1%, transparent) 61%,
+      transparent 68%
     );
   --bg-glow:
-    linear-gradient(
-      118deg,
-      transparent 10%,
-      color-mix(in srgb, var(--aurora-green) 9%, transparent) 26%,
-      color-mix(in srgb, var(--aurora-green) 18%, transparent) 34%,
-      color-mix(in srgb, var(--aurora-green) 30%, transparent) 40%,
-      color-mix(in srgb, var(--aurora-green) 38%, transparent) 45%,
-      color-mix(in srgb, var(--aurora-teal) 33%, transparent) 49%,
-      color-mix(in srgb, var(--aurora-teal) 28%, transparent) 53%,
-      color-mix(in srgb, var(--aurora-cyan) 21%, transparent) 58%,
-      color-mix(in srgb, var(--aurora-cyan) 14%, transparent) 63%,
-      color-mix(in srgb, var(--aurora-cyan) 7%, transparent) 70%,
-      transparent 78%
+    radial-gradient(
+      ellipse 96% 78% at 14% 8%,
+      color-mix(in srgb, var(--aurora-green) 29%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-green) 18%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-green) 10%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-green) 6%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-green) 3%, transparent) 56%,
+      color-mix(in srgb, var(--aurora-green) 2%, transparent) 64%,
+      transparent 80%
     ),
     radial-gradient(
-      ellipse 52% 40% at 16% 10%,
-      color-mix(in srgb, var(--aurora-green) 34%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-green) 17%, transparent) 34%,
-      color-mix(in srgb, var(--aurora-green) 8%, transparent) 56%,
-      color-mix(in srgb, var(--aurora-green) 3%, transparent) 70%,
-      transparent 78%
+      ellipse 84% 68% at 84% 10%,
+      color-mix(in srgb, var(--aurora-cyan) 22%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-cyan) 14%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-cyan) 8%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-cyan) 4%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-cyan) 2%, transparent) 56%,
+      color-mix(in srgb, var(--aurora-cyan) 1%, transparent) 64%,
+      transparent 80%
     ),
     radial-gradient(
-      ellipse 44% 36% at 86% 12%,
-      color-mix(in srgb, var(--aurora-cyan) 24%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-cyan) 12%, transparent) 34%,
-      color-mix(in srgb, var(--aurora-cyan) 5%, transparent) 56%,
-      color-mix(in srgb, var(--aurora-cyan) 2%, transparent) 70%,
-      transparent 78%
+      ellipse 81% 71% at 8% 86%,
+      color-mix(in srgb, var(--aurora-teal) 23%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-teal) 15%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-teal) 8%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-teal) 4%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-teal) 3%, transparent) 56%,
+      color-mix(in srgb, var(--aurora-teal) 1%, transparent) 64%,
+      transparent 80%
     ),
     radial-gradient(
-      ellipse 46% 40% at 8% 84%,
-      color-mix(in srgb, var(--aurora-teal) 26%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-teal) 13%, transparent) 34%,
-      color-mix(in srgb, var(--aurora-teal) 6%, transparent) 56%,
-      color-mix(in srgb, var(--aurora-teal) 2%, transparent) 70%,
-      transparent 78%
-    ),
-    radial-gradient(
-      ellipse 40% 32% at 88% 82%,
-      color-mix(in srgb, var(--aurora-violet) 22%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-violet) 11%, transparent) 34%,
-      color-mix(in srgb, var(--aurora-violet) 5%, transparent) 56%,
-      color-mix(in srgb, var(--aurora-violet) 2%, transparent) 70%,
-      transparent 78%
+      ellipse 71% 59% at 88% 84%,
+      color-mix(in srgb, var(--aurora-violet) 20%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-violet) 13%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-violet) 7%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-violet) 4%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-violet) 2%, transparent) 56%,
+      color-mix(in srgb, var(--aurora-violet) 1%, transparent) 64%,
+      transparent 80%
     );
   --bg-glow-2:
-    linear-gradient(
-      118deg,
-      transparent 42%,
-      color-mix(in srgb, var(--aurora-violet) 8%, transparent) 52%,
-      color-mix(in srgb, var(--aurora-violet) 16%, transparent) 58%,
-      color-mix(in srgb, var(--aurora-magenta) 21%, transparent) 63%,
-      color-mix(in srgb, var(--aurora-magenta) 24%, transparent) 67%,
-      color-mix(in srgb, var(--aurora-violet-deep) 22%, transparent) 72%,
-      color-mix(in srgb, var(--aurora-violet-deep) 20%, transparent) 77%,
-      color-mix(in srgb, var(--aurora-violet-deep) 10%, transparent) 84%,
-      transparent 90%
-    ),
     radial-gradient(
-      ellipse 38% 28% at 68% 16%,
-      color-mix(in srgb, var(--aurora-magenta) 20%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-magenta) 10%, transparent) 34%,
-      color-mix(in srgb, var(--aurora-magenta) 4%, transparent) 56%,
-      color-mix(in srgb, var(--aurora-magenta) 1%, transparent) 70%,
-      transparent 78%
-    ),
-    radial-gradient(
-      ellipse 32% 38% at 6% 52%,
+      ellipse 93% 65% at 50% 98%,
       color-mix(in srgb, var(--aurora-violet-deep) 18%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-violet-deep) 9%, transparent) 34%,
-      color-mix(in srgb, var(--aurora-violet-deep) 4%, transparent) 56%,
-      color-mix(in srgb, var(--aurora-violet-deep) 1%, transparent) 70%,
-      transparent 78%
+      color-mix(in srgb, var(--aurora-violet-deep) 11%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-violet-deep) 6%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-violet-deep) 3%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-violet-deep) 2%, transparent) 56%,
+      color-mix(in srgb, var(--aurora-violet-deep) 1%, transparent) 64%,
+      transparent 80%
     ),
     radial-gradient(
-      ellipse 34% 30% at 90% 56%,
-      color-mix(in srgb, var(--aurora-indigo) 18%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-indigo) 9%, transparent) 34%,
-      color-mix(in srgb, var(--aurora-indigo) 4%, transparent) 56%,
-      color-mix(in srgb, var(--aurora-indigo) 1%, transparent) 70%,
-      transparent 78%
+      ellipse 65% 50% at 70% 16%,
+      color-mix(in srgb, var(--aurora-magenta) 16%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-magenta) 10%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-magenta) 6%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-magenta) 3%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-magenta) 2%, transparent) 56%,
+      color-mix(in srgb, var(--aurora-magenta) 1%, transparent) 64%,
+      transparent 80%
     ),
     radial-gradient(
-      ellipse 42% 30% at 44% 62%,
-      color-mix(in srgb, var(--aurora-green) 24%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-green) 12%, transparent) 34%,
-      color-mix(in srgb, var(--aurora-green) 5%, transparent) 56%,
-      color-mix(in srgb, var(--aurora-green) 2%, transparent) 70%,
-      transparent 78%
+      ellipse 56% 65% at 4% 54%,
+      color-mix(in srgb, var(--aurora-violet-deep) 14%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-violet-deep) 9%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-violet-deep) 5%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-violet-deep) 3%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-violet-deep) 2%, transparent) 56%,
+      color-mix(in srgb, var(--aurora-violet-deep) 1%, transparent) 64%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse 59% 50% at 92% 56%,
+      color-mix(in srgb, var(--aurora-indigo) 14%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-indigo) 9%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-indigo) 5%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-indigo) 3%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-indigo) 2%, transparent) 56%,
+      color-mix(in srgb, var(--aurora-indigo) 1%, transparent) 64%,
+      transparent 80%
+    ),
+    radial-gradient(
+      ellipse 74% 56% at 42% 64%,
+      color-mix(in srgb, var(--aurora-green) 20%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-green) 13%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-green) 7%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-green) 4%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-green) 2%, transparent) 56%,
+      color-mix(in srgb, var(--aurora-green) 1%, transparent) 64%,
+      transparent 80%
     );
   --bg-glow-3:
     radial-gradient(
-      ellipse 56% 40% at 72% 58%,
-      color-mix(in srgb, var(--aurora-green) 18%, transparent) 0%,
-      color-mix(in srgb, var(--aurora-green) 9%, transparent) 34%,
-      color-mix(in srgb, var(--aurora-green) 4%, transparent) 56%,
-      color-mix(in srgb, var(--aurora-green) 1%, transparent) 70%,
-      transparent 78%
+      ellipse 90% 68% at 70% 60%,
+      color-mix(in srgb, var(--aurora-green) 14%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-green) 9%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-green) 5%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-green) 3%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-green) 2%, transparent) 56%,
+      color-mix(in srgb, var(--aurora-green) 1%, transparent) 64%,
+      transparent 80%
     ),
-    linear-gradient(
-      97deg,
-      transparent 9%,
-      color-mix(in srgb, var(--aurora-green) 6%, transparent) 11%,
-      color-mix(in srgb, var(--aurora-green) 14%, transparent) 13%,
-      color-mix(in srgb, var(--aurora-green) 6%, transparent) 15%,
-      transparent 17%
+    radial-gradient(
+      ellipse 74% 59% at 28% 32%,
+      color-mix(in srgb, var(--aurora-cyan) 12%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-cyan) 8%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-cyan) 4%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-cyan) 2%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-cyan) 1%, transparent) 56%,
+      transparent 72%
     ),
-    linear-gradient(
-      101deg,
-      transparent 27%,
-      color-mix(in srgb, var(--aurora-teal) 7%, transparent) 30%,
-      color-mix(in srgb, var(--aurora-teal) 16%, transparent) 32.5%,
-      color-mix(in srgb, var(--aurora-teal) 7%, transparent) 35%,
-      transparent 38%
-    ),
-    linear-gradient(
-      95deg,
-      transparent 49%,
-      color-mix(in srgb, var(--aurora-cyan) 6%, transparent) 52%,
-      color-mix(in srgb, var(--aurora-cyan) 13%, transparent) 54.5%,
-      color-mix(in srgb, var(--aurora-cyan) 6%, transparent) 57%,
-      transparent 60%
-    ),
-    linear-gradient(
-      103deg,
-      transparent 68%,
-      color-mix(in srgb, var(--aurora-violet) 5%, transparent) 71%,
-      color-mix(in srgb, var(--aurora-violet) 11%, transparent) 73.5%,
-      color-mix(in srgb, var(--aurora-violet) 5%, transparent) 76%,
-      transparent 79%
-    ),
-    linear-gradient(
-      99deg,
-      transparent 84%,
-      color-mix(in srgb, var(--aurora-green) 6%, transparent) 87%,
-      color-mix(in srgb, var(--aurora-green) 14%, transparent) 89.5%,
-      color-mix(in srgb, var(--aurora-green) 6%, transparent) 92%,
-      transparent 95%
+    radial-gradient(
+      ellipse 65% 56% at 60% 22%,
+      color-mix(in srgb, var(--aurora-violet) 11%, transparent) 0%,
+      color-mix(in srgb, var(--aurora-violet) 7%, transparent) 17%,
+      color-mix(in srgb, var(--aurora-violet) 4%, transparent) 34%,
+      color-mix(in srgb, var(--aurora-violet) 2%, transparent) 47%,
+      color-mix(in srgb, var(--aurora-violet) 1%, transparent) 56%,
+      transparent 72%
     );
-  --bg-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.12'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect x='-40' y='-40' width='240' height='240' transform='rotate(-23 80 80)' filter='url(%23n)'/%3E%3C/svg%3E");
+  --bg-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.45' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.04'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
   --shadow-card:
     0 0 0 0.0625rem color-mix(in srgb, var(--aurora-ink) 9%, transparent),
     0 0.125rem 0.75rem color-mix(in srgb, var(--aurora-ink) 13%, transparent);
@@ -758,68 +746,74 @@ html.dark-mode {
   --filament-glow: radial-gradient(
     circle at 50% 30%,
     rgba(95, 218, 255, 0.05) 0%,
-    rgba(40, 244, 255, 0.015) 50%,
-    transparent 80%
+    rgba(95, 218, 255, 0.031) 18%,
+    rgba(40, 244, 255, 0.016) 35%,
+    rgba(40, 244, 255, 0.008) 48%,
+    rgba(40, 244, 255, 0.004) 58%,
+    rgba(40, 244, 255, 0.002) 66%,
+    transparent 72%
   );
   --bg-glow:
     radial-gradient(
-      ellipse 55% 45% at 18% 22%,
+      ellipse 85% 70% at 18% 22%,
       rgba(95, 218, 255, 0.04) 0%,
-      rgba(95, 218, 255, 0.02) 34%,
-      rgba(95, 218, 255, 0.008) 56%,
-      rgba(95, 218, 255, 0.003) 70%,
-      transparent 78%
+      rgba(95, 218, 255, 0.025) 17%,
+      rgba(95, 218, 255, 0.013) 34%,
+      rgba(95, 218, 255, 0.006) 47%,
+      rgba(95, 218, 255, 0.003) 56%,
+      rgba(95, 218, 255, 0.001) 64%,
+      transparent 72%
     ),
     radial-gradient(
-      ellipse 50% 40% at 82% 78%,
+      ellipse 78% 62% at 82% 78%,
       rgba(40, 244, 255, 0.025) 0%,
-      rgba(40, 244, 255, 0.012) 34%,
-      rgba(40, 244, 255, 0.005) 56%,
-      rgba(40, 244, 255, 0.002) 70%,
-      transparent 78%
+      rgba(40, 244, 255, 0.015) 17%,
+      rgba(40, 244, 255, 0.008) 34%,
+      rgba(40, 244, 255, 0.004) 47%,
+      rgba(40, 244, 255, 0.002) 56%,
+      rgba(40, 244, 255, 0.001) 64%,
+      transparent 72%
     );
-  --bg-glow-2:
-    radial-gradient(
-      ellipse 44% 34% at 64% 30%,
-      rgba(140, 120, 255, 0.035) 0%,
-      rgba(140, 120, 255, 0.017) 34%,
-      rgba(140, 120, 255, 0.007) 56%,
-      rgba(140, 120, 255, 0.003) 70%,
-      transparent 78%
-    ),
-    linear-gradient(115deg, transparent 38%, rgba(95, 218, 255, 0.02) 52%, transparent 68%);
+  --bg-glow-2: radial-gradient(
+    ellipse 68% 53% at 64% 30%,
+    rgba(140, 120, 255, 0.035) 0%,
+    rgba(140, 120, 255, 0.021) 17%,
+    rgba(140, 120, 255, 0.011) 34%,
+    rgba(140, 120, 255, 0.006) 47%,
+    rgba(140, 120, 255, 0.003) 56%,
+    rgba(140, 120, 255, 0.001) 64%,
+    transparent 72%
+  );
   --bg-glow-3:
     radial-gradient(
-      ellipse 50% 36% at 70% 56%,
+      ellipse 78% 56% at 70% 56%,
       rgba(64, 220, 190, 0.03) 0%,
-      rgba(64, 220, 190, 0.015) 34%,
-      rgba(64, 220, 190, 0.006) 56%,
-      rgba(64, 220, 190, 0.002) 70%,
-      transparent 78%
+      rgba(64, 220, 190, 0.018) 17%,
+      rgba(64, 220, 190, 0.01) 34%,
+      rgba(64, 220, 190, 0.005) 47%,
+      rgba(64, 220, 190, 0.002) 56%,
+      rgba(64, 220, 190, 0.001) 64%,
+      transparent 72%
     ),
-    linear-gradient(
-      99deg,
-      transparent 20%,
-      rgba(95, 218, 255, 0.012) 24%,
-      rgba(95, 218, 255, 0.028) 27%,
-      rgba(95, 218, 255, 0.012) 30%,
-      transparent 33%
+    radial-gradient(
+      ellipse 68% 53% at 26% 74%,
+      rgba(95, 218, 255, 0.024) 0%,
+      rgba(95, 218, 255, 0.015) 17%,
+      rgba(95, 218, 255, 0.008) 34%,
+      rgba(95, 218, 255, 0.004) 47%,
+      rgba(95, 218, 255, 0.002) 56%,
+      rgba(95, 218, 255, 0.001) 64%,
+      transparent 72%
     ),
-    linear-gradient(
-      96deg,
-      transparent 52%,
-      rgba(140, 120, 255, 0.01) 55%,
-      rgba(140, 120, 255, 0.022) 58%,
-      rgba(140, 120, 255, 0.01) 61%,
-      transparent 64%
-    ),
-    linear-gradient(
-      102deg,
-      transparent 78%,
-      rgba(64, 220, 190, 0.011) 81%,
-      rgba(64, 220, 190, 0.026) 84%,
-      rgba(64, 220, 190, 0.011) 87%,
-      transparent 90%
+    radial-gradient(
+      ellipse 62% 50% at 58% 18%,
+      rgba(140, 120, 255, 0.02) 0%,
+      rgba(140, 120, 255, 0.012) 17%,
+      rgba(140, 120, 255, 0.006) 34%,
+      rgba(140, 120, 255, 0.003) 47%,
+      rgba(140, 120, 255, 0.002) 56%,
+      rgba(140, 120, 255, 0.001) 64%,
+      transparent 72%
     );
   --metallic-hairline: linear-gradient(
     90deg,
@@ -1039,35 +1033,35 @@ body::after {
 }
 @keyframes body-glow-drift {
   0% {
-    transform: translate3d(0, 0, 0) scale(1.02);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(-9%, 6%, 0) scale(1.12);
+    transform: translate3d(-9%, 6%, 0);
   }
   100% {
-    transform: translate3d(7%, -6%, 0) scale(1.07);
+    transform: translate3d(7%, -6%, 0);
   }
 }
 @keyframes body-glow-drift-alt {
   0% {
-    transform: translate3d(0, 0, 0) scale(1.07);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(7%, -6.5%, 0) scale(1.03);
+    transform: translate3d(7%, -6.5%, 0);
   }
   100% {
-    transform: translate3d(-7.5%, 6%, 0) scale(1.11);
+    transform: translate3d(-7.5%, 6%, 0);
   }
 }
 @keyframes app-glow-sweep {
   0% {
-    transform: translate3d(0, 0, 0) rotate(0deg) scale(1.02);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(-6%, 4.5%, 0) rotate(-7deg) scale(1.1);
+    transform: translate3d(-6%, 4.5%, 0);
   }
   100% {
-    transform: translate3d(6%, -4.5%, 0) rotate(7.5deg) scale(1.06);
+    transform: translate3d(6%, -4.5%, 0);
   }
 }
 #app {
@@ -1796,68 +1790,74 @@ channel > item > media|thumbnail {
     --filament-glow: radial-gradient(
       circle at 50% 30%,
       rgba(95, 218, 255, 0.05) 0%,
-      rgba(40, 244, 255, 0.015) 50%,
-      transparent 80%
+      rgba(95, 218, 255, 0.031) 18%,
+      rgba(40, 244, 255, 0.016) 35%,
+      rgba(40, 244, 255, 0.008) 48%,
+      rgba(40, 244, 255, 0.004) 58%,
+      rgba(40, 244, 255, 0.002) 66%,
+      transparent 72%
     );
     --bg-glow:
       radial-gradient(
-        ellipse 55% 45% at 18% 22%,
+        ellipse 85% 70% at 18% 22%,
         rgba(95, 218, 255, 0.04) 0%,
-        rgba(95, 218, 255, 0.02) 34%,
-        rgba(95, 218, 255, 0.008) 56%,
-        rgba(95, 218, 255, 0.003) 70%,
-        transparent 78%
+        rgba(95, 218, 255, 0.025) 17%,
+        rgba(95, 218, 255, 0.013) 34%,
+        rgba(95, 218, 255, 0.006) 47%,
+        rgba(95, 218, 255, 0.003) 56%,
+        rgba(95, 218, 255, 0.001) 64%,
+        transparent 72%
       ),
       radial-gradient(
-        ellipse 50% 40% at 82% 78%,
+        ellipse 78% 62% at 82% 78%,
         rgba(40, 244, 255, 0.025) 0%,
-        rgba(40, 244, 255, 0.012) 34%,
-        rgba(40, 244, 255, 0.005) 56%,
-        rgba(40, 244, 255, 0.002) 70%,
-        transparent 78%
+        rgba(40, 244, 255, 0.015) 17%,
+        rgba(40, 244, 255, 0.008) 34%,
+        rgba(40, 244, 255, 0.004) 47%,
+        rgba(40, 244, 255, 0.002) 56%,
+        rgba(40, 244, 255, 0.001) 64%,
+        transparent 72%
       );
-    --bg-glow-2:
-      radial-gradient(
-        ellipse 44% 34% at 64% 30%,
-        rgba(140, 120, 255, 0.035) 0%,
-        rgba(140, 120, 255, 0.017) 34%,
-        rgba(140, 120, 255, 0.007) 56%,
-        rgba(140, 120, 255, 0.003) 70%,
-        transparent 78%
-      ),
-      linear-gradient(115deg, transparent 38%, rgba(95, 218, 255, 0.02) 52%, transparent 68%);
+    --bg-glow-2: radial-gradient(
+      ellipse 68% 53% at 64% 30%,
+      rgba(140, 120, 255, 0.035) 0%,
+      rgba(140, 120, 255, 0.021) 17%,
+      rgba(140, 120, 255, 0.011) 34%,
+      rgba(140, 120, 255, 0.006) 47%,
+      rgba(140, 120, 255, 0.003) 56%,
+      rgba(140, 120, 255, 0.001) 64%,
+      transparent 72%
+    );
     --bg-glow-3:
       radial-gradient(
-        ellipse 50% 36% at 70% 56%,
+        ellipse 78% 56% at 70% 56%,
         rgba(64, 220, 190, 0.03) 0%,
-        rgba(64, 220, 190, 0.015) 34%,
-        rgba(64, 220, 190, 0.006) 56%,
-        rgba(64, 220, 190, 0.002) 70%,
-        transparent 78%
+        rgba(64, 220, 190, 0.018) 17%,
+        rgba(64, 220, 190, 0.01) 34%,
+        rgba(64, 220, 190, 0.005) 47%,
+        rgba(64, 220, 190, 0.002) 56%,
+        rgba(64, 220, 190, 0.001) 64%,
+        transparent 72%
       ),
-      linear-gradient(
-        99deg,
-        transparent 20%,
-        rgba(95, 218, 255, 0.012) 24%,
-        rgba(95, 218, 255, 0.028) 27%,
-        rgba(95, 218, 255, 0.012) 30%,
-        transparent 33%
+      radial-gradient(
+        ellipse 68% 53% at 26% 74%,
+        rgba(95, 218, 255, 0.024) 0%,
+        rgba(95, 218, 255, 0.015) 17%,
+        rgba(95, 218, 255, 0.008) 34%,
+        rgba(95, 218, 255, 0.004) 47%,
+        rgba(95, 218, 255, 0.002) 56%,
+        rgba(95, 218, 255, 0.001) 64%,
+        transparent 72%
       ),
-      linear-gradient(
-        96deg,
-        transparent 52%,
-        rgba(140, 120, 255, 0.01) 55%,
-        rgba(140, 120, 255, 0.022) 58%,
-        rgba(140, 120, 255, 0.01) 61%,
-        transparent 64%
-      ),
-      linear-gradient(
-        102deg,
-        transparent 78%,
-        rgba(64, 220, 190, 0.011) 81%,
-        rgba(64, 220, 190, 0.026) 84%,
-        rgba(64, 220, 190, 0.011) 87%,
-        transparent 90%
+      radial-gradient(
+        ellipse 62% 50% at 58% 18%,
+        rgba(140, 120, 255, 0.02) 0%,
+        rgba(140, 120, 255, 0.012) 17%,
+        rgba(140, 120, 255, 0.006) 34%,
+        rgba(140, 120, 255, 0.003) 47%,
+        rgba(140, 120, 255, 0.002) 56%,
+        rgba(140, 120, 255, 0.001) 64%,
+        transparent 72%
       );
     --metallic-hairline: linear-gradient(
       90deg,

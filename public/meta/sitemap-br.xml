@@ -24998,6 +24998,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/core/tokens/css/aurora.ts</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/core/tokens/css/card-stack.ts</loc>
     <priority>0.7</priority>
   </url>
@@ -25319,6 +25323,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/core/tokens/motion/notify.ts</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/core/tokens/motion/page-backdrop.ts</loc>
     <priority>0.7</priority>
   </url>
   <url>
