@@ -5620,6 +5620,8 @@ https://luiskr.com/docs/docs/jsdocs/core/tokens/attrs/microdata.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/attrs/svg.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/attrs/values.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/base.md
+https://luiskr.com/docs/docs/jsdocs/core/tokens/canvas
+https://luiskr.com/docs/docs/jsdocs/core/tokens/canvas/paint.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/classes
 https://luiskr.com/docs/docs/jsdocs/core/tokens/classes.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/classes/a11y.md
@@ -5675,6 +5677,7 @@ https://luiskr.com/docs/docs/jsdocs/core/tokens/css/genie.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/css/menu.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/css/mosaic.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/css/nav.md
+https://luiskr.com/docs/docs/jsdocs/core/tokens/css/parallax.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/css/route-search.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/css/skeleton.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/css/starfield.md
@@ -5719,6 +5722,7 @@ https://luiskr.com/docs/docs/jsdocs/core/tokens/jsx/svg.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/layout
 https://luiskr.com/docs/docs/jsdocs/core/tokens/layout.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/layout/breakpoints.md
+https://luiskr.com/docs/docs/jsdocs/core/tokens/layout/css-classes.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/layout/grid.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/layout/masonry.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/layout/space.md
@@ -5746,6 +5750,7 @@ https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/gpu.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/marquee.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/mentions-deck.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/notify.md
+https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/parallax.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/prefetch.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/related.md
 https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/skeleton.md
@@ -5848,6 +5853,7 @@ https://luiskr.com/docs/docs/jsdocs/core/utils/canvas/css-color.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/canvas/dom-font.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/canvas/gl-lifecycle.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/canvas/gl-program.md
+https://luiskr.com/docs/docs/jsdocs/core/utils/canvas/glsl.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/canvas/loaders
 https://luiskr.com/docs/docs/jsdocs/core/utils/canvas/loaders/intro-loader.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/canvas/loaders/menu-background
@@ -5953,6 +5959,7 @@ https://luiskr.com/docs/docs/jsdocs/core/utils/perf/stats/fps.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/perf/stats/network.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/print
 https://luiskr.com/docs/docs/jsdocs/core/utils/print/print.md
+https://luiskr.com/docs/docs/jsdocs/core/utils/responsive-css.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/schema.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/service-worker.md
 https://luiskr.com/docs/docs/jsdocs/core/utils/share-gallery.md
@@ -6100,6 +6107,8 @@ https://luiskr.com/docs/docs/jsdocs/experiments/star-field/starfield-engine.md
 https://luiskr.com/docs/docs/jsdocs/experiments/star-field/vite.config.md
 https://luiskr.com/docs/docs/jsdocs/shared
 https://luiskr.com/docs/docs/jsdocs/shared/build
+https://luiskr.com/docs/docs/jsdocs/shared/build/css-classes.md
+https://luiskr.com/docs/docs/jsdocs/shared/build/css-split.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs-portal.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/docs/encode.md
@@ -6112,6 +6121,7 @@ https://luiskr.com/docs/docs/jsdocs/shared/build/i18n-virtual.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/jsx-in-js.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/module-public.md
 https://luiskr.com/docs/docs/jsdocs/shared/build/vite-lib.md
+https://luiskr.com/docs/docs/jsdocs/shared/build/vite-scss-tiers.md
 https://luiskr.com/docs/docs/jsdocs/shared/local-modules
 https://luiskr.com/docs/docs/jsdocs/shared/local-modules/braces
 https://luiskr.com/docs/docs/jsdocs/shared/local-modules/braces/index.md
@@ -6147,6 +6157,7 @@ https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/generate-llm-pages.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/generate-search-index.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/generate-sitemap.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/media-manifest.md
+https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/minify-wasm-glue.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/playground-share.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/predeploy.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/route-media.md
@@ -6168,6 +6179,7 @@ https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/patch-search-page-themes
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/patch-sitemap-page.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/patch-star-field-share-themes.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/patch-ui-gaps-and-cyrillic.md
+https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/push-untranslated-fixes.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/seed-translations.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/upload-earth-playground-firebase.md
 https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/upload-missing-translations.md
@@ -6312,7 +6324,9 @@ https://luiskr.com/docs/docs/jsdocs/website/components/media/MediaMosaic.md
 https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo
 https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo/canvas2d.md
 https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo/cycle.md
+https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo/data.md
 https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo/dom.md
+https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo/elements.md
 https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo/mounts.md
 https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo/registry.md
 https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo/stages.md
@@ -6427,6 +6441,7 @@ https://luiskr.com/docs/docs/jsdocs/website/views/home
 https://luiskr.com/docs/docs/jsdocs/website/views/home/Home.md
 https://luiskr.com/docs/docs/jsdocs/website/views/home/children.md
 https://luiskr.com/docs/docs/jsdocs/website/views/home/data.md
+https://luiskr.com/docs/docs/jsdocs/website/views/home/parallax.md
 https://luiskr.com/docs/docs/jsdocs/website/views/home/render.md
 https://luiskr.com/docs/docs/jsdocs/website/views/home/scroll.md
 https://luiskr.com/docs/docs/jsdocs/website/views/home/types.md

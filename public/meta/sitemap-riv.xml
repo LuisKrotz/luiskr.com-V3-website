@@ -11527,6 +11527,14 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/canvas</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/canvas/paint.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/classes</loc>
     <priority>0.7</priority>
   </url>
@@ -11747,6 +11755,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/css/parallax.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/css/route-search.md</loc>
     <priority>0.7</priority>
   </url>
@@ -11923,6 +11935,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/layout/css-classes.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/layout/grid.md</loc>
     <priority>0.7</priority>
   </url>
@@ -12028,6 +12044,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/notify.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/tokens/motion/parallax.md</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -12436,6 +12456,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/canvas/gl-program.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/canvas/glsl.md</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -12856,6 +12880,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/print/print.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/core/utils/responsive-css.md</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -13447,6 +13475,14 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/shared/build/css-classes.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/shared/build/css-split.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/shared/build/docs</loc>
     <priority>0.7</priority>
   </url>
@@ -13492,6 +13528,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/shared/build/vite-lib.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/shared/build/vite-scss-tiers.md</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -13635,6 +13675,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/minify-wasm-glue.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/build/playground-share.md</loc>
     <priority>0.7</priority>
   </url>
@@ -13716,6 +13760,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/patch-ui-gaps-and-cyrillic.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/shared/scripts/i18n/push-untranslated-fixes.md</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -14295,7 +14343,15 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo/data.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo/dom.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/components/media/anim-demo/elements.md</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -14752,6 +14808,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/docs/jsdocs/website/views/home/data.md</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/docs/jsdocs/website/views/home/parallax.md</loc>
     <priority>0.7</priority>
   </url>
   <url>
