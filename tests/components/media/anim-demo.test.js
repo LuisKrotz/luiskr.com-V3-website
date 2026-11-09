@@ -30,17 +30,28 @@ const C = ANIM_DEMO_CLASSES
  * this stub stands in so the 2D approximation drivers exercise their draw
  * paths exactly as they would on a real canvas.
  */
-const _fake2d = () =>
-  new Proxy(
+const _fake2d = () => {
+  const gradient = { addColorStop: () => undefined }
+  const factories = {
+    createLinearGradient: () => gradient,
+    createRadialGradient: () => gradient,
+    createConicGradient: () => gradient,
+    createPattern: () => gradient,
+    measureText: () => ({ width: 0 }),
+    getImageData: () => ({ data: [] }),
+  }
+
+  return new Proxy(
     { globalAlpha: 1, globalCompositeOperation: '', fillStyle: '' },
     {
-      get: (t, k) => (k in t ? t[k] : () => undefined),
+      get: (t, k) => (k in t ? t[k] : factories[k] || (() => undefined)),
       set: (t, k, v) => {
         t[k] = v
         return true
       },
     }
   )
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // AnimDemo
@@ -79,6 +90,48 @@ describe('AnimDemo', () => {
 
   test('observes the animation attribute', () => {
     expect(AnimDemo.observedAttributes).toContain(COMMON_ATTRS.ANIMATION)
+  })
+
+  test('a demo without the animation attribute mounts no driver', async () => {
+    const demo = new AnimDemo()
+    const unmount = mount(demo)
+
+    el = demo
+
+    jest.advanceTimersByTime(50)
+    expect(demo._mounted).toBe(false)
+    unmount()
+  })
+
+  test('a non-intersecting entry stops the driver but keeps the observer live', async () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.NAV_MENU)
+
+    el = demo
+
+    jest.advanceTimersByTime(50)
+    expect(demo._mounted).toBe(true)
+
+    demo._io.callback([{ isIntersecting: false, target: demo }], demo._io)
+    expect(demo._mounted).toBe(false)
+
+    demo._io.callback([{ isIntersecting: true, target: demo }], demo._io)
+    expect(demo._mounted).toBe(true)
+    unmount()
+  })
+
+  test('a stale observer callback is ignored — the current observer stays authoritative', async () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.NAV_MENU)
+
+    el = demo
+
+    jest.advanceTimersByTime(50)
+
+    const stale = demo._io
+
+    demo._io = null
+    stale.callback([{ isIntersecting: false, target: demo }], stale)
+    expect(demo._mounted).toBe(true)
+    unmount()
   })
 
   // ── Stage DOM per id ────────────────────────────────────────────────────
@@ -540,6 +593,74 @@ describe('AnimDemo', () => {
     } finally {
       window.HTMLCanvasElement.prototype.getContext = getContext
     }
+  })
+
+  test.each([
+    ANIMATION_IDS.BURGER_BUTTON,
+    ANIMATION_IDS.NAV_MENU_BACKGROUND,
+    ANIMATION_IDS.NAV_FLAG,
+    ANIMATION_IDS.SWITCH_SLIDER,
+    ANIMATION_IDS.CLOSE_BUTTON,
+    ANIMATION_IDS.THEME_SLIDER,
+    ANIMATION_IDS.MOSAIC_BURN,
+    ANIMATION_IDS.DIVIDER_SHEEN,
+    ANIMATION_IDS.CORNER_BRACKETS,
+    ANIMATION_IDS.GENIE_MODAL,
+    ANIMATION_IDS.RELATED_TILE,
+    ANIMATION_IDS.TEXT_DRAW,
+    ANIMATION_IDS.ABOUT_TEXT,
+    ANIMATION_IDS.INTRO_LOADER,
+    ANIMATION_IDS.ROUTE_SEARCH,
+    ANIMATION_IDS.EXPAND_MODAL_LOADING,
+  ])('%s demo ticks its widget cycle through both beats', (id) => {
+    const getContext = window.HTMLCanvasElement.prototype.getContext
+
+    window.HTMLCanvasElement.prototype.getContext = () => _fake2d()
+
+    try {
+      const { demo, unmount } = mountDemo(id)
+      el = demo
+
+      jest.advanceTimersByTime(10)
+      expect(demo._mounted).toBe(true)
+
+      jest.advanceTimersByTime(7000)
+      unmount()
+    } finally {
+      window.HTMLCanvasElement.prototype.getContext = getContext
+    }
+  })
+
+  test('attributeChangedCallback no-ops before mount and after IO exit', () => {
+    const demo = new AnimDemo()
+
+    // Pre-mount attribute writes hit the !_isMounted guard — the real
+    // callback runs because the tag is registered.
+    demo.setAttribute(COMMON_ATTRS.ANIMATION, ANIMATION_IDS.NAV_MENU)
+    expect(demo._mounted).not.toBe(true)
+
+    el = demo
+    const unmount = mount(demo)
+
+    jest.advanceTimersByTime(10)
+    expect(demo._mounted).toBe(true)
+
+    unmount()
+  })
+
+  test('animation attribute swap while mounted rebuilds the demo', () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.NAV_MENU)
+    el = demo
+
+    jest.advanceTimersByTime(10)
+    expect(demo._mounted).toBe(true)
+
+    demo.setAttribute(COMMON_ATTRS.ANIMATION, ANIMATION_IDS.SITE_TOAST)
+
+    jest.advanceTimersByTime(10)
+    expect(demo._mounted).toBe(true)
+
+    unmount()
   })
 
   // ── Sheet contract ──────────────────────────────────────────────────────

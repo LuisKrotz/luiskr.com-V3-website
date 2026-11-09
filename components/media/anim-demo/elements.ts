@@ -321,11 +321,11 @@ export const mountScene3dDemo = (ctx: DemoContext): (() => void) => {
       if (h) {
         handle = h
       } else {
-        fallback = mountScene2d(ctx) || null
+        fallback = mountScene2d(ctx)
       }
     })
     .catch(() => {
-      if (armed.current) fallback = mountScene2d(ctx) || null
+      if (armed.current) fallback = mountScene2d(ctx)
     })
 
   return () => {
