@@ -35,6 +35,7 @@ jest.unstable_mockModule('@core/utils/data/db.js', () => ({
 
 const { loadDemoData } = await import('@website/components/media/anim-demo/data.js')
 const EL = await import('@website/components/media/anim-demo/elements.js')
+const DOM = await import('@website/components/media/anim-demo/dom.js')
 
 /** A stage element optionally carrying one child tag. */
 const makeStage = (tag) => {
@@ -99,6 +100,69 @@ describe('anim-demo elements tails', () => {
 
     expect(d.home).toBeNull()
     expect(d.about).toBeNull()
+  })
+
+  test('loadDemoData resolves nulls when every fetch rejects', async () => {
+    fetchImpl.mockImplementation(() => Promise.reject(new Error(TEST_TEXT.HEADING)))
+
+    const d = await loadDemoData()
+
+    expect(d.home).toBeNull()
+    expect(d.about).toBeNull()
+    expect(d.related).toBeNull()
+  })
+
+  test('loadDemoData resolves nulls when snapshots are undefined', async () => {
+    fetchImpl.mockImplementation(() => Promise.resolve(undefined))
+
+    const d = await loadDemoData()
+
+    expect(d.home).toBeNull()
+    expect(d.about).toBeNull()
+    expect(d.related).toBeNull()
+  })
+
+  test('card-stack driver resolves the object-form list + every featured arm', async () => {
+    const related = { p: { featured: true, link: '/project/b' } }
+    const home = {
+      portfoliolist: {
+        a: { link: '/project/a', featured: 'true' },
+        b: { link: '/project/b' },
+        c: { link: '/project/c', featured: 1 },
+        d: { link: '/project/d', featured: true },
+        e: { link: '/project/e' },
+      },
+    }
+
+    fetchImpl.mockImplementation((path) =>
+      Promise.resolve(snap(true, path.includes('related') ? related : home))
+    )
+
+    const stage = makeStage(COMPONENT_TAGS.CARD_STACK)
+    const deck = stage.firstChild
+
+    EL.mountCardStackDemo({ stage })
+
+    await flush()
+
+    expect(deck.processedItems.filter((i) => i.featured).length).toBe(4)
+    expect(deck.processedItems.filter((i) => !i.featured).length).toBe(1)
+  })
+
+  test('dom drivers no-op on empty stages', () => {
+    const empty = makeStage(null)
+
+    expect(() => DOM.mountLoaderDemo({ stage: empty })()).not.toThrow()
+    expect(() => DOM.mountMenuDemo({ stage: empty })()).not.toThrow()
+    expect(() => DOM.mountToastDemo({ stage: empty })()).not.toThrow()
+    expect(() => DOM.mountRelatedTilesDemo({ stage: empty })()).not.toThrow()
+    expect(() => DOM.mountDrawDemo({ stage: empty })()).not.toThrow()
+    expect(() => DOM.mountProgressBarDemo({ stage: empty })()).not.toThrow()
+    expect(() => DOM.mountAuraDemo({ stage: empty })()).not.toThrow()
+    expect(() => DOM.mountSearchDemo({ stage: empty })()).not.toThrow()
+    expect(() => DOM.mountModalLoadingDemo({ stage: empty })()).not.toThrow()
+    expect(() => DOM.mountFeedWaveDemo({ stage: empty })).not.toThrow()
+    expect(() => DOM.mountTransitionDemo({ stage: empty })()).not.toThrow()
   })
 
   test('card-stack driver feeds real rows into the deck and drops the late write on teardown', async () => {
