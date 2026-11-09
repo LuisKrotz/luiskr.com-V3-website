@@ -6,6 +6,7 @@
  * aria-label fallback, and the unconnected onUpdated path.
  */
 
+import { jest } from '@jest/globals'
 import { ABOUT_CLASSES } from '@core/tokens/classes/about.js'
 import '@website/components/home/AboutSection.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
@@ -13,7 +14,13 @@ import { NAV_TEXT } from '@core/tokens/strings/text.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
-import { cycleHud, disarmHud, hudLines, syncHud } from '@website/components/home/about/hud.js'
+import {
+  attachHud,
+  cycleHud,
+  disarmHud,
+  hudLines,
+  syncHud,
+} from '@website/components/home/about/hud.js'
 import store from '@core/store.js'
 
 /** Generous flush — mounted render queues need real timers past microtasks. */
@@ -242,6 +249,7 @@ describe('AboutSection coverage tails', () => {
     bare._hud = { index: 0, timer: null, pending: null }
     bare.aboutTranslations = { title: 't', locations: [TEST_LOCS[0]] }
 
+    expect(bare.aboutLocations).toHaveLength(1)
     cycleHud(bare)
     expect(bare._hud.pending).toBeNull()
 
@@ -269,5 +277,33 @@ describe('AboutSection coverage tails', () => {
 
     el.remove()
     bare.remove()
+  })
+
+  test('the armed interval arrow fires cycleHud on each HUD_TICK_MS tick', async () => {
+    const el = document.createElement(COMPONENT_TAGS.ABOUT_SECTION)
+    document.body.appendChild(el)
+    await flush()
+
+    jest.useFakeTimers()
+    try {
+      el.aboutTranslations = { title: 't', locations: TEST_LOCS }
+      await jest.advanceTimersByTimeAsync(60)
+
+      if (!el._hud?.timer) attachHud(el)
+      expect(el._hud.timer).not.toBeNull()
+
+      // Fires the setInterval arrow — () => cycleHud(host).
+      await jest.advanceTimersByTimeAsync(5200)
+      expect(el._hud.pending).not.toBeNull()
+
+      await jest.advanceTimersByTimeAsync(500)
+      expect(el._hud.index).toBe(1)
+
+      disarmHud(el)
+    } finally {
+      jest.useRealTimers()
+    }
+
+    el.remove()
   })
 })

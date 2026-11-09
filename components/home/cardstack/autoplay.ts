@@ -163,6 +163,9 @@ function autoTick(host: CardStack): void {
 
   goTo(host, host.activeIdx + 1)
 
+  /* istanbul ignore else -- goTo can only flip _autoOn through a callee's
+     stopAutoplay (resize measure); no current path does, so the else arm
+     is unreachable defensive code. */
   if (host._autoOn) restartClock(host)
 }
 

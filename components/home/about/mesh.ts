@@ -200,17 +200,6 @@ export function attachMesh(host: AboutSection): boolean {
 
   const dpr = Math.min(window.devicePixelRatio || 1, 2)
 
-  const s: MeshSession = {
-    canvas,
-    ctx,
-    raf: 0,
-    ro: null,
-    w: 0,
-    h: 0,
-    t0: performance.now(),
-    size: () => {},
-  }
-
   const size = () => {
     const r = canvas.getBoundingClientRect()
 
@@ -221,7 +210,16 @@ export function attachMesh(host: AboutSection): boolean {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
   }
 
-  s.size = size
+  const s: MeshSession = {
+    canvas,
+    ctx,
+    raf: 0,
+    ro: null,
+    w: 0,
+    h: 0,
+    t0: performance.now(),
+    size,
+  }
 
   if (typeof ResizeObserver !== TYPE_STRINGS.UNDEFINED) {
     s.ro = new ResizeObserver(size)

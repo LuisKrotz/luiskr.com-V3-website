@@ -289,3 +289,110 @@ describe('legal Footer tails', () => {
     await import('@website/components/legal/Footer.js')
   })
 })
+
+test('legal rows, socials, docs click — rendered arms', async () => {
+  const prevComponents = store.getters.getlang()?.components
+  const payload = {
+    [CMS_KEYS.LEGAL_FOOTER]: {
+      links: [
+        { page: TEST_TEXT.HELLO, link: `${ROUTE_PATHS.ROOT}${ROUTE_STRINGS.PRIVACY_POLICY}` },
+      ],
+    },
+    [CMS_KEYS.RELATED]: {
+      socials: { a: { network: TEST_TEXT.SECOND, link: 'https://example.test/x' } },
+      note: TEST_TEXT.HELLO,
+    },
+  }
+
+  store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, payload)
+
+  const el = document.createElement(COMPONENT_TAGS.LEGAL_FOOTER)
+
+  document.body.appendChild(el)
+  await flush()
+
+  // re-commit + re-render so a resolved _ensureData can't swap the links back
+  store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, payload)
+  el._updateDom()
+  await flush()
+
+  // Legal nav mounted — the orphan-sep watcher binds on it.
+  expect(el._sepsTeardown).not.toBeNull()
+
+  // The fed legal row renders its label arm + the social link row.
+  const links = el.shadowRoot.querySelectorAll(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`)
+  const texts = Array.from(links).map((a) => a.textContent)
+
+  expect(texts).toContain(TEST_TEXT.HELLO)
+  expect(texts).toContain(TEST_TEXT.SECOND)
+
+  // Docs portal link — plain click routes through the SPA.
+  const pushSpy = jest.spyOn(router, 'push').mockImplementation(() => {})
+  const docsLink = el.shadowRoot.querySelector(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_DOCS_LINK}`)
+
+  docsLink.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, button: 0 }))
+  expect(pushSpy).toHaveBeenCalledWith(ROUTE_PATHS.DOCS)
+
+  // Modified click — the delegated handler's isPlainClick early return.
+  pushSpy.mockClear()
+  docsLink.dispatchEvent(
+    new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, button: 0, ctrlKey: true })
+  )
+  expect(pushSpy).not.toHaveBeenCalled()
+
+  // Home link — both click arms on its own handler.
+  const homeLink = el.shadowRoot.querySelector(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_HOME}`)
+
+  homeLink.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, button: 0 }))
+  expect(pushSpy).toHaveBeenCalled()
+  pushSpy.mockClear()
+  homeLink.dispatchEvent(
+    new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, button: 0, ctrlKey: true })
+  )
+  expect(pushSpy).not.toHaveBeenCalled()
+
+  pushSpy.mockRestore()
+  store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, prevComponents)
+  el.remove()
+})
+
+test('nav-less onUpdated, falsy related slots, linkless social row', async () => {
+  // `this.$` resolves null when the recreated nav is absent.
+  const bare = document.createElement(COMPONENT_TAGS.LEGAL_FOOTER)
+
+  document.body.appendChild(bare)
+  await flush()
+  bare.shadowRoot.querySelector(`nav.${INTERNAL_CLASSES.INTERNAL_FOOTER_LEGAL}`)?.remove()
+  bare.onUpdated()
+  expect(bare._sepsTeardown).toBeNull()
+  bare.remove()
+
+  // Empty related node — socials collapses to [], note to ''.
+  const prevComponents = store.getters.getlang()?.components
+
+  store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, { [CMS_KEYS.RELATED]: {} })
+
+  const el = document.createElement(COMPONENT_TAGS.LEGAL_FOOTER)
+
+  document.body.appendChild(el)
+  await flush()
+  store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, { [CMS_KEYS.RELATED]: {} })
+  el._updateDom()
+  await flush()
+
+  // A social row without a link renders nothing — the falsy arm.
+  store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, {
+    [CMS_KEYS.RELATED]: { socials: [{ network: TEST_TEXT.SECOND }] },
+  })
+  el._updateDom()
+  await flush()
+
+  const texts = Array.from(
+    el.shadowRoot.querySelectorAll(`.${INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_LINK}`)
+  ).map((a) => a.textContent)
+
+  expect(texts).not.toContain(TEST_TEXT.SECOND)
+
+  store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, prevComponents)
+  el.remove()
+})

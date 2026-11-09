@@ -182,3 +182,42 @@ describe('custom-carousel sizing measureFit projection tails', () => {
     expect(el._updateDom).not.toHaveBeenCalled()
   })
 })
+
+describe('custom-carousel sizing measureFit projection tails 2', () => {
+  test('ultrawide multi-fit: narrow source lifts the strip to the floor', () => {
+    // w=200 < MEDIA_MIN_WIDTH(280), naturalH ≤ TALL_ITEM_H — the
+    // smallest-width driver arm plus multiFit && !landscape.
+    const NARROW = { src: 'n.webp', size: [200, 400], label: 'Narrow' }
+    const el = stubEl([NARROW, SLIDE, SLIDE, WIDE])
+
+    setViewport(3840, 2160)
+    el.clientWidth = 6000
+    measureFit(el)
+
+    expect(el._isSideBySide).toBe(true)
+  })
+})
+
+describe('custom-carousel sizing measureFit projection tails 3', () => {
+  test('setHeightVar: narrow source lifts the strip to the floor', async () => {
+    const { setHeightVar } = await import('@website/components/carousel/custom-carousel/sizing.js')
+
+    const NARROW = { src: 'n.webp', size: [200, 400], label: 'Narrow' }
+    const style = { getPropertyValue: () => '', setProperty: jest.fn() }
+    const el = {
+      isMobile: false,
+      isMixed: false,
+      landscapeRatio: null,
+      items: [NARROW, SLIDE],
+      clientWidth: 1200,
+      _lastObservedWidth: 1200,
+      style,
+      closest: () => null,
+    }
+
+    setViewport(1600, 900)
+    setHeightVar(el)
+
+    expect(style.setProperty).toHaveBeenCalled()
+  })
+})

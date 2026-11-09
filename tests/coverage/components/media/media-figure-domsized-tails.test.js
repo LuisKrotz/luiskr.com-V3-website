@@ -16,6 +16,8 @@ import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
+import { MEDIA } from '@core/tokens/media/suffixes.js'
+import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 
 /**
  * Stubs the bitmap pipeline globals; returns the mutable refs plus the
@@ -312,6 +314,140 @@ describe('media-figure dom-sized bitmap tails', () => {
       expect(fig._domBlobs.size).toBe(0)
     } finally {
       env.restore()
+    }
+  })
+
+  test('mid-scroll confirms coalesce the queued publish onto the latest rung', async () => {
+    const key = 'queue/arm'
+    const realFetch = globalThis.fetch
+
+    globalThis.fetch = async () => ({
+      ok: true,
+      json: async () => [
+        `${key}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`,
+        `${key}${MEDIA.MOZ}${MEDIA.Q75}${MEDIA.EXT}`,
+      ],
+    })
+
+    const { initMediaManifest } = await import('@core/utils/media/manifest.js')
+
+    await initMediaManifest()
+
+    const env = stubBitmapEnv()
+    const fig = document.createElement(COMPONENT_TAGS.MEDIA_FIGURE)
+
+    fig.setAttribute(MEDIA_ATTRS.SRC, key)
+    fig.setAttribute(MEDIA_ATTRS.WIDTH, '4000')
+    fig.setAttribute(MEDIA_ATTRS.HEIGHT, '4000')
+    document.body.appendChild(fig)
+
+    // Wide box keeps ladderCeiling at the top rung so both confirms land.
+    Object.defineProperty(fig, 'clientWidth', { value: 1000, configurable: true })
+    Object.defineProperty(fig, 'clientHeight', { value: 1000, configurable: true })
+
+    const insts = []
+    const origImage = window.Image
+
+    window.Image = class {
+      constructor() {
+        this.naturalWidth = 4000
+        this.naturalHeight = 4000
+        insts.push(this)
+      }
+    }
+
+    try {
+      window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLL))
+
+      fig.isLoaded = false
+      await fig.loadHighRes()
+
+      // Both rung confirms land while the scroll flag is up — the second
+      // publish hits the publishQueued early-return and only its URL
+      // overwrites pendingUrl.
+      insts[0].onload()
+      insts[1].onload()
+
+      await new Promise((r) => setTimeout(r, 200))
+
+      expect(fig.isLoaded).toBe(true)
+      expect(await highSrc(fig)).toBeTruthy()
+    } finally {
+      window.Image = origImage
+      env.restore()
+      globalThis.fetch = realFetch
+      fig.remove()
+    }
+  })
+
+  test('the SSR window guard and zero-dpr fallback cap the bitmap at 1x', async () => {
+    const env = stubBitmapEnv()
+    const fig = mount()
+
+    Object.defineProperty(fig, 'clientWidth', { value: 100, configurable: true })
+    Object.defineProperty(fig, 'clientHeight', { value: 100, configurable: true })
+
+    const winDesc = Object.getOwnPropertyDescriptor(globalThis, 'window')
+    const origImage = window.Image
+    const insts = []
+
+    window.Image = class {
+      constructor() {
+        this.naturalWidth = 4000
+        this.naturalHeight = 4000
+        insts.push(this)
+      }
+    }
+
+    try {
+      fig.isLoaded = false
+      const done = fig.loadHighRes()
+
+      // The window-free arm — domSizedSrc's typeof guard is the only
+      // window read on the publish path, so undefining mid-flight is safe.
+      Object.defineProperty(globalThis, 'window', { value: undefined, configurable: true })
+
+      insts[insts.length - 1].onload()
+      await done
+      await new Promise((r) => setTimeout(r, 0))
+    } finally {
+      if (winDesc) Object.defineProperty(globalThis, 'window', winDesc)
+    }
+
+    expect(await highSrc(fig)).toBe('blob:ds0')
+
+    // The falsy-dpr arm — `devicePixelRatio || 1` right operand.
+    const dprDesc = Object.getOwnPropertyDescriptor(window, 'devicePixelRatio')
+
+    Object.defineProperty(window, 'devicePixelRatio', { value: 0, configurable: true })
+
+    try {
+      fig.isLoaded = false
+      const insts2 = []
+
+      window.Image = class {
+        constructor() {
+          this.naturalWidth = 4000
+          this.naturalHeight = 4000
+          insts2.push(this)
+        }
+      }
+
+      await fig.loadHighRes()
+      insts2[insts2.length - 1].onload()
+      await new Promise((r) => setTimeout(r, 0))
+
+      expect(await highSrc(fig)).toBe('blob:ds1')
+    } finally {
+      if (dprDesc) {
+        Object.defineProperty(window, 'devicePixelRatio', dprDesc)
+      } else {
+        delete window.devicePixelRatio
+      }
+
+      window.Image = origImage
+      env.restore()
+      fig.remove()
     }
   })
 })

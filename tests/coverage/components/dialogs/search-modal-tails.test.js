@@ -9,6 +9,7 @@ import { SEARCH_MODAL_CLASSES } from '@core/tokens/classes/search-modal.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
+import { KEYBOARD_EVENTS } from '@core/tokens/events/dom.js'
 import { KEYS } from '@core/tokens/primitives.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 import { mount } from '@tests/fixtures/test-constants.js'
@@ -140,6 +141,44 @@ describe('SearchModal element', () => {
     el.onStoreUpdate() // open + attr already set → neither branch
 
     expect(el.hasAttribute(COMMON_ATTRS.OPEN)).toBe(true)
+  })
+
+  test('a non-Escape keydown leaves the modal open', () => {
+    el.open = true
+
+    window.dispatchEvent(new window.KeyboardEvent(KEYBOARD_EVENTS.KEYDOWN, { key: 'x' }))
+
+    expect(el.isOpen).toBe(true)
+  })
+
+  test('_mountCloseButton keeps the live instance for the same canvas', () => {
+    el.open = true
+
+    const btn = el._closeBtn
+
+    el._mountCloseButton()
+
+    expect(el._closeBtn).toBe(btn)
+  })
+
+  test('_mountCloseButton rebuilds on a swapped canvas', () => {
+    el.open = true
+
+    const btn = el._closeBtn
+    const spy = jest.spyOn(btn, 'destroy')
+    const oldCanvas = el.shadowRoot.querySelector(
+      `.${SEARCH_MODAL_CLASSES.SEARCH_MODAL_CLOSE_CANVAS}`
+    )
+    const neoCanvas = oldCanvas.cloneNode()
+
+    oldCanvas.replaceWith(neoCanvas)
+    el._mountCloseButton()
+
+    expect(spy).toHaveBeenCalled()
+    expect(el._closeBtn).not.toBeNull()
+    expect(el._closeBtn.canvas).toBe(neoCanvas)
+
+    spy.mockRestore()
   })
 
   test('missing route-search child and missing focusInput arm tolerated', () => {

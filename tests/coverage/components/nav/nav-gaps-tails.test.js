@@ -6,6 +6,8 @@
  * modal open/close transitions.
  */
 import { jest } from '@jest/globals'
+import { AppNav } from '@website/components/nav/AppNav.js'
+import { mount } from '@tests/fixtures/test-constants.js'
 import { mountNavIconAura, destroyNavIconAura } from '@website/components/nav/icon-aura.js'
 import { handleSearch, handleAction, handlePreferences } from '@website/components/nav/handlers.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
@@ -126,6 +128,18 @@ describe('nav handlers arms', () => {
 
     handleSearch(host)
     store.commit(MODAL_MUTATIONS.TOGGLE_SEARCH_MODAL, false)
+  })
+
+  test('AppNav.handleSearch delegates to the shared handler', () => {
+    const el = new AppNav()
+    const cleanup = mount(el)
+
+    el.handleSearch(new MouseEvent(MOUSE_EVENTS.CLICK))
+
+    expect(store.getters.getSearchModalOpen()).toBe(true)
+
+    store.commit(MODAL_MUTATIONS.TOGGLE_SEARCH_MODAL, false)
+    cleanup()
   })
 
   test('handleSearch with the menu open defers past the close dissolve', async () => {

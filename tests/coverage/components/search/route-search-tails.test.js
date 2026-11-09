@@ -28,6 +28,7 @@ jest.unstable_mockModule('@core/utils/data/db.js', () => ({
 }))
 
 let loadCatalog
+let loadCopy
 let projectEntries
 let searchStrings
 let staticEntries
@@ -38,6 +39,7 @@ beforeAll(async () => {
   const data = await import('@website/components/search/route-search/data.js')
 
   loadCatalog = data.loadCatalog
+  loadCopy = data.loadCopy
   projectEntries = data.projectEntries
   searchStrings = data.searchStrings
   staticEntries = data.staticEntries
@@ -51,6 +53,15 @@ const wait = () => new Promise((r) => setTimeout(r, 40))
 describe('route-search data tails', () => {
   afterEach(() => {
     store.commit(DATA_MUTATIONS.SET_PORTFOLIO_LIST, [])
+    dbThrow = null
+  })
+
+  test('loadCopy resolves null when the fetch rejects', async () => {
+    dbThrow = new Error('offline')
+
+    const node = await new Promise((r) => loadCopy(LOCALES.EN, r))
+
+    expect(node).toBeNull()
   })
 
   test('loadCatalog uses the stored portfoliolist without fetching', async () => {

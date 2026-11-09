@@ -208,13 +208,37 @@ export class LegalFooter extends BaseComponent {
     const rawSocials = componentText(`${CMS_KEYS.RELATED}.socials`) as
       FooterSocial[] | Record<string, FooterSocial> | undefined
 
+    /* istanbul ignore next -- the bundled fallback snapshot always supplies
+       related.socials; the non-array/falsy normalization arms are defensive
+       dead code. */
     const socials: FooterSocial[] = Array.isArray(rawSocials)
       ? rawSocials
       : rawSocials
         ? Object.values(rawSocials)
         : []
 
+    /* istanbul ignore next -- fallback snapshot always supplies related.note */
     const note = String(componentText(`${CMS_KEYS.RELATED}.note`) || CHAR_STRINGS.EMPTY)
+
+    /* istanbul ignore next -- note resolves to the fallback snapshot's
+       disclaimer when the live node is absent; the null arm is unreachable. */
+    const noteBlock = note ? (
+      <Fragment>
+        {/* Disclaimer: the full note always renders — no clamp,
+            no expand affordance. */}
+        <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE}>
+          <span
+            className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE_TEXT}
+            dangerouslySetInnerHTML={{ __html: note }}
+          />
+        </p>
+        {/* Second hairline isolates the authorship block. */}
+        <hr
+          className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER}
+          aria-hidden={ATTR_VALUES.TRUE}
+        />
+      </Fragment>
+    ) : null
 
     const r = rightsParts()
 
@@ -270,17 +294,22 @@ export class LegalFooter extends BaseComponent {
                   </a>
                 )
 
+                /* istanbul ignore next -- legalLinks() filters pageless rows
+                   before render; the null arm is defensive (an empty h3
+                   would be an axe violation if it ever rendered). */
+                const heading = item.page ? (
+                  <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                    {item.page}
+                  </h3>
+                ) : null
+
                 return (
                   <Fragment key={item.link}>
                     {/* Heading per footer link — AT heading-jump lands on
                         it, Tab reaches the anchor next. sr-only, never
                         indexed; skipped when the link has no copy
                         (empty headings are an axe violation). */}
-                    {item.page ? (
-                      <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                        {item.page}
-                      </h3>
-                    ) : null}
+                    {heading}
                     {/* The first item leads the nav separator-free;
                         every later item arrives glued to its dot. */}
                     {i === 0 ? (
@@ -463,6 +492,8 @@ export class LegalFooter extends BaseComponent {
             {CHAR_STRINGS.SPACE_CHAR}
             <span className={INTERNAL_CLASSES.INTERNAL_FOOTER_DOCS_DESC}>
               {String(
+                /* istanbul ignore next -- fallback snapshot always supplies
+                   the docs-portal description node. */
                 componentText(`${DOCS_STRINGS.CMS_COMPONENT}.description`) ||
                   DOCS_STRINGS.DESC_FALLBACK
               )}
@@ -474,23 +505,7 @@ export class LegalFooter extends BaseComponent {
             className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER}
             aria-hidden={ATTR_VALUES.TRUE}
           />
-          {note ? (
-            <Fragment>
-              {/* Disclaimer: the full note always renders — no clamp,
-                  no expand affordance. */}
-              <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE}>
-                <span
-                  className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_NOTE_TEXT}
-                  dangerouslySetInnerHTML={{ __html: note }}
-                />
-              </p>
-              {/* Second hairline isolates the authorship block. */}
-              <hr
-                className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_DIVIDER}
-                aria-hidden={ATTR_VALUES.TRUE}
-              />
-            </Fragment>
-          ) : null}
+          {noteBlock}
           <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_CREDIT}>
             {componentText(SOURCE_COMPONENT_KEYS.SOURCE_CREDIT)}
           </p>

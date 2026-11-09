@@ -15,7 +15,9 @@ import { FOOTER_CLASSES } from '@core/tokens/classes/footer.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
+import { DOCS_STRINGS } from '@core/tokens/strings/docs.js'
 import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
+import store from '@core/store.js'
 
 /** Extra-generous flush — awards render + delegated listeners settle late. */
 const flush = (ms = 150) => new Promise((r) => setTimeout(r, ms))
@@ -93,6 +95,58 @@ describe('awards render + delegated click tails', () => {
 
     pushSpy.mockRestore()
     el.remove()
+  })
+
+  test('inline link handlers route plain clicks through router.push', () => {
+    const tree = renderAwards({
+      title: TEST_TEXT.HEADING,
+      items: [],
+      legalLinks: [
+        { link: ROUTE_PATHS.PRIVACY_POLICY, page: TEST_TEXT.HEADING },
+        { link: ROUTE_PATHS.TERMS_OF_USE, page: TEST_TEXT.BODY },
+      ],
+    })
+    const pushSpy = jest.spyOn(router, 'push')
+
+    // First legal anchor (i===0), second legal anchor (pair arm), and the
+    // animations ref — each inline onClick arm runs isPlainClick → push.
+    const anchors = tree.querySelectorAll(`.${AWARDS_CLASSES.AWARDS_FOOTER_ITEM}`)
+
+    expect(anchors.length).toBeGreaterThan(2)
+
+    for (const a of [anchors[0], anchors[1], anchors[2], anchors[3]]) {
+      const ev = new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true, cancelable: true })
+
+      a.dispatchEvent(ev)
+      expect(ev.defaultPrevented).toBe(true)
+    }
+
+    expect(pushSpy).toHaveBeenCalled()
+
+    // Modified clicks bail before preventDefault on the same inline arms.
+    for (const a of [anchors[0], anchors[1], anchors[2], anchors[3]]) {
+      const ev = ctrlClick()
+
+      a.dispatchEvent(ev)
+      expect(ev.defaultPrevented).toBe(false)
+    }
+
+    pushSpy.mockRestore()
+  })
+
+  test('docs description falls back when the components node is absent', () => {
+    const saved = store.state.lang.components
+
+    // An explicit empty description — '' is a deliberate live value that
+    // beats the internal fallback, so render's `||` arm engages.
+    store.state.lang.components = { [DOCS_STRINGS.CMS_COMPONENT]: { description: '' } }
+
+    const tree = renderAwards({ title: TEST_TEXT.HEADING, items: [], legalLinks: [] })
+    const desc = tree.querySelector(`.${FOOTER_CLASSES.FOOTER_DOCS_DESC}`)
+
+    expect(desc.textContent).toBe(DOCS_STRINGS.DESC_FALLBACK)
+
+    store.state.lang.components = saved
   })
 
   test('legal links without page copy render no empty heading', () => {

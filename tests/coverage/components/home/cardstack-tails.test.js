@@ -34,7 +34,7 @@ import {
 import { autoElapsed } from '@website/components/home/cardstack/timer.js'
 import { mount, waitFor } from '@tests/fixtures/test-constants.js'
 import { createMock2D } from '@tests/fixtures/mock-webgl.js'
-import { writeInfo, holdBurns } from '@website/components/home/cardstack/info.js'
+import { writeInfo, holdBurns, burnCardTitles } from '@website/components/home/cardstack/info.js'
 import { CARD_STACK_CLASSES as C } from '@core/tokens/classes/card-stack.js'
 import { CARD_STACK_SELECTORS as SEL } from '@core/tokens/selectors/card-stack.js'
 import { CARD_STACK_LAYOUT, CARD_STACK_TIERS } from '@core/tokens/motion/card-stack.js'
@@ -46,7 +46,12 @@ import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { KEYS } from '@core/tokens/primitives.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
-import { DRAG_EVENTS, MOUSE_EVENTS, POINTER_EVENTS } from '@core/tokens/events/dom.js'
+import {
+  CLIPBOARD_EVENTS,
+  DRAG_EVENTS,
+  MOUSE_EVENTS,
+  POINTER_EVENTS,
+} from '@core/tokens/events/dom.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { resetViewportCache } from '@core/utils/dom.js'
 import store from '@core/store.js'
@@ -1170,6 +1175,63 @@ describe('autoplay tails', () => {
     }
   })
 
+  test('autoplay clock arms re-arm, pause, hold-resume and stop cleanly', async () => {
+    jest.useFakeTimers()
+
+    try {
+      const el = await mountItems([item(0), item(1), item(2)])
+      el._tier = FAN_TIER
+
+      // Re-arm with a pending tick — the restartClock clearTimeout arm.
+      armAutoplay(el)
+      armAutoplay(el)
+      expect(el._autoTimer).not.toBeNull()
+
+      // autoTick advances the fan and re-arms while _autoOn.
+      jest.advanceTimersByTime(CARD_STACK_LAYOUT.AUTOPLAY_MS + 1)
+      expect(el._autoTimer).not.toBeNull()
+
+      // Hold banks the pending tick, release re-arms it — the held-clear
+      // and !held&&!paused restartClock arms.
+      holdAutoplay(el, true)
+      expect(el._autoHeld).toBe(true)
+      holdAutoplay(el, false)
+      expect(el._autoTimer).not.toBeNull()
+
+      // Pause with a pending tick — the toggle clearTimeout arm.
+      toggleAutoplay(el)
+      expect(el._autoPaused).toBe(true)
+
+      // hold(false) while still paused — the else arm of the resume gate.
+      holdAutoplay(el, true)
+      holdAutoplay(el, false)
+      expect(el._autoPaused).toBe(true)
+
+      // Pause/stop without a pending tick — the null _autoTimer arms.
+      el._autoOn = true
+      el._autoPaused = false
+      el._autoTimer = null
+      toggleAutoplay(el)
+      expect(el._autoPaused).toBe(true)
+
+      el._autoOn = true
+      el._autoPaused = false
+      el._autoTimer = null
+      stopAutoplay(el)
+      expect(el._autoOn).toBe(false)
+
+      // Hold-bank without a pending tick — the null _autoTimer arm.
+      el._autoOn = true
+      el._autoHeld = false
+      el._autoPaused = false
+      el._autoTimer = null
+      holdAutoplay(el, true)
+      expect(el._autoHeld).toBe(true)
+    } finally {
+      jest.useRealTimers()
+    }
+  })
+
   test('a stacked tier or empty deck never arms the countdown', async () => {
     const el = await mountItems([item(0)])
     el._tier = STACK_TIER
@@ -1184,5 +1246,269 @@ describe('autoplay tails', () => {
     el.processedItems = []
     armAutoplay(el)
     expect(el._autoOn).toBe(false)
+  })
+
+  test('mounts without an autoplay observer when IntersectionObserver is absent', async () => {
+    const realIO = globalThis.IntersectionObserver
+    const el = new CardStack()
+
+    // onMounted reads the typeof guard before any children connect — the
+    // window stays undefined only for that synchronous pass.
+    globalThis.IntersectionObserver = undefined
+
+    try {
+      cleanups.push(mount(el))
+    } finally {
+      globalThis.IntersectionObserver = realIO
+    }
+
+    el.processedItems = [item(0), item(1)]
+    await waitFor(() => el._cardEls.length === 2)
+    expect(el._autoIO).toBeNull()
+  })
+
+  test('the autoplay observer tolerates an empty entries batch', async () => {
+    const realIO = globalThis.IntersectionObserver
+
+    globalThis.IntersectionObserver = class {
+      constructor(fn) {
+        this._cb = fn
+      }
+
+      observe() {}
+
+      disconnect() {}
+    }
+
+    try {
+      const el = await mountItems([item(0), item(1)])
+
+      // _autoIO's own callback — later DrawText observers get their own.
+      const io = el._autoIO
+
+      expect(() => io._cb([])).not.toThrow()
+
+      io._cb([{ isIntersecting: false }])
+      io._cb([{ isIntersecting: true }])
+    } finally {
+      globalThis.IntersectionObserver = realIO
+    }
+  })
+})
+
+// ─── deck/info/events tails ─────────────────────────────────────────────────
+describe('deck/info/events tails', () => {
+  test('fitDeckToFront — fan without deck el, auto-staged band, missing front, image-stacked fitRO disconnect', async () => {
+    const el = await mountItems([item(0), item(1)])
+    const deck = deckEl(el)
+
+    // Fan tier with no deck element — the `if (deck)` else arm.
+    el._tier = FAN_TIER
+    el._deckEl = null
+    fitDeckToFront(el)
+    expect(el._frontExtra).toBe(0)
+
+    // Fan tier with an auto-stage band — the authored min-height write.
+    el._deckEl = deck
+    el._autoStage = true
+    el._cardH = 300
+    fitDeckToFront(el)
+    expect(deck.style.minHeight).toBe(
+      `${300 * CARD_STACK_LAYOUT.FRONT_SCALE - CARD_STACK_LAYOUT.FAN_LIFT * 2}${COMMON_ATTRS.PX}`
+    )
+
+    // Stacked copy tier whose front slot resolves empty — the !front return.
+    el._tier = { ...STACK_TIER, STACKED: true, IN_CARD_INFO: true }
+
+    const cardEls = el._cardEls
+
+    el._cardEls = []
+    fitDeckToFront(el)
+    el._cardEls = cardEls
+
+    // Image-only stacked tier with a live observer — disconnect + flat pad.
+    const disconnect = jest.fn()
+
+    el._tier = { ...STACK_TIER, STACKED: true, IN_CARD_INFO: false }
+    el._fitRO = { disconnect, observe: jest.fn() }
+    el._fitFront = {}
+    fitDeckToFront(el)
+    expect(disconnect).toHaveBeenCalled()
+    expect(el._fitFront).toBeNull()
+    expect(deck.style.minHeight).toBe(
+      `${el._cardH + el._cardH * CARD_STACK_LAYOUT.STACKED_DECK_PAD}${COMMON_ATTRS.PX}`
+    )
+
+    // measure() null arms — a section missing its foot row feeds boxH /
+    // marginsOf a null element (the block only runs on a non-empty
+    // deck rect).
+    const section = el.$(SEL.CARD_STACK)
+
+    el._deckEl = deck
+    deck.getBoundingClientRect = () => ({ height: 500 })
+    section.querySelector(SEL.CARD_STACK_FOOT)?.remove()
+    measure(el)
+  })
+
+  test('fitDeckToFront — front without link/info children + null deck band write + RO callback fires', async () => {
+    const el = await mountItems([item(0), item(1)])
+    const deck = deckEl(el)
+    const observed = []
+    const cbs = []
+    const realRO = globalThis.ResizeObserver
+
+    globalThis.ResizeObserver = class {
+      constructor(cb) {
+        cbs.push(cb)
+      }
+      observe(n) {
+        observed.push(n)
+      }
+      unobserve() {}
+      disconnect() {}
+    }
+
+    try {
+      el._tier = { ...STACK_TIER, STACKED: true, IN_CARD_INFO: true }
+      el._fitRO = null
+      el._fitFront = null
+
+      const front = el._cardEls[el.activeIdx]
+
+      front.querySelector(SEL.CARD_STACK_CARD_LINK)?.remove()
+      front.querySelector(SEL.CARD_STACK_CARD_INFO)?.remove()
+      front.getBoundingClientRect = () => ({ height: 500 })
+      el._deckEl = null
+      fitDeckToFront(el)
+      expect(observed).toEqual([front])
+
+      // The observer callback re-runs the fit on its host.
+      cbs.forEach((cb) => cb())
+    } finally {
+      globalThis.ResizeObserver = realRO
+      el._deckEl = deck
+    }
+  })
+
+  test('fitDeckToFront — copy-stacked observes front/link/info when ResizeObserver exists', async () => {
+    const el = await mountItems([item(0), item(1)])
+    const observed = []
+    const realRO = globalThis.ResizeObserver
+
+    globalThis.ResizeObserver = class {
+      observe(n) {
+        observed.push(n)
+      }
+      unobserve() {}
+      disconnect() {}
+    }
+
+    try {
+      el._tier = { ...STACK_TIER, STACKED: true, IN_CARD_INFO: true }
+      el._fitRO = null
+      el._fitFront = null
+
+      const front = el._cardEls[el.activeIdx]
+
+      front.getBoundingClientRect = () => ({ height: 500 })
+      fitDeckToFront(el)
+      expect(observed.length).toBeGreaterThanOrEqual(3)
+      expect(observed[0]).toBe(front)
+      expect(el._fitFront).toBe(front)
+    } finally {
+      globalThis.ResizeObserver = realRO
+    }
+  })
+
+  test('burn sessions — held mount cancels, release re-arms, retiming both wants, rAF arrows fire', async () => {
+    const rafCbs = []
+    const realRaf = globalThis.requestAnimationFrame
+    const realCaf = globalThis.cancelAnimationFrame
+    const CanvasProto = document.createElement(HTML_TAGS.CANVAS).constructor.prototype
+    const origGetContext = CanvasProto.getContext
+    const origRect = Element.prototype.getBoundingClientRect
+
+    globalThis.requestAnimationFrame = (cb) => (rafCbs.push(cb), rafCbs.length)
+    globalThis.cancelAnimationFrame = () => {}
+    CanvasProto.getContext = (type) => (String(type) === '2d' ? createMock2D() : null)
+    Element.prototype.getBoundingClientRect = () => ({
+      left: 10,
+      top: 10,
+      right: 210,
+      bottom: 50,
+      width: 200,
+      height: 40,
+      x: 10,
+      y: 10,
+      toJSON: () => ({}),
+    })
+
+    try {
+      // item(0) leads with a sentence ender — summaryOf's cut+1 arm (the
+      // `<br>` fixtures cut on `<` and keep `cut`).
+      const el = await mountItems([
+        item(0, { description: 'Brief. Longer rest' }),
+        item(1),
+        item(2),
+      ])
+
+      el._tier = { ...STACK_TIER, STACKED: true, IN_CARD_INFO: true }
+
+      // Info-column burn mounts via burnTitle — dirty the title so the
+      // idle fast-path doesn't skip the mount.
+      const infoTitle = el.$(SEL.CARD_STACK_INFO_TITLE)
+
+      infoTitle.textContent = ATTR_VALUES.EMPTY
+      writeInfo(el)
+
+      const infoSess = el.$(SEL.CARD_STACK_INFO)?._burn
+      const cardSess = el._cardEls[el.activeIdx]?._burn
+
+      expect(infoSess).toBeTruthy()
+      expect(cardSess).toBeTruthy()
+      holdBurns(el, true)
+      expect(cardSess.raf).toBe(0)
+      expect(infoSess.raf).toBe(0)
+
+      // Held mounts park raf=0 — card0's session stays mounted.
+      burnCardTitles(el)
+
+      // Two held navs leave card0 orphaned (prev advanced twice) with a
+      // parked session for the release sweep.
+      goTo(el, el.activeIdx + 1)
+      goTo(el, el.activeIdx + 1)
+
+      // Release re-arms the live pairing and sweeps the parked orphan +
+      // the text column's session.
+      holdBurns(el, false)
+      expect(cardSess.raf).toBeTruthy()
+      expect(infoSess.raf).toBeTruthy()
+
+      // Fire every captured frame callback — covers the rAF arrows.
+      const cbs = rafCbs.splice(0)
+
+      for (const cb of cbs) cb(0)
+    } finally {
+      globalThis.requestAnimationFrame = realRaf
+      globalThis.cancelAnimationFrame = realCaf
+      CanvasProto.getContext = origGetContext
+      Element.prototype.getBoundingClientRect = origRect
+    }
+  })
+
+  test('autoplay transport click toggles autoplay; visibilitychange fires the hold listener', async () => {
+    const el = await mountItems([item(0), item(1)])
+
+    el._tier = FAN_TIER
+
+    const deck = deckEl(el)
+    const btn = document.createElement(HTML_TAGS.BUTTON)
+
+    btn.classList.add(C.CARD_STACK_AUTOPLAY)
+    deck.appendChild(btn)
+    btn.dispatchEvent(new MouseEvent(MOUSE_EVENTS.CLICK, { bubbles: true }))
+    expect(el._autoOn).toBe(true)
+
+    document.dispatchEvent(new Event(CLIPBOARD_EVENTS.VISIBILITY_CHANGE))
   })
 })

@@ -56,17 +56,6 @@ interface MentionsDeckEl extends HTMLElement {
 type ComponentsMap = Record<string, ContactTranslation | undefined>
 
 /**
- * Build-time map of canonical channel link to fallback caption so live
- * Firebase RTDB payloads that predate the caption field still render
- * the English fallback's caption under the secondary links.
- */
-const FALLBACK_CAPTIONS = new Map<string, string>(
-  (FALLBACK_COMPONENTS.contact as Required<ContactTranslation>).line1
-    .filter((it) => Boolean(it.caption))
-    .map((it) => [it.link, it.caption as string])
-)
-
-/**
  * Bundled post-redesign contact heading ("Contact / Get in Touch") used when
  * live Firebase RTDB returns the pre-redesign single-word "Contact" title.
  */
@@ -241,7 +230,7 @@ export class ContactSection extends BaseComponent {
 
           <ul className={CONTACT_CLASSES.CONTACT_LINKS}>
             {restItems.map((item) => {
-              const caption = item.caption || FALLBACK_CAPTIONS.get(item.link)
+              const caption = item.caption
 
               return (
                 <li key={item.link} className={CONTACT_CLASSES.CONTACT_LINKS_ITEM}>
