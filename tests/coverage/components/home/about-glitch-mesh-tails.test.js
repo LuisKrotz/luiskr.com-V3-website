@@ -8,7 +8,6 @@
  * through a real mounted <about-section> with a stubbed 2D context,
  * decoded portrait, ResizeObserver and rAF.
  */
-import { jest } from '@jest/globals'
 import '@website/components/home/AboutSection.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { ABOUT_CLASSES } from '@core/tokens/classes/about.js'
