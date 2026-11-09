@@ -40,10 +40,11 @@ const _BURN_CLASSES: BurnClasses = {
 }
 
 /**
- * Mosaic title combustion — the REAL burn pipeline (utils/burn) armed
- * on a one-card demo surface: raster, consume front, ember particles,
- * <draw-text> rewrite, then the un-burn rebuild — the hover/un-hover
- * choreography replayed on the cycle.
+ * Card-stack title combustion — the REAL burn pipeline (utils/burn)
+ * armed on a one-card demo surface: raster, consume front, ember
+ * particles, <draw-text> rewrite, then the un-burn rebuild — the
+ * consume/rebuild choreography the card-stack's project names play on
+ * every deal-through, replayed on the cycle.
  * @param ctx The demo context — host supplies the `$` contract.
  * @returns Teardown — stops the cycle and disarms any live session.
  */

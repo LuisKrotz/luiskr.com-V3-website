@@ -195,15 +195,14 @@ export function mountMediaExpanded(el: MediaExpanded): void {
   // missing surfaces) the legacy CSS zoom covers the entrance instead.
   const content = el.$(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_CONTENT}`)
 
-  // Media-box allocation — the modal is the no-reduction surface: the
-  // declared natural dims are stamped as explicit px on the item, so the
-  // box is pinned to the file's real pixels from the first frame and the
-  // thumb → full-res swap can never resize it. No bound check applies
-  // here — reductions belong to the page grids/strips; inside the modal
-  // an oversized file simply overflows into the dialog's own scroll on
-  // both axes. Videos stamp the same way — their controls ride the
-  // element, so scroll keeps them reachable like any oversized image.
-  // The genie measure below reads the same layout pass.
+  // Media-box allocation — the modal pins the declared natural dims as
+  // explicit px on the item, so the box is the file's real size from
+  // the first frame and the thumb → full-res swap can never resize it.
+  // CSS applies the modal caps on top: nothing renders wider than the
+  // content column (max-width:100%), images keep natural height and pan
+  // the dialog's scroll, and only videos take the viewport-minus-chrome
+  // height cap that downscales them proportionally. The genie measure
+  // below reads the same layout pass.
   const stampMediaBox = () => {
     if (!mediaItem) return
 

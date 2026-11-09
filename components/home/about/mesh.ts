@@ -17,6 +17,10 @@ import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { WEBGL_STRINGS } from '@core/tokens/strings/webgl.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
+import { STATE_CLASSES } from '@core/tokens/classes/state.js'
+import { THEME_CSS_PROPS } from '@core/tokens/css/theme.js'
+import { CANVAS_PAINT_CSS } from '@core/tokens/canvas/paint.js'
+import { parseCssColor } from '@core/utils/canvas/css-color.js'
 import store from '@core/store.js'
 import type { AboutSection } from '../AboutSection.js'
 
@@ -40,6 +44,39 @@ const _ROW_COUNT = 11
 const _SPOKES = 260
 const _TWO_PI = Math.PI * 2
 const _LINES = [0.5, 2.4, 4.1] // radian angles of the dotted guide lines
+
+/** Cached dot ink (`r,g,b` string) + the theme flag it resolved under. */
+let _ink: string | null = null
+
+let _inkDark = false
+
+/**
+ * Dot ink — the lattice paints in `--text-muted` so the mesh reads on
+ * whatever theme field sits behind the portrait (the old fixed mid-grey
+ * vanished on the light aurora wash: "animation is not visible"). The
+ * palette re-samples on a theme flip only — per-frame paints read the
+ * cached channel string, so the loop never pays a getComputedStyle.
+ * @returns `r,g,b` channel string for rgba() composition.
+ */
+function meshInk(): string {
+  const dark = document.documentElement.classList.contains(STATE_CLASSES.DARK_MODE)
+
+  if (_ink && _inkDark === dark) return _ink
+
+  const cs = getComputedStyle(document.documentElement)
+
+  const resolved = cs.getPropertyValue(THEME_CSS_PROPS.TEXT_MUTED).trim()
+
+  // MESH_GREY is a literal hex token — always parses, so the `||` chain can
+  // never produce null; the cast just narrows the type for the map below.
+  const tri = (parseCssColor(resolved) || parseCssColor(CANVAS_PAINT_CSS.MESH_GREY)) as number[]
+
+  _ink = tri.map((n) => Math.round(n * 255)).join(',')
+
+  _inkDark = dark
+
+  return _ink
+}
 
 /**
  * Deterministic hash → pseudo-random 0..1 per lattice site — the static
@@ -72,7 +109,7 @@ function paint(s: MeshSession, now: number): void {
   const half = Math.min(s.w, s.h) / 2
 
   s.ctx.clearRect(0, 0, s.w, s.h)
-  s.ctx.fillStyle = 'rgba(190, 190, 190, 1)'
+  s.ctx.fillStyle = `rgba(${meshInk()}, 1)`
 
   const amp = half * 0.06 * (0.8 + 0.2 * Math.sin(t * 0.9))
   const sigma = half * 0.028 // lens waist — gaussian falloff across the band

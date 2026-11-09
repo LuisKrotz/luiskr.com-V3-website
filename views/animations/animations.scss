@@ -165,6 +165,6 @@ article {
   margin-top: to-rem($space-xs);
   font-family: var(--font-primary);
   font-weight: calc(300 + var(--fw-lift));
-  color: var(--color-accent);
+  color: var(--color-accent-contrast);
   text-decoration: none;
 }

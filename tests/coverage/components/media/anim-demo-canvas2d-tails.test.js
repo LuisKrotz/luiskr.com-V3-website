@@ -1,18 +1,14 @@
 /**
  * @file anim-demo-canvas2d-tails.test.js
  * @description Coverage tails for website/components/media/anim-demo/canvas2d.ts —
- * the 2D-approximation demo drivers (glitch portrait, space scene, about
- * mesh). Each mount's contract: bail cleanly without a stage canvas or a
- * 2D backend, paint exactly one settled frame under reduced motion, run
- * an allocation-free rAF loop otherwise, and cancel it on teardown.
+ * the space-scene 2D fallback driver. Its contract: bail cleanly
+ * without a stage canvas or a 2D backend, paint exactly one settled
+ * frame under reduced motion, run an allocation-free rAF loop
+ * otherwise, and cancel it on teardown.
  */
 
 import { describe, test, expect, beforeEach, afterEach } from '@jest/globals'
-import {
-  mountGlitchDemo,
-  mountSceneDemo,
-  mountMeshDemo,
-} from '@website/components/media/anim-demo/canvas2d.js'
+import { mountSceneDemo } from '@website/components/media/anim-demo/canvas2d.js'
 import store from '@core/store.js'
 import { ANIM_DEMO_CLASSES } from '@core/tokens/classes/anim-demo.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
@@ -134,61 +130,6 @@ describe('anim-demo canvas2d tails', () => {
     store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, false)
   })
 
-  test('glitch demo bails without a stage canvas or a 2D backend', () => {
-    expect(mountGlitchDemo(makeStage(false))()).toBeUndefined()
-
-    CanvasProto().getContext = () => null
-
-    expect(mountGlitchDemo(makeStage(true))()).toBeUndefined()
-  })
-
-  test('glitch demo paints one settled frame under reduced motion', () => {
-    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, true)
-
-    const teardown = mountGlitchDemo(makeStage(true))
-
-    expect(ctxState.drawImage).toBe(1)
-    expect(rafQueue.length).toBe(0)
-    expect(teardown()).toBeUndefined()
-  })
-
-  test('glitch demo mounts the plate, slices on burst frames, and cancels', () => {
-    const teardown = mountGlitchDemo(makeStage(true))
-
-    // The offscreen plate painted at mount — frames inside the burst
-    // window slice; past it the loop redraws without slicing.
-    pump(12)
-
-    expect(ctxState.drawImage).toBeGreaterThan(1)
-    expect(ctxState.fillRect).toBeGreaterThan(0)
-    expect(rafQueue.length).toBe(1)
-
-    teardown()
-  })
-
-  test('glitch demo skips the plate when the offscreen ctx vanishes', () => {
-    // Stage canvas resolves; the offscreen canvas's 2D returns null —
-    // the mount must fall through to the loop without the plate paint.
-    CanvasProto().getContext = function (type) {
-      if (String(type) !== WEBGL_STRINGS.CONTEXT_2D) return null
-      if (this === stageCanvas) {
-        const rec = recording2d()
-
-        ctxState = rec.state
-
-        return rec.proxy
-      }
-
-      return null
-    }
-
-    mountGlitchDemo(makeStage(true))
-
-    pump(2)
-
-    expect(ctxState.drawImage).toBeGreaterThan(0)
-  })
-
   test('scene demo bails without a stage canvas or a 2D backend', () => {
     expect(mountSceneDemo(makeStage(false))()).toBeUndefined()
 
@@ -225,36 +166,6 @@ describe('anim-demo canvas2d tails', () => {
     Math.random = origRandom
     window.devicePixelRatio = origDpr
 
-    expect(ctxState.fillRect).toBeGreaterThan(0)
-    expect(rafQueue.length).toBe(1)
-
-    teardown()
-  })
-
-  test('mesh demo bails without a stage canvas or a 2D backend', () => {
-    expect(mountMeshDemo(makeStage(false))()).toBeUndefined()
-
-    CanvasProto().getContext = () => null
-
-    expect(mountMeshDemo(makeStage(true))()).toBeUndefined()
-  })
-
-  test('mesh demo paints one settled frame under reduced motion', () => {
-    store.commit(PREF_MUTATIONS.SET_REDUCED_MOTION, true)
-
-    const teardown = mountMeshDemo(makeStage(true))
-
-    expect(ctxState.fillRect).toBeGreaterThan(0)
-    expect(rafQueue.length).toBe(0)
-    expect(teardown()).toBeUndefined()
-  })
-
-  test('mesh demo animates the lattice rows and guide spokes', () => {
-    const teardown = mountMeshDemo(makeStage(true))
-
-    pump(3)
-
-    // Rows × dots + spoke runs land on fillRect every frame.
     expect(ctxState.fillRect).toBeGreaterThan(0)
     expect(rafQueue.length).toBe(1)
 

@@ -15,8 +15,8 @@ import '@website/components/media/DrawText.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { ANIM_DEMO_CLASSES } from '@core/tokens/classes/anim-demo.js'
+import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
-import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { SCSS, mount } from '@tests/fixtures/test-constants.js'
 import * as ANIM_DEMO_MOUNTS from '@website/components/media/anim-demo/mounts.js'
@@ -88,7 +88,7 @@ describe('AnimDemo', () => {
     [ANIMATION_IDS.CLOSE_BUTTON, `${HTML_TAGS.CANVAS}.${C.ICON}`],
     [ANIMATION_IDS.NAV_MENU_BACKGROUND, `${HTML_TAGS.CANVAS}.${C.CANVAS}`],
     [ANIMATION_IDS.SCENE_3D, `${HTML_TAGS.CANVAS}.${C.CANVAS}`],
-    [ANIMATION_IDS.GLITCH_PORTRAIT, `${HTML_TAGS.CANVAS}.${C.CANVAS}`],
+    [ANIMATION_IDS.GLITCH_PORTRAIT, COMPONENT_TAGS.ABOUT_SECTION],
     [ANIMATION_IDS.NAV_FLAG, `${HTML_TAGS.CANVAS}.${C.FLAG}`],
     [ANIMATION_IDS.SWITCH_SLIDER, `${HTML_TAGS.CANVAS}.${C.SWITCH}`],
     [ANIMATION_IDS.THEME_SLIDER, `${HTML_TAGS.CANVAS}.${C.THEME}`],
@@ -99,25 +99,24 @@ describe('AnimDemo', () => {
     [ANIMATION_IDS.MOSAIC_BURN, `.${C.CARD}`],
     [ANIMATION_IDS.DIVIDER_SHEEN, `.${C.DIVIDER}`],
     [ANIMATION_IDS.RING_SHEEN, `.${C.TILES}`],
-    [ANIMATION_IDS.MOSAIC_TILE, `.${C.TILE_SPRING}`],
     [ANIMATION_IDS.RELATED_TILE, `.${C.TILES}`],
     [ANIMATION_IDS.CORNER_BRACKETS, `.${C.BUTTON}`],
     [ANIMATION_IDS.GENIE_MODAL, `.${C.DIALOG}`],
-    [ANIMATION_IDS.CAROUSEL, `.${C.TRACK}`],
+    [ANIMATION_IDS.CAROUSEL, COMPONENT_TAGS.AWARDS_CAROUSEL],
     [ANIMATION_IDS.BODY_GLOW, `.${C.GLOW}`],
     [ANIMATION_IDS.PROGRESS_BAR, `.${C.BAR}`],
     [ANIMATION_IDS.TEXT_DRAW, `.${C.DRAW}`],
     [ANIMATION_IDS.ABOUT_TEXT, `.${C.DRAW}`],
     [ANIMATION_IDS.MEDIA_PROGRESSIVE, `.${C.FIGURE}`],
-    [ANIMATION_IDS.CARD_STACK, `.${C.FAN_CARD}`],
-    [ANIMATION_IDS.ABOUT_MESH, `${HTML_TAGS.CANVAS}.${C.CANVAS}`],
+    [ANIMATION_IDS.CARD_STACK, COMPONENT_TAGS.CARD_STACK],
+    [ANIMATION_IDS.ABOUT_MESH, COMPONENT_TAGS.ABOUT_SECTION],
     [ANIMATION_IDS.NAV_ICON_AURA, `.${C.CHIP}`],
     [ANIMATION_IDS.VIEW_TRANSITION, `.${C.PANE}`],
     [ANIMATION_IDS.ROUTE_SEARCH, `.${C.SEARCH}`],
-    [ANIMATION_IDS.CUSTOM_CAROUSEL, `.${C.TRACK}`],
-    [ANIMATION_IDS.MENTIONS_DECK, `.${C.DECK_CARD}`],
+    [ANIMATION_IDS.CUSTOM_CAROUSEL, COMPONENT_TAGS.CUSTOM_CAROUSEL],
+    [ANIMATION_IDS.MENTIONS_DECK, COMPONENT_TAGS.MENTIONS_DECK],
     [ANIMATION_IDS.EXPAND_MODAL_LOADING, `.${C.MODAL}`],
-    [ANIMATION_IDS.FOOTER_FEED_WAVE, `.${C.FEED_ITEM}`],
+    [ANIMATION_IDS.FOOTER_FEED_WAVE, `.${C.FEED}`],
   ])('stages the right DOM for %s', (id, selector) => {
     const { demo, unmount } = mountDemo(id)
     el = demo
@@ -209,37 +208,17 @@ describe('AnimDemo', () => {
     unmount()
   })
 
-  test('tile-spring demo toggles the hover modifier', () => {
-    const { demo, unmount } = mountDemo(ANIMATION_IDS.MOSAIC_TILE)
-    el = demo
-    const tile = demo.shadowRoot.querySelector(`.${C.TILE_SPRING}`)
-
-    jest.advanceTimersByTime(3400)
-    expect(tile.classList.contains(C.TILE_HOVER)).toBe(true)
-
-    jest.advanceTimersByTime(3400)
-    expect(tile.classList.contains(C.TILE_HOVER)).toBe(false)
-    unmount()
-  })
-
   // ── Later-added surfaces ────────────────────────────────────────────────
 
-  test('card-stack demo deals every fanned card one slot per beat', () => {
+  test('card-stack demo mounts the real deck element and feeds it data', () => {
     const { demo, unmount } = mountDemo(ANIMATION_IDS.CARD_STACK)
     el = demo
 
     jest.advanceTimersByTime(10)
-    const cards = demo.shadowRoot.querySelectorAll(`.${C.FAN_CARD}`)
+    const deck = demo.shadowRoot.querySelector(COMPONENT_TAGS.CARD_STACK)
 
-    // The immediate step already dealt once — the +2 card became +1.
-    expect(cards[4].getAttribute(DATA_ATTRS.DATA_INDEX)).toBe('1')
-
-    // Keep dealing until a card wraps the −2 slot back to +2.
-    jest.advanceTimersByTime(1600)
-    jest.advanceTimersByTime(1600)
-    expect(Array.from(cards).some((card) => card.getAttribute(DATA_ATTRS.DATA_INDEX) === '2')).toBe(
-      true
-    )
+    expect(deck).not.toBeNull()
+    expect(demo._mounted).toBe(true)
 
     unmount()
   })
@@ -299,24 +278,15 @@ describe('AnimDemo', () => {
     unmount()
   })
 
-  test('mentions-deck demo swipes the front card then re-seats it', () => {
+  test('mentions-deck demo mounts the real fan element and feeds it data', () => {
     const { demo, unmount } = mountDemo(ANIMATION_IDS.MENTIONS_DECK)
     el = demo
 
     jest.advanceTimersByTime(10)
-    const cards = demo.shadowRoot.querySelectorAll(`.${C.DECK_CARD}`)
-    const frontCard = Array.from(cards).find(
-      (card) => card.getAttribute(DATA_ATTRS.DATA_INDEX) === '0'
-    )
+    const deck = demo.shadowRoot.querySelector(COMPONENT_TAGS.MENTIONS_DECK)
 
-    // Immediate step — the front card is mid swipe-out.
-    expect(frontCard.classList.contains(C.DECK_GONE)).toBe(true)
-
-    // Next beat — the gone card re-seated at the back, next card is front.
-    jest.advanceTimersByTime(1600)
-    expect(frontCard.classList.contains(C.DECK_GONE)).toBe(false)
-    expect(frontCard.getAttribute(DATA_ATTRS.DATA_INDEX)).toBe('2')
-    expect(cards[1].getAttribute(DATA_ATTRS.DATA_INDEX)).toBe('0')
+    expect(deck).not.toBeNull()
+    expect(demo._mounted).toBe(true)
 
     unmount()
   })
@@ -335,71 +305,43 @@ describe('AnimDemo', () => {
     unmount()
   })
 
-  test('footer-feed-wave demo mounts with no JS state to drive', () => {
+  test('footer-feed-wave demo mounts the real feed link + glyph', () => {
     const { demo, unmount } = mountDemo(ANIMATION_IDS.FOOTER_FEED_WAVE)
     el = demo
 
     jest.advanceTimersByTime(10)
     expect(demo._mounted).toBe(true)
-    expect(demo._teardown).toBeNull()
+
+    const link = demo.shadowRoot.querySelector(`.${C.FEED}`)
+    const icon = link?.querySelector(`.${AWARDS_CLASSES.AWARDS_FOOTER_FEED_ICON}`)
+
+    expect(icon).not.toBeNull()
+    expect(link.querySelectorAll(`.${AWARDS_CLASSES.AWARDS_FOOTER_FEED_WAVE}`)).toHaveLength(2)
+    expect(link.getAttribute('href')).toBeTruthy()
 
     unmount()
   })
 
-  test('about-mesh demo paints the lattice under a stubbed 2D context', () => {
-    const getContext = window.HTMLCanvasElement.prototype.getContext
-    window.HTMLCanvasElement.prototype.getContext = () => _fake2d()
+  test('about-mesh demo mounts the real about-section element', () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.ABOUT_MESH)
+    el = demo
 
-    try {
-      const { demo, unmount } = mountDemo(ANIMATION_IDS.ABOUT_MESH)
-      el = demo
+    jest.advanceTimersByTime(10)
+    expect(demo.shadowRoot.querySelector(COMPONENT_TAGS.ABOUT_SECTION)).not.toBeNull()
+    expect(demo._mounted).toBe(true)
 
-      jest.advanceTimersByTime(10)
-      expect(demo._mounted).toBe(true)
-
-      // rAF loop ticks under fake timers without throwing.
-      jest.advanceTimersByTime(100)
-
-      unmount()
-    } finally {
-      window.HTMLCanvasElement.prototype.getContext = getContext
-    }
+    unmount()
   })
 
-  test('about-mesh demo no-ops when 2D is unavailable', () => {
-    const getContext = window.HTMLCanvasElement.prototype.getContext
-    window.HTMLCanvasElement.prototype.getContext = () => null
+  test('glitch demo mounts the real about-section element', () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.GLITCH_PORTRAIT)
+    el = demo
 
-    try {
-      const { demo, unmount } = mountDemo(ANIMATION_IDS.ABOUT_MESH)
-      el = demo
+    jest.advanceTimersByTime(10)
+    expect(demo.shadowRoot.querySelector(COMPONENT_TAGS.ABOUT_SECTION)).not.toBeNull()
+    expect(demo._mounted).toBe(true)
 
-      jest.advanceTimersByTime(10)
-      expect(demo._mounted).toBe(true)
-
-      unmount()
-    } finally {
-      window.HTMLCanvasElement.prototype.getContext = getContext
-    }
-  })
-
-  test('about-mesh demo paints one settled frame under reduced motion', () => {
-    const getContext = window.HTMLCanvasElement.prototype.getContext
-    window.HTMLCanvasElement.prototype.getContext = () => _fake2d()
-    const getter = jest.spyOn(store.getters, 'getReducedMotion').mockReturnValue(true)
-
-    try {
-      const { demo, unmount } = mountDemo(ANIMATION_IDS.ABOUT_MESH)
-      el = demo
-
-      jest.advanceTimersByTime(10)
-      expect(demo._mounted).toBe(true)
-
-      unmount()
-    } finally {
-      window.HTMLCanvasElement.prototype.getContext = getContext
-      getter.mockRestore()
-    }
+    unmount()
   })
 
   // ── Lifecycle ───────────────────────────────────────────────────────────
@@ -580,16 +522,14 @@ describe('AnimDemo', () => {
     }
   })
 
-  test('glitch demo skips the portrait plate when the offscreen ctx fails', () => {
-    // First getContext arms the stage canvas; the second — the offscreen
-    // portrait plate — returns null so the plate paint is skipped.
+  test('scene demo survives a failed getContext probe', () => {
     const getContext = window.HTMLCanvasElement.prototype.getContext
     let calls = 0
 
     window.HTMLCanvasElement.prototype.getContext = () => (++calls === 1 ? _fake2d() : null)
 
     try {
-      const { demo, unmount } = mountDemo(ANIMATION_IDS.GLITCH_PORTRAIT)
+      const { demo, unmount } = mountDemo(ANIMATION_IDS.SCENE_3D)
       el = demo
 
       jest.advanceTimersByTime(10)

@@ -127,16 +127,17 @@ describe('custom-carousel sizing measureFit projection tails', () => {
     expect(el2._isSideBySide).toBe(false)
   })
 
-  test('strip height is the tallest item, not a viewport ladder', () => {
+  test('strip height is the smallest item fit, not a viewport ladder', () => {
     const el = stubEl([SLIDE, WIDE])
 
     setViewport(2600, 900)
 
-    // WIDE 1600×900 fits 630 → strip 630. BOTH items render at
-    // strip × own ratio: 630 × 16/9 = 1120 each (SLIDE shares WIDE's
-    // ratio) — a fixed ladder step or per-item heights would project a
-    // different total. totalW = 2 × (1120 + 90) = 2420.
-    const total = 2 * (1120 + OVERHEAD_DESKTOP)
+    // SLIDE 800×450 fits untouched at 450 — smaller than WIDE's 630 —
+    // so the strip anchors at 450. BOTH items render at strip × own
+    // ratio: 450 × 16/9 = 800 each (SLIDE shares WIDE's ratio) — a
+    // tallest-anchored strip or per-item heights would project a
+    // different total. totalW = 2 × (800 + 90) = 1780.
+    const total = 2 * (800 + OVERHEAD_DESKTOP)
 
     measureFit(el, total)
 

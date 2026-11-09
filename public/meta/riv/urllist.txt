@@ -361,6 +361,7 @@ https://luiskr.com/docs/core/tokens/css/genie.ts
 https://luiskr.com/docs/core/tokens/css/menu.ts
 https://luiskr.com/docs/core/tokens/css/mosaic.ts
 https://luiskr.com/docs/core/tokens/css/nav.ts
+https://luiskr.com/docs/core/tokens/css/parallax.ts
 https://luiskr.com/docs/core/tokens/css/route-search.ts
 https://luiskr.com/docs/core/tokens/css/skeleton.ts
 https://luiskr.com/docs/core/tokens/css/starfield.ts
@@ -434,6 +435,7 @@ https://luiskr.com/docs/core/tokens/motion/gpu.ts
 https://luiskr.com/docs/core/tokens/motion/marquee.ts
 https://luiskr.com/docs/core/tokens/motion/mentions-deck.ts
 https://luiskr.com/docs/core/tokens/motion/notify.ts
+https://luiskr.com/docs/core/tokens/motion/parallax.ts
 https://luiskr.com/docs/core/tokens/motion/prefetch.ts
 https://luiskr.com/docs/core/tokens/motion/related.ts
 https://luiskr.com/docs/core/tokens/motion/skeleton.ts
@@ -854,6 +856,9 @@ https://luiskr.com/docs/coverage-core/core/tokens/attrs/svg.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/attrs/values.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/base.js.html
 https://luiskr.com/docs/coverage-core/core/tokens/base.ts.html
+https://luiskr.com/docs/coverage-core/core/tokens/canvas
+https://luiskr.com/docs/coverage-core/core/tokens/canvas/index.html
+https://luiskr.com/docs/coverage-core/core/tokens/canvas/paint.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/classes
 https://luiskr.com/docs/coverage-core/core/tokens/classes/a11y.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/classes/about.ts.html
@@ -910,6 +915,7 @@ https://luiskr.com/docs/coverage-core/core/tokens/css/index.html
 https://luiskr.com/docs/coverage-core/core/tokens/css/menu.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/css/mosaic.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/css/nav.ts.html
+https://luiskr.com/docs/coverage-core/core/tokens/css/parallax.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/css/route-search.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/css/skeleton.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/css/starfield.ts.html
@@ -983,6 +989,7 @@ https://luiskr.com/docs/coverage-core/core/tokens/motion/index.html
 https://luiskr.com/docs/coverage-core/core/tokens/motion/marquee.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/motion/mentions-deck.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/motion/notify.ts.html
+https://luiskr.com/docs/coverage-core/core/tokens/motion/parallax.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/motion/prefetch.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/motion/related.ts.html
 https://luiskr.com/docs/coverage-core/core/tokens/motion/skeleton.ts.html
@@ -1092,6 +1099,7 @@ https://luiskr.com/docs/coverage-core/core/utils/canvas/css-color.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/canvas/dom-font.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/canvas/gl-lifecycle.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/canvas/gl-program.ts.html
+https://luiskr.com/docs/coverage-core/core/utils/canvas/glsl.ts.html
 https://luiskr.com/docs/coverage-core/core/utils/canvas/index.html
 https://luiskr.com/docs/coverage-core/core/utils/canvas/loaders
 https://luiskr.com/docs/coverage-core/core/utils/canvas/loaders/index.html
@@ -1614,6 +1622,7 @@ https://luiskr.com/docs/coverage-website/views/home/Home.tsx.html
 https://luiskr.com/docs/coverage-website/views/home/children.ts.html
 https://luiskr.com/docs/coverage-website/views/home/data.ts.html
 https://luiskr.com/docs/coverage-website/views/home/index.html
+https://luiskr.com/docs/coverage-website/views/home/parallax.ts.html
 https://luiskr.com/docs/coverage-website/views/home/render.tsx.html
 https://luiskr.com/docs/coverage-website/views/home/scroll.ts.html
 https://luiskr.com/docs/coverage-website/views/legal
@@ -9049,7 +9058,9 @@ https://luiskr.com/docs/website/components/media/MediaMosaic.tsx
 https://luiskr.com/docs/website/components/media/anim-demo
 https://luiskr.com/docs/website/components/media/anim-demo/canvas2d.ts
 https://luiskr.com/docs/website/components/media/anim-demo/cycle.ts
+https://luiskr.com/docs/website/components/media/anim-demo/data.ts
 https://luiskr.com/docs/website/components/media/anim-demo/dom.ts
+https://luiskr.com/docs/website/components/media/anim-demo/elements.ts
 https://luiskr.com/docs/website/components/media/anim-demo/mounts.ts
 https://luiskr.com/docs/website/components/media/anim-demo/registry.ts
 https://luiskr.com/docs/website/components/media/anim-demo/stages.tsx
@@ -9433,6 +9444,7 @@ https://luiskr.com/docs/website/views/home/Home.tsx
 https://luiskr.com/docs/website/views/home/children.ts
 https://luiskr.com/docs/website/views/home/data.ts
 https://luiskr.com/docs/website/views/home/home.scss
+https://luiskr.com/docs/website/views/home/parallax.ts
 https://luiskr.com/docs/website/views/home/render.tsx
 https://luiskr.com/docs/website/views/home/scroll.ts
 https://luiskr.com/docs/website/views/home/types.ts

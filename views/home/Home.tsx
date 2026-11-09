@@ -4,8 +4,8 @@
  * card-stack deck, about section and contact footer. Loads the home page
  * node + projects list via SWR, keeps JSON-LD (WebSite + ItemList) in
  * sync, and passes data down to its child sections. Behavior lives in
- * home/{types,data,children,scroll,render} — this facade keeps the
- * lifecycle + test-facing method surface.
+ * home/{types,data,children,scroll,parallax,render} — this facade keeps
+ * the lifecycle + test-facing method surface.
  */
 
 import { VIEW_TAGS } from '@core/tokens/elements/views.js'
@@ -16,6 +16,8 @@ import type { RouteDescriptor } from '@core/router/router.js'
 import { isFeatured, loadHomeData, onHomeStoreUpdate, processedItems } from './data.js'
 import { passDataToChildren } from './children.js'
 import { onHomeRouteChange, scrollOnMount } from './scroll.js'
+import { attachParallax, detachParallax, syncParallax } from './parallax.js'
+import type { ParallaxSession } from './parallax.js'
 import { renderHome } from './render.js'
 import type { AboutNode, HomeTranslations, PortfolioItem } from './types.js'
 import homeStyles from './home.scss?tiers'
@@ -33,6 +35,8 @@ export class ViewHome extends BaseComponent {
   profilePicture: string | null = null // profile-picture descriptor for <about-section>
   featuredLinks = new Set<string>() // project links flagged featured in components/projects
   _lastLocale: string | null = null
+  /** Live scroll-parallax session — see home/parallax.ts. */
+  _parallax: ParallaxSession | null = null
 
   constructor() {
     super(homeStyles)
@@ -68,7 +72,8 @@ export class ViewHome extends BaseComponent {
     onHomeRouteChange(this, to)
   }
 
-  /** Lifecycle: kicks off data loading and subscribes to the store. */
+  /** Lifecycle: kicks off data loading, subscribes to the store, and
+   *  arms the desktop scroll-parallax session. */
 
   override onMounted() {
     this.loadData()
@@ -76,12 +81,22 @@ export class ViewHome extends BaseComponent {
     this.subscribe(store)
 
     scrollOnMount(this, router.currentRoute)
+
+    attachParallax(this)
+  }
+
+  /** Lifecycle: tears down the parallax session when the view leaves. */
+
+  override onDestroy() {
+    detachParallax(this)
   }
 
   /** Re-pushes data when locale/state changes. */
 
   override onStoreUpdate() {
     onHomeStoreUpdate(this)
+
+    syncParallax(this)
   }
 
   /** Loads the three home data sources in parallel via SWR (see home/data.ts). */
@@ -102,10 +117,13 @@ export class ViewHome extends BaseComponent {
     return renderHome(this)
   }
 
-  /** Lifecycle: re-syncs children after each re-render. */
+  /** Lifecycle: re-syncs children after each re-render, then re-gates
+   *  the parallax session so freshly rendered layer nodes re-bind. */
 
   override onUpdated() {
     this._passDataToChildren()
+
+    syncParallax(this)
   }
 }
 

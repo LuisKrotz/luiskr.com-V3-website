@@ -17,6 +17,7 @@ import { calcMediaBox } from '@core/utils/wasm/wasm-layout.js'
 import type { CustomCarousel } from '../CustomCarousel.js'
 import type { CarouselItem } from './render.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
+import { INTERNAL_MOSAIC } from '@core/tokens/layout/masonry.js'
 
 /**
  * Wires a ResizeObserver on the host that re-runs _measureFit on width
@@ -55,7 +56,7 @@ export function startFitObserver(c: CustomCarousel) {
  * ≥ SIDE_BY_SIDE_BREAKPOINT, and projected total width ≤ host width.
  * The projection mirrors the shadow-DOM contract in media-figure.scss +
  * carousel-host.scss exactly: the strip height is the same value
- * setHeightVar publishes to --carousel-media-height — the tallest item
+ * setHeightVar publishes to --carousel-media-height — the smallest item
  * rendered into hostW × 70dvh (calcMediaBox — WASM-backed, never
  * upscales); every slide's box is that strip height × the source's own
  * ratio (width: auto, no max-width cap in carousel context), floored at
@@ -117,16 +118,35 @@ export function measureFit(c: CustomCarousel, observedWidth?: number) {
   const maxH = Math.round((vh * CAROUSEL_LAYOUT.MAX_HEIGHT_VH) / 100)
 
   // Strip height = what setHeightVar publishes on ≥960 viewports (never
-  // the mobile branches): the tallest item rendered into hostW × maxH —
-  // each source fit by calcMediaBox, the max kept.
-  let stripH = 0
+  // the mobile branches): the SMALLEST item's honest fit into hostW ×
+  // maxH — each source fit by calcMediaBox, the min kept — lifted only
+  // when a source is natively narrower than MEDIA_MIN_WIDTH (the lift
+  // lets that smallest-width slide reach the floor). >TALL_ITEM_H
+  // sources follow their own sliver rule and stay out of the driver.
+  let stripH = Infinity
+
+  let smallestW = Infinity
+
+  let smallestWAspect = Infinity
 
   for (const item of c.items) {
     const w = item.size?.[0] || GENERIC_DIMENSIONS.DEFAULT_WIDTH
 
     const h = item.size?.[1] || GENERIC_DIMENSIONS.ITEM_FALLBACK_HEIGHT
 
-    stripH = Math.max(stripH, calcMediaBox(w, h, hostW, maxH).height)
+    stripH = Math.min(stripH, calcMediaBox(w, h, hostW, maxH).height)
+
+    const naturalH = item.naturalSize?.[1] || h
+
+    if (naturalH <= INTERNAL_MOSAIC.TALL_ITEM_H && w < smallestW) {
+      smallestW = w
+
+      smallestWAspect = w / h
+    }
+  }
+
+  if (smallestW < CAROUSEL_LAYOUT.MEDIA_MIN_WIDTH) {
+    stripH = CAROUSEL_LAYOUT.MEDIA_MIN_WIDTH / smallestWAspect
   }
 
   // Item horizontal padding (both sides) — the ≥960 projection always
@@ -347,13 +367,18 @@ export function getSmallestPortraitRatio(items: CarouselItem[]): number | null {
  * Publishes --carousel-item-height on the enclosing <section> and
  * --carousel-media-height on the host: the aspect-corrected height
  * ensuring all slides share one uniform height. The uniform height is
- * the TALLEST rendered item — the max height each sized source reaches
- * when fit to the strip width and the viewport cap. Every slide's box is
- * the strip height × its own aspect (the media-figure sheet drops the
- * natural-size caps in carousel context), so the media fills with zero
- * crop and zero distortion; a short source covers the taller box.
- * In mixed carousels on mobile, the uniform height anchors to the
- * shortest portrait item.
+ * the SMALLEST rendered item — the min height each sized source reaches
+ * when fit to the strip width and the viewport cap — so siblings shrink
+ * to it and no source upscales. The only upscale the contract allows is
+ * the floor correction: when a source is natively narrower than
+ * MEDIA_MIN_WIDTH, the strip lifts just enough for that smallest-width
+ * slide to reach the floor (equal heights wins). Sources taller than
+ * TALL_ITEM_H keep their own sliver/floor rule and stay out of the
+ * width driver. Every slide's box is the strip height ×
+ * its own aspect (the media-figure sheet drops the natural-size caps in
+ * carousel context), so the media fills with zero crop and zero
+ * distortion. In mixed carousels on mobile, the uniform height anchors
+ * to the shortest portrait item.
  * @param c The CustomCarousel element.
  */
 export function setHeightVar(c: CustomCarousel) {
@@ -407,33 +432,68 @@ export function setHeightVar(c: CustomCarousel) {
 
   const fitScale = halfBound ? CAROUSEL_LAYOUT.HALF_NATURAL_SCALE : 1
 
-  // Uniform strip = the tallest rendered item. calcMediaBox mirrors the
-  // CSS contract (fit hostW × maxH, never upscale), so the max over the
-  // sized items is the tallest box the strip can honestly reach; shorter
-  // sources keep their own --mf-natural-h cap and center inside it.
-  const fitMax = c.items.reduce((tallest, item) => {
+  // Uniform strip = the SMALLEST item's honest fit — every sibling
+  // shrinks to it, so the row keeps equal heights with zero upscale.
+  // calcMediaBox mirrors the CSS contract (fit hostW × maxH, never
+  // upscale), so the min over the sized items is the shortest box the
+  // strip can reach without any source stretching past its pixels.
+  // Sources taller than TALL_ITEM_H (full-page screenshots) already
+  // render by their own sliver/floor rule and are excluded from the
+  // smallest-width driver — their extreme aspect would otherwise pin
+  // the correction at an absurd strip height.
+  let smallest = Infinity
+
+  let fitMax = 0
+
+  let smallestW = Infinity
+
+  let smallestWAspect = Infinity
+
+  for (const item of c.items) {
     const w = item?.size?.[0] || 0
 
     const h = item?.size?.[1] || 0
 
-    return w && h
-      ? Math.max(tallest, calcMediaBox(w * fitScale, h * fitScale, hostW, maxH).height)
-      : tallest
-  }, 0)
+    if (!w || !h) continue
+
+    const fit = calcMediaBox(w * fitScale, h * fitScale, hostW, maxH)
+
+    smallest = Math.min(smallest, fit.height)
+
+    fitMax = Math.max(fitMax, fit.height)
+
+    const naturalH = item?.naturalSize?.[1] || h
+
+    if (naturalH <= INTERNAL_MOSAIC.TALL_ITEM_H && w < smallestW) {
+      smallestW = w
+
+      smallestWAspect = w / h
+    }
+  }
 
   const projected =
     minPortraitRatio !== null
       ? hostW * minPortraitRatio
       : landscapeMultiplier !== null
         ? hostW / landscapeMultiplier
-        : fitMax
+        : smallest
+
+  // Min-width correction: fires only when a source is natively narrower
+  // than the MEDIA_MIN_WIDTH floor — the strip then lifts until that
+  // smallest-width slide reaches the floor (equal heights wins). Every
+  // other set keeps the smallest-height anchor and lets the CSS floor
+  // crop sub-floor boxes instead of upscaling the whole row.
+  const corrected =
+    smallestW < CAROUSEL_LAYOUT.MEDIA_MIN_WIDTH
+      ? CAROUSEL_LAYOUT.MEDIA_MIN_WIDTH / smallestWAspect
+      : projected
 
   // A vw-anchored target can't exceed what the biggest item can honestly
   // render under the half-natural cap — clamp to the tallest half-fit
   // (skipped when no item carries sizes: fitMax would pin the strip to 0).
-  const bounded = halfBound && fitMax > 0 ? Math.min(projected, fitMax) : projected
+  const bounded = halfBound && fitMax > 0 ? Math.min(corrected, fitMax) : corrected
 
-  publishStripHeight(c, Math.min(Math.round(bounded), maxH))
+  publishStripHeight(c, Math.min(Math.round(bounded === Infinity ? fitMax : bounded), maxH))
 }
 
 /**

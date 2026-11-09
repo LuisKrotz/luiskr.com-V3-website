@@ -110,7 +110,9 @@ $_B: 'sitemap';
     display: inline-block;
     min-width: to-rem($space-2xl);
     font-weight: calc(500 + var(--fw-lift));
-    color: var(--color-accent);
+    // The contrast variant — the signature accent is a decorative pop
+    // that paints near-invisible as ink on the light field.
+    color: var(--color-accent-contrast);
   }
 
   &-lang-name {
@@ -199,7 +201,7 @@ $_B: 'sitemap';
     &:hover,
     &:focus-visible {
       .#{$_B}-group-chevron {
-        color: var(--color-accent);
+        color: var(--color-accent-contrast);
       }
     }
   }
@@ -396,8 +398,8 @@ $_B: 'sitemap';
 
     &:hover,
     &:focus-visible {
-      color: var(--color-accent);
-      border-color: var(--color-accent);
+      color: var(--color-accent-contrast);
+      border-color: var(--color-accent-contrast);
     }
 
     @media (prefers-reduced-motion: reduce) {

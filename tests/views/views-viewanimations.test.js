@@ -15,7 +15,7 @@ import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { CMS_KEYS } from '@core/tokens/data/cms-keys.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
-import { ANIMATION_DOCS, ANIMATION_DOCS_FALLBACK } from '@core/tokens/data/animation-ids.js'
+import { ANIMATION_DOCS } from '@core/tokens/data/animation-ids.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { DOCS_STRINGS } from '@core/tokens/strings/docs.js'
 import router from '@core/router/router.js'
@@ -128,7 +128,7 @@ describe('ViewAnimations', () => {
           alt: 'Burger morph',
           longdesc: 'Long burger description.',
         },
-        'extra-cms-record': { alt: 'Extra', longdesc: 'Long extra description.' },
+        [ANIMATION_IDS.NAV_MENU]: { alt: 'Menu rise', longdesc: 'Long menu description.' },
       },
     })
     el._updateDom()
@@ -139,10 +139,27 @@ describe('ViewAnimations', () => {
     expect(links[0].getAttribute('href')).toBe(
       `${ROUTE_PATHS.DOCS}/${ANIMATION_DOCS[ANIMATION_IDS.BURGER_BUTTON]}`
     )
+    expect(links[1].getAttribute('href')).toBe(
+      `${ROUTE_PATHS.DOCS}/${ANIMATION_DOCS[ANIMATION_IDS.NAV_MENU]}`
+    )
+  })
 
-    // Records missing from the docs map still link — to the animations
-    // deep-dive index rather than a dead href.
-    expect(links[1].getAttribute('href')).toBe(`${ROUTE_PATHS.DOCS}/${ANIMATION_DOCS_FALLBACK}`)
+  test('skips CMS records whose id has no docs entry (retired surfaces)', () => {
+    el.translations = { title: ROUTE_NAMES.ANIMATIONS }
+    store.commit(LANG_MUTATIONS.SET_COMPONENT_LANG, {
+      [CMS_KEYS.ANIMATIONS]: {
+        [ANIMATION_IDS.BURGER_BUTTON]: {
+          alt: 'Burger morph',
+          longdesc: 'Long burger description.',
+        },
+        'extra-cms-record': { alt: 'Extra', longdesc: 'Long extra description.' },
+      },
+    })
+    el._updateDom()
+
+    const records = el.shadowRoot.querySelectorAll(`.${ANIMATIONS_CLASSES.ANIMATIONS_RECORD}`)
+    expect(records.length).toBe(1)
+    expect(records[0].getAttribute('id')).toBe(ANIMATION_IDS.BURGER_BUTTON)
   })
 
   test('routes internal link clicks through the SPA router', () => {

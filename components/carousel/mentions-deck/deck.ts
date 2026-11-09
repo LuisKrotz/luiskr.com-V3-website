@@ -12,7 +12,6 @@ import { BREAKPOINTS } from '@core/tokens/layout/breakpoints.js'
 import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
-import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { flushLayout, viewportWidth } from '@core/utils/dom.js'
@@ -170,11 +169,6 @@ export function measure(host: MentionsDeck): void {
     host._cardW * (mobile ? MENTIONS_DECK_LAYOUT.FADE_FRAC_MOBILE : MENTIONS_DECK_LAYOUT.FADE_FRAC)
 
   host._sizesDirty = true
-}
-
-/** Zero-padded ordinal — "01", "08" — printed in each card's top corner. */
-export function padNum(n: number): string {
-  return `${n}`.padStart(MENTIONS_DECK_LAYOUT.PAD, CHAR_STRINGS.ZERO)
 }
 
 /**

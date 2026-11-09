@@ -26,23 +26,26 @@ import {
   mountLoaderDemo,
   mountMenuDemo,
   mountToastDemo,
-  mountTileSpringDemo,
   mountRelatedTilesDemo,
   mountDrawDemo,
   mountProgressBarDemo,
   mountGlowDemo,
   mountSkeletonDemo,
-  mountCarouselDemo,
   mountMediaDemo,
-  mountFanDemo,
   mountAuraDemo,
   mountTransitionDemo,
   mountSearchDemo,
-  mountDeckDemo,
   mountModalLoadingDemo,
   mountFeedWaveDemo,
 } from './dom.js'
-import { mountGlitchDemo, mountSceneDemo, mountMeshDemo } from './canvas2d.js'
+import {
+  mountCardStackDemo,
+  mountMentionsDeckDemo,
+  mountAwardsCarouselDemo,
+  mountCustomCarouselDemo,
+  mountAboutSectionDemo,
+  mountScene3dDemo,
+} from './elements.js'
 import type { DemoMount } from './types.js'
 
 /**
@@ -55,7 +58,6 @@ export const ANIM_DEMO_DRIVERS: Readonly<Record<string, DemoMount>> = Object.fre
   [ANIMATION_IDS.NAV_MENU_BACKGROUND]: mountMenuBackground,
   [ANIMATION_IDS.NAV_FLAG]: mountFlag,
   [ANIMATION_IDS.SWITCH_SLIDER]: mountSwitch,
-  [ANIMATION_IDS.THEME_SLIDER]: mountTheme,
   [ANIMATION_IDS.CLOSE_BUTTON]: mountClose,
 
   /* ── Core-mount surfaces (the real mount helpers) ── */
@@ -70,27 +72,29 @@ export const ANIM_DEMO_DRIVERS: Readonly<Record<string, DemoMount>> = Object.fre
   [ANIMATION_IDS.INTRO_LOADER]: mountLoaderDemo,
   [ANIMATION_IDS.SITE_TOAST]: mountToastDemo,
   [ANIMATION_IDS.SKELETON]: mountSkeletonDemo,
-  [ANIMATION_IDS.MOSAIC_TILE]: mountTileSpringDemo,
   [ANIMATION_IDS.RELATED_TILE]: mountRelatedTilesDemo,
   [ANIMATION_IDS.TEXT_DRAW]: mountDrawDemo,
   [ANIMATION_IDS.ABOUT_TEXT]: mountDrawDemo,
-  [ANIMATION_IDS.CAROUSEL]: mountCarouselDemo,
   [ANIMATION_IDS.BODY_GLOW]: mountGlowDemo,
   [ANIMATION_IDS.PROGRESS_BAR]: mountProgressBarDemo,
   [ANIMATION_IDS.MEDIA_PROGRESSIVE]: mountMediaDemo,
 
-  /* ── 2D approximations (portability-gated surfaces) ── */
-  [ANIMATION_IDS.GLITCH_PORTRAIT]: mountGlitchDemo,
-  [ANIMATION_IDS.SCENE_3D]: mountSceneDemo,
-  [ANIMATION_IDS.ABOUT_MESH]: mountMeshDemo,
+  /* ── Real-element mounts (the production components themselves) ── */
+  [ANIMATION_IDS.CAROUSEL]: mountAwardsCarouselDemo,
+  [ANIMATION_IDS.CUSTOM_CAROUSEL]: mountCustomCarouselDemo,
+  [ANIMATION_IDS.MENTIONS_DECK]: mountMentionsDeckDemo,
+  [ANIMATION_IDS.CARD_STACK]: mountCardStackDemo,
+  [ANIMATION_IDS.GLITCH_PORTRAIT]: mountAboutSectionDemo,
+  [ANIMATION_IDS.ABOUT_MESH]: mountAboutSectionDemo,
+
+  /* ── WebGPU scene — real mount with the 2D starfield fallback ── */
+  [ANIMATION_IDS.SCENE_3D]: mountScene3dDemo,
+  [ANIMATION_IDS.THEME_SLIDER]: mountTheme,
 
   /* ── Later-added surfaces (staged replicas of component animations) ── */
-  [ANIMATION_IDS.CARD_STACK]: mountFanDemo,
   [ANIMATION_IDS.NAV_ICON_AURA]: mountAuraDemo,
   [ANIMATION_IDS.VIEW_TRANSITION]: mountTransitionDemo,
   [ANIMATION_IDS.ROUTE_SEARCH]: mountSearchDemo,
-  [ANIMATION_IDS.CUSTOM_CAROUSEL]: mountCarouselDemo,
-  [ANIMATION_IDS.MENTIONS_DECK]: mountDeckDemo,
   [ANIMATION_IDS.EXPAND_MODAL_LOADING]: mountModalLoadingDemo,
   [ANIMATION_IDS.FOOTER_FEED_WAVE]: mountFeedWaveDemo,
 })

@@ -25026,6 +25026,10 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/core/tokens/css/parallax.ts</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/core/tokens/css/route-search.ts</loc>
     <priority>0.7</priority>
   </url>
@@ -25315,6 +25319,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/core/tokens/motion/notify.ts</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/core/tokens/motion/parallax.ts</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -26998,6 +27006,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/tokens/canvas</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/tokens/canvas/index.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/tokens/canvas/paint.ts.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/coverage-core/core/tokens/classes</loc>
     <priority>0.7</priority>
   </url>
@@ -27219,6 +27239,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/coverage-core/core/tokens/css/nav.ts.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/tokens/css/parallax.ts.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -27511,6 +27535,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/coverage-core/core/tokens/motion/notify.ts.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/tokens/motion/parallax.ts.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -27947,6 +27975,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/coverage-core/core/utils/canvas/gl-program.ts.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-core/core/utils/canvas/glsl.ts.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -30035,6 +30067,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/coverage-website/views/home/index.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-website/views/home/parallax.ts.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -59778,7 +59814,15 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/website/components/media/anim-demo/data.ts</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/website/components/media/anim-demo/dom.ts</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/components/media/anim-demo/elements.ts</loc>
     <priority>0.7</priority>
   </url>
   <url>
@@ -61311,6 +61355,10 @@
   </url>
   <url>
     <loc>https://luiskr.com/docs/website/views/home/home.scss</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/website/views/home/parallax.ts</loc>
     <priority>0.7</priority>
   </url>
   <url>

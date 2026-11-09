@@ -13,6 +13,7 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 jest.unstable_mockModule('@core/locale/ui-text.js', () => ({
   appText: () => CHAR_STRINGS.EMPTY,
   componentText: () => undefined,
+  indexedText: () => CHAR_STRINGS.EMPTY,
   routeSlugs: (lang) => LANG_SLUGS[lang] || LANG_SLUGS.en,
   rightsText: () => CHAR_STRINGS.EMPTY,
   rightsParts: () => ({ rights: CHAR_STRINGS.EMPTY, year: CHAR_STRINGS.EMPTY }),
@@ -26,7 +27,7 @@ jest.unstable_mockModule('@core/locale/fallback.js', () => {
     FALLBACK_APP: app,
     FALLBACK_LOADERS: {},
     FALLBACK_COMPONENTS: {},
-    FALLBACK_PAGES: {},
+    FALLBACK_PAGES: { about: { mentions: CHAR_STRINGS.EMPTY } },
   }
 })
 

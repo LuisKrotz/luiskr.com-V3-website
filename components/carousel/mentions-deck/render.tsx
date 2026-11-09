@@ -19,10 +19,10 @@ import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { h, Fragment } from '@core/jsx.js'
 import store from '@core/store.js'
 import { encodeMediaUrl } from '@core/utils/media.js'
-import { excerptHeading } from '@core/utils/string.js'
+import { excerptHeading, toMetaDescription } from '@core/utils/string.js'
 import { FALLBACK_APP } from '@core/locale/fallback.js'
 import '@website/components/media/DrawText.js'
-import { padNum, stripPose } from './deck.js'
+import { stripPose } from './deck.js'
 import type { MentionItem } from './types.js'
 import type { MentionsDeck } from '../MentionsDeck.js'
 
@@ -76,7 +76,6 @@ function renderCard(
         aria-label={cardHeading || `${i + 1} ${ofLabel} ${len}`}
         tabindex={i === host.activeIdx ? ATTR_VALUES.TABINDEX_ZERO : ATTR_VALUES.NEGATIVE_TABINDEX}
       >
-        <span className={C.MENTIONS_DECK_CARD_NUM}>{padNum(i + 1)}</span>
         {item.icon ? (
           <span className={C.MENTIONS_DECK_CARD_ICON} aria-hidden={ATTR_VALUES.TRUE}>
             {item.icon}
@@ -92,7 +91,7 @@ function renderCard(
             decoding={MEDIA_ATTRS.DECODING_ASYNC}
             className={C.MENTIONS_DECK_CARD_IMG}
             src={encodeMediaUrl(storage + item.media.path)}
-            alt={desc}
+            alt={toMetaDescription(desc)}
             width={item.media.width || GENERIC_DIMENSIONS.AWARD_ICON_SIZE}
             height={item.media.height || GENERIC_DIMENSIONS.AWARD_ICON_SIZE}
           />

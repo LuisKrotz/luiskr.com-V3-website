@@ -3,8 +3,8 @@
  * demos inside `<anim-demo>`. Three stage families:
  *
  *   canvas   — the real widget classes mount straight onto the element
- *              (burger/menu-bg/flag/switch/theme/close) or a 2D
- *              approximation draws there (glitch/scene);
+ *              (burger/menu-bg/flag/switch/close) or a 2D
+ *              approximation draws there (glitch/scene/mesh/theme);
  *   mounted  — a mini DOM surface the core mount helpers take over
  *              (burn card, divider hr, ring tiles, bracket button,
  *              genie backdrop/dialog);
@@ -25,25 +25,27 @@ import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
+import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
+import { JOUST_CLASSES } from '@core/tokens/classes/joust.js'
+import { NAV_CLASSES } from '@core/tokens/classes/nav.js'
+import { SECTION_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { DB_PATHS } from '@core/tokens/routes/paths.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { h } from '@core/jsx.js'
+import { appText } from '@core/locale/ui-text.js'
 import { animationAlt, animationLongDesc } from '@core/utils/a11y/animation-desc.js'
 
 const C = ANIM_DEMO_CLASSES
 
 /** The demo cover-image stem (bucket path, extensionless — the ladder composes rungs). */
-export const DEMO_COVER_STEM = `${DB_PATHS.COVERS}home-foundations`
+export const DEMO_COVER_STEM = `${DB_PATHS.COVERS}dell-design-system`
 
 /** Demo menu item count — mirrors the real nav's four primary routes. */
 const _MENU_ITEMS = 4
 
 /** Demo ring-sheen tile count — a row small enough to read the traveling sheen. */
 const _SHEEN_TILES = 3
-
-/** Demo carousel slide count — enough slides for the track to overhang the strip. */
-const _CAROUSEL_SLIDES = 5
 
 /**
  * A decorative demo canvas — every animated surface the stage mounts is
@@ -66,6 +68,11 @@ const demoCanvas = (extra: string): Node => (
 export const stageContent = (id: string): Node | null => {
   const DrawText = COMPONENT_TAGS.DRAW_TEXT
   const MediaFigure = COMPONENT_TAGS.MEDIA_FIGURE
+  const CardStack = COMPONENT_TAGS.CARD_STACK
+  const MentionsDeck = COMPONENT_TAGS.MENTIONS_DECK
+  const AwardsCarousel = COMPONENT_TAGS.AWARDS_CAROUSEL
+  const CustomCarousel = COMPONENT_TAGS.CUSTOM_CAROUSEL
+  const AboutSection = COMPONENT_TAGS.ABOUT_SECTION
 
   switch (id) {
     /* ── Live widget canvases ── */
@@ -78,7 +85,6 @@ export const stageContent = (id: string): Node | null => {
 
     case ANIMATION_IDS.NAV_MENU_BACKGROUND:
     case ANIMATION_IDS.SCENE_3D:
-    case ANIMATION_IDS.GLITCH_PORTRAIT:
       return demoCanvas(ATTR_VALUES.EMPTY)
 
     case ANIMATION_IDS.NAV_FLAG:
@@ -171,15 +177,6 @@ export const stageContent = (id: string): Node | null => {
         </div>
       )
 
-    case ANIMATION_IDS.MOSAIC_TILE:
-      return (
-        <div className={C.TILES} aria-hidden={ATTR_VALUES.TRUE}>
-          <div className={`${C.TILE} ${C.TILE_SPRING}`}>
-            <span className={C.TILE_INNER} />
-          </div>
-        </div>
-      )
-
     case ANIMATION_IDS.CORNER_BRACKETS:
       return (
         <button
@@ -204,20 +201,9 @@ export const stageContent = (id: string): Node | null => {
         </div>
       )
 
-    /* ── Carousel momentum demo ── */
+    /* ── Real element demos (registered by the view) ── */
     case ANIMATION_IDS.CAROUSEL:
-      return (
-        <div className={C.STRIP} aria-hidden={ATTR_VALUES.TRUE}>
-          <div className={C.TRACK}>
-            {Array.from({ length: _CAROUSEL_SLIDES }, (_, i) => (
-              <div key={i} className={C.SLIDE} />
-            ))}
-          </div>
-          <div className={C.PROGRESS}>
-            <div className={C.PROGRESS_FILL} />
-          </div>
-        </div>
-      )
+      return <AwardsCarousel className={C.ELEMENT} />
 
     /* ── Document-surface replicas ── */
     case ANIMATION_IDS.BODY_GLOW:
@@ -225,15 +211,6 @@ export const stageContent = (id: string): Node | null => {
 
     case ANIMATION_IDS.PROGRESS_BAR:
       return <div className={C.BAR} aria-hidden={ATTR_VALUES.TRUE} />
-
-    case ANIMATION_IDS.NOTE_DOT:
-      return (
-        <p className={C.NOTES} aria-hidden={ATTR_VALUES.TRUE}>
-          <i className={C.DOT} />
-          <i className={C.DOT} />
-          <i className={C.DOT} />
-        </p>
-      )
 
     /* ── Real custom elements (registered by the view) ── */
     case ANIMATION_IDS.TEXT_DRAW:
@@ -269,22 +246,20 @@ export const stageContent = (id: string): Node | null => {
         />
       )
 
-    /* ── Card-stack deal-through demo ── */
+    /* ── Card-stack deal-through demo — the real coverflow element ── */
     case ANIMATION_IDS.CARD_STACK:
-      return (
-        <div className={C.FAN} aria-hidden={ATTR_VALUES.TRUE}>
-          {[-2, -1, 0, 1, 2].map((slot) => (
-            <div key={slot} className={C.FAN_CARD} {...{ [DATA_ATTRS.DATA_INDEX]: String(slot) }} />
-          ))}
-        </div>
-      )
+      return <CardStack className={C.ELEMENT} />
 
-    /* ── Nav icon-aura demo ── */
+    /* ── Nav icon-aura demo — the real strip/chip classes the aura
+        session mounts on (C.CHIP stays the demo's styling hook). ── */
     case ANIMATION_IDS.NAV_ICON_AURA:
       return (
-        <div className={C.CHIPS} aria-hidden={ATTR_VALUES.TRUE}>
-          <span className={C.CHIP} />
-          <span className={C.CHIP} />
+        <div
+          className={`${NAV_CLASSES.NAV_MOBILE_STRIP} ${C.CHIPS}`}
+          aria-hidden={ATTR_VALUES.TRUE}
+        >
+          <span className={`${NAV_CLASSES.NAV_SEARCH_BTN} ${JOUST_CLASSES.JOUST} ${C.CHIP}`} />
+          <span className={`${NAV_CLASSES.NAV_GEAR_BTN} ${JOUST_CLASSES.JOUST} ${C.CHIP}`} />
         </div>
       )
 
@@ -302,6 +277,7 @@ export const stageContent = (id: string): Node | null => {
       return (
         <div className={C.SEARCH} aria-hidden={ATTR_VALUES.TRUE}>
           <span className={C.SEARCH_ICON} />
+          <span className={C.SEARCH_TEXT} />
           <span className={C.SEARCH_DOTS}>
             <i className={C.SEARCH_DOT} />
             <i className={C.SEARCH_DOT} />
@@ -310,34 +286,13 @@ export const stageContent = (id: string): Node | null => {
         </div>
       )
 
-    /* ── Custom-carousel demo — the strip with project-card slides ── */
+    /* ── Custom-carousel demo — the real project-strip element ── */
     case ANIMATION_IDS.CUSTOM_CAROUSEL:
-      return (
-        <div className={`${C.STRIP} ${C.STRIP_PROJECT}`} aria-hidden={ATTR_VALUES.TRUE}>
-          <div className={C.TRACK}>
-            {Array.from({ length: _CAROUSEL_SLIDES }, (_, i) => (
-              <div key={i} className={C.SLIDE} />
-            ))}
-          </div>
-          <div className={C.PROGRESS}>
-            <div className={C.PROGRESS_FILL} />
-          </div>
-        </div>
-      )
+      return <CustomCarousel className={C.ELEMENT} />
 
-    /* ── Mentions-deck demo ── */
+    /* ── Mentions-deck demo — the real fan element ── */
     case ANIMATION_IDS.MENTIONS_DECK:
-      return (
-        <div className={C.DECK} aria-hidden={ATTR_VALUES.TRUE}>
-          {[0, 1, 2].map((slot) => (
-            <div
-              key={slot}
-              className={C.DECK_CARD}
-              {...{ [DATA_ATTRS.DATA_INDEX]: String(slot) }}
-            />
-          ))}
-        </div>
-      )
+      return <MentionsDeck className={C.ELEMENT} />
 
     /* ── Expand-modal loading demo ── */
     case ANIMATION_IDS.EXPAND_MODAL_LOADING:
@@ -348,19 +303,24 @@ export const stageContent = (id: string): Node | null => {
         </div>
       )
 
-    /* ── Footer feed-wave demo ── */
+    /* ── Footer feed-wave demo — the real feed-link contract: one
+        anchor carrying the real feedGlyph svg (prepended by the
+        driver) + the localized RSS label. ── */
     case ANIMATION_IDS.FOOTER_FEED_WAVE:
       return (
-        <div className={C.FEED} aria-hidden={ATTR_VALUES.TRUE}>
-          {Array.from({ length: 6 }, (_, i) => (
-            <span key={i} className={C.FEED_ITEM} />
-          ))}
-        </div>
+        <a
+          className={`${AWARDS_CLASSES.AWARDS_FOOTER_ITEM} ${AWARDS_CLASSES.AWARDS_FOOTER_FEED} ${C.FEED}`}
+          aria-hidden={ATTR_VALUES.TRUE}
+        >
+          {appText(SECTION_UI_KEYS.RSS_FEED)}
+        </a>
       )
 
-    /* ── About-mesh demo — 2D canvas approximation (canvas2d driver) ── */
+    /* ── About-section demos — the real element mounts its own glitch
+        session, warp mesh and draw-text bio (the production surface). ── */
+    case ANIMATION_IDS.GLITCH_PORTRAIT:
     case ANIMATION_IDS.ABOUT_MESH:
-      return demoCanvas(ATTR_VALUES.EMPTY)
+      return <AboutSection className={C.ELEMENT} />
 
     default:
       return null

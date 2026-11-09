@@ -107,16 +107,13 @@ describe('MentionsDeck', () => {
     bareCleanup()
   })
 
-  test('items setter renders cards with ordinals + media/icon arms', () => {
+  test('items setter renders cards with media/icon arms', () => {
     const cards = el.shadowRoot.querySelectorAll(S.MENTIONS_DECK_CARD)
     expect(cards.length).toBe(ITEMS.length)
 
-    const nums = el.shadowRoot.querySelectorAll(`.${C.MENTIONS_DECK_CARD_NUM}`)
     const icons = el.shadowRoot.querySelectorAll(`.${C.MENTIONS_DECK_CARD_ICON}`)
     const imgs = el.shadowRoot.querySelectorAll(`.${C.MENTIONS_DECK_CARD_IMG}`)
 
-    expect(nums[0].textContent).toBe('01')
-    expect(nums[3].textContent).toBe('04')
     expect(icons.length).toBe(1)
     expect(imgs.length).toBe(1)
 

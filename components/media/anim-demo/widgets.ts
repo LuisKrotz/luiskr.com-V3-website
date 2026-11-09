@@ -2,7 +2,7 @@
  * @file anim-demo/widgets.ts — live-widget demo drivers. Each mount
  * instantiates the REAL widget class the production surfaces use, on the
  * demo stage's canvas, then replays its interactive states on a cycle
- * (the widget's own public hooks — setOpen/setHover/toggle/setTheme —
+ * (the widget's own public hooks — setOpen/setHover/toggle —
  * so the demo shows exactly what a pointer would drive). Widgets keep
  * their own fallbacks: no WebGL / wasm mount failure / reduced motion
  * all degrade the same way production does.
@@ -21,7 +21,7 @@ import { CloseButtonWebGL } from '@core/utils/canvas/widgets/close-button.js'
 import { cycle, DEMO_BEAT_MS, DEMO_BEAT_LONG_MS } from './cycle.js'
 import type { DemoContext } from './types.js'
 
-/** Theme stops the slider demo walks (dark → system → light, production order). */
+/** Theme stops the demo walks — the production order (dark → system → light). */
 const _THEME_STOPS: readonly string[] = [THEME.DARK, THEME.SYSTEM, THEME.LIGHT]
 
 /**

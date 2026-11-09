@@ -8,11 +8,18 @@
  */
 
 import { ANIM_DEMO_CLASSES } from '@core/tokens/classes/anim-demo.js'
-import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
+import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
+import { NAV_CLASSES } from '@core/tokens/classes/nav.js'
+import store from '@core/store.js'
+import { feedGlyph, feedHrefFor } from '@core/utils/data/footer-links.js'
+import { mountRingFill } from '@core/utils/gpu/ring-fill.js'
 import { cycle, DEMO_BEAT_MS, DEMO_BEAT_LONG_MS } from './cycle.js'
 import type { DemoContext } from './types.js'
 
 const C = ANIM_DEMO_CLASSES
+
+/** Tile selector the real aura session rings — the nav's two strip chips. */
+const _AURA_TILES = `.${NAV_CLASSES.NAV_SEARCH_BTN}, .${NAV_CLASSES.NAV_GEAR_BTN}`
 
 /** Loader counter steps the demo writes into the readout (percent text). */
 const _LOADER_STEPS = ['0%', '25%', '50%', '75%', '100%']
@@ -93,27 +100,6 @@ export const mountToastDemo = ({ stage }: DemoContext): (() => void) => {
   return () => {
     stop()
     item?.classList.remove(C.TOAST_IN, C.TOAST_OUT)
-  }
-}
-
-/** Mosaic-tile spring demo — toggles the hover modifier on the spring
- * tile so the transform transition replays the real tile's overshoot
- * ease (the displaced lift is a CSS var the class animates).
- * @param ctx The demo context (stage owns the spring tile).
- * @returns Teardown — stops the hover cycle.
- */
-export const mountTileSpringDemo = ({ stage }: DemoContext): (() => void) => {
-  const tile = stage.querySelector<HTMLElement>(`.${C.TILE_SPRING}`)
-
-  const stop = cycle(
-    DEMO_BEAT_LONG_MS,
-    [() => tile?.classList.add(C.TILE_HOVER), () => tile?.classList.remove(C.TILE_HOVER)],
-    true
-  )
-
-  return () => {
-    stop()
-    tile?.classList.remove(C.TILE_HOVER)
   }
 }
 
@@ -217,50 +203,24 @@ export const mountGlowDemo = (_ctx: DemoContext): void => undefined
  */
 export const mountSkeletonDemo = (_ctx: DemoContext): void => undefined
 
-/** Carousel demo — the staged track marquees + progress rail sweeps in
- * CSS keyframes; no JS state to drive.
- * @param _ctx The demo context — unused.
- */
-export const mountCarouselDemo = (_ctx: DemoContext): void => undefined
-
 /** Media-progressive demo — the real <media-figure> mounts its own
  * decode/progressive lifecycle; no JS state to drive.
  * @param _ctx The demo context — unused.
  */
 export const mountMediaDemo = (_ctx: DemoContext): void => undefined
 
-/** Card-stack demo — walks each staged card's slot one step per beat so
- * the fanned cards deal through the front slot (data-index −2…2 maps to
- * the SCSS transform/z-index ladder; the wrap-around card slides to the
- * far end the way the real deck recycles a dealt card).
- * @param ctx The demo context (stage owns the fanned cards).
- * @returns Teardown — stops the deal cycle.
- */
-export const mountFanDemo = ({ stage }: DemoContext): (() => void) => {
-  const cards = Array.from(stage.querySelectorAll<HTMLElement>(`.${C.FAN_CARD}`))
-
-  const slots = cards.map((card) => Number(card.getAttribute(DATA_ATTRS.DATA_INDEX)) || 0)
-
-  const deal = () => {
-    cards.forEach((card, i) => {
-      slots[i] = slots[i] - 1 < -2 ? 2 : slots[i] - 1
-
-      card.setAttribute(DATA_ATTRS.DATA_INDEX, String(slots[i]))
-    })
-  }
-
-  const stop = cycle(DEMO_BEAT_MS, [deal], true)
-
-  return () => stop()
-}
-
-/** Nav icon-aura demo — alternates the armed modifier across the two
- * staged chips so the comet-trail ring-fill sweeps each outline in turn,
- * the hover path the real chips play.
- * @param ctx The demo context (stage owns the chip row).
- * @returns Teardown — stops the aura cycle.
+/** Nav icon-aura demo — mounts the real `mountRingFill` WebGPU session
+ * on the stage's strip and cycles `setProgress` across the two chips
+ * (the real hover path, automated). Where the widget layer is off the
+ * session is null and the fallback alternates the armed modifier so the
+ * static SVG comet-trail cue still sweeps — the production appearance
+ * every non-WebGPU viewer sees.
+ * @param ctx The demo context (stage owns the strip + chips).
+ * @returns Teardown — stops the cycle, destroys the aura session.
  */
 export const mountAuraDemo = ({ stage }: DemoContext): (() => void) => {
+  const strip = stage.querySelector<HTMLElement>(`.${C.CHIPS}`)
+  const session = strip ? mountRingFill(strip, _AURA_TILES, NAV_CLASSES.NAV_ICON_AURA_CANVAS) : null
   const chips = stage.querySelectorAll<HTMLElement>(`.${C.CHIP}`)
 
   let i = -1
@@ -268,13 +228,18 @@ export const mountAuraDemo = ({ stage }: DemoContext): (() => void) => {
   const arm = () => {
     i = (i + 1) % (chips.length + 1)
 
-    chips.forEach((chip, j) => chip.classList.toggle(C.CHIP_ARMED, j === i))
+    if (session) {
+      chips.forEach((_, j) => session.setProgress(j, j === i ? 1 : 0))
+    } else {
+      chips.forEach((chip, j) => chip.classList.toggle(C.CHIP_ARMED, j === i))
+    }
   }
 
   const stop = cycle(DEMO_BEAT_MS, [arm], true)
 
   return () => {
     stop()
+    session?.destroy()
     chips.forEach((chip) => chip.classList.remove(C.CHIP_ARMED))
   }
 }
@@ -320,39 +285,6 @@ export const mountSearchDemo = ({ stage }: DemoContext): (() => void) => {
   }
 }
 
-/** Mentions-deck demo — two-phase swipe: the front card (slot 0) flies
- * out on the first beat, then re-seats at the back while the next card
- * slides to front — the drag-dismiss + autoplay cycle in miniature.
- * @param ctx The demo context (stage owns the deck cards).
- * @returns Teardown — stops the swipe cycle.
- */
-export const mountDeckDemo = ({ stage }: DemoContext): (() => void) => {
-  const cards = Array.from(stage.querySelectorAll<HTMLElement>(`.${C.DECK_CARD}`))
-
-  const slots = cards.map((card) => Number(card.getAttribute(DATA_ATTRS.DATA_INDEX)) || 0)
-
-  const front = () => cards[slots.indexOf(0)]
-
-  const out = () => front()?.classList.add(C.DECK_GONE)
-
-  const reseat = () => {
-    cards.forEach((card, i) => {
-      slots[i] = (slots[i] + 2) % 3
-
-      card.setAttribute(DATA_ATTRS.DATA_INDEX, String(slots[i]))
-    })
-
-    cards.forEach((card) => card.classList.remove(C.DECK_GONE))
-  }
-
-  const stop = cycle(DEMO_BEAT_MS, [out, reseat], true)
-
-  return () => {
-    stop()
-    cards.forEach((card) => card.classList.remove(C.DECK_GONE))
-  }
-}
-
 /** Expand-modal loading demo — toggles the ready modifier so the staged
  * lightbox alternates spinner ↔ shimmer-sweep, the loading lifecycle
  * the real lightbox plays while the full-size asset decodes.
@@ -370,8 +302,18 @@ export const mountModalLoadingDemo = ({ stage }: DemoContext): (() => void) => {
   }
 }
 
-/** Footer feed-wave demo — the staged link row ripples entirely in CSS
- * (per-item animation-delay staggers the opacity wave); no JS state.
- * @param _ctx The demo context — unused.
+/** Footer feed-wave demo — prepends the real `feedGlyph` svg (dot +
+ * two wave arcs) into the staged feed link and points it at the locale
+ * feed URL; the arcs' opacity pulse itself ripples in CSS.
+ * @param ctx The demo context (stage owns the feed link).
  */
-export const mountFeedWaveDemo = (_ctx: DemoContext): void => undefined
+export const mountFeedWaveDemo = ({ stage }: DemoContext): void => {
+  const link = stage.querySelector<HTMLAnchorElement>(`.${C.FEED}`)
+
+  if (!link) return
+
+  link.href = feedHrefFor(store.getters.getLang())
+  link.prepend(
+    feedGlyph(AWARDS_CLASSES.AWARDS_FOOTER_FEED_ICON, AWARDS_CLASSES.AWARDS_FOOTER_FEED_WAVE)
+  )
+}

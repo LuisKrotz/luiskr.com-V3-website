@@ -229,7 +229,7 @@ channel {
 
     &:hover {
       box-shadow: var(--shadow-card-hover);
-      border-color: var(--color-accent);
+      border-color: var(--color-accent-contrast);
       transform: translateY(calc(-1 * var(--space-3xs)));
     }
 

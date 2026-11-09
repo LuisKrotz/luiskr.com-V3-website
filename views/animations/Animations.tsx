@@ -21,7 +21,7 @@ import { VIEW_TAGS } from '@core/tokens/elements/views.js'
 import { LOCALES } from '@core/tokens/locales.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
-import { ANIMATION_DOCS, ANIMATION_DOCS_FALLBACK } from '@core/tokens/data/animation-ids.js'
+import { ANIMATION_DOCS } from '@core/tokens/data/animation-ids.js'
 import { DOCS_STRINGS } from '@core/tokens/strings/docs.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { h } from '@core/jsx.js'
@@ -38,6 +38,11 @@ import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import '@website/components/media/DrawText.js'
 import '@website/components/media/AnimDemo.js'
 import '@website/components/media/MediaFigure.js'
+import '@website/components/home/CardStack.js'
+import '@website/components/home/AboutSection.js'
+import '@website/components/carousel/MentionsDeck.js'
+import '@website/components/carousel/AwardsCarousel.js'
+import '@website/components/carousel/CustomCarousel.js'
 import animationsStyles from './animations.scss?tiers'
 import '@website/components/legal/Footer.js'
 import { devError } from '@core/devlog.js'
@@ -136,7 +141,10 @@ export class ViewAnimations extends BaseComponent {
     const records = componentText(CMS_KEYS.ANIMATIONS) as
       Record<string, AnimationsRecord> | undefined
 
-    const entries = Object.entries(records || {})
+    // The docs map is the canonical id set — a CMS record whose id has no
+    // docs entry describes a surface that no longer exists, so it never
+    // renders (stale RTDB records can't leak back into the listing).
+    const entries = Object.entries(records || {}).filter(([id]) => ANIMATION_DOCS[id])
 
     const linkClick = (e: Event): void => {
       if (!isPlainClick(e)) return
@@ -208,7 +216,7 @@ export class ViewAnimations extends BaseComponent {
                     </p>
                     <a
                       className={ANIMATIONS_CLASSES.ANIMATIONS_DOCS}
-                      href={`${ROUTE_PATHS.DOCS}${CHAR_STRINGS.SLASH}${ANIMATION_DOCS[id] || ANIMATION_DOCS_FALLBACK}`}
+                      href={`${ROUTE_PATHS.DOCS}${CHAR_STRINGS.SLASH}${ANIMATION_DOCS[id]}`}
                     >
                       {DOCS_STRINGS.TITLE}
                     </a>
