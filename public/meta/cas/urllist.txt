@@ -2224,7 +2224,9 @@ https://luiskr.com/docs/coverage-website/components/media/MediaMosaic.tsx.html
 https://luiskr.com/docs/coverage-website/components/media/anim-demo
 https://luiskr.com/docs/coverage-website/components/media/anim-demo/canvas2d.ts.html
 https://luiskr.com/docs/coverage-website/components/media/anim-demo/cycle.ts.html
+https://luiskr.com/docs/coverage-website/components/media/anim-demo/data.ts.html
 https://luiskr.com/docs/coverage-website/components/media/anim-demo/dom.ts.html
+https://luiskr.com/docs/coverage-website/components/media/anim-demo/elements.ts.html
 https://luiskr.com/docs/coverage-website/components/media/anim-demo/index.html
 https://luiskr.com/docs/coverage-website/components/media/anim-demo/mounts.ts.html
 https://luiskr.com/docs/coverage-website/components/media/anim-demo/registry.ts.html

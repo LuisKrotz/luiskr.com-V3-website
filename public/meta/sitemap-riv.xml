@@ -6223,7 +6223,15 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://luiskr.com/docs/coverage-website/components/media/anim-demo/data.ts.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://luiskr.com/docs/coverage-website/components/media/anim-demo/dom.ts.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://luiskr.com/docs/coverage-website/components/media/anim-demo/elements.ts.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
