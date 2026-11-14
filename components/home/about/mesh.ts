@@ -21,6 +21,7 @@ import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { THEME_CSS_PROPS } from '@core/tokens/css/theme.js'
 import { CANVAS_PAINT_CSS } from '@core/tokens/canvas/paint.js'
 import { parseCssColor } from '@core/utils/canvas/css-color.js'
+import { framePool } from '@core/utils/motion/frame.js'
 import store from '@core/store.js'
 import type { AboutSection } from '../AboutSection.js'
 
@@ -30,6 +31,12 @@ export interface MeshSession {
   ctx: CanvasRenderingContext2D
   raf: number
   ro: ResizeObserver | null
+  io: IntersectionObserver | null
+  /** True only while the canvas intersects the viewport — the loop parks
+   *  offscreen instead of burning a ~3k-dot raster nobody can see. */
+  visible: boolean
+  /** rAF timestamp of the last painted frame — the 60 Hz paint cap. */
+  lastPaint: number
   w: number
   h: number
   t0: number
@@ -45,6 +52,15 @@ const _SPOKES = 260
 const _TWO_PI = Math.PI * 2
 const _LINES = [0.5, 2.4, 4.1] // radian angles of the dotted guide lines
 
+/**
+ * Paint-rate ceiling (Hz). The lattice's fastest component is the traveling
+ * wave at 1.4 rad/s (~0.22 cycles/s) — far below 60 Hz, so capping paints
+ * here is visually identical to a full-rate loop while spending a quarter
+ * of the raster on a 240 Hz timeline. Uncapped, ~2,860 `fillRect`s per
+ * frame pushed the desktop scroll-fps p95 over its 8.33 ms ceiling.
+ */
+const _PAINT_HZ = 60
+
 /** Cached dot ink (`r,g,b` string) + the theme flag it resolved under. */
 let _ink: string | null = null
 
@@ -53,7 +69,7 @@ let _inkDark = false
 /**
  * Dot ink — the lattice paints in `--text-muted` so the mesh reads on
  * whatever theme field sits behind the portrait (the old fixed mid-grey
- * vanished on the light aurora wash: "animation is not visible"). The
+ * vanished on the light paper wash: "animation is not visible"). The
  * palette re-samples on a theme flip only — per-frame paints read the
  * cached channel string, so the loop never pays a getComputedStyle.
  * @returns `r,g,b` channel string for rgba() composition.
@@ -215,6 +231,9 @@ export function attachMesh(host: AboutSection): boolean {
     ctx,
     raf: 0,
     ro: null,
+    io: null,
+    visible: false,
+    lastPaint: 0,
     w: 0,
     h: 0,
     t0: performance.now(),
@@ -227,14 +246,45 @@ export function attachMesh(host: AboutSection): boolean {
   }
 
   if (store.getters.getReducedMotion?.()) {
-    s.raf = requestAnimationFrame((now) => paint(s, now))
+    s.raf = framePool.request((now) => paint(s, now))
   } else {
     const loop = (now: number) => {
-      paint(s, now)
-      s.raf = requestAnimationFrame(loop)
+      // The queued id is consumed — the IO re-arm check below keys off
+      // `s.raf === 0` to mean "no frame pending", same contract the
+      // spring loops use.
+      s.raf = 0
+
+      // Offscreen — park the chain entirely; the IntersectionObserver
+      // re-arms it on the next entry. Without this gate the lattice
+      // rastered ~3k dots per frame through the whole page scroll.
+      if (!s.visible) return
+
+      // 60 Hz paint cap — skip (don't paint) frames that arrive faster
+      // than the lattice can visibly change. framePool additionally
+      // starves the whole queue during scroll flings, so the ambient
+      // lattice never competes with gesture frames.
+      if (now - s.lastPaint >= 1000 / _PAINT_HZ) {
+        paint(s, now)
+        s.lastPaint = now
+      }
+
+      s.raf = framePool.request(loop)
     }
 
-    s.raf = requestAnimationFrame(loop)
+    if (typeof IntersectionObserver !== TYPE_STRINGS.UNDEFINED) {
+      s.io = new IntersectionObserver((entries) => {
+        s.visible = entries[0]?.isIntersecting === true
+
+        // Re-entry — restart the parked chain.
+        if (s.visible && !s.raf) s.raf = framePool.request(loop)
+      })
+
+      s.io.observe(canvas)
+    } else {
+      // No IO — fall back to the always-on loop so the mesh still animates.
+      s.visible = true
+      s.raf = framePool.request(loop)
+    }
   }
 
   host._mesh = s
@@ -248,8 +298,11 @@ export function disarmMesh(host: AboutSection): void {
 
   if (!s) return
 
-  cancelAnimationFrame(s.raf)
+  // s.raf is a framePool virtual id — plain cancelAnimationFrame could
+  // collide with an unrelated live rAF holding the same number.
+  framePool.cancel(s.raf)
   s.ro?.disconnect()
+  s.io?.disconnect()
   s.canvas.remove()
   host._mesh = null
 }

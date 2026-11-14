@@ -10,6 +10,7 @@ import { stopCarouselAutoplay } from '@website/components/carousel/custom-carous
 import { TEST_URLS, waitFor } from '@tests/fixtures/test-constants.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { CAROUSEL_SELECTORS } from '@core/tokens/selectors/carousel.js'
+import { CAROUSEL_CLASSES } from '@core/tokens/classes/carousel.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { CAROUSEL_TIMING } from '@core/tokens/motion/carousel.js'
 import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
@@ -145,7 +146,15 @@ describe('CustomCarousel tails', () => {
 
     if (track && cloneFirst && cloneLast) {
       track.getBoundingClientRect = () => ({ left: 0, width: 600 })
-      cloneLast.getBoundingClientRect = () => ({ left: -5000, width: 100 })
+
+      // The loop now scans EVERY clone by position — push all of them
+      // off-center so only the stubbed cloneFirst reads parked at center.
+      Array.from(track.children).forEach((kid) => {
+        if (kid.classList.contains(CAROUSEL_CLASSES.CAROUSEL_SLIDE_CLONE_MARK)) {
+          kid.getBoundingClientRect = () => ({ left: -5000, width: 100 })
+        }
+      })
+
       cloneFirst.getBoundingClientRect = () => ({ left: 250, width: 100 })
       el._checkInfiniteLoop()
 

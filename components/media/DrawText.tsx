@@ -42,6 +42,7 @@ export class DrawText extends HTMLElement {
   _animTimer: DrawTimer | null = null // pending done-timer for the collapse step
   _isMounted = false // connectedCallback ran
   _styleEl: HTMLStyleElement | CSSStyleSheet | null = null // adopted shared sheet OR per-instance <style>
+  _printStyleOff: (() => void) | null = null // legacy-path print-tier updater unregister
   _contentEl: HTMLSpanElement | null = null // cached content wrapper (skips re-query)
   _srEl: HTMLSpanElement | null = null // visually-hidden real-text node — the accessible twin of the aria-hidden word spans
   _fitObserver: ResizeObserver | null = null // parent-size watcher for the `fit` scale-down
@@ -167,6 +168,12 @@ export class DrawText extends HTMLElement {
       clearTimeout(this._animTimer)
 
       this._animTimer = null
+    }
+
+    if (this._printStyleOff) {
+      this._printStyleOff()
+
+      this._printStyleOff = null
     }
 
     teardownGpuDraw(this)

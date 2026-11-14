@@ -49,7 +49,7 @@ export function renderShell(strings: SearchStrings): HTMLElement {
           <input
             id={APP_IDS.ROUTE_SEARCH_INPUT}
             className={C.ROUTE_SEARCH_INPUT}
-            type={FORM_ATTRS.SEARCH}
+            type={FORM_ATTRS.TEXT}
             name={FORM_ATTRS.SEARCH}
             placeholder={strings.placeholder}
             autocomplete={ATTR_VALUES.OFF}

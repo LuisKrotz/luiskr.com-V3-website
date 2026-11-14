@@ -12,6 +12,7 @@ import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { h } from '@core/jsx.js'
+import { stripHeroSlotClasses } from '@core/utils/media/group.js'
 import type { MediaMosaicItem } from './types.js'
 import type { MediaMosaic } from '../MediaMosaic.js'
 
@@ -34,6 +35,11 @@ const renderTile = (host: MediaMosaic, item: MediaMosaicItem, i: number) => {
 
   const itemClass = item.class || ATTR_VALUES.EMPTY
 
+  // Hero-slot classes (internal-main-item / ztf-video) must not reach the
+  // tile's figure — the tile owns the box outright and the 0,3,0 hero
+  // selectors would re-inflate it (same scrub the carousel slide gets).
+  const figureClass = stripHeroSlotClasses(itemClass)
+
   return (
     <div
       key={item.src || i}
@@ -54,9 +60,9 @@ const renderTile = (host: MediaMosaic, item: MediaMosaicItem, i: number) => {
         is-video={item.isVideo ?? false}
         label={label}
         classes={`${MEDIA_MOSAIC_CLASSES.MEDIA_MOSAIC_ITEM_FIGURE}${
-          itemClass ? `${CHAR_STRINGS.SPACE_CHAR}${itemClass}` : ATTR_VALUES.EMPTY
+          figureClass ? `${CHAR_STRINGS.SPACE_CHAR}${figureClass}` : ATTR_VALUES.EMPTY
         }`}
-        class={itemClass}
+        class={figureClass}
       />
     </div>
   )

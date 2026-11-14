@@ -124,6 +124,25 @@ describe('Animations tails', () => {
     }
   })
 
+  test('onStoreUpdate rides the locale fallback when the lang locale is unset', () => {
+    const prevLocale = store.getters.getlang().locale
+
+    store.state.lang.locale = CHAR_STRINGS.EMPTY
+
+    const el = document.createElement(VIEW_TAGS.VIEW_ANIMATIONS)
+
+    try {
+      el._lastLocale = null
+      el.onStoreUpdate()
+
+      // '' || EN resolved — but a null _lastLocale still short-circuits
+      // the reload guard, so no fetch is scheduled.
+      expect(el._lastLocale).toBeNull()
+    } finally {
+      store.state.lang.locale = prevLocale
+    }
+  })
+
   test('render reads the fallback page title when translations are empty', () => {
     const el = document.createElement(VIEW_TAGS.VIEW_ANIMATIONS)
 

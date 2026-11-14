@@ -30,7 +30,11 @@ import { mountCornerBracketsAll } from '@core/utils/gpu/corner-brackets.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { startGenieOpen } from './genie.js'
 import type { MediaExpanded } from '../MediaExpanded.js'
-import { GENERIC_DIMENSIONS, VIDEO_DIMENSIONS } from '@core/tokens/media/dimensions.js'
+import {
+  COVER_DIMENSIONS,
+  GENERIC_DIMENSIONS,
+  VIDEO_DIMENSIONS,
+} from '@core/tokens/media/dimensions.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 
 /**
@@ -71,7 +75,18 @@ function loadFullRes(el: MediaExpanded): void {
 
         const imgEl = el.$<HTMLImageElement>(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`)
 
-        if (imgEl) imgEl.src = localUrl
+        if (imgEl) {
+          imgEl.src = localUrl
+
+          // Re-stamp from the decoded bitmap's real pixels — declared
+          // metadata can drift a few percent off the encoded file, and
+          // a stale box letterboxes the bitmap inside dead bands.
+          if (img.naturalWidth && img.naturalHeight) {
+            imgEl.style.width = `${Math.min(img.naturalWidth, COVER_DIMENSIONS.FHD_WIDTH)}${CHAR_STRINGS.PX}`
+
+            imgEl.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`
+          }
+        }
 
         // The baked genie sheet holds the thumb-resolution pixels —
         // the close warp rebakes against the full-res surface.
@@ -195,14 +210,24 @@ export function mountMediaExpanded(el: MediaExpanded): void {
   // missing surfaces) the legacy CSS zoom covers the entrance instead.
   const content = el.$(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_CONTENT}`)
 
-  // Media-box allocation — the modal pins the declared natural dims as
-  // explicit px on the item, so the box is the file's real size from
-  // the first frame and the thumb → full-res swap can never resize it.
-  // CSS applies the modal caps on top: nothing renders wider than the
-  // content column (max-width:100%), images keep natural height and pan
-  // the dialog's scroll, and only videos take the viewport-minus-chrome
-  // height cap that downscales them proportionally. The genie measure
-  // below reads the same layout pass.
+  // Media-box allocation — the modal is the no-reduction surface: it
+  // stamps the file's OWN pixels (never the carousel's laddered
+  // contract — carousel and modal sizing rules are exclusive to their
+  // components), bounded only by the FHD ceiling. Images get a
+  // definite WIDTH: the figure is fit-content, and a replaced
+  // element's max-content contribution is its INTRINSIC size — an
+  // unconstrained max-width clamp is invisible to shrink-to-fit, so
+  // the card used to swell to the column cap around a narrower item
+  // and paint dead --bg-dark bands. A definite width makes the
+  // item's max-content exactly the stamped box, the figure hugs it
+  // edge-to-edge, and the item's own CSS max-width:100% still clamps
+  // on narrow windows (the ratio re-derives height — never distorts).
+  // Videos keep the max-width cap instead: their viewport height cap
+  // must be able to bind and re-derive the width through the ratio —
+  // a definite width would sever that transfer and letterbox the
+  // player under short windows. The thumb → full-res swap can never
+  // resize the box, and the genie measure below reads the same layout
+  // pass.
   const stampMediaBox = () => {
     if (!mediaItem) return
 
@@ -210,11 +235,13 @@ export function mountMediaExpanded(el: MediaExpanded): void {
 
     const h = el.mediaHeight || GENERIC_DIMENSIONS.DEFAULT_HEIGHT
 
-    // Width + aspect-ratio (not a fixed px height): the CSS max-width cap
-    // can shrink the width on narrow viewports, and aspect-ratio keeps
-    // the box's height proportional — a fixed stamped height would distort
-    // the box the moment the cap binds.
-    mediaItem.style.width = `${w}${CHAR_STRINGS.PX}`
+    const naturalW = Math.min(w, COVER_DIMENSIONS.FHD_WIDTH)
+
+    if (el.isVideo) {
+      mediaItem.style.maxWidth = `min(${naturalW}${CHAR_STRINGS.PX}, 100%)`
+    } else {
+      mediaItem.style.width = `${naturalW}${CHAR_STRINGS.PX}`
+    }
 
     mediaItem.style.aspectRatio = `${w} / ${h}`
   }
@@ -294,6 +321,23 @@ export function mountMediaExpanded(el: MediaExpanded): void {
             el.$(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_FIGURE}`)?.classList.add(
               EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_FIGURE_LOADED
             )
+
+            // Re-stamp from the decoded stream — declared metadata can
+            // drift off the encoded track's real dims. Then freeze the
+            // resolved box into a definite width: the height cap has
+            // already done its work, and a definite size is what the
+            // fit-content figure can hug — a bare max-width is
+            // invisible to shrink-to-fit (it measures the stream's
+            // intrinsic size, not the clamped box).
+            if (vid.videoWidth && vid.videoHeight) {
+              vid.style.maxWidth = `min(${Math.min(vid.videoWidth, COVER_DIMENSIONS.FHD_WIDTH)}${CHAR_STRINGS.PX}, 100%)`
+
+              vid.style.aspectRatio = `${vid.videoWidth} / ${vid.videoHeight}`
+
+              const boxW = Math.round(vid.getBoundingClientRect().width)
+
+              if (boxW) vid.style.width = `${boxW}${CHAR_STRINGS.PX}`
+            }
 
             // The shimmer-less figure bakes differently — the close
             // warp rebakes against the loaded surface.

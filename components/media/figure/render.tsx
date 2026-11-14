@@ -17,11 +17,13 @@ import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { LANG_STRINGS } from '@core/tokens/strings/langs.js'
+import { VENDOR_STRINGS } from '@core/tokens/strings/vendor.js'
 import { componentText } from '@core/locale/ui-text.js'
 import store from '@core/store.js'
 import { prefersScaledVideo, videoAutoplayAllowed } from '@core/utils/media/policy.js'
 import type { MediaFigure } from '../MediaFigure.js'
 import { MEDIA_COMPONENT_KEYS } from '@core/tokens/data/component-keys.js'
+import { INTERNAL_MOSAIC } from '@core/tokens/layout/masonry.js'
 
 /**
  * Renders media figure.
@@ -41,6 +43,18 @@ export function renderMediaFigure(c: MediaFigure) {
   const toOpen = compLang.toOpen || (componentText(MEDIA_COMPONENT_KEYS.MEDIA_TO_OPEN) as string)
 
   const isHeroItem = c.classes.includes(INTERNAL_CLASSES.INTERNAL_MAIN_ITEM)
+
+  // Full-page captures past TALL_ITEM_H flag the figure so the carousel
+  // letterbox rule flips to a top-anchored cover crop — a strip box can
+  // never show such a file legibly at natural aspect (it's a sliver).
+  const figureClasses = [
+    c.canExpand ? INTERNAL_CLASSES.INTERNAL_EXPAND : ATTR_VALUES.EMPTY,
+    c.naturalHeight > INTERNAL_MOSAIC.TALL_ITEM_H
+      ? MEDIA_CLASSES.MEDIA_FIGURE_TALL
+      : ATTR_VALUES.EMPTY,
+  ]
+    .filter(Boolean)
+    .join(CHAR_STRINGS.SPACE_CHAR)
 
   // A 'low' connection budget (saveData/≤2g) downgrades autoplay videos
   // to poster-only: preload stays 'none' and the autoplay attribute is
@@ -73,23 +87,34 @@ export function renderMediaFigure(c: MediaFigure) {
   // IO + scroll-stop + idle all passed (the "no thumb while loading"
   // bug). Long media lists keep the deferred path; the heavy half of
   // the pipeline — the video SOURCE — stays deferred everywhere.
-  const initialPoster =
-    isHeroItem || c.classes.includes(INTERNAL_CLASSES.INTERNAL_EXTRA_ITEM)
-      ? posterSrc
-      : ATTR_VALUES.EMPTY
+  // The carousel marks the slide WRAPPER (.internal-extra-item) rather
+  // than the figure's own classes, so the parent check catches it —
+  // without it every carousel video falls into the deferred path that
+  // resets poster="" on each track rebuild.
+  const inExtraItem =
+    c.classes.includes(INTERNAL_CLASSES.INTERNAL_EXTRA_ITEM) ||
+    Boolean(c.parentElement?.classList.contains(INTERNAL_CLASSES.INTERNAL_EXTRA_ITEM))
+
+  const initialPoster = isHeroItem || inExtraItem ? posterSrc : ATTR_VALUES.EMPTY
 
   return (
     <figure
-      className={c.canExpand ? INTERNAL_CLASSES.INTERNAL_EXPAND : ATTR_VALUES.EMPTY}
+      className={figureClasses}
       title={c.label}
-      // The media's declared intrinsic size, published as custom props so
-      // the SCSS sizing chain can clamp every box (placeholder, slide,
-      // cover) at natural dimensions — the painted file may never render
-      // larger than its source, no matter how tall the strip or wide the
-      // container is.
+      // The media's RAW file dims, published as custom props so the SCSS
+      // sizing chain can clamp every box (placeholder, slide, cover) at
+      // natural dimensions — the painted file may never render larger
+      // than its source, no matter how tall the strip or wide the
+      // container is. naturalWidth/naturalHeight (not mediaW/mediaH):
+      // carousel items carry a ladder-downscaled `size` as their
+      // display contract, and every consumer of these vars means "the
+      // file's own pixels" — the ≤1024 half-natural cap/floor
+      // (calc(var(--mf-natural-w) / 2)) would otherwise halve the
+      // already-scaled contract a second time and floor tall slides at
+      // ~180px hairlines instead of the 280px card.
       style={{
-        '--mf-natural-w': `${mediaW}${COMMON_ATTRS.PX}`,
-        '--mf-natural-h': `${mediaH}${COMMON_ATTRS.PX}`,
+        '--mf-natural-w': `${c.naturalWidth}${COMMON_ATTRS.PX}`,
+        '--mf-natural-h': `${c.naturalHeight}${COMMON_ATTRS.PX}`,
       }}
     >
       <img
@@ -118,6 +143,10 @@ export function renderMediaFigure(c: MediaFigure) {
             height={mediaH}
             alt={c.label}
             src={c.thumbSrc}
+            // Extended description — the localized `_longdesc.txt`
+            // sibling co-located with the image on the CDN (empty when
+            // the manifest proves no file was generated).
+            longdesc={c.longdescUrl || undefined}
           />
 
           <img
@@ -127,12 +156,35 @@ export function renderMediaFigure(c: MediaFigure) {
             height={mediaH}
             alt={c.label}
             src={c.highResSrc || undefined}
+            longdesc={c.longdescUrl || undefined}
           />
         </Fragment>
       ) : (
         <Fragment>
+          {/* Videos get the same blurred-fill under-layer as images —
+              sourced from the poster frame (manifest-gated upstream):
+              any letterbox band around a scale-down video paints the
+              media's own palette wash instead of the flat figure bg.
+              Withheld entirely when the manifest proves no poster
+              variant exists, so no doomed request ever goes out. */}
+          {posterSrc !== ATTR_VALUES.EMPTY && (
+            <img
+              decoding={MEDIA_ATTRS.DECODING_ASYNC}
+              loading={isHeroItem ? MEDIA_ATTRS.LOADING_EAGER : MEDIA_ATTRS.LOADING_LAZY}
+              fetchpriority={
+                isHeroItem ? MEDIA_ATTRS.FETCH_PRIORITY_HIGH : MEDIA_ATTRS.FETCH_PRIORITY_LOW
+              }
+              className={`${MEDIA_CLASSES.RENDER_MEDIA} ${MEDIA_CLASSES.RENDER_MEDIA_THUMB} ${c.classes}`}
+              width={mediaW}
+              height={mediaH}
+              alt={c.label}
+              src={posterSrc}
+            />
+          )}
+
           <video
             className={`${MEDIA_CLASSES.RENDER_MEDIA} ${c.classes}`}
+            crossOrigin={VENDOR_STRINGS.ANONYMOUS}
             poster={initialPoster || ATTR_VALUES.EMPTY}
             width={mediaW}
             height={mediaH}
@@ -160,14 +212,33 @@ export function renderMediaFigure(c: MediaFigure) {
           >
             {/* Muted ambient loops have no meaningful audio — the track
                 exists so the caption contract is explicit (empty vtt),
-                not an unverifiable absence. */}
+                not an unverifiable absence. `default` yields to a real
+                descriptions track when one exists (only one track may
+                carry it). */}
             <track
               kind={MEDIA_ATTRS.CAPTIONS}
               src={ASSET_PATHS.EMPTY_CAPTIONS}
               srcLang={LANG_STRINGS.EN}
               label={DOM_STRINGS.NO_AUDIO_LABEL}
-              default
+              default={!c.descriptionTracks.some((t) => t.isDefault)}
             />
+
+            {/* Description tracks — one manifest-gated <track> per
+                locale (`<stem>.vtt` + `<stem>.<locale>.vtt` siblings of
+                the mp4, generated by shared/scripts/media/a11y). The
+                default follows the current UI locale so a screen-reader
+                visitor hears frame/shot descriptions + on-screen text in
+                the language they browse in. Lazy: browsers fetch only
+                the selected track. */}
+            {c.descriptionTracks.map((t) => (
+              <track
+                kind={MEDIA_ATTRS.DESCRIPTIONS}
+                src={t.src}
+                srcLang={t.srclang}
+                label={t.label}
+                default={t.isDefault}
+              />
+            ))}
 
             {/* <source> children are deliberately absent — emitting them
                 eagerly would let autoPlay+metadata start the stream

@@ -423,3 +423,201 @@ $_B: 'sitemap';
     transform: rotate(90deg);
   }
 }
+
+// ── Print contract ──────────────────────────────────────────────────────────
+// The route index prints as a compact magazine directory: disclosure
+// buttons collapse to their label (printprepare has already opened every
+// group), inline tile geometry is stripped by the adapter so the packed
+// wall reflows into a plain card grid, and the overlay caption bars move
+// in-flow above/below the media. Each marked route anchor earns the
+// adapter's injected pair — the .print-link-url real-destination line
+// seated under its title and the .print-qr-link scan code pinned to the
+// row/card's right edge. Locale chips print as plain text (the legend
+// already decodes the codes) and media cards show their CMS caption.
+// All rules live here because the document sheet can't reach inside
+// this shadow root.
+@media print {
+  :host {
+    min-height: 0;
+  }
+
+  .#{$_B} {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    &-langs {
+      page-break-inside: avoid;
+    }
+
+    // The disclosure affordance is dead chrome on paper — the chevron
+    // hides and the button prints as plain title text.
+    &-group-chevron {
+      display: none;
+    }
+
+    // The index's screen grid (and the wide group's multi-column track)
+    // must not reach paged media — Chromium's grid fragmentation emits a
+    // run of empty fragmentainers after the container's last painted box.
+    // Stacked block sections are the paper directory instead.
+    &-index,
+    &-group--wide {
+      display: block;
+    }
+
+    // Media walls flatten from absolute-packed tiles into a plain block
+    // column — the magazine media index. NOT flex-wrap/inline-block/grid:
+    // Chromium's paged renderer drops the paint for rows of a wrapped
+    // container past the first fragmentainer run — at the index's ~600
+    // cards that strands whole page-runs as empty sheets. Plain block
+    // children are the only row shape that fragments with paint intact.
+    &-wall {
+      display: block;
+      height: auto;
+    }
+
+    // One wall card — a full-width in-flow row (see the wall note:
+    // wrapped/boxed siblings don't paint past early fragmentainers in
+    // paged media); the QR owns the title bar's right edge as an
+    // absolute overlay and the card never splits across a page break.
+    &-card {
+      position: relative;
+      overflow: hidden;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    // The title bar keeps a QR-wide reserve on its right so the scan
+    // code can't overlap the label text.
+    &-card-title {
+      position: static;
+      display: block;
+      padding: to-rem($space-xs) calc(#{var(--print-qr-link-size)} + #{to-rem($space-md)})
+        to-rem($space-xs) to-rem($space-sm);
+      font-size: to-rem($space-md);
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+      overflow: visible;
+      -webkit-line-clamp: unset;
+      line-clamp: unset;
+    }
+
+    // The card's scan code — pinned to the right edge inside the title
+    // bar's reserve strip (every card aligns its code to the same edge
+    // regardless of label length).
+    .print-qr-link {
+      position: absolute;
+      top: to-rem($space-xs);
+      right: to-rem($space-xs);
+      margin: 0;
+    }
+
+    // The media's real destination — the deep link under the title bar,
+    // wrapped so long stems never overflow the card.
+    .print-link-url {
+      padding: to-rem($space-2xs) to-rem($space-sm);
+      margin: 0;
+      background: var(--bg-secondary);
+    }
+
+    // Media tile — fixed uniform height with top-anchored crop, the same
+    // contract the packed screen wall paints (cover + top). The figure
+    // host clips its in-flow img (the shadow sheet's sitemap-card arm
+    // lifts the generic caption cap so the layer fills the strip);
+    // the plain capture img object-fits.
+    &-card-figure {
+      display: block;
+      width: 100%;
+      height: to-rem($space-5xl);
+      overflow: hidden;
+    }
+
+    &-card-img {
+      position: static;
+      display: block;
+      width: 100%;
+      height: to-rem($space-5xl);
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    // The CMS caption — hidden on screen (it rides the leaf tooltips),
+    // revealed on paper as the under-media description line.
+    &-card-desc {
+      display: block;
+      margin: 0;
+      padding: to-rem($space-2xs) to-rem($space-sm);
+      font-family: var(--font-desc);
+      font-size: to-rem($space-md);
+      line-height: 1.4;
+      color: var(--text-secondary);
+      overflow-wrap: break-word;
+      break-inside: avoid;
+    }
+
+    &-card-locales {
+      position: static;
+      padding: to-rem($space-xs) to-rem($space-sm);
+      background: var(--bg-secondary);
+    }
+
+    // Locale chips print as plain text — the pill chrome is a pointer
+    // affordance that reads as noise on paper (the legend fieldset
+    // already decodes each uppercase code).
+    &-locale {
+      padding: 0;
+      font-size: to-rem($space-md);
+      color: var(--text-muted);
+      border: 0;
+      border-radius: 0;
+      background: none;
+    }
+
+    // One page row — title + real-URL line + plain locale text, with a
+    // QR-wide reserve on the right edge so the scan code can't overlap
+    // the wrapped URL.
+    &-page {
+      position: relative;
+      padding-right: calc(#{var(--print-qr-link-size)} + #{to-rem($space-md)});
+      break-inside: avoid;
+      page-break-inside: avoid;
+
+      .print-qr-link {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+      }
+    }
+  }
+
+  // Scan codes injected under marked route anchors — the same sizing
+  // contract as the document sheet's .print-qr-link, declared inside
+  // the shadow. Page rows park the code on their right edge, aligned
+  // with the title line; card codes get their own absolute seat above.
+  .print-qr-link {
+    display: block;
+    width: var(--print-qr-link-size);
+    margin: to-rem($space-xs) 0;
+    color: var(--text-primary);
+    break-inside: avoid;
+    page-break-inside: avoid;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  // The readable destination line under a page row's title — the
+  // shadow-side companion to the document sheet's .print-link-url rule
+  // (the structure import already carries its base look).
+  .print-link-url {
+    display: block;
+    max-width: 100%;
+    font-size: var(--print-caption-size);
+    color: var(--text-secondary);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+}

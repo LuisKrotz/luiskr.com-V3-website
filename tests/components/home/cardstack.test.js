@@ -300,7 +300,11 @@ describe('CardStack — mount + data contract', () => {
   test('renders a card per deck item + the text column and controls', () => {
     const cards = el.shadowRoot.querySelectorAll(SELS.CARD)
     expect(cards.length).toBe(ITEMS.length)
-    expect(cards[0].querySelector('a').getAttribute(ARIA_ATTRS.ARIA_LABEL)).toBe('Project 0')
+    // The stretched link takes its accessible name from its contents —
+    // no aria-label may sit on it (label-in-name: the name must contain
+    // every visible label string — title + description + CTA copy).
+    expect(cards[0].querySelector('a').hasAttribute(ARIA_ATTRS.ARIA_LABEL)).toBe(false)
+    expect(cards[0].querySelector('a').textContent).toContain('Project 0')
     // Every card carries its own copy — the "entire card" body the
     // stacked layouts show (fan tiers hide it via CSS).
     const cardTitle = cards[0].querySelector(`.${C.CARD_STACK_CARD_INFO_TITLE}`)

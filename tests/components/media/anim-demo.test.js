@@ -15,9 +15,12 @@ import '@website/components/media/DrawText.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { ANIM_DEMO_CLASSES } from '@core/tokens/classes/anim-demo.js'
+import { FLAG_CLASSES } from '@core/tokens/classes/flags.js'
 import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
+import { CLIPBOARD_EVENTS, PRINT_EVENTS } from '@core/tokens/events/dom.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
+import { LANG_OPTIONS } from '@core/i18n.js'
 import { SCSS, mount } from '@tests/fixtures/test-constants.js'
 import * as ANIM_DEMO_MOUNTS from '@website/components/media/anim-demo/mounts.js'
 import store from '@core/store.js'
@@ -134,6 +137,144 @@ describe('AnimDemo', () => {
     unmount()
   })
 
+  // ── Print prepare/exit mounting ──────────────────────────────────────────
+
+  test('printprepare force-mounts an unmounted driver so its canvas paints a still', async () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.NAV_MENU)
+
+    el = demo
+
+    jest.advanceTimersByTime(50)
+    demo._stopDriver()
+    expect(demo._mounted).toBe(false)
+
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+
+    expect(demo._printMounted).toBe(true)
+    expect(demo._mounted).toBe(true)
+
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+
+    expect(demo._printMounted).toBe(false)
+    expect(demo._mounted).toBe(false)
+    unmount()
+  })
+
+  test('printprepare leaves an IO-mounted driver alone — afterprint does not stop it', async () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.NAV_MENU)
+
+    el = demo
+
+    jest.advanceTimersByTime(50)
+    expect(demo._mounted).toBe(true)
+
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+    expect(demo._printMounted).toBe(false)
+
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+    expect(demo._mounted).toBe(true)
+    unmount()
+  })
+
+  test('printprepare is idempotent — a second dispatch hits the print-mounted guard', async () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.NAV_MENU)
+
+    el = demo
+
+    jest.advanceTimersByTime(50)
+
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+    const teardown = demo._teardown
+
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+    expect(demo._teardown).toBe(teardown)
+
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+    unmount()
+  })
+
+  test('printprepare on a stage-less demo no-ops', async () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.NAV_MENU)
+
+    el = demo
+
+    demo.shadowRoot.querySelector(`.${C.ANIM_DEMO}`).remove()
+
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+
+    expect(demo._printMounted).toBe(false)
+    expect(demo._mounted).toBe(false)
+    unmount()
+  })
+
+  test('printprepare on a driver-less demo flags the mount attempt then releases it', async () => {
+    const demo = new AnimDemo()
+    demo.setAttribute(COMMON_ATTRS.ANIMATION, 'unregistered-id')
+    const unmount = mount(demo)
+
+    el = demo
+
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+
+    expect(demo._printMounted).toBe(true)
+    expect(demo._mounted).toBe(false)
+
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+    expect(demo._mounted).toBe(false)
+
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+
+    expect(demo._printMounted).toBe(false)
+    unmount()
+  })
+
+  test('printprepare on a teardown-less driver leaves _teardown null', async () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.BODY_GLOW)
+
+    el = demo
+
+    jest.advanceTimersByTime(50)
+    demo._stopDriver()
+
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+
+    expect(demo._mounted).toBe(true)
+    expect(demo._teardown).toBeNull()
+
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+    unmount()
+  })
+
+  test('printprepare on an attr-less demo resolves the empty id and no-ops', async () => {
+    const demo = new AnimDemo()
+    const unmount = mount(demo)
+
+    el = demo
+
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+
+    expect(demo._printMounted).toBe(true)
+    expect(demo._mounted).toBe(false)
+
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+    unmount()
+  })
+
+  test('afterprint without a print mount no-ops', async () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.NAV_MENU)
+
+    el = demo
+
+    jest.advanceTimersByTime(50)
+    demo._stopDriver()
+    expect(demo._mounted).toBe(false)
+
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+
+    expect(demo._printMounted).toBe(false)
+    unmount()
+  })
+
   // ── Stage DOM per id ────────────────────────────────────────────────────
 
   test.each([
@@ -154,7 +295,7 @@ describe('AnimDemo', () => {
     [ANIMATION_IDS.RING_SHEEN, `.${C.TILES}`],
     [ANIMATION_IDS.RELATED_TILE, `.${C.TILES}`],
     [ANIMATION_IDS.CORNER_BRACKETS, `.${C.BUTTON}`],
-    [ANIMATION_IDS.GENIE_MODAL, `.${C.DIALOG}`],
+    [ANIMATION_IDS.GENIE_MODAL, `.${C.GENIE_MODAL}`],
     [ANIMATION_IDS.CAROUSEL, COMPONENT_TAGS.AWARDS_CAROUSEL],
     [ANIMATION_IDS.BODY_GLOW, `.${C.GLOW}`],
     [ANIMATION_IDS.PROGRESS_BAR, `.${C.BAR}`],
@@ -175,6 +316,36 @@ describe('AnimDemo', () => {
     el = demo
 
     expect(demo.shadowRoot.querySelector(selector)).not.toBeNull()
+    unmount()
+  })
+
+  test('flag stage lists one canvas per LANG_OPTIONS locale', () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.NAV_FLAG)
+    el = demo
+
+    const cells = demo.shadowRoot.querySelectorAll(`.${C.FLAG_CELL}`)
+
+    expect(cells).toHaveLength(LANG_OPTIONS.length)
+    expect(demo.shadowRoot.querySelectorAll(`${HTML_TAGS.CANVAS}.${C.FLAG}`)).toHaveLength(
+      LANG_OPTIONS.length
+    )
+
+    // Each cell pairs its canvas with the production <img> fallback twin —
+    // split locales carry the two-half flag-split pair like the lang dialog.
+    const imgs = demo.shadowRoot.querySelectorAll(`.${FLAG_CLASSES.FLAG_IMG}`)
+
+    expect(imgs).toHaveLength(LANG_OPTIONS.length + LANG_OPTIONS.filter((opt) => opt.cc2).length)
+    expect(demo.shadowRoot.querySelectorAll(`.${FLAG_CLASSES.FLAG_SPLIT}`)).toHaveLength(
+      LANG_OPTIONS.filter((opt) => opt.cc2).length
+    )
+    unmount()
+  })
+
+  test('scene stage mounts the 2D field canvas + the engine surface canvas', () => {
+    const { demo, unmount } = mountDemo(ANIMATION_IDS.SCENE_3D)
+    el = demo
+
+    expect(demo.shadowRoot.querySelectorAll(`${HTML_TAGS.CANVAS}.${C.CANVAS}`)).toHaveLength(2)
     unmount()
   })
 
@@ -671,6 +842,8 @@ describe('AnimDemo', () => {
     expect(SCSS.animDemo).toMatch(/-loader-ring/)
     expect(SCSS.animDemo).toMatch(/-toast-item/)
     expect(SCSS.animDemo).toMatch(/-dialog/)
+    expect(SCSS.animDemo).toMatch(/-flags/)
+    expect(SCSS.animDemo).toMatch(/is-fallback/)
     expect(SCSS.animDemo).toMatch(/prefers-reduced-motion/)
   })
 })

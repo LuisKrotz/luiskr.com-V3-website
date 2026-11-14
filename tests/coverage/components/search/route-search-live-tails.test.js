@@ -59,8 +59,6 @@ const waitCopy = async (el) => {
   }
 
   for (let i = 0; i < 60 && !calls; i++) await flush(50)
-
-  process.stderr.write(`waitCopy calls=${calls} strings=${JSON.stringify(el._strings?.label)}\n`)
 }
 
 /** Mounts a <route-search> element and waits for its copy strings to land. */

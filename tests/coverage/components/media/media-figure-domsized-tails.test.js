@@ -6,8 +6,8 @@
  * full-dimension CDN file (the tall-image decode-memory fix). Arms:
  * every early-return keeps the CDN URL (zero box, under-resolved
  * source, failed fetch, decode throw, missing 2d context, null toBlob,
- * absent createObjectURL), the success arm mounts the blob + revokes
- * the superseded one, the detached-successor guard, the bitmapPath
+ * absent createObjectURL), the success arm mounts the blob and the
+ * retired layer's blob revokes on fade end, the detached-successor guard, the bitmapPath
  * capability gate, and releaseDomBlobs's early returns + destroy sweep.
  */
 import '@website/components/media/MediaFigure.js'
@@ -17,7 +17,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { MEDIA } from '@core/tokens/media/suffixes.js'
-import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
+import { ANIMATION_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 
 /**
  * Stubs the bitmap pipeline globals; returns the mutable refs plus the
@@ -130,12 +130,25 @@ describe('media-figure dom-sized bitmap tails', () => {
       expect(firstSrc).toBe('blob:ds0')
       expect(fig._domBlobs.has('blob:ds0')).toBe(true)
 
-      // A second confirmed rung re-encodes and releases the first blob.
+      // A second confirmed rung re-encodes — the first blob stays live
+      // while its mounted layer is still painting (revoking an in-flight
+      // blob fetch hard-fails the img).
       await publish(fig)
 
       expect(await highSrc(fig)).toBe('blob:ds1')
-      expect(revoked).toContain('blob:ds0')
+      expect(revoked).not.toContain('blob:ds0')
       expect(fig._domBlobs.has('blob:ds1')).toBe(true)
+      expect(fig._domBlobs.size).toBe(2)
+
+      // Retiring the superseded layer releases its blob — no live img
+      // references it anymore.
+      const highs = fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
+      const top = highs[highs.length - 1]
+
+      top.dispatchEvent(new Event(WINDOW_EVENTS.LOAD))
+      top.dispatchEvent(new Event(ANIMATION_EVENTS.TRANSITIONEND))
+
+      expect(revoked).toContain('blob:ds0')
       expect(fig._domBlobs.size).toBe(1)
 
       // Destroy sweeps the live blob.

@@ -8,7 +8,6 @@
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
-import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
@@ -16,6 +15,7 @@ import { MENTIONS_DECK_CLASSES } from '@core/tokens/classes/mentions-deck.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
+import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { h, Fragment } from '@core/jsx.js'
 import store from '@core/store.js'
 import { encodeMediaUrl } from '@core/utils/media.js'
@@ -51,16 +51,26 @@ function renderCard(
 
   // Per-card heading — the AT jump target that names this mention;
   // emitted only when the item has real copy so cards never produce an
-  // empty heading (the role=group aria-label already names bare items).
+  // empty heading (the article aria-label already names bare items).
   // tabindex=-1 lets SR focus land on it.
   const cardHeading = excerptHeading(item.description || item.label || ATTR_VALUES.EMPTY)
+
+  // WCAG 2.5.3 label-in-name — the link's accessible name must contain
+  // its visible label (icon glyph + description text), so the full
+  // entity-decoded plain text names the link; the ordinal covers
+  // content-less cards. stripHtml alone would leave raw entities that
+  // no longer match the rendered text.
+  const linkLabel =
+    toMetaDescription(
+      `${item.icon ? `${item.icon}${CHAR_STRINGS.SPACE_CHAR}` : ATTR_VALUES.EMPTY}${item.description || ATTR_VALUES.EMPTY}`,
+      Number.MAX_SAFE_INTEGER
+    ) || `${i + 1} ${ofLabel} ${len}`
 
   return (
     <article
       key={item.link || i}
       className={C.MENTIONS_DECK_CARD}
       {...{ [DATA_ATTRS.DATA_INDEX]: i }}
-      role={ARIA_ATTRS.ROLE_GROUP}
       aria-label={`${i + 1} ${ofLabel} ${len}`}
     >
       {cardHeading ? (
@@ -73,7 +83,7 @@ function renderCard(
         href={item.link || ATTR_VALUES.EMPTY}
         target={DOM_STRINGS.BLANK}
         rel={DOM_STRINGS.NOOPENER}
-        aria-label={cardHeading || `${i + 1} ${ofLabel} ${len}`}
+        aria-label={linkLabel}
         tabindex={i === host.activeIdx ? ATTR_VALUES.TABINDEX_ZERO : ATTR_VALUES.NEGATIVE_TABINDEX}
       >
         {item.icon ? (

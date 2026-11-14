@@ -49,7 +49,7 @@ import {
   sitemapHrefFor,
 } from '@core/utils/data/footer-links.js'
 import { getFallbackLegalLinks, legalLinks, type LegalLink } from '@core/utils/data/legal-links.js'
-import { appText, componentText, rightsParts } from '@core/locale/ui-text.js'
+import { appText, componentText, rightsParts, versionStamp } from '@core/locale/ui-text.js'
 import { devError } from '@core/devlog.js'
 
 export { getFallbackLegalLinks, feedHrefFor }
@@ -235,6 +235,8 @@ export class LegalFooter extends BaseComponent {
     ) : null
 
     const r = rightsParts()
+
+    const stamp = versionStamp()
 
     return (
       <footer className={INTERNAL_CLASSES.INTERNAL_FOOTER}>
@@ -507,6 +509,10 @@ export class LegalFooter extends BaseComponent {
             <b>{r.year}</b>
             {r.post}
           </p>
+          {/* Release stamp — the colophon's build provenance line (mono,
+              smallest text step, muted AAA ink); hidden when the env isn't
+              baked so tests and env-less runs render nothing. */}
+          {stamp ? <p className={INTERNAL_CLASSES.INTERNAL_FOOTER_ITEMS_VERSION}>{stamp}</p> : null}
         </div>
       </footer>
     )

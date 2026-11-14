@@ -204,7 +204,8 @@ describe('AboutSection', () => {
   })
 
   test('about.scss defines layout and typography structures', () => {
-    expect(SCSS.about).toMatch(/\.about\s*\{/)
+    expect(SCSS.about).toMatch(/\$_B_ABOUT:\s*'about'/)
+    expect(SCSS.about).toMatch(/\.#\{\$_B_ABOUT\}\s*\{/)
     expect(SCSS.about).toMatch(/&-title\s*\{/)
     expect(SCSS.about).toMatch(/&-profile-section\s*\{/)
   })

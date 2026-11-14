@@ -15,12 +15,16 @@ import { viewportWidth } from '@core/utils/dom.js'
 
 /**
  * Desktop downscale for one carousel item — the division calc is for
- * WIDTH, not height: each ladder step (÷2 → ÷1.5 → ÷1.75) compounds on
- * the running width while the result still clears DESKTOP_SCALE_MIN_W;
- * once the media falls under the width check (the next step would drop
- * it below the floor), the accumulated divisor is applied to height —
- * aspect preserved. A 1980px item lands ~377px wide, a 997px item
- * ~332px; small items below the first step stay natural.
+ * WIDTH, not height: ÷2 always applies (the retina-density cap), then
+ * each further ladder step (÷3 → ÷4 → ÷5) compounds on the running
+ * width ONLY while the slide is still at least viewport-wide — "if
+ * needed" in the spec: once it fits inside the window it already is
+ * the max-area render with neighbour peeks, so the ladder stops.
+ * The DESKTOP_SCALE_MIN_W floor is the backstop — the next step never
+ * drops the media under it; the accumulated divisor then applies to
+ * height — aspect preserved. A 3840px item lands ~640px wide at
+ * 1920px viewport (1920 → 640), a 1920px item ~960px; small items
+ * below the first step stay natural.
  * `naturalSize` keeps the untouched CMS dims — the expand modal stamps
  * those (the modal never reduces) while `size` stays the display
  * contract for the carousel's dense-pixel render.
@@ -32,6 +36,8 @@ export function scaleCarouselItem(item: ProjectMediaItem): ProjectMediaItem {
 
   if (!size || size[0] <= 0) return item
 
+  const vw = viewportWidth()
+
   let divisor = 1
 
   let w = size[0]
@@ -40,6 +46,10 @@ export function scaleCarouselItem(item: ProjectMediaItem): ProjectMediaItem {
     const next = w / d
 
     if (!(next > CAROUSEL_LAYOUT.DESKTOP_SCALE_MIN_W)) break
+
+    // Steps past ÷2 run only while the slide still fills the window —
+    // a sub-viewport slide already shows its neighbours' peeks.
+    if (divisor !== 1 && w < vw) break
 
     divisor *= d
 
@@ -73,7 +83,7 @@ export function bindProjectCarousels(view: ViewProject): void {
     if (!items) return
 
     // Desktop carousel items render oversized — downscale intrinsic
-    // sizes through the ladder (÷2 → ÷1.5 → ÷1.75) so the display box
+    // sizes through the ladder (÷2 → ÷3 → ÷4 → ÷5) so the display box
     // stays denser than the source. Carousel path only: the mosaic wall
     // runs its own divisor ladder, and ≤CAROUSEL_MAX_W keeps natural
     // sizes (the mobile/tablet carousel contract).

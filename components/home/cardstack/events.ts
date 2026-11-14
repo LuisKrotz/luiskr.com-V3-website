@@ -7,12 +7,15 @@
 
 import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { CARD_STACK_SELECTORS } from '@core/tokens/selectors/card-stack.js'
+import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
 import {
   CLIPBOARD_EVENTS,
   DRAG_EVENTS,
+  FORM_EVENTS,
   KEYBOARD_EVENTS,
   MOUSE_EVENTS,
   POINTER_EVENTS,
+  PRINT_EVENTS,
   WINDOW_EVENTS,
 } from '@core/tokens/events/dom.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
@@ -32,6 +35,7 @@ import {
   toggleIndex,
 } from './interactions.js'
 import { onPointerDown, onPointerEnd, onPointerMove } from './gestures.js'
+import { preparePrint, restorePrint } from './print.js'
 import type { CardStack } from '../CardStack.js'
 
 /**
@@ -218,4 +222,25 @@ export function bindEvents(host: CardStack): void {
   host.addScopedListener(document, CLIPBOARD_EVENTS.VISIBILITY_CHANGE, () => {
     holdAutoplay(host, document.hidden)
   })
+
+  // The print adapter's prepare event fires inside beforeprint, ahead of
+  // the media/style walk — filling card descriptions and freezing the
+  // posers here lands before the snapshot strips inline geometry.
+  host.addScopedListener(window, PRINT_EVENTS.PREPARE, () => {
+    preparePrint(host)
+  })
+
+  // Native afterprint restores most jobs; engines that only flip the
+  // print media query (emulated-print shells) never dispatch it, so the
+  // query's false edge is the second restore channel — restorePrint is
+  // idempotent when both fire.
+  host.addScopedListener(window, CLIPBOARD_EVENTS.AFTER_PRINT, () => {
+    restorePrint(host)
+  })
+
+  if (window.matchMedia) {
+    host.addScopedListener(window.matchMedia(MEDIA_QUERIES.PRINT), FORM_EVENTS.CHANGE, (e) => {
+      if (!(e as MediaQueryListEvent).matches) restorePrint(host)
+    })
+  }
 }

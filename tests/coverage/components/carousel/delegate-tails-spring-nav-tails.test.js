@@ -152,7 +152,10 @@ describe('spring nav tails', () => {
     scheduleTeleport(el, 2)
     scheduleTeleport(el, 3)
 
-    await waitFor(() => el.teleportTimer === null, 1600)
+    // TELEPORT_DELAY (1600) sits past the spring MAX_MS watchdog — the
+    // wait window must clear it by a comfortable margin or the assert
+    // races the timer under load.
+    await waitFor(() => el.teleportTimer === null, 2600)
 
     expect(el._jumpToSlide).toHaveBeenCalledWith(3, false)
     expect(el.pendingTeleport).toBe(null)
@@ -302,6 +305,70 @@ describe('spring nav tails', () => {
 
     expect(spy).toHaveBeenCalledTimes(2)
 
+    cleanup(el)
+  })
+
+  test('custom: a re-nav inside the wrap window flushes the armed teleport first', () => {
+    const { el } = makeCarousel()
+    const raf = mockRaf()
+
+    const cloneFirst = el.shadowRoot.querySelector(CAROUSEL_SELECTORS.CAROUSEL_SLIDE_CLONE_FIRST)
+
+    // Distinct left so the wrap spring gets real travel — the armed
+    // teleport must still be pending when the second nav lands.
+    cloneFirst.getBoundingClientRect = () => rect(900, 600)
+
+    const spy = jest.spyOn(el, '_jumpToSlide')
+
+    el.goTo(3)
+
+    expect(el.pendingTeleport).toBe(0)
+
+    el.goTo(1)
+
+    // The wrap teleport is completed immediately (invisible: clone≡twin)
+    // so the new spring starts from the real twin instead of shooting
+    // backwards through the ring — the "next goes back" regression.
+    expect(el.pendingTeleport).toBe(null)
+    expect(spy).toHaveBeenCalledWith(0, false)
+
+    raf.pump(200)
+
+    expect(el.isNavigating).toBe(false)
+    expect(el.pendingTeleport).toBe(null)
+
+    raf.restore()
+    cleanup(el)
+  })
+
+  test('awards: a re-nav inside the wrap window flushes the armed teleport first', () => {
+    const el = makeAwards()
+    const raf = mockRaf()
+
+    const track = el.shadowRoot.querySelector(`.${AWC_CLASSES.AWC_TRACK}`)
+    const cloneFirst = el.shadowRoot.querySelector(`.${AWC_CLASSES.AWC_SLIDE_CLONE_FIRST}`)
+
+    track.getBoundingClientRect = () => rect(0, 600)
+    track.scrollTo = jest.fn()
+    cloneFirst.getBoundingClientRect = () => rect(900, 400)
+
+    const spy = jest.spyOn(el, '_jumpToSlide')
+
+    el.goTo(3)
+
+    expect(el.pendingTeleport).toBe(0)
+
+    el.goTo(1)
+
+    expect(el.pendingTeleport).toBe(null)
+    expect(spy).toHaveBeenCalledWith(0, false)
+
+    raf.pump(200)
+
+    expect(el.isNavigating).toBe(false)
+    expect(el.pendingTeleport).toBe(null)
+
+    raf.restore()
     cleanup(el)
   })
 

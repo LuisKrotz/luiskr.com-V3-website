@@ -134,7 +134,7 @@ article {
 }
 
 .#{$_B_ANIM}-term {
-  @extend .txt-md;
+  @extend .ttl-md;
 
   font-family: var(--font-primary);
   font-weight: calc(300 + var(--fw-lift));
@@ -152,13 +152,22 @@ article {
   hyphens: none;
   margin: 0;
   color: var(--text-secondary);
+
+  // Mid-band floor — txt-md's own ramp doesn't lift until the 1680
+  // rung, but a reference listing at 13px reads too small on standard
+  // desktops; the band hands the same 21/34 to the mid widths, then
+  // the placeholder's 1680 ramp takes over seamlessly.
+  @media (min-width: #{$bk-768}) and (max-width: #{$bk-1680 - 1px}) {
+    font-size: to-rem($space-xl);
+    line-height: to-rem($space-2xl);
+  }
 }
 
 // In-depth docs link — one per record, deep-linking into the docs
 // portal's api/source page for that animation's implementation.
 .#{$_B_ANIM}-docs {
   @extend %LK_LINK;
-  @extend .txt-sm;
+  @extend .txt-md;
 
   display: inline-block;
   width: fit-content;
@@ -167,4 +176,78 @@ article {
   font-weight: calc(300 + var(--fw-lift));
   color: var(--color-accent-contrast);
   text-decoration: none;
+}
+
+// ── Print contract ──────────────────────────────────────────────────────────
+// The screen contract reserves three nested 100vh surfaces (host, article,
+// column); on paged media those reservations continue past the last record
+// and emit trailing blank sheets — all three are released here. Each demo's
+// aria-hidden canvas is marked data-print-capture, so the adapter injects a
+// .print-copy still after the <anim-demo> host inside this shadow; it needs
+// its sizing rules here because the document sheet can't reach in.
+@media print {
+  :host,
+  article,
+  .#{$_B_ANIM} {
+    min-height: 0;
+  }
+
+  // Magazine density — the reference listing flows in balanced columns
+  // so a page carries several records instead of one airy column. The
+  // screen sheet's trailing padding can't ride a column boundary: when
+  // the last record ends flush it spills into an empty fragmentainer,
+  // printing a fully blank sheet — the gap before the footer lives in
+  // the records' own rhythm instead.
+  .#{$_B_ANIM}-list {
+    columns: 2;
+    column-gap: var(--space-2xl);
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+
+  .#{$_B_ANIM}-record {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  // Heading + demo caps for magazine density — record titles get a compact
+  // journal kick, and the live element stages (a card-stack/carousel demo
+  // mounts the full 2000px+ production surface) clip to the media cap so
+  // one record can never monopolize a column.
+  .#{$_B_ANIM}-term {
+    font-size: var(--space-lg);
+    line-height: 1.35;
+    letter-spacing: normal;
+  }
+
+  anim-demo {
+    max-height: var(--print-media-max-h);
+    overflow: hidden;
+    break-inside: avoid;
+  }
+
+  .print-src {
+    display: none;
+  }
+
+  .print-copy {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: var(--space-md) auto;
+    object-fit: contain;
+    break-inside: avoid;
+  }
+
+  .print-caption {
+    display: block;
+    max-width: 100%;
+    margin: var(--space-2xs) auto var(--space-md);
+    font-size: var(--print-caption-size);
+    color: var(--text-secondary);
+    text-align: center;
+    overflow-wrap: break-word;
+    break-inside: avoid;
+  }
 }

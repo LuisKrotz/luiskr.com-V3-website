@@ -213,6 +213,25 @@ export function goTo(host: AwardsCarousel, idx: number): void {
     })
   )
   host.isNavigating = true
+
+  // A still-armed wrap teleport means the track is parked on — or
+  // mid-spring toward — an edge clone while currentIndex already
+  // reflects the destination. Landing the twin jump now (clone≡twin,
+  // invisible) keeps every following spring travelling in the user's
+  // direction; without it a retarget shoots the strip backwards through
+  // the whole ring, then settle's stale teleport snaps it back.
+  if (host.pendingTeleport != null) {
+    const pending = host.pendingTeleport
+
+    host.pendingTeleport = null
+
+    if (host.teleportTimer) clearTimeout(host.teleportTimer)
+
+    host.teleportTimer = null
+
+    host._jumpToSlide(pending, false)
+  }
+
   const cloneFirst = host.$(`.${AWC_CLASSES.AWC_SLIDE_CLONE_FIRST}`)
   const cloneLast = host.$(`.${AWC_CLASSES.AWC_SLIDE_CLONE_LAST}`)
 

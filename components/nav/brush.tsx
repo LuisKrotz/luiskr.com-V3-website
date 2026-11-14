@@ -1,10 +1,10 @@
 /**
  * @file nav-brush.tsx
- * @description The neon paintbrush glyph for <app-nav>'s preferences chip —
+ * @description The silver paintbrush glyph for <app-nav>'s preferences chip —
  * a diagonal brush: violet-to-orange shaft, chrome ferrule, a magenta-to-
  * orange bristle tip, a looping paint swoosh that sweeps around the tip
  * (a second, fainter ring counter-rotates through it), and twinkling
- * sparkles plus droplets. Colors come from the nav neon tokens; motion
+ * sparkles plus droplets. Colors come from the nav metal tokens; motion
  * lives in nav-icons.scss so it runs inside this element's shadow root.
  * Isolated component — registers its own tag.
  */
@@ -38,7 +38,7 @@ const DROPS = [
   { x: 44, y: 22 },
 ]
 
-/** `stop` bound to a --nav-neon-* CSS prop — presentation attributes can't
+/** `stop` bound to a --nav-metal-* CSS prop — presentation attributes can't
  * resolve custom properties, so the value rides inline style. */
 const stop = (offset: number, prop: string) => (
   <stop offset={offset} style={`stop-color: var(${prop})`} />
@@ -59,7 +59,7 @@ const star = (x: number, y: number, r: number): string =>
   `M ${x} ${y - r} Q ${x} ${y} ${x + r} ${y} Q ${x} ${y} ${x} ${y + r} Q ${x} ${y} ${x - r} ${y} Q ${x} ${y} ${x} ${y - r} Z`
 
 /**
- * The <nav-brush-icon> element — the neon paintbrush. Shaft runs violet to
+ * The <nav-brush-icon> element — the silver paintbrush. Shaft runs violet to
  * orange along its length; the bristle tip runs magenta to orange; the
  * swoosh carries the full violet-magenta-orange sweep the reference uses.
  */
@@ -72,8 +72,8 @@ export class NavBrushIcon extends BaseComponent {
   /** Starts the wasm swoosh emitter on the brush's canvas. */
   override onMounted() {
     void mountNavGlyph(this, NAV_GLYPH.KIND_SWOOSH, [
-      NAV_SEARCH_CSS_PROPS.NEON_VIOLET,
-      NAV_SEARCH_CSS_PROPS.NEON_ORANGE,
+      NAV_SEARCH_CSS_PROPS.METAL_PLATINUM,
+      NAV_SEARCH_CSS_PROPS.METAL_TITANIUM,
     ]).then((session) => {
       if (this.isConnected) this._glyph = session
       else session?.destroy()
@@ -104,8 +104,8 @@ export class NavBrushIcon extends BaseComponent {
               x2={SHAFT.x2}
               y2={SHAFT.y2}
             >
-              {stop(0, NAV_SEARCH_CSS_PROPS.NEON_ORANGE)}
-              {stop(1, NAV_SEARCH_CSS_PROPS.NEON_VIOLET)}
+              {stop(0, NAV_SEARCH_CSS_PROPS.METAL_TITANIUM)}
+              {stop(1, NAV_SEARCH_CSS_PROPS.METAL_PLATINUM)}
             </linearGradient>
             <linearGradient
               id={NAV_SEARCH_IDS.FERRULE}
@@ -115,8 +115,8 @@ export class NavBrushIcon extends BaseComponent {
               x2={FERRULE.x2}
               y2={FERRULE.y2}
             >
-              {stop(0, NAV_SEARCH_CSS_PROPS.NEON_CHROME)}
-              {stop(1, NAV_SEARCH_CSS_PROPS.NEON_VIOLET)}
+              {stop(0, NAV_SEARCH_CSS_PROPS.METAL_CHROME)}
+              {stop(1, NAV_SEARCH_CSS_PROPS.METAL_PLATINUM)}
             </linearGradient>
             <linearGradient
               id={NAV_SEARCH_IDS.TIP}
@@ -126,8 +126,8 @@ export class NavBrushIcon extends BaseComponent {
               x2="25"
               y2="27"
             >
-              {stop(0, NAV_SEARCH_CSS_PROPS.NEON_MAGENTA)}
-              {stop(1, NAV_SEARCH_CSS_PROPS.NEON_ORANGE)}
+              {stop(0, NAV_SEARCH_CSS_PROPS.METAL_PEARL)}
+              {stop(1, NAV_SEARCH_CSS_PROPS.METAL_TITANIUM)}
             </linearGradient>
             <linearGradient
               id={NAV_SEARCH_IDS.SWOOSH}
@@ -137,9 +137,9 @@ export class NavBrushIcon extends BaseComponent {
               x2="41"
               y2="14"
             >
-              {stop(0, NAV_SEARCH_CSS_PROPS.NEON_VIOLET)}
-              {stop(0.5, NAV_SEARCH_CSS_PROPS.NEON_MAGENTA)}
-              {stop(1, NAV_SEARCH_CSS_PROPS.NEON_ORANGE)}
+              {stop(0, NAV_SEARCH_CSS_PROPS.METAL_PLATINUM)}
+              {stop(0.5, NAV_SEARCH_CSS_PROPS.METAL_PEARL)}
+              {stop(1, NAV_SEARCH_CSS_PROPS.METAL_TITANIUM)}
             </linearGradient>
           </defs>
 

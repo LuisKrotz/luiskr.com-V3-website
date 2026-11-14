@@ -16,7 +16,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { DOCS_STRINGS } from '@core/tokens/strings/docs.js'
-import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
+import { TEST_TEXT, TEST_VERSION } from '@tests/fixtures/test-constants.js'
 import store from '@core/store.js'
 
 /** Extra-generous flush — awards render + delegated listeners settle late. */
@@ -167,5 +167,22 @@ describe('awards render + delegated click tails', () => {
     expect(linksNav.querySelectorAll('h3').length).toBe(4)
     // The two fixture items + the same three statics as anchors.
     expect(linksNav.querySelectorAll(`.${AWARDS_CLASSES.AWARDS_FOOTER_ITEM}`).length).toBe(5)
+  })
+
+  test('renders the baked release stamp under the rights line', () => {
+    const prevEnv = globalThis.__VITE_ENV__
+
+    globalThis.__VITE_ENV__ = {
+      VITE_APP_VERSION: TEST_VERSION.APP,
+      VITE_BUILD_ID: TEST_VERSION.BUILD,
+    }
+
+    const tree = renderAwards({ title: TEST_TEXT.HEADING, items: [], legalLinks: [] })
+    const stamp = tree.querySelector(`.${FOOTER_CLASSES.FOOTER_VERSION}`)
+
+    expect(stamp).not.toBeNull()
+    expect(stamp.textContent).toBe(`v${TEST_VERSION.APP} / build ${TEST_VERSION.BUILD}`)
+
+    globalThis.__VITE_ENV__ = prevEnv
   })
 })

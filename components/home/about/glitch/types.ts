@@ -112,8 +112,11 @@ export interface GlitchSession {
   /** Elapsed seconds — drives the rolling bar. */
   t: number
   lastT: number
-  /** Pending rAF handle. */
+  /** Pending frame-pool handle. */
   raf: number
+  /** Stable per-session frame callback — allocated once at arm so the
+   *  pooled loop re-arms without a per-frame closure allocation. */
+  onFrame: () => void
   /** True while the loop should keep running. */
   active: boolean
   /** Intensity — idle ambient or full VHS under hover. */

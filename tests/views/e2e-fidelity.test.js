@@ -91,19 +91,21 @@ describe('Automated End-to-End Feature & Fidelity Test Suite (50+ Tests)', () =>
       const aboutShadow = about.shadowRoot
       expect(aboutShadow).not.toBeNull()
 
-      const paraDraw = aboutShadow.querySelector('.about-item-text draw-text')
-      expect(paraDraw).not.toBeNull()
-
-      const pShadow = paraDraw.shadowRoot
+      // The hero statement splits at its first <br> into the lead line
+      // plus the remainder — both draw-texts together carry the sentence.
+      const paraDraws = Array.from(aboutShadow.querySelectorAll('.about-item-text draw-text'))
+      expect(paraDraws.length).toBeGreaterThanOrEqual(2)
 
       // Word/char spans mount when the reveal triggers — before that the
       // pending render is collapsed plain text.
-      paraDraw.trigger()
+      paraDraws.forEach((d) => d.trigger())
 
-      const words = pShadow.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_WORD)
+      const words = paraDraws.flatMap((d) =>
+        Array.from(d.shadowRoot.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_WORD))
+      )
       expect(words.length).toBeGreaterThanOrEqual(15)
 
-      const wordValues = Array.from(words).map((w) => w.textContent)
+      const wordValues = words.map((w) => w.textContent)
       expect(wordValues).toContain('Hi,')
       expect(wordValues).toContain("I'm")
       expect(wordValues).toContain('Luis')
@@ -112,7 +114,9 @@ describe('Automated End-to-End Feature & Fidelity Test Suite (50+ Tests)', () =>
 
       // Rendered words stay aria-hidden — the sr-only twin is the single
       // announcement, and spaces are literal breakable text (no span storm).
-      expect(pShadow.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_SPACE).length).toBe(0)
+      paraDraws.forEach((d) => {
+        expect(d.shadowRoot.querySelectorAll(DRAW_TEXT_SELECTORS.DRAW_TEXT_SPACE).length).toBe(0)
+      })
       words.forEach((w) => {
         expect(w.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(STATE_STRINGS.TRUE)
       })

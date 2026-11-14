@@ -115,9 +115,10 @@ export interface GenieSession {
 /**
  * Overlay device-pixel cap — a fullscreen transition canvas at raw
  * devicePixelRatio triples fill cost on dpr-3 phones; 2 keeps the warp
- * crisp without exceeding the frame budget.
+ * crisp without exceeding the frame budget. Exported so the /animations
+ * genie demo caps its stage overlay at the same ceiling.
  */
-const GENIE_DPR_CAP = 2
+export const GENIE_DPR_CAP = 2
 
 /** Fallback origin when no figure resolves — a bottom-center dock sliver. */
 const fallbackOrigin = (): GenieRect => ({

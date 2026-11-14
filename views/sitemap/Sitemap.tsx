@@ -13,6 +13,7 @@
 
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { SECTION_UI_KEYS } from '@core/tokens/data/ui-keys.js'
@@ -32,6 +33,7 @@ import { LABEL_TEXT } from '@core/tokens/strings/text.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { APP_IDS } from '@core/tokens/ids/app.js'
+import { CLIPBOARD_EVENTS, PRINT_EVENTS } from '@core/tokens/events/dom.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
 import store from '@core/store.js'
@@ -41,6 +43,7 @@ import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
 import { isPlainClick } from '@core/utils/dom.js'
 import { devError } from '@core/devlog.js'
+import { printJobActive } from '@core/utils/print/print.js'
 import { packMediaMosaic } from '@website/components/media/mosaic/pack.js'
 import type { PackedMosaic } from '@website/components/media/mosaic/pack.js'
 import { buildSitemapTree } from './map-data.js'
@@ -124,6 +127,11 @@ export class ViewSitemap extends BaseComponent {
   /** Host ResizeObserver driving repacks on real width changes. */
   _ro: ResizeObserver | null = null
 
+  /** Pre-print `_openGroups` snapshot — afterprint restores the user's
+   *  disclosure state so the print prep's expand-all doesn't leak into
+   *  the live screen session. */
+  _openBeforePrint: Set<string> | null = null
+
   constructor() {
     super(sitemapStyles)
   }
@@ -140,14 +148,54 @@ export class ViewSitemap extends BaseComponent {
 
       this._ro.observe(this)
     }
+
+    window.addEventListener(PRINT_EVENTS.PREPARE, this._onPrintPrepare)
+    window.addEventListener(CLIPBOARD_EVENTS.AFTER_PRINT, this._onAfterPrint)
   }
 
-  /** Lifecycle: releases the wall ResizeObserver. */
+  /** Lifecycle: releases the wall ResizeObserver + the print hooks. */
 
   override onDestroy() {
     this._ro?.disconnect()
 
     this._ro = null
+
+    window.removeEventListener(PRINT_EVENTS.PREPARE, this._onPrintPrepare)
+    window.removeEventListener(CLIPBOARD_EVENTS.AFTER_PRINT, this._onAfterPrint)
+  }
+
+  /**
+   * Print-prepare answer — the adapter's walk runs right after this
+   * event, so every collapsible media group must be open NOW: closed
+   * groups mount no children at all, which would print an empty media
+   * branch. The user's open set is snapshotted for afterprint, then the
+   * full tree re-renders with every group expanded.
+   */
+  private _onPrintPrepare = (): void => {
+    if (this._openBeforePrint) return
+
+    this._openBeforePrint = new Set(this._openGroups)
+
+    const tree = buildSitemapTree(this._page, this._projects, this._shares())
+
+    for (const group of tree.children) {
+      if (group.collapsible && group.key) this._openGroups.add(group.key)
+    }
+
+    this._spinKey = null
+
+    this._updateDom()
+  }
+
+  /** Restores the user's disclosure state after the print sheet closes. */
+  private _onAfterPrint = (): void => {
+    if (!this._openBeforePrint) return
+
+    this._openGroups = this._openBeforePrint
+
+    this._openBeforePrint = null
+
+    this._updateDom()
   }
 
   /** Reloads the sitemap page node + projects on locale switch. */
@@ -275,6 +323,14 @@ export class ViewSitemap extends BaseComponent {
     const w = nav?.clientWidth || 0
 
     if (w > 0 && Math.abs(w - this._wallW) > CAROUSEL_LAYOUT.FIT_EPS_PX) {
+      // Print jobs freeze the screen-time repack — the host RO fires when
+      // the print layout resizes to the page box, and a mid-snapshot
+      // repack + re-render would rewrite absolute tile coordinates under
+      // the fragmentainer and mount fresh media whose decodes hold the
+      // adapter's pending bag open. The stripped wall grid already
+      // handles the paper reflow.
+      if (printJobActive()) return
+
       this._wallW = w
 
       this._packedCache.clear()
@@ -371,6 +427,16 @@ export class ViewSitemap extends BaseComponent {
 
     const itemH = media?.size?.[1] || GENERIC_DIMENSIONS.DEFAULT_HEIGHT
 
+    // The media caption in the display locale — the leaves carry each
+    // language's CMS label as their tooltip; the first localized entry
+    // falls back when the display locale's slug didn't resolve.
+    const current = store.getters.getLang() || LOCALES.EN
+
+    const desc =
+      node.children.find((leaf) => leaf.locale === current)?.tip ||
+      node.children.find((leaf) => leaf.tip)?.tip ||
+      null
+
     const MediaFigure = COMPONENT_TAGS.MEDIA_FIGURE
 
     return (
@@ -382,7 +448,12 @@ export class ViewSitemap extends BaseComponent {
         <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
           {node.label}
         </h3>
-        <a className={SITEMAP_CLASSES.SITEMAP_CARD_TITLE} href={node.href} title={node.label}>
+        <a
+          className={SITEMAP_CLASSES.SITEMAP_CARD_TITLE}
+          href={node.href}
+          title={node.label}
+          {...{ [DATA_ATTRS.PRINT_LINK]: ATTR_VALUES.EMPTY }}
+        >
           {node.label}
         </a>
         {figure ? (
@@ -404,6 +475,14 @@ export class ViewSitemap extends BaseComponent {
             loading={MEDIA_ATTRS.LOADING_LAZY}
             decoding={MEDIA_ATTRS.DECODING_ASYNC}
           />
+        ) : null}
+        {desc ? (
+          // The caption prints under the media — `hidden` on screen, the
+          // shadow print sheet reveals it (same contract .print-caption
+          // uses for injected nodes).
+          <p className={SITEMAP_CLASSES.SITEMAP_CARD_DESC} hidden>
+            {desc}
+          </p>
         ) : null}
         <div className={SITEMAP_CLASSES.SITEMAP_CARD_LOCALES}>
           {node.children.map((leaf) => (
@@ -552,34 +631,44 @@ export class ViewSitemap extends BaseComponent {
                       group.label
                     )}
                   </h2>
-                  {group.collapsible && !open
-                    ? null
-                    : group.mosaic
-                      ? wallFor(group)
-                      : group.children.map((pageNode) => (
-                          <div key={pageNode.label} className={SITEMAP_CLASSES.SITEMAP_PAGE}>
-                            {/* Heading per page — AT heading-jump contract, same as
+                  {group.collapsible && !open ? (
+                    // Persistent aria-controls target — the wall mounts
+                    // lazily on first open, so the region id lives on an
+                    // always-rendered placeholder; `hidden` keeps the
+                    // empty disclosure region out of the flex layout.
+                    <div id={`${APP_IDS.SITEMAP_GROUP_PREFIX}${groupKey}`} hidden />
+                  ) : group.mosaic ? (
+                    wallFor(group)
+                  ) : (
+                    group.children.map((pageNode) => (
+                      <div key={pageNode.label} className={SITEMAP_CLASSES.SITEMAP_PAGE}>
+                        {/* Heading per page — AT heading-jump contract, same as
                             the footers' legal links. */}
-                            <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
-                              {pageNode.label}
-                            </h3>
-                            <a className={SITEMAP_CLASSES.SITEMAP_PAGE_LINK} href={pageNode.href}>
-                              {pageNode.label}
+                        <h3 className={A11Y_CLASSES.SR_ONLY} data-nosnippet>
+                          {pageNode.label}
+                        </h3>
+                        <a
+                          className={SITEMAP_CLASSES.SITEMAP_PAGE_LINK}
+                          href={pageNode.href}
+                          {...{ [DATA_ATTRS.PRINT_LINK]: ATTR_VALUES.EMPTY }}
+                        >
+                          {pageNode.label}
+                        </a>
+                        <div className={SITEMAP_CLASSES.SITEMAP_LOCALES}>
+                          {pageNode.children.map((leaf) => (
+                            <a
+                              key={leaf.href}
+                              className={SITEMAP_CLASSES.SITEMAP_LOCALE}
+                              href={leaf.href}
+                              hreflang={leaf.locale!.toLowerCase()}
+                            >
+                              {leaf.label}
                             </a>
-                            <div className={SITEMAP_CLASSES.SITEMAP_LOCALES}>
-                              {pageNode.children.map((leaf) => (
-                                <a
-                                  key={leaf.href}
-                                  className={SITEMAP_CLASSES.SITEMAP_LOCALE}
-                                  href={leaf.href}
-                                  hreflang={leaf.locale!.toLowerCase()}
-                                >
-                                  {leaf.label}
-                                </a>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
+                          ))}
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </section>
               )
             })}

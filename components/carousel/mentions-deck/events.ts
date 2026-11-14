@@ -8,17 +8,22 @@
 import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { MENTIONS_DECK_SELECTORS } from '@core/tokens/selectors/mentions-deck.js'
 import {
+  CLIPBOARD_EVENTS,
   DRAG_EVENTS,
+  FORM_EVENTS,
   KEYBOARD_EVENTS,
   MOUSE_EVENTS,
   POINTER_EVENTS,
+  PRINT_EVENTS,
   WINDOW_EVENTS,
 } from '@core/tokens/events/dom.js'
+import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { isPlainClick } from '@core/utils/dom.js'
 import { cardIdxFromEvent, onCardClick, onDotClick, onKeyDown } from './interactions.js'
 import { onPointerDown, onPointerEnd, onPointerMove } from './gestures.js'
 import { pauseAutoplay, resumeAutoplay } from './autoplay.js'
+import { preparePrint, restorePrint } from './print.js'
 import type { MentionsDeck } from '../MentionsDeck.js'
 
 /**
@@ -131,4 +136,25 @@ export function bindEvents(host: MentionsDeck): void {
   host.addScopedListener(window, WINDOW_EVENTS.RESIZE, () => {
     host._onResize()
   })
+
+  // The print adapter's prepare event fires inside beforeprint, ahead of
+  // the media/style walk — freezing the posers here lands before the
+  // snapshot strips the inline fan geometry for the flat paper list.
+  host.addScopedListener(window, PRINT_EVENTS.PREPARE, () => {
+    preparePrint(host)
+  })
+
+  // Native afterprint restores most jobs; engines that only flip the
+  // print media query (emulated-print shells) never dispatch it, so the
+  // query's false edge is the second restore channel — restorePrint is
+  // idempotent when both fire.
+  host.addScopedListener(window, CLIPBOARD_EVENTS.AFTER_PRINT, () => {
+    restorePrint(host)
+  })
+
+  if (window.matchMedia) {
+    host.addScopedListener(window.matchMedia(MEDIA_QUERIES.PRINT), FORM_EVENTS.CHANGE, (e) => {
+      if (!(e as MediaQueryListEvent).matches) restorePrint(host)
+    })
+  }
 }

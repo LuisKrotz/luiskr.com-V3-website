@@ -174,6 +174,25 @@ export function carouselGoTo(c: CustomCarousel, idx: number) {
 
   c.isNavigating = true
 
+  // A still-armed wrap teleport means the track is parked on — or
+  // mid-spring toward — an edge clone while currentIndex already
+  // reflects the destination. Landing the twin jump now (clone≡twin,
+  // invisible) keeps every following spring travelling in the user's
+  // direction: without it a retarget to a real slide shoots the strip
+  // backwards through the whole ring, then settleNav's stale teleport
+  // snaps it back — the "next goes back" bug.
+  if (c.pendingTeleport != null) {
+    const pending = c.pendingTeleport
+
+    c.pendingTeleport = null
+
+    if (c.teleportTimer) clearTimeout(c.teleportTimer)
+
+    c.teleportTimer = null
+
+    c._jumpToSlide(pending, false)
+  }
+
   const cloneFirst = c.$(CAROUSEL_SELECTORS.CAROUSEL_SLIDE_CLONE_FIRST)
 
   const cloneLast = c.$(CAROUSEL_SELECTORS.CAROUSEL_SLIDE_CLONE_LAST)
@@ -273,15 +292,15 @@ export function scheduleTeleport(c: CustomCarousel, targetIdx: number) {
 }
 
 /**
- * Smooth-centers real-slide idx — `children[idx + 1]` because a clone of
- * the last slide is prepended to the track (index 0 is the clone).
+ * Smooth-centers real-slide idx — queries the :not(--clone) slide list so
+ * the count of viewport-sized edge clones never shifts the indexing.
  * @param c The CustomCarousel element.
  * @param idx Real-slide index.
  */
 export function scrollToSlide(c: CustomCarousel, idx: number) {
   const track = c.$(CAROUSEL_SELECTORS.CAROUSEL_TRACK)
 
-  const slide = track?.children[idx + 1]
+  const slide = track?.querySelectorAll(CAROUSEL_SELECTORS.CAROUSEL_SLIDES_NOT_CLONE)[idx]
 
   if (!slide || !track) return
 
@@ -304,7 +323,7 @@ export function scrollToSlide(c: CustomCarousel, idx: number) {
 export function jumpToSlide(c: CustomCarousel, idx: number, smooth = false) {
   const track = c.$(CAROUSEL_SELECTORS.CAROUSEL_TRACK)
 
-  const slide = track?.children[idx + 1]
+  const slide = track?.querySelectorAll(CAROUSEL_SELECTORS.CAROUSEL_SLIDES_NOT_CLONE)[idx]
 
   if (!slide || !track) return
 
@@ -368,32 +387,37 @@ export function checkInfiniteLoop(c: CustomCarousel) {
 
   const track = c.$(CAROUSEL_SELECTORS.CAROUSEL_TRACK)
 
-  const cloneLast = c.$(CAROUSEL_SELECTORS.CAROUSEL_SLIDE_CLONE_LAST)
+  if (!track) return
 
-  const cloneFirst = c.$(CAROUSEL_SELECTORS.CAROUSEL_SLIDE_CLONE_FIRST)
+  const len = c.items.length
 
-  if (!track || !cloneLast || !cloneFirst) return
+  if (!len) return
 
   const trackRect = track.getBoundingClientRect()
 
-  const cloneLastRect = cloneLast.getBoundingClientRect()
-
-  const cloneFirstRect = cloneFirst.getBoundingClientRect()
-
   const center = trackRect.left + trackRect.width / 2
 
-  if (isNearCenter(cloneLastRect, center)) {
-    c.currentIndex = c.items.length - 1
+  // ANY clone parked at center teleports to its real twin — the edge
+  // clone counts are viewport-sized, so position → real index maps
+  // through the leading count: real slides begin at _edgeClonesBefore
+  // and every clone is the same cyclic sequence, making the modulo the
+  // twin lookup for both directions.
+  const kids = track.children
+
+  for (let p = 0; p < kids.length; p++) {
+    const kid = kids[p]
+
+    if (!kid.classList.contains(CAROUSEL_CLASSES.CAROUSEL_SLIDE_CLONE_MARK)) continue
+
+    if (!isNearCenter(kid.getBoundingClientRect(), center)) continue
+
+    c.currentIndex = (((p - c._edgeClonesBefore) % len) + len) % len
 
     c._jumpToSlide(c.currentIndex)
 
     c._updateActiveClasses()
-  } else if (isNearCenter(cloneFirstRect, center)) {
-    c.currentIndex = 0
 
-    c._jumpToSlide(c.currentIndex)
-
-    c._updateActiveClasses()
+    return
   }
 }
 
@@ -433,6 +457,61 @@ export function carouselOnDotClick(c: CustomCarousel, idx: number) {
   c._stopAutoplay(true)
 
   c.goTo(idx)
+}
+
+/**
+ * Delegated clone-slide click — clones are `inert`, so hit-testing skips
+ * their whole subtree and a click on one lands on the track itself. When
+ * that happens, rect-test the clone children for the slide under the
+ * pointer, map its track position to the real twin's index (same modulo
+ * the wrap detector uses), and forward to the twin figure's openModal —
+ * the identical contract a real slide's own figure click binding has.
+ * Clicks on real slides target inside their subtree (not the track) so
+ * they're ignored; clicks on bare track gaps find no clone and no-op.
+ * @param c The CustomCarousel element.
+ * @param e The delegated click event.
+ */
+export function carouselOnTrackClick(c: CustomCarousel, e: MouseEvent) {
+  const track = c.$(CAROUSEL_SELECTORS.CAROUSEL_TRACK)
+
+  if (!track || e.target !== track) return
+
+  const len = c.items.length
+
+  if (!len) return
+
+  const kids = track.children
+
+  for (let p = 0; p < kids.length; p++) {
+    const kid = kids[p]
+
+    if (!kid.classList.contains(CAROUSEL_CLASSES.CAROUSEL_SLIDE_CLONE_MARK)) continue
+
+    const r = kid.getBoundingClientRect()
+
+    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) {
+      continue
+    }
+
+    const twinIdx = (((p - c._edgeClonesBefore) % len) + len) % len
+
+    const twinSlide = c.$$(CAROUSEL_SELECTORS.CAROUSEL_SLIDES_NOT_CLONE)[twinIdx]
+
+    const fig = twinSlide?.querySelector(COMPONENT_TAGS.MEDIA_FIGURE) as
+      (Element & { openModal?: (origin?: Element) => void }) | null
+
+    // The genie origin is the CLICKED clone's figure rect — the twin's
+    // can sit off-viewport at a different strip position, and a warp
+    // starting from out-of-viewport coords reads as the whole carousel
+    // jumping. The modal's media still comes from the twin.
+    const cloneFig = kid.querySelector(COMPONENT_TAGS.MEDIA_FIGURE) as Element | null
+
+    if (fig && typeof fig.openModal === TYPE_STRINGS.FUNCTION) {
+      ;(fig.openModal as (origin?: Element) => void)(cloneFig || undefined)
+    }
+
+    return
+  }
 }
 
 /**

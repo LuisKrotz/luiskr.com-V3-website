@@ -16,7 +16,7 @@ import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 import { buildRouteJsonLd, setMetaDescription } from '@core/router/navigate.js'
-import { toMetaDescription } from '@core/utils/string.js'
+import { stripHtml, toMetaDescription } from '@core/utils/string.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import { generateCarouselItemListSchema, updateJsonLd } from '@core/utils/index.js'
 import { fetchFirebaseDb } from '@core/utils/data/db.js'
@@ -56,11 +56,48 @@ export function processedItems(view: ViewHome): PortfolioItem[] {
 }
 
 /**
+ * Mention rows (awards/press) → carousel ItemList entries — the same
+ * records <mentions-deck> renders, shaped for
+ * generateCarouselItemListSchema so the award strip indexes as a Google
+ * list/carousel. `src` is the CDN-relative badge path the builder
+ * prefixes; the hidden sr-only span is the item's long description.
+ */
+function awardSchemaItems(
+  view: ViewHome
+): { label: string; link?: string; src?: string; description?: string }[] {
+  const raw = (view.aboutTranslations?.mention_items || []) as Array<{
+    description?: string
+    link?: string
+    media?: { path?: string }
+  }>
+
+  return raw.map((m) => {
+    const html = String(m?.description || '')
+
+    const visible = html.split(/<span\b/i)[0]
+
+    const longdesc = html.match(/<span[^>]*>([\s\S]*?)<\/span>/i)?.[1] || ''
+
+    return {
+      label: stripHtml(visible.replace(/<br\s*\/?>/gi, ' '))
+        .replace(/\s+/g, ' ')
+        .trim(),
+      link: m?.link,
+      src: m?.media?.path,
+      description: stripHtml(longdesc || visible)
+        .replace(/\s+/g, ' ')
+        .trim(),
+    }
+  })
+}
+
+/**
  * Base route graph (Org + WebSite + WebPage) composed with the
- * portfolio ItemList — replaces the graph syncDocumentHead emitted so
- * the WebPage entity survives alongside the carousel data. Called again
- * when the localized bio lands so WebPage.description carries the real
- * text instead of the parse-time site fallback.
+ * portfolio ItemList and the awards/mentions ItemList — replaces the
+ * graph syncDocumentHead emitted so the WebPage entity survives
+ * alongside the carousel data. Called again when the localized bio lands
+ * so WebPage.description carries the real text instead of the
+ * parse-time site fallback.
  */
 function emitHomeJsonLd(view: ViewHome, description?: string): void {
   const route = router.currentRoute
@@ -72,6 +109,10 @@ function emitHomeJsonLd(view: ViewHome, description?: string): void {
   const carouselSchema = generateCarouselItemListSchema(view.processedItems)
 
   if (carouselSchema) graph.push(carouselSchema)
+
+  const awardsSchema = generateCarouselItemListSchema(awardSchemaItems(view))
+
+  if (awardsSchema) graph.push(awardsSchema)
 
   updateJsonLd(graph)
 }
@@ -138,6 +179,8 @@ export function loadHomeData(view: ViewHome): void {
       if (aboutSnap?.exists()) {
         const about = aboutSnap.val() as AboutNode
 
+        view.aboutTranslations = about
+
         // The home/about routes share this bio blurb as their SERP
         // description — push the localized text once the node resolves
         // (the contact route keeps its own parse-time description).
@@ -150,8 +193,6 @@ export function loadHomeData(view: ViewHome): void {
 
           emitHomeJsonLd(view, bioDesc)
         }
-
-        view.aboutTranslations = about
 
         store.commit(DATA_MUTATIONS.SET_MENTIONS, {
           title:

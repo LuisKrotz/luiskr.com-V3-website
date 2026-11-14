@@ -10,7 +10,7 @@
 
 import { parseTokens, renderContent } from '@website/components/media/draw-text/render.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
-import { HTML_TAGS } from '@core/tokens/elements/html.js'
+import { HTML_PHRASING_TAGS, HTML_TAGS } from '@core/tokens/elements/html.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { CSS_STRINGS } from '@core/tokens/strings/css.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
@@ -23,6 +23,9 @@ const mountHtml = (html) => {
 
   return host
 }
+
+/** True when the emitted markup carries a real <q> element. */
+const usesQTag = (html) => mountHtml(html).querySelector(HTML_PHRASING_TAGS.Q) !== null
 
 describe('draw-text nested markup', () => {
   test('nested <a><span> renders real markup — no leaked tag text', () => {
@@ -98,5 +101,61 @@ describe('draw-text nested markup', () => {
     // Top-level spaces are literal text nodes; the nbsp contract only
     // survives INSIDE tags (a link's words stay one visual unit).
     expect(host.textContent).toBe('ab  c de')
+  })
+
+  test('<q> emits quote-mark delay vars synced to its edge chars', () => {
+    // <q>'s ::before/::after marks are generated content — outside the
+    // char spans — so the renderer stamps --q-open-delay/--q-close-delay
+    // on the element and the stylesheet animates the marks on the same
+    // char-draw clock. "Say <q>hi</q>.": 'Say' = ci 0-2, space = ci 3,
+    // 'hi' = ci 4-5, '.' = ci 6 — open syncs to ci 4, close to ci 5.
+    const html = renderContent('Say <q>hi</q>.', 10, 0)
+
+    expect(html).toContain('--q-open-delay: 40ms')
+    expect(html).toContain('--q-close-delay: 50ms')
+    expect(usesQTag(html)).toBe(true)
+  })
+
+  test('<q> edge chars resolve through nested tags and offsets', () => {
+    // Edge lookup is recursive — a nested <em> still yields the outer
+    // <q>'s true first/last char indexes. 'x' = ci 0, space = ci 1,
+    // inner 'ab' = ci 2-3 (the <em>'s chars are the <q>'s edges).
+    const html = renderContent('x <q><em>ab</em></q>', 10, 200)
+
+    expect(html).toContain('--q-open-delay: 220ms')
+    expect(html).toContain('--q-close-delay: 230ms')
+  })
+
+  test('char-free <q> still emits vars — anchored to the first reveal slot, never 0ms-instant', () => {
+    // <q> </q> has no inner chars to sync with. Without vars the
+    // stylesheet's var() fallback resolves to 0ms and the marks paint at
+    // the reveal's first frame — a floating quote ahead of every glyph.
+    // The renderer clamps the missing edge to ci 0 → the offset slot.
+    const emptyQ = renderContent('a <q> </q>', 10, 300)
+
+    expect(emptyQ).toContain('--q-open-delay: 300ms')
+    expect(emptyQ).toContain('--q-close-delay: 300ms')
+    expect(usesQTag(emptyQ)).toBe(true)
+  })
+
+  test('non-q tags never emit quote vars', () => {
+    const strong = renderContent('a <strong>b</strong>', 10, 0)
+
+    expect(strong).not.toContain('--q-open-delay')
+    expect(strong).not.toContain('--q-close-delay')
+  })
+
+  test('<q> vars merge into an authored style attr instead of duplicating it', () => {
+    // HTML keeps the FIRST style attribute — a second one would be
+    // silently dropped, losing the delay vars entirely.
+    const html = renderContent('a <q style="color: red">hi</q>', 10, 0)
+
+    expect(html).toContain('--q-open-delay: 20ms')
+    expect(html).toContain('color: red')
+
+    const q = mountHtml(html).querySelector(HTML_PHRASING_TAGS.Q)
+
+    expect(q.getAttribute('style')).toContain('--q-open-delay')
+    expect(q.getAttribute('style')).toContain('color: red')
   })
 })

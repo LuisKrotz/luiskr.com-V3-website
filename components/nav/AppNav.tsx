@@ -9,22 +9,18 @@
  */
 
 import { KEYS } from '@core/tokens/primitives.js'
-import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { SECTIONS } from '@core/tokens/base.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { KEYBOARD_EVENTS } from '@core/tokens/events/dom.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { ROUTE_NAMES, ROUTE_PREFIXES } from '@core/tokens/routes/names.js'
-import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
-import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
-import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h } from '@core/jsx.js'
 import { BaseComponent } from '@core/Component.js'
 import { armResidualInputGuard } from '@core/utils/dom.js'
 import { joustCollapseAll } from '@core/utils/dom/joust.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
-import { LANG_SLUGS } from '@core/i18n.js'
+import { isEarthPlaygroundRoute, isStarFieldRoute } from '@core/router/playground.js'
 import { predictiveLoader } from '@core/predictive-loader.js'
 import type { MenuBackgroundWebGL } from '@core/utils/canvas/loaders/menu-background-webgl.js'
 import type { BurgerButtonWebGL } from '@core/utils/canvas/widgets/burger-button-webgl.js'
@@ -47,33 +43,11 @@ import {
   mountNavMenuWebGL,
   navBurgerCanvas,
   navMenuCanvas,
+  navMenuKeyDown,
   openNavMenu,
   toggleNavMenu,
 } from './menu.js'
 import appStyles from '@core/sass/components/shell/app/nav-shell.scss?tiers'
-
-/**
- * Pre-computed set of every locale's localized earth-playground slug —
- * `isPlaygroundPage` needs O(1) membership tests on the last URL segment
- * (the route resolver may not have run yet when the getter first fires),
- * so all 16 locales' `earthPlayground` values are flattened once at module
- * load rather than re-built per check.
- */
-const _PLAYGROUND_SLUGS = new Set(
-  Object.values(LANG_SLUGS)
-    .map((s) => s.earthPlayground)
-    .filter(Boolean)
-)
-
-/**
- * Same slug set for the star-field experiment — separate `starField` key so
- * each playground page suppresses only its own menu item.
- */
-const _STAR_FIELD_SLUGS = new Set(
-  Object.values(LANG_SLUGS)
-    .map((s) => s.starField)
-    .filter(Boolean)
-)
 
 /**
  * The slice of the APP translation dictionary the nav template reads —
@@ -157,6 +131,7 @@ export class AppNav extends BaseComponent {
     components: unknown
     slugs: unknown
     modalOpen: boolean
+    searchOpen: boolean
     reduced: boolean
   } | null = null
 
@@ -202,54 +177,22 @@ export class AppNav extends BaseComponent {
 
   /**
    * True on the playground route (nav renders in its alternate variant).
-   * Three checks, in order: the resolved route name (fast path), the raw
-   * last URL segment vs the canonical English segments (covers the window
-   * before the first navigation resolves), and the precomputed set of all
-   * 16 locales' localized playground slugs.
+   * The shared router/playground predicates do the checking: resolved
+   * route name first, then the last URL segment against canonical and
+   * localized slugs.
    */
   get isPlaygroundPage() {
     return this.isEarthPlaygroundPage || this.isStarFieldPage
   }
 
-  /**
-   * True on the earth-playground route — checks the resolved route name
-   * first (the URL may not have resolved when the getter first fires),
-   * then falls back to a last-segment scan against canonical and localized
-   * slugs.
-   */
+  /** True on the earth-playground route (or its space-playground alias). */
   get isEarthPlaygroundPage() {
-    if (this.currentRoute?.name === ROUTE_NAMES.EARTH_PLAYGROUND) return true
-
-    const last = this._lastPathSegment
-
-    if (
-      last === ROUTE_PATHS.EARTH_PLAYGROUND_SEGMENT ||
-      last === ROUTE_PATHS.SPACE_PLAYGROUND_SEGMENT
-    )
-      return true
-
-    return _PLAYGROUND_SLUGS.has(last)
+    return isEarthPlaygroundRoute(this.currentRoute?.name)
   }
 
   /** True on the star-field experiment route — same resolution order. */
   get isStarFieldPage() {
-    if (this.currentRoute?.name === ROUTE_NAMES.STAR_FIELD) return true
-
-    const last = this._lastPathSegment
-
-    if (last === ROUTE_PATHS.STAR_FIELD_SEGMENT) return true
-
-    return _STAR_FIELD_SLUGS.has(last)
-  }
-
-  /** Last non-empty URL path segment — shared by the playground checks. */
-  get _lastPathSegment() {
-    const path =
-      typeof window !== TYPE_STRINGS.UNDEFINED ? window.location.pathname : ATTR_VALUES.EMPTY
-
-    const segments = path.split(CHAR_STRINGS.SLASH).filter(Boolean)
-
-    return segments[segments.length - 1]
+    return isStarFieldRoute(this.currentRoute?.name)
   }
 
   /** Active locale code. */
@@ -351,6 +294,8 @@ export class AppNav extends BaseComponent {
 
     const modalOpen = store.getters.getModal()?.open === true
 
+    const searchOpen = store.getters.getSearchModalOpen?.() === true
+
     const reduced = store.getters.getReducedMotion()
 
     const prev = this._navStoreSig
@@ -362,6 +307,7 @@ export class AppNav extends BaseComponent {
       lang.components !== prev.components ||
       lang.slugs !== prev.slugs ||
       modalOpen !== prev.modalOpen ||
+      searchOpen !== prev.searchOpen ||
       reduced !== prev.reduced
     ) {
       this._navStoreSig = {
@@ -370,6 +316,7 @@ export class AppNav extends BaseComponent {
         components: lang.components,
         slugs: lang.slugs,
         modalOpen,
+        searchOpen,
         reduced,
       }
 
@@ -395,13 +342,23 @@ export class AppNav extends BaseComponent {
 
   _bindEvents() {
     this.addScopedListener(window, KEYBOARD_EVENTS.KEYDOWN, (e) => {
-      if (
-        (e as KeyboardEvent).key === KEYS.ESCAPE &&
-        this._menuOpen &&
-        !store.getters.getPreferencesOpen() &&
-        !store.getters.getLangDialogOpen()
-      ) {
+      // Dialogs rendered above the overlay own the keyboard while open —
+      // Escape and the arrow row must not close/steer the menu behind one.
+      const dialogAbove = store.getters.getPreferencesOpen() || store.getters.getLangDialogOpen()
+
+      if (!this._menuOpen || dialogAbove) return
+
+      if ((e as KeyboardEvent).key === KEYS.ESCAPE) {
         this._closeMenu()
+
+        return
+      }
+
+      // The overlay is the live navigation landmark — arrows rove its
+      // items, Home/End jump to the ends (navMenuKeyDown answers whether
+      // the key was consumed so only handled keys are prevented).
+      if (navMenuKeyDown(this, e as KeyboardEvent)) {
+        e.preventDefault()
       }
     })
 
@@ -483,9 +440,9 @@ export class AppNav extends BaseComponent {
     return renderAppNav(this)
   }
 
-  /** Persistent burger canvas (aria-labeled) — created once, survives re-renders so its GL context does. */
-  _burgerCanvas(label: string): HTMLCanvasElement {
-    return navBurgerCanvas(this, label)
+  /** Persistent burger canvas (pointer overlay) — created once, survives re-renders so its GL context does. */
+  _burgerCanvas(): HTMLCanvasElement {
+    return navBurgerCanvas(this)
   }
 
   /** Canvas JSX for the WebGL menu background. */

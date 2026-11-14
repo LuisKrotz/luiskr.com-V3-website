@@ -78,7 +78,7 @@ describe('misc attr/guard arms', () => {
     const track = {
       scrollLeft: 0,
       scrollTo: jest.fn(),
-      children: [{}, slide],
+      querySelectorAll: () => [slide],
       getBoundingClientRect: () => ({ width: 200, left: 0 }),
     }
 

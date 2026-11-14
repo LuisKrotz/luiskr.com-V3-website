@@ -1,10 +1,10 @@
 /**
  * @file nav-globe.tsx
- * @description The language glyph for <app-nav>'s language chip — a neon
+ * @description The language glyph for <app-nav>'s language chip — a silver
  * globe (outline, meridian, equator and two parallels) with a speech
  * bubble carrying three dots at its upper right, matching the reference
  * rest state. Replaces the flag on the strip; flags stay in the language
- * dialog. Colors come from the nav neon tokens; glow and motion live in
+ * dialog. Colors come from the nav metal tokens; glow and motion live in
  * nav-icons.scss. Isolated component — registers its own tag.
  */
 
@@ -28,7 +28,7 @@ const PARALLEL_HALF = 12
 const BUBBLE = { x: 30, y: 3, w: 15, h: 10, r: 3.5 }
 const BUBBLE_DOTS = [34, 37.5, 41]
 
-/** `stop` bound to a --nav-neon-* CSS prop — presentation attributes can't
+/** `stop` bound to a --nav-metal-* CSS prop — presentation attributes can't
  * resolve custom properties, so the value rides inline style. */
 const stop = (offset: number, prop: string) => (
   <stop offset={offset} style={`stop-color: var(${prop})`} />
@@ -38,7 +38,7 @@ const stop = (offset: number, prop: string) => (
 const ref = (id: string) => `url(#${id})`
 
 /**
- * The <nav-globe-icon> element — neon globe with a speech bubble. The
+ * The <nav-globe-icon> element — silver globe with a speech bubble. The
  * stroke gradient runs teal to green so the sphere reads as a single lit
  * wire frame, the bubble sharing the same ramp.
  */
@@ -62,8 +62,8 @@ export class NavGlobeIcon extends BaseComponent {
             x2="38"
             y2="39"
           >
-            {stop(0, NAV_SEARCH_CSS_PROPS.NEON_TEAL)}
-            {stop(1, NAV_SEARCH_CSS_PROPS.NEON_GREEN)}
+            {stop(0, NAV_SEARCH_CSS_PROPS.METAL_SILVER)}
+            {stop(1, NAV_SEARCH_CSS_PROPS.METAL_STEEL)}
           </linearGradient>
         </defs>
 

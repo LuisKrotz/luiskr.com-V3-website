@@ -7,6 +7,7 @@
  * clock, hover push, and stale-surface fallback.
  */
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals'
+import { framePool } from '@core/utils/motion/frame.js'
 import { createMock2D } from '@tests/fixtures/mock-webgl.js'
 import store from '@core/store.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
@@ -64,6 +65,7 @@ const makeSession = () => {
     t: 0,
     lastT: performance.now(),
     raf: 0,
+    onFrame: () => {},
     active: true,
     hover: false,
     tick: 0,
@@ -384,7 +386,7 @@ describe('about glitch session wasm arms', () => {
     expect(host._glitch.wasm).toBe(mountResult)
 
     host._glitch.active = false
-    cancelAnimationFrame(host._glitch.raf)
+    framePool.cancel(host._glitch.raf)
     host._glitch.ro?.disconnect()
     wrap.remove()
   })
@@ -412,7 +414,7 @@ describe('about glitch session wasm arms', () => {
 
     tick(host)
     s.active = false // stop the re-armed rAF before flushing microtasks
-    cancelAnimationFrame(s.raf)
+    framePool.cancel(s.raf)
 
     await flush()
 

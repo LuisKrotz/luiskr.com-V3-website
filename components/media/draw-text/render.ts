@@ -10,8 +10,10 @@
 
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { DRAW_TEXT_CLASSES } from '@core/tokens/classes/draw-text.js'
+import { HTML_PHRASING_TAGS } from '@core/tokens/elements/html.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { CSS_STRINGS } from '@core/tokens/strings/css.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
@@ -130,13 +132,51 @@ export function parseTokens(text: string): DrawToken[] {
 type RenderWord = (chars?: DrawChar[]) => string
 
 /**
+ * Per-mount render context — the delay/offset pair bound into every
+ * char's stagger vars, threaded through the token→HTML walkers so tag
+ * wrappers can emit vars that must agree with them (a <q>'s generated
+ * quote marks animate on the adjacent chars' delays — see tagToHtml).
+ */
+export interface DrawRenderCtx {
+  /** Per-char stagger ms — the value each char writes to `--char-delay`. */
+  delay: number
+  /** Base ms before any char starts — the value each char writes to `--offset`. */
+  offset: number
+}
+
+/**
+ * Char index at a chunk-list edge — recursive: the edge char of a list is
+ * the edge char of its first (or last) chunk that yields one, and a tag's
+ * edge char lives inside its own chunk list. Returns -1 for char-free
+ * runs (pure space/br tokens) where no adjacent char exists for a
+ * decoration to sync with.
+ */
+const edgeCharCi = (chunks: DrawToken[], last: boolean): number => {
+  const ordered = last ? [...chunks].reverse() : chunks
+
+  for (const chunk of ordered) {
+    if (chunk.type === CSS_STRINGS.TOKEN_WORD && chunk.chars?.length) {
+      return last ? chunk.chars[chunk.chars.length - 1].ci : chunk.chars[0].ci
+    }
+
+    if (chunk.type === CSS_STRINGS.TOKEN_TAG && chunk.chunks?.length) {
+      const inner = edgeCharCi(chunk.chunks, last)
+
+      if (inner >= 0) return inner
+    }
+  }
+
+  return -1
+}
+
+/**
  * Renders one non-tag token to HTML — word tokens become animated spans via
  * `renderWord`, spaces become &nbsp;, everything else degrades to "".
  * @param {DrawToken} chunk — the parsed token
  * @param {RenderWord} renderWord — word renderer bound to the current delay/offset
  * @returns {string} HTML for the token
  */
-const chunkToHtml = (chunk: DrawToken, renderWord: RenderWord): string => {
+const chunkToHtml = (chunk: DrawToken, renderWord: RenderWord, ctx?: DrawRenderCtx): string => {
   if (chunk.type === CSS_STRINGS.TOKEN_WORD) return renderWord(chunk.chars)
 
   // Bare space text node inside tags: a wrapper span sanitizes to "" per-node in axe's
@@ -146,7 +186,7 @@ const chunkToHtml = (chunk: DrawToken, renderWord: RenderWord): string => {
   if (chunk.type === CSS_STRINGS.TOKEN_BR) return '<br aria-hidden="true" />'
 
   // Nested tag (e.g. <a><span>label</span></a>) — recurse so children render.
-  if (chunk.type === CSS_STRINGS.TOKEN_TAG) return tagToHtml(chunk, renderWord)
+  if (chunk.type === CSS_STRINGS.TOKEN_TAG) return tagToHtml(chunk, renderWord, ctx)
 
   return ATTR_VALUES.EMPTY
 }
@@ -160,9 +200,9 @@ const chunkToHtml = (chunk: DrawToken, renderWord: RenderWord): string => {
  * @param {RenderWord} renderWord — word renderer for nested word chunks
  * @returns {string} HTML for the tag block
  */
-const tagToHtml = (token: DrawToken, renderWord: RenderWord): string => {
+const tagToHtml = (token: DrawToken, renderWord: RenderWord, ctx?: DrawRenderCtx): string => {
   const innerContent = (token.chunks || [])
-    .map((chunk) => chunkToHtml(chunk, renderWord))
+    .map((chunk) => chunkToHtml(chunk, renderWord, ctx))
     .join(ATTR_VALUES.EMPTY)
 
   // A tag token without a tag name is malformed input (parseTokens always
@@ -181,19 +221,45 @@ const tagToHtml = (token: DrawToken, renderWord: RenderWord): string => {
   // that fall back to a content walk treat clip-path-hidden nodes as
   // hidden-from-AT — an alpha-hidden node still feeds the anchor's
   // accessible name in every animation state.
-  const attrStr =
-    token.tag.toLowerCase() === DOM_STRINGS.A_TAG
-      ? (token.attrStr || ATTR_VALUES.EMPTY).replace(/\s*aria-label="[^"]*"/iu, ATTR_VALUES.EMPTY)
-      : token.attrStr || ATTR_VALUES.EMPTY
+  const isAnchor = token.tag.toLowerCase() === DOM_STRINGS.A_TAG
 
-  const content =
-    token.tag.toLowerCase() === DOM_STRINGS.A_TAG
-      ? `<span class="${A11Y_CLASSES.SR_ONLY_ALPHA}">${escapeHtml(
-          stripHtml(token.inner || ATTR_VALUES.EMPTY)
-            .split(CHAR_STRINGS.SPACE_CHAR)
-            .join(CHAR_STRINGS.NBSP)
-        )}</span>${innerContent}`
-      : innerContent
+  let attrStr = isAnchor
+    ? (token.attrStr || ATTR_VALUES.EMPTY).replace(/\s*aria-label="[^"]*"/iu, ATTR_VALUES.EMPTY)
+    : token.attrStr || ATTR_VALUES.EMPTY
+
+  // `<q>`'s ::before/::after quote marks are generated content — they
+  // paint OUTSIDE the char stagger (instantly) unless the stylesheet
+  // animates them on delays only the renderer knows: the open mark
+  // syncs to the first inner char's stagger slot, the close mark to
+  // the last's (edge chars anywhere inside, nested tags included).
+  // An authored style attribute merges rather than gaining a twin —
+  // a duplicate `style` loses to the first per HTML parsing.
+  if (token.tag.toLowerCase() === HTML_PHRASING_TAGS.Q && ctx) {
+    const firstCi = edgeCharCi(token.chunks || [], false)
+
+    const lastCi = edgeCharCi(token.chunks || [], true)
+
+    // Char-free <q> (empty or whitespace-only) still gets delay vars —
+    // without them the stylesheet's var() fallback is 0ms and the marks
+    // paint instantly at the reveal's first frame, floating ahead of
+    // every glyph. Anchor both to the reveal's first slot (offset).
+    const decls = `--q-open-delay: ${ctx.offset + Math.max(0, firstCi) * ctx.delay}ms; --q-close-delay: ${ctx.offset + Math.max(0, lastCi) * ctx.delay}ms;`
+
+    attrStr = new RegExp(`${COMMON_ATTRS.STYLE}="`, 'u').test(attrStr)
+      ? attrStr.replace(
+          new RegExp(`${COMMON_ATTRS.STYLE}="`, 'u'),
+          `${COMMON_ATTRS.STYLE}="${decls} `
+        )
+      : `${attrStr} ${COMMON_ATTRS.STYLE}="${decls}"`
+  }
+
+  const content = isAnchor
+    ? `<span class="${A11Y_CLASSES.SR_ONLY_ALPHA}">${escapeHtml(
+        stripHtml(token.inner || ATTR_VALUES.EMPTY)
+          .split(CHAR_STRINGS.SPACE_CHAR)
+          .join(CHAR_STRINGS.NBSP)
+      )}</span>${innerContent}`
+    : innerContent
 
   return `<${token.tag} ${attrStr}>${content}</${token.tag}>`
 }
@@ -207,7 +273,11 @@ const tagToHtml = (token: DrawToken, renderWord: RenderWord): string => {
  * @param renderWord Word renderer bound to the current delay/offset.
  * @returns HTML string for the token.
  */
-export const tokenToHtml = (token: DrawToken, renderWord: RenderWord): string => {
+export const tokenToHtml = (
+  token: DrawToken,
+  renderWord: RenderWord,
+  ctx?: DrawRenderCtx
+): string => {
   if (token.type === CSS_STRINGS.TOKEN_BR) return '<br aria-hidden="true" />'
 
   // Natural-width literal space between word spans — a breakable point
@@ -217,7 +287,7 @@ export const tokenToHtml = (token: DrawToken, renderWord: RenderWord): string =>
 
   if (token.type === CSS_STRINGS.TOKEN_WORD) return renderWord(token.chars)
 
-  if (token.type === CSS_STRINGS.TOKEN_TAG) return tagToHtml(token, renderWord)
+  if (token.type === CSS_STRINGS.TOKEN_TAG) return tagToHtml(token, renderWord, ctx)
 
   return ATTR_VALUES.EMPTY
 }
@@ -371,7 +441,9 @@ export function renderContent(
   const renderWord: RenderWord = (chars) =>
     renderWordHtml(chars, wi++, delay, offset, mode === RENDER_MODES.CHARS)
 
-  const htmlParts = tokens.map((token) => tokenToHtml(token, renderWord))
+  const ctx: DrawRenderCtx = { delay, offset }
+
+  const htmlParts = tokens.map((token) => tokenToHtml(token, renderWord, ctx))
 
   return htmlParts.join(ATTR_VALUES.EMPTY)
 }

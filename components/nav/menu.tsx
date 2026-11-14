@@ -8,9 +8,8 @@
  */
 
 import { NAV_BURGER_CLASSES, NAV_CLASSES, NAV_MENU_CLASSES } from '@core/tokens/classes/nav.js'
-import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
-import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
+import { KEYS } from '@core/tokens/primitives.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h } from '@core/jsx.js'
 import { MenuBackgroundWebGL } from '@core/utils/canvas/loaders/menu-background-webgl.js'
@@ -18,7 +17,6 @@ import { BurgerButtonWebGL } from '@core/utils/canvas/widgets/burger-button-webg
 import { webglContextDead } from '@core/utils/canvas/webgl-mode.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
-import { APP_IDS } from '@core/tokens/ids/app.js'
 import { NAV_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
 import { MODAL_MUTATIONS } from '@core/tokens/events/mutations.js'
@@ -47,8 +45,12 @@ export interface NavMenuHost {
   _menuCanvasEl: HTMLCanvasElement | null
   /** True while the nav floats over a dark band (contrast variant). */
   _onDark: boolean
+  /** The shadow root — read for the focused element during close-restore. */
+  shadowRoot?: ShadowRoot | null
   /** Shadow-scoped querySelector. */
   $(selector: string): Element | null
+  /** Shadow-scoped querySelectorAll (live menu item list) — absent on minimal stub hosts, treated as no items. */
+  $$?<T extends Element = HTMLElement>(selector: string): T[]
   /** Triggers a template re-render. */
   _updateDom(): void
 }
@@ -56,36 +58,29 @@ export interface NavMenuHost {
 /**
  * The burger icon's canvas element — lazily created once and kept for
  * the component's lifetime so its WebGL context is never churned by
- * re-renders (canvas recreation would force a fresh GL context). Each
- * call also re-syncs the on-dark class and aria-label/expanded since
- * those change without recreating the element.
+ * re-renders (canvas recreation would force a fresh GL context).
+ * Purely presentational: pointer presses reach its widget click
+ * listener, but keyboard focus and the a11y tree belong to the real
+ * <button> layered under it — a focusable overlay over a focusable
+ * button gave the chip two tab stops, and the canvas's opacity-0 rest
+ * state painted a ring around nothing. Each call still re-syncs the
+ * on-dark class since it changes without recreating the element.
  * @param host AppNav instance.
- * @param label aria-label for the burger (localized "menu").
  * @returns The persistent canvas element.
  */
-export const navBurgerCanvas = (host: NavMenuHost, label: string): HTMLCanvasElement => {
+export const navBurgerCanvas = (host: NavMenuHost): HTMLCanvasElement => {
   if (!host._burgerCanvasEl) {
     host._burgerCanvasEl = (
       <canvas
         className={NAV_BURGER_CLASSES.NAV_BURGER_CANVAS}
         width={NAV_DIMENSIONS.BURGER_CANVAS_SIZE}
         height={NAV_DIMENSIONS.BURGER_CANVAS_SIZE}
-        role={ARIA_ATTRS.ROLE_BUTTON}
-        tabIndex={CHAR_STRINGS.ZERO}
+        aria-hidden={ATTR_VALUES.TRUE}
       />
     ) as HTMLCanvasElement
   }
 
   host._burgerCanvasEl.classList.toggle(NAV_CLASSES.NAV_ON_DARK, !!host._onDark)
-
-  host._burgerCanvasEl.setAttribute(ARIA_ATTRS.ARIA_LABEL, label)
-
-  host._burgerCanvasEl.setAttribute(
-    ARIA_ATTRS.ARIA_EXPANDED,
-    host._menuOpen ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE
-  )
-
-  host._burgerCanvasEl.setAttribute(ARIA_ATTRS.ARIA_CONTROLS, APP_IDS.NAV_MENU_PANEL)
 
   return host._burgerCanvasEl
 }
@@ -160,6 +155,12 @@ export const openNavMenu = (host: NavMenuHost): void => {
   host._menuOpenedAt = performance.now()
 
   host._updateDom()
+
+  // Keyboard users get the first menu item immediately — the overlay is
+  // the live navigation landmark while open, so arrows and Esc are
+  // meaningful from the first keypress. Script focus after a pointer
+  // activation never paints :focus-visible, so mouse users see no ring.
+  focusNavMenuItem(host, 0)
 }
 
 /**
@@ -219,15 +220,13 @@ export const mountNavBurgerWebGL = (host: NavMenuHost): void => {
     burgerCanvas.isConnected &&
     webglContextDead(burgerCanvas)
   ) {
-    const label = burgerCanvas.getAttribute(ARIA_ATTRS.ARIA_LABEL) || ATTR_VALUES.EMPTY
-
     host._burgerBtn.destroy()
 
     host._burgerBtn = null
 
     host._burgerCanvasEl = null
 
-    burgerCanvas.replaceWith(navBurgerCanvas(host, label))
+    burgerCanvas.replaceWith(navBurgerCanvas(host))
 
     burgerCanvas = host._burgerCanvasEl
   }
@@ -267,6 +266,12 @@ export const closeNavMenu = (host: NavMenuHost): void => {
 
   host._menuClosing = true
 
+  // Capture where keyboard focus sits now — the close-tail re-render
+  // swaps every element, so whether restoration is owed can only be
+  // judged against the captured node (a detached focus target means the
+  // overlay owned focus and must hand it back to the trigger).
+  const restoreFocus = host.shadowRoot?.activeElement
+
   // The X morphs back into the four squares while the overlay dissolves.
   host._burgerBtn?.setOpen(false)
 
@@ -304,5 +309,78 @@ export const closeNavMenu = (host: NavMenuHost): void => {
     }
 
     host._updateDom()
+
+    // Focus returns to the burger button when the overlay owned it —
+    // the render just replaced every element, so a captured target that
+    // is still connected (e.g. the button itself) needs no work.
+    if (restoreFocus && !restoreFocus.isConnected) {
+      ;(host.$(`.${NAV_BURGER_CLASSES.NAV_BURGER_FALLBACK}`) as HTMLElement | null)?.focus()
+    }
   }, ANIMATION_DURATIONS.MENU_CLOSE_DURATION)
+}
+
+/** Live menu item anchors inside the open overlay (empty while closed). */
+const navMenuItems = (host: NavMenuHost): HTMLElement[] =>
+  host.$$?.<HTMLElement>(`.${NAV_MENU_CLASSES.NAV_MENU_MODAL_ITEM}`) ?? []
+
+/**
+ * Moves focus to a menu item by index, wrapping past the ends. No-op
+ * while the overlay is closed — the items only exist in the open
+ * render, so an empty list is the whole guard.
+ * @param host AppNav instance.
+ * @param idx Target item index (negative/over-length values wrap).
+ */
+export const focusNavMenuItem = (host: NavMenuHost, idx: number): void => {
+  const items = navMenuItems(host)
+
+  if (!items.length) return
+
+  items[((idx % items.length) + items.length) % items.length].focus()
+}
+
+/**
+ * Arrow/Home/End roving inside the open overlay — Up/Left step back,
+ * Down/Right step forward (both wrap), Home/End jump to the ends. The
+ * anchor currently holding focus is the step origin; focus anywhere
+ * else (burger, document body) starts the wrap from the edges.
+ * @param host AppNav instance.
+ * @param e The keydown event routed by the component's window listener.
+ * @returns True when the key was consumed — callers preventDefault only
+ *   for handled keys so all other keys keep their native behavior.
+ */
+export const navMenuKeyDown = (host: NavMenuHost, e: KeyboardEvent): boolean => {
+  const key = e.key
+
+  const isNav =
+    key === KEYS.ARROW_LEFT ||
+    key === KEYS.ARROW_RIGHT ||
+    key === KEYS.ARROW_UP ||
+    key === KEYS.ARROW_DOWN ||
+    key === KEYS.HOME ||
+    key === KEYS.END
+
+  // The closing dissolve still shows the items, but they are already on
+  // their way out — steering focus into dying elements would only make
+  // the restore path noisier.
+  if (!isNav || !host._menuOpen || host._menuClosing) return false
+
+  const items = navMenuItems(host)
+
+  if (!items.length) return false
+
+  const idx = items.indexOf(host.shadowRoot?.activeElement as HTMLElement)
+
+  let next: number
+
+  if (key === KEYS.HOME) {
+    next = 0
+  } else if (key === KEYS.END) {
+    next = items.length - 1
+  } else {
+    next = idx + (key === KEYS.ARROW_LEFT || key === KEYS.ARROW_UP ? -1 : 1)
+  }
+
+  focusNavMenuItem(host, next)
+
+  return true
 }

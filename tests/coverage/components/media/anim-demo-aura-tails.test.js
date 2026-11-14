@@ -7,6 +7,8 @@
  */
 
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals'
+import { HTML_TAGS } from '@core/tokens/elements/html.js'
+import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 
 const session = {
   setProgress: jest.fn(),
@@ -15,7 +17,17 @@ const session = {
 }
 
 jest.unstable_mockModule('@core/utils/gpu/ring-fill.js', () => ({
-  mountRingFill: () => session,
+  // The real mount appends its overlay canvas synchronously — the
+  // driver reads `canvas:not(.is-fallback)` as the live signal (the
+  // stylesheet's own gate), so the mock must append a live canvas too.
+  mountRingFill: (strip, _tiles, canvasClass) => {
+    const canvas = document.createElement(HTML_TAGS.CANVAS)
+
+    canvas.className = canvasClass
+    strip.appendChild(canvas)
+
+    return session
+  },
 }))
 
 const { AnimDemo } = await import('@website/components/media/AnimDemo.js')
@@ -57,5 +69,36 @@ describe('anim-demo aura live-session driver', () => {
     unmount()
     expect(session.destroy).toHaveBeenCalledTimes(1)
     unmount = null
+  })
+
+  test('falls back to the armed CSS trail when the session has no live canvas', () => {
+    // Let the observer fire so the driver mounts and the mock appends
+    // its canvas before the failure lands.
+    jest.advanceTimersByTime(10)
+
+    // The failed-mount path: the session object exists but its canvas
+    // never resolved past is-fallback — the driver must keep the CSS
+    // trail sweeping instead of driving dead setProgress calls.
+    const strip = demo.shadowRoot.querySelector(`.${C.CHIPS}`)
+    const canvas = strip.querySelector(HTML_TAGS.CANVAS)
+
+    canvas.classList.add(STATE_CLASSES.IS_FALLBACK)
+
+    // The mount-time immediate arm already drove the live path — drop
+    // those calls so only the post-fallback beats are measured.
+    session.setProgress.mockClear()
+
+    const chips = demo.shadowRoot.querySelectorAll(`.${C.CHIP}`)
+
+    jest.advanceTimersByTime(1600)
+    expect(chips[1].classList.contains(C.CHIP_ARMED)).toBe(true)
+    expect(chips[0].classList.contains(C.CHIP_ARMED)).toBe(false)
+    expect(session.setProgress).not.toHaveBeenCalled()
+
+    jest.advanceTimersByTime(1600)
+    expect(chips[1].classList.contains(C.CHIP_ARMED)).toBe(false)
+
+    jest.advanceTimersByTime(1600)
+    expect(chips[0].classList.contains(C.CHIP_ARMED)).toBe(true)
   })
 })

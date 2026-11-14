@@ -33,7 +33,6 @@ import { APP_IDS } from '@core/tokens/ids/app.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { WEBGL_STRINGS } from '@core/tokens/strings/webgl.js'
-import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 
 /** Minimal nav-store surface components read — overridable per test. */
 const navStub = (over = {}) => ({
@@ -88,8 +87,6 @@ describe('nav menu + render tails', () => {
     // real-GPU-eviction signature webglContextDead() reports true for.
     const dead = document.createElement(HTML_TAGS.CANVAS)
 
-    dead.setAttribute(ARIA_ATTRS.ARIA_LABEL, TEST_TEXT.HEADING)
-
     dead.getContext = (type) =>
       String(type) === WEBGL_STRINGS.WEBGL
         ? { isContextLost: () => true, getExtension: () => null }
@@ -112,12 +109,14 @@ describe('nav menu + render tails', () => {
     mountNavBurgerWebGL(host)
 
     // The dead element left the DOM; the persistent slot points at the
-    // fresh connected canvas and a rebuilt widget carries the label over.
+    // fresh connected canvas — presentational like every burger canvas
+    // (aria-hidden; the real <button> owns the a11y tree + keyboard).
     expect(destroy).toHaveBeenCalled()
     expect(dead.isConnected).toBe(false)
     expect(host._burgerCanvasEl).not.toBe(dead)
     expect(host._burgerCanvasEl.isConnected).toBe(true)
-    expect(host._burgerCanvasEl.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toBe(TEST_TEXT.HEADING)
+    expect(host._burgerCanvasEl.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(ATTR_VALUES.TRUE)
+    expect(host._burgerCanvasEl.hasAttribute(ARIA_ATTRS.TABINDEX)).toBe(false)
     expect(host._burgerBtn).toBeTruthy()
 
     // The rebuilt widget's click route is the toggle closure — firing it
@@ -133,9 +132,11 @@ describe('nav menu + render tails', () => {
     parent.remove()
   })
 
-  test('mountNavBurgerWebGL swap defaults the label when the dead canvas has none', () => {
-    // Same unrecoverable-loss signature, minus aria-label — the fresh
-    // canvas must come up with the empty-label arm, not a null attr.
+  test('mountNavBurgerWebGL swap rebuilds without a burger widget too', () => {
+    // Same unrecoverable-loss signature — the !host._burgerBtn rebuild
+    // arm re-creates the canvas (the dead element still swaps out) and
+    // leaves the widget slot null since the constructor path needs a
+    // live GL context, which the replacement cannot claim in tests.
     const dead = document.createElement(HTML_TAGS.CANVAS)
 
     dead.getContext = (type) =>
@@ -158,9 +159,9 @@ describe('nav menu + render tails', () => {
     mountNavBurgerWebGL(host)
 
     expect(host._burgerCanvasEl).not.toBe(dead)
-    expect(host._burgerCanvasEl.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toBe(ATTR_VALUES.EMPTY)
+    expect(host._burgerCanvasEl.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(ATTR_VALUES.TRUE)
 
-    host._burgerBtn.destroy()
+    host._burgerBtn?.destroy()
     parent.remove()
   })
 
@@ -210,12 +211,16 @@ describe('nav menu + render tails', () => {
   test('navBurgerCanvas builds the element once and reuses it after', () => {
     const host = { _burgerCanvasEl: null, _onDark: false, _menuOpen: false }
 
-    const created = navBurgerCanvas(host, TEST_TEXT.HEADING)
+    const created = navBurgerCanvas(host)
 
     expect(created).toBe(host._burgerCanvasEl)
-    expect(created.getAttribute(ARIA_ATTRS.ARIA_LABEL)).toBe(TEST_TEXT.HEADING)
+    // Presentational — pointer-only overlay; the real <button> carries
+    // the accessible name/keyboard contract.
+    expect(created.getAttribute(ARIA_ATTRS.ARIA_HIDDEN)).toBe(ATTR_VALUES.TRUE)
+    expect(created.hasAttribute(ARIA_ATTRS.TABINDEX)).toBe(false)
+    expect(created.hasAttribute(ARIA_ATTRS.ROLE)).toBe(false)
 
-    const again = navBurgerCanvas(host, TEST_TEXT.HEADING)
+    const again = navBurgerCanvas(host)
 
     expect(again).toBe(created)
   })

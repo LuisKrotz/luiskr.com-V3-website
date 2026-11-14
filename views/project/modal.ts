@@ -46,6 +46,9 @@ const openModalForItem = (
       width: item.size?.[0],
       height: item.size?.[1],
       isVideo,
+      // Extensionless CDN stem — the expanded modal derives its
+      // co-located .vtt descriptions tracks / _longdesc sibling from it.
+      stem: `${storage}${folder || ATTR_VALUES.EMPTY}${item.src}`,
     },
   })
 

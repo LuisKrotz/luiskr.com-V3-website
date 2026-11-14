@@ -20,8 +20,12 @@ import { waitFor } from '@tests/fixtures/test-constants.js'
 /** Zero-ms flush — observer callbacks fire within one macrotask. */
 const flushIdle = () => new Promise((r) => setTimeout(r, 0))
 
-afterEach(() => {
+afterEach(async () => {
+  // scrollend only re-arms the settle debounce — wait the quiet window
+  // out so a latched is-scrolling flag can't leak into the next test.
   window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLLEND))
+
+  await waitFor(() => !isScrolling())
 })
 
 describe('shared-observer tails', () => {

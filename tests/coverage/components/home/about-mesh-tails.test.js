@@ -13,6 +13,7 @@
 import { describe, test, expect, beforeEach, afterEach, jest } from '@jest/globals'
 import { AboutSection } from '@website/components/home/AboutSection.js'
 import { attachMesh, disarmMesh } from '@website/components/home/about/mesh.js'
+import { framePool } from '@core/utils/motion/frame.js'
 import store from '@core/store.js'
 import { mount, TEST_COLORS, TEST_TEXT, TEST_URLS } from '@tests/fixtures/test-constants.js'
 import { ABOUT_CLASSES } from '@core/tokens/classes/about.js'
@@ -189,6 +190,96 @@ describe('about mesh tails', () => {
     await new Promise((r) => setTimeout(r, 40))
 
     expect(el._mesh).not.toBeNull()
+  })
+
+  test('the paint loop parks offscreen and re-arms on intersection', async () => {
+    const IO = globalThis.IntersectionObserver
+    const seen = []
+
+    globalThis.IntersectionObserver = class {
+      constructor(cb) {
+        this.cb = cb
+        seen.push(this)
+      }
+
+      observe(target) {
+        this.target = target
+      }
+
+      unobserve() {}
+
+      disconnect() {}
+    }
+
+    try {
+      mountSection()
+
+      const s = el._mesh
+      const io = seen.find((o) => o.target === s.canvas)
+
+      // Empty entries → the `entries[0]?.isIntersecting` null arm parks `visible`.
+      io.cb([])
+
+      expect(s.visible).toBe(false)
+
+      // Two visible fires — the first arms the chain (raf pending), the
+      // second hits the `!s.raf` short-circuit so it can't double-schedule.
+      io.cb([{ isIntersecting: true }])
+      io.cb([{ isIntersecting: true }])
+
+      expect(s.visible).toBe(true)
+      expect(s.raf).not.toBe(0)
+
+      // Leaving the viewport parks the chain at its next tick.
+      io.cb([{ isIntersecting: false }])
+
+      await new Promise((r) => setTimeout(r, 30))
+
+      expect(s.raf).toBe(0)
+
+      // Re-entry re-arms the parked chain.
+      io.cb([{ isIntersecting: true }])
+
+      expect(s.raf).not.toBe(0)
+
+      // lastPaint in the future forces the paint-cap skip arm on every tick.
+      s.lastPaint = Number.MAX_SAFE_INTEGER
+
+      await new Promise((r) => setTimeout(r, 30))
+
+      // Park the chain before teardown so no stray tick outlives the test.
+      s.visible = false
+      if (s.raf) framePool.cancel(s.raf)
+      s.raf = 0
+    } finally {
+      globalThis.IntersectionObserver = IO
+    }
+  })
+
+  test('attachMesh falls back to the always-on loop without IntersectionObserver', () => {
+    // Other about internals instantiate IntersectionObserver unguarded, so
+    // the delete has to be scoped to the attachMesh call itself — a bare
+    // host + wrapper keeps the window narrow enough that nothing else runs.
+    const host = bareHost()
+    const wrap = document.createElement(HTML_TAGS.DIV)
+
+    wrap.className = ABOUT_CLASSES.ABOUT_PROFILE_PICTURE
+    host.shadowRoot.appendChild(wrap)
+
+    const IO = globalThis.IntersectionObserver
+
+    delete globalThis.IntersectionObserver
+
+    try {
+      expect(attachMesh(host)).toBe(true)
+      expect(host._mesh.visible).toBe(true)
+      expect(host._mesh.raf).not.toBe(0)
+    } finally {
+      globalThis.IntersectionObserver = IO
+    }
+
+    host._mesh.visible = false
+    framePool.cancel(host._mesh.raf)
   })
 
   test('disarmMesh tears down and no-ops without a session', () => {

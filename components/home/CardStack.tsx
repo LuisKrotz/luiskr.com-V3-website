@@ -54,6 +54,7 @@ import {
 import { onPointerDown, onPointerEnd, onPointerMove } from './cardstack/gestures.js'
 import { armAutoplay, applyAutoChrome, holdAutoplay } from './cardstack/autoplay.js'
 import { holdBurns } from './cardstack/info.js'
+import { warmPrintCopy } from './cardstack/print.js'
 import { renderCardStack } from './cardstack/render.js'
 import type { CardStackItem, CardStackTranslations } from './cardstack/types.js'
 import '@website/components/media/DrawText.js'
@@ -65,6 +66,7 @@ import cardStackStyles from '@core/sass/components/home/card-stack.scss?tiers'
 export class CardStack extends BaseComponent {
   _processedItems: CardStackItem[] = [] // portfolio items pushed by the view (featured flag rides on each)
   _translations: CardStackTranslations | null = null // pages/HOME locale node
+  _printCopy = new Map<string, string[]>() // warmed projects/<slug> feature paragraphs — print prefers them over the card blurb
   activeIdx = 0 // deck index of the front card
   indexOpen = false // whether the all-projects index overlay is revealed
   ext: string = MEDIA.EXT // CDN image extension
@@ -107,6 +109,7 @@ export class CardStack extends BaseComponent {
   _autoIO: IntersectionObserver | null = null // section on/off-screen hold for the countdown
   _burnHeld = false // burn sessions frozen by the section's off-screen hold — spin() leaves them disarmed until holdBurns releases (the in-card title draw-in waits for scroll-in)
   _autoArmed = false // one-shot mount arm — the countdown starts once items exist
+  _printing = false // print job in flight — gates applyPoses/fitDeckToFront so the live posers can't rewrite the inline geometry print.ts stripped for the snapshot
 
   constructor() {
     super(cardStackStyles)
@@ -143,6 +146,8 @@ export class CardStack extends BaseComponent {
     if (this._isMounted) {
       this._updateDom()
     }
+
+    if (len) warmPrintCopy(this)
   }
 
   get processedItems(): CardStackItem[] {
@@ -157,6 +162,10 @@ export class CardStack extends BaseComponent {
     if (this._isMounted) {
       this._updateDom()
     }
+
+    // A locale swap invalidates the warmed feature copy — re-arm so the
+    // paper version speaks the same language as the deck.
+    if (deckItems(this).length) warmPrintCopy(this)
   }
 
   get translations(): CardStackTranslations | null {

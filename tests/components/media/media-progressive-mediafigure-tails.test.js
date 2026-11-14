@@ -19,11 +19,18 @@ import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { STATE_STRINGS } from '@core/tokens/strings/state.js'
-import { MEDIA_EVENTS, MOUSE_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
+import {
+  CLIPBOARD_EVENTS,
+  MEDIA_EVENTS,
+  MOUSE_EVENTS,
+  WINDOW_EVENTS,
+} from '@core/tokens/events/dom.js'
+import { initPrintSupport, printJobActive } from '@core/utils/print/print.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
+import { initMediaManifest } from '@core/utils/media/manifest.js'
 
 // Get the actual storage URL the store is configured with
 // (production Firebase Storage URL — not a mock)
@@ -31,6 +38,49 @@ const _ACTUAL_STORAGE = store.getters.getStorage?.() || CDN_URLS.CDN_BASE
 
 // ─── MediaFigure tails ───────────────────────────────────────────────────────
 describe('MediaFigure tails', () => {
+  beforeAll(async () => {
+    // Seed the bucket manifest so TEST_TEXT.SECOND's derived siblings are
+    // proven — poster/webm/scaled tiers emit (observer + _ensureVideoSource
+    // arms) and the high-res ladder starts on the webp with a jpg retry.
+    const realFetch = globalThis.fetch
+
+    globalThis.fetch = async () => ({
+      ok: true,
+      json: async () => [
+        `${TEST_TEXT.SECOND}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.EXT}`,
+        `${TEST_TEXT.SECOND}${MEDIA.MOZ}${MEDIA.Q50}${MEDIA.WEBP_EXT}`,
+        `${TEST_TEXT.SECOND}${MEDIA.VIDEO_THUMB_EXT}`,
+        `${TEST_TEXT.SECOND}${MEDIA.VIDEO_SCALE}${MEDIA.VIDEO_THUMB_EXT}`,
+        `${TEST_TEXT.SECOND}${MEDIA.WEBM_EXT}`,
+        `${TEST_TEXT.SECOND}${MEDIA.VIDEO_SCALE}${MEDIA.WEBM_EXT}`,
+        `${TEST_TEXT.SECOND}${MEDIA.VIDEO_SCALE}${MEDIA.VIDEO_EXT}`,
+      ],
+    })
+
+    await initMediaManifest()
+
+    // The print adapter binds its channels once per registry — install
+    // it with a full MQL surface so the print-query listener bind can't
+    // throw mid-install, then beforeprint drives printJobActive().
+    const origMM = window.matchMedia
+
+    window.matchMedia = (query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    })
+
+    initPrintSupport()
+
+    window.matchMedia = origMM
+    globalThis.fetch = realFetch
+  })
+
   const mount = (attrs = {}) => {
     const el = document.createElement(COMPONENT_TAGS.MEDIA_FIGURE)
 
@@ -388,6 +438,38 @@ describe('MediaFigure tails', () => {
     nan.remove()
     vid.remove()
     el.remove()
+  })
+
+  test('an active print job stands the climb publish down', async () => {
+    const el = mount({ [MEDIA_ATTRS.SRC]: TEST_TEXT.SECOND })
+    const origImage = window.Image
+    let inst = null
+
+    window.Image = class {
+      constructor() {
+        inst = this
+      }
+    }
+
+    try {
+      window.dispatchEvent(new window.Event(CLIPBOARD_EVENTS.BEFORE_PRINT))
+
+      el.isLoaded = false
+      el.highResSrc = CHAR_STRINGS.EMPTY
+      await el.loadHighRes()
+
+      // The probe confirmed, but the screen publish stands down — the
+      // print adapter already owns the document's rungs, so the clone
+      // never mounts and highResSrc never binds.
+      inst.onload()
+
+      expect(printJobActive()).toBe(true)
+      expect(el.highResSrc).toBe(CHAR_STRINGS.EMPTY)
+    } finally {
+      window.dispatchEvent(new window.Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+      window.Image = origImage
+      el.remove()
+    }
   })
 
   test('loadHighRes accepts tall narrow screenshots within the pixel budget', async () => {

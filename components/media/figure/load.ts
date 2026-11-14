@@ -23,12 +23,15 @@ import {
   mediaKeyExists,
   mediaManifestReady,
   mediaRungs,
+  webpIfExists,
   type CoverRung,
 } from '@core/utils/media/manifest.js'
-import { encodeMediaUrl, webpSibling } from '@core/utils/media.js'
+import { descriptionTracks, longdescUrl } from '@core/utils/media/accessibility.js'
+import { encodeMediaUrl } from '@core/utils/media.js'
 import { ladderCeiling, smallMediaBox } from '@core/utils/media/policy.js'
 import { svgPlaceholder } from '@core/utils/dom.js'
 import { onScrollStop } from '@core/utils/motion/scroll-state.js'
+import { printJobActive } from '@core/utils/print/print.js'
 import { gpuAccel } from '@core/utils/gpu/gpu-accel.js'
 import { wasmImageDecoder } from '@core/utils/wasm/wasm-image-decoder.js'
 import { upscaleImage2x } from '@core/utils/ml/super-res.js'
@@ -49,10 +52,14 @@ export function resolveMediaSources(fig: MediaFigure): void {
 
   const storage = store.getters.getStorage()
 
+  // Extensionless CDN stem — every co-located sibling (poster, webm,
+  // descriptions .vtt, _longdesc.txt) hangs off this one base.
+  const stem = encodeMediaUrl(storage + fig.mediaSrc)
+
   if (fig.isVideo) {
     // Encoded at the base so every derived poster/webm/mp4 URL lands in
     // attributes already emission-safe (bucket keys may carry spaces).
-    const base = encodeMediaUrl(storage + fig.mediaSrc)
+    const base = stem
 
     const urls = [
       [base + MEDIA.VIDEO_THUMB_EXT, base + MEDIA.WEBM_EXT, base + MEDIA.VIDEO_EXT],
@@ -63,23 +70,144 @@ export function resolveMediaSources(fig: MediaFigure): void {
       ],
     ]
 
-    // Derived variants (poster frame, webm transcodes) are offered only
-    // when the bucket manifest can't prove them missing — a known-absent
-    // key is a doomed request whose XML 404 trips CORB and a <source> that
-    // can never resolve. Unknown ⇒ emit; the <video> source walk degrades
-    // gracefully, the poster just no-paints.
-    const keepUrl = (url: string): string =>
-      mediaManifestReady() && !mediaKeyExists(url) ? ATTR_VALUES.EMPTY : url
+    // Derived variants (poster frame, webm transcodes, scaled mp4s) are
+    // offered only when the bucket manifest PROVES them — an unproven key
+    // is a doomed request whose 404 lands in the console audit, and the
+    // onMediaManifest refresh re-resolves with the proven matrix once the
+    // manifest lands (manifest-absent stays originals-only, matching the
+    // mediaRungs/coverRungs contract). The base mp4 is the asset the
+    // database points at — a passthrough original, always emittable.
+    const keepUrl = (url: string): string => (mediaKeyExists(url) ? url : ATTR_VALUES.EMPTY)
 
     fig.poster = urls.map((a) => keepUrl(a[0]))
 
     fig.videoWebm = urls.map((a) => keepUrl(a[1]))
 
-    fig.video = urls.map((a) => a[2])
+    fig.video = urls.map((a, i) => (i ? keepUrl(a[2]) : a[2]))
+
+    // WebVTT descriptions tracks — one manifest-gated <track> per
+    // locale; the default lands on the current UI locale (English when
+    // its file is unproven). Unlike the optimistic descriptionTracks()
+    // helper, the figure stays strict while the manifest is in flight:
+    // an offered <track> is a real .vtt fetch, so an unproven set means
+    // sixteen doomed 404s; the arrival refresh re-resolves and attaches
+    // the proven set onto the live video.
+    fig.descriptionTracks = mediaManifestReady()
+      ? descriptionTracks(stem, store.getters.getLang())
+      : []
   } else {
-    fig.thumbSrc = encodeMediaUrl(
+    const thumb = encodeMediaUrl(
       storage + fig.mediaSrc + MEDIA.MOZ + MEDIA.THUMB_SUFFIX + MEDIA.EXT
     )
+
+    // The -mozjpg3 thumb is a derived variant — only emitted when the
+    // manifest proves it (proven-gating like the video matrix above);
+    // unproven falls back to the source file itself, which always
+    // exists and is invisible under cover+blur anyway. An in-flight
+    // manifest resolves to the original too — the onMediaManifest
+    // refresh swaps in the proven thumb on arrival.
+    fig.thumbSrc = mediaKeyExists(thumb)
+      ? thumb
+      : encodeMediaUrl(storage + fig.mediaSrc + MEDIA.EXT)
+
+    // `longdesc` URL for the <img> layers — current locale's file when
+    // the manifest proves it, English canonical otherwise.
+    fig.longdescUrl = longdescUrl(stem, store.getters.getLang())
+  }
+}
+
+/**
+ * Re-resolves the media's URL matrix once the bucket manifest lands and
+ * patches the LIVE shadow DOM — never a wholesale _updateDom, which would
+ * replace the video element and orphan its scoped listeners, pooled
+ * viewport observer, and already-attached <source> children. Proven
+ * description tracks + poster attach directly onto the live video; the
+ * image thumb swaps to its manifest-proven URL when the in-flight pass
+ * had fallen back to the source original.
+ * @param fig The mounted media figure.
+ */
+export function refreshManifestMedia(fig: MediaFigure): void {
+  resolveMediaSources(fig)
+
+  // The poster pick the live-video stamp and the under-layer patch share —
+  // image figures carry no poster field, so it stays empty for them.
+  const poster = fig.isVideo
+    ? fig.poster[fig._scaledVideo ? 1 : 0] || fig.poster[0] || ATTR_VALUES.EMPTY
+    : ATTR_VALUES.EMPTY
+
+  const vid = fig.$<HTMLVideoElement>(HTML_TAGS.VIDEO)
+
+  if (vid) {
+    // <track> children only exist in render markup — proven descriptions
+    // attach directly so the default cue's fetch stays a real file.
+    if (
+      fig.descriptionTracks.length &&
+      !vid.querySelector(`${MEDIA_ATTRS.TRACK}[${MEDIA_ATTRS.KIND}="${MEDIA_ATTRS.DESCRIPTIONS}"]`)
+    ) {
+      for (const t of fig.descriptionTracks) {
+        const tr = document.createElement(MEDIA_ATTRS.TRACK)
+
+        tr.kind = MEDIA_ATTRS.DESCRIPTIONS
+        tr.src = t.src
+        tr.srclang = t.srclang
+        tr.label = t.label
+        tr.default = t.isDefault
+
+        vid.appendChild(tr)
+      }
+
+      // A real descriptions default supersedes the no-captions
+      // placeholder's `default` — descriptionTracks() always marks the
+      // visitor-locale file default, and only one track may carry it.
+      const placeholderTrack = vid.querySelector<HTMLTrackElement>(
+        `${MEDIA_ATTRS.TRACK}[${MEDIA_ATTRS.KIND}="${MEDIA_ATTRS.CAPTIONS}"]`
+      )
+
+      if (placeholderTrack) placeholderTrack.default = false
+    }
+
+    // The IO path only re-reads fig.poster until attach — stamping the
+    // attribute directly covers videos that already bound it empty.
+    // Under reduced-motion the poster stays IO-gated: onMediaManifest
+    // runs this synchronously on mount once the manifest is ready, and
+    // an unconditional stamp would fetch the poster off-viewport where
+    // the RM contract defers it to first intersect (the mount arms an
+    // observer whenever a proven poster exists, so the lazy path lands
+    // it). setAttribute (not the IDL property): envs that don't reflect
+    // video.poster still carry the frame markup crawlers/print read.
+    if (
+      poster &&
+      !vid.getAttribute(MEDIA_ATTRS.POSTER) &&
+      !(fig.observer && store.getters.getReducedMotion())
+    ) {
+      vid.setAttribute(MEDIA_ATTRS.POSTER, poster)
+    }
+  }
+
+  // Images rendered before the manifest fell back to the source file —
+  // swap the painted thumb to its proven URL ('longdesc' is attribute-
+  // only, no fetch — it may stamp unconditionally). For videos the same
+  // class carries the POSTER under-layer — thumbSrc is image-only (''),
+  // so writing it would blank a painted layer; stamp the poster instead.
+  const thumbImg = fig.$(`.${MEDIA_CLASSES.RENDER_MEDIA_THUMB}`) as HTMLImageElement | null
+
+  if (thumbImg) {
+    // `want` is guaranteed non-empty here — a video's under-layer only
+    // mounts when posterSrc was non-empty (the same expression), and an
+    // image's thumbSrc always falls back to the source original.
+    const want = fig.isVideo ? poster : fig.thumbSrc
+
+    if (thumbImg.getAttribute(MEDIA_ATTRS.SRC) !== want) thumbImg.src = want
+
+    if (fig.longdescUrl && !thumbImg.getAttribute(MEDIA_ATTRS.LONGDESC)) {
+      thumbImg.setAttribute(MEDIA_ATTRS.LONGDESC, fig.longdescUrl)
+    }
+  }
+
+  const highImg = fig.$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`) as HTMLImageElement | null
+
+  if (highImg && fig.longdescUrl && !highImg.getAttribute(MEDIA_ATTRS.LONGDESC)) {
+    highImg.setAttribute(MEDIA_ATTRS.LONGDESC, fig.longdescUrl)
   }
 }
 
@@ -237,7 +365,7 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
 
     ladder.push({
       jpg: q50,
-      webp: mediaManifestReady() ? ATTR_VALUES.EMPTY : webpSibling(q50),
+      webp: webpIfExists(q50),
     })
   }
 
@@ -315,18 +443,34 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
 
       const obj = URL.createObjectURL(out)
 
-      // Superseded blobs keep their decoded bitmaps in already-painted
-      // imgs (revocation blocks only new fetches); an in-flight
-      // predecessor's fetch fails into its error arm and that layer
-      // self-removes — so all but the newest release immediately.
-      fig._domBlobs.forEach((prev) => URL.revokeObjectURL(prev))
+      sweepDomBlobs()
 
-      fig._domBlobs.clear()
       fig._domBlobs.add(obj)
 
       return obj
     } catch {
       return url
+    }
+  }
+
+  /**
+   * Releases every tracked object URL no live high layer still
+   * references. Revoking a blob whose <img> fetch is still in flight
+   * hard-fails it (ERR_FILE_NOT_FOUND in the console audit), so a blob
+   * only dies once its layer retired — already-painted imgs keep their
+   * decoded bitmap either way (revocation blocks new fetches, not the
+   * rendered frame).
+   */
+  const sweepDomBlobs = (): void => {
+    if (!fig._domBlobs.size || typeof URL.revokeObjectURL !== TYPE_STRINGS.FUNCTION) return
+
+    const mounted = fig.$$<HTMLImageElement>(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`)
+
+    for (const prev of fig._domBlobs) {
+      if (mounted.some((img) => img.src === prev)) continue
+
+      URL.revokeObjectURL(prev)
+      fig._domBlobs.delete(prev)
     }
   }
 
@@ -341,6 +485,13 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
    * the shadow DOM wholesale between steps.
    */
   const publishDom = (url: string): void => {
+    // A print job owns the document once prep stamps it — a late-arriving
+    // climb publishing here would mount a cold screen-rung clone over the
+    // print-upgraded layer mid-snapshot and the page would print a blank
+    // frame. The print adapter already swapped every standing layer to a
+    // proven rung, so the screen publish simply stands down.
+    if (printJobActive()) return
+
     fig.isLoaded = true
     // Publish only the confirmed URL — assigning highResSrc earlier would
     // let a mid-flight _updateDom bind a 404 webp into the visible img.
@@ -383,12 +534,20 @@ export async function loadHighRes(fig: MediaFigure): Promise<void> {
               if (i < topIdx) el.remove()
             })
 
+            // Retired layers release their object URLs — a blob whose
+            // <img> just left the DOM is safe to revoke now (its fetch
+            // either finished or is moot).
+            sweepDomBlobs()
+
             // Now that a real bitmap occupies the box the LQIP can leave —
             // hiding it any earlier blanks the frame while the clone
-            // finishes its first paint.
+            // finishes its first paint. Except the letterboxed contract:
+            // a scale-down successor leaves transparent bands whose wash
+            // the thumb still owns — it is the band fill, not a staging
+            // layer — so only a box-filling fit may retire it.
             const thumbEl = fig.$<HTMLElement>(`.${MEDIA_CLASSES.RENDER_MEDIA_THUMB}`)
 
-            if (thumbEl) {
+            if (thumbEl && getComputedStyle(successor).objectFit !== ATTR_VALUES.SCALE_DOWN) {
               thumbEl.style.display = ATTR_VALUES.NONE
             }
           }

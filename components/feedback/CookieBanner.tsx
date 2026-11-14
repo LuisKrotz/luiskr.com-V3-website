@@ -14,6 +14,7 @@ import { APP_EVENTS } from '@core/tokens/events/app.js'
 import { MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { COOKIE_CSS_PROPS } from '@core/tokens/css/cookies.js'
 import { COOKIE_SELECTORS } from '@core/tokens/selectors/cookies.js'
+import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
 import { ANIMATION_DURATIONS, EASING } from '@core/tokens/motion/animation.js'
 import { mountCornerBracketsAll } from '@core/utils/gpu/corner-brackets.js'
 import { h } from '@core/jsx.js'
@@ -208,7 +209,12 @@ export class CookieBanner extends BaseComponent {
       return null
     }
 
-    this.style.display = ATTR_VALUES.BLOCK
+    // A render landing inside a print pass must not re-paint chrome —
+    // the document print sheet hides cookie-banner outright, but an
+    // inline display written here would still beat it on paper.
+    this.style.display = window.matchMedia(MEDIA_QUERIES.PRINT).matches
+      ? ATTR_VALUES.NONE
+      : ATTR_VALUES.BLOCK
 
     const c = this.translations.cookies
 

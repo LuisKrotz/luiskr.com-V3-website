@@ -10,8 +10,10 @@ import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { SWITCH_TYPES } from '@core/tokens/theme/switches.js'
+import { themeToP } from '@core/utils/canvas/widgets/theme-slider/math.js'
 import store from '@core/store.js'
 import type { PreferencesModal } from '../PreferencesModal.js'
+import { prefThemeLabel } from './types.js'
 import { destroyWebGLControls } from './webgl.js'
 
 /** Reflects the open flag into DOM/classes (widget teardown on close). */
@@ -29,9 +31,20 @@ export function syncOpenState(host: PreferencesModal): void {
   }
 }
 
-/** Syncs the theme option buttons with the store's theme. */
+/** Syncs the theme option buttons + the slider canvas's value ARIA with the store's theme. */
 export function updateThemeUI(host: PreferencesModal): void {
   const theme = host.currentTheme
+
+  // The slider canvas is the keyboard/AT control — its value quartet
+  // must track commits from every path (widget arrows, drag snap, the
+  // fallback buttons, or an external store write).
+  const canvas = host.$<HTMLElement>(`.${PREF_CLASSES.PREF_THEME_CANVAS}`)
+
+  if (canvas) {
+    canvas.setAttribute(ARIA_ATTRS.ARIA_VALUENOW, String(themeToP(theme)))
+
+    canvas.setAttribute(ARIA_ATTRS.ARIA_VALUETEXT, prefThemeLabel(host.t.appearance, theme))
+  }
 
   const buttons = host.$$(`.${PREF_CLASSES.PREF_THEME_BTN}`)
 

@@ -102,6 +102,10 @@ export class MentionsDeck extends BaseComponent {
   _rafId: number | null = null // pending pose write rAF
   _cardEls: Element[] = [] // cached card nodes — the rAF loop never re-queries
   _deckEl: Element | null = null // cached deck region — pose/size writes target it
+  /** Print job in flight — gates measure/applyPoses so the live posers
+   *  can't rewrite the inline fan geometry print.ts stripped for the
+   *  flat paper list. */
+  _printing = false
   /** Any viewport visibility ever observed. */
   isEnteredViewport = false
   /** ≥50% visible — the autoplay gate. */

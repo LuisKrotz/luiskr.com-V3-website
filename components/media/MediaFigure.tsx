@@ -13,11 +13,14 @@ import { renderMediaFigure } from './figure/render.js'
 import {
   loadHighRes,
   mediaPlaceholder,
+  refreshManifestMedia,
   releaseDomBlobs,
   resolveMediaSources,
 } from './figure/load.js'
 import { ensureVideoSource, pauseVideo, playVideo, syncVideoPlayback } from './figure/video.js'
 import type { SharedObserverHandle } from '@core/utils/dom/shared-observer.js'
+import type { DescriptionTrack } from '@core/utils/media/accessibility.js'
+import { onMediaManifest } from '@core/utils/media/manifest.js'
 import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
@@ -56,6 +59,8 @@ export class MediaFigure extends BaseComponent {
   poster: string[] = [] // [main, scaled] video poster URLs
   video: string[] = [] // [main, scaled] mp4 video source URLs
   videoWebm: string[] = [] // [main, scaled] webm video source URLs
+  descriptionTracks: DescriptionTrack[] = [] // manifest-gated WebVTT description tracks (16 locales)
+  longdescUrl: string = ATTR_VALUES.EMPTY // localized long-description file URL for <img longdesc>
   observer: SharedObserverHandle | null = null // video viewport observer — pooled shared-observer handle
   imgObserver: SharedObserverHandle | null = null // image lazy-load observer — pooled shared-observer handle
   warmObserver: SharedObserverHandle | null = null // CDN warm-up observer — pooled shared-observer handle (wider margin)
@@ -64,6 +69,7 @@ export class MediaFigure extends BaseComponent {
   _ladderBox = -1 // memoized figure box width (px) for ladder/stem picks — one layout read per figure
   _domBlobs: Set<string> = new Set() // display-sized object URLs mounted into high layers — revoked when superseded or on destroy
   _expandBrackets: (() => void) | null = null // teardown for the open-1 corner-brackets WebGPU widget
+  _unsubManifest: (() => void) | null = null // media-manifest arrival — re-resolves the proven URL matrix
   isIntersecting = false // last observed viewport state
 
   constructor() {
@@ -211,6 +217,15 @@ export class MediaFigure extends BaseComponent {
 
   override onMounted() {
     mountMediaFigure(this)
+
+    // The bucket manifest is boot-idle-deferred — derived siblings
+    // (posters, webm rungs, description tracks) stay withheld until it
+    // proves them; on arrival the URL matrix re-resolves and the live
+    // elements pick up their proven variants without a shadow rebuild
+    // (a rebuild would orphan the video's scoped listeners/observers).
+    this._unsubManifest = onMediaManifest(() => {
+      refreshManifestMedia(this)
+    })
   }
 
   /** Sets the <source> src on a video element when it becomes playable. */
@@ -242,6 +257,12 @@ export class MediaFigure extends BaseComponent {
       this._expandBrackets()
 
       this._expandBrackets = null
+    }
+
+    if (this._unsubManifest) {
+      this._unsubManifest()
+
+      this._unsubManifest = null
     }
 
     releaseDomBlobs(this)
@@ -281,10 +302,12 @@ export class MediaFigure extends BaseComponent {
     return slugify(text)
   }
 
-  /** Opens the expand modal with this media's descriptor via the store. */
-
-  openModal(): void {
-    return openMediaModal(this)
+  /** Opens the expand modal with this media's descriptor via the store.
+   * @param originFigure — genie-measure override (clone clicks measure
+   *   the clicked clone's rect; the twin is the modal's media owner).
+   */
+  openModal(originFigure?: MediaFigure): void {
+    return openMediaModal(this, originFigure)
   }
 
   /**

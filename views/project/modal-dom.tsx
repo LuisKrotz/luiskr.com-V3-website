@@ -47,6 +47,7 @@ export function updateModalDOM(view: ViewProject): void {
             width={modal.media?.width || GENERIC_DIMENSIONS.DEFAULT_WIDTH}
             height={modal.media?.height || GENERIC_DIMENSIONS.DEFAULT_HEIGHT}
             is-video={modal.media?.isVideo ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE}
+            stem={modal.media?.stem || ATTR_VALUES.EMPTY}
           />
         )
       }

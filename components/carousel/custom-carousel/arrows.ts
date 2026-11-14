@@ -68,6 +68,10 @@ export function bindControls(c: CustomCarousel) {
   if (track) {
     c.addScopedListener(track, WINDOW_EVENTS.SCROLL, () => c.onScroll(), { passive: true })
 
+    // Clone slides are `inert` — clicks on them land on the track itself;
+    // the delegate rect-tests which clone was hit and opens its twin.
+    c.addScopedListener(track, MOUSE_EVENTS.CLICK, (e) => c.onTrackClick(e as MouseEvent))
+
     c.addScopedListener(
       track,
       TOUCH_EVENTS.TOUCHSTART,

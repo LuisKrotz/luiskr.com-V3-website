@@ -19,6 +19,7 @@ import {
   renderCarouselSlide,
 } from '@website/components/carousel/custom-carousel/render.js'
 import { CAROUSEL_CLASSES } from '@core/tokens/classes/carousel.js'
+import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
 import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
 
@@ -157,6 +158,31 @@ describe('renderCarouselSlide strip fill', () => {
     // Strip-fill contract — every figure cover-fills the shared strip;
     // no landscape-only class or repetition-pattern backdrop remains.
     expect(fillNode.querySelector('picture')).toBeNull()
+  })
+
+  test('scrubs hero-slot classes off the slide figure — the wrapper keeps them', () => {
+    const item = {
+      src: 'b',
+      size: [1920, 1080],
+      class: [
+        STATE_STRINGS.LANDSCAPE,
+        INTERNAL_CLASSES.ZTF_VIDEO,
+        INTERNAL_CLASSES.INTERNAL_MAIN_ITEM,
+      ].join(CHAR_STRINGS.SPACE_CHAR),
+    }
+
+    const node = renderCarouselSlide(item, 'folder/')
+
+    const figure = node.querySelector(COMPONENT_TAGS.MEDIA_FIGURE)
+
+    // The figure can never match the 0,3,0 hero selectors — a slide built
+    // from the cover media used to re-inflate to the 70dvh/175dvh caps.
+    expect(figure.getAttribute('classes')).toBe(STATE_STRINGS.LANDSCAPE)
+    expect(figure.getAttribute('class')).toBe(STATE_STRINGS.LANDSCAPE)
+
+    // The slide wrapper keeps the full CMS list for context selectors.
+    expect(node.getAttribute('class')).toContain(INTERNAL_CLASSES.ZTF_VIDEO)
+    expect(node.getAttribute('class')).toContain(INTERNAL_CLASSES.INTERNAL_MAIN_ITEM)
   })
 })
 

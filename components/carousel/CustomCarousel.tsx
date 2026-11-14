@@ -34,6 +34,7 @@ import {
   carouselOnNextClick,
   carouselOnPrevClick,
   carouselOnScroll,
+  carouselOnTrackClick,
   checkInfiniteLoop,
   jumpToSlide,
   markAdjacentLoaded,
@@ -134,6 +135,14 @@ export class CustomCarousel extends BaseComponent {
   _lastObservedWidth = 0
   /** Latched by any user interaction — autoplay never resumes after. */
   _autoplayPermanentlyStopped = false
+  /** Leading clone count — viewport-calculated in measureFit (enough cyclic
+      tail items to cover half the host width so the wrap strip never shows
+      empty run-out pad). The last one is always the --clone-last teleport
+      twin; 2 is the pre-measure default. */
+  _edgeClonesBefore = 2
+  /** Trailing clone count — same contract mirrored; the first one is the
+      --clone-first teleport twin. */
+  _edgeClonesAfter = 2
   /** Ring regress animation in flight (drains progress on stop). */
   _isRegressing = false
   /** Viewport under the mobile breakpoint at construct time. */
@@ -247,11 +256,10 @@ export class CustomCarousel extends BaseComponent {
   /** Whether the carousel is currently auto-advancing. */
 
   get isActive() {
-    // A measured side-by-side fit wins over _forceActive: at ≥3840 the
-    // ultrawide projection in measureFit may clear even a forced
-    // group's chrome when every slide fits inside the host. Below the
-    // gate, forced groups never reach the projection so _isSideBySide
-    // stays false and this collapses to the original contract.
+    // A measured side-by-side fit wins over _forceActive: measureFit's
+    // projection runs for every set size, so a forced group whose slides
+    // all fit inside the host drops its chrome — controls only ever
+    // exist when the track hides something.
     if (this._isSideBySide) return false
 
     return this.items.length > 1
@@ -298,7 +306,7 @@ export class CustomCarousel extends BaseComponent {
     this._bindControls()
 
     requestAnimationFrame(() => {
-      this._jumpToSlide(0, false)
+      this._jumpToSlide(this.currentIndex, false)
 
       this._setupIntersectionObserver()
 
@@ -452,6 +460,12 @@ export class CustomCarousel extends BaseComponent {
 
   onDotClick(idx: number): void {
     carouselOnDotClick(this, idx)
+  }
+
+  /** Track click — forwards clone-slide clicks (inert, untargetable) to the real twin's modal. */
+
+  onTrackClick(e: MouseEvent): void {
+    carouselOnTrackClick(this, e)
   }
 
   /** Observes slides for lazy media loading + autoplay pausing when offscreen. */

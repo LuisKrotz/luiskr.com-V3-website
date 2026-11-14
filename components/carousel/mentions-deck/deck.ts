@@ -115,6 +115,11 @@ export function stripPose(
  * @param host The MentionsDeck element.
  */
 export function measure(host: MentionsDeck): void {
+  // Print freeze — the print-layout reflow must not re-measure the strip
+  // back into its absolute poses; the adapter already stripped the inline
+  // geometry for the flat paper list.
+  if (host._printing) return
+
   const deck = host.$(MENTIONS_DECK_SELECTORS.MENTIONS_DECK_DECK)
 
   const deckW = deck ? deck.getBoundingClientRect().width : 0
@@ -181,6 +186,10 @@ export function measure(host: MentionsDeck): void {
  * @param host The MentionsDeck element.
  */
 export function applyPoses(host: MentionsDeck): void {
+  // Print freeze — a poser write inside the snapshot would re-seat every
+  // card's absolute fan geometry over the flat print list.
+  if (host._printing) return
+
   const items = host.items
 
   const len = items.length

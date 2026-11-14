@@ -23,7 +23,7 @@ import router from '@core/router/router.js'
 import store from '@core/store.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { DOCS_STRINGS } from '@core/tokens/strings/docs.js'
-import { appText, componentText, rightsParts } from '@core/locale/ui-text.js'
+import { appText, componentText, rightsParts, versionStamp } from '@core/locale/ui-text.js'
 import {
   animationsHrefFor,
   feedGlyph,
@@ -61,6 +61,8 @@ export function renderAwards(el: AwardsMentions) {
   const sitemapHref = sitemapHrefFor(locale)
 
   const animationsHref = animationsHrefFor(locale)
+
+  const stamp = versionStamp()
 
   return (
     <footer className={AWARDS_CLASSES.AWARDS_FOOTER}>
@@ -245,6 +247,11 @@ export function renderAwards(el: AwardsMentions) {
       </p>
 
       <p className={FOOTER_CLASSES.FOOTER_RIGHTS}>{renderRights()}</p>
+
+      {/* Release stamp — the colophon's build provenance line (mono,
+          smallest text step, muted AAA ink); hidden when the env isn't
+          baked so tests and env-less runs render nothing. */}
+      {stamp ? <p className={FOOTER_CLASSES.FOOTER_VERSION}>{stamp}</p> : null}
     </footer>
   )
 }

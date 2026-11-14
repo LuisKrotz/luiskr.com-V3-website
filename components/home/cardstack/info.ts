@@ -252,6 +252,115 @@ const CARD_BURN_CLS: BurnClasses = {
 const _burnFront = new WeakMap<CardStack, Element>()
 
 /**
+ * Mounts or re-arms one card's in-card title burn toward `want` (1 =
+ * consume, −1 = knit). A live session flips direction in place — a card
+ * mid-knit that loses the front re-consumes from the knit point, and a
+ * consumed session knits back when its card returns. A mount taken
+ * while the section is held off-screen gets banked immediately so the
+ * draw-in waits for the re-entry release. Reduced motion or a
+ * degenerate box leaves the title's plain ink.
+ * @param host The CardStack element.
+ * @param cardEl The card whose title burns.
+ * @param want Direction — 1 consume, −1 knit.
+ * @param cards The deck's cached card list (item index lookup).
+ */
+function spinCardBurn(host: CardStack, cardEl: Element, want: number, cards: Element[]): void {
+  const card = cardEl as BurnCard
+
+  const s = card._burn
+
+  if (s) {
+    if (s.dir !== want) {
+      s.dir = want
+
+      if (want < 0) s.prog = 1
+      else s.t = s.prog * (s.dur / 1000)
+
+      setBurnDirWasm(s)
+    }
+
+    // _burnHeld gates the re-arm — an off-screen nav retimes the
+    // session but the draw-in stays banked until holdBurns releases.
+    if (!s.raf && !host._burnHeld) s.raf = requestAnimationFrame(() => frame(s))
+
+    return
+  }
+
+  if (store.getters.getReducedMotion?.()) return
+
+  const titleEl = cardEl.querySelector(
+    CARD_STACK_SELECTORS.CARD_STACK_CARD_INFO_TITLE
+  ) as HTMLElement | null
+
+  if (!titleEl) return
+
+  const idx = cards.indexOf(cardEl)
+
+  if (
+    !mountBurn(
+      cardEl,
+      cardEl as HTMLElement,
+      titleEl,
+      host.deckItems[idx] || {},
+      CARD_BURN_CLS,
+      CARD_STACK_LAYOUT.BURN_SPEED,
+      null
+    )
+  ) {
+    return
+  }
+
+  const ns = card._burn
+
+  if (ns && want < 0) {
+    ns.dir = -1
+
+    ns.prog = 1
+
+    setBurnDirWasm(ns)
+  }
+
+  // mountBurn self-arms its first frame — a mount taken while the
+  // section is held off-screen gets banked immediately so the
+  // draw-in waits for the re-entry release.
+  if (ns && host._burnHeld && ns.raf) {
+    cancelAnimationFrame(ns.raf)
+
+    ns.raf = 0
+  }
+}
+
+/**
+ * Arms the outgoing front's burn-out BEFORE the pose pass drops
+ * --active — goTo calls it ahead of applyPoses. The flip bottom-anchors
+ * the card's info column instantly (in-flow → absolute bottom:0), so a
+ * post-flip mount records the RELOCATED box ~130px above where the
+ * title visibly stood — the raster then combusts the name on top of
+ * the card's cover image and the burn reads as displaced. Mounting
+ * pre-flip freezes the anchor at the last-lit in-flow geometry: the
+ * burn plays where the title stood and rides the card's deal transform
+ * out, glued. Live sessions just re-aim — a card mid-knit re-consumes
+ * from the knit point.
+ * @param host The CardStack element.
+ */
+export function armOutgoingTitleBurn(host: CardStack): void {
+  const tier = host._tier
+
+  // Same stacked+in-card-copy gate as burnCardTitles — image-only
+  // bands have no title to arm.
+  if (!tier?.STACKED || !tier.IN_CARD_INFO) return
+
+  const prev = _burnFront.get(host)
+
+  // activeIdx already holds the TARGET index when goTo calls this —
+  // _burnFront still names the card actually leaving the front. A
+  // re-click on the current front keeps the pairing intact.
+  if (!prev || prev === host._cardEls[host.activeIdx]) return
+
+  spinCardBurn(host, prev, 1, host._cardEls)
+}
+
+/**
  * The in-card paper-burn on stacked tiers — the front card's title
  * knits IN (the loop runs dir −1 from prog 1: deposit motes rebuild
  * the glyphs, then teardown hands the pristine raster back to the DOM
@@ -278,75 +387,9 @@ export function burnCardTitles(host: CardStack): void {
 
   _burnFront.set(host, front)
 
-  const spin = (cardEl: Element, want: number): void => {
-    const card = cardEl as BurnCard
+  if (prev && prev !== front) spinCardBurn(host, prev, 1, cards)
 
-    const s = card._burn
-
-    if (s) {
-      if (s.dir !== want) {
-        s.dir = want
-
-        if (want < 0) s.prog = 1
-        else s.t = s.prog * (s.dur / 1000)
-
-        setBurnDirWasm(s)
-      }
-
-      // _burnHeld gates the re-arm — an off-screen nav retimes the
-      // session but the draw-in stays banked until holdBurns releases.
-      if (!s.raf && !host._burnHeld) s.raf = requestAnimationFrame(() => frame(s))
-
-      return
-    }
-
-    if (store.getters.getReducedMotion?.()) return
-
-    const titleEl = cardEl.querySelector(
-      CARD_STACK_SELECTORS.CARD_STACK_CARD_INFO_TITLE
-    ) as HTMLElement | null
-
-    if (!titleEl) return
-
-    const idx = cards.indexOf(cardEl)
-
-    if (
-      !mountBurn(
-        cardEl,
-        cardEl as HTMLElement,
-        titleEl,
-        host.deckItems[idx] || {},
-        CARD_BURN_CLS,
-        CARD_STACK_LAYOUT.BURN_SPEED,
-        null
-      )
-    ) {
-      return
-    }
-
-    const ns = card._burn
-
-    if (ns && want < 0) {
-      ns.dir = -1
-
-      ns.prog = 1
-
-      setBurnDirWasm(ns)
-    }
-
-    // mountBurn self-arms its first frame — a mount taken while the
-    // section is held off-screen gets banked immediately so the
-    // draw-in waits for the re-entry release.
-    if (ns && host._burnHeld && ns.raf) {
-      cancelAnimationFrame(ns.raf)
-
-      ns.raf = 0
-    }
-  }
-
-  if (prev && prev !== front) spin(prev, 1)
-
-  if (front) spin(front, -1)
+  if (front) spinCardBurn(host, front, -1, cards)
 }
 
 /**

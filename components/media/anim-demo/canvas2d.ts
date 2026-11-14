@@ -15,6 +15,7 @@
 import { ANIM_DEMO_CLASSES } from '@core/tokens/classes/anim-demo.js'
 import { THEME_CSS_PROPS } from '@core/tokens/css/theme.js'
 import { reducedMotion } from './cycle.js'
+import { armPrintCapture } from './widgets.js'
 import type { DemoContext } from './types.js'
 
 /** Star count in the scene demo — small enough for a 2D loop. */
@@ -114,11 +115,20 @@ export const mountSceneDemo = ({ stage }: DemoContext): (() => void) => {
     ctx.globalAlpha = 1
   }
 
+  // The canvas keeps its drawn buffer between frames (the starfield only
+  // overwrites painted pixels), so a synchronous re-still answers the
+  // capture handshake with a real frame whenever the walk lands.
+  armPrintCapture(canvas, still)
+
   if (reducedMotion()) {
     still()
 
     return () => undefined
   }
+
+  // One synchronous paint before the loop starts — a print entry between
+  // mount and the first rAF would otherwise capture an empty buffer.
+  still()
 
   let raf = 0
 

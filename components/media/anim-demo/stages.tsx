@@ -26,13 +26,19 @@ import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { SKELETON_CLASSES } from '@core/tokens/classes/skeleton.js'
 import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
+import { EXPAND_MODAL_CLASSES } from '@core/tokens/classes/modal.js'
 import { JOUST_CLASSES } from '@core/tokens/classes/joust.js'
 import { NAV_CLASSES } from '@core/tokens/classes/nav.js'
 import { SECTION_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
-import { DB_PATHS } from '@core/tokens/routes/paths.js'
-import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
-import { h } from '@core/jsx.js'
+import { DB_PATHS, ASSET_PATHS } from '@core/tokens/routes/paths.js'
+import { GENERIC_DIMENSIONS, FLAG_DIMENSIONS } from '@core/tokens/media/dimensions.js'
+import { MEDIA } from '@core/tokens/media/suffixes.js'
+import store from '@core/store.js'
+import { encodeMediaUrl } from '@core/utils/media.js'
+import { FLAG_CLASSES } from '@core/tokens/classes/flags.js'
+import { LANG_OPTIONS } from '@core/i18n.js'
+import { h, Fragment } from '@core/jsx.js'
 import { appText } from '@core/locale/ui-text.js'
 import { animationAlt, animationLongDesc } from '@core/utils/a11y/animation-desc.js'
 
@@ -52,10 +58,37 @@ const _SHEEN_TILES = 3
  * aria-hidden: the record's own dt/dd text is the a11y contract, the
  * canvas is pure demonstration.
  * @param extra Extra classes sizing the canvas (icon/frame variants).
+ * @param key Optional JSX key — required when the canvas is emitted
+ *   inside a `.map()` row (the flag listing).
  * @returns The canvas element.
  */
-const demoCanvas = (extra: string): Node => (
-  <canvas className={`${C.CANVAS} ${extra}`} aria-hidden={ATTR_VALUES.TRUE} />
+const demoCanvas = (extra: string, key?: string | number): Node => (
+  <canvas
+    key={key}
+    className={`${C.CANVAS} ${extra}`}
+    aria-hidden={ATTR_VALUES.TRUE}
+    {...{ [DATA_ATTRS.PRINT_CAPTURE]: ATTR_VALUES.EMPTY }}
+  />
+)
+
+/**
+ * One flag <img> — the fallback twin of the flag canvas, carrying the
+ * same attrs the lang-dialog option images do (the flags row is
+ * aria-hidden, so alt stays empty; split locales get one img per half).
+ * @param cc Country-code segment composing the flag SVG URL.
+ * @param width Intrinsic width hint — the natural aspect drives the rest.
+ * @returns The flag image element.
+ */
+const flagImg = (cc: string, width: number): Node => (
+  <img
+    className={FLAG_CLASSES.FLAG_IMG}
+    src={`${ASSET_PATHS.FLAGS_PREFIX}${cc}${ASSET_PATHS.SVG_EXT}`}
+    alt={ATTR_VALUES.EMPTY}
+    width={width}
+    height={FLAG_DIMENSIONS.FLAG_DIALOG_HEIGHT}
+    decoding={MEDIA_ATTRS.DECODING_ASYNC}
+    loading={MEDIA_ATTRS.LOADING_LAZY}
+  />
 )
 
 /**
@@ -77,18 +110,56 @@ export const stageContent = (id: string): Node | null => {
   switch (id) {
     /* ── Live widget canvases ── */
     case ANIMATION_IDS.BURGER_BUTTON:
+      // The sized wrapper IS the widget's parentElement — the widget's
+      // resize observer reads the parent box (production: the 56px
+      // button), so a bare stage-root canvas would measure 695px. The
+      // variant mark scopes the CSS fallback squares to this record.
+      return <span className={C.ICON_WRAP}>{demoCanvas(`${C.ICON} ${C.ICON_BURGER}`)}</span>
+
     case ANIMATION_IDS.CLOSE_BUTTON:
-      // The sized wrapper IS the widget's parentElement — the close
-      // widget's resize observer reads the parent box (production: the
-      // 56px button), so a bare stage-root canvas would measure 695px.
-      return <span className={C.ICON_WRAP}>{demoCanvas(C.ICON)}</span>
+      // Same sized-wrapper contract as the burger — the variant mark
+      // scopes the CSS fallback X to this record.
+      return <span className={C.ICON_WRAP}>{demoCanvas(`${C.ICON} ${C.ICON_CLOSE}`)}</span>
 
     case ANIMATION_IDS.NAV_MENU_BACKGROUND:
+      return demoCanvas(C.MENUBG)
+
     case ANIMATION_IDS.SCENE_3D:
-      return demoCanvas(ATTR_VALUES.EMPTY)
+      // Two stacked full-stage canvases: the first paints the 2D
+      // starfield approximation (always live — it is also the fallback);
+      // the real scene3d engine mounts on the second and composites
+      // over the field. Where the engine can't mount the top canvas
+      // simply stays transparent.
+      return (
+        <Fragment>
+          {demoCanvas(ATTR_VALUES.EMPTY)}
+          {demoCanvas(ATTR_VALUES.EMPTY)}
+        </Fragment>
+      )
 
     case ANIMATION_IDS.NAV_FLAG:
-      return demoCanvas(C.FLAG)
+      // One cell per LANG_OPTIONS entry — the record lists every locale
+      // the flag widget serves, not a single cycling sample. Each cell
+      // pairs the live canvas with the <img> twin the lang dialog uses
+      // as its no-GL fallback (img visible by default, hidden while the
+      // canvas paints); split locales show both halves.
+      return (
+        <div className={C.FLAGS} aria-hidden={ATTR_VALUES.TRUE}>
+          {LANG_OPTIONS.map((opt) => (
+            <span key={opt.code} className={C.FLAG_CELL}>
+              {demoCanvas(C.FLAG)}
+              {opt.cc2 ? (
+                <span className={FLAG_CLASSES.FLAG_SPLIT}>
+                  {flagImg(opt.cc, FLAG_DIMENSIONS.FLAG_DIALOG_SPLIT_WIDTH)}
+                  {flagImg(opt.cc2, FLAG_DIMENSIONS.FLAG_DIALOG_SPLIT_WIDTH)}
+                </span>
+              ) : (
+                flagImg(opt.cc, FLAG_DIMENSIONS.FLAG_DIALOG_WIDTH)
+              )}
+            </span>
+          ))}
+        </div>
+      )
 
     case ANIMATION_IDS.SWITCH_SLIDER:
       return demoCanvas(C.SWITCH)
@@ -189,17 +260,50 @@ export const stageContent = (id: string): Node | null => {
         </button>
       )
 
-    case ANIMATION_IDS.GENIE_MODAL:
+    case ANIMATION_IDS.GENIE_MODAL: {
+      // Mini lightbox + origin card — the expand-modal classes are the
+      // REAL tokens so buildGenieSheet's figure/item/placeholder queries
+      // resolve exactly like production; the driver then runs the real
+      // GenieCanvas2D strip-warp between the card and the media box.
+      const storage = store.getters.getStorage()
+
+      const thumb = encodeMediaUrl(
+        `${storage}${DEMO_COVER_STEM}${MEDIA.MOZ}${MEDIA.THUMB_SUFFIX}${MEDIA.EXT}`
+      )
+
+      const full = encodeMediaUrl(`${storage}${DEMO_COVER_STEM}${MEDIA.EXT}`)
+
       return (
         <div className={C.SCENE} aria-hidden={ATTR_VALUES.TRUE}>
-          <span className={C.ORIGIN} />
-          <div className={C.BACKDROP}>
-            <div className={C.DIALOG}>
-              <p className={C.DIALOG_TEXT}>{animationAlt(id)}</p>
-            </div>
+          <figure className={C.GENIE_FIGURE}>
+            <img
+              src={thumb}
+              alt={ATTR_VALUES.EMPTY}
+              decoding={MEDIA_ATTRS.DECODING_ASYNC}
+              loading={MEDIA_ATTRS.LOADING_LAZY}
+            />
+          </figure>
+          <div className={`${EXPAND_MODAL_CLASSES.EXPAND_MODAL_CONTENT} ${C.GENIE_MODAL}`}>
+            <figure
+              className={`${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_FIGURE} ${C.GENIE_MODAL_FIGURE}`}
+            >
+              <img
+                className={EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_PLACEHOLDER}
+                src={thumb}
+                alt={ATTR_VALUES.EMPTY}
+                decoding={MEDIA_ATTRS.DECODING_ASYNC}
+              />
+              <img
+                className={EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}
+                src={full}
+                alt={animationAlt(id)}
+                decoding={MEDIA_ATTRS.DECODING_ASYNC}
+              />
+            </figure>
           </div>
         </div>
       )
+    }
 
     /* ── Real element demos (registered by the view) ── */
     case ANIMATION_IDS.CAROUSEL:

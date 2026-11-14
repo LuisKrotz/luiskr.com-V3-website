@@ -11,7 +11,6 @@ import { KEYS, ROUTE_NAMES, SECTIONS } from '@core/constants.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
 import '@website/components/nav/AppNav.js'
-import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
@@ -359,8 +358,8 @@ describe('AppNav interactions', () => {
 
     await flush()
 
-    const burger = el._burgerCanvas(TEST_TEXT.HEADING)
-    const burger2 = el._burgerCanvas(TEST_TEXT.HEADING)
+    const burger = el._burgerCanvas()
+    const burger2 = el._burgerCanvas()
 
     expect(burger).toBe(burger2)
     expect(burger.tagName).toBe(HTML_TAGS.CANVAS.toUpperCase())

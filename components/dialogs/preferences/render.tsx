@@ -1,10 +1,10 @@
 /**
  * @file preferences/render.tsx — the dialog's JSX template.
  *
- * Each control is rendered twice in different layers: the WebGL canvas
- * paints the animated affordance, while real <button>/<input> elements
- * provide the accessible, click-receiving surface — if WebGL fails the
- * DOM controls still look and work correctly (the canvas is decorative).
+ * Two layering conventions: the theme canvas is itself the accessible
+ * control (role=slider + real tabindex — its widget handles arrows),
+ * while the switch canvases stay decorative inside real <button> hosts.
+ * If WebGL fails both paths degrade to plain DOM controls.
  */
 
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
@@ -14,12 +14,15 @@ import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
+import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { SWITCH_TYPES } from '@core/tokens/theme/switches.js'
 import { THEME } from '@core/tokens/theme/theme.js'
 import { h } from '@core/jsx.js'
 import store from '@core/store.js'
+import { isPlaygroundRoute } from '@core/router/playground.js'
+import { themeToP } from '@core/utils/canvas/widgets/theme-slider/math.js'
 import type { PreferencesModal } from '../PreferencesModal.js'
-import type { PrefThemeOption } from './types.js'
+import { prefThemeLabel, type PrefThemeOption } from './types.js'
 
 /** One theme choice button (🌙/⚙️/☀️ row under the canvas slider). */
 function renderThemeBtn(theme: string, current: string, icon: string, option: PrefThemeOption) {
@@ -93,10 +96,15 @@ export function renderPreferences(host: PreferencesModal) {
   const statsForNerds = store.getters.getStatsForNerds()
   const showGrid = store.getters.getShowGrid()
 
+  // Experiment routes force dark and lock switching — the appearance
+  // section is withheld there rather than rendered disabled, so the
+  // dialog never shows a control whose mutation can't take effect.
+  const themeLocked = isPlaygroundRoute()
+
   return (
     <div
       className={PREF_CLASSES.PREF_BACKDROP}
-      tabIndex="-1"
+      tabIndex={CHAR_STRINGS.MINUS_ONE}
       onClick={(e: MouseEvent) => {
         if (e.target === e.currentTarget) host.close()
       }}
@@ -122,26 +130,40 @@ export function renderPreferences(host: PreferencesModal) {
         </header>
 
         <div className={PREF_CLASSES.PREF_BODY}>
-          <section className={PREF_CLASSES.PREF_SECTION}>
-            <h3 className={PREF_CLASSES.PREF_SECTION_TITLE}>{t.appearance.title}</h3>
-            <p className={PREF_CLASSES.PREF_SECTION_DESC}>{t.appearance.desc}</p>
-            <div className={PREF_CLASSES.PREF_THEME_WRAPPER}>
-              <div
-                className={PREF_CLASSES.PREF_THEME_SLIDER}
-                role={ARIA_ATTRS.ROLE_GROUP}
-                aria-label={t.appearance.title}
-              >
-                {/* GL track is a visual duplicate of the theme buttons
-                    below — the buttons are the keyboard/AT control. */}
-                <canvas className={PREF_CLASSES.PREF_THEME_CANVAS} aria-hidden={ATTR_VALUES.TRUE} />
+          {themeLocked ? null : (
+            <section className={PREF_CLASSES.PREF_SECTION}>
+              <h3 className={PREF_CLASSES.PREF_SECTION_TITLE}>{t.appearance.title}</h3>
+              <p className={PREF_CLASSES.PREF_SECTION_DESC}>{t.appearance.desc}</p>
+              <div className={PREF_CLASSES.PREF_THEME_WRAPPER}>
+                <div
+                  className={PREF_CLASSES.PREF_THEME_SLIDER}
+                  role={ARIA_ATTRS.ROLE_GROUP}
+                  aria-label={t.appearance.title}
+                >
+                  {/* The GL track IS the control — role=slider exposes it
+                      to AT and arrow keys reach the widget's own keydown
+                      handler; the labelled buttons below only surface when
+                      the canvas falls back to the non-WebGL path. */}
+                  <canvas
+                    className={PREF_CLASSES.PREF_THEME_CANVAS}
+                    role={ARIA_ATTRS.ROLE_SLIDER}
+                    tabIndex={CHAR_STRINGS.ZERO}
+                    aria-label={t.appearance.title}
+                    aria-orientation={ATTR_VALUES.HORIZONTAL}
+                    aria-valuemin={themeToP(THEME.DARK)}
+                    aria-valuemax={themeToP(THEME.LIGHT)}
+                    aria-valuenow={themeToP(theme)}
+                    aria-valuetext={prefThemeLabel(t.appearance, theme)}
+                  />
+                </div>
+                <div className={PREF_CLASSES.PREF_THEME_LABELS}>
+                  {renderThemeBtn(THEME.DARK, theme, '🌙', t.appearance.dark)}
+                  {renderThemeBtn(THEME.SYSTEM, theme, '⚙️', t.appearance.system)}
+                  {renderThemeBtn(THEME.LIGHT, theme, '☀️', t.appearance.light)}
+                </div>
               </div>
-              <div className={PREF_CLASSES.PREF_THEME_LABELS}>
-                {renderThemeBtn(THEME.DARK, theme, '🌙', t.appearance.dark)}
-                {renderThemeBtn(THEME.SYSTEM, theme, '⚙️', t.appearance.system)}
-                {renderThemeBtn(THEME.LIGHT, theme, '☀️', t.appearance.light)}
-              </div>
-            </div>
-          </section>
+            </section>
+          )}
 
           {/* Accessibility before developer tools — contrast and motion
               are user-facing aids; diagnostics stay last. */}

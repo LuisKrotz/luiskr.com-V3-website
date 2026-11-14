@@ -12,6 +12,7 @@ import '@website/components/media/MediaFigure.js'
 import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
+import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { MEDIA_CLASSES } from '@core/tokens/classes/media.js'
 import { ANIMATION_EVENTS, WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { ANIMATION_DURATIONS } from '@core/tokens/motion/animation.js'
@@ -195,6 +196,47 @@ describe('media-figure retire tails', () => {
     // (fig._isMounted)` else arm: publish is a state-only no-op.
     expect(fig.isLoaded).toBe(true)
     expect(fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`).length).toBe(0)
+  })
+
+  test('a letterboxed successor keeps the thumb — the wash owns the bands', async () => {
+    const fig = mount({ [MEDIA_ATTRS.SRC]: TEST_TEXT.SECOND })
+
+    const highs = await climb(fig)
+    const top = highs[highs.length - 1]
+
+    // Carousel slide context resolves object-fit to scale-down — inline
+    // style stands in for the adopted sheet happy-dom never compiles.
+    top.style.objectFit = ATTR_VALUES.SCALE_DOWN
+
+    const thumb = fig.$(`.${MEDIA_CLASSES.RENDER_MEDIA_THUMB}`)
+
+    top.dispatchEvent(new Event(WINDOW_EVENTS.LOAD))
+    top.dispatchEvent(new Event(ANIMATION_EVENTS.TRANSITIONEND))
+
+    // Under-layers still collapse — only the band-filling wash survives.
+    expect(fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`).length).toBe(1)
+    expect(thumb.style.display).not.toBe(ATTR_VALUES.NONE)
+
+    fig.remove()
+  })
+
+  test('a box-filling successor still retires the thumb', async () => {
+    const fig = mount({ [MEDIA_ATTRS.SRC]: TEST_TEXT.SECOND })
+
+    const highs = await climb(fig)
+    const top = highs[highs.length - 1]
+
+    top.style.objectFit = ATTR_VALUES.COVER
+
+    const thumb = fig.$(`.${MEDIA_CLASSES.RENDER_MEDIA_THUMB}`)
+
+    top.dispatchEvent(new Event(WINDOW_EVENTS.LOAD))
+    top.dispatchEvent(new Event(ANIMATION_EVENTS.TRANSITIONEND))
+
+    expect(fig.$$(`.${MEDIA_CLASSES.RENDER_MEDIA_HIGH}`).length).toBe(1)
+    expect(thumb.style.display).toBe(ATTR_VALUES.NONE)
+
+    fig.remove()
   })
 
   test('retire tolerates a missing thumb element', async () => {

@@ -134,4 +134,42 @@ describe('draw-text render tails', () => {
     expect(html).toContain(A11Y_CLASSES.SR_ONLY_ALPHA)
     expect(html).not.toContain('aria-label="x"')
   })
+
+  test('a stray < that matches no tag tokenizes as literal text', () => {
+    const html = renderContent('a < b', 10, 0)
+
+    expect(html).toBeTruthy()
+    expect(html).not.toContain('<b>')
+  })
+
+  test('char-free <q> still emits delay vars pinned to the reveal offset', () => {
+    // <br>-only inner — edgeCharCi walks every chunk, finds no char and
+    // returns -1 for both edges; Math.max(0, -1) pins both quote marks to
+    // the offset slot so generated content can't paint ahead of the text.
+    const html = renderContent('<q><br></q>', 10, 5)
+
+    expect(html).toContain('--q-open-delay: 5ms')
+    expect(html).toContain('--q-close-delay: 5ms')
+  })
+
+  test('a <q> nested around a char-free tag keeps both marks at the offset', () => {
+    // The nested <b> recurses edgeCharCi, returns -1 (no chars inside),
+    // and the loop falls through to the outer -1 — both marks pin to 0.
+    const html = renderContent('<q><b><br></b></q>', 10, 0)
+
+    expect(html).toContain('--q-open-delay: 0ms')
+    expect(html).toContain('--q-close-delay: 0ms')
+  })
+
+  test('a chunk-free <q> token falls back to the empty chunk list', () => {
+    const renderWord = jest.fn(() => '')
+
+    const html = tokenToHtml({ type: CSS_STRINGS.TOKEN_TAG, tag: 'q' }, renderWord, {
+      delay: 10,
+      offset: 0,
+    })
+
+    expect(html).toContain('--q-open-delay: 0ms')
+    expect(html).toContain('<q')
+  })
 })

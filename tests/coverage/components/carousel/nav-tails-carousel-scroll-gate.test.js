@@ -17,6 +17,7 @@ import { isScrolling } from '@core/utils/motion/scroll-state.js'
 import { TEST_URLS, waitFor } from '@tests/fixtures/test-constants.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { CAROUSEL_SELECTORS } from '@core/tokens/selectors/carousel.js'
+import { CAROUSEL_CLASSES } from '@core/tokens/classes/carousel.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { WINDOW_EVENTS } from '@core/tokens/events/dom.js'
 import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
@@ -58,10 +59,12 @@ const cleanup = (el) => {
   el?.remove()
 }
 
-afterEach(() => {
+afterEach(async () => {
   // Release any parked scroll-settle work so the flag can't leak into the
-  // next test — scrollend where supported, the 120ms debounce otherwise.
+  // next test — scrollend re-arms the settle debounce, so wait it out.
   window.dispatchEvent(new Event(WINDOW_EVENTS.SCROLLEND))
+
+  await waitFor(() => !isScrolling())
 
   document.body.innerHTML = CHAR_STRINGS.EMPTY
 })
@@ -204,36 +207,58 @@ describe('carousel scroll-gate tails', () => {
   })
 
   test('checkInfiniteLoop teleports at both clone edges', () => {
-    const makeHost = (lastLeft, firstLeft) => ({
+    // Track children are position-mapped: the leading clone just before
+    // the real range (p = before−1) twins to the last real slide; the
+    // first trailing clone (p = before+len) twins to index 0.
+    const mkSlide = (isClone, left) => ({
+      classList: {
+        contains: (cls) => isClone && cls === CAROUSEL_CLASSES.CAROUSEL_SLIDE_CLONE_MARK,
+      },
+      getBoundingClientRect: () => ({ left, width: 100 }),
+    })
+
+    const makeHost = (children) => ({
       isNavigating: false,
       currentIndex: 1,
       items: SLIDES,
+      _edgeClonesBefore: 2,
       $: (sel) =>
         ({
           [CAROUSEL_SELECTORS.CAROUSEL_TRACK]: {
+            children,
             getBoundingClientRect: () => ({ left: 0, width: 600 }),
-          },
-          [CAROUSEL_SELECTORS.CAROUSEL_SLIDE_CLONE_LAST]: {
-            getBoundingClientRect: () => ({ left: lastLeft, width: 100 }),
-          },
-          [CAROUSEL_SELECTORS.CAROUSEL_SLIDE_CLONE_FIRST]: {
-            getBoundingClientRect: () => ({ left: firstLeft, width: 100 }),
           },
         })[sel],
       _jumpToSlide: jest.fn(),
       _updateActiveClasses: jest.fn(),
     })
 
-    // cloneLast parked at track center → wrap to the real last slide.
-    const lastHost = makeHost(250, -8000)
+    // cloneLast (position before−1 = 1) parked at center(300) → real last.
+    const lastHost = makeHost([
+      mkSlide(true, -900),
+      mkSlide(true, 250),
+      mkSlide(false, -500),
+      mkSlide(false, -300),
+      mkSlide(false, -100),
+      mkSlide(true, 700),
+      mkSlide(true, 900),
+    ])
 
     checkInfiniteLoop(lastHost)
 
     expect(lastHost.currentIndex).toBe(SLIDES.length - 1)
     expect(lastHost._jumpToSlide).toHaveBeenCalled()
 
-    // cloneFirst parked at track center → wrap to the real first slide.
-    const firstHost = makeHost(-8000, 250)
+    // cloneFirst (position before+len = 5) parked at center → real first.
+    const firstHost = makeHost([
+      mkSlide(true, -900),
+      mkSlide(true, -700),
+      mkSlide(false, -500),
+      mkSlide(false, -300),
+      mkSlide(false, -100),
+      mkSlide(true, 250),
+      mkSlide(true, 900),
+    ])
 
     checkInfiniteLoop(firstHost)
 

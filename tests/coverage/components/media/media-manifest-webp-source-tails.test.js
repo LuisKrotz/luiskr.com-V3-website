@@ -223,7 +223,7 @@ describe('media-manifest webp sources', () => {
     }
   })
 
-  test('manifest-known-absent webm/poster tiers are omitted from the video matrix', () => {
+  test('manifest-known-absent webm/poster/scaled tiers are omitted from the video matrix', () => {
     // Manifest is loaded (first test) and lists none of this video's
     // derived variants — the emit gate must blank them instead of
     // offering doomed <source>/<poster> URLs that 404 into CORB.
@@ -235,8 +235,10 @@ describe('media-manifest webp sources', () => {
 
     expect(fig.poster).toEqual([ATTR_VALUES.EMPTY, ATTR_VALUES.EMPTY])
     expect(fig.videoWebm).toEqual([ATTR_VALUES.EMPTY, ATTR_VALUES.EMPTY])
+    // The base mp4 is the database-pointed passthrough original — always
+    // emittable; the scaled mp4 is derived and stays gated like poster/webm.
     expect(fig.video[0].endsWith(MEDIA.VIDEO_EXT)).toBe(true)
-    expect(fig.video[1].endsWith(`${MEDIA.VIDEO_SCALE}${MEDIA.VIDEO_EXT}`)).toBe(true)
+    expect(fig.video[1]).toBe(ATTR_VALUES.EMPTY)
 
     // Same gate on the expanded modal's webm sibling getter.
     const expanded = new MediaExpanded()

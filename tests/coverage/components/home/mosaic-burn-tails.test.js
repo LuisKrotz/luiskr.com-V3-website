@@ -14,6 +14,7 @@ import {
   disarmCardBurn as rawDisarmCardBurn,
 } from '@core/utils/burn/burn.js'
 import { frame } from '@core/utils/burn/loop.js'
+import { _PAD_X, _PAD_TOP } from '@core/utils/burn/tuning.js'
 import store from '@core/store.js'
 import { mount } from '@tests/fixtures/test-constants.js'
 import { HOME_MOSAIC_CLASSES } from '@core/tokens/classes/mosaic.js'
@@ -777,5 +778,153 @@ describe('mosaic burn tails', () => {
     // Two ink runs rasterized to two letters; index 1 had no prev.
     expect(s.letters.length).toBe(2)
     expect(s.lastFont).toContain('99px')
+  })
+
+  test('a transforming host cannot drift the canvas — anchors ride the offset chain', async () => {
+    mountMosaic()
+
+    const card = cardEl()
+    const title = card.querySelector(TITLE_SEL)
+    const overlay = card.querySelector(OVERLAY_SEL)
+    const inner = document.createElement(HTML_TAGS.DIV)
+
+    // Card-stack-shaped chain: title → inner → overlay. The dealt card's
+    // transform inflates every getBoundingClientRect (the suite stub
+    // returns 10/10 200×40 for every element — a 0,0 rect delta), while
+    // the offset chain reports the layout box style.left/top share.
+    for (const [node, props] of [
+      [
+        title,
+        {
+          offsetParent: inner,
+          offsetLeft: 5,
+          offsetTop: 30,
+          offsetWidth: 200,
+          offsetHeight: 40,
+        },
+      ],
+      [inner, { offsetParent: overlay, offsetLeft: 8, offsetTop: 40 }],
+      [overlay, { offsetWidth: 320 }],
+    ]) {
+      for (const [key, value] of Object.entries(props)) {
+        Object.defineProperty(node, key, { get: () => value, configurable: true })
+      }
+    }
+
+    armCardBurn(el, 0, ITEMS[0])
+
+    const s = card._burn
+    const canvas = card.querySelector(BURN_SEL)
+
+    // Layout anchor x=5+8=13, y=30+40=70 — not the rect delta's 0,0.
+    expect(canvas.style.left).toBe(`${13 - _PAD_X}px`)
+    expect(canvas.style.top).toBe(`${70 - _PAD_TOP}px`)
+
+    // The dealt card's scale inflates every rect — the layout anchor
+    // must not move and the layout signature must not re-raster.
+    Element.prototype.getBoundingClientRect = () => ({
+      left: -500,
+      top: -500,
+      right: 900,
+      bottom: 400,
+      width: 1400,
+      height: 900,
+      x: -500,
+      y: -500,
+      toJSON: () => ({}),
+    })
+
+    frame(s)
+
+    expect(canvas.style.left).toBe(`${13 - _PAD_X}px`)
+    expect(canvas.style.top).toBe(`${70 - _PAD_TOP}px`)
+    expect(s.lastBox).toContain('200,40')
+
+    // The pile's real reflows (offsetTop shifting under _frontExtra
+    // settling) must not move the canvas either — without the
+    // ITEM_BURNED contract the anchor is frozen at the arm-time box.
+    Object.defineProperty(inner, 'offsetTop', { get: () => 88, configurable: true })
+
+    frame(s)
+
+    expect(canvas.style.left).toBe(`${13 - _PAD_X}px`)
+    expect(canvas.style.top).toBe(`${70 - _PAD_TOP}px`)
+  })
+
+  test('an overlay outside the offsetParent chain falls back to rect deltas', async () => {
+    mountMosaic()
+
+    const card = cardEl()
+    const title = card.querySelector(TITLE_SEL)
+
+    // The walk dead-ends without reaching the overlay — rect deltas
+    // (0,0 under the suite stub) drive the anchor instead.
+    Object.defineProperty(title, 'offsetParent', {
+      get: () => document.createElement(HTML_TAGS.DIV),
+      configurable: true,
+    })
+
+    armCardBurn(el, 0, ITEMS[0])
+
+    const canvas = card.querySelector(BURN_SEL)
+
+    expect(canvas.style.left).toBe(`${0 - _PAD_X}px`)
+    expect(canvas.style.top).toBe(`${0 - _PAD_TOP}px`)
+
+    // A moved rect does NOT re-anchor — without the ITEM_BURNED
+    // relocation contract the canvas freezes at the arm-time box (the
+    // dealt pile's reflows made live tracking read as the title sliding).
+    Element.prototype.getBoundingClientRect = function () {
+      const box =
+        this === title
+          ? { left: 30, top: 60, right: 230, bottom: 100, width: 200, height: 40 }
+          : { left: 10, top: 10, right: 210, bottom: 50, width: 200, height: 40 }
+
+      return { ...box, x: box.left, y: box.top, toJSON: () => ({}) }
+    }
+
+    frame(card._burn)
+
+    expect(canvas.style.left).toBe(`${0 - _PAD_X}px`)
+    expect(canvas.style.top).toBe(`${0 - _PAD_TOP}px`)
+  })
+
+  test('a relocating host (ITEM_BURNED) keeps live position tracking', async () => {
+    mountMosaic()
+
+    const card = cardEl()
+    const title = card.querySelector(TITLE_SEL)
+
+    // Dead-end the offset walk so the rect fallback drives the anchor,
+    // then arm with the relocation contract present in the class map.
+    Object.defineProperty(title, 'offsetParent', {
+      get: () => document.createElement(HTML_TAGS.DIV),
+      configurable: true,
+    })
+
+    rawArmCardBurn(
+      el,
+      0,
+      ITEMS[0],
+      { ...BURN_CLASSES, ITEM_BURNED: HOME_MOSAIC_CLASSES.HOME_MOSAIC_ITEM_BURNING },
+      MOSAIC_SELECTORS.HOME_MOSAIC_ITEM
+    )
+
+    const canvas = card.querySelector(BURN_SEL)
+
+    Element.prototype.getBoundingClientRect = function () {
+      const box =
+        this === title
+          ? { left: 30, top: 60, right: 230, bottom: 100, width: 200, height: 40 }
+          : { left: 10, top: 10, right: 210, bottom: 50, width: 200, height: 40 }
+
+      return { ...box, x: box.left, y: box.top, toJSON: () => ({}) }
+    }
+
+    frame(card._burn)
+
+    // The relocation contract follows the moved box — 30-10=20, 60-10=50.
+    expect(canvas.style.left).toBe(`${20 - _PAD_X}px`)
+    expect(canvas.style.top).toBe(`${50 - _PAD_TOP}px`)
   })
 })

@@ -27,6 +27,7 @@ import { ANIM_DEMO_CLASSES } from '@core/tokens/classes/anim-demo.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { QUERY_STRINGS } from '@core/tokens/strings/queries.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
+import { CLIPBOARD_EVENTS, PRINT_EVENTS } from '@core/tokens/events/dom.js'
 import { BaseComponent } from '@core/Component.js'
 import { h } from '@core/jsx.js'
 import { stageContent } from './anim-demo/stages.js'
@@ -47,6 +48,10 @@ export class AnimDemo extends BaseComponent {
 
   /** Viewport-proximity watcher — drivers mount on approach, die on exit. */
   _io: IntersectionObserver | null = null
+
+  /** Marks a driver print force-mounted — afterprint tears it back down
+   *  so off-screen demos never keep a live WebGL context/loop. */
+  _printMounted = false
 
   static get observedAttributes() {
     return [COMMON_ATTRS.ANIMATION]
@@ -86,11 +91,46 @@ export class AnimDemo extends BaseComponent {
   /** Post-mount — resolves + mounts the driver for the attr's id. */
   override onMounted(): void {
     this._mountDemo()
+
+    window.addEventListener(PRINT_EVENTS.PREPARE, this._onPrintPrepare)
+    window.addEventListener(CLIPBOARD_EVENTS.AFTER_PRINT, this._onAfterPrint)
   }
 
   /** Disconnect — runs the driver's teardown (widgets, GPU, loops). */
   override onDestroy(): void {
+    window.removeEventListener(PRINT_EVENTS.PREPARE, this._onPrintPrepare)
+    window.removeEventListener(CLIPBOARD_EVENTS.AFTER_PRINT, this._onAfterPrint)
+
     this._destroyDemo()
+  }
+
+  /**
+   * Print entry force-mounts the driver so the stage canvas paints a real
+   * frame before the print walk captures it — off-screen demos otherwise
+   * stay unmounted (the IO gate) and would serialize as blank stills.
+   */
+  _onPrintPrepare = (): void => {
+    if (this._mounted || this._printMounted) return
+
+    const stage = this.$<HTMLElement>(`.${ANIM_DEMO_CLASSES.ANIM_DEMO}`)
+    const id = this.getAttribute(COMMON_ATTRS.ANIMATION) || ATTR_VALUES.EMPTY
+
+    if (!stage) return
+
+    this._printMounted = true
+    this._runMount(id, stage)
+  }
+
+  /**
+   * Print exit releases only the print-mounted driver — a driver the IO
+   * mounted itself stays live (the observer will not re-fire for an
+   * element that never left the viewport).
+   */
+  _onAfterPrint = (): void => {
+    if (!this._printMounted) return
+
+    this._printMounted = false
+    this._stopDriver()
   }
 
   /**

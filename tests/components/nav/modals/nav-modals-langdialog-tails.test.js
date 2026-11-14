@@ -187,6 +187,10 @@ describe('LangDialog tails', () => {
     gone.remove()
     btn.dispatchEvent(new Event(POINTER_EVENTS.POINTEROUT, { bubbles: true }))
     window.dispatchEvent(new Event(WINDOW_EVENTS.RESIZE))
+    // Follower restored but no :hover/.active button — the `&&` right arm
+    // resolves falsy and the resize handler skips the move.
+    langEl.shadowRoot.appendChild(gone)
+    window.dispatchEvent(new Event(WINDOW_EVENTS.RESIZE))
     activeBtn?.classList.add(STATE_CLASSES.ACTIVE)
     window.dispatchEvent(new Event(WINDOW_EVENTS.RESIZE))
     window.dispatchEvent(new KeyboardEvent(KEYBOARD_EVENTS.KEYDOWN, { key: 'a' }))

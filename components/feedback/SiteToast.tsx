@@ -23,6 +23,7 @@ import { NOTIFY_TYPES } from '@core/tokens/data/notify.js'
 import { NAV_UI_KEYS } from '@core/tokens/data/ui-keys.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { NOTIFY } from '@core/tokens/motion/notify.js'
+import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { h } from '@core/jsx.js'
@@ -149,7 +150,12 @@ export class SiteToast extends BaseComponent {
       return null
     }
 
-    this.style.display = ATTR_VALUES.BLOCK
+    // A toast mounted while a print pass is live must not re-paint chrome —
+    // the document print sheet hides site-toast outright, but an inline
+    // display written here would still beat it on paper.
+    this.style.display = window.matchMedia(MEDIA_QUERIES.PRINT).matches
+      ? ATTR_VALUES.NONE
+      : ATTR_VALUES.BLOCK
 
     const closeLabel = String(appText(NAV_UI_KEYS.CLOSE) || CHAR_STRINGS.EMPTY)
 

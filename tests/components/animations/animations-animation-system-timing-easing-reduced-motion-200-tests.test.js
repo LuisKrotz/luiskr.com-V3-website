@@ -63,8 +63,8 @@ describe('Animation System — Timing, Easing & Reduced Motion (200+ tests)', ()
       expect(CAROUSEL_TIMING.AUTOPLAY_DURATION).toBe(5000)
     })
 
-    test('CAROUSEL_TIMING.TELEPORT_DELAY is 1100ms (watchdog sized past the spring settle)', () => {
-      expect(CAROUSEL_TIMING.TELEPORT_DELAY).toBe(1100)
+    test('CAROUSEL_TIMING.TELEPORT_DELAY is 1600ms (watchdog sized past the spring settle)', () => {
+      expect(CAROUSEL_TIMING.TELEPORT_DELAY).toBe(1600)
     })
   })
 

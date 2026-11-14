@@ -15,6 +15,7 @@ import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import store from '@core/store.js'
 import { hasWebGpu } from '@core/utils/gpu/webgpu-widget.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
+import { framePool } from '@core/utils/motion/frame.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
 import { buildChannel, buildScanlines, coverRect, frame } from './fx.js'
 import { frameGlitchWasm, pushGlitchRect, tryGlitchWasm, uploadGlitchBitmap } from './wasm.js'
@@ -150,6 +151,7 @@ export function armGlitch(host: AboutSection, wrap: HTMLElement): boolean {
     t: 0,
     lastT: performance.now(),
     raf: 0,
+    onFrame: () => tick(host),
     active: true,
     hover: false,
     tick: 0,
@@ -168,7 +170,7 @@ export function armGlitch(host: AboutSection, wrap: HTMLElement): boolean {
 
   s.ro = observeResize(s, wrap)
 
-  s.raf = requestAnimationFrame(() => tick(host))
+  s.raf = framePool.request(s.onFrame)
 
   if (hasWebGpu()) {
     // Async mount — the portrait shows unmodified until the widget lands
@@ -216,7 +218,7 @@ export function armCtx2d(s: GlitchSession): boolean {
 export function dropSession(host: AboutSection, s: GlitchSession): void {
   s.active = false
 
-  if (s.raf) cancelAnimationFrame(s.raf)
+  if (s.raf) framePool.cancel(s.raf)
 
   s.ro?.disconnect()
 
@@ -256,7 +258,9 @@ export function healSession(host: AboutSection, s: GlitchSession): boolean {
 }
 
 /**
- * Self-maintaining tick — always running while mounted:
+ * Self-maintaining tick — always running while mounted (queued through
+ * framePool, so the whole chain starves during scroll flings and resumes
+ * on settle):
  *   no session      → retry the arm at ~4 Hz (covers lazy image decode
  *                     and the first render landing before data).
  *   session detached→ heal against the fresh wrapper/img (re-render-safe).
@@ -267,7 +271,9 @@ export function tick(host: AboutSection): void {
 
   if (!s || !s.active || !host._isMounted) return
 
-  s.raf = requestAnimationFrame(() => tick(host))
+  // framePool starves the queue during scroll flings — the ambient
+  // glitch never paints against a gesture, then resumes on settle.
+  s.raf = framePool.request(s.onFrame)
 
   if (!s.canvas.isConnected) {
     // Shadow re-render dropped the overlay — re-attach to the new nodes.

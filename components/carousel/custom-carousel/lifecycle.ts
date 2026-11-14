@@ -29,9 +29,14 @@ export function onMounted(host: CustomCarousel): void {
 
   // The covers manifest is boot-idle-deferred — the first slide render
   // emits originals-only <img>s; on arrival the rebuild emits proven
-  // webp thumbs and the browser re-fetches the light variants.
+  // webp thumbs and the browser re-fetches the light variants. The
+  // rebuild replaces the whole track DOM, so the fresh track parks at
+  // scrollLeft 0 — re-center the active slide or the viewport opens on
+  // dead track padding instead of the current item.
   host._unsubManifest = onMediaManifest(() => {
     host._updateDom()
+
+    requestAnimationFrame(() => host._jumpToSlide(host.currentIndex, false))
   })
 }
 

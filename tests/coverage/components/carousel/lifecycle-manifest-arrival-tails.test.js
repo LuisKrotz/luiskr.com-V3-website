@@ -24,6 +24,8 @@ const host = () => ({
   observer: null,
   _cancelNavSpring: jest.fn(),
   _unsubManifest: null,
+  _jumpToSlide: jest.fn(),
+  currentIndex: 0,
 })
 
 describe('custom-carousel manifest-arrival arm', () => {
@@ -48,6 +50,12 @@ describe('custom-carousel manifest-arrival arm', () => {
     // arrow body runs host._updateDom() one extra time past mount's own.
     expect(h._updateDom.mock.calls.length).toBeGreaterThan(before)
     expect(h._unsubManifest).toEqual(expect.any(Function))
+
+    // The re-center is frame-deferred — the rebuilt track parks at
+    // scrollLeft 0, so the next rAF jumps back to the live slide index.
+    await new Promise((r) => requestAnimationFrame(r))
+
+    expect(h._jumpToSlide).toHaveBeenCalledWith(0, false)
 
     onDestroy(h)
 

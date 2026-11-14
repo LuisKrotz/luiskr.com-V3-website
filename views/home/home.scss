@@ -175,6 +175,27 @@
   width: 100%;
 }
 
+// ── Print ───────────────────────────────────────────────────────────────────
+// Each top-level region starts on its own sheet — the selected-work deck,
+// about, contact, and awards read as titled sections, not a continuous
+// stream. #home needs no forced break: the printed covers already leave
+// it at a fresh page box.
+@media print {
+  #about,
+  #contact,
+  awards-mentions {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  // Section titles keep with their content — a break between heading
+  // and first block would strand it at a sheet's foot.
+  .home-section-title {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+}
+
 // Keyboard focus ring on this shadow root's tabbable elements — the file
 // doesn't import _structure (which emits it globally), so include the
 // shared scope explicitly.

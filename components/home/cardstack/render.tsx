@@ -7,6 +7,7 @@
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { FORM_ATTRS } from '@core/tokens/attrs/form.js'
 import { CARD_STACK_CLASSES } from '@core/tokens/classes/card-stack.js'
 import { BREAKPOINTS } from '@core/tokens/layout/breakpoints.js'
@@ -104,7 +105,6 @@ function renderCard(host: CardStack, item: CardStackItem, i: number) {
         className={C.CARD_STACK_CARD_LINK}
         draggable={ATTR_VALUES.FALSE}
         href={projectHref(item)}
-        aria-label={altText}
         tabindex={i === host.activeIdx ? ATTR_VALUES.TABINDEX_ZERO : ATTR_VALUES.NEGATIVE_TABINDEX}
       >
         <div className={C.CARD_STACK_CARD_MEDIA}>
@@ -290,6 +290,7 @@ function renderIndex(host: CardStack, prevText: string, nextText: string) {
     <div
       className={C.CARD_STACK_INDEX}
       aria-hidden={host.indexOpen ? ATTR_VALUES.FALSE : ATTR_VALUES.TRUE}
+      inert={!host.indexOpen}
     >
       <div className={C.CARD_STACK_INDEX_HEAD}>
         <h2 className={C.CARD_STACK_INDEX_TITLE}>{t.allProjects}</h2>
@@ -445,7 +446,7 @@ export function renderCardStack(host: CardStack) {
       </header>
 
       {items.length ? (
-        <div className={C.CARD_STACK_DECK} aria-label={t.featured}>
+        <div className={C.CARD_STACK_DECK} aria-label={t.featured} role={ARIA_ATTRS.ROLE_GROUP}>
           {items.map((item, i) => renderCard(host, item, i))}
         </div>
       ) : (
@@ -501,7 +502,7 @@ export function renderCardStack(host: CardStack) {
             <button
               className={C.CARD_STACK_NAV_INDEX}
               type={FORM_ATTRS.BUTTON}
-              aria-label={`${host._t.projectLabel} ${host.activeIdx + 1} ${ofLabel} ${items.length}`}
+              aria-label={`${host._t.projectLabel} ${host.activeIdx + 1} ${CHAR_STRINGS.SLASH} ${items.length}`}
             >
               <svg
                 className={C.CARD_STACK_NAV_INDEX_ICON}

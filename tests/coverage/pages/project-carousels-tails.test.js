@@ -85,6 +85,9 @@ describe('scaleCarouselItem', () => {
   })
 
   test('compounds every ladder step while the width clears the floor', () => {
+    // Tiny viewport — the slide never fits, so only the floor can stop it.
+    setWidth(1)
+
     const steps = CAROUSEL_LAYOUT.DESKTOP_SCALE_STEPS
     const min = CAROUSEL_LAYOUT.DESKTOP_SCALE_MIN_W
     const w = min * steps.reduce((a, d) => a * d, 1) + min
@@ -92,6 +95,28 @@ describe('scaleCarouselItem', () => {
     const scaled = scaleCarouselItem(item)
 
     expect(scaled.size[0]).toBeCloseTo(w / steps.reduce((a, d) => a * d, 1))
+    expect(scaled.naturalSize).toBe(item.size)
+  })
+
+  test('stops the ladder once the slide fits inside the viewport', () => {
+    setWidth(1600)
+
+    const item = { size: [1920, 1008] }
+    const scaled = scaleCarouselItem(item)
+
+    expect(scaled.size[0]).toBeCloseTo(960)
+    expect(scaled.size[1]).toBeCloseTo(504)
+    expect(scaled.naturalSize).toBe(item.size)
+  })
+
+  test('keeps dividing while the slide is still viewport-wide', () => {
+    setWidth(1600)
+
+    const item = { size: [3840, 2160] }
+    const scaled = scaleCarouselItem(item)
+
+    expect(scaled.size[0]).toBeCloseTo(640)
+    expect(scaled.size[1]).toBeCloseTo(360)
     expect(scaled.naturalSize).toBe(item.size)
   })
 })

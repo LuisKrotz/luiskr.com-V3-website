@@ -15,15 +15,23 @@ const _WIDE = { src: 'b.webp', size: [1600, 900], label: 'Wide', class: STATE_ST
 const _TALL = { src: 'c.webp', size: [400, 2400], label: 'Tall' }
 const _NOSIZE = { src: 'd.webp', label: 'No size' }
 
-/** Fresh element stub — measureFit only reads the fields below. */
+/** Fresh element stub — measureFit only reads the fields below. The
+    _edgeClones* presets match what the SLIDE fixtures project (one ~840px
+    slide already covers half of the 800px host) so the clone recount
+    doesn't mask the layout-mode arm under test. */
 const stubEl = (items = [SLIDE, SLIDE]) => ({
   _forceActive: false,
   items,
   _isSideBySide: false,
   clientWidth: 0,
+  currentIndex: 0,
+  _edgeClonesBefore: 1,
+  _edgeClonesAfter: 1,
+  _measureFit: jest.fn(),
   _updateDom: jest.fn(),
   _setupAfterRender: jest.fn(),
   _setHeightVar: jest.fn(),
+  _jumpToSlide: jest.fn(),
 })
 
 /** Original innerWidth/innerHeight descriptors — restored after each test. */

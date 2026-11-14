@@ -172,7 +172,11 @@ export function mountMediaFigure(c: MediaFigure): void {
 
       c.addScopedListener(vid, MEDIA_EVENTS.PAUSE, () => setLabel(STATE_STRINGS.PAUSED))
 
-      const needsPoster = Boolean(poster && !vid.poster)
+      // The observer arm checks the captured poster only — vid.poster
+      // always reads unset at mount (fresh render), so a poster guard
+      // here was dead weight; the attach inside `start` re-checks the
+      // live value before stamping.
+      const needsPoster = Boolean(poster)
 
       if (autoplayAllowed || needsPoster) {
         // Posters and video streams are both viewport-gated. The hero
@@ -218,7 +222,14 @@ export function mountMediaFigure(c: MediaFigure): void {
                 return
               }
 
-              if (!vid.poster && poster) vid.poster = poster
+              // Re-read fig.poster at attach time — a pre-manifest
+              // mount captured '' here, and the refresh that re-resolved
+              // the matrix must not find the stale value still gating
+              // the attach.
+              const livePoster =
+                c.poster?.[c._scaledVideo ? 1 : 0] || c.poster?.[0] || ATTR_VALUES.EMPTY
+
+              if (!vid.poster && livePoster) vid.poster = livePoster
 
               if (!autoplayAllowed) return
 

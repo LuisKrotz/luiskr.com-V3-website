@@ -10,6 +10,9 @@
 import { ANIM_DEMO_CLASSES } from '@core/tokens/classes/anim-demo.js'
 import { AWARDS_CLASSES } from '@core/tokens/classes/awards.js'
 import { NAV_CLASSES } from '@core/tokens/classes/nav.js'
+import { STATE_CLASSES } from '@core/tokens/classes/state.js'
+import { HTML_TAGS } from '@core/tokens/elements/html.js'
+import { PRINT_EVENTS } from '@core/tokens/events/dom.js'
 import store from '@core/store.js'
 import { feedGlyph, feedHrefFor } from '@core/utils/data/footer-links.js'
 import { mountRingFill } from '@core/utils/gpu/ring-fill.js'
@@ -46,7 +49,17 @@ export const mountLoaderDemo = ({ stage }: DemoContext): (() => void) => {
     },
   ])
 
+  // Paper lands mid-cycle — pin the settled readout so the reference
+  // sheet always shows the finished loader, not a random percent.
+  const settle = () => {
+    if (counter) counter.textContent = _LOADER_STEPS[_LOADER_STEPS.length - 1]
+  }
+
+  window.addEventListener(PRINT_EVENTS.PREPARE, settle)
+
   return () => {
+    window.removeEventListener(PRINT_EVENTS.PREPARE, settle)
+
     stop()
 
     if (counter) counter.textContent = _LOADER_STEPS[0]
@@ -225,10 +238,20 @@ export const mountAuraDemo = ({ stage }: DemoContext): (() => void) => {
 
   let i = -1
 
+  // A session object is not proof of a live overlay: mountRingFill
+  // returns it synchronously while the widget mount resolves async,
+  // and a failed mount removes the fallback canvas entirely — the
+  // stylesheet's own `:has(> canvas:not(.is-fallback))` gate is the
+  // authoritative live signal. While no live canvas exists the armed
+  // CSS trail owns the paint (the production non-WebGPU appearance).
+  const gpuLive = () =>
+    Boolean(strip?.querySelector(`${HTML_TAGS.CANVAS}:not(.${STATE_CLASSES.IS_FALLBACK})`))
+
   const arm = () => {
     i = (i + 1) % (chips.length + 1)
 
-    if (session) {
+    if (session && gpuLive()) {
+      chips.forEach((chip) => chip.classList.remove(C.CHIP_ARMED))
       chips.forEach((_, j) => session.setProgress(j, j === i ? 1 : 0))
     } else {
       chips.forEach((chip, j) => chip.classList.toggle(C.CHIP_ARMED, j === i))

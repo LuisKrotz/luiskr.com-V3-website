@@ -111,5 +111,11 @@ export function startExpandedClose(el: MediaExpanded): void {
 
   if (content) content.classList.add(EXPAND_MODAL_CLASSES.EXPAND_MODAL_CLOSING)
 
-  setTimeout(() => teardownExpandedModal(el), GENIE_FALLBACK.CLOSE_MS)
+  // Tracked so onDestroy can cancel a teardown whose element already
+  // left the DOM — a dead el must never scrollTo/commit post-mortem.
+  el._closeTimer = setTimeout(() => {
+    el._closeTimer = null
+
+    teardownExpandedModal(el)
+  }, GENIE_FALLBACK.CLOSE_MS)
 }

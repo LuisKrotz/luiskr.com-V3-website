@@ -19,9 +19,7 @@ import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
-import store from '@core/store.js'
 import { viewportHeight, viewportWidth } from '@core/utils/dom.js'
-import { FALLBACK_APP } from '@core/locale/fallback.js'
 import { writeInfo } from './info.js'
 import { stopAutoplay } from './autoplay.js'
 import type { CardStackItem, CardPose } from './types.js'
@@ -452,6 +450,11 @@ export function padNum(n: number): string {
  * @param host The CardStack element.
  */
 export function applyPoses(host: CardStack): void {
+  // The print adapter strips inline styles for the snapshot — a rAF/RO
+  // pose write landing mid-job would scatter the flattened mosaic back
+  // into fan geometry on paper.
+  if (host._printing) return
+
   const items = host.deckItems
 
   const len = items.length
@@ -590,10 +593,6 @@ export function updateChrome(host: CardStack): void {
 
   if (!len) return
 
-  const lang = store.getters.getCarouselLang() as { ofLabel?: string } | undefined
-
-  const ofLabel = lang?.ofLabel || (FALLBACK_APP.carousel as { ofLabel: string }).ofLabel
-
   const navIndex = host.$(CARD_STACK_SELECTORS.CARD_STACK_NAV_INDEX) as HTMLElement | null
 
   if (navIndex) {
@@ -602,12 +601,17 @@ export function updateChrome(host: CardStack): void {
     const num = navIndex.querySelector(CARD_STACK_SELECTORS.CARD_STACK_NAV_INDEX_NUM)
 
     // The "1 / 13" position rides beside the stack glyph; the button's
-    // own accessible name is the localized "Project 1 of 13" phrase.
+    // accessible name must contain that same visible text (WCAG 2.5.3 —
+    // label-content-name-mismatch), so the label mirrors the number
+    // format rather than the "of N" word form.
     if (num) {
       num.textContent = `${n}${CHAR_STRINGS.SPACE_CHAR}${CHAR_STRINGS.SLASH}${CHAR_STRINGS.SPACE_CHAR}${len}`
     }
 
-    navIndex.setAttribute(ARIA_ATTRS.ARIA_LABEL, `${host._t.projectLabel} ${n} ${ofLabel} ${len}`)
+    navIndex.setAttribute(
+      ARIA_ATTRS.ARIA_LABEL,
+      `${host._t.projectLabel} ${n} ${CHAR_STRINGS.SLASH} ${len}`
+    )
 
     dealNavIndex(host, navIndex)
   }
@@ -631,9 +635,14 @@ export function updateChrome(host: CardStack): void {
     )
   })
 
-  writeInfo(host)
-
+  // Settle _frontExtra + the pile's height writes BEFORE writeInfo
+  // mounts the in-card burns — a stale delta (the outgoing front's own
+  // grown extra) otherwise survives into the arm-time measure and the
+  // burn canvas anchors to a box the settled layout never had, which
+  // reads as the burning title jumping once the fit rewrites heights.
   fitDeckToFront(host)
+
+  writeInfo(host)
 }
 
 /** Last chromed index per host — the nav-index deal animation's
@@ -691,6 +700,11 @@ function dealNavIndex(host: CardStack, navIndex: HTMLElement): void {
  * @param host The CardStack element.
  */
 export function fitDeckToFront(host: CardStack): void {
+  // Print pass — the front card's copy reflow fires this observer under
+  // the flattened sheet; its min-height write would re-pose the deck
+  // mid-snapshot just like an applyPoses call.
+  if (host._printing) return
+
   const deck = host._deckEl as HTMLElement | null
 
   if (!host._tier?.STACKED) {

@@ -58,18 +58,27 @@ const figureSeqSlug = (c: MediaFigure): string => {
 /**
  * Opens media modal.
  * @param c — the component
+ * @param originFigure — optional figure the genie measures instead of
+ *   `c`: a clone-click opens the REAL twin's modal (clones are inert,
+ *   the event can only be forwarded to the real element), but the warp
+ *   must start from the rect the user actually clicked — the twin's
+ *   figure can sit off-viewport at a different strip position, which
+ *   would fly the sheet in from nowhere and read as the carousel
+ *   jumping. Everything else (media, slug, trigger) stays the twin's.
  */
-export function openMediaModal(c: MediaFigure): void {
+export function openMediaModal(c: MediaFigure, originFigure?: MediaFigure): void {
   if (!c.canExpand) return
 
   // Record the trigger so close restores focus to this figure's expand
   // control — resolved lazily (the shadow button is re-queried at
   // restore time, surviving any figure re-render while the modal sat
-  // open).
+  // open). preventScroll: the figure can sit inside a scrollable
+  // carousel strip — a default focus would drag the track to the twin
+  // and visibly shift the whole carousel on close.
   setMediaModalTrigger(() => {
     const openBtn = c.$(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_OPEN_1}`) as HTMLElement | null
 
-    if (openBtn?.isConnected) openBtn.focus()
+    if (openBtn?.isConnected) openBtn.focus({ preventScroll: true })
   })
 
   const scrollY = window.scrollY
@@ -79,7 +88,7 @@ export function openMediaModal(c: MediaFigure): void {
   // The genie warp needs the figure's viewport rect — captured before
   // the page pin (translateY(−scrollY) preserves viewport coords, so
   // the snapshot stays valid for the whole modal lifetime).
-  const fig = c.$(HTML_TAGS.FIGURE)
+  const fig = (originFigure || c).$(HTML_TAGS.FIGURE)
 
   const r = fig?.getBoundingClientRect()
 
@@ -104,6 +113,9 @@ export function openMediaModal(c: MediaFigure): void {
       width: c.naturalWidth,
       height: c.naturalHeight,
       isVideo: c.isVideo,
+      // Extensionless CDN stem — the expanded modal derives its
+      // co-located .vtt descriptions tracks / _longdesc sibling from it.
+      stem: encodeMediaUrl(storage + c.mediaSrc),
     },
   })
 

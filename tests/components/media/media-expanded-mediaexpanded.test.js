@@ -17,11 +17,16 @@ import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { MODAL_MUTATIONS, PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { ROUTE_PATHS } from '@core/tokens/routes/paths.js'
 import { EXPAND_MODAL_CLASSES, MODAL_CLASSES } from '@core/tokens/classes/modal.js'
+import { CAROUSEL_CSS_PROPS } from '@core/tokens/css/carousel.js'
 import { STATE_CLASSES } from '@core/tokens/classes/state.js'
-import { KEYBOARD_EVENTS, MOUSE_EVENTS } from '@core/tokens/events/dom.js'
+import { KEYBOARD_EVENTS, MEDIA_EVENTS, MOUSE_EVENTS } from '@core/tokens/events/dom.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
+import { MEDIA } from '@core/tokens/media/suffixes.js'
 import { APP_EVENTS } from '@core/tokens/events/app.js'
 import { PREF_CLASSES } from '@core/tokens/classes/preferences.js'
+import { LANG_OPTIONS } from '@core/i18n.js'
+import { initMediaManifest } from '@core/utils/media/manifest.js'
+import { longdescKey, vttKey } from '@core/utils/media/accessibility.js'
 
 /** Generous flush — mounted render queues need real timers past microtasks. */
 const flush = (ms = 80) => new Promise((r) => setTimeout(r, ms))
@@ -45,6 +50,26 @@ describe('MediaExpanded', () => {
     return el
   }
 
+  beforeAll(async () => {
+    // Seed the bucket manifest so the derived siblings these tests
+    // assert (clip.webm, proj/tour description tracks, proj/cover
+    // longdesc) are manifest-PROVEN — unproven variants stay withheld.
+    const realFetch = globalThis.fetch
+
+    globalThis.fetch = async () => ({
+      ok: true,
+      json: async () => [
+        `${TEST_URLS.VIDEO.slice(0, -MEDIA.VIDEO_EXT.length)}${MEDIA.WEBM_EXT}`,
+        longdescKey('proj/cover', LOCALES.EN),
+        ...LANG_OPTIONS.map((o) => vttKey('proj/tour', o.code)),
+      ],
+    })
+
+    await initMediaManifest()
+
+    globalThis.fetch = realFetch
+  })
+
   test('attribute getters resolve with defaults', () => {
     const el = mountExpanded()
 
@@ -62,6 +87,19 @@ describe('MediaExpanded', () => {
     const el = mountExpanded({ [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE })
 
     expect(el.isVideo).toBe(true)
+
+    el.remove()
+  })
+
+  test('sourceWebm returns the manifest-proven derived .webm', () => {
+    const el = mountExpanded({
+      [MEDIA_ATTRS.SOURCE]: TEST_URLS.VIDEO,
+      [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE,
+    })
+
+    expect(el.sourceWebm).toBe(
+      `${TEST_URLS.VIDEO.slice(0, -MEDIA.VIDEO_EXT.length)}${MEDIA.WEBM_EXT}`
+    )
 
     el.remove()
   })
@@ -104,10 +142,54 @@ describe('MediaExpanded', () => {
     el.remove()
   })
 
+  test('a falsy disk-cache hit walks the !localUrl retry into the candidates bound', async () => {
+    const { localMediaCache } = await import('@core/utils/media/local-media-cache.js')
+    const spy = jest.spyOn(localMediaCache, 'fetchOrGetLocalMedia').mockResolvedValue(null)
+    const el = mountExpanded()
+
+    // Double-rAF deferred mounts → loadFullRes → attempt(0) sees the null
+    // localUrl, retries attempt(1), which returns on the candidates bound.
+    await flush(240)
+
+    expect(spy).toHaveBeenCalledWith(TEST_URLS.IMG)
+
+    spy.mockRestore()
+    el.remove()
+  })
+
   test('is-video="false" is not treated as video', () => {
     const el = mountExpanded({ [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.FALSE })
 
     expect(el.isVideo).toBe(false)
+
+    el.remove()
+  })
+
+  test('stem attr produces a localized longdesc on the expanded image', async () => {
+    const el = mountExpanded({ [MEDIA_ATTRS.STEM]: 'proj/cover' })
+
+    await flush(120)
+
+    const img = el.shadowRoot?.querySelector(`img[${MEDIA_ATTRS.LONGDESC}]`)
+
+    expect(el.stem).toBe('proj/cover')
+    expect(el.longdesc).not.toBe(ATTR_VALUES.EMPTY)
+    expect(img).not.toBeNull()
+
+    el.remove()
+  })
+
+  test('stem attr on a video produces the 16-locale descriptions track set', async () => {
+    const el = mountExpanded({
+      [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE,
+      [MEDIA_ATTRS.STEM]: 'proj/tour',
+    })
+
+    await flush()
+
+    expect(el.a11yTracks).toHaveLength(16)
+    expect(el.a11yTracks.filter((t) => t.isDefault)).toHaveLength(1)
+    expect(el.a11yTracks[0].src).toContain('proj/tour.vtt')
 
     el.remove()
   })
@@ -187,6 +269,22 @@ describe('MediaExpanded', () => {
     expect(el._closeBtn).toBeNull()
 
     el.remove()
+  })
+
+  test('onDestroy cancels a pending fallback close timer', () => {
+    // Never connected → the shadow has no content, the genie close can't
+    // start, and startClose falls back to the tracked teardown timer —
+    // destroying mid-countdown must clear it so the dead element never
+    // scrollTo/commits post-mortem.
+    const el = document.createElement(COMPONENT_TAGS.MEDIA_EXPANDED)
+
+    el.startClose()
+
+    expect(el._closeTimer).not.toBeNull()
+
+    el.onDestroy()
+
+    expect(el._closeTimer).toBeNull()
   })
 
   test('escape key inside onMounted triggers startClose', async () => {
@@ -490,23 +588,135 @@ describe('MediaExpanded', () => {
     el.remove()
   })
 
-  test('mount stamps the natural px box on the image item — no bound reduction', async () => {
+  test('mount stamps the natural-width box on the image item', async () => {
     const el = mountExpanded({ [MEDIA_ATTRS.WIDTH]: '4000', [MEDIA_ATTRS.HEIGHT]: '5000' })
 
     await flush()
 
     const item = el.shadowRoot?.querySelector(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`)
 
-    // The modal is the no-reduction surface: a "huge length" capture
-    // keeps its declared natural dims and overflows into the dialog
-    // scroll — no width/height bound squashes it and the stamp needs
-    // no layout pass (happy-dom reports clientWidth 0 throughout).
-    // Width + aspect-ratio stamp — the height follows the box so the
-    // max-width cap can't distort it.
-    expect(item.style.width).toBe('4000px')
+    // The modal is the no-reduction surface: the item gets the file's
+    // own dims (NEVER the carousel's laddered/2 contract), capped at
+    // the FHD ceiling — a 4000px file stamps a 1920px box. `width`
+    // is definite so the fit-content figure hugs the box exactly —
+    // a max-width clamp is invisible to shrink-to-fit and let the card
+    // overshoot the media. CSS max-width:100% + the stamped
+    // aspect-ratio keep the box proportional when the viewport is
+    // smaller — the stamp needs no layout pass (happy-dom reports
+    // clientWidth 0 throughout).
+    expect(item.style.width).toBe('1920px')
     expect(item.style.aspectRatio).toBe('4000 / 5000')
 
     el.remove()
+  })
+
+  test('the natural stamp keeps small sources at their own pixels — never upscales', async () => {
+    const el = mountExpanded({ [MEDIA_ATTRS.WIDTH]: '500', [MEDIA_ATTRS.HEIGHT]: '800' })
+
+    await flush()
+
+    const item = el.shadowRoot?.querySelector(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`)
+
+    expect(item.style.width).toBe('500px')
+    expect(item.style.aspectRatio).toBe('500 / 800')
+
+    el.remove()
+
+    const tiny = mountExpanded({ [MEDIA_ATTRS.WIDTH]: '200', [MEDIA_ATTRS.HEIGHT]: '300' })
+
+    await flush()
+
+    const tinyItem = tiny.shadowRoot?.querySelector(
+      `.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`
+    )
+
+    expect(tinyItem.style.width).toBe('200px')
+    expect(tinyItem.style.aspectRatio).toBe('200 / 300')
+
+    tiny.remove()
+  })
+
+  test('the modal stamp ignores inherited carousel vars — sizing rules are exclusive per surface', async () => {
+    // Isolation contract: carousel sizing flows through custom
+    // properties (--carousel-media-height / --mf-*), the modal stamps
+    // concrete pixels from the natural dims. Wrapping the host in a
+    // carousel-var context must not change the stamped box, and the
+    // item must never carry the carousel's properties itself.
+    const host = document.createElement(HTML_TAGS.DIV)
+
+    host.style.setProperty(CAROUSEL_CSS_PROPS.CAROUSEL_MEDIA_HEIGHT, '360px')
+    host.style.setProperty('--mf-h', '168px')
+    host.style.setProperty('--mf-w', '280px')
+    document.body.appendChild(host)
+
+    const el = document.createElement(COMPONENT_TAGS.MEDIA_EXPANDED)
+
+    Object.entries({
+      [MEDIA_ATTRS.SOURCE]: TEST_URLS.IMG,
+      [MEDIA_ATTRS.THUMB]: TEST_URLS.IMG,
+      [MEDIA_ATTRS.ALT]: TEST_TEXT.HEADING,
+      [MEDIA_ATTRS.WIDTH]: '1920',
+      [MEDIA_ATTRS.HEIGHT]: '1080',
+    }).forEach(([k, v]) => el.setAttribute(k, v))
+
+    host.appendChild(el)
+
+    await flush()
+
+    const item = el.shadowRoot?.querySelector(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM}`)
+
+    expect(item.style.width).toBe('1920px')
+    expect(item.style.aspectRatio).toBe('1920 / 1080')
+    expect(item.style.getPropertyValue('--mf-h')).toBe('')
+    expect(item.style.getPropertyValue(CAROUSEL_CSS_PROPS.CAROUSEL_MEDIA_HEIGHT)).toBe('')
+
+    host.remove()
+  })
+
+  test('loadeddata re-stamps the video at NATURAL stream dims — never the carousel half rule', async () => {
+    // The stream's real dims can differ from the declared box, so
+    // loadeddata re-stamps — same natural contract as mount: the
+    // file's own pixels bounded by the FHD ceiling. A /2 re-stamp is
+    // carousel logic leaking into the modal.
+    const el = mountExpanded({ [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE })
+
+    await flush(120)
+
+    const vid = el.shadowRoot?.querySelector(HTML_TAGS.VIDEO)
+
+    // 1600 sits below the FHD ceiling — a leaked /2 (carousel's
+    // half-natural rule) would stamp 800 where the natural contract
+    // stamps the stream's own 1600.
+    Object.defineProperty(vid, 'videoWidth', { value: 1600, configurable: true })
+    Object.defineProperty(vid, 'videoHeight', { value: 900, configurable: true })
+
+    vid?.dispatchEvent(new window.Event(MEDIA_EVENTS.LOADEDDATA))
+
+    expect(vid?.style.maxWidth).toBe('min(1600px, 100%)')
+    expect(vid?.style.aspectRatio).toBe('1600 / 900')
+
+    el.remove()
+  })
+
+  test('no blurred-thumb layer ever renders — the modal never blurs', async () => {
+    // thumb attr set → still no wash layer: the figure hugs the item so
+    // there are no bands to fill (blur inside the modal is banned). The
+    // only imgs in the figure are the placeholder + the item itself.
+    const withThumb = mountExpanded()
+
+    await flush()
+
+    const imgs = [...(withThumb.shadowRoot?.querySelectorAll(HTML_TAGS.IMG) || [])]
+
+    expect(
+      imgs.every(
+        (i) =>
+          i.classList.contains(EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_PLACEHOLDER) ||
+          i.classList.contains(EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM)
+      )
+    ).toBe(true)
+
+    withThumb.remove()
   })
 
   test('the media fit skips when a surface is missing and when the item is a video', async () => {
@@ -547,7 +757,7 @@ describe('MediaExpanded', () => {
     el2.remove()
 
     // Unlaid-out content still stamps the declared box — the modal's
-    // no-reduction stamp never reads layout.
+    // natural stamp never reads layout.
     const elUnlaid = mountExpanded()
 
     await flush()
@@ -561,15 +771,15 @@ describe('MediaExpanded', () => {
 
     elUnlaid.remove()
 
-    // Videos stamp the same natural box — the modal never reduces media,
-    // player chrome included.
+    // Videos keep the max-width cap form of the same natural stamp —
+    // the height cap must stay able to re-derive width through the ratio.
     const el3 = mountExpanded({ [MEDIA_ATTRS.IS_VIDEO]: ATTR_VALUES.TRUE })
 
     await flush()
 
     const vid = el3.shadowRoot?.querySelector(HTML_TAGS.VIDEO)
 
-    expect(vid?.style.width).toBe('800px')
+    expect(vid?.style.maxWidth).toBe('min(800px, 100%)')
     expect(vid?.style.aspectRatio).toBe('800 / 450')
 
     el3.remove()

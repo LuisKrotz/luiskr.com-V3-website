@@ -1,4 +1,4 @@
-# luiskr.com V3 — website
+# luiskr.com — website
 
 The public-facing site — the portfolio a visitor actually sees. `website/` contains
 every routed view (`<view-home>`, `<view-project>`, `<view-legal>`, `<view-not-found>`)
@@ -139,8 +139,8 @@ yarn build    # emits website/dist/website.js
 
 ---
 
-Submodule of [luiskr.com-V3](https://github.com/LuisKrotz/luiskr.com-V3). Install
+Submodule of [luiskr.com](https://github.com/LuisKrotz/luiskr.com). Install
 deps from the superproject (`yarn install` at the root), then run `yarn dev` /
 `yarn test` / `yarn build` in this folder — see `package.json` scripts.
 
-License: [MPL-2.0](https://github.com/LuisKrotz/luiskr.com-V3/blob/development/LICENSE)
+License: [MPL-2.0](https://github.com/LuisKrotz/luiskr.com/blob/development/LICENSE)

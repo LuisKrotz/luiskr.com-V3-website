@@ -1,8 +1,9 @@
 /**
  * @file nav-grid.tsx
- * @description The menu glyph for <app-nav>'s menu button — four neon
- * rounded squares on a 2×2 grid, teal to violet, matching the reference
- * rest state. Colors come from the nav neon tokens; glow and motion live
+ * @description The menu glyph for <app-nav>'s menu button — four silver
+ * rounded squares on a 2×2 grid, specular to platinum, matching the
+ * reference
+ * rest state. Colors come from the nav metal tokens; glow and motion live
  * in nav-icons.scss so they run inside this element's shadow root.
  * Isolated component — registers its own tag.
  */
@@ -27,7 +28,7 @@ const CELLS = [
   { x: 26, y: 26 },
 ]
 
-/** `stop` bound to a --nav-neon-* CSS prop — presentation attributes can't
+/** `stop` bound to a --nav-metal-* CSS prop — presentation attributes can't
  * resolve custom properties, so the value rides inline style. */
 const stop = (offset: number, prop: string) => (
   <stop offset={offset} style={`stop-color: var(${prop})`} />
@@ -37,7 +38,7 @@ const stop = (offset: number, prop: string) => (
 const ref = (id: string) => `url(#${id})`
 
 /**
- * The <nav-grid-icon> element — four rounded neon squares. The stroke
+ * The <nav-grid-icon> element — four rounded silver squares. The stroke
  * gradient runs teal at the top-left to violet at the bottom-right so the
  * grid reads as one lit outline.
  */
@@ -61,8 +62,8 @@ export class NavGridIcon extends BaseComponent {
             x2="37"
             y2="37"
           >
-            {stop(0, NAV_SEARCH_CSS_PROPS.NEON_TEAL)}
-            {stop(1, NAV_SEARCH_CSS_PROPS.NEON_VIOLET)}
+            {stop(0, NAV_SEARCH_CSS_PROPS.METAL_SILVER)}
+            {stop(1, NAV_SEARCH_CSS_PROPS.METAL_PLATINUM)}
           </linearGradient>
         </defs>
 

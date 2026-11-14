@@ -8,8 +8,10 @@
  * MediaMosaic.tsx (configure parity contract, items setter, mount/
  * update/destroy lifecycle, _syncCarousel passthrough).
  */
-import { describe, test, expect, jest, beforeEach, afterEach } from '@jest/globals'
+import { describe, test, expect, jest, beforeAll, beforeEach, afterEach } from '@jest/globals'
 import { bindMediaMosaicEvents } from '@website/components/media/mosaic/events.js'
+import { initPrintSupport, printJobActive } from '@core/utils/print/print.js'
+import { CLIPBOARD_EVENTS } from '@core/tokens/events/dom.js'
 import {
   estimateWallWidth,
   relayout,
@@ -24,6 +26,8 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { GENERIC_DIMENSIONS } from '@core/tokens/media/dimensions.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
+import { INTERNAL_CLASSES } from '@core/tokens/classes/project.js'
+import { STATE_STRINGS } from '@core/tokens/strings/state.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { FORM_EVENTS } from '@core/tokens/events/dom.js'
 
@@ -74,7 +78,35 @@ describe('media-mosaic events', () => {
   const origRaf = globalThis.requestAnimationFrame
   const origCancel = globalThis.cancelAnimationFrame
 
+  beforeAll(() => {
+    // The print adapter binds its channels once per registry — install it
+    // with a full MQL surface so the print-query listener bind can't
+    // throw mid-install, then beforeprint drives printJobActive().
+    const origMM = window.matchMedia
+    const origFetch = globalThis.fetch
+
+    window.matchMedia = (query) => ({
+      matches: false,
+      media: query,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    })
+    globalThis.fetch = () => Promise.resolve({ ok: true, json: () => Promise.resolve([]) })
+
+    initPrintSupport()
+
+    window.matchMedia = origMM
+    globalThis.fetch = origFetch
+  })
+
   afterEach(() => {
+    // A failed freeze assert could strand a committed print DOM — exit()
+    // early-returns on a quiet flag, so the dispatch is free insurance.
+    window.dispatchEvent(new window.Event(CLIPBOARD_EVENTS.AFTER_PRINT))
     window.matchMedia = origMatchMedia
     globalThis.ResizeObserver = origRO
     globalThis.requestAnimationFrame = origRaf
@@ -157,6 +189,46 @@ describe('media-mosaic events', () => {
     // Entries without a rect fall back to width 0.
     roCb([{}])
     expect(host._lastObservedW).toBe(0)
+  })
+
+  test('an active print job freezes the breakpoint flip and the host RO', () => {
+    const listeners = []
+    const mq = { matches: false }
+    window.matchMedia = () => mq
+    const host = makeHost({
+      addScopedListener: jest.fn((t, e, fn) => {
+        listeners.push(fn)
+        return () => {}
+      }),
+    })
+
+    let roCb = null
+    globalThis.ResizeObserver = class {
+      constructor(cb) {
+        roCb = cb
+      }
+      observe() {}
+      disconnect() {}
+    }
+
+    bindMediaMosaicEvents(host)
+
+    // beforeprint stamps the adapter's flag synchronously — a mid-
+    // snapshot flip or RO entry must not re-render under the
+    // fragmentainer.
+    window.dispatchEvent(new window.Event(CLIPBOARD_EVENTS.BEFORE_PRINT))
+    expect(printJobActive()).toBe(true)
+
+    mq.matches = true
+    listeners[0]()
+    roCb([{ contentRect: { width: 1400 } }])
+
+    expect(host._updateDom).not.toHaveBeenCalled()
+    expect(host._isCompact).toBe(false)
+    expect(host._lastObservedW).toBe(0)
+
+    window.dispatchEvent(new window.Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+    expect(printJobActive()).toBe(false)
   })
 })
 
@@ -298,6 +370,31 @@ describe('media-mosaic render', () => {
 
     // Missing packed tile → empty style; missing src → index key still emits.
     expect(tiles[2].getAttribute('style') || '').not.toContain('top')
+  })
+
+  test('tile figure scrubs hero-slot classes — hero contracts never reach the wall', () => {
+    const heroItem = {
+      ...WALL_ITEMS[0],
+      class: [
+        STATE_STRINGS.LANDSCAPE,
+        INTERNAL_CLASSES.ZTF_VIDEO,
+        INTERNAL_CLASSES.INTERNAL_MAIN_ITEM,
+      ].join(CHAR_STRINGS.SPACE_CHAR),
+    }
+
+    const host = hostFor({
+      _items: [heroItem],
+      tiles: [{ tile: { position: 'absolute', top: '0px' } }],
+    })
+
+    const fig = renderMediaMosaic(host).querySelector('media-figure')
+
+    // A tile built from the cover media used to re-inflate via the 0,3,0
+    // hero selectors — only presentation modifiers may survive the scrub.
+    expect(fig.getAttribute('classes')).toBe(
+      `${MEDIA_MOSAIC_CLASSES.MEDIA_MOSAIC_ITEM_FIGURE} ${STATE_STRINGS.LANDSCAPE}`
+    )
+    expect(fig.getAttribute('class')).toBe(STATE_STRINGS.LANDSCAPE)
   })
 })
 

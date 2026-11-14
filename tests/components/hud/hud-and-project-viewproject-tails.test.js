@@ -105,6 +105,54 @@ describe('ViewProject tails', () => {
     el.remove()
   })
 
+  test('checkAutoOpenModal writes undefined dims for a sizeless item', () => {
+    const el = makeView()
+
+    el.translations = {
+      folder: TEST_PROJECTS.CICB,
+      sections: [[[{ label: TEST_TEXT.HEADING, src: TEST_TEXT.SECOND, isVideo: false }]]],
+    }
+
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
+
+    const prevRoute = router.currentRoute
+
+    router.currentRoute = { params: { slug: 'sample-heading' } }
+    el.checkAutoOpenModal()
+
+    const media = store.getters.getModal()?.media
+
+    expect(media?.width).toBeUndefined()
+    expect(media?.height).toBeUndefined()
+
+    router.currentRoute = prevRoute
+    el.remove()
+  })
+
+  test('checkAutoOpenModal keeps a bare stem when the folder is absent', () => {
+    const el = makeView()
+
+    el.translations = {
+      sections: [[[{ label: TEST_TEXT.HEADING, src: TEST_TEXT.SECOND }]]],
+    }
+
+    store.commit(MODAL_MUTATIONS.SET_MODAL, { open: false })
+
+    const prevRoute = router.currentRoute
+
+    router.currentRoute = { params: { slug: 'sample-heading' } }
+    el.checkAutoOpenModal()
+
+    const media = store.getters.getModal()?.media
+
+    // No folder segment — the stem is storage + src only.
+    expect(media?.stem).toBeTruthy()
+    expect(media?.stem.endsWith(TEST_TEXT.SECOND)).toBe(true)
+
+    router.currentRoute = prevRoute
+    el.remove()
+  })
+
   test('_updateModalDOM drives the open, replace, and close arms', () => {
     const el = makeView()
 

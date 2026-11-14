@@ -17,6 +17,7 @@ jest.unstable_mockModule('@core/locale/ui-text.js', () => ({
   routeSlugs: (lang) => LANG_SLUGS[lang] || LANG_SLUGS.en,
   rightsText: () => CHAR_STRINGS.EMPTY,
   rightsParts: () => ({ rights: CHAR_STRINGS.EMPTY, year: CHAR_STRINGS.EMPTY }),
+  versionStamp: () => CHAR_STRINGS.EMPTY,
 }))
 
 jest.unstable_mockModule('@core/locale/fallback.js', () => {

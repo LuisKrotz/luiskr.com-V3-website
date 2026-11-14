@@ -17,6 +17,7 @@ import { STATE_CLASSES } from '@core/tokens/classes/state.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { DOM_STRINGS } from '@core/tokens/strings/dom.js'
 import { LANG_STRINGS } from '@core/tokens/strings/langs.js'
+import { VENDOR_STRINGS } from '@core/tokens/strings/vendor.js'
 import { ASSET_PATHS } from '@core/tokens/routes/paths.js'
 import { h, Fragment } from '@core/jsx.js'
 import store from '@core/store.js'
@@ -91,12 +92,16 @@ export function renderMediaExpanded(el: MediaExpanded) {
               height={mediaH}
               alt={el.alt}
               src={el.currentSrc || el.thumb}
+              // Extended description — the localized `_longdesc.txt`
+              // sibling generated next to the source image.
+              longdesc={el.longdesc || undefined}
             />
           </Fragment>
         ) : (
           <Fragment>
             <video
               decoding={MEDIA_ATTRS.DECODING_ASYNC}
+              crossOrigin={VENDOR_STRINGS.ANONYMOUS}
               className={`${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM} ${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_ITEM_VIDEO}`}
               width={mediaW}
               height={mediaH}
@@ -114,14 +119,28 @@ export function renderMediaExpanded(el: MediaExpanded) {
 
               <source src={el.source} type={MEDIA_ATTRS.VIDEO_MP4} />
               {/* Muted ambient loops carry no meaningful audio — the
-                  track makes the no-caption state explicit. */}
+                  track makes the no-caption state explicit. `default`
+                  yields to a real descriptions track when present. */}
               <track
                 kind={MEDIA_ATTRS.CAPTIONS}
                 src={ASSET_PATHS.EMPTY_CAPTIONS}
                 srcLang={LANG_STRINGS.EN}
                 label={DOM_STRINGS.NO_AUDIO_LABEL}
-                default
+                default={!el.a11yTracks.some((t) => t.isDefault)}
               />
+
+              {/* Description tracks — the 16-locale WebVTT set
+                  generated next to the mp4 (shared/scripts/media/a11y);
+                  the default track follows the UI locale. */}
+              {el.a11yTracks.map((t) => (
+                <track
+                  kind={MEDIA_ATTRS.DESCRIPTIONS}
+                  src={t.src}
+                  srcLang={t.srclang}
+                  label={t.label}
+                  default={t.isDefault}
+                />
+              ))}
             </video>
           </Fragment>
         )}

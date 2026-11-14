@@ -148,3 +148,102 @@ article {
     }
   }
 }
+
+// ── Print ────────────────────────────────────────────────────────────────────
+// The legal document joins the magazine issue: the title reads as a ruled
+// masthead, sections become columnar editorial blocks with heading rungs,
+// and the lead paragraph of the document takes the drop cap a real
+// feature opener carries (the legal <p>s are plain markup — ::first-letter
+// works here, unlike the draw-text letter spans on project internals).
+@media print {
+  // Numbered-clause folio counter — each section h2 carries a small
+  // decimal-leading-zero run ahead of its head, the numbered-article
+  // convention the editorial references use.
+  .legal {
+    counter-reset: legal-sec;
+  }
+
+  .#{$_B_INTERNAL}-title {
+    display: block;
+    padding: var(--space-2xs) 0 var(--space-sm);
+    margin-bottom: var(--space-md);
+    border-bottom: to-rem($space-hairline) solid
+      color-mix(in srgb, var(--print-ink) 30%, transparent);
+    letter-spacing: 0.04em;
+  }
+
+  .#{$_B_INTERNAL}-description {
+    // Block, not the screen flex column — column-count ignores flex
+    // containers, and the 12.5%/25% viewport indents are dead air on
+    // paper (the @page margin owns the sheet inset).
+    display: block;
+    padding: var(--space-lg) 0;
+    margin: 0;
+    orphans: 3;
+    widows: 3;
+    break-inside: auto;
+    border-top: to-rem($space-hairline) solid color-mix(in srgb, var(--print-ink) 28%, transparent);
+
+    // Columnar magazine typesetting — A4 and wider run two text
+    // columns, A3+ three; a legal doc reads like the fine-print block
+    // of a masthead colophon at these measures. The hairline rule is
+    // the delicate gutter rule between measures.
+    @media (min-width: 170mm) {
+      column-count: 2;
+      column-gap: var(--space-2xl);
+      column-rule: to-rem($space-hairline) solid
+        color-mix(in srgb, var(--print-ink) 16%, transparent);
+    }
+
+    @media (min-width: 260mm) {
+      column-count: 3;
+    }
+
+    // -description-text covers the section h2 AND the body <p>s — the
+    // heading rung keeps its role as a column-spanning section head,
+    // the paragraphs take the justified press measure.
+    h2.#{$_B_INTERNAL}-description-text {
+      column-span: all;
+      margin: 0 0 var(--space-sm);
+      padding: 0;
+      font-size: var(--space-lg);
+      line-height: 1.3;
+      text-align: left;
+      break-after: avoid;
+
+      &::before {
+        counter-increment: legal-sec;
+        content: counter(legal-sec, decimal-leading-zero);
+        margin-right: var(--space-sm);
+        font-size: var(--print-caption-size);
+        letter-spacing: 0.2em;
+        color: color-mix(in srgb, var(--print-ink) 55%, transparent);
+      }
+    }
+
+    p.#{$_B_INTERNAL}-description-text {
+      margin: 0 0 var(--space-sm);
+      padding: 0;
+      font-size: var(--print-body-size);
+      line-height: 1.5;
+      text-align: justify;
+      hyphens: auto;
+      break-inside: avoid;
+    }
+  }
+
+  // The document's first real paragraph opens the feature — drop cap.
+  .legal
+    .#{$_B_INTERNAL}-description:first-of-type
+    p.#{$_B_INTERNAL}-description-text:first-of-type::first-letter {
+    float: left;
+    font-size: var(--space-4xl);
+    line-height: 0.85;
+    padding-right: var(--space-2xs);
+  }
+
+  // Unresolved data rows print as gray skeleton bars — never ink.
+  .skeleton-shimmer {
+    display: none;
+  }
+}

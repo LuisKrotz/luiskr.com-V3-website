@@ -8,12 +8,14 @@ import { KEYS } from '@core/tokens/primitives.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { ARIA_ATTRS } from '@core/tokens/attrs/aria.js'
+import { COMMON_ATTRS } from '@core/tokens/attrs/common.js'
 import { CARD_STACK_CLASSES } from '@core/tokens/classes/card-stack.js'
 import { CARD_STACK_SELECTORS } from '@core/tokens/selectors/card-stack.js'
 import { CARD_STACK_LAYOUT } from '@core/tokens/motion/card-stack.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import router from '@core/router/router.js'
 import { applyPoses, updateChrome } from './deck.js'
+import { armOutgoingTitleBurn } from './info.js'
 import { stopAutoplay } from './autoplay.js'
 import { projectHref } from './info.js'
 import type { CardStackItem } from './types.js'
@@ -59,6 +61,13 @@ export function goTo(host: CardStack, idx: number): void {
   host.activeIdx = ((idx % len) + len) % len
 
   host._dragX = 0
+
+  // Arm the outgoing front's title burn BEFORE applyPoses drops
+  // --active: the flip bottom-anchors the card's info column instantly,
+  // and a post-flip mount anchors the raster to the relocated (hidden)
+  // box — the burn then plays ~130px above where the title stood, on
+  // top of the cover image.
+  armOutgoingTitleBurn(host)
 
   // Poses glide on the CSS transition; updateChrome re-types the text
   // column for the new front in the same task.
@@ -109,7 +118,9 @@ export function onCardClick(host: CardStack, item: CardStackItem, idx: number): 
 /**
  * Publishes indexOpen into the DOM without a re-render — the --index-open
  * class on the section drives the deck dim + panel reveal, the panel's
- * aria-hidden and the toggle's aria-expanded track the state for AT.
+ * aria-hidden + inert and the toggle's aria-expanded track the state for
+ * AT and tab order (aria-hidden alone leaves the panel's buttons/links
+ * focusable inside a hidden subtree).
  * @param host The CardStack element.
  */
 export function applyIndexState(host: CardStack): void {
@@ -120,6 +131,9 @@ export function applyIndexState(host: CardStack): void {
   const panel = host.$(CARD_STACK_SELECTORS.CARD_STACK_INDEX)
 
   panel?.setAttribute(ARIA_ATTRS.ARIA_HIDDEN, host.indexOpen ? ATTR_VALUES.FALSE : ATTR_VALUES.TRUE)
+
+  if (host.indexOpen) panel?.removeAttribute(COMMON_ATTRS.INERT)
+  else panel?.setAttribute(COMMON_ATTRS.INERT, ATTR_VALUES.EMPTY)
 
   const toggle = host.$(CARD_STACK_SELECTORS.CARD_STACK_TOGGLE)
 

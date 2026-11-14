@@ -19,6 +19,7 @@ import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { ARROW_GLYPHS, ARROW_TYPES } from '@core/tokens/theme/arrows.js'
 import { h } from '@core/jsx.js'
+import { stripHeroSlotClasses } from '@core/utils/media/group.js'
 import store from '@core/store.js'
 import type { CustomCarousel } from '../CustomCarousel.js'
 
@@ -76,6 +77,14 @@ export const renderCarouselSlide = (item: CarouselItem | null, folder: string) =
 
   const itemClass = item.class || ATTR_VALUES.EMPTY
 
+  // Hero-slot classes (internal-main-item / ztf-video) must not travel
+  // onto a slide's figure — a slide built from the cover media would
+  // re-trigger the 0,3,0 hero selectors, outranking every slide rule and
+  // inflating the laddered box to the 70dvh/175dvh hero caps (the
+  // blown-out landscape slide bug). The slide wrapper keeps the full CMS
+  // class list for context/variant selectors; the figure is scrubbed.
+  const figureClass = stripHeroSlotClasses(itemClass)
+
   const MediaFigure = COMPONENT_TAGS.MEDIA_FIGURE
 
   const slideItemClasses = [INTERNAL_CLASSES.INTERNAL_EXTRA_ITEM, itemClass]
@@ -103,8 +112,8 @@ export const renderCarouselSlide = (item: CarouselItem | null, folder: string) =
         can-expand={canExpand}
         is-video={isVideo}
         label={label}
-        classes={itemClass}
-        class={itemClass}
+        classes={figureClass}
+        class={figureClass}
       />
     </div>
   )
@@ -208,9 +217,29 @@ export const renderCarousel = (host: CustomCarousel) => {
     return <div className={fallbackClass}>{host.items.map((item) => host.renderSlide(item))}</div>
   }
 
-  const lastItem = host.items[host.items.length - 1]
+  const len = host.items.length
 
-  const firstItem = host.items[0]
+  // Edge clone counts are viewport-calculated (measureFit sizes them to
+  // cover half the host width): the track always reads as a continuous
+  // strip — no run-out pad ever peeks through at the ends. The LAST
+  // leading clone and the FIRST trailing clone are the teleport twins
+  // (--clone-last/--clone-first — the only clones nav logic keys on);
+  // every other clone is cosmetic wrap-fill carrying the bare --clone
+  // mark. When a set is smaller than the needed span the item sequence
+  // cycles — the modulo wraps it seamlessly.
+  const cloneBefore = Math.max(1, host._edgeClonesBefore)
+
+  const cloneAfter = Math.max(1, host._edgeClonesAfter)
+
+  const cloneSlide = (item: CarouselItem, cloneClass: string) => (
+    <div
+      className={`${CAROUSEL_CLASSES.CAROUSEL_SLIDE} ${cloneClass}`}
+      aria-hidden={ATTR_VALUES.TRUE}
+      inert
+    >
+      {host.renderSlide(item)}
+    </div>
+  )
 
   const lang = store.getters.getCarouselLang() as unknown as CarouselLang
 
@@ -234,13 +263,14 @@ export const renderCarousel = (host: CustomCarousel) => {
   return (
     <div className={carouselClasses}>
       <div className={CAROUSEL_CLASSES.CAROUSEL_TRACK}>
-        <div
-          className={`${CAROUSEL_CLASSES.CAROUSEL_SLIDE} ${CAROUSEL_CLASSES.CAROUSEL_SLIDE_CLONE_LAST}`}
-          aria-hidden={ATTR_VALUES.TRUE}
-          inert
-        >
-          {host.renderSlide(lastItem)}
-        </div>
+        {Array.from({ length: cloneBefore }, (_, p) =>
+          cloneSlide(
+            host.items[(((len - cloneBefore + p) % len) + len) % len],
+            p === cloneBefore - 1
+              ? CAROUSEL_CLASSES.CAROUSEL_SLIDE_CLONE_LAST
+              : CAROUSEL_CLASSES.CAROUSEL_SLIDE_CLONE
+          )
+        )}
 
         {host.items.map((item, idx) => (
           <div
@@ -253,13 +283,14 @@ export const renderCarousel = (host: CustomCarousel) => {
           </div>
         ))}
 
-        <div
-          className={`${CAROUSEL_CLASSES.CAROUSEL_SLIDE} ${CAROUSEL_CLASSES.CAROUSEL_SLIDE_CLONE_FIRST}`}
-          aria-hidden={ATTR_VALUES.TRUE}
-          inert
-        >
-          {host.renderSlide(firstItem)}
-        </div>
+        {Array.from({ length: cloneAfter }, (_, p) =>
+          cloneSlide(
+            host.items[p % len],
+            p === 0
+              ? CAROUSEL_CLASSES.CAROUSEL_SLIDE_CLONE_FIRST
+              : CAROUSEL_CLASSES.CAROUSEL_SLIDE_CLONE
+          )
+        )}
       </div>
 
       <div className={CAROUSEL_CLASSES.CAROUSEL_CONTROLS}>

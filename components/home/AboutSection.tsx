@@ -28,6 +28,8 @@ import { IMAGE_SIZES } from '@core/tokens/media/sizes.js'
 import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
 import { BASE_TITLE } from '@core/tokens/routes.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
+import { MEDIA_QUERIES } from '@core/tokens/primitives.js'
+import { CLIPBOARD_EVENTS, FORM_EVENTS, PRINT_EVENTS } from '@core/tokens/events/dom.js'
 import { BaseComponent } from '@core/Component.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import { indexedText } from '@core/locale/ui-text.js'
@@ -39,6 +41,7 @@ import { attachGlitch, disarmGlitch } from './about/glitch.js'
 import { attachMesh, disarmMesh } from './about/mesh.js'
 import { attachHud, disarmHud, hudLines, syncHud } from './about/hud.js'
 import { attachTitleFit, disarmTitleFit } from './about/titlefit.js'
+import { preparePrint, restorePrint } from './about/print.js'
 import type { AboutLocation } from './about/hud.js'
 import { applyAnimationDesc } from '@core/utils/a11y/animation-desc.js'
 import { ANIMATION_IDS } from '@core/tokens/data/animation-ids.js'
@@ -102,6 +105,25 @@ export class AboutSection extends BaseComponent {
     attachHud(this)
     attachMesh(this)
     attachTitleFit(this)
+
+    // The bio's printable form — see about/print.ts. `printprepare`
+    // fires inside beforeprint, ahead of the media/style walk; the
+    // scoped listeners die with the element, and restorePrint runs on
+    // both the native afterprint and the media-query false edge (an
+    // emulated-print engine never dispatches the native event).
+    this.addScopedListener(window, PRINT_EVENTS.PREPARE, () => {
+      preparePrint(this)
+    })
+
+    this.addScopedListener(window, CLIPBOARD_EVENTS.AFTER_PRINT, () => {
+      restorePrint(this)
+    })
+
+    if (window.matchMedia) {
+      this.addScopedListener(window.matchMedia(MEDIA_QUERIES.PRINT), FORM_EVENTS.CHANGE, (e) => {
+        if (!(e as MediaQueryListEvent).matches) restorePrint(this)
+      })
+    }
   }
 
   /** Stops any running glitch loop when the element leaves the DOM. */
@@ -111,6 +133,10 @@ export class AboutSection extends BaseComponent {
     disarmHud(this)
     disarmMesh(this)
     disarmTitleFit(this)
+
+    // A mid-print destroy leaves injected fills behind — scoped
+    // listeners are already dead, so the restore runs here directly.
+    restorePrint(this)
   }
 
   /**
@@ -236,6 +262,21 @@ export class AboutSection extends BaseComponent {
     const locations = this.aboutLocations
     const hudInit = hudLines(locations[this._hud?.index || 0])
 
+    // The hero statement splits at its first <br>: the lead line takes
+    // the editorial headline treatment (.about-intro-lead) while the
+    // remainder keeps the intro ramp. The rest's stagger offset shifts
+    // by the lead's char count so the two draw-texts still type as one
+    // continuous cascade — the consumed <br> carries no char slot.
+    const introBr = drawData.intro ? /<br\s*\/?>/i.exec(drawData.intro.text) : null
+
+    const introLead = drawData.intro && introBr ? drawData.intro.text.slice(0, introBr.index) : null
+
+    const introRest = drawData.intro
+      ? drawData.intro.text.slice(introBr ? introBr.index + introBr[0].length : 0)
+      : ATTR_VALUES.EMPTY
+
+    const introRestDelay = introLead ? stripHtml(introLead).length * drawData.charDelay : 0
+
     return (
       <section id={SECTION_IDS.ABOUT} className={ABOUT_CLASSES.ABOUT}>
         <div className={ABOUT_CLASSES.ABOUT_MAIN}>
@@ -281,6 +322,7 @@ export class AboutSection extends BaseComponent {
                     <img
                       decoding={MEDIA_ATTRS.DECODING_ASYNC}
                       loading={MEDIA_ATTRS.LOADING_LAZY}
+                      data-print-no-caption
                       className={ABOUT_CLASSES.ABOUT_PROFILE_PICTURE_IMG}
                       src={this.optimizedProfilePicture}
                       srcset={this.profilePictureSrcset || undefined}
@@ -304,10 +346,20 @@ export class AboutSection extends BaseComponent {
                 // shared paragraph skeleton (and the e2e draw-text lookup),
                 // about-intro overrides the type ramp for the hero statement.
                 <p className={`${ABOUT_CLASSES.ABOUT_ITEM_TEXT} ${ABOUT_CLASSES.ABOUT_INTRO}`}>
+                  {introLead ? (
+                    <span className={ABOUT_CLASSES.ABOUT_INTRO_LEAD}>
+                      <DrawText
+                        text={introLead}
+                        delay={drawData.charDelay}
+                        offset={drawData.intro.offset}
+                        trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
+                      />
+                    </span>
+                  ) : null}
                   <DrawText
-                    text={drawData.intro.text}
+                    text={introRest}
                     delay={drawData.charDelay}
-                    offset={drawData.intro.offset}
+                    offset={drawData.intro.offset + introRestDelay}
                     trigger={COMMON_ATTRS.TRIGGER_VIEWPORT}
                   />
                 </p>

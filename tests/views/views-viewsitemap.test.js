@@ -23,6 +23,8 @@ import { TRANSLATION_KEYS } from '@core/tokens/routes/translation-keys.js'
 import { FALLBACK_PAGES } from '@core/locale/fallback.js'
 import { CHAR_STRINGS } from '@core/tokens/strings/chars.js'
 import { LABEL_TEXT } from '@core/tokens/strings/text.js'
+import { CLIPBOARD_EVENTS, PRINT_EVENTS } from '@core/tokens/events/dom.js'
+import { initPrintSupport, printJobActive } from '@core/utils/print/print.js'
 import { LANG_OPTIONS } from '@core/i18n.js'
 import store from '@core/store.js'
 import router from '@core/router/router.js'
@@ -59,6 +61,29 @@ beforeAll(async () => {
   const mod = await import('@website/views/sitemap/Sitemap.js')
 
   ViewSitemap = mod.ViewSitemap
+
+  // The print adapter binds its channels once per registry — install it
+  // with a full MQL surface + quiet manifest fetch so beforeprint can
+  // drive printJobActive() inside the freeze test.
+  const origMM = window.matchMedia
+  const origFetch = globalThis.fetch
+
+  window.matchMedia = (query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {},
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => false,
+  })
+  globalThis.fetch = () => Promise.resolve({ ok: true, json: () => Promise.resolve([]) })
+
+  initPrintSupport()
+
+  window.matchMedia = origMM
+  globalThis.fetch = origFetch
 })
 
 /** Timer flush — drains the view's SWR/db queues between actions. */
@@ -131,6 +156,9 @@ describe('ViewSitemap', () => {
   })
 
   afterEach(() => {
+    // A failed freeze assert could strand a committed print DOM — exit()
+    // early-returns on a quiet flag, so the dispatch is free insurance.
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
     globalThis.fetch = realFetch
     if (cleanup) cleanup()
     cleanup = null
@@ -411,11 +439,15 @@ describe('ViewSitemap', () => {
     const packed = el._packGroup(group)
 
     // Tall source: treated as 2560 high → 853px tile at the ÷3 rung,
-    // not the ~1884px sliver the real aspect would pack.
+    // not the ~1884px sliver the real aspect would pack. The seam-honest
+    // void fill declines to grow it — the adjacent footprint tops bound
+    // the grown span, so it keeps the packed height.
     expect(packed.tiles[0].tile.height).toBe('853px')
 
     // Ultrawide source: treated as 2560 wide → a 640×619 card at the
-    // ÷4 rung, not the full-800px banner strip the real width packs.
+    // ÷4 rung, not the full-800px banner strip the real width packs;
+    // same fill contract — the grown span stays bounded by the
+    // footprints around it, so the packed box is what prints.
     expect(packed.tiles[4].tile.width).toBe('640px')
     expect(packed.tiles[4].tile.height).toBe('619px')
 
@@ -460,6 +492,35 @@ describe('ViewSitemap', () => {
     const orphan = new ViewSitemap()
     orphan._measureWall()
     expect(orphan._wallW).toBe(0)
+  })
+
+  test('_measureWall stands down while a print job owns the document', async () => {
+    dbReplies = fullReplies
+    await spawn()
+
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.BEFORE_PRINT))
+    expect(printJobActive()).toBe(true)
+
+    // The prepare pass re-rendered — re-query the fresh wall index and
+    // hand it a real width; the freeze keeps the measure off _wallW.
+    const nav = q(el, `.${SITEMAP_CLASSES.SITEMAP_INDEX}`)
+
+    Object.defineProperty(nav, 'clientWidth', { value: 1400, configurable: true })
+    el._measureWall()
+
+    expect(el._wallW).toBe(0)
+
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+    expect(printJobActive()).toBe(false)
+
+    // Back on screen the same measure repacks — afterprint restored the
+    // disclosure set and re-rendered, so re-query once more.
+    const nav2 = q(el, `.${SITEMAP_CLASSES.SITEMAP_INDEX}`)
+
+    Object.defineProperty(nav2, 'clientWidth', { value: 1400, configurable: true })
+    el._measureWall()
+
+    expect(el._wallW).toBe(1400)
   })
 
   test('_mediaCard emits the no-media + tip arms', async () => {
@@ -668,6 +729,64 @@ describe('ViewSitemap', () => {
     // appText('sitemap') resolved '' → the EMPTY arm — title/aria-label
     // are empty but the chrome still renders.
     expect(q(el, `.${SITEMAP_CLASSES.SITEMAP_TITLE}`)).not.toBeNull()
+  })
+
+  test('printprepare expands every collapsible group; afterprint restores the user set', async () => {
+    dbReplies = fullReplies
+    await spawn()
+
+    // Both mosaic groups start collapsed.
+    for (const t of qa(el, `.${SITEMAP_CLASSES.SITEMAP_GROUP_TOGGLE}`)) {
+      expect(t.getAttribute(ARIA_ATTRS.ARIA_EXPANDED)).toBe(ATTR_VALUES.FALSE)
+    }
+
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+
+    // Every collapsible group opened for the print walk — walls mounted,
+    // the user's (empty) open set snapshotted for afterprint.
+    for (const t of qa(el, `.${SITEMAP_CLASSES.SITEMAP_GROUP_TOGGLE}`)) {
+      expect(t.getAttribute(ARIA_ATTRS.ARIA_EXPANDED)).toBe(ATTR_VALUES.TRUE)
+    }
+    expect(qa(el, `.${SITEMAP_CLASSES.SITEMAP_WALL}`).length).toBeGreaterThan(0)
+    expect(el._openBeforePrint).not.toBeNull()
+
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+
+    // The print expansion doesn't leak: the pre-print empty set is back.
+    for (const t of qa(el, `.${SITEMAP_CLASSES.SITEMAP_GROUP_TOGGLE}`)) {
+      expect(t.getAttribute(ARIA_ATTRS.ARIA_EXPANDED)).toBe(ATTR_VALUES.FALSE)
+    }
+    expect(el._openBeforePrint).toBeNull()
+  })
+
+  test('a second printprepare keeps the first snapshot; afterprint without one no-ops', async () => {
+    dbReplies = fullReplies
+    fetchReplies = { [EARTH_SHARE.MANIFEST_URL]: EARTH_MANIFEST }
+    await spawn()
+
+    // The user opens the media group first — restore must land THAT set,
+    // not the expand-all state a double prepare would snapshot.
+    const mediaToggle = qa(el, `.${SITEMAP_CLASSES.SITEMAP_GROUP_TOGGLE}`)[0]
+    mediaToggle.dispatchEvent(new MouseEvent('click', { bubbles: true }))
+    await flush()
+
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+    window.dispatchEvent(new Event(PRINT_EVENTS.PREPARE))
+
+    expect(el._openBeforePrint.size).toBe(1)
+
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+
+    const toggles = qa(el, `.${SITEMAP_CLASSES.SITEMAP_GROUP_TOGGLE}`)
+    expect(toggles[0].getAttribute(ARIA_ATTRS.ARIA_EXPANDED)).toBe(ATTR_VALUES.TRUE)
+    expect(toggles[1].getAttribute(ARIA_ATTRS.ARIA_EXPANDED)).toBe(ATTR_VALUES.FALSE)
+
+    // A bare afterprint (nothing snapshotted) rides the guard arm.
+    window.dispatchEvent(new Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+
+    expect(
+      qa(el, `.${SITEMAP_CLASSES.SITEMAP_GROUP_TOGGLE}`)[0].getAttribute(ARIA_ATTRS.ARIA_EXPANDED)
+    ).toBe(ATTR_VALUES.TRUE)
   })
 
   test('module re-eval sees the tag already registered', async () => {

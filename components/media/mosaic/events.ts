@@ -10,6 +10,7 @@ import { FORM_EVENTS } from '@core/tokens/events/dom.js'
 import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { INTERNAL_MOSAIC } from '@core/tokens/layout/masonry.js'
 import { CAROUSEL_LAYOUT } from '@core/tokens/motion/carousel.js'
+import { printJobActive } from '@core/utils/print/print.js'
 import { scheduleLayout } from './layout.js'
 import type { MediaMosaic } from '../MediaMosaic.js'
 
@@ -31,6 +32,12 @@ export function bindMediaMosaicEvents(host: MediaMosaic): void {
 
   if (host._mq) {
     host.addScopedListener(host._mq, FORM_EVENTS.CHANGE, () => {
+      // Print jobs freeze the screen-time publishers — a mid-snapshot
+      // re-render (compact flip to the carousel path or an absolute repack)
+      // would swap the parked wall out from under the fragmentainer and
+      // strand runs of empty sheets.
+      if (printJobActive()) return
+
       const compact = Boolean(host._mq?.matches)
 
       if (compact === host._isCompact) return
@@ -48,6 +55,10 @@ export function bindMediaMosaicEvents(host: MediaMosaic): void {
   if (typeof ResizeObserver === TYPE_STRINGS.UNDEFINED) return
 
   host._ro = new ResizeObserver((entries) => {
+    // Same freeze — the RO fires when the print layout viewport resizes to
+    // the page box, which is exactly when a repack must not run.
+    if (printJobActive()) return
+
     const width = entries[0]?.contentRect?.width || 0
 
     if (Math.abs(width - host._lastObservedW) < CAROUSEL_LAYOUT.FIT_EPS_PX) return

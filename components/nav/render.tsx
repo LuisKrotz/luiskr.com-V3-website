@@ -292,7 +292,7 @@ export const renderAppNav = (nav: AppNav) => {
             toggles (toggleNavMenu bypasses the gate while the menu is
             open so the close morph stays single-tap). */}
         <div className={`${NAV_BURGER_CLASSES.NAV_BURGER_WRAP} ${JOUST_CLASSES.JOUST}`}>
-          {nav._burgerCanvas(burgerLabel)}
+          {nav._burgerCanvas()}
           <button
             className={NAV_BURGER_CLASSES.NAV_BURGER_FALLBACK}
             type={FORM_ATTRS.TYPE_BUTTON}
@@ -353,6 +353,9 @@ export const renderAppNav = (nav: AppNav) => {
               className={`${NAV_CLASSES.NAV_SEARCH_BTN} ${JOUST_CLASSES.JOUST}`}
               type={FORM_ATTRS.TYPE_BUTTON}
               aria-label={searchLabel}
+              aria-expanded={
+                store.getters.getSearchModalOpen?.() === true ? ATTR_VALUES.TRUE : ATTR_VALUES.FALSE
+              }
               title={searchLabel}
               onClick={(e: Event) => nav.handleSearch(e)}
             >

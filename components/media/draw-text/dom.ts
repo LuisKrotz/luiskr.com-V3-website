@@ -8,11 +8,11 @@ import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { A11Y_CLASSES } from '@core/tokens/classes/a11y.js'
 import { DRAW_TEXT_CLASSES } from '@core/tokens/classes/draw-text.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
-import drawTextStyles from '@core/sass/components/media/draw-text.scss?inline'
+import { TYPE_STRINGS } from '@core/tokens/strings/types.js'
 import { stripHtml } from '@core/utils/string.js'
 import type { DrawText } from '../DrawText.js'
 import { renderContent, RENDER_MODES } from './render.js'
-import { getSharedSheet } from './sheet.js'
+import { baseStyleText, getSharedSheet, onPrintStyleNode } from './sheet.js'
 
 /** Re-renders the shadow DOM for current props. */
 export function updateDom(host: DrawText): void {
@@ -64,10 +64,23 @@ export function updateDom(host: DrawText): void {
     } else {
       host._styleEl = document.createElement(HTML_TAGS.STYLE)
 
-      host._styleEl.textContent = drawTextStyles
+      // Legacy path — base css writes now; the lazy print tier recomposes
+      // this node's text through the registered updater when it lands.
+      host._styleEl.textContent = baseStyleText()
 
       host.shadowRoot!.appendChild(host._styleEl)
     }
+  }
+
+  // A legacy <style> node re-arms its print-tier updater on every mount —
+  // disconnect unregisters, so a detached host never holds the slot and a
+  // re-mount lands the chunk whenever it resolves.
+  if (
+    host._styleEl &&
+    !(typeof CSSStyleSheet !== TYPE_STRINGS.UNDEFINED && host._styleEl instanceof CSSStyleSheet) &&
+    !host._printStyleOff
+  ) {
+    host._printStyleOff = onPrintStyleNode(host._styleEl as HTMLStyleElement)
   }
 
   if (!host._contentEl) {

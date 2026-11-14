@@ -44,6 +44,12 @@ export function startFitObserver(c: CustomCarousel) {
       // Fresh task — lets the unsized-fallback branch of setHeightVar
       // republish once the RO has delivered a real host width.
       c._setHeightVar()
+
+      // The refit may have rebuilt the track (fresh DOM parks at
+      // scrollLeft 0) or resized every slide around a stale scroll
+      // offset — re-center the active slide so the centered item stays
+      // the current one.
+      c._jumpToSlide(c.currentIndex, false)
     })
   })
 
@@ -52,7 +58,7 @@ export function startFitObserver(c: CustomCarousel) {
 
 /**
  * Decides whether the items fit side-by-side (no carousel chrome) or need
- * the scroll track. Side-by-side requires: ≤2 items, viewport
+ * the scroll track. Side-by-side requires: ≥2 items (any count), viewport
  * ≥ SIDE_BY_SIDE_BREAKPOINT, and projected total width ≤ host width.
  * The projection mirrors the shadow-DOM contract in media-figure.scss +
  * carousel-host.scss exactly: the strip height is the same value
@@ -70,39 +76,26 @@ export function startFitObserver(c: CustomCarousel) {
 export function measureFit(c: CustomCarousel, observedWidth?: number) {
   const vw = typeof window !== TYPE_STRINGS.UNDEFINED ? window.innerWidth : 0
 
-  // _forceActive pins the track below the ultrawide fit gate — carousels
-  // are configured force-active for >2 items or landscape groups, but at
-  // ≥3840 a set that honestly fits the host has no use for controls, so
-  // the projection still runs there even for forced groups.
-  if (c._forceActive && vw < CAROUSEL_LAYOUT.MULTI_FIT_MIN_VW) return
-
   if (c.items.length < 2) return
 
-  // Groups with more than 2 items normally need the scroll track +
-  // controls. The ≥3840 ultrawide exception: a handful of slides can't
-  // fill the track — "fewer items than the viewport" — so the set falls
-  // through to the shared fit projection below and, when every slide
-  // projects inside the host, settles into the centered side-by-side
-  // row with no carousel chrome at all.
+  // Controls only when they reveal something: the projection runs for
+  // EVERY set size and ignores _forceActive — a row whose slides all fit
+  // the host (the half-natural strip makes 3-5 landscape items fit on
+  // ordinary desktops, not just ≥3840) renders as the plain centered
+  // row with no track, no clones and no arrows/dots. _forceActive still
+  // marks the configured intent (>2 items / landscape group) for the
+  // render path, but it never pins chrome over a set that hides nothing.
   const multiFit = c.items.length > 2
-
-  if (multiFit && vw < CAROUSEL_LAYOUT.MULTI_FIT_MIN_VW) {
-    if (c._isSideBySide) {
-      c._isSideBySide = false
-
-      c._updateDom()
-
-      c._setupAfterRender()
-    }
-
-    return
-  }
 
   if (vw < CAROUSEL_LAYOUT.SIDE_BY_SIDE_BREAKPOINT) {
     if (c._isSideBySide) {
       c._isSideBySide = false
 
       c._updateDom()
+
+      // The row → track flip re-renders the clone loop; the track wiring
+      // (scroll position, controls, autoplay) must be re-armed on it.
+      c._setupAfterRender()
     }
 
     return
@@ -156,9 +149,9 @@ export function measureFit(c: CustomCarousel, observedWidth?: number) {
   // Desktop-only item side margins — only ≥1024 viewports pay them.
   const itemMargin = vw >= CAROUSEL_LAYOUT.ITEM_MARGIN_VW ? CAROUSEL_LAYOUT.ITEM_MARGIN_PX * 2 : 0
 
-  let totalW = 0
-
-  for (const item of c.items) {
+  // Projected laid-out width per item (slide box + chrome) — feeds both
+  // the fit total and the edge-clone count below.
+  const slideWs = c.items.map((item) => {
     const w = item.size?.[0] || GENERIC_DIMENSIONS.DEFAULT_WIDTH
 
     const h = item.size?.[1] || GENERIC_DIMENSIONS.ITEM_FALLBACK_HEIGHT
@@ -179,15 +172,53 @@ export function measureFit(c: CustomCarousel, observedWidth?: number) {
 
     const mediaW = multiFit && !isLandscapeItem(item) ? Math.min(aspectW, SPACE['8XL'], w) : aspectW
 
-    totalW += mediaW + itemPad + itemMargin + CAROUSEL_LAYOUT.ITEM_GAP_PX
-  }
+    return mediaW + itemPad + itemMargin + CAROUSEL_LAYOUT.ITEM_GAP_PX
+  })
+
+  const totalW = slideWs.reduce((acc, w) => acc + w, 0)
 
   const fits = totalW > 0 && totalW <= hostW
 
-  const changed = fits !== c._isSideBySide
+  // Edge clones are VIEWPORT-calculated: each side needs enough cyclic
+  // items to cover half the host width, otherwise centering an edge
+  // slide leaves the track's 50% run-out pad peeking as empty space
+  // (the strip must read continuous — a real wrap-around carousel).
+  // Clones only exist in track mode; the side-by-side row skips them.
+  const cloneSpan = hostW / 2
 
-  if (changed) {
+  const len = c.items.length
+
+  let edgeBefore = 0
+
+  let acc = 0
+
+  for (let i = len - 1; acc < cloneSpan; i--) {
+    acc += slideWs[((i % len) + len) % len]
+
+    edgeBefore++
+  }
+
+  let edgeAfter = 0
+
+  acc = 0
+
+  for (let i = 0; acc < cloneSpan; i++) {
+    acc += slideWs[i % len]
+
+    edgeAfter++
+  }
+
+  const layoutChanged = fits !== c._isSideBySide
+
+  const clonesChanged =
+    !fits && (edgeBefore !== c._edgeClonesBefore || edgeAfter !== c._edgeClonesAfter)
+
+  if (layoutChanged || clonesChanged) {
     c._isSideBySide = fits
+
+    c._edgeClonesBefore = edgeBefore
+
+    c._edgeClonesAfter = edgeAfter
 
     c._updateDom()
 
@@ -208,7 +239,15 @@ export function onCarouselResize(c: CustomCarousel) {
       ? window.innerWidth < CAROUSEL_LAYOUT.SIDE_BY_SIDE_BREAKPOINT
       : false
 
+  // Height-only resizes skip the width-keyed fit observer — the strip
+  // reshapes every slide's width (width = stripH × aspect), so the fit
+  // projection AND the viewport-clone counts need a fresh pass.
+  c._measureFit()
+
   c._setHeightVar()
+
+  // Re-center so a reshaped strip can't leave the active slide off-center.
+  c._jumpToSlide(c.currentIndex, false)
 }
 
 /**
@@ -450,9 +489,14 @@ export function setHeightVar(c: CustomCarousel) {
   let smallestWAspect = Infinity
 
   for (const item of c.items) {
-    const w = item?.size?.[0] || 0
+    // Under the ≤1024 half-natural contract the fit halves the FILE's own
+    // pixels — prefer the raw naturalSize when `size` carries the desktop
+    // ladder contract (a page loaded wide and resized to tablet/mobile
+    // keeps the contracted size, and halving it again would under-render
+    // every slide to ~1/8 of the source).
+    const w = (halfBound ? item?.naturalSize?.[0] : 0) || item?.size?.[0] || 0
 
-    const h = item?.size?.[1] || 0
+    const h = (halfBound ? item?.naturalSize?.[1] : 0) || item?.size?.[1] || 0
 
     if (!w || !h) continue
 

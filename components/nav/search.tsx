@@ -1,10 +1,10 @@
 /**
  * @file nav-search.tsx
- * @description The neon terminal glyph for <app-nav>'s search chip — a
- * `>_` prompt in green-to-teal neon: a bright chevron with an echoed
+ * @description The silver terminal glyph for <app-nav>'s search chip — a
+ * `>_` prompt in silver-to-steel metal: a bright chevron with an echoed
  * ghost chevron behind it (the motion afterimage), an underscore bar,
  * horizontal speed streaks trailing off the left, and twinkling sparks.
- * Colors come from the nav neon tokens; motion lives in nav-icons.scss
+ * Colors come from the nav metal tokens; motion lives in nav-icons.scss
  * so it runs inside this element's own shadow root. Isolated component.
  */
 
@@ -37,7 +37,7 @@ const SPARKS = [
   { x: 38, y: 38 },
 ]
 
-/** `stop` bound to a --nav-neon-* CSS prop — presentation attributes can't
+/** `stop` bound to a --nav-metal-* CSS prop — presentation attributes can't
  * resolve custom properties, so the value rides inline style. */
 const stop = (offset: number, prop: string) => (
   <stop offset={offset} style={`stop-color: var(${prop})`} />
@@ -47,7 +47,7 @@ const stop = (offset: number, prop: string) => (
 const ref = (id: string) => `url(#${id})`
 
 /**
- * The <nav-search-icon> element — the neon `>_` prompt. The chevron
+ * The <nav-search-icon> element — the silver `>_` prompt. The chevron
  * gradient runs green (tip) to teal (tail); the streak gradient fades
  * teal into green so each speed line reads as light leaving the prompt.
  */
@@ -60,8 +60,8 @@ export class NavSearchIcon extends BaseComponent {
   /** Starts the wasm streak emitter on the prompt's canvas. */
   override onMounted() {
     void mountNavGlyph(this, NAV_GLYPH.KIND_STREAK, [
-      NAV_SEARCH_CSS_PROPS.NEON_TEAL,
-      NAV_SEARCH_CSS_PROPS.NEON_GREEN,
+      NAV_SEARCH_CSS_PROPS.METAL_SILVER,
+      NAV_SEARCH_CSS_PROPS.METAL_STEEL,
     ]).then((session) => {
       if (this.isConnected) this._glyph = session
       else session?.destroy()
@@ -92,8 +92,8 @@ export class NavSearchIcon extends BaseComponent {
               x2="28"
               y2="36"
             >
-              {stop(0, NAV_SEARCH_CSS_PROPS.NEON_GREEN)}
-              {stop(1, NAV_SEARCH_CSS_PROPS.NEON_TEAL)}
+              {stop(0, NAV_SEARCH_CSS_PROPS.METAL_STEEL)}
+              {stop(1, NAV_SEARCH_CSS_PROPS.METAL_SILVER)}
             </linearGradient>
             <linearGradient
               id={NAV_SEARCH_IDS.STREAK}
@@ -103,8 +103,8 @@ export class NavSearchIcon extends BaseComponent {
               x2="11"
               y2="0"
             >
-              {stop(0, NAV_SEARCH_CSS_PROPS.NEON_TEAL)}
-              {stop(1, NAV_SEARCH_CSS_PROPS.NEON_GREEN)}
+              {stop(0, NAV_SEARCH_CSS_PROPS.METAL_SILVER)}
+              {stop(1, NAV_SEARCH_CSS_PROPS.METAL_STEEL)}
             </linearGradient>
           </defs>
 

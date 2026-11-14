@@ -171,6 +171,31 @@ describe('MediaFigure — Progressive Loading & Media', () => {
     const VIDEO_PRIMARY = 'url-primary.mp4'
     const VIDEO_SCALE_SRC = 'url-scale.mp4'
 
+    beforeAll(async () => {
+      // Seed the bucket manifest so SRC's derived siblings are proven —
+      // the thumb/poster/webm/scaled tiers these tests assert only emit
+      // when the manifest confirms they exist.
+      const realFetch = globalThis.fetch
+
+      globalThis.fetch = async () => ({
+        ok: true,
+        json: async () => [
+          `${SRC}${MEDIA.MOZ}${MEDIA.THUMB_SUFFIX}${MEDIA.EXT}`,
+          `${SRC}${MEDIA.VIDEO_THUMB_EXT}`,
+          `${SRC}${MEDIA.VIDEO_SCALE}${MEDIA.VIDEO_THUMB_EXT}`,
+          `${SRC}${MEDIA.WEBM_EXT}`,
+          `${SRC}${MEDIA.VIDEO_SCALE}${MEDIA.WEBM_EXT}`,
+          `${SRC}${MEDIA.VIDEO_SCALE}${MEDIA.VIDEO_EXT}`,
+        ],
+      })
+
+      const { initMediaManifest } = await import('@core/utils/media/manifest.js')
+
+      await initMediaManifest()
+
+      globalThis.fetch = realFetch
+    })
+
     test('thumb URL uses MEDIA.MOZ + MEDIA.THUMB_SUFFIX + MEDIA.EXT', () => {
       const expected = BASE_STORAGE + SRC + MEDIA.MOZ + MEDIA.THUMB_SUFFIX + MEDIA.EXT
       expect(expected).toBe(
@@ -539,6 +564,63 @@ describe('MediaFigure — Progressive Loading & Media', () => {
       const modal = store.getters.getModal()
       expect(modal.media.width).toBe(1200)
       expect(modal.media.height).toBe(675)
+    })
+
+    test('openModal() commits NATURAL dims — a carousel-laddered figure still opens full-size', () => {
+      // Carousel contract: `width`/`height` carry the laddered display
+      // box while `natural-width`/`natural-height` carry the untouched
+      // CMS dims. The modal is the no-reduction surface — it must read
+      // the natural pair, never the display pair.
+      el.setAttribute(MEDIA_ATTRS.CAN_EXPAND, STATE_STRINGS.TRUE)
+      el.setAttribute(MEDIA_ATTRS.WIDTH, '640')
+      el.setAttribute(MEDIA_ATTRS.HEIGHT, '360')
+      el.setAttribute(MEDIA_ATTRS.NATURAL_WIDTH, '3840')
+      el.setAttribute(MEDIA_ATTRS.NATURAL_HEIGHT, '2160')
+      el.openModal()
+      const modal = store.getters.getModal()
+      expect(modal.media.width).toBe(3840)
+      expect(modal.media.height).toBe(2160)
+      // The figure's own display contract stays untouched by the open.
+      expect(el.getAttribute(MEDIA_ATTRS.WIDTH)).toBe('640')
+    })
+
+    test('openModal() falls back to declared dims when no natural pair exists', () => {
+      // Untouched media (no ladder ever ran) carries only `width`/
+      // `height` — those ARE the natural dims.
+      el.setAttribute(MEDIA_ATTRS.CAN_EXPAND, STATE_STRINGS.TRUE)
+      el.setAttribute(MEDIA_ATTRS.WIDTH, '960')
+      el.setAttribute(MEDIA_ATTRS.HEIGHT, '540')
+      el.openModal()
+      const modal = store.getters.getModal()
+      expect(modal.media.width).toBe(960)
+      expect(modal.media.height).toBe(540)
+    })
+
+    test('openModal(originFigure) measures the PASSED figure for the genie origin — clone-click contract', () => {
+      // Clone slides are inert — their clicks forward to the real
+      // twin's openModal, but the twin can sit off-viewport at a
+      // different strip position. The genie warp must start from the
+      // rect the user actually clicked, so the clone's own figure is
+      // passed as the measure target.
+      el.setAttribute(MEDIA_ATTRS.CAN_EXPAND, STATE_STRINGS.TRUE)
+      const clickedClone = {
+        $: () => ({
+          getBoundingClientRect: () => ({ x: 11, y: 22, width: 300, height: 150 }),
+        }),
+      }
+      el.openModal(clickedClone)
+      const modal = store.getters.getModal()
+      expect(modal.origin).toEqual({ x: 11, y: 22, w: 300, h: 150 })
+      // The twin's own data still owns the media descriptor.
+      expect(modal.media.width).toBeGreaterThan(0)
+    })
+
+    test('openModal() without an origin figure measures its own rect (zero in happy-dom → null)', () => {
+      el.setAttribute(MEDIA_ATTRS.CAN_EXPAND, STATE_STRINGS.TRUE)
+      el.openModal()
+      const modal = store.getters.getModal()
+      expect(modal.open).toBe(true)
+      expect(modal.origin).toBeNull()
     })
 
     test('openModal() for image uses uncompressed URL as source', () => {

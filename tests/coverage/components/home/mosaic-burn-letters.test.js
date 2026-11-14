@@ -443,10 +443,12 @@ describe('mosaic burn letters', () => {
     expect(s.particles.length).toBe(0)
   })
 
-  test('a moving title re-anchors the canvas in place — no re-raster, just left/top', async () => {
-    // The expand ease slides the h2 inside its overlay: posSig (box minus
-    // overlay origin) changes while lastBox stays frozen, so syncPaper
-    // takes the position-only re-anchor arm instead of re-measuring.
+  test('a reflowing title cannot move the frozen canvas — anchors pin at arm time', async () => {
+    // The dealt pile's heights grow while the front card types: the h2's
+    // layout box slides under the frozen raster. Without the ITEM_BURNED
+    // relocation contract the canvas must NOT follow — the DOM ink is
+    // hidden the whole session, so the burn plays where the title stood
+    // when it caught fire (the "burn drifts in Y on mobile" defect).
     mountMosaic()
     armCardBurn(el, 0, ITEMS[0])
 
@@ -480,13 +482,15 @@ describe('mosaic burn letters', () => {
     }
 
     const beforeLeft = s.canvas.style.left
+    const beforeTop = s.canvas.style.top
 
     ctxState.fillStyles.length = 0
 
     await flush(60)
 
-    expect(s.lastPos).toBe('16,24')
-    expect(s.canvas.style.left).not.toBe(beforeLeft)
+    expect(s.lastPos).toBe('0,0')
+    expect(s.canvas.style.left).toBe(beforeLeft)
+    expect(s.canvas.style.top).toBe(beforeTop)
     expect(ctxState.fillStyles.length).toBe(0)
   })
 

@@ -15,10 +15,14 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { AWC_VARIANTS } from '@core/tokens/classes/awards-carousel.js'
 import { DB_PATHS } from '@core/tokens/routes/paths.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
-import { mountScene3d } from '@core/utils/gpu/scene3d.js'
-import type { Scene3dHandle } from '@core/utils/gpu/scene3d.js'
+import { HTML_TAGS } from '@core/tokens/elements/html.js'
+import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
+import { THEME_CSS_PROPS } from '@core/tokens/css/theme.js'
+import { mountScene3d, SCENE3D_NONE } from '@core/utils/gpu/scene3d.js'
+import type { Scene3dHandle, Scene3dSurface } from '@core/utils/gpu/scene3d.js'
+import { parseCssColor } from '@core/utils/canvas/css-color.js'
 import { loadDemoData } from './data.js'
-import { DEMO_BEAT_LONG_MS } from './cycle.js'
+import { DEMO_BEAT_LONG_MS, reducedMotion } from './cycle.js'
 import { mountSceneDemo as mountScene2d } from './canvas2d.js'
 import type { AnimDemoData } from './data.js'
 import type { DemoContext } from './types.js'
@@ -50,7 +54,7 @@ interface AwardsCarouselEl extends HTMLElement {
  *  view calls (optional: unregistered in test envs that skip the
  *  component registry). */
 interface CustomCarouselEl extends HTMLElement {
-  setItems?(o: { items?: unknown; folder?: string; forceActive?: number }): void
+  configure?(o: { items?: unknown; folder?: string; forceActive?: boolean }): void
 }
 
 /** Duck-typed <about-section> surface — the two props the home view pushes. */
@@ -251,13 +255,18 @@ export const mountCustomCarouselDemo = ({ stage }: DemoContext): (() => void) =>
     ? feed(alive, ({ home, related }) => {
         // The tag may be unregistered (shared axe suite mounts the view
         // without the component registry) — a plain element has no
-        // setItems; the guard keeps the demo inert there.
-        el.setItems?.({
-          items: portfolioRows(home, related).map((item) => ({
-            src: item.image,
-            label: (item.label || item.title || ATTR_VALUES.EMPTY) as string,
-          })),
+        // configure; the guard keeps the demo inert there.
+        const items = portfolioRows(home, related).map((item) => ({
+          src: item.image,
+          label: (item.label || item.title || ATTR_VALUES.EMPTY) as string,
+        }))
+
+        el.configure?.({
+          items,
           folder: DB_PATHS.COVERS,
+          // The project view's rule: more items than the strip fits
+          // keeps the transport affordances visibly active.
+          forceActive: items.length > 2,
         })
       })
     : () => {
@@ -293,45 +302,196 @@ export const mountAboutSectionDemo = ({ stage }: DemoContext): (() => void) => {
   return stop
 }
 
+/* ── Scene-3d demo constants ─────────────────────────────────────── */
+
+/** Star count in the engine mini-scene — a compact cloud that still
+ *  reads as the playground's star field at the demo's small box. */
+const _SCENE_STARS = 300
+
+/** Star-cloud radius in world units — the disc the camera orbits. */
+const _SCENE_RADIUS = 200
+
+/** Orbit distance — the camera stands back far enough to frame the
+ *  whole cloud inside the demo's ~4:3 box. */
+const _SCENE_DIST = 320
+
+/** Vertical field of view, degrees — the engines' standard lens. */
+const _SCENE_FOV = 55
+
+/** Camera near clip — inside the cloud's inner edge. */
+const _CLIP_NEAR = 1
+
+/** Camera far clip — past the cloud's outer edge. */
+const _CLIP_FAR = 1000
+
+/** Point-sprite diameter in world units. */
+const _POINT_SIZE = 1.4
+
+/** Star-cloud yaw drift (rad/s) — a slow turn, not a spin. */
+const _SCENE_DRIFT = 0.06
+
+/** Orbit yaw sway amplitude (rad) — a gentle camera bob. */
+const _SCENE_SWAY = 0.15
+
+/** Orbit sway rate (rad/s). */
+const _SCENE_SWAY_RATE = 0.12
+
+/** Resting orbit pitch (rad) — lifted so the cloud reads as a disc,
+ *  not a line. */
+const _SCENE_PITCH = 0.22
+
+/** set_material_flags slots — front faces, additive blending (stars
+ *  accumulate light; the API takes the enum's numeric index). */
+const _SIDE_FRONT = 0
+const _BLEND_ADDITIVE = 1
+
 /**
- * 3D-scene demo — mounts the real mountScene3d WebGPU surface on the
- * stage canvas; where WebGPU/the wasm artifact is unavailable (the
- * common headless/fallback case) the 2D approximation driver keeps the
- * stage alive with the same motion vocabulary.
- * @param ctx The demo context (stage owns the canvas).
- * @returns Teardown — destroys whichever surface mounted.
+ * Seeds the mounted scene3d surface with a mini star field — a flat
+ * point cloud in an additive material on a slowly orbiting camera, the
+ * same vocabulary the real playground scene speaks (points, orbit rig,
+ * one rAF-driven `frame()`). Runs the engine's own API so the demo is
+ * a real scene, not a canned recording; under reduced motion it paints
+ * one settled frame and stops.
+ * @param canvas The GPU canvas (computed-style anchor for the ink).
+ * @param surface The live engine handle's surface.
+ * @returns The rAF id to cancel on teardown (0 when settled/mocked).
+ */
+const seedScene = (canvas: HTMLCanvasElement, surface: Scene3dSurface): number => {
+  const ink = parseCssColor(
+    getComputedStyle(canvas).getPropertyValue(THEME_CSS_PROPS.TEXT_MUTED_ON_DARK)
+  ) || [1, 1, 1]
+
+  surface.set_clear(0, 0, 0, 0)
+  surface.set_fov(_SCENE_FOV)
+  surface.set_clip(_CLIP_NEAR, _CLIP_FAR)
+
+  // SoA geometry — positions carry the cloud; normals/uvs/indices only
+  // satisfy the upload signature (points ignore shading attrs anyway).
+  const positions = new Float32Array(_SCENE_STARS * 3)
+  const normals = new Float32Array(_SCENE_STARS * 3)
+  const uvs = new Float32Array(_SCENE_STARS * 2)
+  const indices = new Uint32Array(_SCENE_STARS)
+
+  for (let i = 0; i < _SCENE_STARS; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 2 * _SCENE_RADIUS
+    positions[i * 3 + 1] = (Math.random() - 0.5) * _SCENE_RADIUS
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 2 * _SCENE_RADIUS
+    normals[i * 3 + 1] = 1
+    indices[i] = i
+  }
+
+  const geo = surface.upload_geometry(positions, normals, uvs, indices, true)
+  const mat = surface.add_material_points(ink[0], ink[1], ink[2], 1, _POINT_SIZE, SCENE3D_NONE)
+
+  surface.set_material_flags(mat, _SIDE_FRONT, _BLEND_ADDITIVE, true, false)
+
+  const node = surface.add_points(SCENE3D_NONE, geo, mat)
+
+  const dpr = () => window.devicePixelRatio || 1
+
+  if (reducedMotion()) {
+    surface.set_orbit(0, 0, 0, _SCENE_DIST, 0, _SCENE_PITCH)
+    surface.frame(0, dpr())
+
+    return 0
+  }
+
+  // Per-frame writes stay scalar: node yaw + orbit sway + one frame —
+  // no allocations inside the tick (frame-budget rule). A dead wasm
+  // surface throws inside rAF — outside every promise chain — so a
+  // throwing frame retires the loop instead of spamming exceptions;
+  // the 2D underlay remains the live paint.
+  const tick = (now: number) => {
+    const t = now / 1000
+
+    try {
+      surface.set_euler(node, 0, t * _SCENE_DRIFT, 0)
+      surface.set_orbit(
+        0,
+        0,
+        0,
+        _SCENE_DIST,
+        Math.sin(t * _SCENE_SWAY_RATE) * _SCENE_SWAY,
+        _SCENE_PITCH
+      )
+      surface.frame(t, dpr())
+    } catch {
+      return
+    }
+
+    raf = requestAnimationFrame(tick)
+  }
+
+  let raf = requestAnimationFrame(tick)
+
+  return raf
+}
+
+/**
+ * 3D-scene demo — the stage carries two stacked full-size canvases:
+ * the first always paints the 2D starfield approximation (it is also
+ * the fallback surface); the real scene3d engine mounts on the last
+ * one and, where WebGPU is available, composites its own seeded mini
+ * scene over the field. Splitting the surfaces keeps the fallback's
+ * 2D context alive — a shared canvas can't re-bind '2d' once the
+ * engine claims it for WebGPU, which is how the single-canvas version
+ * stranded the stage on a transparent blank.
+ * @param ctx The demo context (stage owns the canvas pair).
+ * @returns Teardown — destroys whichever surfaces mounted.
  */
 export const mountScene3dDemo = (ctx: DemoContext): (() => void) => {
-  const canvas = ctx.stage.querySelector<HTMLCanvasElement>('canvas')
+  const canvases = ctx.stage.querySelectorAll<HTMLCanvasElement>(HTML_TAGS.CANVAS)
 
-  if (!canvas) return () => undefined
+  const under = canvases[0]
+
+  if (!under) return () => undefined
+
+  // The engine claims the LAST canvas — mountSceneDemo's
+  // `.anim-demo-canvas` pick keeps the first one painting underneath;
+  // `under` surviving the guard above proves the last slot holds an
+  // element.
+  const gpu = canvases[canvases.length - 1]
+
+  // The GPU surface has no synchronous repaint hook, so a capture could
+  // serialize a buffer the async mount never painted — the 2D field
+  // underneath stays the faithful print still. `data-print-skip` retires
+  // it outright (print-src) so the generic canvas arm can't blind-capture
+  // its transparent buffer either.
+  if (gpu !== under) {
+    gpu.removeAttribute(DATA_ATTRS.PRINT_CAPTURE)
+    gpu.setAttribute(DATA_ATTRS.PRINT_SKIP, '')
+  }
+
+  const fallback = mountScene2d(ctx)
 
   let handle: Scene3dHandle | null = null
-  let fallback: (() => void) | null = null
+  let raf = 0
 
   const armed = { current: true }
 
-  mountScene3d(canvas)
+  mountScene3d(gpu)
     .then((h) => {
       if (!armed.current) {
         h?.destroy()
         return
       }
 
-      if (h) {
-        handle = h
-      } else {
-        fallback = mountScene2d(ctx)
-      }
+      if (!h) return
+
+      handle = h
+
+      // The surface field is optional at runtime (tests stub the
+      // handle without it) — an unseeded engine simply paints clear.
+      if (h.surface) raf = seedScene(gpu, h.surface)
     })
-    .catch(() => {
-      if (armed.current) fallback = mountScene2d(ctx)
-    })
+    .catch(() => undefined)
 
   return () => {
     armed.current = false
 
+    if (raf) cancelAnimationFrame(raf)
+
     handle?.destroy()
-    fallback?.()
+    fallback()
   }
 }

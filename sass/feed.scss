@@ -282,8 +282,10 @@ channel {
       white-space: nowrap;
     }
 
-    // Media enclosures can't render as <img>/<video> — attribute URLs
-    // surface as a labeled mono line so the attachment stays reachable.
+    // Media enclosures can't render as <img>/<video> — a generic XML
+    // element honors no `style` attribute and attr() only emits text —
+    // so the attachment surfaces as a labeled mono line, which keeps
+    // every media URL reachable (and printable, see the print block).
     > media|content {
       display: block;
       margin-top: var(--space-md);
@@ -303,7 +305,7 @@ channel {
 
     // <guid> duplicates <link>; the single-author <dc:creator> is the
     // same on every item; the video poster URL adds noise beside the
-    // enclosure line.
+    // enclosure line on screen — print surfaces it instead.
     > guid,
     > dc|creator,
     > media|thumbnail {
@@ -316,31 +318,101 @@ channel {
 // the app's html classes, so the OS preferences drive the identical
 // mixin-emitted token sets on the root (light HC wins over base, dark HC
 // over both — the same stack order as html.dark-mode + .high-contrast).
-@media (prefers-color-scheme: dark) {
+// All four queries stay screen-scoped: paper forces the base light set
+// the same way print.ts strips .dark-mode before the snapshot — a dark
+// OS preference must never reach toner.
+@media screen and (prefers-color-scheme: dark) {
   rss {
     @include dark-mode-tokens;
   }
 }
 
-@media (prefers-contrast: more) {
+@media screen and (prefers-contrast: more) {
   rss {
     @include high-contrast-light-tokens;
   }
 }
 
-@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+@media screen and (prefers-contrast: more) and (prefers-color-scheme: dark) {
   rss {
     @include high-contrast-dark-tokens;
   }
 }
 
 // Reduced motion — the card lift is the only motion on this surface.
-@media (prefers-reduced-motion: reduce) {
+@media screen and (prefers-reduced-motion: reduce) {
   channel > item {
     transition: none;
 
     &:hover {
       transform: none;
+    }
+  }
+}
+
+// ── Print ──────────────────────────────────────────────────────────────
+// The feed prints as a magazine index under the same sheet contract the
+// app pages use: the shared margin spec + running folio, hairline cards
+// that never split mid-item, and cover strips dropped to the
+// contact-sheet rung so one attachment can't eat a page. Glass surfaces,
+// shadows, transitions and the dark washes all fall away — the OS theme
+// queries are screen-scoped above, so the base light tokens already own
+// the page; `color-scheme` pins the UA defaults light too.
+@page {
+  margin: var(--print-page-margin);
+
+  @bottom-center {
+    content: counter(page);
+    font-family: var(--font-serif);
+    font-size: var(--print-caption-size);
+    color: var(--print-ink);
+  }
+}
+
+@media print {
+  rss {
+    min-height: 0;
+    padding: 0;
+    background: none;
+    color: var(--print-ink);
+    color-scheme: light;
+  }
+
+  channel {
+    &::before {
+      box-shadow: none;
+    }
+
+    > item {
+      break-inside: avoid;
+      background: none;
+      box-shadow: none;
+      transition: none;
+
+      &:hover {
+        box-shadow: none;
+        transform: none;
+      }
+
+      // The poster URL joins the attachment line on paper — every media
+      // address the item carries stays reachable from the printed feed,
+      // which is the only representable form a CSS-PI'd XML offers.
+      > media|thumbnail {
+        display: block;
+        margin-top: var(--space-2xs);
+        font-family: var(--font-mono);
+        font-size: var(--space-md);
+        color: var(--text-muted);
+        overflow-wrap: anywhere;
+
+        &::before {
+          content: 'Poster — ';
+        }
+
+        &::after {
+          content: attr(url);
+        }
+      }
     }
   }
 }

@@ -34,7 +34,13 @@ import {
 import { autoElapsed } from '@website/components/home/cardstack/timer.js'
 import { mount, waitFor } from '@tests/fixtures/test-constants.js'
 import { createMock2D } from '@tests/fixtures/mock-webgl.js'
-import { writeInfo, holdBurns, burnCardTitles } from '@website/components/home/cardstack/info.js'
+import {
+  writeInfo,
+  holdBurns,
+  burnCardTitles,
+  armOutgoingTitleBurn,
+} from '@website/components/home/cardstack/info.js'
+import { _PAD_TOP } from '@core/utils/burn/tuning.js'
 import { CARD_STACK_CLASSES as C } from '@core/tokens/classes/card-stack.js'
 import { CARD_STACK_SELECTORS as SEL } from '@core/tokens/selectors/card-stack.js'
 import { CARD_STACK_LAYOUT, CARD_STACK_TIERS } from '@core/tokens/motion/card-stack.js'
@@ -49,9 +55,13 @@ import { MEDIA } from '@core/tokens/media/suffixes.js'
 import {
   CLIPBOARD_EVENTS,
   DRAG_EVENTS,
+  FORM_EVENTS,
   MOUSE_EVENTS,
   POINTER_EVENTS,
+  PRINT_EVENTS,
 } from '@core/tokens/events/dom.js'
+import { PRINT_CLASSES } from '@core/tokens/classes/print.js'
+import { preparePrint, restorePrint } from '@website/components/home/cardstack/print.js'
 import { PREF_MUTATIONS } from '@core/tokens/events/mutations.js'
 import { resetViewportCache } from '@core/utils/dom.js'
 import store from '@core/store.js'
@@ -1020,6 +1030,142 @@ describe('in-card burn tails', () => {
     // so teardown doesn't try to detach fields it never had.
     info._burn = null
   })
+
+  test('updateChrome settles the pile heights before the in-card burn anchors', async () => {
+    const el = await mountItems([item(0), item(1)])
+    el._tier = STACK_TIER
+    el._cardH = 40
+
+    // Stale delta from the previous front's grown copy — production
+    // carries it into writeInfo, where the burn's arm-time measure once
+    // anchored to the pre-settle box and then visibly jumped.
+    el._frontExtra = 500
+
+    // The title's rect only reports the settled offset once
+    // fitDeckToFront has corrected _frontExtra — a deterministic stand-in
+    // for the bottom-anchored copy column sliding under a stale pileH.
+    const title = el._cardEls[0].querySelector(SEL.CARD_STACK_CARD_INFO_TITLE)
+    const staleTop = 245
+    const settledTop = 197
+
+    title.getBoundingClientRect = () => {
+      const top = el._frontExtra === 500 ? staleTop : settledTop
+
+      return {
+        left: 10,
+        top,
+        right: 210,
+        bottom: top + 40,
+        width: 200,
+        height: 40,
+        x: 10,
+        y: top,
+        toJSON: () => ({}),
+      }
+    }
+
+    // Keep the rect fallback authoritative — the stubbed offsetParent
+    // dead-ends before reaching the card overlay.
+    Object.defineProperty(title, 'offsetParent', {
+      get: () => document.createElement(HTML_TAGS.DIV),
+      configurable: true,
+    })
+
+    updateChrome(el)
+
+    // fitDeckToFront recomputed the delta (40px rect − 40px cardH = 0)
+    // BEFORE writeInfo mounted the burn — the canvas anchored to the
+    // settled box, not the stale one.
+    expect(el._frontExtra).toBe(0)
+
+    const canvas = el._cardEls[0].querySelector(`.${C.CARD_STACK_CARD_INFO_TITLE_BURN}`)
+
+    expect(canvas).toBeTruthy()
+    expect(canvas.style.top).toBe(`${settledTop - 10 - _PAD_TOP}px`)
+  })
+
+  test('goTo arms the outgoing title burn BEFORE --active relocates its box', async () => {
+    const el = await mountItems([item(0), item(1)])
+    el._tier = STACK_TIER
+
+    writeInfo(el) // seeds _burnFront = card 0 (+ a knit session)
+
+    const card0 = el._cardEls[0]
+
+    // Drop the mount-time session — the regression arm is the pre-flip
+    // mount inside goTo, which only fires when no session exists.
+    card0._burn = null
+    card0.querySelector(`.${C.CARD_STACK_CARD_INFO_TITLE_BURN}`)?.remove()
+
+    const title = card0.querySelector(SEL.CARD_STACK_CARD_INFO_TITLE)
+
+    // The title reports its in-flow (lit) top while --active holds and
+    // the bottom-anchored (parked) top once the flip lands — so the
+    // arm-time anchor itself proves WHEN the mount measured.
+    const litTop = 197
+    const parkedTop = 73
+
+    title.getBoundingClientRect = () => {
+      const top = card0.classList.contains(C.CARD_STACK_CARD_ACTIVE) ? litTop : parkedTop
+
+      return {
+        left: 10,
+        top,
+        right: 210,
+        bottom: top + 40,
+        width: 200,
+        height: 40,
+        x: 10,
+        y: top,
+        toJSON: () => ({}),
+      }
+    }
+
+    // Keep the rect fallback authoritative — the stubbed offsetParent
+    // dead-ends before reaching the card overlay.
+    Object.defineProperty(title, 'offsetParent', {
+      get: () => document.createElement(HTML_TAGS.DIV),
+      configurable: true,
+    })
+
+    goTo(el, 1)
+
+    // The session mounted while --active still held — the canvas
+    // anchored at the lit box, not the post-flip bottom slot (the
+    // "title burns on top of the cover image" regression).
+    const canvas = card0.querySelector(`.${C.CARD_STACK_CARD_INFO_TITLE_BURN}`)
+
+    expect(canvas).toBeTruthy()
+    expect(canvas.style.top).toBe(`${litTop - 10 - _PAD_TOP}px`)
+    expect(card0._burn.dir).toBe(1)
+  })
+
+  test('armOutgoingTitleBurn gates on tier + same-front and re-arms live sessions', async () => {
+    const el = await mountItems([item(0), item(1)])
+
+    // Fan tier — nothing arms.
+    el._tier = FAN_TIER
+    writeInfo(el)
+    el.activeIdx = 1
+    armOutgoingTitleBurn(el)
+    expect(el._cardEls[0]._burn).toBeFalsy()
+
+    // Stacked tier, same-front re-click — the pairing is untouched.
+    el._tier = STACK_TIER
+    el.activeIdx = 0
+    writeInfo(el)
+    const s0 = el._cardEls[0]._burn
+    expect(s0).toBeTruthy()
+
+    armOutgoingTitleBurn(el)
+    expect(s0.dir).toBe(-1) // still knitting — not consumed
+
+    // A real front change — the live session flips to consume in place.
+    el.activeIdx = 1
+    armOutgoingTitleBurn(el)
+    expect(s0.dir).toBe(1)
+    expect(s0.t).toBe(s0.prog * (s0.dur / 1000))
+  })
 })
 
 // ─── render tails — the touch-only hint copy ────────────────────────────────
@@ -1510,5 +1656,136 @@ describe('deck/info/events tails', () => {
     expect(el._autoOn).toBe(true)
 
     document.dispatchEvent(new Event(CLIPBOARD_EVENTS.VISIBILITY_CHANGE))
+  })
+})
+
+// ─── print.ts — the deck's printable form ────────────────────────────────────
+describe('cardstack/print — fills, poser gate, restore channels', () => {
+  test('preparePrint fills desc slots and restorePrint clears them and re-poses', async () => {
+    const el = await mountItems([item(0), item(1)])
+
+    preparePrint(el)
+
+    const fills = el.shadowRoot.querySelectorAll(`.${PRINT_CLASSES.FILL}`)
+
+    expect(el._printing).toBe(true)
+    expect(fills.length).toBe(2)
+    expect(fills[0].textContent).toContain('Desc 0')
+    expect(fills[0].hasAttribute(COMMON_ATTRS.HIDDEN)).toBe(true)
+
+    // Second prepare is a no-op — the armed fill short-circuits the slot.
+    preparePrint(el)
+    expect(el.shadowRoot.querySelectorAll(`.${PRINT_CLASSES.FILL}`).length).toBe(2)
+
+    restorePrint(el)
+
+    expect(el._printing).toBe(false)
+    expect(el.shadowRoot.querySelector(`.${PRINT_CLASSES.FILL}`)).toBeNull()
+
+    // Idempotent — both restore channels may fire for one job.
+    restorePrint(el)
+    expect(el._printing).toBe(false)
+  })
+
+  test('preparePrint skips empty descs, out-of-range indexes and unmounted hosts', async () => {
+    const el = await mountItems([item(0, { description: ATTR_VALUES.EMPTY }), item(1)])
+
+    // Two synthetic card arms: the first's data-index points past the
+    // item list (items[idx] undefined); the second points at a real
+    // described item but carries no desc slot (the !slot short-circuit).
+    const stray = document.createElement(HTML_TAGS.ARTICLE)
+    const slotless = document.createElement(HTML_TAGS.ARTICLE)
+
+    stray.className = C.CARD_STACK_CARD
+    stray.setAttribute(DATA_ATTRS.DATA_INDEX, '99')
+    slotless.className = C.CARD_STACK_CARD
+    slotless.setAttribute(DATA_ATTRS.DATA_INDEX, '1')
+    deckEl(el).append(stray, slotless)
+
+    preparePrint(el)
+
+    const fills = el.shadowRoot.querySelectorAll(`.${PRINT_CLASSES.FILL}`)
+
+    expect(fills.length).toBe(1)
+    expect(fills[0].textContent).toContain('Desc 1')
+
+    restorePrint(el)
+
+    const bare = new CardStack()
+
+    preparePrint(bare) // shadowRoot-less arm — a plain no-op
+    restorePrint(bare)
+  })
+
+  test('the _printing flag gates applyPoses and fitDeckToFront', async () => {
+    const el = await mountItems([item(0), item(1)])
+
+    el._tier = FAN_TIER
+
+    const card = el._cardEls[0]
+
+    card.removeAttribute(COMMON_ATTRS.STYLE)
+
+    el._printing = true
+
+    applyPoses(el)
+    expect(card.hasAttribute(COMMON_ATTRS.STYLE)).toBe(false)
+
+    const deck = deckEl(el)
+
+    deck.style.minHeight = ''
+    fitDeckToFront(el)
+    expect(deck.style.minHeight).toBe(ATTR_VALUES.EMPTY)
+
+    el._printing = false
+  })
+
+  test('window printprepare/afterprint drive preparePrint/restorePrint', async () => {
+    const el = await mountItems([item(0)])
+
+    window.dispatchEvent(new window.Event(PRINT_EVENTS.PREPARE))
+    expect(el._printing).toBe(true)
+    expect(el.shadowRoot.querySelector(`.${PRINT_CLASSES.FILL}`)).toBeTruthy()
+
+    window.dispatchEvent(new window.Event(CLIPBOARD_EVENTS.AFTER_PRINT))
+    expect(el._printing).toBe(false)
+    expect(el.shadowRoot.querySelector(`.${PRINT_CLASSES.FILL}`)).toBeNull()
+  })
+
+  test('the matchMedia false edge restores engines that never fire afterprint', async () => {
+    const origMM = window.matchMedia
+    let mqlChange = null
+
+    window.matchMedia = (q) => ({
+      matches: false,
+      media: q,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: (ev, fn) => {
+        if (ev === FORM_EVENTS.CHANGE) mqlChange = fn
+      },
+      removeEventListener: () => {},
+      dispatchEvent: () => false,
+    })
+
+    try {
+      const el = await mountItems([item(0)])
+
+      expect(mqlChange).toBeInstanceOf(Function)
+
+      window.dispatchEvent(new window.Event(PRINT_EVENTS.PREPARE))
+      expect(el._printing).toBe(true)
+
+      // matches:true is the no-restore arm — printing stays armed.
+      mqlChange({ matches: true })
+      expect(el._printing).toBe(true)
+
+      mqlChange({ matches: false })
+      expect(el._printing).toBe(false)
+      expect(el.shadowRoot.querySelector(`.${PRINT_CLASSES.FILL}`)).toBeNull()
+    } finally {
+      window.matchMedia = origMM
+    }
   })
 })

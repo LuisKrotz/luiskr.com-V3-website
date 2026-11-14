@@ -9,7 +9,9 @@
 
 import { MEDIA_ATTRS } from '@core/tokens/attrs/media.js'
 import { webmSibling } from '@core/utils/media.js'
-import { mediaKeyExists, mediaManifestReady } from '@core/utils/media/manifest.js'
+import { descriptionTracks, longdescUrl } from '@core/utils/media/accessibility.js'
+import { mediaKeyExists } from '@core/utils/media/manifest.js'
+import store from '@core/store.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
 import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
@@ -33,6 +35,7 @@ export class MediaExpanded extends BaseComponent {
   _closeBtn: { destroy(): void } | null = null // CloseButtonWebGL on the header ✕
   _brackets: (() => void) | null = null // teardown for the close-button corner-brackets WebGPU widgets
   _genie: GenieSession | null = null // live genie-warp session (open/close transition)
+  _closeTimer: ReturnType<typeof setTimeout> | null = null // pending fallback teardown — cleared on destroy so a removed element can't scrollTo/commit post-mortem
   /**
    * Baked warp sheet reused across this modal's open→close pair — keyed
    * on (content, dpr, viewport, theme): any of those changing rebakes.
@@ -58,6 +61,7 @@ export class MediaExpanded extends BaseComponent {
       MEDIA_ATTRS.WIDTH,
       MEDIA_ATTRS.HEIGHT,
       MEDIA_ATTRS.IS_VIDEO,
+      MEDIA_ATTRS.STEM,
     ]
   }
 
@@ -71,26 +75,55 @@ export class MediaExpanded extends BaseComponent {
     return this.getAttribute(MEDIA_ATTRS.SOURCE) || ATTR_VALUES.EMPTY
   }
 
-  /** Webm sibling of an .mp4 source — first <source> when it exists
-      (manifest-known absent ⇒ '', same doomed-request gate as the
-      figure's resolveMediaSources). */
+  /** Webm sibling of an .mp4 source — first <source> when the manifest
+      proves it ('' otherwise — an unproven sibling is a doomed request,
+      same gate as the figure's resolveMediaSources). */
 
   get sourceWebm() {
     const webm = webmSibling(this.source)
 
-    return mediaManifestReady() && !mediaKeyExists(webm) ? ATTR_VALUES.EMPTY : webm
+    return mediaKeyExists(webm) ? webm : ATTR_VALUES.EMPTY
   }
 
-  /** Low-res thumbnail URL shown while the full asset loads. */
+  /** Low-res thumbnail URL shown while the full asset loads.
+      The stamped variant is offered only when the manifest proves it —
+      an unproven layer would 404 into a transparent img (flat letterbox
+      bands — the "missing blur" bug). Images fall back to the full
+      source — always present, invisible under cover+blur; videos
+      withhold the layer entirely since an mp4 can't be an <img> src. */
 
   get thumb() {
-    return this.getAttribute(MEDIA_ATTRS.THUMB) || ATTR_VALUES.EMPTY
+    const t = this.getAttribute(MEDIA_ATTRS.THUMB) || ATTR_VALUES.EMPTY
+
+    if (!t || mediaKeyExists(t)) return t
+
+    return this.isVideo ? ATTR_VALUES.EMPTY : this.source
   }
 
   /** Alt text for the media. */
 
   get alt() {
     return this.getAttribute(MEDIA_ATTRS.ALT) || ATTR_VALUES.EMPTY
+  }
+
+  /** Extensionless CDN stem the a11y siblings (.vtt / _longdesc.txt)
+      derive from — stamped by the modal openers alongside `source`. */
+
+  get stem() {
+    return this.getAttribute(MEDIA_ATTRS.STEM) || ATTR_VALUES.EMPTY
+  }
+
+  /** Manifest-gated description tracks for the expanded video — same
+      16-locale set the owning <media-figure> emits. */
+
+  get a11yTracks() {
+    return descriptionTracks(this.stem, store.getters.getLang())
+  }
+
+  /** Localized longdesc URL for the expanded image ('' when ungenerated). */
+
+  get longdesc() {
+    return longdescUrl(this.stem, store.getters.getLang())
   }
 
   /** Natural media width attribute. */
@@ -142,6 +175,12 @@ export class MediaExpanded extends BaseComponent {
 
   override onDestroy() {
     cancelGenie(this)
+
+    if (this._closeTimer) {
+      clearTimeout(this._closeTimer)
+
+      this._closeTimer = null
+    }
 
     this._genieSheet = null
 

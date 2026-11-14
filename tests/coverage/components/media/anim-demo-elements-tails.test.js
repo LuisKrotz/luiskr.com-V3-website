@@ -14,6 +14,7 @@ import { COMPONENT_TAGS } from '@core/tokens/elements/components.js'
 import { HTML_TAGS } from '@core/tokens/elements/html.js'
 import { LOCALES } from '@core/tokens/locales.js'
 import { ATTR_VALUES } from '@core/tokens/attrs/values.js'
+import { DATA_ATTRS } from '@core/tokens/attrs/data.js'
 import { TEST_TEXT } from '@tests/fixtures/test-constants.js'
 import store from '@core/store.js'
 
@@ -39,6 +40,7 @@ let _sceneResult = Promise.resolve(null)
 
 jest.unstable_mockModule('@core/utils/gpu/scene3d.js', () => ({
   mountScene3d: () => _sceneResult,
+  SCENE3D_NONE: 4294967295,
 }))
 
 const { loadDemoData } = await import('@website/components/media/anim-demo/data.js')
@@ -46,6 +48,72 @@ const EL = await import('@website/components/media/anim-demo/elements.js')
 const DOM = await import('@website/components/media/anim-demo/dom.js')
 const MNT = await import('@website/components/media/anim-demo/mounts.js')
 const { ANIM_DEMO_CLASSES: C } = await import('@core/tokens/classes/anim-demo.js')
+const { EXPAND_MODAL_CLASSES } = await import('@core/tokens/classes/modal.js')
+const { framePool } = await import('@core/utils/motion/frame.js')
+
+/**
+ * A no-throw 2D-context stub — happy-dom canvases have no real 2D backend;
+ * the stub stands in so the genie warp driver exercises its attach/frame
+ * paths exactly as it would on a real canvas.
+ */
+const _fake2d = (overrides = {}) => {
+  const gradient = { addColorStop: () => undefined }
+  const factories = {
+    createLinearGradient: () => gradient,
+    createRadialGradient: () => gradient,
+    createConicGradient: () => gradient,
+    createPattern: () => gradient,
+    measureText: () => ({ width: 0 }),
+    getImageData: () => ({ data: [] }),
+  }
+
+  return new Proxy(
+    { globalAlpha: 1, globalCompositeOperation: '', fillStyle: '' },
+    {
+      get: (t, k) => (k in t ? t[k] : overrides[k] || factories[k] || (() => undefined)),
+      set: (t, k, v) => {
+        t[k] = v
+        return true
+      },
+    }
+  )
+}
+
+/**
+ * A staged mini lightbox — the real expand-modal classes the sheet bake
+ * and veil query resolve on, plus the origin card the funnel flies to.
+ * @returns The stage carrying content + media figure + origin card.
+ */
+const makeGenieStage = () => {
+  const stage = makeStage(null)
+  const content = document.createElement(HTML_TAGS.DIV)
+  const mediaFig = document.createElement(HTML_TAGS.FIGURE)
+  const card = document.createElement(HTML_TAGS.FIGURE)
+
+  content.className = `${EXPAND_MODAL_CLASSES.EXPAND_MODAL_CONTENT} ${C.GENIE_MODAL}`
+  mediaFig.className = `${EXPAND_MODAL_CLASSES.EXPAND_MODAL_MEDIA_FIGURE} ${C.GENIE_MODAL_FIGURE}`
+  card.className = C.GENIE_FIGURE
+
+  // A non-zero media box lets buildGenieSheet's extent hit resolve — the
+  // sheet bakes for real (zero rects return null and the warp ghosts).
+  mediaFig.getBoundingClientRect = () => ({
+    x: 20,
+    y: 10,
+    left: 20,
+    top: 10,
+    width: 100,
+    height: 60,
+    right: 120,
+    bottom: 70,
+    toJSON: () => ({}),
+  })
+
+  content.appendChild(mediaFig)
+  stage.appendChild(card)
+  stage.appendChild(content)
+
+  return { stage, content }
+}
 
 /** A stage element optionally carrying one child tag. */
 const makeStage = (tag) => {
@@ -274,20 +342,21 @@ describe('anim-demo elements tails', () => {
     expect(() => EL.mountAwardsCarouselDemo({ stage: makeStage(null) })()).not.toThrow()
   })
 
-  test('custom-carousel driver setItems with cover slides and folder', async () => {
+  test('custom-carousel driver configure()s cover slides, folder and forceActive', async () => {
     fetchImpl.mockImplementation(() => Promise.resolve(snap(true, PORTFOLIO)))
 
     const stage = makeStage(COMPONENT_TAGS.CUSTOM_CAROUSEL)
     const el = stage.firstChild
 
-    el.setItems = jest.fn()
+    el.configure = jest.fn()
 
     EL.mountCustomCarouselDemo({ stage })
 
     await flush()
 
-    expect(el.setItems).toHaveBeenCalled()
-    expect(el.setItems.mock.calls[0][0].items.length).toBe(5)
+    expect(el.configure).toHaveBeenCalled()
+    expect(el.configure.mock.calls[0][0].items.length).toBe(5)
+    expect(el.configure.mock.calls[0][0].forceActive).toBe(true)
   })
 
   test('custom-carousel driver no-ops without the carousel tag', () => {
@@ -378,6 +447,7 @@ describe('anim-demo elements tails', () => {
     const stage = makeStage(HTML_TAGS.CANVAS)
     const canvas = stage.firstChild
 
+    canvas.className = C.CANVAS
     canvas.getContext = () => ({
       clearRect: () => undefined,
       fillRect: () => undefined,
@@ -391,6 +461,131 @@ describe('anim-demo elements tails', () => {
 
     await flush()
     expect(() => teardown()).not.toThrow()
+  })
+
+  test('scene driver seeds the engine surface and runs the tick loop', async () => {
+    const surface = {
+      set_clear: jest.fn(),
+      set_fov: jest.fn(),
+      set_clip: jest.fn(),
+      upload_geometry: jest.fn(() => 1),
+      add_material_points: jest.fn(() => 2),
+      set_material_flags: jest.fn(),
+      add_points: jest.fn(() => 3),
+      set_orbit: jest.fn(),
+      set_euler: jest.fn(),
+      frame: jest.fn(),
+    }
+
+    _sceneResult = Promise.resolve({ surface, destroy: jest.fn() })
+
+    const stage = makeStage(HTML_TAGS.CANVAS)
+
+    stage.appendChild(document.createElement(HTML_TAGS.CANVAS))
+
+    // A falsy devicePixelRatio takes the `|| 1` clamp — heads-down
+    // environments can report 0 before the compositor settles.
+    const priorDpr = window.devicePixelRatio
+
+    Object.defineProperty(window, 'devicePixelRatio', {
+      value: 0,
+      writable: true,
+      configurable: true,
+    })
+
+    const teardown = EL.mountScene3dDemo({ stage })
+
+    await flush()
+
+    // Two canvases — the engine claims the last one, so its PRINT_CAPTURE
+    // marker was cleared and seedScene filled the star cloud.
+    expect(stage.lastChild.hasAttribute(DATA_ATTRS.PRINT_CAPTURE)).toBe(false)
+    expect(surface.upload_geometry).toHaveBeenCalled()
+    expect(surface.add_points).toHaveBeenCalled()
+
+    // The dPR stub must stay installed through the rAF — tick reads
+    // devicePixelRatio lazily inside dpr(), so restoring early would put
+    // the `|| 1` arm back out of reach.
+    await new Promise((r) => requestAnimationFrame(r))
+    await flush()
+
+    Object.defineProperty(window, 'devicePixelRatio', {
+      value: priorDpr,
+      writable: true,
+      configurable: true,
+    })
+
+    // The non-reduced-motion arm armed a rAF tick — euler/orbit/frame ran
+    // at least once before teardown cancels the loop.
+    expect(surface.frame).toHaveBeenCalled()
+    expect(surface.set_euler).toHaveBeenCalled()
+    expect(() => teardown()).not.toThrow()
+
+    stage.remove()
+  })
+
+  test('scene driver paints one frame and settles when reduced motion is on', async () => {
+    const motion = jest.spyOn(store.getters, 'getReducedMotion').mockReturnValue(true)
+    const surface = {
+      set_clear: jest.fn(),
+      set_fov: jest.fn(),
+      set_clip: jest.fn(),
+      upload_geometry: jest.fn(() => 1),
+      add_material_points: jest.fn(() => 2),
+      set_material_flags: jest.fn(),
+      add_points: jest.fn(() => 3),
+      set_orbit: jest.fn(),
+      set_euler: jest.fn(),
+      frame: jest.fn(),
+    }
+
+    _sceneResult = Promise.resolve({ surface, destroy: jest.fn() })
+
+    const stage = makeStage(HTML_TAGS.CANVAS)
+    const teardown = EL.mountScene3dDemo({ stage })
+
+    await flush()
+
+    // Reduced motion — a single settled frame, no rAF loop.
+    expect(surface.set_orbit).toHaveBeenCalled()
+    expect(surface.frame).toHaveBeenCalledTimes(1)
+    expect(surface.set_euler).not.toHaveBeenCalled()
+    expect(() => teardown()).not.toThrow()
+
+    motion.mockRestore()
+    stage.remove()
+  })
+
+  test('scene driver retires the tick loop when a frame throws', async () => {
+    const surface = {
+      set_clear: jest.fn(),
+      set_fov: jest.fn(),
+      set_clip: jest.fn(),
+      upload_geometry: jest.fn(() => 1),
+      add_material_points: jest.fn(() => 2),
+      set_material_flags: jest.fn(),
+      add_points: jest.fn(() => 3),
+      set_orbit: jest.fn(),
+      set_euler: jest.fn(),
+      frame: jest.fn(() => {
+        throw new Error(TEST_TEXT.HEADING)
+      }),
+    }
+
+    _sceneResult = Promise.resolve({ surface, destroy: jest.fn() })
+
+    const stage = makeStage(HTML_TAGS.CANVAS)
+    const teardown = EL.mountScene3dDemo({ stage })
+
+    await flush()
+    await new Promise((r) => requestAnimationFrame(r))
+    await flush()
+
+    // The throwing frame retired the loop — the catch arm returned instead
+    // of re-arming; teardown stays safe.
+    expect(() => teardown()).not.toThrow()
+
+    stage.remove()
   })
 
   test('loadDemoData falls back to the EN node when the locale is empty', async () => {
@@ -429,7 +624,7 @@ describe('anim-demo elements tails', () => {
     expect(deck.processedItems[0].featured).toBe(true)
   })
 
-  test('custom-carousel driver maps label/title/empty and skips setItems-less elements', async () => {
+  test('custom-carousel driver maps label/title/empty and skips configure-less elements', async () => {
     fetchImpl.mockImplementation(() =>
       Promise.resolve(
         snap(true, {
@@ -445,13 +640,13 @@ describe('anim-demo elements tails', () => {
     const stage = makeStage(COMPONENT_TAGS.CUSTOM_CAROUSEL)
     const el = stage.firstChild
 
-    el.setItems = jest.fn()
+    el.configure = jest.fn()
 
     EL.mountCustomCarouselDemo({ stage })
 
     await flush()
 
-    expect(el.setItems).toHaveBeenCalled()
+    expect(el.configure).toHaveBeenCalled()
 
     const bare = makeStage(COMPONENT_TAGS.CUSTOM_CAROUSEL)
 
@@ -459,7 +654,7 @@ describe('anim-demo elements tails', () => {
 
     await flush()
 
-    expect(bare.firstChild.setItems).toBeUndefined()
+    expect(bare.firstChild.configure).toBeUndefined()
   })
 
   test('element drivers push empty payloads when every node is null', async () => {
@@ -468,7 +663,7 @@ describe('anim-demo elements tails', () => {
     const stage = makeStage(COMPONENT_TAGS.CUSTOM_CAROUSEL)
     const el = stage.firstChild
 
-    el.setItems = jest.fn()
+    el.configure = jest.fn()
 
     EL.mountCustomCarouselDemo({ stage })
 
@@ -479,7 +674,7 @@ describe('anim-demo elements tails', () => {
 
     await flush()
 
-    expect(el.setItems).toHaveBeenCalled()
+    expect(el.configure).toHaveBeenCalled()
     expect(deck.processedItems).toHaveLength(0)
   })
 
@@ -569,13 +764,13 @@ describe('anim-demo elements tails', () => {
     const stage = makeStage(COMPONENT_TAGS.CUSTOM_CAROUSEL)
     const el = stage.firstChild
 
-    el.setItems = jest.fn()
+    el.configure = jest.fn()
 
     EL.mountCustomCarouselDemo({ stage })
 
     await flush()
 
-    expect(el.setItems).toHaveBeenCalled()
+    expect(el.configure).toHaveBeenCalled()
   })
 
   test('mentions-deck + about drivers survive a null about node', async () => {
@@ -776,33 +971,185 @@ describe('anim-demo cycle-driven tails', () => {
     teardown()
   })
 
-  test('genie demo commits and clears the modal origin across ticks', () => {
-    const stage = makeStage(null)
-    const origin = document.createElement(HTML_TAGS.DIV)
-
-    origin.className = C.ORIGIN
-    stage.appendChild(origin)
-
+  test('genie demo warps the mini lightbox through the real 2D renderer', () => {
+    const { stage, content } = makeGenieStage()
     const host = document.createElement(HTML_TAGS.DIV)
-    const backdrop = document.createElement(HTML_TAGS.DIV)
-    const dialog = document.createElement(HTML_TAGS.DIV)
 
-    backdrop.className = C.BACKDROP
-    dialog.className = C.DIALOG
-    host.appendChild(backdrop)
-    host.appendChild(dialog)
-    host.$ = (sel) => host.querySelector(sel)
+    const getContext = window.HTMLCanvasElement.prototype.getContext
 
-    const teardown = MNT.mountGenieDemo({ host, stage, id: 'genie' })
+    window.HTMLCanvasElement.prototype.getContext = () => _fake2d()
 
-    ticked(7000)
-    teardown()
+    // The warp loop rides the shared framePool — its pump callback is
+    // drained manually via flush(now) so the test never depends on the
+    // armed rAF surviving between suites.
+    let nowMs = 0
+    const pump = () => framePool.flush((nowMs += 16.7))
+    const drain = () => {
+      let guard = 300
 
+      while (framePool.size() && guard-- > 0) pump()
+    }
+
+    try {
+      const teardown = MNT.mountGenieDemo({ host, stage, id: 'genie' })
+
+      // First long beat arms the close run — the first tick attaches the
+      // overlay canvas + renderer and veils the unwarped content.
+      ticked(3400)
+      pump()
+      expect(
+        stage.querySelector(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_CANVAS}`)
+      ).not.toBeNull()
+      expect(content.classList.contains(EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_VEIL)).toBe(true)
+
+      // Drain the run past the landed frame — the overlay drops and the
+      // content stays veiled (the closed rest state).
+      drain()
+      expect(stage.querySelector(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_CANVAS}`)).toBeNull()
+      expect(content.classList.contains(EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_VEIL)).toBe(true)
+
+      // Next beat flies back open — settle unveils the real content. A
+      // falsy devicePixelRatio drives the || 1 dpr-fallback arm.
+      window.devicePixelRatio = 0
+
+      ticked(3400)
+      pump()
+      expect(
+        stage.querySelector(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_CANVAS}`)
+      ).not.toBeNull()
+
+      window.devicePixelRatio = 1
+
+      drain()
+      expect(stage.querySelector(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_CANVAS}`)).toBeNull()
+      expect(content.classList.contains(EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_VEIL)).toBe(false)
+
+      teardown()
+
+      // Dead-frame arm — a ctx whose first frame op throws trips the
+      // catch → the run force-settles instead of latching the veil. Only
+      // the overlay ctx (the desynchronized request) throws — the sheet
+      // bake's own 2D acquisition stays alive like production's split.
+      const { stage: throwStage, content: throwContent } = makeGenieStage()
+
+      window.HTMLCanvasElement.prototype.getContext = (kind, opts) =>
+        _fake2d(
+          opts
+            ? {
+                save: () => {
+                  throw new Error('ctx-dead')
+                },
+              }
+            : {}
+        )
+
+      const teardownThrow = MNT.mountGenieDemo({
+        host: document.createElement(HTML_TAGS.DIV),
+        stage: throwStage,
+        id: 'genie',
+      })
+
+      ticked(3400)
+      pump()
+      drain()
+      expect(
+        throwStage.querySelector(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_CANVAS}`)
+      ).toBeNull()
+      expect(throwContent.classList.contains(EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_VEIL)).toBe(
+        true
+      )
+      teardownThrow()
+
+      // Mid-run teardown — halt cancels the armed tick and restores the
+      // painted open state.
+      window.HTMLCanvasElement.prototype.getContext = () => _fake2d()
+
+      const { stage: liveStage, content: liveContent } = makeGenieStage()
+
+      const teardownLive = MNT.mountGenieDemo({
+        host: document.createElement(HTML_TAGS.DIV),
+        stage: liveStage,
+        id: 'genie',
+      })
+
+      ticked(3400)
+      pump()
+      teardownLive()
+      drain()
+      expect(liveContent.classList.contains(EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_VEIL)).toBe(
+        false
+      )
+    } finally {
+      window.HTMLCanvasElement.prototype.getContext = getContext
+    }
+
+    // Missing-surface arm — no expand-modal surface, instant no-op.
     const empty = makeStage(null)
 
-    const teardown2 = MNT.mountGenieDemo({ host, stage: empty, id: 'genie' })
+    const teardown2 = MNT.mountGenieDemo({
+      host: document.createElement(HTML_TAGS.DIV),
+      stage: empty,
+      id: 'genie',
+    })
 
     ticked(7000)
     teardown2()
+
+    // No-ctx arm — the attach fails inside the first tick and settles.
+    const { stage: deadStage, content: deadContent } = makeGenieStage()
+
+    const teardown3 = MNT.mountGenieDemo({
+      host: document.createElement(HTML_TAGS.DIV),
+      stage: deadStage,
+      id: 'genie',
+    })
+
+    ticked(3400)
+    pump()
+    expect(deadStage.querySelector(`.${EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_CANVAS}`)).toBeNull()
+    expect(deadContent.classList.contains(EXPAND_MODAL_CLASSES.EXPAND_MODAL_GENIE_VEIL)).toBe(false)
+    teardown3()
+  })
+
+  test('scene driver seeds the engine surface and ticks the frame loop', async () => {
+    const surface = {
+      set_clear: jest.fn(),
+      set_fov: jest.fn(),
+      set_clip: jest.fn(),
+      upload_geometry: jest.fn(() => 7),
+      add_material_points: jest.fn(() => 9),
+      set_material_flags: jest.fn(),
+      add_points: jest.fn(() => 11),
+      set_orbit: jest.fn(),
+      set_euler: jest.fn(),
+      frame: jest.fn(),
+      resize: jest.fn(),
+      set_size: jest.fn(),
+      destroy: jest.fn(),
+    }
+    const handle = { destroy: jest.fn(), surface }
+
+    _sceneResult = Promise.resolve(handle)
+
+    const stage = makeStage(HTML_TAGS.CANVAS)
+    const teardown = EL.mountScene3dDemo({ stage })
+
+    // Microtask hops — the mocked mount resolves its handle async.
+    await Promise.resolve()
+    await Promise.resolve()
+
+    expect(surface.upload_geometry).toHaveBeenCalled()
+    expect(surface.add_material_points).toHaveBeenCalled()
+    expect(surface.add_points).toHaveBeenCalled()
+
+    ticked(50)
+
+    expect(surface.frame).toHaveBeenCalled()
+
+    teardown()
+
+    expect(handle.destroy).toHaveBeenCalled()
+
+    _sceneResult = Promise.resolve(null)
   })
 })
