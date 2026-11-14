@@ -5,17 +5,17 @@
   <title>Luis Krötz</title>
   <link>https://luiskr.com/tln/</link>
   <atom:link href="https://luiskr.com/tln/feed.xml" rel="self" type="application/rss+xml"/>
-  <description>Ciao, mi son Luis, 'n Ingegner Software drio ła UX. Ancóra laoro a Dell so'l Dell Design System .</description>
+  <description>Ciao, mi son Luis. 'n Ingegner Software drio ła UX. Ancóra laoro a Dell so'l Dell Design System .</description>
   <language>vec</language>
   <copyright>© 2026 Luis Krötz</copyright>
-  <lastBuildDate>Mon, 09 Nov 2026 20:09:18 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 14 Nov 2026 03:53:12 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/tln/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
     <link>https://luiskr.com/tln/</link>
     <guid isPermaLink="true">https://luiskr.com/tln/</guid>
     <dc:creator>Luis Krötz</dc:creator>
-    <description>Ciao, mi son Luis, 'n Ingegner Software drio ła UX. Ancóra laoro a Dell so'l Dell Design System .</description>
+    <description>Ciao, mi son Luis. 'n Ingegner Software drio ła UX. Ancóra laoro a Dell so'l Dell Design System .</description>
     <category>dell design system</category>
     <category>metcha</category>
     <category>melissa</category>
@@ -34,7 +34,7 @@
     <link>https://luiskr.com/tln/de-mi</link>
     <guid isPermaLink="true">https://luiskr.com/tln/de-mi</guid>
     <dc:creator>Luis Krötz</dc:creator>
-    <description>Ciao, mi son Luis, 'n Ingegner Software drio ła UX. Ancóra laoro a Dell so'l Dell Design System .</description>
+    <description>Ciao, mi son Luis. 'n Ingegner Software drio ła UX. Ancóra laoro a Dell so'l Dell Design System .</description>
     <category>a ufsm, meso tra i 40 laori mejo del 28º jai</category>
     <category>premio speciałe kudos cssda, dà a ła prima version de luiskr.com</category>
     <category>premio dixegno inovasion cssda, dà a ła prima version de luiskr.com</category>
@@ -43,10 +43,10 @@
     <category>mostrà so tcg</category>
     <category>steła cssw</category>
     <category>mostrà so mindsparkle mag</category>
-    <category>laoro publicà: desenvolvimento de um protótipo para gestão de conhecimento utili</category>
-    <category>chi sono</category>
-    <category>su luis krötz</category>
-    <category>biografia</category>
+    <category>consistensa e alineamento so dds premio bravo dà da jenn white a luis krotz par</category>
+    <category>gran arivo co vitorie bełe! premio cheers dà da thiago vasconcelos par el gran a</category>
+    <category>ciao, pivotal tracker – bao, jira! shout out de bert grantges al team par aver c</category>
+    <category>fondamente solide premio bravo dà da leonardo ratzlaff a luis krotz par aver gui</category>
   </item>
   <item>
     <title>Contato</title>
@@ -58,6 +58,7 @@
     <category>tełefono</category>
     <category>linkedin</category>
     <category>github</category>
+    <category>lattes</category>
     <category>połìtega de ła privacy</category>
     <category>gdpr</category>
     <category>condision de uxo</category>
@@ -65,7 +66,6 @@
     <category>contatta luis krötz</category>
     <category>assumi sviluppatore front-end</category>
     <category>email</category>
-    <category>sviluppatore freelance</category>
   </item>
   <item>
     <title>Połìtega de ła Privacy</title>
@@ -160,7 +160,7 @@
     <category>schèletro de caricamento co sele in morph e shimmer</category>
     <category>loader de introdussion co anei contrarotanti e progresso</category>
     <category>toast de notifega che el licà dal canton</category>
-    <category>titolo del tile portfolio che el brusa in brase e el se ricompone</category>
+    <category>el nome del projeto che el brusa in brase e el se retess inte el masso</category>
   </item>
   <item>
     <title>Terałudo</title>
@@ -220,31 +220,11 @@
     <category>percors corispuints</category>
   </item>
   <item>
-    <title>Dell Design System</title>
-    <link>https://luiskr.com/tln/portfolio/dell-design-system</link>
-    <guid isPermaLink="true">https://luiskr.com/tln/portfolio/dell-design-system</guid>
-    <dc:creator>Luis Krötz</dc:creator>
-    <description>L'ingresso in Dell il 6 giugno 2022, poco dopo la chiusura di Transainc, ha rappresentato una svolta decisiva nella mia carriera professionale.</description>
-    <category>dell design system</category>
-    <category>dell design system, panoramica del sito web</category>
-    <category>dell design system: panoramica delle basi</category>
-    <category>dell design system: architettura del codice e linee guida</category>
-    <category>dell design system: principi iniziali</category>
-    <category>dell design system: panoramica della libreria dei componenti</category>
-    <category>dell design system: panoramica dei pattern</category>
-    <category>dell design system: integrazione con storybook e linee guida dei componenti</category>
-    <category>dell design system: panoramica della documentazione delle basi</category>
-    <category>dell design system: base di design tokens v1</category>
-    <category>dell design system: base di design tokens v2</category>
-    <category>dell design system: riferimento dei tipi di design tokens</category>
-    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
-  </item>
-  <item>
     <title>Marco Almeida</title>
     <link>https://luiskr.com/tln/portfolio/aboutmarco</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/aboutmarco</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Il portfolio di Marco è stà sviluppato come prozeto freelance nel 2021.</description>
     <category>marco almeida</category>
     <category>aboutmarco</category>
@@ -266,6 +246,7 @@
     <link>https://luiskr.com/tln/portfolio/cecerele</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/cecerele</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Ho conosciuto Joana di Cecerelê tramite un amico comune, Sagu, nel novembre 2020.</description>
     <category>cecerelê</category>
     <category>cecerele</category>
@@ -286,6 +267,7 @@
     <link>https://luiskr.com/tln/portfolio/cicb</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/cicb</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Brazilian Leather è un prozeto sviluppato presso Transa, attraverso na partnership tra CICB e Apex-Brasil.</description>
     <category>brazilian leather</category>
     <category>cicb</category>
@@ -307,6 +289,7 @@
     <link>https://luiskr.com/tln/portfolio/coza</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/coza</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Il sito di Coza è stà sviluppato presso Transa dal 2017 al 2019.</description>
     <category>coza</category>
     <category>coza: tour pàxena prinsipałe</category>
@@ -324,10 +307,33 @@
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
   </item>
   <item>
+    <title>Dell Design System</title>
+    <link>https://luiskr.com/tln/portfolio/dell-design-system</link>
+    <guid isPermaLink="true">https://luiskr.com/tln/portfolio/dell-design-system</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Mon, 12 Oct 2026 02:18:16 GMT</pubDate>
+    <description>L'ingresso in Dell il 6 giugno 2022, poco dopo la chiusura di Transainc, ha rappresentato una svolta decisiva nella mia carriera professionale.</description>
+    <category>dell design system</category>
+    <category>dell design system, panoramica del sito web</category>
+    <category>dell design system: panoramica delle basi</category>
+    <category>dell design system: architettura del codice e linee guida</category>
+    <category>dell design system: principi iniziali</category>
+    <category>dell design system: panoramica della libreria dei componenti</category>
+    <category>dell design system: panoramica dei pattern</category>
+    <category>dell design system: integrazione con storybook e linee guida dei componenti</category>
+    <category>dell design system: panoramica della documentazione delle basi</category>
+    <category>dell design system: base di design tokens v1</category>
+    <category>dell design system: base di design tokens v2</category>
+    <category>dell design system: riferimento dei tipi di design tokens</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
+  </item>
+  <item>
     <title>Melissa</title>
     <link>https://luiskr.com/tln/portfolio/melissa</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/melissa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>El sito web de Melissa jera 'n progeto sviłupà da TRANSA INC.</description>
     <category>melissa</category>
     <category>melissa, tour sito web 2020</category>
@@ -349,6 +355,7 @@
     <link>https://luiskr.com/tln/portfolio/metcha</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/metcha</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>METCHA: l'oracoło del coiame, del dixegno e de ła cultura.</description>
     <category>metcha</category>
     <category>metcha, tour feed 2022</category>
@@ -370,6 +377,7 @@
     <link>https://luiskr.com/tln/portfolio/mini-melissa</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/mini-melissa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Mini Melissa era un prozeto sviluppato presso Transa par el Gruppo Grendene come canale dedicato al markio Mini Melissa.</description>
     <category>mini melissa</category>
     <category>mini melissa: homepage full tour</category>
@@ -391,6 +399,7 @@
     <link>https://luiskr.com/tln/portfolio/mor</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/mor</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Il sito di MOR è stà sviluppato presso Transa.</description>
     <category>mor</category>
     <category>mor: homepage full tour</category>
@@ -412,6 +421,7 @@
     <link>https://luiskr.com/tln/portfolio/nathalia-bond</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/nathalia-bond</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Ho conosciuto Nathalia di Nathalia Bond, Clínica de Desenvolvimento, tramite un amico comune, Marco Anuschek, nell’ottobre 2021.</description>
     <category>nathalia bond</category>
     <category>nathalia bond, clínica de desenvolvimento: homepage, tour</category>
@@ -433,6 +443,7 @@
     <link>https://luiskr.com/tln/portfolio/sage</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/sage</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Sage è un software fiscale sviluppato da Genesysinf, con sede a Santana do Livramento, Brasile.</description>
     <category>genesysinf, sageweb</category>
     <category>sage</category>
@@ -453,6 +464,7 @@
     <link>https://luiskr.com/tln/portfolio/transa</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/transa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Il sito di Transa è stà sviluppato con Vue, CSS (Sass) e PHP (Laravel) nel 2021.</description>
     <category>transa</category>
     <category>transa: tour breve del feed</category>
@@ -463,7 +475,7 @@
     <category>transa: video of mini melissa's caso inside transa's sito.</category>
     <category>transa: video of coza's caso inside transa's sito.</category>
     <category>transa: tour del feed</category>
-    <category>transa: tour del feed mobile</category>
+    <category>transa: feed tour mobile</category>
     <category>transa: category, brazilian leather, tour</category>
     <category>transa: category, coza, tour</category>
     <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/transainc/website-2022/transa-feed-tour-april-2022-screenrecording.mp4.jpg-thumb.jpg"/>
@@ -474,6 +486,7 @@
     <link>https://luiskr.com/tln/portfolio/vibra</link>
     <guid isPermaLink="true">https://luiskr.com/tln/portfolio/vibra</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Vibra era un sito sviluppato presso Transa nel 2016 e rimasto online fino al 2021.</description>
     <category>vibra</category>
     <category>vibra: a empresa mais inovadora do segmento no brasil, tour</category>

@@ -48,4 +48,7 @@
   <sitemap>
     <loc>https://luiskr.com/sitemap-ga.xml</loc>
   </sitemap>
+  <sitemap>
+    <loc>https://luiskr.com/sitemap-news.xml</loc>
+  </sitemap>
 </sitemapindex>

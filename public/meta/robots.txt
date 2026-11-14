@@ -7,3 +7,4 @@ Disallow: /deploy-info/
 Disallow: /meta/
 
 Sitemap: https://luiskr.com/sitemap.xml
+Sitemap: https://luiskr.com/sitemap-news.xml

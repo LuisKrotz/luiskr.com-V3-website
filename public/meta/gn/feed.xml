@@ -5,17 +5,17 @@
   <title>Luis Krötz</title>
   <link>https://luiskr.com/gn/</link>
   <atom:link href="https://luiskr.com/gn/feed.xml" rel="self" type="application/rss+xml"/>
-  <description>Mba'éichapa, che ha'e Luis, peteĩ Ingeniero de Software oñeñamindu'úva UX-pe. Kóva aha'ỹ Dell-pe Dell Design System -pe.</description>
+  <description>Mba'éichapa, che ha'e Luis. peteĩ Ingeniero de Software oñeñamindu'úva UX-pe. Kóva aha'ỹ Dell-pe Dell Design System -pe.</description>
   <language>gn</language>
   <copyright>© 2026 Luis Krötz</copyright>
-  <lastBuildDate>Mon, 09 Nov 2026 20:09:18 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 14 Nov 2026 03:53:11 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/gn/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
     <link>https://luiskr.com/gn/</link>
     <guid isPermaLink="true">https://luiskr.com/gn/</guid>
     <dc:creator>Luis Krötz</dc:creator>
-    <description>Mba'éichapa, che ha'e Luis, peteĩ Ingeniero de Software oñeñamindu'úva UX-pe. Kóva aha'ỹ Dell-pe Dell Design System -pe.</description>
+    <description>Mba'éichapa, che ha'e Luis. peteĩ Ingeniero de Software oñeñamindu'úva UX-pe. Kóva aha'ỹ Dell-pe Dell Design System -pe.</description>
     <category>dell design system</category>
     <category>metcha</category>
     <category>melissa</category>
@@ -34,7 +34,7 @@
     <link>https://luiskr.com/gn/che-rehegua</link>
     <guid isPermaLink="true">https://luiskr.com/gn/che-rehegua</guid>
     <dc:creator>Luis Krötz</dc:creator>
-    <description>Mba'éichapa, che ha'e Luis, peteĩ Ingeniero de Software oñeñamindu'úva UX-pe. Kóva aha'ỹ Dell-pe Dell Design System -pe.</description>
+    <description>Mba'éichapa, che ha'e Luis. peteĩ Ingeniero de Software oñeñamindu'úva UX-pe. Kóva aha'ỹ Dell-pe Dell Design System -pe.</description>
     <category>ufsm-pe, 40 mba'e porãvéva apytépe 28º jai rehegua</category>
     <category>premio especial kudos cssda, ome'ẽmava primer versión luiskr.com-pe</category>
     <category>premio diseño innovación cssda, ome'ẽmava primer versión luiskr.com-pe</category>
@@ -43,10 +43,10 @@
     <category>ojehechauka tcg-pe</category>
     <category>mbyja cssw</category>
     <category>ojehechauka mindsparkle mag-pe</category>
-    <category>tembi'u publicado: desenvolvimento de um protótipo para gestão de conhecimento u</category>
-    <category>luis krötz rehegua</category>
-    <category>tembiasakue</category>
-    <category>mba'apohaguasúi</category>
+    <category>consistencia ha alineación dds-pe bravo premio jenn white ome'ẽva, ojomba'e porã</category>
+    <category>¡jeike porã jey’asãi guasúndi! cheers premio thiago vasconcelos ome’ẽva luis kro</category>
+    <category>¡jajói pivotal tracker – ¡maitei jira! shout out bert grantges gui equipo-pe oim</category>
+    <category>fundamentos imbaretéva bravo premio leonardo ratzlaff ome’ẽva luis krotz-pe ombo</category>
   </item>
   <item>
     <title>Ñe'ẽme'ẽ</title>
@@ -58,6 +58,7 @@
     <category>pumbyry</category>
     <category>linkedin</category>
     <category>github</category>
+    <category>lattes</category>
     <category>ñemigua política</category>
     <category>gdpr</category>
     <category>jeporu py'apy</category>
@@ -65,7 +66,6 @@
     <category>luis krötz ñe'ẽveve</category>
     <category>mba'apohaguasúi jepikuaau</category>
     <category>e-mail</category>
-    <category>luis krötz</category>
   </item>
   <item>
     <title>Ñemigua Política</title>
@@ -160,7 +160,7 @@
     <category>carga esqueleto cela morph ha tesa'ỹi rehegua</category>
     <category>intro loader anillo oñemongu'e opaite ha progreso rehegua</category>
     <category>notificación toast oñemosẽ esquina guive</category>
-    <category>portfolio tile título oka'y tatápe ha ojapo jey</category>
+    <category>proyecto réra oka'y tatápe ha ojapo jey card-stack-pe</category>
   </item>
   <item>
     <title>Yvy Ñembosarái</title>
@@ -220,31 +220,11 @@
     <category>tape ojokupytýva</category>
   </item>
   <item>
-    <title>Dell Design System</title>
-    <link>https://luiskr.com/gn/portfolio/dell-design-system</link>
-    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/dell-design-system</guid>
-    <dc:creator>Luis Krötz</dc:creator>
-    <description>Che jeike Dell-pe 6 jasypoteĩ 2022-pe, Transainc omboty riremi hokẽ, ha'e akue peteĩ tenda tuicháva che rembiapo profesional-pe.</description>
-    <category>dell design system</category>
-    <category>dell design system, ñanduti renda jehechapa</category>
-    <category>dell design system: pyendakuéra techakuaa</category>
-    <category>dell design system: código arquitectura ha tekome'ẽ</category>
-    <category>dell design system: ñepyrũmby pyendakuéra</category>
-    <category>dell design system: componentes biblioteca techakuaa</category>
-    <category>dell design system: patrones techakuaa</category>
-    <category>dell design system: storybook joaju ha componentes tekome'ẽ</category>
-    <category>dell design system: pyendakuéra kuatiahaipyre techakuaa</category>
-    <category>dell design system: design tokens pyenda v1</category>
-    <category>dell design system: design tokens pyenda v2</category>
-    <category>dell design system: design token tipos techakuaaha</category>
-    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
-  </item>
-  <item>
     <title>Marco Almeida</title>
     <link>https://luiskr.com/gn/portfolio/aboutmarco</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/aboutmarco</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Portafolio Marco rehegua oñemboguata proyecto freelance-ramo 2021-pe.</description>
     <category>marco almeida</category>
     <category>aboutmarco</category>
@@ -266,6 +246,7 @@
     <link>https://luiskr.com/gn/portfolio/cecerele</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/cecerele</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Ajuhu Joana Cecerelê rehegua amigo común Sagu rupive, Jasypateĩ 2020-pe.</description>
     <category>cecerelê</category>
     <category>cecerele</category>
@@ -286,6 +267,7 @@
     <link>https://luiskr.com/gn/portfolio/cicb</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/cicb</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Brazilian Leather ha'e proyecto oñemboguatáva Transa-pe, sociedad CICB ha Apex-Brasil apytépe.</description>
     <category>brazilian leather</category>
     <category>cicb</category>
@@ -307,6 +289,7 @@
     <link>https://luiskr.com/gn/portfolio/coza</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/coza</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Sitio web Coza oñemboguata Transa-pe 2017 guive 2019 meve.</description>
     <category>coza</category>
     <category>coza: tour tuicháva página principal</category>
@@ -324,10 +307,33 @@
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
   </item>
   <item>
+    <title>Dell Design System</title>
+    <link>https://luiskr.com/gn/portfolio/dell-design-system</link>
+    <guid isPermaLink="true">https://luiskr.com/gn/portfolio/dell-design-system</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Mon, 12 Oct 2026 02:18:16 GMT</pubDate>
+    <description>Che jeike Dell-pe 6 jasypoteĩ 2022-pe, Transainc omboty riremi hokẽ, ha'e akue peteĩ tenda tuicháva che rembiapo profesional-pe.</description>
+    <category>dell design system</category>
+    <category>dell design system, ñanduti renda jehechapa</category>
+    <category>dell design system: pyendakuéra techakuaa</category>
+    <category>dell design system: código arquitectura ha tekome'ẽ</category>
+    <category>dell design system: ñepyrũmby pyendakuéra</category>
+    <category>dell design system: componentes biblioteca techakuaa</category>
+    <category>dell design system: patrones techakuaa</category>
+    <category>dell design system: storybook joaju ha componentes tekome'ẽ</category>
+    <category>dell design system: pyendakuéra kuatiahaipyre techakuaa</category>
+    <category>dell design system: design tokens pyenda v1</category>
+    <category>dell design system: design tokens pyenda v2</category>
+    <category>dell design system: design token tipos techakuaaha</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
+  </item>
+  <item>
     <title>Melissa</title>
     <link>https://luiskr.com/gn/portfolio/melissa</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/melissa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Sitio web Melissa ha'e proyecto oñemboguatáva TRANSA INC.-pe.</description>
     <category>melissa</category>
     <category>melissa, tour sitio web 2020</category>
@@ -349,6 +355,7 @@
     <link>https://luiskr.com/gn/portfolio/metcha</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/metcha</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>METCHA: oráculo cuero, diseño ha cultura rehegua.</description>
     <category>metcha</category>
     <category>metcha, tour feed 2022</category>
@@ -370,6 +377,7 @@
     <link>https://luiskr.com/gn/portfolio/mini-melissa</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/mini-melissa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Mini Melissa ha'e proyecto oñemboguatáva Transa-pe Grendene Group rehegua canal dedicado marca Mini Melissa rehegua-ramo.</description>
     <category>mini melissa</category>
     <category>mini melissa: tour tuicháva página principal</category>
@@ -391,6 +399,7 @@
     <link>https://luiskr.com/gn/portfolio/mor</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/mor</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Sitio web MOR oñemboguata Transa-pe.</description>
     <category>mor</category>
     <category>mor: tour tuicháva página principal</category>
@@ -412,6 +421,7 @@
     <link>https://luiskr.com/gn/portfolio/nathalia-bond</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/nathalia-bond</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Ajuhu Nathalia Nathalia Bond, Clínica de Desenvolvimento rehegua, amigo común Marco Anuschek rupive, Jasypa 2021-pe.</description>
     <category>nathalia bond</category>
     <category>nathalia bond, clínica de desenvolvimento: página principal, tour</category>
@@ -433,6 +443,7 @@
     <link>https://luiskr.com/gn/portfolio/sage</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/sage</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Sage ha'e software fiscal oñemboguatáva Genesysinf rupive, ojuhúva Santana do Livramento-pe, Brasil.</description>
     <category>genesysinf, sageweb</category>
     <category>sage</category>
@@ -453,6 +464,7 @@
     <link>https://luiskr.com/gn/portfolio/transa</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/transa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Sitio web Transa oñemboguata Vue, CSS (Sass) ha PHP (Laravel) ndive 2021-pe.</description>
     <category>transa</category>
     <category>transa: tour michĩ feed rehegua</category>
@@ -474,6 +486,7 @@
     <link>https://luiskr.com/gn/portfolio/vibra</link>
     <guid isPermaLink="true">https://luiskr.com/gn/portfolio/vibra</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Vibra ha'e sitio web oñemboguatáva Transa-pe 2016-pe ha oiko online 2021 meve.</description>
     <category>vibra</category>
     <category>vibra: a empresa mais inovadora do segmento no brasil, jehechapy</category>

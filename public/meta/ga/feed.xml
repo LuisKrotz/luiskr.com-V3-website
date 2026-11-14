@@ -5,17 +5,17 @@
   <title>Luis Krötz</title>
   <link>https://luiskr.com/ga/</link>
   <atom:link href="https://luiskr.com/ga/feed.xml" rel="self" type="application/rss+xml"/>
-  <description>Dia duit, mise Luis, Innealtóir Bogearraí dírithe ar UX. Faoi láthair ag obair ag Dell ar an Dell Design System .</description>
+  <description>Dia duit, mise Luis. Innealtóir Bogearraí dírithe ar UX. Faoi láthair ag obair ag Dell ar an Dell Design System .</description>
   <language>ga</language>
   <copyright>© 2026 Luis Krötz</copyright>
-  <lastBuildDate>Mon, 09 Nov 2026 20:09:18 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 14 Nov 2026 03:53:12 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/ga/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
     <link>https://luiskr.com/ga/</link>
     <guid isPermaLink="true">https://luiskr.com/ga/</guid>
     <dc:creator>Luis Krötz</dc:creator>
-    <description>Dia duit, mise Luis, Innealtóir Bogearraí dírithe ar UX. Faoi láthair ag obair ag Dell ar an Dell Design System .</description>
+    <description>Dia duit, mise Luis. Innealtóir Bogearraí dírithe ar UX. Faoi láthair ag obair ag Dell ar an Dell Design System .</description>
     <category>dell design system</category>
     <category>metcha</category>
     <category>melissa</category>
@@ -34,7 +34,7 @@
     <link>https://luiskr.com/ga/faoi-mhe</link>
     <guid isPermaLink="true">https://luiskr.com/ga/faoi-mhe</guid>
     <dc:creator>Luis Krötz</dc:creator>
-    <description>Dia duit, mise Luis, Innealtóir Bogearraí dírithe ar UX. Faoi láthair ag obair ag Dell ar an Dell Design System .</description>
+    <description>Dia duit, mise Luis. Innealtóir Bogearraí dírithe ar UX. Faoi láthair ag obair ag Dell ar an Dell Design System .</description>
     <category>in ufsm, i measc na 40 saothar is fearr den 28ú jai</category>
     <category>duais speisialta kudos cssda, bronnta ar an gcéad leagan de luiskr.com</category>
     <category>duais dearaidh nuálaíochta cssda, bronnta ar an gcéad leagan de luiskr.com</category>
@@ -43,10 +43,10 @@
     <category>ar taispeáint ar tcg</category>
     <category>realta cssw</category>
     <category>ar taispeáint ar mindsparkle mag</category>
-    <category>saothar foilsithe: desenvolvimento de um protótipo para gestão de conhecimento u</category>
-    <category>fúmsa</category>
-    <category>faoi luis krötz</category>
-    <category>beathaisnéis</category>
+    <category>comhsheasmhacht agus ailíniú ar dds gradam bravo bronnta ag jenn white ar luis k</category>
+    <category>teacht iontach le buanna móra! gradam cheers bronnta ag thiago vasconcelos as te</category>
+    <category>slán, pivotal tracker – dia dhuit, jira! shout out ó bert grantges don fhoireann</category>
+    <category>bunsraithe láidre gradam bravo bronnta ag leonardo ratzlaff ar luis krotz as cea</category>
   </item>
   <item>
     <title>Teagmháil</title>
@@ -58,6 +58,7 @@
     <category>fón</category>
     <category>linkedin</category>
     <category>github</category>
+    <category>lattes</category>
     <category>polasaí príobháideachta</category>
     <category>gdpr</category>
     <category>téarmaí úsáide</category>
@@ -65,7 +66,6 @@
     <category>déan teagmháil le luis krötz</category>
     <category>forbróir front-end a fhostú</category>
     <category>forbróir saorghairm</category>
-    <category>forbróir gréasáin a fhostú</category>
   </item>
   <item>
     <title>Polasaí Príobháideachta</title>
@@ -160,7 +160,7 @@
     <category>cnámharlach lódála le cealla morph agus loinnir</category>
     <category>lódálaí iontrála le fáinní contrarothlacha agus dul chun cinn</category>
     <category>tósta fógra ag sleamhnú isteach ón choirnéal</category>
-    <category>teideal tíle phunainne ag dó in eibhlí agus ag athfhoirmiú</category>
+    <category>ainm an tionscadail ag dó in eibhlí agus á fhí arís sa phaca</category>
   </item>
   <item>
     <title>Clós Spraoi an Domhain</title>
@@ -220,31 +220,11 @@
     <category>maidir liom</category>
   </item>
   <item>
-    <title>Dell Design System</title>
-    <link>https://luiskr.com/ga/portfolio/dell-design-system</link>
-    <guid isPermaLink="true">https://luiskr.com/ga/portfolio/dell-design-system</guid>
-    <dc:creator>Luis Krötz</dc:creator>
-    <description>Ba phointe cinniúnach i mo shaol gairmiúil é dul isteach i Dell ar an 6 Meitheamh 2022, go gairid tar éis do Transainc a dhoirse a dhúnadh.</description>
-    <category>dell design system</category>
-    <category>dell design system, forbhreathnú ar an suíomh gréasáin</category>
-    <category>dell design system: forbhreathnú ar bhunsraitheanna</category>
-    <category>dell design system: ailtireacht chóid agus treoirlínte</category>
-    <category>dell design system: prionsabail tosaigh</category>
-    <category>dell design system: forbhreathnú ar leabharlann comhpháirteanna</category>
-    <category>dell design system: forbhreathnú ar phatrúin</category>
-    <category>dell design system: comhtháthú storybook agus treoirlínte comhpháirte</category>
-    <category>dell design system: forbhreathnú ar dhoiciméadú bunsraitheanna</category>
-    <category>dell design system: bunús design tokens v1</category>
-    <category>dell design system: bunús design tokens v2</category>
-    <category>dell design system: tagairt cineálacha design token</category>
-    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
-  </item>
-  <item>
     <title>Marco Almeida</title>
     <link>https://luiskr.com/ga/portfolio/aboutmarco</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/aboutmarco</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Forbraíodh Punann Marco mar thionscnamh saoráideach in 2021.</description>
     <category>marco almeida</category>
     <category>aboutmarco</category>
@@ -266,6 +246,7 @@
     <link>https://luiskr.com/ga/portfolio/cecerele</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/cecerele</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Chas mé le Joana ó Cecerelê trí chara comhchoiteann, Sagu, i mí na Samhna 2020.</description>
     <category>cecerelê</category>
     <category>cecerele</category>
@@ -286,6 +267,7 @@
     <link>https://luiskr.com/ga/portfolio/cicb</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/cicb</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Is tionscnamh é Brazilian Leather a forbraíodh ag Transa, trí chomhpháirtíocht idir CICB agus Apex-Brasil.</description>
     <category>brazilian leather</category>
     <category>cicb</category>
@@ -307,6 +289,7 @@
     <link>https://luiskr.com/ga/portfolio/coza</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/coza</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Forbraíodh suíomh Coza ag Transa ó 2017 go 2019.</description>
     <category>coza</category>
     <category>coza: turas iomlán an leathanaigh baile</category>
@@ -324,10 +307,33 @@
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
   </item>
   <item>
+    <title>Dell Design System</title>
+    <link>https://luiskr.com/ga/portfolio/dell-design-system</link>
+    <guid isPermaLink="true">https://luiskr.com/ga/portfolio/dell-design-system</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Mon, 12 Oct 2026 02:18:16 GMT</pubDate>
+    <description>Ba phointe cinniúnach i mo shaol gairmiúil é dul isteach i Dell ar an 6 Meitheamh 2022, go gairid tar éis do Transainc a dhoirse a dhúnadh.</description>
+    <category>dell design system</category>
+    <category>dell design system, forbhreathnú ar an suíomh gréasáin</category>
+    <category>dell design system: forbhreathnú ar bhunsraitheanna</category>
+    <category>dell design system: ailtireacht chóid agus treoirlínte</category>
+    <category>dell design system: prionsabail tosaigh</category>
+    <category>dell design system: forbhreathnú ar leabharlann comhpháirteanna</category>
+    <category>dell design system: forbhreathnú ar phatrúin</category>
+    <category>dell design system: comhtháthú storybook agus treoirlínte comhpháirte</category>
+    <category>dell design system: forbhreathnú ar dhoiciméadú bunsraitheanna</category>
+    <category>dell design system: bunús design tokens v1</category>
+    <category>dell design system: bunús design tokens v2</category>
+    <category>dell design system: tagairt cineálacha design token</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
+  </item>
+  <item>
     <title>Melissa</title>
     <link>https://luiskr.com/ga/portfolio/melissa</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/melissa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Ba thionscnamh é suíomh gréasáin Melissa a d'fhorbair TRANSA INC.</description>
     <category>melissa</category>
     <category>melissa, turas an tsuímh 2020</category>
@@ -349,6 +355,7 @@
     <link>https://luiskr.com/ga/portfolio/metcha</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/metcha</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>METCHA: fáidh an leathair, an dearaidh agus na cultúir.</description>
     <category>metcha</category>
     <category>metcha, turas beathán 2022</category>
@@ -370,6 +377,7 @@
     <link>https://luiskr.com/ga/portfolio/mini-melissa</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/mini-melissa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Ba thionscnamh é Mini Melissa a forbraíodh ag Transa do Ghrúpa Grendene mar chainéal tiomnaithe don bhranda Mini Melissa.</description>
     <category>mini melissa</category>
     <category>mini melissa: turas iomlán an leathanaigh baile</category>
@@ -391,6 +399,7 @@
     <link>https://luiskr.com/ga/portfolio/mor</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/mor</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Forbraíodh suíomh gréasáin MOR ag Transa.</description>
     <category>mor</category>
     <category>mor: turas iomlán an leathanaigh baile</category>
@@ -412,6 +421,7 @@
     <link>https://luiskr.com/ga/portfolio/nathalia-bond</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/nathalia-bond</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Chas mé le Nathalia ó Nathalia Bond, Clínica de Desenvolvimento, trí chara comhchoiteann, Marco Anuschek, i mí Dheireadh Fómhair 2021.</description>
     <category>nathalia bond</category>
     <category>nathalia bond, clínica de desenvolvimento: leathanach baile, turas</category>
@@ -433,6 +443,7 @@
     <link>https://luiskr.com/ga/portfolio/sage</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/sage</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Is bogearraí fioscacha é Sage a d'fhorbair Genesysinf, atá lonnaithe i Santana do Livramento, an Bhrasaíl.</description>
     <category>genesysinf, sageweb</category>
     <category>sage</category>
@@ -453,6 +464,7 @@
     <link>https://luiskr.com/ga/portfolio/transa</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/transa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Forbraíodh suíomh gréasáin Transa le Vue, CSS (Sass) agus PHP (Laravel) in 2021.</description>
     <category>transa</category>
     <category>transa: turas gairid ar an mbeathán</category>
@@ -474,6 +486,7 @@
     <link>https://luiskr.com/ga/portfolio/vibra</link>
     <guid isPermaLink="true">https://luiskr.com/ga/portfolio/vibra</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Ba shuíomh gréasáin é Vibra a forbraíodh ag Transa in 2016 agus a d'fhan ar líne go dtí 2021.</description>
     <category>vibra</category>
     <category>vibra: a empresa mais inovadora do segmento no brasil, turas</category>

@@ -5,17 +5,17 @@
   <title>Luis Krötz</title>
   <link>https://luiskr.com/ru/</link>
   <atom:link href="https://luiskr.com/ru/feed.xml" rel="self" type="application/rss+xml"/>
-  <description>Привет, я Луис, инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
+  <description>Привет, я Луис. инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
   <language>ru</language>
   <copyright>© 2026 Luis Krötz</copyright>
-  <lastBuildDate>Mon, 09 Nov 2026 20:09:18 GMT</lastBuildDate>
+  <lastBuildDate>Sat, 14 Nov 2026 03:53:11 GMT</lastBuildDate>
   <image><url>https://luiskr.com/assets/icons/share.png</url><title>Luis Krötz</title><link>https://luiskr.com/ru/</link></image>
   <item>
     <title>Luis Krötz — Portfolio</title>
     <link>https://luiskr.com/ru/</link>
     <guid isPermaLink="true">https://luiskr.com/ru/</guid>
     <dc:creator>Luis Krötz</dc:creator>
-    <description>Привет, я Луис, инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
+    <description>Привет, я Луис. инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
     <category>делл дизайн систем</category>
     <category>метча</category>
     <category>мелисса</category>
@@ -34,7 +34,7 @@
     <link>https://luiskr.com/ru/obo-mne</link>
     <guid isPermaLink="true">https://luiskr.com/ru/obo-mne</guid>
     <dc:creator>Luis Krötz</dc:creator>
-    <description>Привет, я Луис, инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
+    <description>Привет, я Луис. инженер-программист, специализирующийся на UX. Сейчас работаю в Dell над Dell Design System .</description>
     <category>в ufsm работа вошла в число 40 лучших на 28-й jai</category>
     <category>cssda special kudos award, присуждена первой версии luiskr.com</category>
     <category>cssda innovation design award, присуждена первой версии luiskr.com</category>
@@ -43,10 +43,10 @@
     <category>публикация на tcg</category>
     <category>cssw star</category>
     <category>публикация в mindsparkle mag</category>
-    <category>опубликованная работа: desenvolvimento de um protótipo para gestão de conhecimen</category>
-    <category>обо мне</category>
-    <category>о луисе крётце</category>
-    <category>биография</category>
+    <category>согласованность и единообразие в dds награда bravo от jenn white за устранение р</category>
+    <category>отличный старт с потрясающими победами! награда cheers от thiago vasconcelos за</category>
+    <category>прощай, pivotal tracker — привет, jira! благодарность от bert grantges команде з</category>
+    <category>прочный фундамент награда bravo от leonardo ratzlaff за лидерство луиса кротца в</category>
   </item>
   <item>
     <title>Контакты</title>
@@ -58,6 +58,7 @@
     <category>телефон</category>
     <category>linkedin</category>
     <category>github</category>
+    <category>lattes</category>
     <category>политика конфиденциальности</category>
     <category>gdpr</category>
     <category>условия использования</category>
@@ -65,7 +66,6 @@
     <category>связаться с луисом крётцем</category>
     <category>нанять фронтенд-разработчика</category>
     <category>электронная почта</category>
-    <category>разработчик фриланс</category>
   </item>
   <item>
     <title>Политика конфиденциальности</title>
@@ -160,7 +160,7 @@
     <category>скелет загрузки с морфящимися ячейками и бликом</category>
     <category>вступительный загрузчик с встречно вращающимися кольцами и прогрессом</category>
     <category>уведомление-тост, выскальзывающее из угла</category>
-    <category>заголовок плитки портфолио сгорает в углях и собирается заново</category>
+    <category>имя проекта сгорает в углях и сплетается заново в колоде</category>
   </item>
   <item>
     <title>Земная песочница</title>
@@ -220,31 +220,11 @@
     <category>обо мне</category>
   </item>
   <item>
-    <title>Делл Дизайн Систем</title>
-    <link>https://luiskr.com/ru/portfolio/dell-design-system</link>
-    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/dell-design-system</guid>
-    <dc:creator>Luis Krötz</dc:creator>
-    <description>Приход в Dell 6 июня 2022 года, вскоре после закрытия Transainc, стал ключевым поворотным моментом в моей профессиональной карьере.</description>
-    <category>делл дизайн систем</category>
-    <category>dell design system</category>
-    <category>dell design system, обзор веб-сайта</category>
-    <category>dell design system: обзор фундаментальных основ</category>
-    <category>dell design system: архитектура кода и рекомендации</category>
-    <category>dell design system: принципы начала работы</category>
-    <category>dell design system: обзор библиотеки компонентов</category>
-    <category>dell design system: обзор паттернов</category>
-    <category>dell design system: интеграция со storybook и рекомендации по компонентам</category>
-    <category>dell design system: обзор документации по основам</category>
-    <category>dell design system: база дизайн-токенов v1</category>
-    <category>dell design system: база дизайн-токенов v2</category>
-    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
-    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
-  </item>
-  <item>
     <title>Марко Алмейда</title>
     <link>https://luiskr.com/ru/portfolio/aboutmarco</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/aboutmarco</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Портфолио Марко было разработано как фриланс-проект в 2021 году.</description>
     <category>марко алмейда</category>
     <category>aboutmarco</category>
@@ -266,6 +246,7 @@
     <link>https://luiskr.com/ru/portfolio/cecerele</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/cecerele</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Я познакомился с Жоаной из Cecerelê через общего друга, Сагу, в ноябре 2020 года.</description>
     <category>сесереле</category>
     <category>cecerele</category>
@@ -286,6 +267,7 @@
     <link>https://luiskr.com/ru/portfolio/cicb</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/cicb</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Brazilian Leather это проект, разработанный в Transa в партнёрстве между CICB и Apex-Brasil.</description>
     <category>бразилиан лезер</category>
     <category>cicb</category>
@@ -307,6 +289,7 @@
     <link>https://luiskr.com/ru/portfolio/coza</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/coza</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Сайт Coza был разработан в Transa с 2017 по 2019 год.</description>
     <category>коза</category>
     <category>coza</category>
@@ -324,10 +307,33 @@
     <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/coza/feed+shop/coza.com.br-feed-2019-tour.mp4" medium="video"/>
   </item>
   <item>
+    <title>Делл Дизайн Систем</title>
+    <link>https://luiskr.com/ru/portfolio/dell-design-system</link>
+    <guid isPermaLink="true">https://luiskr.com/ru/portfolio/dell-design-system</guid>
+    <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Mon, 12 Oct 2026 02:18:16 GMT</pubDate>
+    <description>Приход в Dell 6 июня 2022 года, вскоре после закрытия Transainc, стал ключевым поворотным моментом в моей профессиональной карьере.</description>
+    <category>делл дизайн систем</category>
+    <category>dell design system</category>
+    <category>dell design system, обзор веб-сайта</category>
+    <category>dell design system: обзор фундаментальных основ</category>
+    <category>dell design system: архитектура кода и рекомендации</category>
+    <category>dell design system: принципы начала работы</category>
+    <category>dell design system: обзор библиотеки компонентов</category>
+    <category>dell design system: обзор паттернов</category>
+    <category>dell design system: интеграция со storybook и рекомендации по компонентам</category>
+    <category>dell design system: обзор документации по основам</category>
+    <category>dell design system: база дизайн-токенов v1</category>
+    <category>dell design system: база дизайн-токенов v2</category>
+    <media:thumbnail url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4.jpg-thumb.jpg"/>
+    <media:content url="https://storage.googleapis.com/luiskr.com/public/_v3/delldesignsystem/screenrecording-www.delldesignsystem.com-09-24-2026.mp4" medium="video"/>
+  </item>
+  <item>
     <title>Мелисса</title>
     <link>https://luiskr.com/ru/portfolio/melissa</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/melissa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Сайт Melissa был проектом, разработанным в TRANSA INC.</description>
     <category>мелисса</category>
     <category>melissa</category>
@@ -349,6 +355,7 @@
     <link>https://luiskr.com/ru/portfolio/metcha</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/metcha</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>METCHA: оракул кожи, дизайна и культуры.</description>
     <category>метча</category>
     <category>metcha</category>
@@ -370,6 +377,7 @@
     <link>https://luiskr.com/ru/portfolio/mini-melissa</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/mini-melissa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Mini Melissa был проектом, разработанным в Transa для группы Grendene как отдельный канал для бренда Mini Melissa.</description>
     <category>мини мелисса</category>
     <category>mini melissa</category>
@@ -391,6 +399,7 @@
     <link>https://luiskr.com/ru/portfolio/mor</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/mor</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Сайт MOR был разработан в Transa.</description>
     <category>мор</category>
     <category>mor</category>
@@ -412,6 +421,7 @@
     <link>https://luiskr.com/ru/portfolio/nathalia-bond</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/nathalia-bond</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Я познакомился с Натальей из Nathalia Bond, Clínica de Desenvolvimento, через общего друга, Марко Анушека, в октябре 2021 года.</description>
     <category>наталия бонд</category>
     <category>nathalia bond</category>
@@ -433,6 +443,7 @@
     <link>https://luiskr.com/ru/portfolio/sage</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/sage</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Sage это фискальное программное обеспечение, разработанное Genesysinf, компанией из Сантана-ду-Ливраменту, Бразилия.</description>
     <category>дженесисинф, сейджвеб</category>
     <category>sage</category>
@@ -453,6 +464,7 @@
     <link>https://luiskr.com/ru/portfolio/transa</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/transa</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Сайт Transa был разработан на Vue, CSS (Sass) и PHP (Laravel) в 2021 году.</description>
     <category>транса</category>
     <category>transa</category>
@@ -474,6 +486,7 @@
     <link>https://luiskr.com/ru/portfolio/vibra</link>
     <guid isPermaLink="true">https://luiskr.com/ru/portfolio/vibra</guid>
     <dc:creator>Luis Krötz</dc:creator>
+    <pubDate>Tue, 11 Aug 2026 17:35:01 GMT</pubDate>
     <description>Vibra был сайтом, разработанным в Transa в 2016 году и остававшимся онлайн до 2021 года.</description>
     <category>вибра</category>
     <category>vibra</category>
